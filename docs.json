@@ -22,9 +22,23 @@
     "groups": [
       {
         "group": "Sessions",
+        "tag": "PRO",
         "pages": [
-          "index",
-          "sessions/pair",
+          "index"
+        ]
+      },
+      {
+        "group": "Setup",
+        "icon": "wrench",
+        "pages": [
+          "setup/install",
+          "setup/pairing"
+        ]
+      },
+      {
+        "group": "Using Sessions",
+        "icon": "mobile-screen",
+        "pages": [
           "sessions/list",
           "sessions/island",
           "sessions/approvals",

@@ -1,0 +1,119 @@
+---
+title: "Pair your computer"
+description: "Link a computer to the Nomo app by scanning a QR code, or by typing a one-time code when you can't open a browser."
+icon: "qrcode-read"
+---
+
+Pairing hands your phone and your computer a shared encryption key. No server
+ever sees it — which is why it takes a scan or a typed code rather than a login.
+
+You do this once per computer. The pairing expires if unused for **10 minutes**.
+
+<Note>
+  One pairing covers the machine, not the agent. If you run both Claude Code and
+  Codex on the same computer, they share it — you don't pair twice.
+</Note>
+
+<Tabs>
+  <Tab title="QR code" icon="qrcode-read">
+    The normal path. Use it whenever you can open a browser on the computer.
+
+    <Steps>
+      <Step title="Start pairing">
+        <CodeGroup>
+        ```bash Claude Code
+        /nomo-cc:pair
+        ```
+
+        ```bash Codex
+        $nomo-pair
+        ```
+        </CodeGroup>
+
+        A themed pairing page opens in your browser with a QR code.
+      </Step>
+
+      <Step title="Scan it">
+        In Nomo, go to the **Sessions** tab → **Pair a Computer**, and point the
+        camera at the QR code.
+
+        {/* TODO: screenshot of the in-app scanner */}
+      </Step>
+
+      <Step title="Done">
+        The page flips to **Paired ✓** on its own and tears itself down. Your
+        computer now appears in the Sessions tab.
+      </Step>
+    </Steps>
+
+    <Note>
+      The QR code and the one-time code appear **only** in that browser page,
+      never in your terminal. That's deliberate — terminal output ends up in
+      agent transcripts, and these are the values an attacker would need.
+    </Note>
+  </Tab>
+
+  <Tab title="Typed code" icon="keyboard">
+    For a headless box, an SSH session, or anywhere you can't open a browser.
+
+    <Steps>
+      <Step title="Ask for the code">
+        Pass `code` as the argument:
+
+        <CodeGroup>
+        ```bash Claude Code
+        /nomo-cc:pair code
+        ```
+
+        ```bash Codex
+        $nomo-pair code
+        ```
+        </CodeGroup>
+
+        No browser opens. A one-time code prints straight to the terminal:
+
+        ```
+        One-time code: <shown here> · expires in 10 min
+        ```
+      </Step>
+
+      <Step title="Type it into the app">
+        In Nomo: **Sessions** → **Pair a Computer** → **Enter code**.
+
+        {/* TODO: screenshot of the Enter code screen */}
+      </Step>
+    </Steps>
+
+    <Warning>
+      This path puts the pairing code into your terminal, and therefore into the
+      agent's transcript. It's a deliberate trade-off for machines that have no
+      browser — prefer the QR path when you have one.
+    </Warning>
+  </Tab>
+</Tabs>
+
+## Checking on it later
+
+<CodeGroup>
+```bash Claude Code
+/nomo-cc:status
+```
+
+```bash Codex
+$nomo-status
+```
+</CodeGroup>
+
+That reports whether the computer is still connected and whether events are
+being delivered.
+
+## If pairing doesn't take
+
+- **No QR page opens** — the plugin's hooks probably didn't load. Restart the
+  agent and try again, or use the typed-code path.
+- **The scan succeeds but no computer appears** — run the status command above
+  to see whether events are being delivered at all.
+- **Rows look stale or duplicated** — run `/nomo-cc:reset` (or `$nomo-reset`) to
+  clear dead session rows without unpairing.
+- **You want to disconnect a computer** — `/nomo-cc:unpair` (or `$nomo-unpair`)
+  removes the pairing and erases the local key.

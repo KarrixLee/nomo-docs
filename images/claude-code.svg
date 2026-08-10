@@ -1,0 +1,11 @@
+<svg width="1200" height="799" viewBox="0 0 1200 799" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M200 0H1000V200H200V0Z" fill="#D87656"/>
+<path d="M0 200H1200V400H0V200Z" fill="#D87656"/>
+<path d="M200 400H1000V600H200V400Z" fill="#D87656"/>
+<path d="M200 600H300V799H200V600Z" fill="#D87656"/>
+<path d="M400 600H500V799H400V600Z" fill="#D87656"/>
+<path d="M700 600H800V799H700V600Z" fill="#D87656"/>
+<path d="M900 600H1000V799H900V600Z" fill="#D87656"/>
+<path d="M800 100H900V200H800V100Z" fill="black"/>
+<path d="M300 100H400V200H300V100Z" fill="black"/>
+</svg>

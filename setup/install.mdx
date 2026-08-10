@@ -1,0 +1,99 @@
+---
+title: "Install the plugin"
+description: "Add the Nomo plugin to Claude Code or Codex. Two commands, no dependencies."
+icon: "puzzle-piece"
+---
+
+Nomo talks to your coding agent through a plugin. Install it once per computer.
+
+The plugin has **zero npm dependencies** — it runs on Node built-ins. You need
+either **bun** or **node 18 or later**, whichever you already have.
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    From inside a Claude Code session:
+
+    ```
+    /plugin marketplace add KarrixLee/nomo
+    /plugin install nomo-cc@nomo
+    ```
+
+    Restart Claude Code afterward so the plugin's hooks load.
+
+    Confirm it's there:
+
+    ```
+    /nomo-cc:status
+    ```
+
+    <Tip>
+      All Nomo commands in Claude Code are namespaced `nomo-cc:` — typing
+      `/nomo-cc:` will list them.
+    </Tip>
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    Codex **0.142 or later** ships its own plugin system, so Nomo installs as a
+    standalone Codex plugin. Claude Code is not required.
+
+    <Steps>
+      <Step title="Install the plugin">
+        From inside a Codex session:
+
+        ```
+        codex plugin marketplace add KarrixLee/nomo
+        codex plugin add nomo@nomo
+        ```
+
+        This works in the **Codex desktop app** too — same commands from its
+        built-in terminal.
+      </Step>
+
+      <Step title="Trust the hooks — required">
+        ```
+        /hooks
+        ```
+
+        Trust the **seven Nomo entries**.
+
+        <Warning>
+          Don't skip this. Nomo's hooks ship with the plugin but stay **inert
+          until trusted**. Until you do it, the plugin is installed and doing
+          nothing — no sessions reach your phone, and nothing reports an error.
+        </Warning>
+
+        This is Codex's own safety gate, and Nomo can't pre-approve it. The hook
+        command lines are byte-stable across releases, so trusting once holds
+        through updates — only a changed hook line re-opens the review.
+      </Step>
+
+      <Step title="Confirm">
+        ```
+        $nomo-status
+        ```
+
+        This reports pairing, watchdog, **hook-trust**, and last-delivery health
+        — so it's also how you check the trust step actually took.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Codex skills use a `$` prefix rather than a slash — `$nomo-pair`,
+      `$nomo-status`, `$nomo-reset`, `$nomo-unpair`.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## What the plugin does
+
+It watches the session and reports state changes to your phone: what the agent
+is working on, when it stops, and when it needs permission for something.
+
+It sends nothing until you [pair a phone](/setup/pairing), and everything it
+does send is encrypted on this machine first.
+
+## Next
+
+<Card title="Pair your computer" href="/setup/pairing" icon="qrcode-read">
+  Scan a QR code, or type a one-time code if you can't open a browser.
+</Card>
