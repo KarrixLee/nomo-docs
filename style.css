@@ -1,0 +1,36 @@
+/* Nomo brand — auto-included by Mintlify on every page (any .css in the content dir).
+   docs.json colors are hex-only, so the coral→violet identity lives here instead.
+   Hues mirror Shared/BrandPalette.swift: claudeCoral 0xD97757, codexViolet 0x7A5CF0. */
+
+:root {
+  --nomo-coral: #d97757;
+  --nomo-violet: #7a5cf0;
+}
+
+/* Brighter in dark mode so the gradient doesn't sink into the background. */
+.dark {
+  --nomo-coral: #e5a184;
+  --nomo-violet: #9b83f5;
+}
+
+/* Page titles carry the brand gradient. h1 only — subheads stay plain text so
+   the page still scans as a document, not a landing page. */
+h1 {
+  background: linear-gradient(
+    120deg,
+    var(--nomo-coral) 0%,
+    var(--nomo-violet) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Forced-colors / high-contrast: background-clip:text leaves the title invisible,
+   so hand it back to the system palette. */
+@media (forced-colors: active) {
+  h1 {
+    background: none;
+    color: CanvasText;
+  }
+}
