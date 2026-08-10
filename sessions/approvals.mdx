@@ -1,0 +1,51 @@
+---
+title: "Answering from your phone"
+description: "Allow or deny Claude Code's permission prompts remotely, and what can't be answered away from your Mac."
+---
+
+When Claude Code wants to run something it doesn't have standing permission for,
+it stops and asks. Normally you'd answer that at your Mac. With Nomo you can
+answer it from your phone.
+
+## Answering
+
+When a session shows the purple hand, tap into it. You get the request and two
+buttons:
+
+- **Allow** — Claude runs the action and continues.
+- **Deny** — Claude skips it and continues without it.
+
+{/* TODO: screenshot of the approval sheet */}
+
+Your answer goes back encrypted. Claude picks it up and keeps working — you
+don't need to touch the Mac afterward.
+
+## What you can't answer remotely
+
+Not every prompt is remotely answerable, and Nomo won't pretend otherwise. If a
+session is yellow rather than showing the hand, there's nothing to tap: the
+prompt needs choices or typed input that only exist in the terminal.
+
+The rule is simple — **if you don't see the hand, it has to be answered at the
+Mac.**
+
+## When the answer doesn't land
+
+If your phone was offline when you tapped, Nomo retries. If the request expired
+before your answer arrived — you tapped a prompt Claude had already given up on
+— the buttons go away rather than silently doing nothing.
+
+An answer that arrives too late is discarded, not applied. You'll never come
+back to find something ran because you tapped it twenty minutes ago.
+
+## Turning it off
+
+If you don't want a computer sending permission prompts to your phone, pause it
+from the Mac:
+
+```
+/nomo-cc:approvals
+```
+
+The same command resumes it. Pausing approvals doesn't unpair anything — you'll
+still see sessions, you just won't be asked to answer for them.

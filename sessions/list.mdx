@@ -1,0 +1,53 @@
+---
+title: "The Sessions list"
+description: "What each row in the Sessions tab means, and how to read a session's state at a glance."
+---
+
+The Sessions tab lists the Claude Code sessions running on your paired
+computers. One row per session.
+
+{/* TODO: screenshot of the Sessions tab with two or three rows */}
+
+## What a row tells you
+
+A row carries the session's title, which computer it's on, and its current
+state. The title comes from Claude Code's own summary of what it's working on,
+so it changes as the session moves between tasks — it isn't the folder name.
+
+## Session states
+
+{/* TODO: confirm the exact label wording used in the app for each state */}
+
+<ResponseField name="Working" type="green">
+  Claude is actively doing something. Nothing is needed from you.
+</ResponseField>
+
+<ResponseField name="Needs attention" type="yellow">
+  Claude has stopped and is waiting on you, but there's no question you can
+  answer from the phone. Usually it finished a turn and wants your next
+  instruction.
+</ResponseField>
+
+<ResponseField name="Waiting for approval" type="purple">
+  Claude is asking permission for a specific action. This is the one you can
+  answer from your phone — see [Answering from your phone](/sessions/approvals).
+</ResponseField>
+
+<ResponseField name="Done" type="gray">
+  The session ended. Finished rows clear themselves out after a while.
+</ResponseField>
+
+## Rows that disappear
+
+Sessions retire on their own once they've been finished for long enough. A row
+vanishing on its own is normal.
+
+A row that goes stale — its computer went to sleep, the terminal was closed —
+gets marked rather than silently dropped, so you can tell "this ended" apart
+from "this lost contact."
+
+## Multiple computers
+
+Every paired Mac contributes its own sessions to the same list. The row shows
+which computer it came from, so two sessions with similar titles stay
+distinguishable.
