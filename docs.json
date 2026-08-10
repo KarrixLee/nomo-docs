@@ -7,6 +7,9 @@
     "light": "#E5A184",
     "dark": "#B85C3C"
   },
+  "background": {
+    "decoration": "gradient"
+  },
   "navigation": {
     "groups": [
       {
