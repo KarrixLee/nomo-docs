@@ -3,6 +3,10 @@
   "theme": "mint",
   "name": "Nomo",
   "favicon": "/favicon.png",
+  "logo": {
+    "light": "/logo/nomo-light.png",
+    "dark": "/logo/nomo-dark.png"
+  },
   "colors": {
     "primary": "#b06046",
     "light": "#E5A184",
