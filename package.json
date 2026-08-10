@@ -1,0 +1,11 @@
+{
+  "name": "nomo-docs",
+  "private": true,
+  "description": "Nomo user documentation — Mintlify, deploys on push to main",
+  "scripts": {
+    "dev": "PATH=/usr/local/bin:$PATH bunx mint dev",
+    "check": "PATH=/usr/local/bin:$PATH bunx mint validate && PATH=/usr/local/bin:$PATH bunx mint broken-links",
+    "a11y": "PATH=/usr/local/bin:$PATH bunx mint a11y",
+    "deslop": "PATH=/usr/local/bin:$PATH bunx mint deslop"
+  }
+}

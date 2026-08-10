@@ -48,23 +48,24 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
         comandos desde su terminal integrada.
       </Step>
 
-      <Step title="Autoriza los hooks — obligatorio">
+      <Step title="Confía en los hooks — obligatorio">
         ```
         /hooks
         ```
 
-        Autoriza las **siete entradas de Nomo**.
+        Confía en las **siete entradas de Nomo**. Codex las muestra con la palabra
+        «trust» — su interfaz está en inglés.
 
         <Warning>
           No te saltes este paso. Los hooks de Nomo vienen con el plugin, pero
-          permanecen **inertes hasta que los autorices**. Hasta que lo hagas, el
+          permanecen **inertes hasta que confíes en ellos**. Hasta que lo hagas, el
           plugin está instalado sin hacer nada: ninguna sesión llega a tu
           teléfono y nada informa de un error.
         </Warning>
 
         Es la propia barrera de seguridad de Codex, y Nomo no puede aprobarla por
         adelantado. Las líneas de comando de los hooks son estables byte a byte
-        entre versiones, así que autorizar una vez se mantiene tras las
+        entre versiones, así que confiar una vez se mantiene tras las
         actualizaciones; solo una línea de hook modificada vuelve a abrir la
         revisión.
       </Step>
@@ -76,7 +77,7 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
 
         Informa del estado del emparejamiento, el watchdog, la **autorización de
         los hooks** y la última entrega, así que también sirve para comprobar que
-        el paso de autorización surtió efecto.
+        el paso de confianza surtió efecto.
       </Step>
     </Steps>
 
