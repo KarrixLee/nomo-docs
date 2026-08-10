@@ -1,0 +1,108 @@
+---
+title: "プラグインをインストールする"
+description: "Claude Code または Codex に Nomo プラグインを追加します。コマンドは 2 つ、依存関係はありません。"
+icon: "puzzle-piece"
+---
+
+Nomo はプラグインを通じてコーディングエージェントとやり取りします。コンピュータごとに 1 回インストールします。
+
+このプラグインには **npm 依存関係が一切ありません** — Node の組み込み機能だけで動作します。
+**bun** または **node 18 以降** のうち、すでに入っている方が必要です。
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    Claude Code のセッション内で実行します。
+
+    ```
+    /plugin marketplace add KarrixLee/nomo
+    /plugin install nomo-cc@nomo
+    ```
+
+    その後 Claude Code を再起動して、プラグインのフックを読み込ませます。
+
+    インストールされたことを確認します。
+
+    ```
+    /nomo-cc:status
+    ```
+
+    <Tip>
+      Claude Code の Nomo コマンドはすべて `nomo-cc:` の名前空間に属します —
+      `/nomo-cc:` と入力すると一覧が表示されます。
+    </Tip>
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    Codex **0.142 以降** は独自のプラグインシステムを備えているため、Nomo は単体の
+    Codex プラグインとしてインストールされます。Claude Code は不要です。
+
+    <Steps>
+      <Step title="プラグインをインストールする">
+        Codex のセッション内で実行します。
+
+        ```
+        codex plugin marketplace add KarrixLee/nomo
+        codex plugin add nomo@nomo
+        ```
+
+        これは **Codex デスクトップアプリ** でも動作します — 内蔵ターミナルから
+        同じコマンドを実行します。
+      </Step>
+
+      <Step title="フックを信頼する — 必須">
+        ```
+        /hooks
+        ```
+
+        **7 つの Nomo エントリ** を信頼します。
+
+        <Warning>
+          この手順は省略しないでください。Nomo のフックはプラグインに同梱されて
+          いますが、**信頼するまで動作しません**。実行するまで、プラグインは
+          インストール済みでも何もしません — セッションはスマートフォンに届かず、
+          エラーも報告されません。
+        </Warning>
+
+        これは Codex 自身の安全ゲートであり、Nomo が事前に承認することはできません。
+        フックのコマンド行はリリース間でバイト単位で安定しているため、一度信頼すれば
+        更新後もそのまま維持されます — フック行が変更された場合にのみ再確認が求められます。
+      </Step>
+
+      <Step title="確認する">
+        ```
+        $nomo-status
+        ```
+
+        これはペアリング、ウォッチドッグ、**フックの信頼状態**、最終配信の状態を
+        報告します — つまり、信頼の手順が実際に反映されたかを確認する方法でもあります。
+      </Step>
+    </Steps>
+
+    <Tip>
+      Codex のスキルはスラッシュではなく `$` を接頭辞に使います — `$nomo-pair`、
+      `$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
+    </Tip>
+  </Tab>
+</Tabs>
+
+## プラグインの動作
+
+プラグインはセッションを監視し、状態の変化をスマートフォンに報告します。エージェントが
+何に取り組んでいるか、いつ停止したか、いつ何かの許可を必要としているかです。
+
+[スマートフォンをペアリング](/ja/setup/pairing)するまで、プラグインは何も送信しません。
+送信されるものはすべて、このマシン上で先に暗号化されます。
+
+プラグインは **オープンソース** です — インストール前に、何を収集し何を送信するかを
+正確に読むことができます。
+
+<Card title="KarrixLee/nomo" href="https://github.com/KarrixLee/nomo" icon="github" horizontal>
+  プラグインの全ソースコード、MIT ライセンスです。マーケットプレイスからの
+  インストールは、このリポジトリの単純なクローンです。
+</Card>
+
+## 次のステップ
+
+<Card title="コンピュータをペアリングする" href="/ja/setup/pairing" icon="qrcode-read">
+  QR コードをスキャンするか、ブラウザを開けない場合はワンタイムコードを入力します。
+</Card>

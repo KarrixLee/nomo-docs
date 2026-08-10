@@ -1,0 +1,104 @@
+---
+title: "安装插件"
+description: "为 Claude Code 或 Codex 添加 Nomo 插件。两条命令，零依赖。"
+icon: "puzzle-piece"
+---
+
+Nomo 通过插件与你的编程 agent 通信。每台电脑安装一次即可。
+
+该插件**没有任何 npm 依赖** —— 它只用 Node 内置模块运行。你需要
+**bun** 或 **node 18 及以上版本**，用你已有的那个就行。
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    在 Claude Code 会话中执行：
+
+    ```
+    /plugin marketplace add KarrixLee/nomo
+    /plugin install nomo-cc@nomo
+    ```
+
+    之后重启 Claude Code，让插件的 hook 加载。
+
+    确认已安装：
+
+    ```
+    /nomo-cc:status
+    ```
+
+    <Tip>
+      Claude Code 中所有 Nomo 命令都带 `nomo-cc:` 命名空间 —— 输入
+      `/nomo-cc:` 就会列出它们。
+    </Tip>
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    Codex **0.142 及以上版本**自带插件系统，所以 Nomo 可以作为独立的 Codex
+    插件安装，不需要 Claude Code。
+
+    <Steps>
+      <Step title="安装插件">
+        在 Codex 会话中执行：
+
+        ```
+        codex plugin marketplace add KarrixLee/nomo
+        codex plugin add nomo@nomo
+        ```
+
+        这在 **Codex 桌面应用**里同样适用 —— 在它内置的终端里执行同样的命令。
+      </Step>
+
+      <Step title="信任 hook —— 必做">
+        ```
+        /hooks
+        ```
+
+        信任那**七条 Nomo 条目**。
+
+        <Warning>
+          不要跳过这一步。Nomo 的 hook 随插件一起安装，但在**被信任之前始终不会
+          生效**。在你完成这一步之前，插件虽已安装却什么都不做 —— 没有会话到达你
+          的手机，也不会有任何报错。
+        </Warning>
+
+        这是 Codex 自身的安全关卡，Nomo 无法预先批准。hook 的命令行在各个版本之间
+        逐字节保持不变，所以信任一次即可跨版本沿用 —— 只有 hook 命令行发生变化才会
+        重新触发审核。
+      </Step>
+
+      <Step title="确认">
+        ```
+        $nomo-status
+        ```
+
+        它会报告配对、看门狗、**hook 信任状态**以及最近一次投递的健康情况 ——
+        所以这也是检查信任那一步是否真正生效的方法。
+      </Step>
+    </Steps>
+
+    <Tip>
+      Codex 的技能使用 `$` 前缀而不是斜杠 —— `$nomo-pair`、
+      `$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
+    </Tip>
+  </Tab>
+</Tabs>
+
+## 插件做了什么
+
+它监视会话，并把状态变化报告给你的手机：agent 正在做什么、什么时候停下，以及
+什么时候需要你授予权限。
+
+在你[配对手机](/zh-Hans/setup/pairing)之前，它什么都不会发送；而它发送的所有
+内容都先在本机加密。
+
+该插件是**开源**的 —— 在安装之前，你可以确切地读到它收集和发送了什么：
+
+<Card title="KarrixLee/nomo" href="https://github.com/KarrixLee/nomo" icon="github" horizontal>
+  完整的插件源码，采用 MIT 许可证。从插件市场安装就是对这个仓库的一次普通克隆。
+</Card>
+
+## 下一步
+
+<Card title="配对你的电脑" href="/zh-Hans/setup/pairing" icon="qrcode-read">
+  扫描二维码；如果打不开浏览器，就输入一次性配对码。
+</Card>

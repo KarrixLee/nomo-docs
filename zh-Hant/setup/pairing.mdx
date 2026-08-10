@@ -1,0 +1,135 @@
+---
+title: "配對你的電腦"
+description: "掃描 QR 碼，或在無法開啟瀏覽器時手動輸入一次性代碼，把電腦連結到 Nomo 應用程式。"
+icon: "qrcode-read"
+---
+
+配對會交給你的手機和電腦一把共用的加密金鑰。沒有任何伺服器看得到它 — 這正是
+為什麼要用掃描或手動輸入代碼，而不是登入。
+
+每台電腦只需做一次。配對若閒置 **10 分鐘**未使用就會過期。
+
+<Note>
+  一次配對涵蓋的是這台電腦，而不是個別代理。如果你在同一台電腦上同時執行
+  Claude Code 和 Codex，兩者會共用同一組配對 — 不需要配對兩次。
+</Note>
+
+<Tabs>
+  <Tab title="QR 碼" icon="qrcode-read">
+    一般的做法。只要能在電腦上開啟瀏覽器，就用這個。
+
+    <Steps>
+      <Step title="開始配對">
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair
+        ```
+        </CodeGroup>
+
+        瀏覽器會開啟一個套用主題樣式的配對頁面，上面有一個 QR 碼。
+
+        <Frame caption="電腦上的配對頁面。掃描完成後，它會自行切換成 Paired ✓（已配對）。">
+          <img src="/images/pairing-pc-qrcode.png" alt="Nomo 配對頁面，顯示 QR 碼與點一下才會顯示的一次性代碼" />
+        </Frame>
+      </Step>
+
+      <Step title="掃描它">
+        在 Nomo 裡，前往 **Sessions**（工作階段）分頁 → **Pair a Computer**
+        （配對電腦），然後把相機對準 QR 碼。
+
+        {/* TODO: screenshot of the in-app scanner */}
+      </Step>
+
+      <Step title="完成">
+        頁面會自行切換成 **Paired ✓**（已配對）並自我關閉。你的電腦現在會出現
+        在 Sessions（工作階段）分頁裡。
+      </Step>
+    </Steps>
+
+    <Note>
+      QR 碼與一次性代碼**只會**出現在那個瀏覽器頁面，絕不會出現在你的終端機。
+      這是刻意的 — 終端機輸出最後會進到代理的對話記錄裡，而這兩個值正是攻擊者
+      會需要的東西。
+    </Note>
+
+  </Tab>
+
+  <Tab title="手動輸入代碼" icon="keyboard">
+    適用於無圖形介面的機器、SSH 連線，或任何無法開啟瀏覽器的地方。
+
+    <Warning>
+      這條路徑會把配對代碼放進你的終端機，因此也會進到代理的對話記錄裡。這是
+      為了沒有瀏覽器的機器所做的取捨 — 有瀏覽器時請優先使用 QR 碼那條路徑。
+    </Warning>
+
+    <Steps>
+      <Step title="索取代碼">
+        把 `code` 當成參數傳入：
+
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair code
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair code
+        ```
+        </CodeGroup>
+
+        不會開啟瀏覽器。一次性代碼會直接印在終端機上：
+
+        ```
+        One-time code: <shown here> · expires in 10 min
+        ```
+      </Step>
+
+      <Step title="代碼長什麼樣子">
+        一個數字，接著六個單字，全部小寫並以連字號相連：
+
+        ```
+        7-anchor-brisk-cotton-dial-emerge-fabric
+        ```
+
+        <Info>
+          這些單字取自 BIP39 字詞表：任兩個字的前四個字母都不相同，也沒有長得
+          相像的字元。雖然長，但很難打錯或聽錯。
+        </Info>
+      </Step>
+
+      <Step title="在應用程式裡輸入">
+        在 Nomo 裡：**Sessions**（工作階段）→ **Pair a Computer**（配對電腦）
+        → **Enter code**（輸入代碼）。
+
+        {/* TODO: screenshot of the Enter code screen */}
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 之後怎麼查看
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+</CodeGroup>
+
+這會回報電腦是否仍在連線，以及事件是否有送達。
+
+## 配對沒有成功時
+
+- **沒有開啟 QR 頁面** — 多半是外掛程式的 hooks 沒有載入。重新啟動代理再試
+  一次，或改用手動輸入代碼那條路徑。
+- **掃描成功但沒有出現電腦** — 執行上面的狀態指令，看看事件到底有沒有送達。
+- **列表看起來是舊的或重複** — 執行 `/nomo-cc:reset`（或 `$nomo-reset`）清掉
+  失效的工作階段列，不會解除配對。
+- **想中斷某台電腦的連線** — `/nomo-cc:unpair`（或 `$nomo-unpair`）會移除配對
+  並清除本機金鑰。

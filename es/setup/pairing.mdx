@@ -1,0 +1,147 @@
+---
+title: "Empareja tu equipo"
+description: "Vincula un equipo con la app de Nomo escaneando un código QR, o escribiendo un código de un solo uso cuando no puedas abrir un navegador."
+icon: "qrcode-read"
+---
+
+El emparejamiento entrega a tu teléfono y a tu equipo una clave de cifrado
+compartida. Ningún servidor la ve nunca, y por eso hace falta un escaneo o un
+código escrito en lugar de un inicio de sesión.
+
+Esto se hace una vez por equipo. El emparejamiento caduca si no se usa durante
+**10 minutos**.
+
+<Note>
+  Un emparejamiento cubre la máquina, no el agente. Si usas Claude Code y Codex
+  en el mismo equipo, lo comparten: no emparejas dos veces.
+</Note>
+
+<Tabs>
+  <Tab title="Código QR" icon="qrcode-read">
+    La vía normal. Úsala siempre que puedas abrir un navegador en el equipo.
+
+    <Steps>
+      <Step title="Inicia el emparejamiento">
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair
+        ```
+        </CodeGroup>
+
+        Se abre en tu navegador una página de emparejamiento con la estética de
+        la app y un código QR.
+
+        <Frame caption="La página de emparejamiento en tu equipo. Cambia a Paired ✓ (Emparejado ✓) por sí sola en cuanto llega el escaneo.">
+          <img src="/images/pairing-pc-qrcode.png" alt="La página de emparejamiento de Nomo mostrando un código QR y un código de un solo uso que se revela al hacer clic" />
+        </Frame>
+      </Step>
+
+      <Step title="Escanéalo">
+        En Nomo, ve a la pestaña **Sessions** (Sesiones) → **Pair a Computer**
+        (Emparejar un equipo), y apunta la cámara al código QR.
+
+        {/* TODO: screenshot of the in-app scanner */}
+      </Step>
+
+      <Step title="Listo">
+        La página cambia a **Paired ✓** (Emparejado ✓) por sí sola y se desmonta.
+        Tu equipo aparece ahora en la pestaña Sessions (Sesiones).
+      </Step>
+    </Steps>
+
+    <Note>
+      El código QR y el código de un solo uso aparecen **solo** en esa página del
+      navegador, nunca en tu terminal. Es deliberado: la salida del terminal
+      acaba en las transcripciones del agente, y estos son los valores que
+      necesitaría un atacante.
+    </Note>
+
+  </Tab>
+
+  <Tab title="Código escrito" icon="keyboard">
+    Para una máquina sin interfaz gráfica, una sesión SSH o cualquier sitio donde
+    no puedas abrir un navegador.
+
+    <Warning>
+      Esta vía pone el código de emparejamiento en tu terminal y, por tanto, en
+      la transcripción del agente. Es un compromiso deliberado para máquinas sin
+      navegador: prefiere la vía del QR cuando tengas uno.
+    </Warning>
+
+    <Steps>
+      <Step title="Pide el código">
+        Pasa `code` como argumento:
+
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair code
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair code
+        ```
+        </CodeGroup>
+
+        No se abre ningún navegador. Un código de un solo uso se imprime
+        directamente en el terminal:
+
+        ```
+        One-time code: <shown here> · expires in 10 min
+        ```
+      </Step>
+
+      <Step title="Qué aspecto tiene el código">
+        Un número, después seis palabras, en minúsculas y unidas por guiones:
+
+        ```
+        7-anchor-brisk-cotton-dial-emerge-fabric
+        ```
+
+        <Info>
+          Las palabras vienen de la lista BIP39: no hay dos que compartan sus
+          primeras cuatro letras, y no hay caracteres que se confundan entre sí.
+          Largo, pero difícil de escribir mal o de oír mal.
+        </Info>
+      </Step>
+
+      <Step title="Escríbelo en la app">
+        En Nomo: **Sessions** (Sesiones) → **Pair a Computer** (Emparejar un
+        equipo) → **Enter code** (Introducir código).
+
+        {/* TODO: screenshot of the Enter code screen */}
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Comprobarlo más adelante
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+</CodeGroup>
+
+Eso informa de si el equipo sigue conectado y de si los eventos se están
+entregando.
+
+## Si el emparejamiento no funciona
+
+- **No se abre ninguna página QR**: probablemente los hooks del plugin no se
+  cargaron. Reinicia el agente e inténtalo de nuevo, o usa la vía del código
+  escrito.
+- **El escaneo funciona pero no aparece ningún equipo**: ejecuta el comando de
+  estado de arriba para ver si se están entregando eventos.
+- **Las filas parecen obsoletas o duplicadas**: ejecuta `/nomo-cc:reset` (o
+  `$nomo-reset`) para borrar filas de sesiones muertas sin deshacer el
+  emparejamiento.
+- **Quieres desconectar un equipo**: `/nomo-cc:unpair` (o `$nomo-unpair`) elimina
+  el emparejamiento y borra la clave local.

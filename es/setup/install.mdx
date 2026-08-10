@@ -1,0 +1,114 @@
+---
+title: "Instala el plugin"
+description: "Añade el plugin de Nomo a Claude Code o Codex. Dos comandos, sin dependencias."
+icon: "puzzle-piece"
+---
+
+Nomo se comunica con tu agente de codificación a través de un plugin. Instálalo
+una vez por equipo.
+
+El plugin tiene **cero dependencias npm**: funciona con los módulos integrados de
+Node. Necesitas **bun** o **node 18 o posterior**, el que ya tengas.
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    Desde una sesión de Claude Code:
+
+    ```
+    /plugin marketplace add KarrixLee/nomo
+    /plugin install nomo-cc@nomo
+    ```
+
+    Reinicia Claude Code después para que se carguen los hooks del plugin.
+
+    Comprueba que está ahí:
+
+    ```
+    /nomo-cc:status
+    ```
+
+    <Tip>
+      Todos los comandos de Nomo en Claude Code llevan el espacio de nombres
+      `nomo-cc:`; al escribir `/nomo-cc:` se listan.
+    </Tip>
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    Codex **0.142 o posterior** incluye su propio sistema de plugins, así que
+    Nomo se instala como un plugin independiente de Codex. Claude Code no es
+    necesario.
+
+    <Steps>
+      <Step title="Instala el plugin">
+        Desde una sesión de Codex:
+
+        ```
+        codex plugin marketplace add KarrixLee/nomo
+        codex plugin add nomo@nomo
+        ```
+
+        Esto también funciona en la **app de escritorio de Codex**: los mismos
+        comandos desde su terminal integrada.
+      </Step>
+
+      <Step title="Autoriza los hooks — obligatorio">
+        ```
+        /hooks
+        ```
+
+        Autoriza las **siete entradas de Nomo**.
+
+        <Warning>
+          No te saltes este paso. Los hooks de Nomo vienen con el plugin, pero
+          permanecen **inertes hasta que los autorices**. Hasta que lo hagas, el
+          plugin está instalado sin hacer nada: ninguna sesión llega a tu
+          teléfono y nada informa de un error.
+        </Warning>
+
+        Es la propia barrera de seguridad de Codex, y Nomo no puede aprobarla por
+        adelantado. Las líneas de comando de los hooks son estables byte a byte
+        entre versiones, así que autorizar una vez se mantiene tras las
+        actualizaciones; solo una línea de hook modificada vuelve a abrir la
+        revisión.
+      </Step>
+
+      <Step title="Comprueba">
+        ```
+        $nomo-status
+        ```
+
+        Informa del estado del emparejamiento, el watchdog, la **autorización de
+        los hooks** y la última entrega, así que también sirve para comprobar que
+        el paso de autorización surtió efecto.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Las skills de Codex usan el prefijo `$` en lugar de una barra:
+      `$nomo-pair`, `$nomo-status`, `$nomo-reset`, `$nomo-unpair`.
+    </Tip>
+  </Tab>
+</Tabs>
+
+## Qué hace el plugin
+
+Observa la sesión e informa a tu teléfono de los cambios de estado: en qué está
+trabajando el agente, cuándo se detiene y cuándo necesita permiso para algo.
+
+No envía nada hasta que [emparejes un teléfono](/es/setup/pairing), y todo lo que
+sí envía se cifra antes en esta máquina.
+
+El plugin es **de código abierto**: puedes leer exactamente qué recopila y qué
+envía antes de instalarlo:
+
+<Card title="KarrixLee/nomo" href="https://github.com/KarrixLee/nomo" icon="github" horizontal>
+  El código fuente completo del plugin, con licencia MIT. Las instalaciones desde
+  el marketplace son un simple clon de este repositorio.
+</Card>
+
+## Siguiente
+
+<Card title="Empareja tu equipo" href="/es/setup/pairing" icon="qrcode-read">
+  Escanea un código QR, o escribe un código de un solo uso si no puedes abrir un
+  navegador.
+</Card>

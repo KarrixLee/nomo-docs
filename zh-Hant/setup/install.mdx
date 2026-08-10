@@ -1,0 +1,106 @@
+---
+title: "安裝外掛程式"
+description: "將 Nomo 外掛程式加入 Claude Code 或 Codex。兩道指令，零相依套件。"
+icon: "puzzle-piece"
+---
+
+Nomo 透過外掛程式與你的程式設計代理溝通。每台電腦只需安裝一次。
+
+這個外掛程式**沒有任何 npm 相依套件** — 它只用 Node 內建模組執行。你需要
+**bun** 或 **node 18 以上版本**，手上已經有哪一個就用哪一個。
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    在 Claude Code 工作階段中執行：
+
+    ```
+    /plugin marketplace add KarrixLee/nomo
+    /plugin install nomo-cc@nomo
+    ```
+
+    之後請重新啟動 Claude Code，讓外掛程式的 hooks 載入。
+
+    確認它已經裝好：
+
+    ```
+    /nomo-cc:status
+    ```
+
+    <Tip>
+      Claude Code 裡所有 Nomo 指令都在 `nomo-cc:` 命名空間下 — 輸入
+      `/nomo-cc:` 就會列出全部。
+    </Tip>
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    Codex **0.142 以上版本**內建自己的外掛程式系統，因此 Nomo 是以獨立的
+    Codex 外掛程式安裝，不需要 Claude Code。
+
+    <Steps>
+      <Step title="安裝外掛程式">
+        在 Codex 工作階段中執行：
+
+        ```
+        codex plugin marketplace add KarrixLee/nomo
+        codex plugin add nomo@nomo
+        ```
+
+        這在 **Codex 桌面應用程式**中同樣適用 — 在它內建的終端機執行相同的
+        指令即可。
+      </Step>
+
+      <Step title="信任 hooks — 必要步驟">
+        ```
+        /hooks
+        ```
+
+        信任那**七個 Nomo 項目**。
+
+        <Warning>
+          別跳過這一步。Nomo 的 hooks 會隨外掛程式一起安裝，但在你信任之前
+          **都不會運作**。在那之前，外掛程式雖然裝好了卻什麼也沒做 — 沒有
+          任何工作階段會送到你的手機，也不會有任何錯誤訊息。
+        </Warning>
+
+        這是 Codex 自己的安全關卡，Nomo 無法代為預先核准。hook 的指令行在各
+        版本之間逐位元組保持不變，所以信任一次就能延續到後續更新 — 只有指令
+        行變動時才會重新要求審核。
+      </Step>
+
+      <Step title="確認">
+        ```
+        $nomo-status
+        ```
+
+        這會回報配對、watchdog、**hook 信任狀態**與最後一次傳送的健康狀況
+        — 所以也可以用它來確認信任那一步真的生效了。
+      </Step>
+    </Steps>
+
+    <Tip>
+      Codex 的 skills 使用 `$` 前綴而不是斜線 — `$nomo-pair`、
+      `$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
+    </Tip>
+  </Tab>
+</Tabs>
+
+## 外掛程式做的事
+
+它會監看工作階段，並把狀態變化回報到你的手機：代理正在處理什麼、什麼時候停
+下來，以及什麼時候需要你授予權限。
+
+在你[配對手機](/zh-Hant/setup/pairing)之前，它不會送出任何東西；而所有送出的
+內容都會先在這台電腦上加密。
+
+這個外掛程式是**開源**的 — 你可以在安裝之前，確切讀到它收集與送出的內容：
+
+<Card title="KarrixLee/nomo" href="https://github.com/KarrixLee/nomo" icon="github" horizontal>
+  完整的外掛程式原始碼，採用 MIT 授權。從 marketplace 安裝就只是單純複製這個
+  儲存庫。
+</Card>
+
+## 下一步
+
+<Card title="配對你的電腦" href="/zh-Hant/setup/pairing" icon="qrcode-read">
+  掃描 QR 碼；如果無法開啟瀏覽器，也可以手動輸入一次性代碼。
+</Card>

@@ -1,0 +1,137 @@
+---
+title: "컴퓨터 페어링"
+description: "QR 코드를 스캔하거나, 브라우저를 열 수 없을 때는 일회용 코드를 입력해 컴퓨터를 Nomo 앱에 연결합니다."
+icon: "qrcode-read"
+---
+
+페어링은 휴대폰과 컴퓨터에 공유 암호화 키를 전달합니다. 어떤 서버도 이 키를 보지
+못하며, 그래서 로그인이 아니라 스캔이나 코드 입력이 필요합니다.
+
+컴퓨터마다 한 번씩 진행합니다. 페어링은 **10분** 동안 사용되지 않으면 만료됩니다.
+
+<Note>
+  페어링 하나는 에이전트가 아니라 컴퓨터에 적용됩니다. 같은 컴퓨터에서 Claude
+  Code와 Codex를 함께 사용하면 페어링을 공유하므로, 두 번 페어링하지 않습니다.
+</Note>
+
+<Tabs>
+  <Tab title="QR 코드" icon="qrcode-read">
+    일반적인 방법입니다. 컴퓨터에서 브라우저를 열 수 있다면 이 방법을 사용합니다.
+
+    <Steps>
+      <Step title="페어링 시작">
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair
+        ```
+        </CodeGroup>
+
+        테마가 적용된 페어링 페이지가 QR 코드와 함께 브라우저에서 열립니다.
+
+        <Frame caption="컴퓨터에 표시되는 페어링 페이지입니다. 스캔이 완료되면 자동으로 Paired ✓(페어링 완료)로 바뀝니다.">
+          <img src="/images/pairing-pc-qrcode.png" alt="QR 코드와 클릭하면 표시되는 일회용 코드가 있는 Nomo 페어링 페이지" />
+        </Frame>
+      </Step>
+
+      <Step title="스캔">
+        Nomo에서 **Sessions**(세션) 탭 → **Pair a Computer**(컴퓨터 페어링)로
+        이동한 뒤, 카메라를 QR 코드에 맞춥니다.
+
+        {/* TODO: screenshot of the in-app scanner */}
+      </Step>
+
+      <Step title="완료">
+        페이지는 자동으로 **Paired ✓**(페어링 완료)로 바뀌고 스스로 종료됩니다.
+        이제 컴퓨터가 Sessions(세션) 탭에 표시됩니다.
+      </Step>
+    </Steps>
+
+    <Note>
+      QR 코드와 일회용 코드는 **오직** 그 브라우저 페이지에만 표시되며, 터미널에는
+      절대 표시되지 않습니다. 이는 의도된 것입니다 — 터미널 출력은 에이전트
+      트랜스크립트에 남고, 공격자에게 필요한 값이 바로 이 값들이기 때문입니다.
+    </Note>
+
+  </Tab>
+
+  <Tab title="코드 입력" icon="keyboard">
+    헤드리스 장비, SSH 세션 등 브라우저를 열 수 없는 환경을 위한 방법입니다.
+
+    <Warning>
+      이 방법은 페어링 코드를 터미널에, 따라서 에이전트의 트랜스크립트에 남깁니다.
+      브라우저가 없는 컴퓨터를 위한 의도적인 트레이드오프이므로, 브라우저를 쓸 수
+      있다면 QR 방식을 사용합니다.
+    </Warning>
+
+    <Steps>
+      <Step title="코드 요청">
+        인자로 `code`를 전달합니다:
+
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair code
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair code
+        ```
+        </CodeGroup>
+
+        브라우저는 열리지 않습니다. 일회용 코드가 터미널에 바로 출력됩니다:
+
+        ```
+        One-time code: <shown here> · expires in 10 min
+        ```
+      </Step>
+
+      <Step title="코드의 형태">
+        숫자 하나에 이어 소문자 단어 여섯 개가 하이픈으로 연결됩니다:
+
+        ```
+        7-anchor-brisk-cotton-dial-emerge-fabric
+        ```
+
+        <Info>
+          단어는 BIP39 단어 목록에서 가져옵니다: 앞 네 글자가 같은 단어가 없고,
+          서로 닮은 문자도 없습니다. 길지만 잘못 입력하거나 잘못 듣기 어렵습니다.
+        </Info>
+      </Step>
+
+      <Step title="앱에 입력">
+        Nomo에서: **Sessions**(세션) → **Pair a Computer**(컴퓨터 페어링) →
+        **Enter code**(코드 입력).
+
+        {/* TODO: screenshot of the Enter code screen */}
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 나중에 상태 확인하기
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+</CodeGroup>
+
+컴퓨터가 여전히 연결되어 있는지, 이벤트가 전달되고 있는지 보고합니다.
+
+## 페어링이 되지 않을 때
+
+- **QR 페이지가 열리지 않음** — 플러그인의 훅이 로드되지 않았을 가능성이 큽니다.
+  에이전트를 재시작하고 다시 시도하거나, 코드 입력 방식을 사용합니다.
+- **스캔은 성공했지만 컴퓨터가 나타나지 않음** — 위의 상태 명령을 실행해 이벤트가
+  전달되고 있는지 확인합니다.
+- **행이 오래됐거나 중복되어 보임** — `/nomo-cc:reset`(또는 `$nomo-reset`)을
+  실행하면 페어링을 해제하지 않고 죽은 세션 행을 정리합니다.
+- **컴퓨터 연결을 끊고 싶음** — `/nomo-cc:unpair`(또는 `$nomo-unpair`)는 페어링을
+  제거하고 로컬 키를 삭제합니다.

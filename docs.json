@@ -27,30 +27,101 @@
     ]
   },
   "navigation": {
-    "groups": [
+    "languages": [
       {
-        "group": "Sessions",
-        "tag": "PRO",
-        "pages": [
-          "index"
+        "language": "en",
+        "default": true,
+        "groups": [
+          {
+            "group": "Sessions",
+            "tag": "PRO",
+            "pages": [
+              "index"
+            ]
+          },
+          {
+            "group": "Setup",
+            "icon": "wrench",
+            "pages": [
+              "setup/install",
+              "setup/pairing"
+            ]
+          },
+          {
+            "group": "Using Sessions",
+            "icon": "mobile-screen",
+            "pages": [
+              "sessions/list",
+              "sessions/island",
+              "sessions/approvals",
+              "sessions/visibility"
+            ]
+          }
         ]
       },
       {
-        "group": "Setup",
-        "icon": "wrench",
-        "pages": [
-          "setup/install",
-          "setup/pairing"
+        "language": "es",
+        "groups": [
+          {
+            "group": "Configuración",
+            "icon": "wrench",
+            "pages": [
+              "es/setup/install",
+              "es/setup/pairing"
+            ]
+          }
         ]
       },
       {
-        "group": "Using Sessions",
-        "icon": "mobile-screen",
-        "pages": [
-          "sessions/list",
-          "sessions/island",
-          "sessions/approvals",
-          "sessions/visibility"
+        "language": "ja",
+        "groups": [
+          {
+            "group": "セットアップ",
+            "icon": "wrench",
+            "pages": [
+              "ja/setup/install",
+              "ja/setup/pairing"
+            ]
+          }
+        ]
+      },
+      {
+        "language": "ko",
+        "groups": [
+          {
+            "group": "설정",
+            "icon": "wrench",
+            "pages": [
+              "ko/setup/install",
+              "ko/setup/pairing"
+            ]
+          }
+        ]
+      },
+      {
+        "language": "zh-Hans",
+        "groups": [
+          {
+            "group": "设置",
+            "icon": "wrench",
+            "pages": [
+              "zh-Hans/setup/install",
+              "zh-Hans/setup/pairing"
+            ]
+          }
+        ]
+      },
+      {
+        "language": "zh-Hant",
+        "groups": [
+          {
+            "group": "設定",
+            "icon": "wrench",
+            "pages": [
+              "zh-Hant/setup/install",
+              "zh-Hant/setup/pairing"
+            ]
+          }
         ]
       }
     ]

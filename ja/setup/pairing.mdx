@@ -1,0 +1,137 @@
+---
+title: "コンピュータをペアリングする"
+description: "QR コードをスキャンするか、ブラウザを開けない場合はワンタイムコードを入力して、コンピュータを Nomo アプリにリンクします。"
+icon: "qrcode-read"
+---
+
+ペアリングは、スマートフォンとコンピュータに共有の暗号鍵を渡します。サーバーがその鍵を
+見ることは一切ありません — ログインではなくスキャンまたはコード入力が必要なのはそのためです。
+
+この作業はコンピュータごとに 1 回行います。ペアリングは **10 分間** 使われないと期限切れになります。
+
+<Note>
+  1 つのペアリングが対象とするのはマシンであり、エージェントではありません。同じコンピュータで
+  Claude Code と Codex の両方を使っている場合、両者はペアリングを共有します — 2 回ペアリングする必要はありません。
+</Note>
+
+<Tabs>
+  <Tab title="QR コード" icon="qrcode-read">
+    通常の手順です。コンピュータでブラウザを開ける場合は常にこちらを使います。
+
+    <Steps>
+      <Step title="ペアリングを開始する">
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair
+        ```
+        </CodeGroup>
+
+        テーマの適用されたペアリングページがブラウザで開き、QR コードが表示されます。
+
+        <Frame caption="コンピュータ上のペアリングページ。スキャンが届くと自動的に Paired ✓（ペアリング済み）に切り替わります。">
+          <img src="/images/pairing-pc-qrcode.png" alt="QR コードとクリックで表示されるワンタイムコードを示す Nomo のペアリングページ" />
+        </Frame>
+      </Step>
+
+      <Step title="スキャンする">
+        Nomo で **Sessions**（セッション）タブ → **Pair a Computer**（コンピュータを
+        ペアリング）を開き、カメラを QR コードに向けます。
+
+        {/* TODO: screenshot of the in-app scanner */}
+      </Step>
+
+      <Step title="完了">
+        ページは自動的に **Paired ✓**（ペアリング済み）に切り替わり、そのまま終了します。
+        コンピュータが Sessions（セッション）タブに表示されます。
+      </Step>
+    </Steps>
+
+    <Note>
+      QR コードとワンタイムコードは、そのブラウザページに **のみ** 表示され、
+      ターミナルには決して表示されません。これは意図的なものです — ターミナルの出力は
+      エージェントのトランスクリプトに残り、これらは攻撃者が必要とする値だからです。
+    </Note>
+
+  </Tab>
+
+  <Tab title="コード入力" icon="keyboard">
+    ヘッドレスなマシン、SSH セッション、その他ブラウザを開けない環境向けです。
+
+    <Warning>
+      この手順ではペアリングコードがターミナルに、つまりエージェントのトランスクリプトに
+      残ります。ブラウザのないマシンのための意図的なトレードオフです — ブラウザがある
+      場合は QR コードの手順を選んでください。
+    </Warning>
+
+    <Steps>
+      <Step title="コードを要求する">
+        引数に `code` を渡します。
+
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair code
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair code
+        ```
+        </CodeGroup>
+
+        ブラウザは開きません。ワンタイムコードがそのままターミナルに出力されます。
+
+        ```
+        One-time code: <shown here> · expires in 10 min
+        ```
+      </Step>
+
+      <Step title="コードの形式">
+        数字 1 つと、それに続く 6 つの単語で、すべて小文字、ハイフンでつながれています。
+
+        ```
+        7-anchor-brisk-cotton-dial-emerge-fabric
+        ```
+
+        <Info>
+          単語は BIP39 のワードリストから取られています。最初の 4 文字が一致する単語の
+          組み合わせはなく、紛らわしい文字もありません。長いですが、打ち間違いや
+          聞き間違いが起こりにくくなっています。
+        </Info>
+      </Step>
+
+      <Step title="アプリに入力する">
+        Nomo で **Sessions**（セッション）→ **Pair a Computer**（コンピュータをペアリング）→ **Enter code**（コードを入力）の順に進みます。
+
+        {/* TODO: screenshot of the Enter code screen */}
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 後から状態を確認する
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+</CodeGroup>
+
+コンピュータがまだ接続されているか、イベントが配信されているかを報告します。
+
+## ペアリングが完了しない場合
+
+- **QR ページが開かない** — プラグインのフックが読み込まれていない可能性があります。
+  エージェントを再起動してやり直すか、コード入力の手順を使ってください。
+- **スキャンは成功するがコンピュータが表示されない** — 上のステータスコマンドを実行して、
+  そもそもイベントが配信されているかを確認してください。
+- **行が古いままか重複している** — `/nomo-cc:reset`（または `$nomo-reset`）を実行すると、
+  ペアリングを解除せずに無効なセッション行を消去できます。
+- **コンピュータの接続を解除したい** — `/nomo-cc:unpair`（または `$nomo-unpair`）で
+  ペアリングを削除し、ローカルの鍵を消去します。

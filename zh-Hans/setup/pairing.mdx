@@ -1,0 +1,135 @@
+---
+title: "配对你的电脑"
+description: "通过扫描二维码把电脑连接到 Nomo 应用；打不开浏览器时，也可以输入一次性配对码。"
+icon: "qrcode-read"
+---
+
+配对会让你的手机和电脑各自持有一份共享的加密密钥。服务器永远看不到这个密钥 ——
+这也是为什么它需要一次扫码或手动输码，而不是登录。
+
+每台电脑做一次。配对若 **10 分钟**内未使用就会过期。
+
+<Note>
+  一次配对覆盖的是这台机器，而不是某个 agent。如果你在同一台电脑上同时使用
+  Claude Code 和 Codex，它们共用这份配对 —— 不需要配对两次。
+</Note>
+
+<Tabs>
+  <Tab title="二维码" icon="qrcode-read">
+    常规方式。只要能在电脑上打开浏览器就用它。
+
+    <Steps>
+      <Step title="开始配对">
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair
+        ```
+        </CodeGroup>
+
+        浏览器会打开一个带二维码的配对页面。
+
+        <Frame caption="电脑上的配对页面。扫码成功后，它会自动翻转为 Paired ✓（已配对 ✓）。">
+          <img src="/images/pairing-pc-qrcode.png" alt="Nomo 配对页面，显示二维码和点击后可显示的一次性配对码" />
+        </Frame>
+      </Step>
+
+      <Step title="扫描它">
+        在 Nomo 中打开 **Sessions**（会话）标签页 → **Pair a Computer**（配对电脑），
+        然后把摄像头对准二维码。
+
+        {/* TODO: screenshot of the in-app scanner */}
+      </Step>
+
+      <Step title="完成">
+        页面会自行翻转为 **Paired ✓**（已配对 ✓）并自我销毁。你的电脑现在会出现在
+        **Sessions**（会话）标签页里。
+      </Step>
+    </Steps>
+
+    <Note>
+      二维码和一次性配对码**只**出现在那个浏览器页面里，绝不会出现在你的终端中。
+      这是刻意为之 —— 终端输出会进入 agent 的转录记录，而这两者正是攻击者所需要
+      的值。
+    </Note>
+
+  </Tab>
+
+  <Tab title="手动输码" icon="keyboard">
+    适用于无头机器、SSH 会话，或任何打不开浏览器的场景。
+
+    <Warning>
+      这种方式会把配对码打进你的终端，因而也会进入 agent 的转录记录。对于没有浏览器
+      的机器，这是一个刻意的取舍 —— 有浏览器时请优先用二维码方式。
+    </Warning>
+
+    <Steps>
+      <Step title="索取配对码">
+        把 `code` 作为参数传入：
+
+        <CodeGroup>
+        ```bash Claude Code icon="/images/claude-code.svg"
+        /nomo-cc:pair code
+        ```
+
+        ```bash Codex icon="/images/codex.svg"
+        $nomo-pair code
+        ```
+        </CodeGroup>
+
+        不会打开浏览器。一次性配对码直接打印到终端：
+
+        ```
+        One-time code: <shown here> · expires in 10 min
+        ```
+      </Step>
+
+      <Step title="配对码长什么样">
+        一个数字，然后是六个单词，全小写并用连字符连接：
+
+        ```
+        7-anchor-brisk-cotton-dial-emerge-fabric
+        ```
+
+        <Info>
+          这些单词取自 BIP39 词表：任意两个词的前四个字母都不相同，也没有形近字符。
+          虽然长，但难以打错或听错。
+        </Info>
+      </Step>
+
+      <Step title="把它输入应用">
+        在 Nomo 中：**Sessions**（会话）→ **Pair a Computer**（配对电脑）→
+        **Enter code**（输入配对码）。
+
+        {/* TODO: screenshot of the Enter code screen */}
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 之后如何查看
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+</CodeGroup>
+
+它会报告这台电脑是否仍处于连接状态，以及事件是否正在被投递。
+
+## 如果配对没有生效
+
+- **没有打开二维码页面** —— 多半是插件的 hook 没有加载。重启 agent 再试一次，或
+  改用手动输码的方式。
+- **扫码成功但看不到电脑** —— 运行上面的状态命令，看看事件是否有在投递。
+- **会话行看起来陈旧或重复** —— 运行 `/nomo-cc:reset`（或 `$nomo-reset`）清除失效
+  的会话行，无需解除配对。
+- **想断开某台电脑** —— `/nomo-cc:unpair`（或 `$nomo-unpair`）会移除配对并抹除
+  本地密钥。
