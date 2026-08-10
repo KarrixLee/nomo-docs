@@ -21,11 +21,11 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
     <Steps>
       <Step title="Start pairing">
         <CodeGroup>
-        ```bash Claude Code
+        ```bash Claude Code icon="/images/claude-code.svg"
         /nomo-cc:pair
         ```
 
-        ```bash Codex
+        ```bash Codex icon="/images/codex.svg"
         $nomo-pair
         ```
         </CodeGroup>
@@ -61,16 +61,22 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
   <Tab title="Typed code" icon="keyboard">
     For a headless box, an SSH session, or anywhere you can't open a browser.
 
+    <Warning>
+      This path puts the pairing code into your terminal, and therefore into the
+      agent's transcript. It's a deliberate trade-off for machines that have no
+      browser — prefer the QR path when you have one.
+    </Warning>
+
     <Steps>
       <Step title="Ask for the code">
         Pass `code` as the argument:
 
         <CodeGroup>
-        ```bash Claude Code
+        ```bash Claude Code icon="/images/claude-code.svg"
         /nomo-cc:pair code
         ```
 
-        ```bash Codex
+        ```bash Codex icon="/images/codex.svg"
         $nomo-pair code
         ```
         </CodeGroup>
@@ -82,29 +88,37 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
         ```
       </Step>
 
+      <Step title="What the code looks like">
+        A number, then six words, lowercase and hyphen-joined:
+
+        ```
+        7-anchor-brisk-cotton-dial-emerge-fabric
+        ```
+
+        <Info>
+          The words come from the BIP39 wordlist: no two share their first four
+          letters, and there are no lookalike characters. Long, but hard to
+          mistype or mishear.
+        </Info>
+      </Step>
+
       <Step title="Type it into the app">
         In Nomo: **Sessions** → **Pair a Computer** → **Enter code**.
 
         {/* TODO: screenshot of the Enter code screen */}
       </Step>
     </Steps>
-
-    <Warning>
-      This path puts the pairing code into your terminal, and therefore into the
-      agent's transcript. It's a deliberate trade-off for machines that have no
-      browser — prefer the QR path when you have one.
-    </Warning>
   </Tab>
 </Tabs>
 
 ## Checking on it later
 
 <CodeGroup>
-```bash Claude Code
+```bash Claude Code icon="/images/claude-code.svg"
 /nomo-cc:status
 ```
 
-```bash Codex
+```bash Codex icon="/images/codex.svg"
 $nomo-status
 ```
 </CodeGroup>

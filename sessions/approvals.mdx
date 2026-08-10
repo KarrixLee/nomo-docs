@@ -1,10 +1,10 @@
 ---
 title: "Answering from your phone"
-description: "Allow or deny Claude Code's permission prompts remotely, and what can't be answered away from your Mac."
+description: "Allow or deny Claude Code and Codex permission prompts remotely, and what can't be answered away from your Mac."
 icon: "hand"
 ---
 
-When Claude Code wants to run something it doesn't have standing permission for,
+When your agent wants to run something it doesn't have standing permission for,
 it stops and asks. Normally you'd answer that at your Mac. With Nomo you can
 answer it from your phone.
 
@@ -44,9 +44,15 @@ back to find something ran because you tapped it twenty minutes ago.
 If you don't want a computer sending permission prompts to your phone, pause it
 from the Mac:
 
-```
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
 /nomo-cc:approvals
 ```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-approvals
+```
+</CodeGroup>
 
 The same command resumes it. Pausing approvals doesn't unpair anything — you'll
 still see sessions, you just won't be asked to answer for them.
