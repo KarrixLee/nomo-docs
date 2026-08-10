@@ -4,7 +4,7 @@ description: "Claude Code または Codex に Nomo プラグインを追加し�
 icon: "puzzle-piece"
 ---
 
-コンピュータごとに 1 回インストールします。**bun** または **node 18 以降** が必要です — プラグインに npm 依存関係はなく、Node の組み込み機能だけで動作します。
+コンピュータごとに 1 回インストールします。**bun** または **node 18 以降**が必要です — プラグインに npm 依存関係はなく、Node の組み込み機能だけで動作します。
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -30,7 +30,7 @@ icon: "puzzle-piece"
   </Tab>
 
   <Tab title="Codex" icon="/images/codex.svg">
-    Codex **0.142 以降** は独自のプラグインシステムを備えているため、Nomo は単体の
+    Codex **0.142 以降**は独自のプラグインシステムを備えているため、Nomo は単体の
     Codex プラグインとしてインストールされます。Claude Code は不要です。
 
     <Steps>
@@ -42,7 +42,7 @@ icon: "puzzle-piece"
         codex plugin add nomo@nomo
         ```
 
-        これは **Codex デスクトップアプリ** でも動作します — 内蔵ターミナルから同じコマンドを実行します。
+        これは **Codex デスクトップアプリ**でも動作します — 内蔵ターミナルから同じコマンドを実行します。
       </Step>
 
       <Step title="フックを信頼する — 必須">
@@ -50,7 +50,7 @@ icon: "puzzle-piece"
         /hooks
         ```
 
-        **7 つの Nomo エントリ** を信頼します。Codex の画面では「trust」と表示されます（UI は英語です）。
+        **7 つの Nomo エントリ**を信頼します。Codex の画面では「trust」と表示されます（UI は英語です）。
 
         <Warning>
           この手順は省略しないでください。Nomo のフックはプラグインに同梱されていますが、**信頼するまで動作しません**。実行するまで、プラグインはインストール済みでも何もしません — セッションはスマートフォンに届かず、エラーも報告されません。
@@ -81,7 +81,7 @@ icon: "puzzle-piece"
 
 [スマートフォンをペアリング](/ja/setup/pairing)するまで、プラグインは何も送信しません。送信されるものはすべて、このマシン上で先に暗号化されます。
 
-プラグインは **オープンソース** です — インストール前に、何を収集し何を送信するかを正確に読むことができます。
+プラグインは**オープンソース**です — インストール前に、何を収集し何を送信するかを正確に読むことができます。
 
 <Card title="KarrixLee/nomo" href="https://github.com/KarrixLee/nomo" icon="github" horizontal>
   プラグインの全ソースコード、MIT ライセンスです。マーケットプレイスからのインストールは、このリポジトリの単純なクローンです。
