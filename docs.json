@@ -18,6 +18,14 @@
       "dark": "/images/bg-dark.svg"
     }
   },
+  "navbar": {
+    "links": [
+      {
+        "type": "github",
+        "href": "https://github.com/KarrixLee/nomo"
+      }
+    ]
+  },
   "navigation": {
     "groups": [
       {
