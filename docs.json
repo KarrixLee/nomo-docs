@@ -9,7 +9,10 @@
     "dark": "#B85C3C"
   },
   "background": {
-    "decoration": "gradient"
+    "image": {
+      "light": "/images/bg-light.svg",
+      "dark": "/images/bg-dark.svg"
+    }
   },
   "navigation": {
     "groups": [

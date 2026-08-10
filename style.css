@@ -13,6 +13,16 @@
   --nomo-violet: #9b83f5;
 }
 
+/* Mintlify renders background.image on a full-bleed overlay span with
+   `background-size: auto`, which collapses a percentage-sized SVG to a corner
+   smudge instead of filling the viewport. Force it to cover.
+   ponytail: leans on Mintlify's Tailwind classes, which their docs warn may
+   change. If the wash ever vanishes, re-check this selector first. */
+span.fixed.inset-0 {
+  background-size: cover !important;
+  background-position: center top !important;
+}
+
 /* Page titles carry the brand gradient. h1 only — subheads stay plain text so
    the page still scans as a document, not a landing page. */
 h1 {

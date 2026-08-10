@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+  <!-- Nomo brand wash for DARK mode. Brighter stops than the light-mode file so the
+       gradient reads against a near-black page instead of sinking into it. -->
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0.35">
+      <stop offset="0%" stop-color="#E5A184" stop-opacity="0.34" />
+      <stop offset="55%" stop-color="#C98FC8" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#9B83F5" stop-opacity="0.32" />
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1" />
+      <stop offset="70%" stop-color="#fff" stop-opacity="0" />
+    </linearGradient>
+    <mask id="topfade">
+      <rect width="100" height="100" fill="url(#fade)" />
+    </mask>
+  </defs>
+  <rect width="100" height="100" fill="url(#brand)" mask="url(#topfade)" />
+</svg>
