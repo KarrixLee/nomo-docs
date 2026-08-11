@@ -29,10 +29,17 @@ span.fixed.inset-0 {
    gets the pill — top tab, sidebar entry, and any <Card href> — and a new card
    linking there is badged the moment you write it, with no CSS to remember.
    Add `.pro-pill` to anything else that needs one.
+   On a card the pill hangs off the title, not the card. A card is a block, so
+   ::after on the <a> lands under the description — and a corner badge would
+   float free of the word it modifies. Sitting after the title reads the way
+   the tab and the sidebar already read: label, then pill. Mintlify's own
+   data-component-part hook makes it addressable; :not(.card) keeps the link
+   rule from firing on the same card and doubling the pill.
    ponytail: suffix match, so a locale prefix or base path still hits. If the
    intro ever moves, this selector moves with it — the group tag in docs.json
    is the fallback that survives either way. */
-a[href$="/sessions/overview"]::after,
+a[href$="/sessions/overview"]:not(.card)::after,
+.card[href$="/sessions/overview"] [data-component-part="card-title"]::after,
 .pro-pill::after {
   content: "PRO";
   font-size: 0.625rem;
