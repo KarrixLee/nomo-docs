@@ -32,14 +32,16 @@ span.fixed.inset-0 {
    On a card the pill hangs off the title, not the card. A card is a block, so
    ::after on the <a> lands under the description — and a corner badge would
    float free of the word it modifies. Sitting after the title reads the way
-   the tab and the sidebar already read: label, then pill. Mintlify's own
-   data-component-part hook makes it addressable; :not(.card) keeps the link
-   rule from firing on the same card and doubling the pill.
+   the tab and the sidebar already read: label, then pill. A card is detected
+   by the data-component-part hook it contains, not by a `card` class — the
+   local CLI renders that anchor with no class at all, so class-based matching
+   silently fell through to the plain-link rule. The :has() inverse keeps the
+   two rules from both firing and doubling the pill.
    ponytail: suffix match, so a locale prefix or base path still hits. If the
    intro ever moves, this selector moves with it — the group tag in docs.json
    is the fallback that survives either way. */
-a[href$="/sessions/overview"]:not(.card)::after,
-.card[href$="/sessions/overview"] [data-component-part="card-title"]::after,
+a[href$="/sessions/overview"]:not(:has([data-component-part="card-title"]))::after,
+a[href$="/sessions/overview"] [data-component-part="card-title"]::after,
 a.nav-tabs-item[href*="/sessions/"]::after,
 a.nav-tabs-item[href*="/setup/"]::after,
 .pro-pill::after {
@@ -55,7 +57,9 @@ a.nav-tabs-item[href*="/setup/"]::after,
      cases (cards, body text) where align-self does nothing. */
   align-self: center;
   vertical-align: middle;
-  margin-left: 0.4em;
+  /* rem, not em: em here resolves against the pill's own 10px font-size, which
+     made 0.4em a 4px hairline instead of a gap. */
+  margin-left: 0.5rem;
   padding: 0.2em 0.45em;
   border-radius: 0.35em;
   color: #fff;
