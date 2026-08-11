@@ -42,8 +42,8 @@ span.fixed.inset-0 {
    is the fallback that survives either way. */
 a[href$="/sessions/overview"]:not(:has([data-component-part="card-title"]))::after,
 a[href$="/sessions/overview"] [data-component-part="card-title"]::after,
-a.nav-tabs-item[href*="/sessions/"]::after,
-a.nav-tabs-item[href*="/setup/"]::after,
+a[class*="nav-tabs-item"][href*="/sessions/"]::after,
+a[class*="nav-tabs-item"][href*="/setup/"]::after,
 .pro-pill::after {
   content: "PRO";
   font-size: 0.625rem;
@@ -68,6 +68,15 @@ a.nav-tabs-item[href*="/setup/"]::after,
     var(--nomo-coral) 0%,
     var(--nomo-violet) 100%
   );
+}
+
+/* Both tab variants are flex rows that already carry their own gap, so the
+   margin above lands on top of it and reads as a gulf. Zero it there.
+   Selectors mirror the ones above on purpose: a shorter one loses on
+   specificity to the [href] match and the margin silently comes back. */
+a[class*="nav-tabs-item"][href*="/sessions/"]::after,
+a[class*="nav-tabs-item"][href*="/setup/"]::after {
+  margin-left: 0;
 }
 
 /* Page titles carry the brand gradient. h1 only — subheads stay plain text so
