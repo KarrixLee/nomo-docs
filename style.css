@@ -40,6 +40,8 @@ span.fixed.inset-0 {
    is the fallback that survives either way. */
 a[href$="/sessions/overview"]:not(.card)::after,
 .card[href$="/sessions/overview"] [data-component-part="card-title"]::after,
+a.nav-tabs-item[href*="/sessions/"]::after,
+a.nav-tabs-item[href*="/setup/"]::after,
 .pro-pill::after {
   content: "PRO";
   font-size: 0.625rem;
