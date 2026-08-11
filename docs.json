@@ -31,30 +31,58 @@
       {
         "language": "en",
         "default": true,
-        "groups": [
+        "tabs": [
           {
-            "group": "Sessions",
-            "tag": "PRO",
-            "pages": [
-              "index"
+            "tab": "Guide",
+            "icon": "book-open",
+            "groups": [
+              {
+                "group": "Getting started",
+                "pages": [
+                  "index",
+                  "installation",
+                  "changelog"
+                ]
+              },
+              {
+                "group": "Widgets & alerts",
+                "icon": "grip",
+                "pages": [
+                  "status",
+                  "usage"
+                ]
+              }
             ]
           },
           {
-            "group": "Setup",
-            "icon": "wrench",
-            "pages": [
-              "setup/install",
-              "setup/pairing"
-            ]
-          },
-          {
-            "group": "Using Sessions",
-            "icon": "mobile-screen",
-            "pages": [
-              "sessions/list",
-              "sessions/island",
-              "sessions/approvals",
-              "sessions/visibility"
+            "tab": "Sessions",
+            "icon": "masks-theater",
+            "groups": [
+              {
+                "group": "Sessions",
+                "tag": "PRO",
+                "pages": [
+                  "sessions/overview"
+                ]
+              },
+              {
+                "group": "Setup",
+                "icon": "wrench",
+                "pages": [
+                  "setup/install",
+                  "setup/pairing"
+                ]
+              },
+              {
+                "group": "Using Sessions",
+                "icon": "mobile-screen",
+                "pages": [
+                  "sessions/list",
+                  "sessions/island",
+                  "sessions/approvals",
+                  "sessions/visibility"
+                ]
+              }
             ]
           }
         ]
