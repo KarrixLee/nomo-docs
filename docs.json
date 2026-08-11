@@ -45,7 +45,6 @@
               },
               {
                 "group": "Nomo",
-                "icon": "grip",
                 "pages": [
                   "status",
                   "usage",
@@ -57,12 +56,6 @@
           {
             "tab": "Sessions",
             "groups": [
-              {
-                "group": "Get started",
-                "pages": [
-                  "sessions/overview"
-                ]
-              },
               {
                 "group": "Setup",
                 "icon": "wrench",
