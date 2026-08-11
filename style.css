@@ -44,6 +44,7 @@ a[href$="/sessions/overview"]:not(:has([data-component-part="card-title"]))::aft
 a[href$="/sessions/overview"] [data-component-part="card-title"]::after,
 a[class*="nav-tabs-item"][href*="/sessions/"]::after,
 a[class*="nav-tabs-item"][href*="/setup/"]::after,
+[aria-label="Navigation"]:has(a[href^="/setup/"]) button[id^="base-ui-"]::after,
 .pro-pill::after {
   content: "PRO";
   font-size: 0.625rem;
@@ -77,6 +78,27 @@ a[class*="nav-tabs-item"][href*="/setup/"]::after,
 a[class*="nav-tabs-item"][href*="/sessions/"]::after,
 a[class*="nav-tabs-item"][href*="/setup/"]::after {
   margin-left: 0;
+}
+
+/* The phone's two tab controls — the collapsed picker and the rows it opens —
+   are space-between flex, which flings a trailing pseudo-element to the far
+   edge, away from the word it labels. Pull it back beside the label with an
+   auto margin, and send the row's own glyph (chevron, or the checkmark on the
+   active row) past it with order, so the reading stays "Sessions PRO … ✓".
+   The picker shows whichever tab you're in and has no stable id of its own, so
+   it's identified by the one thing only the Sessions tab's sidebar contains:
+   links into /setup/. The Guide sidebar links to /sessions/overview, so that
+   half of the pair can't be the discriminator. */
+a[class*="mobile-nav-tabs-item"][href*="/sessions/"]::after,
+a[class*="mobile-nav-tabs-item"][href*="/setup/"]::after,
+[aria-label="Navigation"]:has(a[href^="/setup/"]) button[id^="base-ui-"]::after {
+  margin-right: auto;
+}
+
+a[class*="mobile-nav-tabs-item"][href*="/sessions/"] > *,
+a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
+[aria-label="Navigation"]:has(a[href^="/setup/"]) button[id^="base-ui-"] > svg {
+  order: 1;
 }
 
 /* Page titles carry the brand gradient. h1 only — subheads stay plain text so
