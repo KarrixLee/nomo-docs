@@ -34,7 +34,6 @@
         "tabs": [
           {
             "tab": "Guide",
-            "icon": "book-open",
             "groups": [
               {
                 "group": "Getting started",
@@ -56,7 +55,7 @@
           },
           {
             "tab": "Sessions",
-            "icon": "masks-theater",
+            "icon": "crown",
             "groups": [
               {
                 "group": "Sessions",

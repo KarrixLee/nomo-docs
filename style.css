@@ -23,6 +23,28 @@ span.fixed.inset-0 {
   background-position: center top !important;
 }
 
+/* PRO pill on the Sessions tab. docs.json can't do this — `tag` exists on groups
+   but not on tabs, and <Badge> only renders inside page content. Matched on the
+   tab's root href so it survives renaming the tab.
+   ponytail: .nav-tabs-item is Mintlify's own class, not Tailwind, so it should
+   outlive a restyle — but the group tag in docs.json is the fallback if it
+   doesn't. Suffix match keeps this working under a locale prefix. */
+a.nav-tabs-item[href$="/sessions/overview"]::after {
+  content: "PRO";
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 0.2em 0.45em;
+  border-radius: 0.35em;
+  color: #fff;
+  background: linear-gradient(
+    120deg,
+    var(--nomo-coral) 0%,
+    var(--nomo-violet) 100%
+  );
+}
+
 /* Page titles carry the brand gradient. h1 only — subheads stay plain text so
    the page still scans as a document, not a landing page. */
 h1 {
