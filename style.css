@@ -40,6 +40,11 @@ a[href$="/sessions/overview"]::after,
   letter-spacing: 0.04em;
   line-height: 1;
   display: inline-block;
+  /* Both are needed: the sidebar link is a flex container with `items-start`,
+     which pins the pill to the top of the row and ignores vertical-align
+     outright. align-self centers it there; vertical-align handles the inline
+     cases (cards, body text) where align-self does nothing. */
+  align-self: center;
   vertical-align: middle;
   margin-left: 0.4em;
   padding: 0.2em 0.45em;
