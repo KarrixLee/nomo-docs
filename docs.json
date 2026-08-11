@@ -44,22 +44,21 @@
                 ]
               },
               {
-                "group": "Widgets & alerts",
+                "group": "Nomo",
                 "icon": "grip",
                 "pages": [
                   "status",
-                  "usage"
+                  "usage",
+                  "sessions/overview"
                 ]
               }
             ]
           },
           {
             "tab": "Sessions",
-            "icon": "crown",
             "groups": [
               {
-                "group": "Sessions",
-                "tag": "PRO",
+                "group": "Get started",
                 "pages": [
                   "sessions/overview"
                 ]

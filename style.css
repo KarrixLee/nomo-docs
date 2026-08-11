@@ -23,18 +23,25 @@ span.fixed.inset-0 {
   background-position: center top !important;
 }
 
-/* PRO pill on the Sessions tab. docs.json can't do this — `tag` exists on groups
-   but not on tabs, and <Badge> only renders inside page content. Matched on the
-   tab's root href so it survives renaming the tab.
-   ponytail: .nav-tabs-item is Mintlify's own class, not Tailwind, so it should
-   outlive a restyle — but the group tag in docs.json is the fallback if it
-   doesn't. Suffix match keeps this working under a locale prefix. */
-a.nav-tabs-item[href$="/sessions/overview"]::after {
+/* PRO pill. docs.json can't do this — `tag` exists on groups but not on tabs,
+   page entries are bare strings, and <Badge> only renders inside page content.
+   So: match the destination, not the widget. Every link to the Sessions intro
+   gets the pill — top tab, sidebar entry, and any <Card href> — and a new card
+   linking there is badged the moment you write it, with no CSS to remember.
+   Add `.pro-pill` to anything else that needs one.
+   ponytail: suffix match, so a locale prefix or base path still hits. If the
+   intro ever moves, this selector moves with it — the group tag in docs.json
+   is the fallback that survives either way. */
+a[href$="/sessions/overview"]::after,
+.pro-pill::after {
   content: "PRO";
   font-size: 0.625rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.4em;
   padding: 0.2em 0.45em;
   border-radius: 0.35em;
   color: #fff;
