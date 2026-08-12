@@ -73,7 +73,7 @@
                 ]
               },
               {
-                "group": "Using Sessions",
+                "group": "Sessions",
                 "pages": [
                   "sessions/list",
                   "sessions/island",
@@ -87,65 +87,240 @@
       },
       {
         "language": "es",
-        "groups": [
+        "tabs": [
           {
-            "group": "Configuración",
-            "icon": "wrench",
-            "pages": [
-              "es/setup/install",
-              "es/setup/pairing"
+            "tab": "Guía",
+            "groups": [
+              {
+                "group": "Primeros pasos",
+                "pages": [
+                  "es/index",
+                  "es/installation",
+                  "es/changelog"
+                ]
+              },
+              {
+                "group": "Estado y uso",
+                "pages": [
+                  "es/status-usage",
+                  "es/status",
+                  "es/usage",
+                  "es/widget",
+                  "es/notifications"
+                ]
+              },
+              {
+                "group": "Sessions",
+                "tag": "PRO",
+                "pages": [
+                  "es/sessions/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Sessions",
+            "groups": [
+              {
+                "group": "Configuración",
+                "icon": "wrench",
+                "pages": [
+                  "es/setup/install",
+                  "es/setup/pairing"
+                ]
+              }
             ]
           }
         ]
       },
       {
         "language": "ja",
-        "groups": [
+        "tabs": [
           {
-            "group": "セットアップ",
-            "icon": "wrench",
-            "pages": [
-              "ja/setup/install",
-              "ja/setup/pairing"
+            "tab": "ガイド",
+            "groups": [
+              {
+                "group": "はじめに",
+                "pages": [
+                  "ja/index",
+                  "ja/installation",
+                  "ja/changelog"
+                ]
+              },
+              {
+                "group": "ステータスと使用量",
+                "pages": [
+                  "ja/status-usage",
+                  "ja/status",
+                  "ja/usage",
+                  "ja/widget",
+                  "ja/notifications"
+                ]
+              },
+              {
+                "group": "Sessions",
+                "tag": "PRO",
+                "pages": [
+                  "ja/sessions/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Sessions",
+            "groups": [
+              {
+                "group": "セットアップ",
+                "icon": "wrench",
+                "pages": [
+                  "ja/setup/install",
+                  "ja/setup/pairing"
+                ]
+              }
             ]
           }
         ]
       },
       {
         "language": "ko",
-        "groups": [
+        "tabs": [
           {
-            "group": "설정",
-            "icon": "wrench",
-            "pages": [
-              "ko/setup/install",
-              "ko/setup/pairing"
+            "tab": "가이드",
+            "groups": [
+              {
+                "group": "시작하기",
+                "pages": [
+                  "ko/index",
+                  "ko/installation",
+                  "ko/changelog"
+                ]
+              },
+              {
+                "group": "Status와 Usage",
+                "pages": [
+                  "ko/status-usage",
+                  "ko/status",
+                  "ko/usage",
+                  "ko/widget",
+                  "ko/notifications"
+                ]
+              },
+              {
+                "group": "Sessions",
+                "tag": "PRO",
+                "pages": [
+                  "ko/sessions/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Sessions",
+            "groups": [
+              {
+                "group": "설정",
+                "icon": "wrench",
+                "pages": [
+                  "ko/setup/install",
+                  "ko/setup/pairing"
+                ]
+              }
             ]
           }
         ]
       },
       {
         "language": "zh-Hans",
-        "groups": [
+        "tabs": [
           {
-            "group": "设置",
-            "icon": "wrench",
-            "pages": [
-              "zh-Hans/setup/install",
-              "zh-Hans/setup/pairing"
+            "tab": "指南",
+            "groups": [
+              {
+                "group": "开始使用",
+                "pages": [
+                  "zh-Hans/index",
+                  "zh-Hans/installation",
+                  "zh-Hans/changelog"
+                ]
+              },
+              {
+                "group": "状态与用量",
+                "pages": [
+                  "zh-Hans/status-usage",
+                  "zh-Hans/status",
+                  "zh-Hans/usage",
+                  "zh-Hans/widget",
+                  "zh-Hans/notifications"
+                ]
+              },
+              {
+                "group": "Sessions",
+                "tag": "PRO",
+                "pages": [
+                  "zh-Hans/sessions/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Sessions",
+            "groups": [
+              {
+                "group": "设置",
+                "icon": "wrench",
+                "pages": [
+                  "zh-Hans/setup/install",
+                  "zh-Hans/setup/pairing"
+                ]
+              }
             ]
           }
         ]
       },
       {
         "language": "zh-Hant",
-        "groups": [
+        "tabs": [
           {
-            "group": "設定",
-            "icon": "wrench",
-            "pages": [
-              "zh-Hant/setup/install",
-              "zh-Hant/setup/pairing"
+            "tab": "指南",
+            "groups": [
+              {
+                "group": "開始使用",
+                "pages": [
+                  "zh-Hant/index",
+                  "zh-Hant/installation",
+                  "zh-Hant/changelog"
+                ]
+              },
+              {
+                "group": "狀態與用量",
+                "pages": [
+                  "zh-Hant/status-usage",
+                  "zh-Hant/status",
+                  "zh-Hant/usage",
+                  "zh-Hant/widget",
+                  "zh-Hant/notifications"
+                ]
+              },
+              {
+                "group": "Sessions",
+                "tag": "PRO",
+                "pages": [
+                  "zh-Hant/sessions/overview"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Sessions",
+            "groups": [
+              {
+                "group": "設定",
+                "icon": "wrench",
+                "pages": [
+                  "zh-Hant/setup/install",
+                  "zh-Hant/setup/pairing"
+                ]
+              }
             ]
           }
         ]

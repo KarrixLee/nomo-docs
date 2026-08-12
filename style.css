@@ -48,7 +48,7 @@ span.fixed.inset-0 {
 #content-area a[href$="/sessions/overview"] [data-component-part="card-title"]::after,
 a[class*="nav-tabs-item"][href*="/sessions/"]::after,
 a[class*="nav-tabs-item"][href*="/setup/"]::after,
-[aria-label="Navigation"]:has(a[href^="/setup/"]) button[id^="base-ui-"]::after,
+[aria-label="Navigation"]:has(a[href*="/setup/"]) button[id^="base-ui-"]::after,
 .pro-pill::after {
   content: "PRO";
   font-size: 0.625rem;
@@ -95,13 +95,13 @@ a[class*="nav-tabs-item"][href*="/setup/"]::after {
    half of the pair can't be the discriminator. */
 a[class*="mobile-nav-tabs-item"][href*="/sessions/"]::after,
 a[class*="mobile-nav-tabs-item"][href*="/setup/"]::after,
-[aria-label="Navigation"]:has(a[href^="/setup/"]) button[id^="base-ui-"]::after {
+[aria-label="Navigation"]:has(a[href*="/setup/"]) button[id^="base-ui-"]::after {
   margin-right: auto;
 }
 
 a[class*="mobile-nav-tabs-item"][href*="/sessions/"] > *,
 a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
-[aria-label="Navigation"]:has(a[href^="/setup/"]) button[id^="base-ui-"] > svg {
+[aria-label="Navigation"]:has(a[href*="/setup/"]) button[id^="base-ui-"] > svg {
   order: 1;
 }
 

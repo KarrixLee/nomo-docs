@@ -1,0 +1,54 @@
+---
+title: "通知"
+description: "服务出故障或恢复时提醒你，用量快到上限时也提醒你。"
+icon: "bell"
+---
+
+这里说的所有开关都集中在应用里的同一个地方：**Settings → Alerts**（设置 → 提醒）。两类提醒默认都是关着的，得你自己打开；第一次拨动任意一个开关时会申请一次通知权限，随后立刻跑一遍检查 —— 所以已经在故障中、或者已经越过阈值的项目会马上告诉你，不用干等下一轮轮询。
+
+<Frame caption="一次来了三条：Cursor 额度到 70%、一项 OpenAI 服务性能下降，还有一项恢复正常。">
+  <div className="device-frame">
+    <img src="/images/usage-status-noti.png" alt="Lock Screen 上显示 Cursor 用量达到 70% 的提醒、OpenAI 服务性能下降的提醒，以及一条恢复正常的提醒" />
+  </div>
+</Frame>
+
+每条通知都写明是哪家服务商、具体影响到哪一项 —— **Cursor · Auto + Composer**、**OpenAI · ChatGPT Conversations** —— 所以扫一眼 Lock Screen 就知道自己撞上了哪个额度、哪项服务出了状况，什么都不用点开。
+
+## 状态提醒
+
+一个总开关，打开之后下面会多出一行：
+
+| | |
+| --- | --- |
+| **Status alerts**（状态提醒） | 某项服务降级或宕机时告诉你。 |
+| **Notify when recovered**（恢复时通知） | 服务恢复后再告诉你一次。默认开启。 |
+
+状态数据取自各家服务商的公开状态页，所以这部分不需要账号。
+
+### 挑选要盯的服务
+
+总开关打开后，下方会出现一个 **Services**（服务）分区 —— Claude、OpenAI、Cursor、xAI 和 Gemini，每家都是一个可折叠的分组，里面是这家服务商的各项具体服务。所有服务默认全部开启。
+
+分组默认折叠，标题上会显示已开启的数量和总数，不用展开就能看出自己改过什么。这里值得花点时间精简一下：服务商状态页上列的东西，比你真正用到的那一两项多得多。
+
+## 用量提醒
+
+在 **70%**、**90%** 和 **100%** 三档给你提个醒 —— 5 小时窗口和每周额度**各算各的**，所以连轴转一个下午、和高强度用满一整周，都会各自触发一次警告。
+
+这些开关按账号分别设置，而且只对你已经登录的账号生效。目前有三家服务商支持用量提醒：
+
+<div className="provider-row">
+  <span><img src="/images/providers/claude.svg" alt="" />Claude</span>
+  <span><img src="/images/providers/openai.svg" alt="" className="invert-dark" />OpenAI</span>
+  <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
+</div>
+
+xAI 和 Gemini 的用量可以在[小组件](/zh-Hans/usage)里看到，但暂时还没有提醒。
+
+<Note>
+  用量是在你手机上查的。登录信息不会离开设备，也绝不会发到 Nomo 的服务器 —— 见[登录](/zh-Hans/usage#signing-in)。
+</Note>
+
+## 如果提醒突然没动静了
+
+把 Nomo 留在后台，别上划关掉。iOS 不会再唤醒被强制退出的应用，提醒会一直停到你下次打开它为止。

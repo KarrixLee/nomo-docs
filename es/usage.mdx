@@ -1,0 +1,44 @@
+---
+title: "Uso"
+description: "Controla cuánto te queda del plan, con avisos al 70%, 90% y 100%."
+icon: "gauge"
+---
+
+El uso funciona como [Estado](/es/status) —un widget más notificaciones— con un
+paso de más: lee cifras de tu cuenta, así que hay que iniciar sesión. Sigue sin
+pedir nada en el Mac; esto también es solo de teléfono.
+
+<Frame caption="La pestaña Usage (Uso) de Claude: la ventana de 5 horas, la semanal, y cuándo se restablece cada una.">
+  <div className="device-frame">
+    <img src="/images/claude-usage-overview.png" alt="La pestaña Usage de Nomo mostrando los límites de sesión y semanales de Claude" />
+  </div>
+</Frame>
+
+## Conectar tu cuenta
+
+Abre el proveedor desde la pestaña **Providers** (Proveedores) y conecta la
+cuenta que ya pagas. Nomo lee las mismas cifras que esa cuenta puede ver de sí
+misma: no es una clave de API y no hay nada que pegar.
+
+<Note>
+  **Tu sesión no sale del teléfono.** Los tokens se guardan en el llavero del
+  dispositivo y solo van al proveedor al que pertenecen: tu token de Claude a
+  Anthropic, tu token de OpenAI a OpenAI. El uso se consulta en el propio
+  dispositivo y nunca pasa por los servidores de Nomo.
+</Note>
+
+Nomo es una app no oficial y no está afiliada a ninguno de los proveedores que
+consulta.
+
+## Widget
+
+<Card title="Widget" href="/es/widget" icon="puzzle-piece" horizontal>
+  Dos clips cortos: cómo ponerlo en la pantalla de inicio y cómo apuntarlo a un
+  servicio.
+</Card>
+
+## Notificaciones
+
+<Card title="Notificaciones" href="/es/notifications" icon="bell" horizontal>
+  Te avisa cuando el uso de un proveedor llega al 70%, al 90% o al 100%.
+</Card>
