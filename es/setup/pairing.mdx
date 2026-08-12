@@ -1,24 +1,24 @@
 ---
 title: "Emparejamiento"
-description: "Vincula un equipo con la app de Nomo escaneando un código QR, o escribiendo un código de un solo uso cuando no puedas abrir un navegador."
+description: "Vincula un ordenador con la app de Nomo escaneando un código QR, o escribiendo un código de un solo uso cuando no puedas abrir un navegador."
 icon: "qrcode-read"
 ---
 
-El emparejamiento entrega a tu teléfono y a tu equipo una clave de cifrado
+El emparejamiento entrega a tu teléfono y a tu ordenador una clave de cifrado
 compartida. Ningún servidor la ve nunca, y por eso hace falta un escaneo o un
 código escrito en lugar de un inicio de sesión.
 
-Esto se hace una vez por equipo. El emparejamiento caduca si no se usa durante
+Esto se hace una vez por ordenador. El emparejamiento caduca si no se usa durante
 **10 minutos**.
 
 <Note>
   Un emparejamiento cubre la máquina, no el agente. Si usas Claude Code y Codex
-  en el mismo equipo, lo comparten: no emparejas dos veces.
+  en el mismo ordenador, lo comparten: no emparejas dos veces.
 </Note>
 
 <Tabs>
   <Tab title="Código QR" icon="qrcode-read">
-    La vía normal. Úsala siempre que puedas abrir un navegador en el equipo.
+    La vía normal. Úsala siempre que puedas abrir un navegador en el ordenador.
 
     <Steps>
       <Step title="Inicia el emparejamiento">
@@ -35,21 +35,21 @@ Esto se hace una vez por equipo. El emparejamiento caduca si no se usa durante
         Se abre en tu navegador una página de emparejamiento con la estética de
         la app y un código QR.
 
-        <Frame caption="La página de emparejamiento en tu equipo. Cambia a Paired ✓ (Emparejado ✓) por sí sola en cuanto llega el escaneo.">
+        <Frame caption="La página de emparejamiento en tu ordenador. Cambia a Paired ✓ (Emparejado ✓) por sí sola en cuanto llega el escaneo.">
           <img src="/images/pairing-pc-qrcode.png" alt="La página de emparejamiento de Nomo mostrando un código QR y un código de un solo uso que se revela al hacer clic" />
         </Frame>
       </Step>
 
       <Step title="Escanéalo">
-        En Nomo, ve a la pestaña **Sessions** (Sesiones) → **Pair a Computer**
-        (Emparejar un equipo), y apunta la cámara al código QR.
+        En Nomo, ve a la pestaña **Sesiones** → **Vincular un ordenador**, y
+        apunta la cámara al código QR.
 
         {/* TODO: screenshot of the in-app scanner */}
       </Step>
 
       <Step title="Listo">
         La página cambia a **Paired ✓** (Emparejado ✓) por sí sola y se desmonta.
-        Tu equipo aparece ahora en la pestaña Sessions (Sesiones).
+        Tu ordenador aparece ahora en la pestaña Sesiones.
       </Step>
     </Steps>
 
@@ -109,8 +109,8 @@ Esto se hace una vez por equipo. El emparejamiento caduca si no se usa durante
       </Step>
 
       <Step title="Escríbelo en la app">
-        En Nomo: **Sessions** (Sesiones) → **Pair a Computer** (Emparejar un
-        equipo) → **Enter code** (Introducir código).
+        En Nomo: **Sesiones** → **Vincular un ordenador** → **Introducir
+        código**.
 
         {/* TODO: screenshot of the Enter code screen */}
       </Step>
@@ -130,7 +130,7 @@ $nomo-status
 ```
 </CodeGroup>
 
-Eso informa de si el equipo sigue conectado y de si los eventos se están
+Eso informa de si el ordenador sigue conectado y de si los eventos se están
 entregando.
 
 ## Si el emparejamiento no funciona
@@ -138,10 +138,10 @@ entregando.
 - **No se abre ninguna página QR**: probablemente los hooks del plugin no se
   cargaron. Reinicia el agente e inténtalo de nuevo, o usa la vía del código
   escrito.
-- **El escaneo funciona pero no aparece ningún equipo**: ejecuta el comando de
+- **El escaneo funciona pero no aparece ningún ordenador**: ejecuta el comando de
   estado de arriba para ver si se están entregando eventos.
 - **Las filas parecen obsoletas o duplicadas**: ejecuta `/nomo-cc:reset` (o
   `$nomo-reset`) para borrar filas de sesiones muertas sin deshacer el
   emparejamiento.
-- **Quieres desconectar un equipo**: `/nomo-cc:unpair` (o `$nomo-unpair`) elimina
-  el emparejamiento y borra la clave local.
+- **Quieres desconectar un ordenador**: `/nomo-cc:unpair` (o `$nomo-unpair`)
+  elimina el emparejamiento y borra la clave local.

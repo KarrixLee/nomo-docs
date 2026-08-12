@@ -1,0 +1,55 @@
+---
+title: "概览"
+sidebarTitle: "概览"
+description: "在 iPhone 上盯着 Claude Code 和 Codex，不用跑回 Mac 前面就能答复它们的权限请求。"
+---
+
+你的编程 agent 跑在 Mac 上，但你不必一直守在它跟前。
+
+Nomo 的会话功能把正在运行的 Claude Code 和 Codex 会话搬到你的 iPhone 上 —— 显示在锁定屏幕和灵动岛里。每当 agent 停下来请求权限，手机就会提示你，你直接在手机上答复即可。
+
+你起身去趟厨房，agent 照常干活。它撞上一条需要授权的命令，手机震一下，你点**允许**，它接着往下跑。工位你一趟都没回。
+
+<Frame caption="同一个会话出现在两处：屏幕顶部的实时卡片，以及会话标签页里运行它的那台电脑下方。">
+  <div className="device-frame">
+    <img src="/images/session-overview.png" alt="一个名为 Refactor the Sessions tab 的 Claude Code 会话，既显示为实时活动，也显示为 Nomo 会话标签页中的一行" />
+  </div>
+</Frame>
+
+实时卡片上带着当前模型和它此刻在做的事 —— **Fable · Editing** —— 还有会话标题、所在目录，以及跑在哪台电脑上。下面的会话标签页按 agent 分开，列出所有正在运行的会话。
+
+<Note>
+  会话功能属于 Nomo Pro。状态监控和用量小组件是免费的，下面这些准备工作一步都不用做就能用。
+</Note>
+
+## 支持哪些 agent
+
+会话跟的是你电脑上跑着的 agent，而不是它背后的账号，所以这份名单比[状态与用量](/zh-Hans/status-usage)那边短。
+
+<div className="provider-row">
+  <span><img src="/images/claude-code.svg" alt="" />Claude Code</span>
+  <span><img src="/images/codex.svg" alt="" />Codex</span>
+</div>
+
+## 你需要准备什么
+
+- 一台 Mac，上面装着 Claude Code，或者 Codex 0.142 及以上版本
+- **bun** 或 **node 18+**，你已经装了哪个就用哪个
+- 手机和电脑配对好 —— 扫一次二维码的事
+
+## 各部分怎么配合
+
+你的 Mac 通过 Nomo 的中继把会话更新发到手机。中继读不懂这些内容：一切都在 Mac 上加密，只有到了手机上才解密。Nomo 的服务器只负责搬运封好的数据，从不经手密钥。
+
+这决定了你可以期待什么 —— 你的提示词、文件路径和命令，都只属于你自己。这也意味着配对是一次真正的密码学操作，而不是一次登录，所以它需要扫一次码，或者手输一段配对码。
+
+## 开始配置
+
+<CardGroup cols={2}>
+  <Card title="安装插件" href="/zh-Hans/setup/install" icon="puzzle-piece">
+    两条命令，Claude Code 和 Codex 都适用。
+  </Card>
+  <Card title="配对你的电脑" href="/zh-Hans/setup/pairing" icon="qrcode-read">
+    扫一个二维码，或者输入一次性配对码。
+  </Card>
+</CardGroup>

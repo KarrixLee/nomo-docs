@@ -1,0 +1,76 @@
+---
+title: "Notificaciones"
+description: "Alertas cuando un servicio se cae o vuelve, y cuando te acercas a un límite de uso."
+icon: "bell"
+---
+
+Todo esto vive en un solo sitio de la app: **Ajustes → Alertas**. Los dos tipos
+están apagados hasta que los enciendas, y el primer interruptor que muevas pide
+permiso de notificaciones una vez y lanza una comprobación al momento, así que
+cualquier cosa que ya esté caída o ya haya pasado un umbral te avisa enseguida
+en lugar de esperar al siguiente sondeo.
+
+<Frame caption="Tres a la vez: un límite de Cursor al 70%, un servicio de OpenAI degradándose, y otro que vuelve.">
+  <div className="device-frame">
+    <img src="/images/usage-status-noti.png" alt="Pantalla de bloqueo con una alerta de uso de Cursor al 70%, una alerta de rendimiento degradado de OpenAI y una alerta de vuelta a la normalidad" />
+  </div>
+</Frame>
+
+Cada uno nombra el proveedor y exactamente qué está afectado —**Cursor · Auto +
+Composer**, **OpenAI · ChatGPT Conversations**—, así que un vistazo a la
+pantalla de bloqueo te dice qué límite alcanzaste o qué servicio va mal, sin
+abrir nada.
+
+## Alertas de estado
+
+Un interruptor principal y, en cuanto está encendido, una segunda fila:
+
+| | |
+| --- | --- |
+| **Alertas de estado** | Te avisa cuando un servicio está degradado o caído. |
+| **Avisar cuando se recupere** | Te vuelve a avisar cuando se restablece. Encendido por defecto. |
+
+El estado sale de la página de estado pública de cada proveedor, así que esto
+no necesita ninguna cuenta.
+
+### Elegir servicios
+
+Con el interruptor principal encendido, debajo aparece una sección
+**Servicios**: Claude, OpenAI, Cursor, xAI y Gemini, cada uno como un grupo
+desplegable con los servicios individuales de ese proveedor. Todos los
+servicios empiezan encendidos.
+
+Los grupos vienen contraídos y la cabecera indica cuántos están activados del
+total, así que puedes ver qué cambiaste sin desplegar nada. Vale la pena
+podarlos: la página de estado de un proveedor enumera muchas más cosas que la
+única que de verdad usas.
+
+## Alertas de uso
+
+Una alerta al **70%**, al **90%** y al **100%**, tanto de la ventana de 5 horas
+*como* de la semanal, para que una tarde larga y una semana intensa tengan cada
+una su propia advertencia.
+
+Se activan por cuenta, y solo en las cuentas en las que iniciaste sesión. Hoy
+hay tres proveedores con alertas de uso:
+
+<div className="provider-row">
+  <span><img src="/images/providers/claude.svg" alt="" />Claude</span>
+  <span><img src="/images/providers/openai.svg" alt="" className="invert-dark" />OpenAI</span>
+  <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
+</div>
+
+xAI y Gemini muestran el uso en el [widget](/es/usage), pero todavía no tienen
+alertas.
+
+<Note>
+  El uso se comprueba en tu teléfono. Tu sesión no sale nunca del dispositivo
+  ni se envía a los servidores de Nomo; mira
+  [Conectar tu cuenta](/es/usage#conectar-tu-cuenta).
+</Note>
+
+## Si las alertas se quedan calladas
+
+Deja Nomo en segundo plano en lugar de cerrarla deslizando. iOS deja de
+despertar a una app que se forzó a cerrar, así que las alertas pueden pararse
+hasta la próxima vez que la abras.

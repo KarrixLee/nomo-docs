@@ -37,14 +37,13 @@ icon: "qrcode-read"
       </Step>
 
       <Step title="掃描它">
-        在 Nomo 裡，前往 **Sessions**（工作階段）分頁 → **Pair a Computer**
-        （配對電腦），然後把相機對準 QR 碼。
+        在 Nomo 裡，前往 **Sessions** 分頁 → **配對電腦**，然後把相機對準 QR 碼。
 
         {/* TODO: screenshot of the in-app scanner */}
       </Step>
 
       <Step title="完成">
-        頁面會自行切換成 **Paired ✓**（已配對）並自我關閉。你的電腦現在會出現在 Sessions（工作階段）分頁裡。
+        頁面會自行切換成 **Paired ✓**（已配對）並自我關閉。你的電腦現在會出現在 Sessions 分頁裡。
       </Step>
     </Steps>
 
@@ -95,8 +94,7 @@ icon: "qrcode-read"
       </Step>
 
       <Step title="在應用程式裡輸入">
-        在 Nomo 裡：**Sessions**（工作階段）→ **Pair a Computer**（配對電腦）
-        → **Enter code**（輸入代碼）。
+        在 Nomo 裡：**Sessions** → **配對電腦** → **輸入代碼**。
 
         {/* TODO: screenshot of the Enter code screen */}
       </Step>
@@ -122,5 +120,5 @@ $nomo-status
 
 - **沒有開啟 QR 頁面** — 多半是外掛程式的 hooks 沒有載入。重新啟動代理再試一次，或改用手動輸入代碼那條路徑。
 - **掃描成功但沒有出現電腦** — 執行上面的狀態指令，看看事件到底有沒有送達。
-- **列表看起來是舊的或重複** — 執行 `/nomo-cc:reset`（或 `$nomo-reset`）清掉失效的工作階段列，不會解除配對。
+- **列表看起來是舊的或重複** — 執行 `/nomo-cc:reset`（或 `$nomo-reset`）清掉失效的 session 列，不會解除配對。
 - **想中斷某台電腦的連線** — `/nomo-cc:unpair`（或 `$nomo-unpair`）會移除配對並清除本機金鑰。

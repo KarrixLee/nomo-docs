@@ -1,0 +1,54 @@
+---
+title: "通知"
+description: "服務中斷或恢復，以及用量快要碰到上限時，都會提醒你。"
+icon: "bell"
+---
+
+這一頁講的東西，在應用程式裡都集中在同一個地方：**設定 → 提醒**。兩種通知預設都是關的，要自己打開；打開任何一個開關時會要求一次通知權限，接著馬上跑一次檢查 — 所以已經中斷、或已經超過門檻的項目會立刻告訴你，不用等下一輪輪詢。
+
+<Frame caption="一次三則：Cursor 用量到 70%、一項 OpenAI 服務效能降低，以及另一項恢復正常。">
+  <div className="device-frame">
+    <img src="/images/usage-status-noti.png" alt="鎖定畫面上的三則通知：Cursor 用量 70% 提醒、OpenAI 效能降低提醒，以及恢復正常提醒" />
+  </div>
+</Frame>
+
+每一則都會寫出供應商，以及確切受影響的項目 — **Cursor · Auto + Composer**、**OpenAI · ChatGPT Conversations** — 所以瞄一眼鎖定畫面就知道自己碰到哪個上限、或哪項服務出了問題，什麼都不用打開。
+
+## 狀態提醒
+
+一個總開關，打開之後底下會多出第二列：
+
+| | |
+| --- | --- |
+| **狀態提醒** | 某項服務效能降低或中斷時通知你。 |
+| **恢復時通知** | 恢復正常時再通知你一次。預設開啟。 |
+
+狀態來自各家供應商公開的狀態頁面，所以這不需要帳號。
+
+### 挑選服務
+
+總開關打開後，下方會出現一個**服務**區塊 — Claude、OpenAI、Cursor、xAI 和 Gemini，每一家都是一個可收合的群組，裡面是該供應商旗下的個別服務。所有服務一開始都是開啟的。
+
+群組預設收合，標題會顯示總共幾項、開了幾項，所以不用一一展開也看得出自己改過什麼。這裡值得花點時間精簡：供應商的狀態頁面列出的東西，遠比你實際會用到的那一項多得多。
+
+## 用量提醒
+
+在 **70%**、**90%** 和 **100%** 時提醒你 — 5 小時計算週期和每週計算週期*兩者都算*，所以一個下午跑太久、或一整週用得太兇，都會各自跳出警示。
+
+這些提醒按帳號分別開關，而且只有你登入過的帳號才有。目前有三家供應商支援用量提醒：
+
+<div className="provider-row">
+  <span><img src="/images/providers/claude.svg" alt="" />Claude</span>
+  <span><img src="/images/providers/openai.svg" alt="" className="invert-dark" />OpenAI</span>
+  <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
+</div>
+
+xAI 和 Gemini 會在[小工具](/zh-Hant/usage)裡顯示用量，但還沒有提醒。
+
+<Note>
+  用量是在你的手機上檢查的。你的登入資訊不會離開裝置，也不會送到 Nomo 的伺服器 — 請見[登入](/zh-Hant/usage#signing-in)。
+</Note>
+
+## 如果提醒都不響了
+
+讓 Nomo 留在背景，不要上滑把它關掉。被強制結束的 App，iOS 就不會再喚醒它，提醒也會一直停擺，直到你下次打開它為止。

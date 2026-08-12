@@ -23,6 +23,363 @@ span.fixed.inset-0 {
   background-position: center top !important;
 }
 
+/* PRO pill. docs.json can't do this — `tag` exists on groups but not on tabs,
+   page entries are bare strings, and <Badge> only renders inside page content.
+   So: match the destination, not the widget. Every link to the Sessions intro
+   gets the pill — top tab, sidebar entry, and any <Card href> — and a new card
+   linking there is badged the moment you write it, with no CSS to remember.
+   Add `.pro-pill` to anything else that needs one.
+   On a card the pill hangs off the title, not the card. A card is a block, so
+   ::after on the <a> lands under the description — and a corner badge would
+   float free of the word it modifies. Sitting after the title reads the way
+   the tab and the sidebar already read: label, then pill. A card is detected
+   by the data-component-part hook it contains, not by a `card` class — the
+   local CLI renders that anchor with no class at all, so class-based matching
+   silently fell through to the plain-link rule. The :has() inverse keeps the
+   two rules from both firing and doubling the pill.
+   Page content only (#content-area). The sidebar's own Sessions group carries
+   a real `tag` in docs.json, so an unscoped rule badged the group header AND
+   the "Overview" entry under it — the same word twice, one of them attached to
+   the wrong noun.
+   ponytail: suffix match, so a locale prefix or base path still hits. If the
+   intro ever moves, this selector moves with it — the group tag in docs.json
+   is the fallback that survives either way. */
+#content-area a[href$="/sessions/overview"]:not(:has([data-component-part="card-title"]))::after,
+#content-area a[href$="/sessions/overview"] [data-component-part="card-title"]::after,
+a[class*="nav-tabs-item"][href*="/sessions/"]::after,
+a[class*="nav-tabs-item"][href*="/setup/"]::after,
+[aria-label="Navigation"]:has(a[href*="/setup/"]) button[id^="base-ui-"]::after,
+.pro-pill::after {
+  content: "PRO";
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  display: inline-block;
+  /* Both are needed: the sidebar link is a flex container with `items-start`,
+     which pins the pill to the top of the row and ignores vertical-align
+     outright. align-self centers it there; vertical-align handles the inline
+     cases (cards, body text) where align-self does nothing. */
+  align-self: center;
+  vertical-align: middle;
+  /* rem, not em: em here resolves against the pill's own 10px font-size, which
+     made 0.4em a 4px hairline instead of a gap. */
+  margin-left: 0.5rem;
+  padding: 0.2em 0.45em;
+  border-radius: 0.35em;
+  color: #fff;
+  background: linear-gradient(
+    120deg,
+    var(--nomo-coral) 0%,
+    var(--nomo-violet) 100%
+  );
+}
+
+/* The sidebar's PRO comes from docs.json's group `tag`, so Mintlify renders it
+   itself — coral text on a 10%-alpha wash — while the tab and card pills above
+   are ours: white on the brand gradient. Same word, two different objects, and
+   the mismatch shows wherever they sit on screen together. Repaint theirs to
+   match ours rather than dropping the tag, since a group header isn't a link
+   and can't carry the ::after rule.
+   ponytail: !important because every property here collides with a Tailwind
+   utility on the same element (px-1 py-0.5 rounded-md text-[0.65rem] font-bold),
+   which is equal specificity and wins or loses on stylesheet order. */
+.nav-tag-pill-text {
+  color: #fff !important;
+  background: linear-gradient(
+    120deg,
+    var(--nomo-coral) 0%,
+    var(--nomo-violet) 100%
+  ) !important;
+  font-size: 0.625rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em;
+  line-height: 1 !important;
+  padding: 0.2em 0.45em !important;
+  border-radius: 0.35em !important;
+}
+
+/* Both tab variants are flex rows that already carry their own gap, so the
+   margin above lands on top of it and reads as a gulf. Zero it there.
+   Selectors mirror the ones above on purpose: a shorter one loses on
+   specificity to the [href] match and the margin silently comes back. */
+a[class*="nav-tabs-item"][href*="/sessions/"]::after,
+a[class*="nav-tabs-item"][href*="/setup/"]::after {
+  margin-left: 0;
+}
+
+/* The phone's two tab controls — the collapsed picker and the rows it opens —
+   are space-between flex, which flings a trailing pseudo-element to the far
+   edge, away from the word it labels. Pull it back beside the label with an
+   auto margin, and send the row's own glyph (chevron, or the checkmark on the
+   active row) past it with order, so the reading stays "Sessions PRO … ✓".
+   The picker shows whichever tab you're in and has no stable id of its own, so
+   it's identified by the one thing only the Sessions tab's sidebar contains:
+   links into /setup/. The Guide sidebar links to /sessions/overview, so that
+   half of the pair can't be the discriminator. */
+a[class*="mobile-nav-tabs-item"][href*="/sessions/"]::after,
+a[class*="mobile-nav-tabs-item"][href*="/setup/"]::after,
+[aria-label="Navigation"]:has(a[href*="/setup/"]) button[id^="base-ui-"]::after {
+  margin-right: auto;
+}
+
+a[class*="mobile-nav-tabs-item"][href*="/sessions/"] > *,
+a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
+[aria-label="Navigation"]:has(a[href*="/setup/"]) button[id^="base-ui-"] > svg {
+  order: 1;
+}
+
+/* Supported-provider row. Unboxed on purpose: this is one line answering "what
+   does it cover", and five bordered tiles read as five things to click. */
+.provider-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem 1.5rem;
+  margin: 1rem 0 1.75rem;
+}
+
+.provider-row > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.provider-row img {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: none;
+  object-fit: contain;
+  margin: 0;
+}
+
+/* The OpenAI, Cursor, and xAI marks ship as near-black single-color art, which
+   disappears on a dark page. They have no second color to lose, so a straight
+   inversion is the whole fix — no light/dark asset pair to keep in sync.
+   Only for monochrome marks: Claude's coral and Gemini's four-color spark
+   would come back wrong, so they don't carry the class. */
+.dark .provider-row img.invert-dark {
+  filter: invert(1);
+}
+
+/* Full-height app screenshots, in a device bezel. The captures are raw
+   1206x2622, so at column width they'd be a 1500px-tall wall — pinned to a
+   phone-sized column instead. Fixed width rather than fluid because the two
+   radii have to stay in proportion to it: the outer one is the phone's edge,
+   the inner one its screen, and the gap between them is the bezel.
+   The wrapper exists because padding on the <img> alone won't do it — the
+   radius would clip the border box while the picture inside stayed square. */
+.device-frame {
+  width: 100%;
+  max-width: 18rem;
+  margin: 1.25rem auto;
+  padding: 0.4rem;
+  border-radius: 2.6rem;
+  background: linear-gradient(155deg, #4a4a4e 0%, #202023 35%, #1a1a1c 70%, #35353a 100%);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.14),
+    0 1rem 2.5rem rgb(0 0 0 / 0.32);
+}
+
+.device-frame img {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border-radius: 2.2rem;
+}
+
+/* The two widget walkthrough clips. Square (they're lifted from the app's own
+   onboarding), so a full-column width would be a 700px-tall block — capped at
+   something closer to the phone they're showing, and centred because <Frame>
+   spans the column. The Frame's own radius is on its outer box, so the clip
+   needs its own or it sits square-cornered inside a rounded one. */
+.tutorial-clip {
+  display: block;
+  width: 100%;
+  max-width: 22rem;
+  margin-inline: auto;
+  border-radius: 0.75rem;
+}
+
+/* Screenshot carousel — see snippets/screens.jsx, which owns the behaviour.
+   Slide width and the gap between slides are set inline from there, not here:
+   the centring offset is computed from both, so they can't live in two files. */
+.carousel {
+  margin: 2rem 0;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  padding: 0.5rem 0;
+}
+
+.carousel-track {
+  display: flex;
+  justify-content: center;
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  opacity: 0.4;
+  transform: scale(0.88);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.45s ease;
+}
+
+.carousel-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.carousel-slide img {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 2rem rgb(0 0 0 / 0.18);
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.carousel-controls > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid rgb(0 0 0 / 0.12);
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+}
+
+.carousel-controls > button:disabled {
+  opacity: 0.3;
+}
+
+.dark .carousel-controls > button {
+  border-color: rgb(255 255 255 / 0.16);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.carousel-dots button {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.2);
+  transition: background 0.2s ease;
+}
+
+.dark .carousel-dots button {
+  background: rgb(255 255 255 / 0.25);
+}
+
+.carousel-dots button.is-active {
+  background: var(--nomo-coral);
+}
+
+/* Lightbox. Full-viewport fixed overlay — the shots are 660×1440, so "bigger"
+   means as tall as the window allows and the width follows. */
+.carousel-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgb(0 0 0 / 0.82);
+  backdrop-filter: blur(4px);
+}
+
+/* Mintlify's #content carries container-type: inline-size, and containment
+   makes it a stacking context — so the overlay's z-index is sealed inside the
+   article column and the navbar (z-30) and sidebar (z-20) paint straight over
+   it. Verified: raising the overlay to 2147483647 changed nothing. Lifting
+   #content itself is the only way out, and :has keys it off the overlay's own
+   presence rather than a class JS has to remember to remove.
+   ponytail: 40 clears today's navbar. If Mintlify renumbers, this is the knob. */
+body:has(.carousel-lightbox) #content {
+  z-index: 40;
+}
+
+.carousel-lightbox img {
+  max-height: min(90vh, 1440px);
+  max-width: 100%;
+  width: auto;
+  margin: 0;
+  border-radius: 1rem;
+}
+
+.carousel-lightbox button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.4);
+  color: #fff;
+}
+
+.carousel-lightbox button:disabled {
+  opacity: 0.25;
+}
+
+/* Arrows sit on top of the shot, not beside it. As flex siblings they claimed
+   width the image needed and then spilled off the edge of a phone. */
+.carousel-lightbox-step {
+  position: absolute;
+  top: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  transform: translateY(-50%);
+  background: rgb(0 0 0 / 0.55);
+}
+
+.carousel-lightbox-step.is-prev {
+  left: 0.75rem;
+}
+
+.carousel-lightbox-step.is-next {
+  right: 0.75rem;
+}
+
+.carousel-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+/* Motion here is decoration — the slide still changes, it just stops sliding. */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track,
+  .carousel-slide {
+    transition: none;
+  }
+}
+
 /* Page titles carry the brand gradient. h1 only — subheads stay plain text so
    the page still scans as a document, not a landing page. */
 h1 {

@@ -8,7 +8,7 @@ icon: "puzzle-piece"
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
-    在 Claude Code 工作階段中執行：
+    在 Claude Code 中執行：
 
     ```
     /plugin marketplace add KarrixLee/nomo
@@ -35,7 +35,7 @@ icon: "puzzle-piece"
 
     <Steps>
       <Step title="安裝外掛程式">
-        在 Codex 工作階段中執行：
+        在 Codex 中執行：
 
         ```
         codex plugin marketplace add KarrixLee/nomo
@@ -53,8 +53,7 @@ icon: "puzzle-piece"
         信任那**七個 Nomo 項目**。Codex 介面上顯示為「trust」（其介面為英文）。
 
         <Warning>
-          別跳過這一步。Nomo 的 hooks 會隨外掛程式一起安裝，但在你信任之前
-          **都不會運作**。在那之前，外掛程式雖然裝好了卻什麼也沒做 — 沒有任何工作階段會送到你的手機，也不會有任何錯誤訊息。
+          別跳過這一步。Nomo 的 hooks 會隨外掛程式一起安裝，但在你信任之前**都不會運作**。在那之前，外掛程式雖然裝好了卻什麼也沒做 — 沒有任何 session 會送到你的手機，也不會有任何錯誤訊息。
         </Warning>
 
         這是 Codex 自己的安全關卡，Nomo 無法代為預先核准。hook 的指令行在各版本之間逐位元組保持不變，所以信任一次就能延續到後續更新 — 只有指令行變動時才會重新要求審核。
@@ -71,15 +70,14 @@ icon: "puzzle-piece"
     </Steps>
 
     <Tip>
-      Codex 的 skills 使用 `$` 前綴而不是斜線 — `$nomo-pair`、
-      `$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
+      Codex 的 skills 使用 `$` 前綴而不是斜線 — `$nomo-pair`、`$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
     </Tip>
   </Tab>
 </Tabs>
 
 ## 外掛程式做的事
 
-它會監看工作階段，並把狀態變化回報到你的手機：代理正在處理什麼、什麼時候停下來，以及什麼時候需要你授予權限。
+它會監看 session，並把狀態變化回報到你的手機：代理正在處理什麼、什麼時候停下來，以及什麼時候需要你授予權限。
 
 在你[配對手機](/zh-Hant/setup/pairing)之前，它不會送出任何東西；而所有送出的內容都會先在這台電腦上加密。
 

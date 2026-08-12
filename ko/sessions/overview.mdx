@@ -1,0 +1,67 @@
+---
+title: "개요"
+sidebarTitle: "개요"
+description: "iPhone에서 Claude Code와 Codex를 지켜보고, Mac 앞으로 돌아가지 않고도 권한 요청에 답합니다."
+---
+
+코딩 에이전트는 Mac에서 돌아갑니다. 그 앞에 계속 앉아 있을 필요는 없습니다.
+
+Nomo 세션은 실행 중인 Claude Code와 Codex 세션을 iPhone으로 가져옵니다 — 잠금
+화면과 다이나믹 아일랜드에 띄웁니다. 에이전트가 무언가에 대한 권한을 물으려고
+멈추면 휴대폰이 알려 주고, 그 자리에서 바로 답할 수 있습니다.
+
+잠깐 주방에 다녀옵니다. 에이전트는 계속 일합니다. 승인이 필요한 명령을 만나면
+휴대폰이 울리고, **허용**을 탭하면 하던 일을 이어 갑니다. 책상으로는 끝내
+돌아가지 않았습니다.
+
+<Frame caption="세션 하나가 두 곳에 — 화면 위쪽에 실시간으로, 그리고 세션 탭에서 그 세션을 돌리고 있는 컴퓨터 아래에.">
+  <div className="device-frame">
+    <img src="/images/session-overview.png" alt="Refactor the Sessions tab이라는 이름의 Claude Code 세션이 실시간 현황과 Nomo의 세션 탭 행으로 표시된 모습" />
+  </div>
+</Frame>
+
+실시간 카드에는 모델과 지금 하고 있는 일이 담깁니다 — **Fable · Editing** — 여기에
+세션 제목, 폴더, 그리고 어느 컴퓨터에서 도는지가 함께 표시됩니다. 그 아래
+세션 탭은 실행 중인 모든 세션을 에이전트별로 나눠 보여 줍니다.
+
+<Note>
+  세션은 Nomo Pro에 포함됩니다. 상태 모니터링과 사용량 위젯은 무료이며,
+  아래의 설정 없이도 동작합니다.
+</Note>
+
+## 지원 범위
+
+세션은 계정이 아니라 컴퓨터에서 실행 중인 에이전트를 따라가므로, 목록이
+[상태와 사용량](/ko/status-usage)보다 짧습니다.
+
+<div className="provider-row">
+  <span><img src="/images/claude-code.svg" alt="" />Claude Code</span>
+  <span><img src="/images/codex.svg" alt="" />Codex</span>
+</div>
+
+## 필요한 것
+
+- Mac에서 실행되는 Claude Code, 또는 Codex 0.142 이상
+- **bun** 또는 **node 18 이상** — 이미 설치되어 있는 쪽이면 됩니다
+- 휴대폰과 컴퓨터의 페어링 — QR 스캔 한 번
+
+## 전체 구조
+
+Mac은 Nomo의 릴레이를 거쳐 세션 업데이트를 휴대폰으로 보냅니다. 릴레이는 그
+내용을 읽지 못합니다. 모든 것은 Mac에서 암호화되고 휴대폰에서만 복호화됩니다.
+Nomo의 서버는 봉인된 데이터를 옮길 뿐, 키는 한 번도 갖지 않습니다.
+
+이 점이 무엇을 기대할 수 있는지를 결정합니다 — 프롬프트도, 파일 경로도, 명령도
+모두 사용자의 것입니다. 또한 페어링이 로그인이 아니라 실제 암호학적 절차라는
+뜻이기도 합니다. 스캔이나 코드 입력이 필요한 이유가 여기에 있습니다.
+
+## 설정하기
+
+<CardGroup cols={2}>
+  <Card title="플러그인 설치" href="/ko/setup/install" icon="puzzle-piece">
+    Claude Code 또는 Codex에서, 명령 두 줄이면 됩니다.
+  </Card>
+  <Card title="컴퓨터 페어링" href="/ko/setup/pairing" icon="qrcode-read">
+    QR 코드를 스캔하거나, 일회용 코드를 입력합니다.
+  </Card>
+</CardGroup>

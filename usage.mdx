@@ -1,0 +1,43 @@
+---
+title: "Usage"
+description: "Track how much of your plan is left, with alerts at 70%, 90%, and 100%."
+icon: "gauge"
+---
+
+Usage works like [Status](/status) — a widget plus notifications — with one
+extra step: it reads numbers off your account, so it needs a sign-in. Still no
+Mac plugin; this one is phone-only.
+
+<Frame caption="The Usage tab for Claude: the 5-hour window, the weekly one, and when each resets.">
+  <div className="device-frame">
+    <img src="/images/claude-usage-overview.png" alt="Nomo's Usage tab showing Claude's session and weekly limits" />
+  </div>
+</Frame>
+
+## Signing in
+
+Open the provider from the **Providers** tab and connect the account you
+already pay for. Nomo reads the same numbers that account can see about itself
+— it isn't an API key and there's nothing to paste.
+
+<Note>
+  **Your login stays on your phone.** Tokens are held in the device keychain
+  and go only to the provider they belong to — your Claude token to Anthropic,
+  your OpenAI token to OpenAI. Usage is fetched on-device and never passes
+  through Nomo's servers.
+</Note>
+
+Nomo is unofficial and not affiliated with any provider it reads.
+
+## Widget
+
+<Card title="Widget" href="/widget" icon="puzzle-piece" horizontal>
+  Two short clips — putting it on your Home Screen, then pointing it at a
+  service.
+</Card>
+
+## Notifications
+
+<Card title="Notifications" href="/notifications" icon="bell" horizontal>
+  Notify you when a provider's usage hits 70%, 90%, or 100%.
+</Card>

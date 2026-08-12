@@ -1,0 +1,71 @@
+---
+title: "Resumen"
+sidebarTitle: "Resumen"
+description: "Sigue a Claude Code y Codex desde tu iPhone, y responde a sus solicitudes de permiso sin volver al Mac."
+---
+
+Tu agente de programación corre en tu Mac. Tú no tienes que estar delante.
+
+Nomo lleva a tu iPhone las sesiones de Claude Code y Codex que tengas
+en marcha: a la pantalla de bloqueo y a la Isla Dinámica. Cuando el agente se
+detiene a pedir permiso para algo, tu teléfono te avisa, y puedes responderle
+desde ahí.
+
+Vete a la cocina. El agente sigue trabajando. Llega a un comando que necesita
+aprobación, el teléfono te vibra, tocas **Permitir** y el agente sigue
+adelante. Sin volver al escritorio en ningún momento.
+
+<Frame caption="Una sesión en dos sitios: en vivo en la parte de arriba de la pantalla, y en la pestaña Sesiones, bajo el ordenador que la ejecuta.">
+  <div className="device-frame">
+    <img src="/images/session-overview.png" alt="Una sesión de Claude Code titulada Refactor the Sessions tab, mostrada como Live Activity y como fila en la pestaña Sesiones de Nomo" />
+  </div>
+</Frame>
+
+La tarjeta en vivo lleva el modelo y lo que está haciendo justo en ese momento
+—**Fable · Editing**— además del título de la sesión, la carpeta y en qué
+ordenador corre. Debajo, la pestaña **Sesiones** enumera todo lo que
+hay en marcha, separado por agente.
+
+<Note>
+  Sesiones forma parte de Nomo Pro. La monitorización del estado y los widgets
+  de uso son gratis y funcionan sin nada de la configuración de abajo.
+</Note>
+
+## Con qué funciona
+
+Sesiones sigue al agente que corre en tu ordenador, no a la cuenta que hay
+detrás, así que la lista es más corta que la de [Estado y uso](/es/status-usage).
+
+<div className="provider-row">
+  <span><img src="/images/claude-code.svg" alt="" />Claude Code</span>
+  <span><img src="/images/codex.svg" alt="" />Codex</span>
+</div>
+
+## Qué necesitas
+
+- Claude Code, o Codex 0.142 o posterior, en un Mac
+- **bun** o **node 18+**, el que ya tengas
+- Tu teléfono y tu ordenador emparejados: un solo escaneo de QR
+
+## Cómo encaja todo
+
+Tu Mac envía las actualizaciones de la sesión a tu teléfono a través del relay
+de Nomo. El relay no puede leerlas: todo se cifra en el Mac y solo se descifra
+en el teléfono. Los servidores de Nomo mueven datos sellados sin llegar a tener
+nunca la clave.
+
+Eso importa para lo que puedes esperar: tus prompts, tus rutas de archivos y
+tus comandos son tuyos. También significa que el emparejamiento es un paso
+criptográfico de verdad y no un inicio de sesión, y por eso hace falta un
+escaneo o un código escrito.
+
+## Ponlo en marcha
+
+<CardGroup cols={2}>
+  <Card title="Instala el plugin" href="/es/setup/install" icon="puzzle-piece">
+    Dos comandos, para Claude Code o Codex.
+  </Card>
+  <Card title="Empareja tu ordenador" href="/es/setup/pairing" icon="qrcode-read">
+    Escanea un código QR, o escribe un código de un solo uso.
+  </Card>
+</CardGroup>

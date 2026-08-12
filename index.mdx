@@ -1,60 +1,41 @@
 ---
-title: "Introduction"
-description: "Watch Claude Code and Codex from your iPhone, and answer their permission prompts without going back to your Mac."
-icon: "book-open"
+title: "Nomo"
+description: "Nomo keeps an eye on your coding agents from your iPhone — service status, plan usage, and live sessions you can answer."
 ---
 
-Your coding agent runs on your Mac. You don't have to sit in front of it.
+import { Screens } from "/snippets/screens.jsx";
 
-Nomo Sessions puts your running Claude Code and Codex sessions on your iPhone —
-on the Lock Screen and in the Dynamic Island. When the agent stops to ask
-permission for something, your phone tells you, and you can answer it from
-there.
+Nomo is an iPhone app for people whose work depends on a coding agent they
+can't watch all day.
 
-Walk to the kitchen. The agent keeps working. It hits a command it needs
-approval for, your phone buzzes, you tap **Allow**, and it keeps going. You
-never opened the laptop.
+<Screens shots={[
+  { src: "/images/screens/status.jpg", alt: "Status and usage widgets on the Home Screen" },
+  { src: "/images/screens/usage.jpg", alt: "The Usage tab, showing session and weekly limits for Claude" },
+  { src: "/images/screens/home-screen.jpg", alt: "The same widgets in dark mode, in every size" },
+  { src: "/images/screens/alerts.jpg", alt: "Lock Screen notifications for an outage and a usage limit" },
+  { src: "/images/screens/sessions.jpg", alt: "A running Claude Code session in the Dynamic Island" },
+]} />
 
-<Note>
-  Sessions is part of Nomo Pro. Status monitoring and usage widgets are free and
-  work without any of the setup below.
-</Note>
-
-## What you need
-
-- An iPhone running iOS 18 or later
-- Claude Code, or Codex 0.142+, on a Mac
-- Either **bun** or **node 18+** — whichever you already have
-- The two paired together, which takes about a minute
-
-## How it fits together
-
-Your Mac sends session updates to your phone through Nomo's relay. The relay
-can't read them: everything is encrypted on your Mac and only decrypted on your
-phone. Nomo's servers move sealed data around without ever holding the key.
-
-That matters for what you can expect — your prompts, file paths, and commands
-are yours. It also means pairing is a real cryptographic step rather than a
-login, which is why it takes a scan or a typed code.
-
-## Get set up
+It comes in two halves, and the first one works the minute you install it.
 
 <CardGroup cols={2}>
-  <Card title="Install the plugin" href="/setup/install" icon="puzzle-piece">
-    Two commands, for Claude Code or Codex.
+  <Card title="Status and usage" href="/status-usage" icon="signal">
+    Home Screen widgets for five providers, and a notification when one goes
+    down or you're near a limit. Free.
   </Card>
-  <Card title="Pair your computer" href="/setup/pairing" icon="qrcode-read">
-    Scan a QR code, or type a one-time code.
+  <Card title="Sessions" href="/sessions/overview" icon="mobile-screen">
+    Watch Claude Code and Codex run on your Lock Screen, and answer their
+    permission prompts from there.
   </Card>
 </CardGroup>
 
-## Then learn to read it
+## Start here
 
 <CardGroup cols={2}>
-  <Card title="Reading the island" href="/sessions/island" icon="circle-dot">
-    What the colors and the hand icon mean.
+  <Card title="Install the app" href="/installation" icon="apple">
+    Get Nomo from the App Store.
   </Card>
-  <Card title="Answering from your phone" href="/sessions/approvals" icon="hand">
-    Allow and deny, remotely.
+  <Card title="What's new" href="/changelog" icon="clock-rotate-left">
+    Recent releases.
   </Card>
 </CardGroup>

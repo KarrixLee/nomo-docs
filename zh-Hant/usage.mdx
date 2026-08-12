@@ -1,0 +1,35 @@
+---
+title: "用量"
+description: "追蹤你的方案還剩多少，並在 70%、90%、100% 時提醒你。"
+icon: "gauge"
+---
+
+「用量」的運作方式跟[狀態](/zh-Hant/status)一樣 — 一個小工具加上通知 — 只多一個步驟：它要從你的帳號讀數字，所以需要登入。一樣不必在 Mac 上裝外掛程式；這個功能只在手機上跑。
+
+<Frame caption="Claude 的用量分頁：5 小時的計算週期、每週的計算週期，以及各自何時重置。">
+  <div className="device-frame">
+    <img src="/images/claude-usage-overview.png" alt="Nomo 的用量分頁，顯示 Claude 的 session 與每週上限" />
+  </div>
+</Frame>
+
+## 登入 {#signing-in}
+
+從**供應商**分頁開啟那家供應商，連結你原本就在付費的帳號。Nomo 讀到的，就是那個帳號自己看得到的數字 — 這不是 API 金鑰，也沒有東西要貼上。
+
+<Note>
+  **你的登入資訊留在手機上。**權杖存在裝置的鑰匙圈裡，而且只會送往它所屬的那一家供應商 — Claude 的權杖送到 Anthropic，OpenAI 的權杖送到 OpenAI。用量在裝置上取得，從不經過 Nomo 的伺服器。
+</Note>
+
+Nomo 並非官方產品，與它所讀取的任何供應商都沒有關聯。
+
+## 小工具
+
+<Card title="小工具" href="/zh-Hant/widget" icon="puzzle-piece" horizontal>
+  兩段短片 — 先把它放上主畫面，再指定它要盯的服務。
+</Card>
+
+## 通知
+
+<Card title="通知" href="/zh-Hant/notifications" icon="bell" horizontal>
+  供應商的用量達到 70%、90% 或 100% 時通知你。
+</Card>
