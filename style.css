@@ -401,3 +401,19 @@ h1 {
     color: CanvasText;
   }
 }
+
+/* The Dynamic Island shot is the top slice of a screenshot, not a whole phone.
+   It keeps the bezel's top corners and squares off the cut edge — rounding the
+   crop would read as a device that genuinely ends there. Slightly wider than a
+   full-phone frame because 8% of a screenshot at 18rem is unreadably small. */
+.device-frame.crop-top {
+  max-width: 22rem;
+  padding-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.device-frame.crop-top img {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}

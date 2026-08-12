@@ -61,18 +61,16 @@ is the whole story.
 
 ## Reading it
 
-{/* TODO: side-by-side screenshot — working, needs permission, finished */}
-
-| Label | Colour | Icon | What it means |
-| --- | --- | --- | --- |
-| `Working` | Claude coral / Codex periwinkle | Filled dot | Running. The compact side shows a timer. |
-| `Need help` | Yellow | Raised hand | Stopped, waiting on you — but there is nothing to tap. Go to the Mac. |
-| `Plan ready` | Yellow | Document | A plan is waiting. Tap **View plan** to read it. |
-| `Needs permission` | Violet | Raised hand | Asking permission. **Allow and Deny are right there.** |
-| `Finished` | Green | Checkmark | Done, with the final run time frozen next to it. |
-| `Disconnected?` | Grey, drained of colour | Crossed-out Wi-Fi | Nomo hasn't heard from this Mac in 10 minutes. |
-| `Decrypting…` | Grey | Lock | Your phone hasn't unlocked the update yet. Usually momentary. |
-| `Reconnecting` | Grey / amber | Wi-Fi, or a refresh arrow | Either your phone doesn't have the key yet, or the Mac lost the relay and is retrying. |
+| | Label | What it means |
+| :---: | --- | --- |
+| <Icon icon="circle" iconType="solid" color="#D97757" /> | `Working` | Running, in the agent's own colour — coral for Claude Code, periwinkle for Codex. The compact side shows a timer. |
+| <Icon icon="hand" color="#E5A50A" /> | `Need help` | Stopped, waiting on you — but there is nothing to tap. Go to the Mac. |
+| <Icon icon="file-lines" color="#E5A50A" /> | `Plan ready` | A plan is waiting. Tap **View plan** to read it. |
+| <Icon icon="hand" color="#7A5CF0" /> | `Needs permission` | Asking permission. **Allow and Deny are right there.** |
+| <Icon icon="check" color="#4CAF50" /> | `Finished` | Done, with the final run time frozen next to it. |
+| <Icon icon="wifi-slash" color="#8E8E93" /> | `Disconnected?` | Nomo hasn't heard from this Mac in 10 minutes. The whole card drains of colour. |
+| <Icon icon="lock" color="#8E8E93" /> | `Decrypting…` | Your phone hasn't unlocked the update yet. Usually momentary. |
+| <Icon icon="arrows-rotate" color="#EAA82A" /> | `Reconnecting` | Either your phone doesn't have the key yet, or the Mac lost the relay and is retrying. |
 
 <Warning>
   **Yellow and violet both show a raised hand.** The icon is not the tell — the
@@ -90,6 +88,12 @@ doing, that rides along too: `Working · Editing`, `Working · Running command`.
   <Tab title="Compact">
     The agent's mark on the left, and on the right either a **timer** while it
     works, a **hand** when it wants you, or `✓ 6m` when it's done.
+
+    <Frame caption="A Claude Code session one minute into its turn.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-compact-working.png" alt="The Dynamic Island in its compact form, showing Claude Code's mascot on the left and a 1:08 timer on the right" />
+      </div>
+    </Frame>
   </Tab>
   <Tab title="Minimal">
     When another app shares the island, Nomo collapses to a single symbol: the
