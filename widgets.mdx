@@ -2,21 +2,11 @@
 title: "Status and usage"
 sidebarTitle: "Overview"
 description: "Two Home Screen widgets: whether your providers are up, and how much of your plan is left."
-icon: "grip"
 ---
 
 Two widgets, both free, both phone-only — there's nothing to install on your
 computer for either. They answer the two questions you'd otherwise open a
 browser for.
-
-<CardGroup cols={2}>
-  <Card title="Status" href="/status" icon="signal">
-    Is it up? Plus a notification when a provider goes down. No sign-in.
-  </Card>
-  <Card title="Usage" href="/usage" icon="gauge">
-    How much of your plan is left, with alerts at 70%, 90%, and 100%.
-  </Card>
-</CardGroup>
 
 ## What's supported
 
@@ -35,8 +25,13 @@ The same five providers in both widgets.
   part of OpenAI the widgets actually report on.
 </Note>
 
-## The one difference
+## Check out
 
-Status reads public status pages, so it needs nothing from you. Usage reads
-numbers off your own account, so it asks you to sign in — once per provider,
-and only for the ones you care about.
+<CardGroup cols={2}>
+  <Card title="Status" href="/status" icon="signal">
+    Is it up? Plus a notification when a provider goes down. No sign-in.
+  </Card>
+  <Card title="Usage" href="/usage" icon="gauge">
+    How much of your plan is left, with alerts at 70%, 90%, and 100%.
+  </Card>
+</CardGroup>
