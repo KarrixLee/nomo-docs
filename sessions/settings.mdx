@@ -1,0 +1,122 @@
+---
+title: "Settings"
+description: "Every Sessions setting: local network delivery, island behaviour, remote approvals, and diagnostics — and what each one defaults to."
+icon: "sliders"
+---
+
+All of it lives on one page: **Settings → Sessions**. The gear in the top-right
+of a computer's drawer goes to the same place.
+
+Everything here is **off by default**. Nomo doesn't turn things on for you —
+several of these cost battery, network, or a permission prompt, and one of them
+decides whether your Mac hands permission decisions to your phone at all.
+
+{/* TODO: screenshot of the Sessions settings page */}
+
+## Local network
+
+<ResponseField name="Local network" type="off by default">
+  Off, Nomo reaches your Mac through the cloud only. On, it connects directly to
+  your paired Mac when both are on the same network, and falls back to the cloud
+  automatically.
+</ResponseField>
+
+Straight to your Mac instead of around through the relay: **under 200ms**
+instead of five to twelve seconds. Worth turning on if you're at your desk with
+your phone next to you.
+
+It's strictly additive. Every request goes both ways at once — direct and
+through the relay — and whichever answers first wins. A Mac that's asleep,
+firewalled, or on another network can't slow anything down, because the relay
+leg was never waiting on it.
+
+Turning it on will prompt for **local network** permission the first time. Your
+Mac's address never travels in the clear, and the direct traffic carries a
+second layer of encryption on top of the usual one, so nothing on the Wi-Fi
+learns which session or which computer it belongs to.
+
+You can tell it's actually working by the green **⚡ Local** chip under the
+computer's name. That chip only appears when a direct reply genuinely came
+back — never from an address alone — so no chip means no direct link, whatever
+the reason.
+
+Direct connection also unlocks two things: **Open on Mac** on a session row, and
+re-fetching a plan that was too long to fit in an encrypted update.
+
+## Dynamic Island
+
+<ResponseField name="Expand on updates" type="off by default">
+  Briefly expands the Dynamic Island with a haptic when a session needs your
+  attention, and adds new sessions to it as they appear. Nomo always shows the
+  one that needs you most.
+</ResponseField>
+
+The buzz-and-flash. Turn it on if you want to be told; leave it off if you'd
+rather glance.
+
+It doesn't nag. A session that goes quiet gets you at most three nudges, spaced
+five minutes apart, and then stays silent until something actually changes.
+
+<ResponseField name="Auto add new sessions" type="off by default">
+  Puts every new session on the island as it appears, instead of you flipping
+  each switch.
+</ResponseField>
+
+Only sessions Nomo sees for the **first time** after you turn it on. Switching
+it on later won't drag a backlog onto your island, and a session you explicitly
+switched off is never re-added.
+
+<Tip>
+  A session that's **asking permission** reaches the island regardless of either
+  of these — that's the point of the feature. See
+  [Nothing appears until you say so](/sessions/island#nothing-appears-until-you-say-so).
+</Tip>
+
+## Remote approvals
+
+<ResponseField name="Answer on iPhone" type="off by default">
+  When a session on the Dynamic Island asks permission (run a command, edit a
+  file), answer Allow or Deny from your iPhone. Turn it off to always decide at
+  your Mac.
+</ResponseField>
+
+This is the one people miss. With it off, your Mac never hands a decision to
+your phone — you'll see that a session wants you, but you'll go to the Mac to
+answer. Full details in
+[Answering from your phone](/sessions/approvals).
+
+There's a second, per-computer pause that lives on the Mac rather than here:
+`/nomo-cc:approvals off`. Use that one when your phone is the thing that's
+unavailable.
+
+## Debug
+
+<ResponseField name="Session diagnostics" type="off by default">
+  Shows plugin state decisions under each session.
+</ResponseField>
+
+Adds a line of raw plumbing under each expanded session row. It costs nothing
+and shows nothing on the island — it's there so you can read what Nomo actually
+believes, or paste it into a bug report. See
+[Reading the diagnostics line](/sessions/troubleshooting#reading-the-diagnostics-line).
+
+## iOS permissions
+
+**Open iOS Settings** takes you to Nomo's page in iOS Settings, where two of
+Apple's own switches matter:
+
+- **Live Activities** — must be on, or nothing can appear on the island at all.
+- **More Frequent Updates** — raises how often iOS lets Nomo repaint the island.
+  Nomo is written against the default budget, roughly one update every nine
+  seconds. Turn this on if island updates feel like they're lagging behind your
+  terminal.
+
+## The per-session switch
+
+Not on this page: the switch on each session row, which decides whether *that*
+session can hold the island. It's in the computer's drawer, on the right of
+every row. See [Computers and sessions](/sessions/list#what-a-session-row-shows).
+
+Your choices survive quitting the app and restarting your phone. If a computer
+was unreachable when you flipped something, the change is held and applied when
+it comes back.

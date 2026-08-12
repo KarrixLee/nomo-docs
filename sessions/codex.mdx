@@ -1,0 +1,104 @@
+---
+title: "Codex differences"
+description: "Sessions works with Codex, but not identically to Claude Code. What you can and can't do from your phone, and why."
+icon: "code"
+---
+
+Codex sessions show up in the same list, on the same island, over the same
+pairing. But Codex and Claude Code expose different things to a plugin, so a few
+options are missing on the Codex side.
+
+Nomo's rule throughout is that it never offers a button the Mac can't honour. So
+rather than a control that silently fails, you get either a different control or
+an honest "do this at your Mac."
+
+<Note>
+  There is no separate Codex pairing. Both agents read the same config on that
+  computer — you [pair the machine](/setup/pairing) once. On the wire, the only
+  difference is a label saying which agent it was.
+</Note>
+
+## What works the same
+
+- Sessions, states, folders, and the Dynamic Island.
+- Permission prompts for shell commands, patches, and MCP tools — **Allow** and
+  **Deny** from the island or the app.
+- **Deny with note…**, to say why or what to do instead.
+- Reading plans.
+
+## No "Always allow"
+
+Claude Code lets you allow a tool for the rest of the session. Codex rejects the
+whole decision when Nomo attaches that kind of rule to it, so the option isn't
+shown — a **Deny** that got thrown away would be far worse than a missing
+button.
+
+Allow still works normally. You'll just be asked again next time.
+
+## Plans are read-only
+
+Codex's "implement this plan?" prompt lives inside its own terminal UI. It never
+reaches a plugin, which means there's nothing for Nomo to hold and nothing for
+your tap to resolve.
+
+So Nomo shows you the plan — the whole thing, refreshed each time you open it,
+since Codex writes it out as it goes — and then says `Choose an option in your
+Mac terminal`. If your phone can reach the Mac over your local network, **Open
+on Mac** brings that terminal window to the front for you.
+
+## Questions need the daemon running
+
+Codex questions can be answered from your phone, but only when the Codex task
+and Nomo's watchdog share one app-server process. That means starting it
+**before** you start Codex:
+
+```bash
+codex app-server daemon start
+```
+
+Check which side you're on:
+
+```bash
+$nomo-status
+```
+
+It reports either `Codex Plan answers: bridge available` or `status-only`. On
+`status-only`, the session still reaches your phone — you'll see `Need help` and
+`Answer on Mac` — there's just no picker to tap.
+
+<Warning>
+  The **Codex desktop app** may run local tasks against its own private
+  app-server rather than the shared one. Those tasks stay status-only, by
+  design, until Codex exposes that socket. The CLI with the daemon started is
+  the path that gets you the picker.
+</Warning>
+
+## Hooks have to be trusted
+
+Codex ships its own safety gate: plugin hooks are installed but **inert until
+you trust them**. Run `/hooks` and trust the seven Nomo entries, as described in
+[Installation](/setup/install).
+
+The part that catches people: upgrading to the version that added phone-held
+Codex approvals introduced a **new** hook, so Codex re-opens the review for it.
+Until you trust it, Codex approvals quietly fall back to the terminal and
+nothing reports an error. If your phone stopped getting Codex prompts after an
+update, run `/hooks` first.
+
+`$nomo-status` reports hook trust, so it's how you check the step actually took.
+
+## Prompts that never reach you
+
+When a Codex turn is running under automatic review or full access, the hook
+hands control straight back to Codex before Nomo sends anything. That's correct
+— you told Codex not to ask — but it means the prompt won't appear on your phone
+either.
+
+Codex also has no equivalent of Claude Code's notification hook, so you'll get
+slightly fewer "it wants you" nudges from Codex sessions than from Claude Code
+ones.
+
+## Version floor
+
+Codex **0.142 or later**. Earlier versions have no plugin system for Nomo to
+install into.

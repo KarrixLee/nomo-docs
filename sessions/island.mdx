@@ -1,52 +1,140 @@
 ---
-title: "Reading the island"
-description: "What the colors and the hand icon mean on the Dynamic Island and Lock Screen."
+title: "The Dynamic Island"
+description: "What Nomo shows on the Dynamic Island and Lock Screen, what each colour means, and how it picks which session to show."
 icon: "circle-dot"
 ---
 
-Once a session is showing on your island, you can read its state without
-unlocking your phone. There are only two signals that matter.
+Your phone shows **one session at a time**. Not one per computer, not one per
+agent — one, device-wide. Everything below is about that one.
 
-{/* TODO: side-by-side screenshot — yellow state vs purple hand state */}
+## Nothing appears until you say so
 
-## Yellow means "look at me"
+By default, **no session appears on your Lock Screen or Dynamic Island.** If
+you paired successfully and your island is empty, nothing is broken.
 
-Claude stopped and wants you. It finished a turn, or it needs an instruction
-only you can give.
+The island sits on your Lock Screen all day. If every session you started
+claimed it, one busy afternoon would bury your phone in sessions you stopped
+caring about an hour ago. So the app lists everything, and the island shows
+only what you chose.
 
-There is nothing to tap. Yellow is a notification, not a question — you have to
-go back to your Mac to move it forward.
+To put a session there, open the computer, find the session, and flip its
+switch. To have Nomo do it for you on every new session, turn on **Auto add new
+sessions** in [Settings](/sessions/settings#dynamic-island).
 
-## The purple hand means "answer me"
+<Note>
+  One exception, and it's deliberate: a session that's **asking permission**
+  appears on the island even with its switch off. That's the whole point of the
+  feature, and the row says so — *Prompts still reach the Dynamic Island when
+  this is off.*
+</Note>
 
-Claude is asking permission for a specific action, and **this is the one you can
-answer from your phone.** The hand icon is the tell: if you see it, Allow and
-Deny buttons are there.
+## Which session it picks
 
-<Tip>
-  If you remember one thing from this page: **hand = tappable.** Everything else
-  is informational.
-</Tip>
+When several sessions are eligible, Nomo doesn't show you the newest — it shows
+you the one most likely to be blocking you:
 
-Tap into the island and answer it. Claude picks up immediately — see
-[Answering from your phone](/sessions/approvals).
+<Steps>
+  <Step title="Anything waiting on you wins">
+    A session asking permission, or one that stopped and needs an instruction,
+    outranks anything still working.
+  </Step>
+  <Step title="The oldest waiter is sticky">
+    Among sessions waiting on you, the one that has been waiting longest holds
+    the island. A newer prompt **cannot** shove it aside — otherwise the thing
+    you were about to answer would keep getting stolen from under your thumb.
+  </Step>
+  <Step title="Otherwise, most recent activity">
+    Between working sessions, the freshest one shows.
+  </Step>
+</Steps>
+
+Sessions that have been silent for over half an hour drop out of the running
+entirely. If everything eligible has finished and gone quiet, the island clears
+itself.
+
+Swapping happens in place — the same card updates, it doesn't flicker away and
+come back. There's no way to pin one session there permanently; the rule above
+is the whole story.
+
+## Reading it
+
+{/* TODO: side-by-side screenshot — working, needs permission, finished */}
+
+| Label | Colour | Icon | What it means |
+| --- | --- | --- | --- |
+| `Working` | Claude coral / Codex periwinkle | Filled dot | Running. The compact side shows a timer. |
+| `Need help` | Yellow | Raised hand | Stopped, waiting on you — but there is nothing to tap. Go to the Mac. |
+| `Plan ready` | Yellow | Document | A plan is waiting. Tap **View plan** to read it. |
+| `Needs permission` | Violet | Raised hand | Asking permission. **Allow and Deny are right there.** |
+| `Finished` | Green | Checkmark | Done, with the final run time frozen next to it. |
+| `Disconnected?` | Grey, drained of colour | Crossed-out Wi-Fi | Nomo hasn't heard from this Mac in 10 minutes. |
+| `Decrypting…` | Grey | Lock | Your phone hasn't unlocked the update yet. Usually momentary. |
+| `Reconnecting` | Grey / amber | Wi-Fi, or a refresh arrow | Either your phone doesn't have the key yet, or the Mac lost the relay and is retrying. |
+
+<Warning>
+  **Yellow and violet both show a raised hand.** The icon is not the tell — the
+  **colour** is. Yellow means look at me and go to your Mac. Violet means answer
+  me, right here.
+</Warning>
+
+While a session is working, the status line alternates between `Working` and
+the model it's using — `⚡ Fable`, `⚡ GPT-5`. When the agent reports what it's
+doing, that rides along too: `Working · Editing`, `Working · Running command`.
+
+## The four shapes
+
+<Tabs>
+  <Tab title="Compact">
+    The agent's mark on the left, and on the right either a **timer** while it
+    works, a **hand** when it wants you, or `✓ 6m` when it's done.
+  </Tab>
+  <Tab title="Minimal">
+    When another app shares the island, Nomo collapses to a single symbol: the
+    agent's mark while working, a hand when it needs you, a green checkmark when
+    it's finished.
+  </Tab>
+  <Tab title="Expanded">
+    Long-press the island. The agent's mark and a running clock, then the status,
+    the session title, its folder, and which computer it's on. If a permission
+    prompt is live, the command and the **Allow** / **Deny** buttons replace the
+    lower half. If a plan is waiting, a full-width **View plan** button appears.
+  </Tab>
+  <Tab title="Lock Screen">
+    The same content as expanded, as a card, tinted with the agent's colour.
+    Everything here is tappable — it deep-links straight to that session in the
+    app.
+  </Tab>
+</Tabs>
 
 ## The timer
 
-A live session shows how long it's been running. For the first minute you'll see
-seconds ticking; after that it settles into a coarser label so the island isn't
-flickering at you all day.
+While a session works, the compact side counts up. For the first five minutes
+you get live `M:SS` ticking; after that it settles into `7m`, `1h 2m`, and past
+ten hours into `10h`, so the island isn't flickering at you all day.
 
-## When the island goes quiet
+The clock is anchored to the **current turn**, not the whole session — it
+restarts each time you send a new prompt. When the session finishes, the clock
+freezes at the time it actually ended, and heartbeats afterwards can't inflate
+it.
 
-The island shows the last state your Mac sent. If your Mac sleeps, loses
-network, or the session ends abruptly, the island keeps showing the last thing
-it heard.
+If Nomo can't work out a plausible start time, it shows no timer rather than a
+wrong one.
 
-Open the Nomo app to force a refresh. If the state was stale, it corrects
-itself immediately.
+## When it goes quiet
 
-## Nothing shows up at all
+The island shows the last state your Mac sent. After **10 minutes** of silence
+it stops pretending: the card drains of colour, the timer disappears, and the
+status becomes `Disconnected?`. Your Mac sleeping, losing Wi-Fi, or the terminal
+being closed all land here.
 
-That's the default, and it's deliberate — sessions are opt-in per session. See
-[Choosing what appears](/sessions/visibility).
+Opening the Nomo app forces a refresh, and a stale state corrects itself
+immediately. The plugin also sends a heartbeat every five minutes on its own, so
+a genuinely alive but idle session doesn't get marked disconnected.
+
+Finished sessions never go stale — there's nothing left to hear from.
+
+<Tip>
+  If island updates feel sluggish, turn on **More Frequent Updates** in iOS
+  Settings → Nomo → Live Activities. That's Apple's own budget for how often an
+  app may repaint the island, and Nomo is written against the default.
+</Tip>

@@ -1,58 +1,166 @@
 ---
 title: "Answering from your phone"
-description: "Allow or deny Claude Code and Codex permission prompts remotely, and what can't be answered away from your Mac."
+description: "Allow, deny, or answer Claude Code and Codex permission prompts remotely — from the island, or from the app with the full set of options."
 icon: "hand"
 ---
 
 When your agent wants to run something it doesn't have standing permission for,
 it stops and asks. Normally you'd answer that at your Mac. With Nomo you can
-answer it from your phone.
+answer it from your phone, and the agent picks up immediately.
 
-## Answering
+<Warning>
+  **Turn it on first.** Remote approvals are **off by default**. Settings →
+  Sessions → **Remote approvals** → **Answer on iPhone**. Until that switch is
+  on, prompts stay in your terminal and your phone only gets told about them.
+</Warning>
 
-When a session shows the purple hand, tap into it. You get the request and two
-buttons:
+## Two places to answer
 
-- **Allow** — Claude runs the action and continues.
-- **Deny** — Claude skips it and continues without it.
+The island **announces**. The app **answers**. They offer different things on
+purpose.
 
-{/* TODO: screenshot of the approval sheet */}
+<Tabs>
+  <Tab title="Island and Lock Screen" icon="circle-dot">
+    Two buttons, no more: **Allow** and **Deny**. That's everything a Live
+    Activity can host, and Nomo won't put a button there that it can't honour.
 
-Your answer goes back encrypted. Claude picks it up and keeps working — you
-don't need to touch the Mac afterward.
+    For a question, you get **Think first** — a real deny meaning *none of
+    these, reconsider* — and **Answer**, which deep-links into the app where the
+    options actually fit.
 
-## What you can't answer remotely
+    Once a prompt is no longer live, the buttons are replaced with `Continue on
+    your Mac` rather than sitting there doing nothing.
+  </Tab>
+  <Tab title="In the app" icon="mobile">
+    **Touch and hold** a session row. This is where the full set lives — and
+    it's the part people miss, because tapping a row only expands it.
 
-Not every prompt is remotely answerable, and Nomo won't pretend otherwise. If a
-session is yellow rather than showing the hand, there's nothing to tap: the
-prompt needs choices or typed input that only exist in the terminal.
+    Holding shows a preview card with the command, the file path, or the
+    question, and a menu underneath.
+  </Tab>
+</Tabs>
 
-The rule is simple — **if you don't see the hand, it has to be answered at the
-Mac.**
+{/* TODO: screenshot of the long-press menu over a session row */}
 
-## When the answer doesn't land
+## Everything you can answer
 
-If your phone was offline when you tapped, Nomo retries. If the request expired
-before your answer arrived — you tapped a prompt Claude had already given up on
-— the buttons go away rather than silently doing nothing.
+| Option | Where | What the agent gets |
+| --- | --- | --- |
+| **Allow** | Island, app | Runs the action and continues. |
+| **Deny** | Island, app | Skips it and continues without it. |
+| **Always allow Bash (this session)** | App only | Allows it and stops asking **for the rest of this session**. Never written to disk, never carried into the next session. |
+| **Deny with note…** | App only | Denies, and passes along what you typed — *why*, or *what to do instead*. |
+| **Answer…** | App only | Picks an option for a multiple-choice question. |
+| **View full plan** | App, plus **View plan** on the island | Opens the plan to read before deciding. |
+| **Open on Mac** | App only | Answers nothing — it brings that session's terminal window to the front on your Mac. Needs a [local network](/sessions/settings#local-network) link. |
 
-An answer that arrives too late is discarded, not applied. You'll never come
+**Always allow** and **Deny with note** live under **More…** in the menu, and
+need plugin **1.2.0** or later. **Answer…** needs **1.3.0**. If your plugin is
+older, those options simply aren't offered — Nomo won't show a button the Mac
+can't honour. The drawer tells you when an update is available.
+
+## Answering a question
+
+When the agent asks a multiple-choice question rather than for permission, the
+row reads `Needs an answer` and the island says so without offering Allow or
+Deny — those verbs are meaningless for a picker.
+
+Choose **Answer…** and you get one question at a time, with `Question 1 of 3`
+across the top and `Select all that apply` where more than one answer is
+allowed. Nothing is sent until you hit **Submit**, and **Back** walks you to an
+earlier question with your picks intact.
+
+## Reviewing a plan
+
+A session that's finished planning shows `Plan ready`. Open **View plan** and
+you get the whole thing typeset, scrollable, with **Allow** and **Deny** pinned
+to the bottom.
+
+Approving from the phone is a plain approval — the same one you'd give by
+picking the default at your Mac. It doesn't let you choose between accepting
+edits automatically and confirming each one; that stays a terminal decision.
+
+<Note>
+  If the plan was too long to fit in one encrypted update, the sheet says so and
+  tells you how much was left out. The whole plan is always still in your
+  terminal. When your phone can reach the Mac directly over your local network,
+  Nomo re-fetches the full text instead.
+</Note>
+
+Codex plans are **read-only** on the phone — you read them here and choose in
+the terminal. [Why](/sessions/codex#plans-are-read-only).
+
+## After you tap
+
+The row shows `Sending…`, then settles. Your answer is sealed once on your
+phone and sent to your Mac two ways at once — through the relay, and directly
+over your network when that's available. Whichever arrives first wins; the
+second is discarded, so a duplicate can't double-answer anything.
+
+Nomo also verifies afterwards. A plain "OK" from the relay isn't trusted on its
+own — the phone checks the prompt actually got settled, and re-sends if it
+didn't. If it genuinely can't confirm, the buttons come back rather than leaving
+you believing something happened.
+
+### What the caption tells you
+
+| Caption | Meaning |
+| --- | --- |
+| `Allowed` · `Denied` · `Always allowed` · `Answered` | It landed. |
+| `Sending…` | On its way. |
+| `Reconnecting…` | A retry is in progress. Transient — wait for it. |
+| `Already answered on your computer` | You beat yourself to it at the Mac. |
+| `Expired — continue on your computer` | The agent gave up waiting before your answer arrived. |
+| `Replaced by a newer request` | The agent moved on and is asking something else now. |
+| `Approvals paused — answer on your computer` | Paused on that computer — see below. |
+| `Not sent — try again` | It failed and the retries ran out. Tap again. |
+| `Too long to send — answer on your computer` | Your answer doesn't fit in one encrypted update. This one won't succeed on a retry. |
+
+An answer that arrives too late is discarded, never applied. You'll never come
 back to find something ran because you tapped it twenty minutes ago.
 
-## Turning it off
+<Tip>
+  Buttons need to have been on screen for about a second before a tap counts.
+  If the island expands under a thumb that was already moving, that tap is
+  dropped on purpose — it was never a decision.
+</Tip>
 
-If you don't want a computer sending permission prompts to your phone, pause it
-from the Mac:
+## Nothing hangs forever
+
+If your phone never answers, the prompt eventually falls back to the terminal on
+its own. So does anything Nomo can't reach the phone about: no pairing, no
+network, a timeout, an unreadable response — every failure path ends with the
+ordinary dialog appearing at your Mac.
+
+Some prompts never reach your phone at all, by design: sessions started by
+sub-agents, and sessions running in a non-interactive permission mode where the
+agent wasn't going to ask you anyway.
+
+## Pausing it
+
+Two switches, at different scopes.
+
+**On your phone, for everything** — Settings → Sessions → **Answer on iPhone**.
+Off means every prompt is decided at the Mac.
+
+**On one computer** — from a session on that machine:
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
-/nomo-cc:approvals
+/nomo-cc:approvals off
 ```
 
 ```bash Codex icon="/images/codex.svg"
-$nomo-approvals
+$nomo-approvals off
 ```
 </CodeGroup>
 
-The same command resumes it. Pausing approvals doesn't unpair anything — you'll
-still see sessions, you just won't be asked to answer for them.
+`on` resumes, `status` reports which way it's set. This is the escape hatch for
+a phone that's dead or out of reach — prompts fall straight back to the terminal
+with no waiting.
+
+It's **one switch per computer, shared by both agents**: pausing it in Codex
+pauses it for Claude Code on that machine too. It doesn't unpair anything and it
+doesn't change your phone's settings — you'll still see sessions, you just won't
+be asked to answer for them. While it's paused, the computer's drawer says so
+at the top.

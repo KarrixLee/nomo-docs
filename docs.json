@@ -97,7 +97,14 @@
                   "sessions/list",
                   "sessions/island",
                   "sessions/approvals",
-                  "sessions/visibility"
+                  "sessions/codex"
+                ]
+              },
+              {
+                "group": "Reference",
+                "pages": [
+                  "sessions/settings",
+                  "sessions/troubleshooting"
                 ]
               }
             ]
