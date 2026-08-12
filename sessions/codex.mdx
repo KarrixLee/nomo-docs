@@ -46,32 +46,52 @@ since Codex writes it out as it goes — and then says `Choose an option in your
 Mac terminal`. If your phone can reach the Mac over your local network, **Open
 on Mac** brings that terminal window to the front for you.
 
-## Questions need the daemon running
+## Questions: CLI yes, desktop app no
 
-Codex questions can be answered from your phone, but only when the Codex task
-and Nomo's watchdog share one app-server process. That means starting it
-**before** you start Codex:
+Answering a Codex question from your phone needs the Codex task and Nomo's
+watchdog to share one app-server process.
 
-```bash
-codex app-server daemon start
-```
+<Tabs>
+  <Tab title="Codex CLI" icon="terminal">
+    Start the shared app-server **before** you start Codex:
 
-Check which side you're on:
+    ```bash
+    codex app-server daemon start
+    ```
 
-```bash
-$nomo-status
-```
+    Then confirm:
 
-It reports either `Codex Plan answers: bridge available` or `status-only`. On
-`status-only`, the session still reaches your phone — you'll see `Need help` and
-`Answer on Mac` — there's just no picker to tap.
+    ```bash
+    $nomo-status
+    ```
 
-<Warning>
-  The **Codex desktop app** may run local tasks against its own private
-  app-server rather than the shared one. Those tasks stay status-only, by
-  design, until Codex exposes that socket. The CLI with the daemon started is
-  the path that gets you the picker.
-</Warning>
+    `Codex Plan answers: bridge available` means you're set — questions reach
+    your phone with their options, and you tap one.
+
+    `Codex Plan answers: status-only` means nothing is listening. Start the
+    daemon, then start Codex. Order matters: a session that opened first won't
+    pick the daemon up.
+  </Tab>
+
+  <Tab title="Codex desktop app" icon="window">
+    **Questions from desktop-app sessions can't be answered on your phone.**
+
+    The daemon above listens on a shared socket that anything can attach to. The
+    desktop app doesn't use it — it spawns a private app-server per task, with
+    no socket to join. There's no flag or setting that changes that, so
+    `$nomo-status` will keep saying `status-only` no matter what you start
+    beforehand.
+
+    Everything else works normally: sessions appear, permission prompts for
+    commands and patches are answerable from the phone, and plans are readable.
+    Questions show up too — you just read them on the phone and answer them in
+    the app.
+  </Tab>
+</Tabs>
+
+Either way the session still reaches your phone. Without the bridge you'll see
+`Need help` and `Answer on Mac` — the question is there to read, there's just no
+picker to tap, and you answer it in Codex.
 
 ## Hooks have to be trusted
 
