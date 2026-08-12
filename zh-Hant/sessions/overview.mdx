@@ -6,25 +6,25 @@ description: "在 iPhone 上盯著 Claude Code 和 Codex，不必回到 Mac 前�
 
 你的編碼代理跑在 Mac 上。但你不必一直坐在它前面。
 
-Nomo 工作階段會把正在執行的 Claude Code 和 Codex 工作階段搬到你的 iPhone 上 — 就在鎖定畫面和動態島。當代理停下來要權限時，手機會告訴你，你也能就地回覆。
+Nomo Sessions 會把正在執行的 Claude Code 和 Codex sessions 搬到你的 iPhone 上 — 就在鎖定畫面和動態島。當代理停下來要權限時，手機會告訴你，你也能就地回覆。
 
 走去廚房。代理照樣在跑。它遇到一道需要核准的指令，你的手機震一下，你點一下**允許**，它就繼續做下去。你從頭到尾沒走回座位。
 
-<Frame caption="同一個工作階段出現在兩個地方：即時顯示在螢幕上方，以及工作階段分頁裡、執行它的那台電腦底下。">
+<Frame caption="同一個 session 出現在兩個地方：即時顯示在螢幕上方，以及 Sessions 分頁裡、執行它的那台電腦底下。">
   <div className="device-frame">
-    <img src="/images/session-overview.png" alt="一個名為 Refactor the Sessions tab 的 Claude Code 工作階段，同時以即時動態，以及 Nomo 工作階段分頁中的一列呈現" />
+    <img src="/images/session-overview.png" alt="一個名為 Refactor the Sessions tab 的 Claude Code session，同時以即時動態，以及 Nomo Sessions 分頁中的一列呈現" />
   </div>
 </Frame>
 
-即時卡片上帶著模型，還有它此刻正在做的事 — **Fable · Editing** — 再加上工作階段標題、資料夾，以及它跑在哪一台電腦上。下方的工作階段分頁則會列出所有正在執行的項目，並依代理分開。
+即時卡片上帶著模型，還有它此刻正在做的事 — **Fable · Editing** — 再加上 session 標題、資料夾，以及它跑在哪一台電腦上。下方的 Sessions 分頁則會列出所有正在執行的項目，並依代理分開。
 
 <Note>
-  「工作階段」屬於 Nomo Pro。狀態監控和用量小工具是免費的，下面這些設定一個都不用做就能運作。
+  Sessions 屬於 Nomo Pro。狀態監控和用量小工具是免費的，下面這些設定一個都不用做就能運作。
 </Note>
 
 ## 支援哪些代理
 
-「工作階段」跟的是跑在你電腦上的代理，而不是它背後的帳號，所以名單比[狀態與用量](/zh-Hant/status-usage)短。
+Sessions 跟的是跑在你電腦上的代理，而不是它背後的帳號，所以名單比[狀態與用量](/zh-Hant/status-usage)短。
 
 <div className="provider-row">
   <span><img src="/images/claude-code.svg" alt="" />Claude Code</span>
@@ -39,7 +39,7 @@ Nomo 工作階段會把正在執行的 Claude Code 和 Codex 工作階段搬到�
 
 ## 各部分怎麼串起來
 
-你的 Mac 透過 Nomo 的中繼伺服器把工作階段的更新送到手機。中繼伺服器讀不到內容：所有東西都在 Mac 上加密，只有在你的手機上才會解密。Nomo 的伺服器搬運的是封好的資料，從來拿不到金鑰。
+你的 Mac 透過 Nomo 的中繼伺服器把 session 更新送到手機。中繼伺服器讀不到內容：所有東西都在 Mac 上加密，只有在你的手機上才會解密。Nomo 的伺服器搬運的是封好的資料，從來拿不到金鑰。
 
 這決定了你可以期待什麼 — 你的提示詞、檔案路徑和指令都是你的。這也表示配對是一道真正的密碼學步驟，而不是登入 — 所以才需要掃描，或手動輸入一組代碼。
 

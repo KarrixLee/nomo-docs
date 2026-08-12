@@ -302,7 +302,7 @@
                 ]
               },
               {
-                "group": "工作階段",
+                "group": "Sessions",
                 "tag": "PRO",
                 "pages": [
                   "zh-Hant/sessions/overview"
@@ -311,7 +311,7 @@
             ]
           },
           {
-            "tab": "工作階段",
+            "tab": "Sessions",
             "groups": [
               {
                 "group": "設定",
