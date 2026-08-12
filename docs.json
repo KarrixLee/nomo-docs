@@ -26,6 +26,17 @@
       }
     ]
   },
+  "seo": {
+    "organization": {
+      "name": "Nomo",
+      "url": "https://nomo.gg",
+      "sameAs": [
+        "https://github.com/karrixlee/nomo",
+        "https://x.com/karrixthediv",
+        "https://apps.apple.com/app/nomo-ai-status-usage/id6779366830"
+      ]
+    }
+  },
   "navigation": {
     "languages": [
       {
