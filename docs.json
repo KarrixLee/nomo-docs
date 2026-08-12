@@ -44,10 +44,17 @@
                 ]
               },
               {
-                "group": "Nomo",
+                "group": "Status & Usage",
                 "pages": [
+                  "widgets",
                   "status",
-                  "usage",
+                  "usage"
+                ]
+              },
+              {
+                "group": "Sessions",
+                "tag": "PRO",
+                "pages": [
                   "sessions/overview"
                 ]
               }

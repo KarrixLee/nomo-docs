@@ -1,0 +1,42 @@
+---
+title: "Status and usage"
+sidebarTitle: "Overview"
+description: "Two Home Screen widgets: whether your providers are up, and how much of your plan is left."
+icon: "grip"
+---
+
+Two widgets, both free, both phone-only — there's nothing to install on your
+computer for either. They answer the two questions you'd otherwise open a
+browser for.
+
+<CardGroup cols={2}>
+  <Card title="Status" href="/status" icon="signal">
+    Is it up? Plus a notification when a provider goes down. No sign-in.
+  </Card>
+  <Card title="Usage" href="/usage" icon="gauge">
+    How much of your plan is left, with alerts at 70%, 90%, and 100%.
+  </Card>
+</CardGroup>
+
+## What's supported
+
+The same five providers in both widgets.
+
+<div className="provider-row">
+  <span><img src="/images/providers/claude.svg" alt="" />Claude</span>
+  <span><img src="/images/providers/openai.svg" alt="" className="invert-dark" />OpenAI</span>
+  <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
+  <span><img src="/images/providers/xai.svg" alt="" className="invert-dark" />xAI</span>
+  <span><img src="/images/providers/gemini.png" alt="" />Gemini</span>
+</div>
+
+<Note>
+  OpenAI reads as **Codex** everywhere outside the provider list — that's the
+  part of OpenAI the widgets actually report on.
+</Note>
+
+## The one difference
+
+Status reads public status pages, so it needs nothing from you. Usage reads
+numbers off your own account, so it asks you to sign in — once per provider,
+and only for the ones you care about.
