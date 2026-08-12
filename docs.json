@@ -26,6 +26,14 @@
       }
     ]
   },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/karrixthediv",
+      "github": "https://github.com/karrixlee/nomo",
+      "reddit": "https://www.reddit.com/user/Trick_Term_3131",
+      "website": "https://nomo.gg"
+    }
+  },
   "seo": {
     "organization": {
       "name": "Nomo",
