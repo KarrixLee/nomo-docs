@@ -46,8 +46,8 @@
               {
                 "group": "Status & Usage",
                 "pages": [
-                  "widgets",
-                  "add-widget",
+                  "status-usage",
+                  "widget",
                   "status",
                   "usage"
                 ]
