@@ -110,7 +110,7 @@
                 ]
               },
               {
-                "group": "Sessions",
+                "group": "Sesiones",
                 "tag": "PRO",
                 "pages": [
                   "es/sessions/overview"
@@ -119,7 +119,7 @@
             ]
           },
           {
-            "tab": "Sessions",
+            "tab": "Sesiones",
             "groups": [
               {
                 "group": "Configuración",
@@ -158,7 +158,7 @@
                 ]
               },
               {
-                "group": "Sessions",
+                "group": "セッション",
                 "tag": "PRO",
                 "pages": [
                   "ja/sessions/overview"
@@ -167,7 +167,7 @@
             ]
           },
           {
-            "tab": "Sessions",
+            "tab": "セッション",
             "groups": [
               {
                 "group": "セットアップ",
@@ -196,7 +196,7 @@
                 ]
               },
               {
-                "group": "Status와 Usage",
+                "group": "상태와 사용량",
                 "pages": [
                   "ko/status-usage",
                   "ko/status",
@@ -206,7 +206,7 @@
                 ]
               },
               {
-                "group": "Sessions",
+                "group": "세션",
                 "tag": "PRO",
                 "pages": [
                   "ko/sessions/overview"
@@ -215,7 +215,7 @@
             ]
           },
           {
-            "tab": "Sessions",
+            "tab": "세션",
             "groups": [
               {
                 "group": "설정",
@@ -254,7 +254,7 @@
                 ]
               },
               {
-                "group": "Sessions",
+                "group": "会话",
                 "tag": "PRO",
                 "pages": [
                   "zh-Hans/sessions/overview"
@@ -263,7 +263,7 @@
             ]
           },
           {
-            "tab": "Sessions",
+            "tab": "会话",
             "groups": [
               {
                 "group": "设置",
@@ -302,7 +302,7 @@
                 ]
               },
               {
-                "group": "Sessions",
+                "group": "工作階段",
                 "tag": "PRO",
                 "pages": [
                   "zh-Hant/sessions/overview"
@@ -311,7 +311,7 @@
             ]
           },
           {
-            "tab": "Sessions",
+            "tab": "工作階段",
             "groups": [
               {
                 "group": "設定",

@@ -1,34 +1,34 @@
 ---
 title: "Notificaciones"
-description: "Avisos cuando un servicio se cae o vuelve, y cuando te acercas a un límite de uso."
+description: "Alertas cuando un servicio se cae o vuelve, y cuando te acercas a un límite de uso."
 icon: "bell"
 ---
 
-Todo esto vive en un solo sitio de la app: **Settings → Alerts** (Ajustes →
-Alertas). Los dos tipos están apagados hasta que los enciendas, y el primer
-interruptor que muevas pide permiso de notificaciones una vez y lanza una
-comprobación al momento, así que cualquier cosa que ya esté caída o ya haya
-pasado un umbral te avisa enseguida en lugar de esperar al siguiente sondeo.
+Todo esto vive en un solo sitio de la app: **Ajustes → Alertas**. Los dos tipos
+están apagados hasta que los enciendas, y el primer interruptor que muevas pide
+permiso de notificaciones una vez y lanza una comprobación al momento, así que
+cualquier cosa que ya esté caída o ya haya pasado un umbral te avisa enseguida
+en lugar de esperar al siguiente sondeo.
 
 <Frame caption="Tres a la vez: un límite de Cursor al 70%, un servicio de OpenAI degradándose, y otro que vuelve.">
   <div className="device-frame">
-    <img src="/images/usage-status-noti.png" alt="Pantalla bloqueada con un aviso de uso de Cursor al 70%, un aviso de rendimiento degradado de OpenAI y un aviso de vuelta a la normalidad" />
+    <img src="/images/usage-status-noti.png" alt="Pantalla de bloqueo con una alerta de uso de Cursor al 70%, una alerta de rendimiento degradado de OpenAI y una alerta de vuelta a la normalidad" />
   </div>
 </Frame>
 
 Cada uno nombra el proveedor y exactamente qué está afectado —**Cursor · Auto +
 Composer**, **OpenAI · ChatGPT Conversations**—, así que un vistazo a la
-pantalla bloqueada te dice qué límite alcanzaste o qué servicio va mal, sin
+pantalla de bloqueo te dice qué límite alcanzaste o qué servicio va mal, sin
 abrir nada.
 
-## Avisos de estado
+## Alertas de estado
 
 Un interruptor principal y, en cuanto está encendido, una segunda fila:
 
 | | |
 | --- | --- |
-| **Status alerts** (Avisos de estado) | Te avisa cuando un servicio está degradado o caído. |
-| **Notify when recovered** (Avisar al recuperarse) | Te vuelve a avisar cuando se restablece. Encendido por defecto. |
+| **Alertas de estado** | Te avisa cuando un servicio está degradado o caído. |
+| **Avisar cuando se recupere** | Te vuelve a avisar cuando se restablece. Encendido por defecto. |
 
 El estado sale de la página de estado pública de cada proveedor, así que esto
 no necesita ninguna cuenta.
@@ -36,8 +36,8 @@ no necesita ninguna cuenta.
 ### Elegir servicios
 
 Con el interruptor principal encendido, debajo aparece una sección
-**Services** (Servicios): Claude, OpenAI, Cursor, xAI y Gemini, cada uno como
-un grupo desplegable con los servicios individuales de ese proveedor. Todos los
+**Servicios**: Claude, OpenAI, Cursor, xAI y Gemini, cada uno como un grupo
+desplegable con los servicios individuales de ese proveedor. Todos los
 servicios empiezan encendidos.
 
 Los grupos vienen contraídos y la cabecera indica cuántos están activados del
@@ -45,14 +45,14 @@ total, así que puedes ver qué cambiaste sin desplegar nada. Vale la pena
 podarlos: la página de estado de un proveedor enumera muchas más cosas que la
 única que de verdad usas.
 
-## Avisos de uso
+## Alertas de uso
 
-Un aviso al **70%**, al **90%** y al **100%**, tanto de la ventana de 5 horas
+Una alerta al **70%**, al **90%** y al **100%**, tanto de la ventana de 5 horas
 *como* de la semanal, para que una tarde larga y una semana intensa tengan cada
 una su propia advertencia.
 
 Se activan por cuenta, y solo en las cuentas en las que iniciaste sesión. Hoy
-hay tres proveedores con avisos de uso:
+hay tres proveedores con alertas de uso:
 
 <div className="provider-row">
   <span><img src="/images/providers/claude.svg" alt="" />Claude</span>
@@ -61,7 +61,7 @@ hay tres proveedores con avisos de uso:
 </div>
 
 xAI y Gemini muestran el uso en el [widget](/es/usage), pero todavía no tienen
-avisos.
+alertas.
 
 <Note>
   El uso se comprueba en tu teléfono. Tu sesión no sale nunca del dispositivo
@@ -69,8 +69,8 @@ avisos.
   [Conectar tu cuenta](/es/usage#conectar-tu-cuenta).
 </Note>
 
-## Si los avisos se quedan callados
+## Si las alertas se quedan calladas
 
 Deja Nomo en segundo plano en lugar de cerrarla deslizando. iOS deja de
-despertar a una app que se forzó a cerrar, así que los avisos pueden pararse
+despertar a una app que se forzó a cerrar, así que las alertas pueden pararse
 hasta la próxima vez que la abras.

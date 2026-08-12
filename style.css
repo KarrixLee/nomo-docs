@@ -75,6 +75,30 @@ a[class*="nav-tabs-item"][href*="/setup/"]::after,
   );
 }
 
+/* The sidebar's PRO comes from docs.json's group `tag`, so Mintlify renders it
+   itself — coral text on a 10%-alpha wash — while the tab and card pills above
+   are ours: white on the brand gradient. Same word, two different objects, and
+   the mismatch shows wherever they sit on screen together. Repaint theirs to
+   match ours rather than dropping the tag, since a group header isn't a link
+   and can't carry the ::after rule.
+   ponytail: !important because every property here collides with a Tailwind
+   utility on the same element (px-1 py-0.5 rounded-md text-[0.65rem] font-bold),
+   which is equal specificity and wins or loses on stylesheet order. */
+.nav-tag-pill-text {
+  color: #fff !important;
+  background: linear-gradient(
+    120deg,
+    var(--nomo-coral) 0%,
+    var(--nomo-violet) 100%
+  ) !important;
+  font-size: 0.625rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em;
+  line-height: 1 !important;
+  padding: 0.2em 0.45em !important;
+  border-radius: 0.35em !important;
+}
+
 /* Both tab variants are flex rows that already carry their own gap, so the
    margin above lands on top of it and reads as a gulf. Zero it there.
    Selectors mirror the ones above on purpose: a shorter one loses on
