@@ -47,6 +47,7 @@
                 "group": "Status & Usage",
                 "pages": [
                   "widgets",
+                  "add-widget",
                   "status",
                   "usage"
                 ]
@@ -65,7 +66,6 @@
             "groups": [
               {
                 "group": "Setup",
-                "icon": "wrench",
                 "pages": [
                   "setup/install",
                   "setup/pairing"
@@ -73,7 +73,6 @@
               },
               {
                 "group": "Using Sessions",
-                "icon": "mobile-screen",
                 "pages": [
                   "sessions/list",
                   "sessions/island",

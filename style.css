@@ -137,6 +137,19 @@ a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
   filter: invert(1);
 }
 
+/* The two widget walkthrough clips. Square (they're lifted from the app's own
+   onboarding), so a full-column width would be a 700px-tall block — capped at
+   something closer to the phone they're showing, and centred because <Frame>
+   spans the column. The Frame's own radius is on its outer box, so the clip
+   needs its own or it sits square-cornered inside a rounded one. */
+.tutorial-clip {
+  display: block;
+  width: 100%;
+  max-width: 22rem;
+  margin-inline: auto;
+  border-radius: 0.75rem;
+}
+
 /* Screenshot carousel — see snippets/screens.jsx, which owns the behaviour.
    Slide width and the gap between slides are set inline from there, not here:
    the centring offset is computed from both, so they can't live in two files. */
