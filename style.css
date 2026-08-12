@@ -101,6 +101,68 @@ a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
   order: 1;
 }
 
+/* Provider chips. Mintlify has no "logo + label" component, and a <Card> with
+   no href reads as a dead link, so it's a plain grid. auto-fill rather than a
+   fixed count: five providers wrap to whatever the column is wide enough for,
+   and adding a sixth needs no change here. */
+.provider-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.provider-grid > div {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid rgb(0 0 0 / 0.1);
+  border-radius: 0.75rem;
+  font-weight: 500;
+}
+
+.dark .provider-grid > div {
+  border-color: rgb(255 255 255 / 0.12);
+}
+
+.provider-grid img {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+  object-fit: contain;
+  margin: 0;
+}
+
+/* The OpenAI, Cursor, and xAI marks ship as near-black single-color art, which
+   disappears on a dark page. They have no second color to lose, so a straight
+   inversion is the whole fix — no light/dark asset pair to keep in sync.
+   Only for monochrome marks: Claude's coral and Gemini's four-color spark
+   would come back wrong, so they don't carry the class. */
+.dark .provider-grid img.invert-dark {
+  filter: invert(1);
+}
+
+/* App Store screenshots on the overview. They're 660×1440 marketing shots, so
+   five of them side by side is a scroll strip, not a grid — the same swipe the
+   App Store listing itself uses. */
+.screen-strip {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x proximity;
+}
+
+.screen-strip img {
+  width: 15rem;
+  flex: none;
+  border-radius: 1rem;
+  scroll-snap-align: start;
+  margin: 0;
+}
+
 /* Page titles carry the brand gradient. h1 only — subheads stay plain text so
    the page still scans as a document, not a landing page. */
 h1 {

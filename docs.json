@@ -48,7 +48,8 @@
                 "pages": [
                   "status",
                   "usage",
-                  "sessions/overview"
+                  "sessions/overview",
+                  "providers"
                 ]
               }
             ]
