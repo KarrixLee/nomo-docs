@@ -137,6 +137,32 @@ a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
   filter: invert(1);
 }
 
+/* Full-height app screenshots, in a device bezel. The captures are raw
+   1206x2622, so at column width they'd be a 1500px-tall wall — pinned to a
+   phone-sized column instead. Fixed width rather than fluid because the two
+   radii have to stay in proportion to it: the outer one is the phone's edge,
+   the inner one its screen, and the gap between them is the bezel.
+   The wrapper exists because padding on the <img> alone won't do it — the
+   radius would clip the border box while the picture inside stayed square. */
+.device-frame {
+  width: 100%;
+  max-width: 18rem;
+  margin: 1.25rem auto;
+  padding: 0.4rem;
+  border-radius: 2.6rem;
+  background: linear-gradient(155deg, #4a4a4e 0%, #202023 35%, #1a1a1c 70%, #35353a 100%);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.14),
+    0 1rem 2.5rem rgb(0 0 0 / 0.32);
+}
+
+.device-frame img {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border-radius: 2.2rem;
+}
+
 /* The two widget walkthrough clips. Square (they're lifted from the app's own
    onboarding), so a full-column width would be a 700px-tall block — capped at
    something closer to the phone they're showing, and centred because <Frame>

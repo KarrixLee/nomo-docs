@@ -4,10 +4,14 @@ description: "See whether your providers are up, and get told when one goes down
 icon: "signal"
 ---
 
-{/* TODO: placeholder — structure only. */}
-
 Status needs nothing from you. No account, no plugin. Add the widget and it
 starts working.
+
+<Frame caption="A provider's Status tab: every service it runs, with recent daily uptime.">
+  <div className="device-frame">
+    <img src="/images/claude-status-overview.png" alt="Nomo's Status tab for Claude, listing each service with its state and uptime history" />
+  </div>
+</Frame>
 
 ## Add the widget
 
@@ -18,11 +22,39 @@ starts working.
 
 ## Reading it
 
-{/* TODO: which providers, and what each state means */}
+A provider isn't one service. Claude alone reports on claude.ai, the Console,
+the API, Claude Code, Cowork, and Claude for Government — and they go down
+independently, which is why the list breaks them out rather than showing a
+single verdict.
+
+Each row carries a coloured dot for the state right now, a strip of recent
+days, and the uptime percentage across them. One square per day: green is a
+clean day, amber and red are days with trouble.
+
+| Dot | State |
+| --- | --- |
+| 🟢 | **Operational** — nothing reported |
+| 🟡 | **Degraded** — up, but slow or flaky |
+| 🟠 | **Partial outage** — some of it is down |
+| 🔴 | **Major outage** — it's down |
+| ⚪ | **Maintenance** — planned work |
+
+These come from each provider's own public status page, so Nomo says exactly
+what the provider says. **Open status page** at the bottom takes you to the
+source.
 
 ## Outage notifications
 
-{/* TODO: what triggers one, and whether there's a per-provider toggle */}
+Off until you turn them on. Once on, you're told when a service degrades or
+goes down — and again when it recovers, which you can switch off separately if
+you only want the bad news.
+
+You pick which services count. Every one starts enabled, and it's worth
+trimming to the ones you actually use.
+
+<Card title="Notifications" href="/notifications" icon="bell" horizontal>
+  The master switch, the recovery toggle, and per-service picking.
+</Card>
 
 ## Troubleshooting
 

@@ -4,15 +4,30 @@ description: "Track how much of your plan is left, with alerts at 70%, 90%, and 
 icon: "gauge"
 ---
 
-{/* TODO: placeholder — structure only. */}
-
 Usage works like [Status](/status) — a widget plus notifications — with one
 extra step: it reads numbers off your account, so it needs a sign-in. Still no
 Mac plugin; this one is phone-only.
 
-## Sign in
+<Frame caption="The Usage tab for Claude: the 5-hour window, the weekly one, and when each resets.">
+  <div className="device-frame">
+    <img src="/images/claude-usage-overview.png" alt="Nomo's Usage tab showing Claude's session and weekly limits" />
+  </div>
+</Frame>
 
-{/* TODO: which account, and where the sign-in lives in the app */}
+## Signing in
+
+Open the provider from the **Providers** tab and connect the account you
+already pay for. Nomo reads the same numbers that account can see about itself
+— it isn't an API key and there's nothing to paste.
+
+<Note>
+  **Your login stays on your phone.** Tokens are held in the device keychain
+  and go only to the provider they belong to — your Claude token to Anthropic,
+  your OpenAI token to OpenAI. Usage is fetched on-device and never passes
+  through Nomo's servers.
+</Note>
+
+Nomo is unofficial and not affiliated with any provider it reads.
 
 ## Add the widget
 
@@ -23,14 +38,30 @@ Mac plugin; this one is phone-only.
 
 ## Reading it
 
-{/* TODO: the windows, reset times, what counts against them */}
+Two windows, tracked separately:
+
+| | |
+| --- | --- |
+| **Session** | A rolling 5-hour window. |
+| **Weekly** | A rolling 7-day window. |
+
+Each shows a percentage and when it resets. You can switch the number between
+**Used** and **Left** in Settings, whichever way round you prefer to think
+about it.
+
+{/* TODO: what counts against a window — messages, tokens, or both? */}
 
 ## Threshold notifications
 
-You get a notification when you cross **70%**, **90%**, and **100%** of your
-limit.
+You get a notification at **70%**, **90%**, and **100%** — for the 5-hour
+window and the weekly one separately, so a heavy afternoon and a heavy week
+each warn you in their own right.
 
-{/* TODO: per-window or overall? can thresholds be turned off? */}
+They're off until you switch them on, per account.
+
+<Card title="Notifications" href="/notifications" icon="bell" horizontal>
+  Turning alerts on, and picking which accounts they cover.
+</Card>
 
 ## When it refreshes
 

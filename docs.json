@@ -47,9 +47,10 @@
                 "group": "Status & Usage",
                 "pages": [
                   "status-usage",
-                  "widget",
                   "status",
-                  "usage"
+                  "usage",
+                  "widget",
+                  "notifications"
                 ]
               },
               {
