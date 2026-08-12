@@ -57,7 +57,7 @@ rather glance.
 It doesn't nag. A session that goes quiet gets you at most three nudges, spaced
 five minutes apart, and then stays silent until something actually changes.
 
-<ResponseField name="Auto add new sessions" type="off by default">
+<ResponseField name="Auto add new sessions" type="beta · off by default">
   Puts every new session on the island as it appears, instead of you flipping
   each switch.
 </ResponseField>
@@ -65,6 +65,17 @@ five minutes apart, and then stays silent until something actually changes.
 Only sessions Nomo sees for the **first time** after you turn it on. Switching
 it on later won't drag a backlog onto your island, and a session you explicitly
 switched off is never re-added.
+
+<Info>
+  **Why this one is beta.** iOS gives each app a fixed budget for how often it
+  may repaint a Live Activity, and every enrolled session draws on the same
+  budget. With a handful, you won't notice. Enrol a dozen busy ones and iOS
+  starts coalescing their updates — the island stays correct, but it can settle
+  a beat behind your terminal.
+
+  If that's what you're seeing: turn on **More Frequent Updates** below, or go
+  back to enrolling the one or two sessions you're actually waiting on.
+</Info>
 
 <Tip>
   A session that's **asking permission** reaches the island regardless of either
