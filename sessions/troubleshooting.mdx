@@ -21,6 +21,28 @@ something. This page is what each of those states actually means.
   waiting on you outranks one that's working.
 </Accordion>
 
+<Accordion title="A session's island switch is on, greyed out, and won't turn off" icon="toggle-off">
+  That session is asking permission. A prompt reaches your island whichever way
+  its switch is set — otherwise a prompt that arrived while your phone was in
+  your pocket would be one you couldn't answer, which is the whole point of the
+  feature. So the switch shows **on** while the prompt waits, because that's
+  what's actually happening.
+
+  **Why you can't turn it off:** turning it off wouldn't do anything. The prompt
+  would stay on the island regardless — that's the only way it can reach you —
+  so the switch would flick back on under your thumb a second later. Rather than
+  give you a control that ignores you, Nomo holds it still until it can obey you
+  again.
+
+  Nothing you chose was overwritten. Answer the prompt and the switch goes
+  straight back to off, where you left it — or within the hour, if nobody
+  answers. Then it's yours to set again.
+
+  None of this happens with **Remote approvals** off, which is the default: your
+  switch is never overridden. See
+  [Answering from your phone](/sessions/approvals).
+</Accordion>
+
 <Accordion title="A row says Encrypted session, or Reconnecting…" icon="lock">
   Your phone received the update but hasn't unlocked it yet. Nomo retries every
   few seconds, and this usually clears itself within one poll.
