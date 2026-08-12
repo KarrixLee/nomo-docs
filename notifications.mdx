@@ -4,11 +4,22 @@ description: "Alerts when a service goes down or comes back, and when you're clo
 icon: "bell"
 ---
 
-Everything here lives in one place in the app: **Settings → Notifications**.
+Everything here lives in one place in the app: **Settings → Alerts**.
 Both kinds are off until you turn them on, and flipping any switch asks for
 notification permission once, then runs a check straight away — so anything
 already down or already over a threshold tells you immediately rather than
 waiting for the next poll.
+
+<Frame caption="Three at once: a Cursor limit at 70%, an OpenAI service degrading, and another coming back.">
+  <div className="device-frame">
+    <img src="/images/usage-status-noti.png" alt="Lock Screen showing a Cursor usage alert at 70%, an OpenAI degraded-performance alert, and a back-to-normal alert" />
+  </div>
+</Frame>
+
+Each one names the provider and the exact thing affected — **Cursor · Auto +
+Composer**, **OpenAI · ChatGPT Conversations** — so a glance at the Lock Screen
+tells you which limit you hit or which service is struggling, without opening
+anything.
 
 ## Status alerts
 
