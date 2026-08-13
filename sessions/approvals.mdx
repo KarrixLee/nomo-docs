@@ -101,6 +101,12 @@ Approving from the phone is a plain approval — the same one you'd give by
 picking the default at your Mac. It doesn't let you choose between accepting
 edits automatically and confirming each one; that stays a terminal decision.
 
+<Frame caption="The whole plan, scrollable, with the decision pinned to the bottom. Deny with note sits underneath for when it needs a steer rather than a no.">
+  <div className="device-frame">
+    <img src="/images/view-plan-claude.png" alt="A Claude Code plan rendered full-screen on the phone with Deny and Allow buttons pinned to the bottom" />
+  </div>
+</Frame>
+
 <Note>
   If the plan was too long to fit in one encrypted update, the sheet says so and
   tells you how much was left out. The whole plan is always still in your
@@ -164,24 +170,10 @@ Two switches, at different scopes.
 **On your phone, for everything** — Settings → Sessions → **Answer on iPhone**.
 Off means every prompt is decided at the Mac.
 
-**On one computer** — from a session on that machine:
+**On one computer** — [`/nomo-cc:approvals off`](/sessions/commands#approvals),
+run on that machine. The escape hatch for when your phone is the thing that's
+unavailable: prompts fall straight back to the terminal with no waiting.
 
-<CodeGroup>
-```bash Claude Code icon="/images/claude-code.svg"
-/nomo-cc:approvals off
-```
-
-```bash Codex icon="/images/codex.svg"
-$nomo-approvals off
-```
-</CodeGroup>
-
-`on` resumes, `status` reports which way it's set. This is the escape hatch for
-a phone that's dead or out of reach — prompts fall straight back to the terminal
-with no waiting.
-
-It's **one switch per computer, shared by both agents**: pausing it in Codex
-pauses it for Claude Code on that machine too. It doesn't unpair anything and it
-doesn't change your phone's settings — you'll still see sessions, you just won't
-be asked to answer for them. While it's paused, the computer's drawer says so
-at the top.
+Neither one unpairs anything. You'll still see sessions either way — you just
+won't be asked to answer for them, and a paused computer says so at the top of
+its drawer.

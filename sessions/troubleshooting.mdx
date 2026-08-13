@@ -102,7 +102,8 @@ something. This page is what each of those states actually means.
   ```
   </CodeGroup>
 
-  It's one switch per computer, shared by both agents.
+  One switch per computer, shared by both agents —
+  [more](/sessions/commands#approvals).
 </Accordion>
 
 <Accordion title="Codex stopped sending prompts after an update" icon="code">
@@ -135,9 +136,8 @@ something. This page is what each of those states actually means.
   ```
   </CodeGroup>
 
-  It stops the watchdog (it restarts on your next session), sweeps dead session
-  records, and tells your phone to clear those rows. Live sessions, your pairing
-  and your keys are left alone.
+  Live sessions, your pairing and your keys are left alone —
+  [what it prints](/sessions/commands#reset).
 </Accordion>
 
 </AccordionGroup>
@@ -183,19 +183,9 @@ computer helps too.
 
 ## Starting over
 
-<CodeGroup>
-```bash Claude Code icon="/images/claude-code.svg"
-/nomo-cc:unpair
-```
+[`/nomo-cc:unpair`](/sessions/commands#unpair) on the affected computer removes
+the pairing and erases its key. Then [pair it again](/setup/pairing).
 
-```bash Codex icon="/images/codex.svg"
-$nomo-unpair
-```
-</CodeGroup>
-
-Removes the pairing and erases the key on that computer. `Not paired` is a
-success, not an error. Then [pair it again](/setup/pairing).
-
-Forgetting a computer **from the phone** is a different thing: it stops that
+Forgetting a computer **from the phone** is not the same thing: it stops that
 computer appearing in your app, but the Mac keeps its local state until you run
-the command above there.
+that command there.

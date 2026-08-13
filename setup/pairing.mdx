@@ -113,18 +113,8 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
 
 ## Checking on it later
 
-<CodeGroup>
-```bash Claude Code icon="/images/claude-code.svg"
-/nomo-cc:status
-```
-
-```bash Codex icon="/images/codex.svg"
-$nomo-status
-```
-</CodeGroup>
-
-That reports whether the computer is still connected and whether events are
-being delivered.
+[`/nomo-cc:status`](/sessions/commands#status) on that machine reports whether
+it's still connected and whether events are actually being delivered.
 
 ## If pairing doesn't take
 
@@ -134,7 +124,7 @@ being delivered.
   to see whether events are being delivered at all.
 - **Computer Limit Reached** — you're at **5** paired computers. Touch and hold
   one in the Sessions tab, forget it, and pair again.
-- **Rows look stale or duplicated** — run `/nomo-cc:reset` (or `$nomo-reset`) to
-  clear dead session rows without unpairing.
-- **You want to disconnect a computer** — `/nomo-cc:unpair` (or `$nomo-unpair`)
-  removes the pairing and erases the local key.
+
+Anything else, and the fix is probably on
+[Troubleshooting](/sessions/troubleshooting). To take a computer back off,
+see [`unpair`](/sessions/commands#unpair).
