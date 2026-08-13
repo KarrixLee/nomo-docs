@@ -167,26 +167,29 @@ plugin alongside its own.
 `Last event sent: never` with an active session means the hooks aren't firing.
 For Claude Code, restart it so they load. For Codex, run `/hooks`.
 
-## Reading the diagnostics line
+## Still wrong? Send it over
 
 Turn on **Session diagnostics** in [Settings](/sessions/settings#debug), then
-expand a session row. Underneath you'll get something like:
+expand the session that's misbehaving. A line of Nomo's own internal state
+appears underneath it, something like:
 
 ```
 1.6.1 · lan:hold 0.4s · dp
 ```
 
-- **`1.6.1`** — the plugin version that Mac is running. `?` means it never reported one.
-- **`lan:hold 0.4s`** — who last wrote this row and how long ago. `lan:` is your Mac directly, `w` is the relay.
-- **`dp`** — what Nomo thinks the state is: `dp` waiting on a decision, `att` needs attention, `ans` answered or retired.
+Don't try to decode it — that's our job. Screenshot the row and send it, along
+with what you expected and what you got instead:
 
-The healthy shape for a session asking permission is `lan:hold` with `dp`. Seeing
-`w` on a computer that shows the **⚡ Local** chip, or `att` on a row that's
-clearly prompting, means the Mac and your phone disagree — worth including in a
-bug report.
+<CardGroup cols={2}>
+  <Card title="Open an issue" href="https://github.com/KarrixLee/nomo/issues" icon="github">
+    Best for anything reproducible. Public, so leave out anything private.
+  </Card>
+  <Card title="Email" href="mailto:karrixlee1231@gmail.com" icon="envelope">
+    Also in the app, under **Settings → Contact**.
+  </Card>
+</CardGroup>
 
-This line is raw plumbing and deliberately untranslated. It's meant to be
-pasted, not read as prose.
+The output of `/nomo-cc:status` from the affected computer helps too.
 
 ## Starting over
 
