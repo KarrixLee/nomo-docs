@@ -35,22 +35,50 @@ icon: "puzzle-piece"
 
     <Steps>
       <Step title="安裝外掛程式">
-        在 Codex 中執行：
+        <Tabs>
+          <Tab title="桌面應用程式" icon="window">
+            依序進入 **外掛程式** → **新增** → **新增市集**，在 **Source** 填入儲存庫：
 
-        ```
-        codex plugin marketplace add KarrixLee/nomo
-        codex plugin add nomo@nomo
-        ```
+            ```
+            KarrixLee/nomo
+            ```
 
-        這在 **Codex 桌面App**中同樣適用 — 在它內建的終端機執行相同的指令即可。
+            **Git ref** 和 **Sparse paths** 維持原樣就好 — 裡面的灰字是佔位符，不是你要填的值。接著按 **新增市集**，在清單裡安裝 **nomo**。
+
+            <Frame caption="Nomo 的儲存庫本身就是市集，沒有清單可以瀏覽，也不需要送審。">
+              <img src="/images/codex-app-add-marketplace.png" alt="Codex 桌面應用程式的新增市集對話框，Source 填的是 KarrixLee/nomo" />
+            </Frame>
+          </Tab>
+
+          <Tab title="終端機" icon="terminal">
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            如果你比較習慣打字，桌面應用程式的內建終端機也可以。
+          </Tab>
+        </Tabs>
+
+        <Note>
+          這裡說的「市集」不是可以逛的商店，而是指向 GitHub 儲存庫的登錄檔 — 也就是 Nomo 自己的儲存庫。所以要先加入儲存庫，再從裡面安裝外掛程式。
+        </Note>
       </Step>
 
       <Step title="信任 hooks — 必要步驟">
-        ```
-        /hooks
-        ```
+        <Tabs>
+          <Tab title="桌面應用程式" icon="window">
+            開啟齒輪圖示裡的 **Hooks** → **Nomo**，把它們打開。
+          </Tab>
 
-        信任那**七個 Nomo 項目**。Codex 介面上顯示為「trust」（其介面為英文）。
+          <Tab title="終端機" icon="terminal">
+            ```
+            /hooks
+            ```
+
+            信任那**七個 Nomo 項目**。終端機裡顯示為英文的「trust」。
+          </Tab>
+        </Tabs>
 
         <Warning>
           別跳過這一步。Nomo 的 hooks 會隨外掛程式一起安裝，但在你信任之前**都不會運作**。在那之前，外掛程式雖然裝好了卻什麼也沒做 — 沒有任何 session 會送到你的手機，也不會有任何錯誤訊息。

@@ -35,22 +35,50 @@ icon: "puzzle-piece"
 
     <Steps>
       <Step title="プラグインをインストールする">
-        Codex のセッション内で実行します。
+        <Tabs>
+          <Tab title="デスクトップアプリ" icon="window">
+            **プラグイン** → **追加** → **マーケットプレイスを追加** と進み、**Source** にリポジトリを入力します。
 
-        ```
-        codex plugin marketplace add KarrixLee/nomo
-        codex plugin add nomo@nomo
-        ```
+            ```
+            KarrixLee/nomo
+            ```
 
-        これは **Codex デスクトップアプリ**でも動作します — 内蔵ターミナルから同じコマンドを実行します。
+            **Git ref** と **Sparse paths** はそのままで構いません — グレーの文字はプレースホルダーで、入力する値ではありません。**マーケットプレイスを追加**を押し、一覧から **nomo** をインストールします。
+
+            <Frame caption="Nomo のリポジトリ自体がマーケットプレイスです。一覧を探したり申請したりする必要はありません。">
+              <img src="/images/codex-app-add-marketplace.png" alt="Codex デスクトップアプリの「マーケットプレイスを追加」ダイアログ。Source に KarrixLee/nomo が入力されています" />
+            </Frame>
+          </Tab>
+
+          <Tab title="ターミナル" icon="terminal">
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            入力するほうが早ければ、デスクトップアプリの内蔵ターミナルでも同じことができます。
+          </Tab>
+        </Tabs>
+
+        <Note>
+          ここでいう「マーケットプレイス」は、見て回るストアではありません。GitHub リポジトリ — Nomo 自身のもの — を指すレジストリです。だから先にリポジトリを追加し、そこからプラグインをインストールします。
+        </Note>
       </Step>
 
       <Step title="フックを信頼する — 必須">
-        ```
-        /hooks
-        ```
+        <Tabs>
+          <Tab title="デスクトップアプリ" icon="window">
+            歯車アイコンから **Hooks** → **Nomo** を開き、オンにします。
+          </Tab>
 
-        **7 つの Nomo エントリ**を信頼します。Codex の画面では「trust」と表示されます（Codex の UI は英語です）。
+          <Tab title="ターミナル" icon="terminal">
+            ```
+            /hooks
+            ```
+
+            **7 つの Nomo エントリ**を信頼します。ターミナルでは英語で「trust」と表示されます。
+          </Tab>
+        </Tabs>
 
         <Warning>
           この手順は省略しないでください。Nomo のフックはプラグインに同梱されていますが、**信頼するまで動作しません**。実行するまで、プラグインはインストール済みでも何もしません — セッションはスマートフォンに届かず、エラーも報告されません。

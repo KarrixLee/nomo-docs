@@ -35,22 +35,50 @@ icon: "puzzle-piece"
 
     <Steps>
       <Step title="安装插件">
-        在 Codex 中运行：
+        <Tabs>
+          <Tab title="桌面应用" icon="window">
+            依次进入 **插件** → **添加** → **添加插件市场**，在 **Source** 里填入仓库：
 
-        ```
-        codex plugin marketplace add KarrixLee/nomo
-        codex plugin add nomo@nomo
-        ```
+            ```
+            KarrixLee/nomo
+            ```
 
-        这在 **Codex 桌面应用**里同样适用 —— 在它内置的终端里执行同样的命令。
+            **Git ref** 和 **Sparse paths** 保持原样即可——里面的灰字是占位符，不是你要填的值。然后点 **添加插件市场**，在列表里安装 **nomo**。
+
+            <Frame caption="Nomo 的仓库本身就是插件市场，没有列表可浏览，也不需要提交审核。">
+              <img src="/images/codex-app-add-marketplace.png" alt="Codex 桌面应用的添加插件市场对话框，Source 里填的是 KarrixLee/nomo" />
+            </Frame>
+          </Tab>
+
+          <Tab title="终端" icon="terminal">
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            如果你更愿意打字，桌面应用的内置终端也一样可以。
+          </Tab>
+        </Tabs>
+
+        <Note>
+          这里说的"插件市场"不是一个可以逛的商店，而是一个指向 GitHub 仓库的注册表——就是 Nomo 自己的仓库。所以要先添加仓库，再从里面安装插件。
+        </Note>
       </Step>
 
       <Step title="信任 hook —— 必做">
-        ```
-        /hooks
-        ```
+        <Tabs>
+          <Tab title="桌面应用" icon="window">
+            打开齿轮图标里的 **Hooks** → **Nomo**，把它们打开。
+          </Tab>
 
-        信任那**七条 Nomo 条目**。Codex 界面上显示为 “trust”（其界面为英文）。
+          <Tab title="终端" icon="terminal">
+            ```
+            /hooks
+            ```
+
+            信任那**七条 Nomo 条目**。终端里显示为英文的 “trust”。
+          </Tab>
+        </Tabs>
 
         <Warning>
           不要跳过这一步。Nomo 的 hook 随插件一起安装，但在**被信任之前始终不会生效**。在你完成这一步之前，插件虽已安装却什么都不做 —— 没有会话到达你的手机，也不会有任何报错。

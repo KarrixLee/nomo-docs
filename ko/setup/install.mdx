@@ -35,23 +35,50 @@ icon: "puzzle-piece"
 
     <Steps>
       <Step title="플러그인 설치">
-        Codex 세션에서 실행:
+        <Tabs>
+          <Tab title="데스크톱 앱" icon="window">
+            **플러그인** → **추가** → **마켓플레이스 추가**로 이동한 다음, **Source**에 저장소를 입력합니다.
 
-        ```
-        codex plugin marketplace add KarrixLee/nomo
-        codex plugin add nomo@nomo
-        ```
+            ```
+            KarrixLee/nomo
+            ```
 
-        **Codex 데스크톱 앱**에서도 동작합니다 — 내장 터미널에서 같은 명령을
-        사용합니다.
+            **Git ref**와 **Sparse paths**는 그대로 두십시오 — 회색 글자는 플레이스홀더이지 입력해야 할 값이 아닙니다. 그런 다음 **마켓플레이스 추가**를 누르고 목록에서 **nomo**를 설치합니다.
+
+            <Frame caption="Nomo의 저장소 자체가 마켓플레이스입니다. 둘러볼 목록도, 제출 절차도 없습니다.">
+              <img src="/images/codex-app-add-marketplace.png" alt="Codex 데스크톱 앱의 마켓플레이스 추가 대화상자. Source에 KarrixLee/nomo가 입력되어 있습니다" />
+            </Frame>
+          </Tab>
+
+          <Tab title="터미널" icon="terminal">
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            입력하는 편이 빠르다면 데스크톱 앱의 내장 터미널에서도 됩니다.
+          </Tab>
+        </Tabs>
+
+        <Note>
+          여기서 말하는 "마켓플레이스"는 둘러보는 스토어가 아닙니다. GitHub 저장소 — Nomo 자신의 저장소 — 를 가리키는 레지스트리입니다. 그래서 저장소를 먼저 추가하고, 거기서 플러그인을 설치합니다.
+        </Note>
       </Step>
 
       <Step title="훅 신뢰 — 필수">
-        ```
-        /hooks
-        ```
+        <Tabs>
+          <Tab title="데스크톱 앱" icon="window">
+            톱니바퀴 아이콘에서 **Hooks** → **Nomo**로 이동해 켭니다.
+          </Tab>
 
-        **Nomo 항목 일곱 개**를 신뢰합니다. Codex 화면에는 “trust”로 표시됩니다(UI는 영어입니다).
+          <Tab title="터미널" icon="terminal">
+            ```
+            /hooks
+            ```
+
+            **Nomo 항목 일곱 개**를 신뢰합니다. 터미널에서는 영어로 “trust”라고 표시됩니다.
+          </Tab>
+        </Tabs>
 
         <Warning>
           이 단계를 건너뛰지 마십시오. Nomo의 훅은 플러그인과 함께 설치되지만
