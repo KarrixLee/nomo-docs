@@ -75,10 +75,21 @@ When the agent asks a multiple-choice question rather than for permission, the
 row reads `Needs an answer` and the island says so without offering Allow or
 Deny — those verbs are meaningless for a picker.
 
-Choose **Answer…** and you get one question at a time, with `Question 1 of 3`
-across the top and `Select all that apply` where more than one answer is
-allowed. Nothing is sent until you hit **Submit**, and **Back** walks you to an
-earlier question with your picks intact.
+Choose **Answer…** and you get the question with its options as rows, each with
+whatever explanation the agent wrote for it. Tapping a row only selects it —
+nothing is sent until you hit **Submit**. **Deny** sits alongside, for when none
+of the options is the answer.
+
+<Frame caption="One question, four options, and the agent's own note on each. Selecting is not answering — Submit is.">
+  <div className="device-frame">
+    <img src="/images/answer-options-drawer.png" alt="The answer sheet showing the question Which datastore should the cache use, four options with descriptions, and Deny and Submit buttons" />
+  </div>
+</Frame>
+
+Where the agent asked more than one question you'll get them one at a time, with
+`Question 1 of 3` across the top and **Back** to revisit an earlier one with your
+picks intact. `Select all that apply` appears where more than one answer is
+allowed.
 
 ## Reviewing a plan
 
