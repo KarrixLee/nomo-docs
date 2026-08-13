@@ -170,3 +170,100 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "会话", "电脑", "灵动
 在出问题的那台电脑上运行 [`/nomo-cc:unpair`](/zh-Hans/sessions/commands#unpair)，会移除配对并抹掉它的密钥。然后[重新配对](/zh-Hans/setup/pairing)。
 
 **在手机上**移除一台电脑不是一回事：那只会让那台电脑不再出现在你的 App 里，Mac 上的本地状态会一直留着，直到你在那边运行那条命令。
+
+<script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "灵动岛上什么都没有",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "几乎总是本来就该这样：会话是需要你主动开启的。打开那台电脑，找到会话，打开它的开关——或者在设置里打开自动加入新会话。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "会话的灵动岛开关变灰、关不掉",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "那个会话正在请求权限。一条请求无论开关怎么设都会到达你的灵动岛——否则，一条在你手机揣在兜里时到来的请求，就会变成一条你没法答复的请求，而那正是这个功能存在的全部意义。所以在请求等待期间，开关显示为开启，因为实际发生的就是这件事。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "灵动岛卡住，或者显示“已断开？”",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "灵动岛显示的是你 Mac 发来的最后一条消息。静默十分钟之后，它会褪成灰色并显示 已断开？，而不是继续暗示会话还活着。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "请求到了手机，却没有可点的东西",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看颜色，别看图标。黄色和紫色画的是同一只举起的手。黄色（需要帮助）表示智能体为某件只有终端能处理的事停了下来。紫色（需要权限）才是能答复的那个。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "详情页提示远程审批已暂停",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "有人在那台电脑上运行过暂停命令。在那台机器上的一个会话里恢复它："
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "更新之后 Codex 不再发来请求",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Codex 的 hook 装好之后在被信任之前是不生效的，而一次新增了 hook 的插件更新会重新开启那次审核。在 Codex 里运行 /hooks，信任 Nomo 的条目。在你信任之前，审批会退回终端，而且不会有任何报错。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "按住后弹出的菜单里少了选项",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "始终允许、拒绝并附注…和回答…都需要插件 2.0.0——在手机上答复正是 2.0 加进来的。Nomo 宁可把 Mac 兑现不了的选项藏起来，也不会给你一个按了没用的按钮。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "会话行看着陈旧或重复",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不用解除配对就能清掉失效的："
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "某一行显示“加密会话”或“重新连接中…”",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "你的手机收到了更新，但还没解开。Nomo 每隔几秒重试一次，通常一轮轮询之内就好了。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "某一行显示“无法获取”",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "同一件事，只是已经失败了十分钟。与其留下一行看着还活着、其实不是的记录，Nomo 索性把它标记为失效，不再猜测它的内容。它不会驱动灵动岛，也不会被算作进行中。重新配对那台电脑就能恢复。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "某台电脑显示“已解除配对”",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "那份配对被撤销了——你重新配对了那台 Mac，或者在上面运行了 /nomo-cc:unpair。Nomo 会等到连续多次失败之后才相信这件事，所以这绝不会是“Wi-Fi 抖了一分钟”那种误判。"
+      }
+    }
+  ]
+}
+)}} />

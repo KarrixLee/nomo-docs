@@ -170,3 +170,100 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
 在受影響的電腦上執行 [`/nomo-cc:unpair`](/zh-Hant/sessions/commands#unpair) 會移除配對並清除它的金鑰。然後[重新配對它](/zh-Hant/setup/pairing)。
 
 **從手機上**移除一台電腦不是同一件事：那只會讓那台電腦不再出現在你的App裡，Mac 上的本機狀態會一直保留，直到你在那裡執行那個指令。
+
+<script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "動態島上什麼都沒出現",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "幾乎一定是預期中的行為：sessions 是你選了才會上去的。打開那台電腦，找到那個 session，把它的開關打開 — 或是到設定開啟「自動加入新 sessions」。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "某個 session 的動態島開關是開的、變灰，而且關不掉",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "那個 session 正在請求權限。不管它的開關怎麼設，權限請求都會到達你的動態島 — 否則一個在你手機躺在口袋裡時抵達的請求，就會是一個你無法回覆的請求，而那正是這項功能的全部意義。所以在請求等待期間，開關會顯示為開啟，因為那才是實際正在發生的事。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "動態島凍住了，或顯示「已斷線？」",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "動態島顯示的是你的 Mac 送出的最後一則內容。沉默十分鐘後，它會褪去顏色並顯示 已斷線？，而不是繼續暗示這個 session 還活著。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "請求有到我的手機，但沒有東西可以點",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看顏色，不是看圖示。黃色和紫色都畫一隻舉起的手。黃色（需要協助）表示代理停下來，等的是只有終端機能給的東西。紫色（需要權限）才是可以回覆的那一種。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "面板顯示遠端批准已暫停",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "有人在那台電腦上執行過暫停指令。請在那台機器上的 session 裡恢復它："
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Codex 在更新之後就不再送出請求",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Codex 的 hooks 出廠時在被信任前不作用，而一次加入 hook 的外掛程式更新會重新開啟那道審核。在 Codex 裡執行 /hooks，信任 Nomo 的項目。在你這麼做之前，批准會退回終端機，而且沒有任何東西回報錯誤。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "按住後的選單少了幾個選項",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "「一律允許」、「拒絕並附註…」和「回答…」都需要外掛程式 2.0.0 — 在手機上回覆正是 2.0 加入的東西。Nomo 會隱藏 Mac 無法兌現的選項，而不是提供一個按了不會有作用的按鈕。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "各列看起來過時或重複",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "清掉失效的那些，而不解除配對："
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "某一列顯示「加密的 session」或「重新連線中…」",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "你的手機收到了那則更新，但還沒解開它。Nomo 每隔幾秒重試一次，通常在一次輪詢之內就會自行排除。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "某一列顯示「無法取得」",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "同一件事，只是失敗了十分鐘。與其留下一列看起來還活著、其實不是的內容，Nomo 會把它標為失效，並停止猜測它的內容。它不會驅動動態島，也不會被算成進行中。重新配對那台電腦就會恢復。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "某台電腦顯示「已解除配對」",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "那組配對被撤銷了 — 你重新配對了那台 Mac，或是在它上面執行了 /nomo-cc:unpair。Nomo 會等到連續失敗夠久才相信這件事，所以這絕不會是「Wi-Fi 抖了一分鐘」得出的判斷。"
+      }
+    }
+  ]
+}
+)}} />
