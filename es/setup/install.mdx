@@ -37,24 +37,50 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
 
     <Steps>
       <Step title="Instala el plugin">
-        Desde una sesión de Codex:
+        <Tabs>
+          <Tab title="App de escritorio" icon="window">
+            **Plugins** → **Añadir** → **Añadir un marketplace**. Pon el repositorio en **Source**:
 
-        ```
-        codex plugin marketplace add KarrixLee/nomo
-        codex plugin add nomo@nomo
-        ```
+            ```
+            KarrixLee/nomo
+            ```
 
-        Esto también funciona en la **app de escritorio de Codex**: los mismos
-        comandos desde su terminal integrada.
+            Deja **Git ref** y **Sparse paths** como están: el texto gris es un marcador de posición, no un valor que tengas que escribir. Luego pulsa **Añadir un marketplace** e instala **nomo** desde la lista.
+
+            <Frame caption="El repositorio de Nomo es el marketplace — no hay ningún catálogo que explorar ni al que enviar nada.">
+              <img src="/images/codex-app-add-marketplace.png" alt="El diálogo Añadir un marketplace de la app de escritorio de Codex, con KarrixLee/nomo escrito en Source" />
+            </Frame>
+          </Tab>
+
+          <Tab title="Terminal" icon="terminal">
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            El terminal integrado de la app de escritorio también sirve, si prefieres escribir.
+          </Tab>
+        </Tabs>
+
+        <Note>
+          "Marketplace" aquí no es una tienda que se navega. Es un registro que apunta a un repositorio de GitHub — el de Nomo. Por eso primero añades el repositorio y luego instalas el plugin desde él.
+        </Note>
       </Step>
 
       <Step title="Confía en los hooks — obligatorio">
-        ```
-        /hooks
-        ```
+        <Tabs>
+          <Tab title="App de escritorio" icon="window">
+            Ve al engranaje → **Hooks** → **Nomo** y actívalos.
+          </Tab>
 
-        Confía en las **siete entradas de Nomo**. Codex las muestra con la palabra
-        «trust» — su interfaz está en inglés.
+          <Tab title="Terminal" icon="terminal">
+            ```
+            /hooks
+            ```
+
+            Confía en las **siete entradas de Nomo**. En el terminal aparecen en inglés, como «trust».
+          </Tab>
+        </Tabs>
 
         <Warning>
           No te saltes este paso. Los hooks de Nomo vienen con el plugin, pero

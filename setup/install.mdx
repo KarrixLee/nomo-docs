@@ -37,23 +37,58 @@ npm dependencies and runs on Node built-ins.
 
     <Steps>
       <Step title="Install the plugin">
-        From inside a Codex session:
+        <Tabs>
+          <Tab title="Desktop app" icon="window">
+            **Plugins** → **Add** → **Add plugin marketplace**. Put the
+            repository in **Source**:
 
-        ```
-        codex plugin marketplace add KarrixLee/nomo
-        codex plugin add nomo@nomo
-        ```
+            ```
+            KarrixLee/nomo
+            ```
 
-        This works in the **Codex desktop app** too — same commands from its
-        built-in terminal.
+            Leave **Git ref** and **Sparse paths** alone — the grey text in
+            them is placeholder, not a value you need to match. Then
+            **Add marketplace**, and install **nomo** from the list.
+
+            <Frame caption="Nomo's repository is the marketplace — there's no listing to browse or submit to.">
+              <img src="/images/codex-app-add-marketplace.png" alt="The Codex desktop app's Add plugin marketplace dialog with KarrixLee/nomo entered as the source" />
+            </Frame>
+          </Tab>
+
+          <Tab title="Terminal" icon="terminal">
+            From inside a Codex session:
+
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            The desktop app's built-in terminal works too, if you'd rather type
+            than click.
+          </Tab>
+        </Tabs>
+
+        <Note>
+          "Marketplace" here isn't a store you browse. It's a registry pointed
+          at a GitHub repository — Nomo's own. That's why you add the repo
+          first, then install the plugin from it.
+        </Note>
       </Step>
 
       <Step title="Trust the hooks — required">
-        ```
-        /hooks
-        ```
+        <Tabs>
+          <Tab title="Desktop app" icon="window">
+            **Settings** → **Hooks** → **Nomo**, and turn them on.
+          </Tab>
 
-        Trust the **seven Nomo entries**.
+          <Tab title="Terminal" icon="terminal">
+            ```
+            /hooks
+            ```
+
+            Trust the **seven Nomo entries**.
+          </Tab>
+        </Tabs>
 
         <Warning>
           Don't skip this. Nomo's hooks ship with the plugin but stay **inert
