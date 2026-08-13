@@ -92,18 +92,24 @@
                 ]
               },
               {
-                "group": "Sessions",
+                "group": "On your phone",
                 "pages": [
                   "sessions/list",
                   "sessions/island",
                   "sessions/approvals",
+                  "sessions/settings"
+                ]
+              },
+              {
+                "group": "On your computer",
+                "pages": [
+                  "sessions/commands",
                   "sessions/codex"
                 ]
               },
               {
-                "group": "Reference",
+                "group": "Help",
                 "pages": [
-                  "sessions/settings",
                   "sessions/troubleshooting"
                 ]
               }

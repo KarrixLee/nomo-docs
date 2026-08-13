@@ -1,6 +1,6 @@
 ---
-title: "When something looks wrong"
-description: "Sessions that won't decrypt, computers that go dead, a frozen island, and how to read Nomo's own diagnostics."
+title: "Troubleshooting"
+description: "Sessions that won't decrypt, computers that go dead, a frozen island — what each state means and what to do about it."
 icon: "wrench"
 ---
 
@@ -144,28 +144,17 @@ something. This page is what each of those states actually means.
 
 ## Start with status
 
-If more than one thing looks wrong, run this on the Mac first:
+If more than one thing looks wrong, run
+[`/nomo-cc:status`](/sessions/commands#status) on the Mac before anything else.
+One screen tells you whether the machine is paired, whether its watchdog is
+alive, and whether events are actually reaching your phone — which is usually
+enough to say what's broken.
 
-<CodeGroup>
-```bash Claude Code icon="/images/claude-code.svg"
-/nomo-cc:status
-```
+`Last event sent: never` with a session genuinely running means the hooks aren't
+firing. Restart Claude Code so they load; for Codex, run `/hooks`.
 
-```bash Codex icon="/images/codex.svg"
-$nomo-status
-```
-</CodeGroup>
-
-It reports, in order: whether the computer is paired, whether the watchdog is
-running, how long ago it last sent an event, how many sessions it's tracking,
-and — for Codex — hook trust and whether the plan-answer bridge is available.
-
-It also warns about the two setups that silently double-report: leftover Codex
-hooks from before the native plugin, and Codex auto-discovering the Claude Code
-plugin alongside its own.
-
-`Last event sent: never` with an active session means the hooks aren't firing.
-For Claude Code, restart it so they load. For Codex, run `/hooks`.
+Every command, and what its output means, is on
+[Commands](/sessions/commands).
 
 ## Still wrong? Send it over
 
@@ -189,7 +178,8 @@ with what you expected and what you got instead:
   </Card>
 </CardGroup>
 
-The output of `/nomo-cc:status` from the affected computer helps too.
+The output of [`/nomo-cc:status`](/sessions/commands#status) from the affected
+computer helps too.
 
 ## Starting over
 
