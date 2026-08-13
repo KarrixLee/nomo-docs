@@ -2,6 +2,7 @@
 title: "Overview"
 sidebarTitle: "Overview"
 description: "Watch Claude Code and Codex from your iPhone, and answer their permission prompts without going back to your Mac."
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Overview"]
 ---
 
 Your coding agent runs on your Mac. You don't have to sit in front of it.
@@ -23,7 +24,8 @@ never went back to your desk.
 
 The live card carries the model and what it's doing right now — **Fable ·
 Editing** — plus the session title, the folder, and which computer it's on.
-Below it, the Sessions tab lists everything running, split by agent.
+Below it, the Sessions tab lists your paired computers; open one to see its
+sessions, split by agent and grouped by project folder.
 
 <Note>
   Sessions is part of Nomo Pro. Status monitoring and usage widgets are free and
@@ -55,6 +57,14 @@ phone. Nomo's servers move sealed data around without ever holding the key.
 That matters for what you can expect — your prompts, file paths, and commands
 are yours. It also means pairing is a real cryptographic step rather than a
 login, which is why it takes a scan or a typed code.
+
+The exact scheme — key exchange, what the relay can and can't see, what the
+plugin reads — is written up in the plugin's own README, next to the code that
+implements it:
+
+<Card title="Architecture and encryption" href="https://github.com/KarrixLee/nomo#architecture--end-to-end-encrypted" icon="lock" horizontal>
+  How pairing derives the key, and why the relay only ever holds ciphertext.
+</Card>
 
 ## Get setup
 

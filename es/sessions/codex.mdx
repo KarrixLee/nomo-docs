@@ -1,0 +1,137 @@
+---
+title: "Usar Codex"
+description: "Sesiones funciona con Codex, pero no igual que con Claude Code. Qué puedes y qué no puedes hacer desde el teléfono, y por qué."
+icon: "code"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar Codex"]
+---
+
+Las sesiones de Codex salen en la misma lista, en la misma Dynamic Island y
+sobre la misma vinculación. Pero Codex y Claude Code exponen cosas distintas a un
+plugin, así que en el lado de Codex faltan algunas opciones.
+
+La regla de Nomo en todo momento es no ofrecer nunca un botón que el Mac no pueda
+cumplir. Así que, en lugar de un control que falla en silencio, tienes o bien
+otro control o bien un honesto “esto se hace en tu Mac”.
+
+<Note>
+  No hay una vinculación aparte para Codex. Los dos agentes leen la misma
+  configuración en ese ordenador: [vinculas la máquina](/es/setup/pairing) una
+  vez. En la conexión, lo único que cambia es una etiqueta que dice de qué agente
+  se trataba.
+</Note>
+
+## Lo que funciona igual {#what-works-the-same}
+
+- Las sesiones, los estados, las carpetas y la Dynamic Island.
+- Las solicitudes de permiso para comandos de shell, parches y herramientas MCP:
+  **Permitir** y **Denegar** desde la Dynamic Island o desde la app.
+- **Denegar con nota…**, para decir por qué o qué hacer en su lugar.
+- Leer planes.
+
+## Sin “Permitir siempre” {#no-always-allow}
+
+Claude Code te deja permitir una herramienta durante el resto de la sesión. Codex
+rechaza la decisión entera cuando Nomo le adjunta una regla de ese tipo, así que
+la opción no se muestra: un **Denegar** que acabara en la basura sería mucho peor
+que un botón que falta.
+
+Permitir sigue funcionando con normalidad. Simplemente te lo volverá a preguntar
+la próxima vez.
+
+## Planes de solo lectura {#plans-are-read-only}
+
+La solicitud de Codex de “¿implemento este plan?” vive dentro de su propia
+interfaz de terminal. Nunca llega a un plugin, lo que significa que no hay nada
+que Nomo pueda retener ni nada que tu toque pueda resolver.
+
+Así que Nomo te enseña el plan —entero, actualizado cada vez que lo abres, ya que
+Codex lo va escribiendo sobre la marcha— y luego dice `Elige una opción en la
+terminal de tu Mac`. Si tu teléfono puede llegar al Mac por tu red local,
+**Abrir en el Mac** te pone esa ventana de terminal en primer plano.
+
+<Frame caption="El lector de planes de solo lectura. Está todo para leerlo; el pie es honesto sobre dónde vive la decisión.">
+  <div className="device-frame">
+    <img src="/images/view-plan-drawer.png" alt="Un plan a pantalla completa en el teléfono, con un pie que dice Elige una opción en la terminal de tu Mac" />
+  </div>
+</Frame>
+
+## Preguntas en la CLI y en la app de escritorio {#questions-in-the-cli-and-the-desktop-app}
+
+Para responder a una pregunta de Codex desde tu teléfono, la tarea de Codex y el
+proceso supervisor de Nomo tienen que compartir un mismo proceso `app-server`.
+
+<Tabs>
+  <Tab title="Codex CLI" icon="terminal">
+    Arranca el `app-server` compartido **antes** de arrancar Codex:
+
+    ```bash
+    codex app-server daemon start
+    ```
+
+    Después confírmalo:
+
+    ```bash
+    $nomo-status
+    ```
+
+    `Codex Plan answers: bridge available` significa que lo tienes: las preguntas
+    llegan a tu teléfono con sus opciones y tocas una.
+
+    `Codex Plan answers: status-only` significa que no hay nadie escuchando.
+    Arranca el daemon y después Codex. El orden importa: una sesión que se abrió
+    primero no va a coger el daemon.
+  </Tab>
+
+  <Tab title="App de escritorio de Codex" icon="window">
+    **Las preguntas de las sesiones de la app de escritorio no se pueden
+    responder desde el teléfono.**
+
+    El daemon de arriba escucha en un socket compartido al que se puede enganchar
+    cualquiera. La app de escritorio no lo usa: lanza un `app-server` privado por
+    tarea, sin socket al que unirse. No hay ninguna opción ni ajuste que cambie
+    eso, así que `$nomo-status` seguirá diciendo `status-only` por mucho que
+    arranques antes.
+
+    Todo lo demás funciona con normalidad: las sesiones aparecen, las solicitudes
+    de permiso para comandos y parches se responden desde el teléfono y los planes
+    se pueden leer. Las preguntas también salen — lo único es que las lees en el
+    teléfono y las respondes en la app.
+  </Tab>
+</Tabs>
+
+En cualquiera de los dos casos la sesión sigue llegando a tu teléfono. Sin el
+puente verás `Necesita ayuda` y `Responder en el Mac`: la pregunta está ahí para
+leerla, solo que no hay selector que tocar, y la respondes en Codex.
+
+## Confianza en los hooks {#hooks-have-to-be-trusted}
+
+Codex trae su propia barrera de seguridad: los hooks de un plugin se instalan
+pero quedan **inertes hasta que confías en ellos**. Ejecuta `/hooks` y confía en
+las siete entradas de Nomo, como se explica en
+[Instalación](/es/setup/install).
+
+La parte que pilla a la gente: al actualizar a la versión que añadió las
+aprobaciones de Codex desde el teléfono se introdujo un hook **nuevo**, así que
+Codex reabre la revisión para él. Hasta que confíes en él, las aprobaciones de
+Codex vuelven al terminal en silencio y nada informa de ningún error. Si tu
+teléfono dejó de recibir solicitudes de Codex después de una actualización,
+ejecuta `/hooks` lo primero.
+
+`$nomo-status` informa de la confianza en los hooks, así que es como compruebas
+que el paso surtió efecto.
+
+## Solicitudes que nunca te llegan {#prompts-that-never-reach-you}
+
+Cuando un turno de Codex corre bajo revisión automática o con acceso completo, el
+hook le devuelve el control a Codex antes de que Nomo envíe nada. Eso es
+correcto —le dijiste a Codex que no preguntara—, pero significa que la solicitud
+tampoco va a aparecer en tu teléfono.
+
+Codex tampoco tiene un equivalente del hook de notificación de Claude Code, así
+que recibirás algún aviso menos de “te necesita” en las sesiones de Codex que en
+las de Claude Code.
+
+## Versión mínima {#version-floor}
+
+Codex **0.142 o posterior**. Las versiones anteriores no tienen un sistema de
+plugins en el que Nomo pueda instalarse.

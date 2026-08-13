@@ -1,0 +1,177 @@
+---
+title: "La Dynamic Island"
+description: "Qué muestra Nomo en la Dynamic Island y en la pantalla de bloqueo, qué significa cada color y cómo elige la sesión que enseña."
+icon: "circle-dot"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "La Dynamic Island"]
+---
+
+Tu teléfono muestra **una sesión cada vez**. Ni una por ordenador ni una por
+agente: una, en todo el dispositivo. Todo lo de abajo va de esa.
+
+## Nada aparece por defecto {#nothing-appears-until-you-say-so}
+
+De serie, **ninguna sesión aparece en tu pantalla de bloqueo ni en la Dynamic
+Island**. Si la vinculación salió bien y tu Dynamic Island está vacía, no hay
+nada roto.
+
+La Dynamic Island se queda en la pantalla de bloqueo todo el día. Si todas las
+sesiones que arrancaras se la quedasen, una tarde ajetreada te enterraría el
+teléfono en sesiones que dejaron de importarte hace una hora. Así que la app lo
+enumera todo y la Dynamic Island muestra solo lo que hayas elegido.
+
+Para poner ahí una sesión, abre el ordenador, busca la sesión y activa su
+interruptor. Para que Nomo lo haga por ti con cada sesión nueva, activa **Añadir
+sesiones automáticamente** en
+[Ajustes](/es/sessions/settings#dynamic-island) — es un ajuste en beta, porque
+iOS limita cada cuánto puede repintarse la Dynamic Island y un lote grande de
+sesiones en directo se dará contra ese techo.
+
+<Note>
+  Hay una excepción, y es deliberada: con las **aprobaciones remotas**
+  activadas, una sesión que **está pidiendo permiso** aparece en la Dynamic
+  Island aunque su interruptor esté desactivado — y ese interruptor se muestra
+  activado y en gris mientras la solicitud espera. Tu ajuste no se cambia.
+  [Qué aspecto tiene](/es/sessions/troubleshooting).
+</Note>
+
+## Qué sesión se muestra {#which-session-it-picks}
+
+Cuando hay varias sesiones candidatas, Nomo no te enseña la más nueva, sino la
+que con más probabilidad te está bloqueando:
+
+<Steps>
+  <Step title="Lo que te espera va primero">
+    Una sesión que pide permiso, o que se ha parado y necesita una instrucción,
+    está por encima de cualquiera que siga trabajando.
+  </Step>
+  <Step title="La que lleva más esperando no se mueve">
+    Entre las sesiones que te esperan, la que lleva esperando más tiempo se
+    queda con la Dynamic Island. Una solicitud más nueva **no** puede
+    apartarla — si no, lo que estabas a punto de responder te lo robarían de
+    debajo del dedo.
+  </Step>
+  <Step title="Si no, la actividad más reciente">
+    Entre sesiones que trabajan, se muestra la más fresca.
+  </Step>
+</Steps>
+
+Las sesiones que llevan más de media hora en silencio quedan fuera del reparto.
+Si todo lo candidato ha terminado y se ha quedado tranquilo, la Dynamic Island
+se vacía sola.
+
+El relevo ocurre en el sitio: se actualiza la misma tarjeta, no desaparece y
+vuelve. No hay forma de fijar ahí una sesión de manera permanente; la regla de
+arriba es toda la historia.
+
+## Cómo leer la tarjeta {#reading-it}
+
+| | Etiqueta | Qué significa |
+| :---: | --- | --- |
+| <img src="/images/claude-code.svg" alt="Claude Code" className="agent-mark" /><img src="/images/codex.svg" alt="Codex" className="agent-mark" /> | `Trabajando` | En ejecución. La marca del propio agente ocupa el hueco, y el lado compacto muestra un cronómetro al lado. Todo lo demás de la tarjeta se tiñe a juego: coral para Claude Code, azul lavanda para Codex. |
+| <Icon icon="hand" color="#E5A50A" /> | `Necesita ayuda` | Se ha parado y te espera, pero no hay nada que tocar. Ve al Mac. |
+| <Icon icon="file-lines" color="#E5A50A" /> | `Plan listo` | Hay un plan esperando. Toca **Ver plan** para leerlo. |
+| <Icon icon="hand" color="#7A5CF0" /> | `Necesita permiso` | Pide permiso. **Permitir y Denegar están ahí mismo.** |
+| <Icon icon="check" color="#4CAF50" /> | `Terminado` | Hecho, con el tiempo final de ejecución congelado al lado. |
+| <Icon icon="wifi-slash" color="#8E8E93" /> | `¿Desconectado?` | Nomo no sabe nada de este Mac desde hace 10 minutos. La tarjeta entera pierde el color. |
+| <Icon icon="lock" color="#8E8E93" /> | `Descifrando…` | Tu teléfono todavía no ha abierto la actualización. Suele durar un instante. |
+| <Icon icon="arrows-rotate" color="#EAA82A" /> | `Reconectando` | O tu teléfono aún no tiene la clave, o el Mac perdió el relé y está reintentando. |
+
+<Warning>
+  **El amarillo y el violeta dibujan los dos una mano levantada.** El icono no es
+  la pista: la pista es el **color**. Amarillo significa mírame y ve a tu Mac.
+  Violeta significa respóndeme, aquí mismo.
+</Warning>
+
+Mientras una sesión trabaja, la línea de estado alterna entre `Trabajando` y el
+modelo que usa — `⚡ Fable`, `⚡ GPT 5.6 Sol`. Cuando el agente informa de lo que
+está haciendo, eso viaja también: `Trabajando · Editando`, `Trabajando ·
+Ejecutando comando`.
+
+## Los cuatro formatos {#the-four-shapes}
+
+<Tabs>
+  <Tab title="Compacto">
+    La marca del agente a la izquierda y, a la derecha, o un **cronómetro**
+    mientras trabaja, o una **mano** cuando te quiere, o `✓ 6m` cuando ha
+    terminado.
+
+    <Frame caption="Una sesión de Claude Code con un minuto de turno.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-compact-working.png" alt="La Dynamic Island en su forma compacta, con la mascota de Claude Code a la izquierda y un cronómetro de 1:08 a la derecha" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="Mínimo">
+    Cuando otra app comparte la Dynamic Island, Nomo se reduce a un solo
+    símbolo: la marca del agente mientras trabaja, una mano cuando te necesita y
+    una marca de verificación verde cuando ha terminado.
+
+    <Frame caption="Fitness tiene la Dynamic Island; Nomo es el círculo de la derecha, con una mano amarilla.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-minimal-attention.png" alt="La Dynamic Island compartida entre dos apps, con Nomo reducido a un pequeño círculo que muestra una mano amarilla levantada" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="Expandido">
+    Mantén pulsada la Dynamic Island. La marca del agente y un reloj en marcha,
+    y después el estado, el título de la sesión, su carpeta y en qué ordenador
+    está. Si hay una solicitud de permiso viva, el comando y los botones
+    **Permitir** y **Denegar** ocupan la mitad inferior. Si hay un plan
+    esperando, aparece un botón **Ver plan** a todo lo ancho.
+
+    <Frame caption="Una sesión de Codex con un plan listo. La palabra de estado va en amarillo, el azul lavanda del propio agente lleva el reloj, y Ver plan es el único control.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-expanded-plan.png" alt="La Dynamic Island expandida con PLAN LISTO, el título del plan, su carpeta y un botón Ver plan" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="Pantalla de bloqueo">
+    El mismo contenido que en expandido, como tarjeta, teñida con el color del
+    agente. Aquí hay más sitio, así que la palabra de estado se escribe entera:
+    `NECESITA PERMISO` donde la Dynamic Island la acorta a `PERMISO`.
+
+    Todo lo de la tarjeta se puede tocar y lleva directamente a esa sesión
+    dentro de la app, así que no tienes que buscarla.
+
+    <Frame caption="Una solicitud de permiso en la pantalla de bloqueo. Se responde sin desbloquear el teléfono.">
+      <div className="device-frame">
+        <img src="/images/lock-screen-live-activity.png" alt="La pantalla de bloqueo de un iPhone con la actividad en directo de Nomo mostrando NECESITA PERMISO, un comando y los botones Denegar y Permitir" />
+      </div>
+    </Frame>
+  </Tab>
+</Tabs>
+
+## El cronómetro {#the-timer}
+
+Mientras una sesión trabaja, el lado compacto cuenta hacia arriba. Los cinco
+primeros minutos ves un `M:SS` en directo; después se asienta en `7m`, `1h 2m`
+y, pasadas diez horas, en `10h`, para que la Dynamic Island no te esté
+parpadeando todo el día.
+
+El reloj se ancla al **turno actual**, no a la sesión entera: se reinicia cada
+vez que envías un prompt nuevo. Cuando la sesión termina, el reloj se congela en
+el momento en que acabó de verdad, y los latidos posteriores no pueden inflarlo.
+
+Si Nomo no puede deducir una hora de inicio plausible, no muestra cronómetro en
+lugar de mostrar uno equivocado.
+
+## Pérdida de contacto {#when-it-goes-quiet}
+
+La Dynamic Island muestra el último estado que envió tu Mac. Tras **10 minutos**
+de silencio deja de fingir: la tarjeta pierde el color, el cronómetro desaparece
+y el estado pasa a `¿Desconectado?`. Que tu Mac se duerma, que pierda el Wi-Fi o
+que cierres el terminal acaban todos aquí.
+
+Abrir la app de Nomo fuerza una actualización, y un estado obsoleto se corrige
+al momento. El plugin también envía una señal de actividad cada cinco minutos
+por su cuenta, así que una sesión viva pero inactiva no se marca como
+desconectada.
+
+Las sesiones terminadas nunca se quedan obsoletas: ya no queda nada que oír.
+
+<Tip>
+  Si las actualizaciones de la Dynamic Island te parecen lentas, activa
+  **Actualizaciones más frecuentes** en Ajustes de iOS → Nomo → Actividades en
+  directo. Ese es el presupuesto de Apple para cada cuánto puede una app
+  repintar la Dynamic Island, y Nomo está escrito contra el valor por defecto.
+</Tip>

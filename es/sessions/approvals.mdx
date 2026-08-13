@@ -1,0 +1,185 @@
+---
+title: "Responder desde el iPhone"
+description: "Permite, deniega o responde a las solicitudes de permiso de Claude Code y Codex a distancia: desde la Dynamic Island, o desde la app con todas las opciones."
+icon: "hand"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Responder desde el iPhone"]
+---
+
+Cuando tu agente quiere ejecutar algo para lo que no tiene permiso permanente,
+se para y pregunta. Normalmente eso lo responderías en el Mac. Con Nomo puedes
+responderlo desde el teléfono, y el agente sigue al instante.
+
+<Warning>
+  **Actívalo primero.** Las aprobaciones remotas están **desactivadas por
+  defecto**. Ajustes → Sesiones → **Aprobaciones remotas** → **Responder en el
+  iPhone**. Mientras ese interruptor esté desactivado, las solicitudes se quedan
+  en tu terminal y a tu teléfono solo se le avisa de ellas.
+</Warning>
+
+## Dos sitios para responder {#two-places-to-answer}
+
+La Dynamic Island **avisa**. La app **responde**. Ofrecen cosas distintas a
+propósito.
+
+<Tabs>
+  <Tab title="Dynamic Island y pantalla de bloqueo" icon="circle-dot">
+    Dos botones, no más: **Permitir** y **Denegar**. Eso es todo lo que puede
+    albergar una actividad en directo, y Nomo no va a poner ahí un botón que no
+    pueda cumplir.
+
+    Para una pregunta tienes **Pensarlo** — una denegación de verdad que
+    significa *ninguna de estas, replantéatelo* — y **Responder**, que abre
+    directamente la app, donde las opciones sí caben.
+
+    Cuando una solicitud deja de estar viva, los botones se sustituyen por
+    `Continúa en tu Mac` en lugar de quedarse ahí sin hacer nada.
+
+    <Frame caption="Mantén pulsada la Dynamic Island y la solicitud está ahí mismo: la carpeta, la sesión, el comando y dos botones.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-expanded-permission.png" alt="La Dynamic Island expandida mostrando una solicitud de permiso con el comando Run database migration y los botones Denegar y Permitir" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="En la app" icon="mobile">
+    **Mantén pulsada** una fila de sesión. Aquí es donde vive el juego completo
+    — y es la parte que se le escapa a la gente, porque al tocar una fila solo
+    se despliega.
+
+    Al mantenerla pulsada aparece una tarjeta de vista previa con el comando, la
+    ruta del archivo o la pregunta, y un menú debajo.
+
+    <Frame caption="La tarjeta de encima del menú es la solicitud en sí: la herramienta, el comando y de qué carpeta viene.">
+      <div className="device-frame">
+        <img src="/images/long-press-answer-popup.png" alt="Una fila de sesión con el dedo mantenido encima, mostrando la vista previa de un comando de Bash sobre un menú de Permitir, Denegar y Más" />
+      </div>
+    </Frame>
+  </Tab>
+</Tabs>
+
+## Opciones de respuesta {#everything-you-can-answer}
+
+| Opción | Dónde | Qué recibe el agente |
+| --- | --- | --- |
+| **Permitir** | Dynamic Island, app | Ejecuta la acción y continúa. |
+| **Denegar** | Dynamic Island, app | La salta y continúa sin ella. |
+| **Permitir siempre Bash (esta sesión)** | Solo en la app | Lo permite y deja de preguntar **durante el resto de esta sesión**. Nunca se escribe en disco ni se arrastra a la sesión siguiente. |
+| **Denegar con nota…** | Solo en la app | Deniega y transmite lo que hayas escrito: *por qué*, o *qué hacer en su lugar*. |
+| **Responder…** | Solo en la app | Elige una opción para una pregunta de varias opciones. |
+| **Ver plan completo** | App, además de **Ver plan** en la Dynamic Island | Abre el plan para leerlo antes de decidir. |
+| **Abrir en el Mac** | Solo en la app | No responde nada: pone en primer plano la ventana de terminal de esa sesión en tu Mac. Necesita un enlace por [red local](/es/sessions/settings#local-network). |
+
+**Permitir siempre**, **Denegar con nota…** y **Responder…** viven bajo
+**Más…** en el menú, y las tres necesitan la versión **2.0.0** del plugin. Con
+la 1.0.0 tienes Permitir y Denegar a secas — Nomo no muestra un botón que el Mac
+no pueda cumplir. El panel te avisa cuando hay una actualización disponible.
+
+## Responder a una pregunta {#answering-a-question}
+
+Cuando el agente hace una pregunta de varias opciones en lugar de pedir permiso,
+la fila dice `Necesita una respuesta` y la Dynamic Island lo indica sin ofrecer
+Permitir ni Denegar: esos verbos no significan nada ante un selector.
+
+Elige **Responder…** y tienes la pregunta con sus opciones como filas, cada una
+con la explicación que el agente le haya escrito. Al tocar una fila solo la
+seleccionas: no se envía nada hasta que pulsas **Enviar**. **Denegar** está al
+lado, para cuando ninguna de las opciones es la respuesta.
+
+<Frame caption="Una pregunta, cuatro opciones y la nota del propio agente en cada una. Seleccionar no es responder — responder es Enviar.">
+  <div className="device-frame">
+    <img src="/images/answer-options-drawer.png" alt="La hoja de respuesta con la pregunta Which datastore should the cache use, cuatro opciones con sus descripciones y los botones Denegar y Enviar" />
+  </div>
+</Frame>
+
+Cuando el agente ha hecho más de una pregunta, te llegan de una en una, con
+`Pregunta 1 de 3` arriba y **Atrás** para volver a una anterior sin perder lo
+que ya habías elegido. `Selecciona todas las que correspondan` aparece cuando se
+admite más de una respuesta.
+
+## Revisar un plan {#reviewing-a-plan}
+
+Una sesión que ha terminado de planificar muestra `Plan listo`. Abre **Ver
+plan** y tienes el plan entero maquetado, con desplazamiento y con **Permitir**
+y **Denegar** fijados abajo.
+
+Aprobar desde el teléfono es una aprobación normal: la misma que darías eligiendo
+la opción por defecto en tu Mac. No te deja elegir entre aceptar las ediciones
+automáticamente y confirmarlas una a una; eso sigue siendo una decisión del
+terminal.
+
+<Frame caption="El plan entero, con desplazamiento y la decisión fijada abajo. Denegar con nota queda debajo, para cuando hace falta reorientarlo en vez de decir que no.">
+  <div className="device-frame">
+    <img src="/images/view-plan-claude.png" alt="Un plan de Claude Code a pantalla completa en el teléfono, con los botones Denegar y Permitir fijados abajo" />
+  </div>
+</Frame>
+
+<Note>
+  Si el plan era demasiado largo para caber en una actualización cifrada, la hoja
+  lo dice y te indica cuánto se quedó fuera. El plan completo sigue siempre en tu
+  terminal. Cuando tu teléfono puede llegar al Mac directamente por la red local,
+  Nomo vuelve a pedir el texto entero.
+</Note>
+
+Los planes de Codex son de **solo lectura** en el teléfono: los lees aquí y
+eliges en el terminal. [Por qué](/es/sessions/codex#plans-are-read-only).
+
+## Después de responder {#after-you-tap}
+
+La fila muestra `Enviando…` y luego se asienta. Tu respuesta se sella una sola
+vez en tu teléfono y se envía al Mac por dos vías a la vez: a través del relé y
+directamente por tu red cuando está disponible. Gana la que llegue antes; la
+segunda se descarta, así que un duplicado no puede responder dos veces a nada.
+
+Nomo además lo verifica después. Un simple “OK” del relé no se cree por sí solo:
+el teléfono comprueba que la solicitud quedó realmente resuelta y la reenvía si
+no fue así. Si de verdad no puede confirmarlo, los botones vuelven en lugar de
+dejarte creyendo que pasó algo.
+
+### Qué significa cada leyenda {#what-the-caption-tells-you}
+
+| Leyenda | Significado |
+| --- | --- |
+| `Permitido` · `Denegado` · `Permitido siempre` · `Respondido` | Llegó. |
+| `Enviando…` | Va de camino. |
+| `Reconectando…` | Hay un reintento en curso. Es pasajero: espera. |
+| `Ya respondido en tu ordenador` | Te adelantaste a ti mismo en el Mac. |
+| `Caducado — continúa en tu ordenador` | El agente se cansó de esperar antes de que llegara tu respuesta. |
+| `Sustituido por una solicitud más reciente` | El agente siguió adelante y ahora pregunta otra cosa. |
+| `Aprobaciones en pausa — responde en tu ordenador` | En pausa en ese ordenador — ve más abajo. |
+| `No se envió — inténtalo de nuevo` | Falló y se agotaron los reintentos. Tócalo otra vez. |
+| `Demasiado largo para enviar — responde en tu ordenador` | Tu respuesta no cabe en una actualización cifrada. Esta no va a salir bien por mucho que se reintente. |
+
+Una respuesta que llega tarde se descarta, nunca se aplica. Nunca vas a volver y
+encontrarte con que algo se ejecutó porque lo tocaste hace veinte minutos.
+
+<Tip>
+  Los botones tienen que llevar en pantalla alrededor de un segundo para que un
+  toque cuente. Si la Dynamic Island se expande bajo un pulgar que ya estaba en
+  movimiento, ese toque se descarta a propósito: nunca fue una decisión.
+</Tip>
+
+## Vuelta automática al terminal {#nothing-hangs-forever}
+
+Si tu teléfono no responde nunca, la solicitud acaba volviendo sola al terminal.
+Y lo mismo con todo aquello de lo que Nomo no pueda avisar al teléfono: sin
+vinculación, sin red, un tiempo de espera agotado, una respuesta ilegible — cada
+vía de fallo termina con el diálogo de siempre apareciendo en tu Mac.
+
+Algunas solicitudes no llegan nunca a tu teléfono, por diseño: las sesiones
+iniciadas por subagentes, y las que corren en un modo de permisos no interactivo,
+donde el agente no iba a preguntarte de todas formas.
+
+## Pausar las aprobaciones {#pausing-it}
+
+Dos interruptores, con alcances distintos.
+
+**En tu teléfono, para todo** — Ajustes → Sesiones → **Responder en el iPhone**.
+Desactivado significa que cada solicitud se decide en el Mac.
+
+**En un solo ordenador** —
+[`/nomo-cc:approvals off`](/es/sessions/commands#approvals), ejecutado en esa
+máquina. La salida de emergencia para cuando lo que no está disponible es tu
+teléfono: las solicitudes caen directas al terminal, sin esperas.
+
+Ninguno de los dos desvincula nada. Seguirás viendo las sesiones en ambos casos;
+lo único es que no se te pedirá responder por ellas, y un ordenador en pausa lo
+dice arriba de su panel.

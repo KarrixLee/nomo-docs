@@ -1,0 +1,239 @@
+---
+title: "Troubleshooting"
+description: "Sessions that won't decrypt, computers that go dead, a frozen island — what each state means and what to do about it."
+icon: "wrench"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
+---
+
+Most of what looks like a bug here is Nomo being honest about not knowing
+something. This page is what each of those states actually means, grouped by
+where you'd go to fix it.
+
+If more than one thing looks wrong at once, skip ahead and
+[start with status](#start-with-status) — it usually names the problem in one
+screen.
+
+## Fix it on your phone
+
+Nothing to do at your Mac for any of these.
+
+<AccordionGroup>
+
+<Accordion title="Nothing appears on the Dynamic Island" icon="circle-dot">
+  Almost always the intended behaviour: sessions are **opt-in**. Open the
+  computer, find the session, flip its switch — or turn on **Auto add new
+  sessions** in [Settings](/sessions/settings#dynamic-island).
+
+  If the switch is on and still nothing shows, check **Live Activities** is
+  enabled for Nomo in iOS Settings. Then check that another session isn't
+  holding the island: your phone shows [one at a
+  time](/sessions/island#which-session-it-picks), and a session that has been
+  waiting on you outranks one that's working.
+</Accordion>
+
+<Accordion title="A session's island switch is on, greyed out, and won't turn off" icon="toggle-off">
+  That session is asking permission. A prompt reaches your island whichever way
+  its switch is set — otherwise a prompt that arrived while your phone was in
+  your pocket would be one you couldn't answer, which is the whole point of the
+  feature. So the switch shows **on** while the prompt waits, because that's
+  what's actually happening.
+
+  **Why you can't turn it off:** turning it off wouldn't do anything. The prompt
+  would stay on the island regardless — that's the only way it can reach you —
+  so the switch would flick back on under your thumb a second later. Rather than
+  give you a control that ignores you, Nomo holds it still until it can obey you
+  again.
+
+  Nothing you chose was overwritten. Answer the prompt and the switch goes
+  straight back to off, where you left it — or within the hour, if nobody
+  answers. Then it's yours to set again.
+
+  None of this happens with **Remote approvals** off, which is the default: your
+  switch is never overridden. See
+  [Answering from your phone](/sessions/approvals).
+</Accordion>
+
+<Accordion title="The island is frozen, or says Disconnected?" icon="wifi">
+  The island shows the last thing your Mac sent. After ten minutes of silence it
+  drains of colour and says `Disconnected?` rather than continuing to imply the
+  session is live.
+
+  Your Mac asleep, off the network, or the terminal closed all land here. Open
+  the Nomo app to force a refresh — a stale state corrects itself immediately.
+  If it doesn't, the Mac genuinely isn't reporting: run the status command
+  below.
+</Accordion>
+
+<Accordion title="Prompts reach my phone but there's nothing to tap" icon="hand">
+  Check the **colour**, not the icon. Yellow and violet both draw a raised hand.
+  Yellow (`Need help`) means the agent stopped for something only the terminal
+  can take. Violet (`Needs permission`) is the answerable one.
+
+  If everything is yellow and never violet, **Answer on iPhone** is probably
+  off — it's off by default. See
+  [Answering from your phone](/sessions/approvals).
+</Accordion>
+
+</AccordionGroup>
+
+## Fix it on your computer
+
+Your phone is fine. These are all settled from a session on the Mac.
+
+<AccordionGroup>
+
+<Accordion title="The drawer says remote approvals are paused" icon="pause">
+  Someone ran the pause command on that computer. Resume it from a session on
+  that machine:
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:approvals on
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-approvals on
+  ```
+  </CodeGroup>
+
+  One switch per computer, shared by both agents —
+  [more](/sessions/commands#approvals).
+</Accordion>
+
+<Accordion title="Codex stopped sending prompts after an update" icon="code">
+  Codex hooks ship **inert until trusted**, and a plugin update that adds a hook
+  re-opens that review. Run `/hooks` in Codex and trust the Nomo entries. Until
+  you do, approvals fall back to the terminal and nothing reports an error.
+
+  More in [Using Codex](/sessions/codex#hooks-have-to-be-trusted).
+</Accordion>
+
+<Accordion title="Options are missing when I touch and hold" icon="ellipsis">
+  **Always allow**, **Deny with note…** and **Answer…** all need plugin
+  **2.0.0** — answering from the phone is what 2.0 added. Nomo hides options the
+  Mac can't honour rather than offering a button that would do nothing.
+
+  A `Plugin update available` banner at the top of the drawer means exactly
+  that. Update from the same command you installed with.
+</Accordion>
+
+<Accordion title="Rows look stale or duplicated" icon="broom">
+  Clear the dead ones without unpairing:
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+  </CodeGroup>
+
+  Live sessions, your pairing and your keys are left alone —
+  [what it prints](/sessions/commands#reset).
+</Accordion>
+
+</AccordionGroup>
+
+## Pairing and decryption
+
+Your phone is receiving updates it can't read, or a computer it no longer has a
+key for. All three end at the same fix: pair that computer again.
+
+<AccordionGroup>
+
+<Accordion title="A row says Encrypted session, or Reconnecting…" icon="lock">
+  Your phone received the update but hasn't unlocked it yet. Nomo retries every
+  few seconds, and this usually clears itself within one poll.
+
+  If it persists, your phone no longer holds the right key for that computer —
+  the Mac was re-paired, or the pairing was replaced. Pair it again.
+</Accordion>
+
+<Accordion title="A row says Unavailable" icon="ban">
+  The same thing, after ten minutes of failing. Rather than leaving a row that
+  looks alive but isn't, Nomo marks it dead and stops guessing at its contents.
+  It won't drive the island and it won't be counted as active. Re-pairing the
+  computer restores it.
+</Accordion>
+
+<Accordion title="A computer says No longer paired" icon="laptop">
+  That pairing was revoked — you re-paired the Mac, or ran
+  [`/nomo-cc:unpair`](/sessions/commands#unpair) on it. Nomo waits for a
+  sustained run of failures before believing it, so this is never a
+  flaky-minute-of-Wi-Fi diagnosis.
+
+  Tap **Remove**, or leave it — it clears itself about a minute later. Pair the
+  computer again when you want it back.
+</Accordion>
+
+</AccordionGroup>
+
+## Start with status
+
+If more than one thing looks wrong, run
+[`/nomo-cc:status`](/sessions/commands#status) on the Mac before anything else.
+One screen tells you whether the machine is paired, whether its watchdog is
+alive, and whether events are actually reaching your phone — which is usually
+enough to say what's broken.
+
+`Last event sent: never` with a session genuinely running means the hooks aren't
+firing. Restart Claude Code so they load; for Codex, run `/hooks`.
+
+Every command, and what its output means, is on
+[Commands](/sessions/commands).
+
+## Still wrong? Send it over
+
+Turn on **Session diagnostics** in [Settings](/sessions/settings#debug), then
+expand the session that's misbehaving. A line of Nomo's own internal state
+appears underneath it, something like:
+
+```
+2.0.0 · lan:hold 0.4s · dp
+```
+
+Don't try to decode it — that's our job. Screenshot the row and send it, along
+with what you expected and what you got instead:
+
+<CardGroup cols={2}>
+  <Card title="Open an issue" href="https://github.com/KarrixLee/nomo/issues" icon="github">
+    Best for anything reproducible. Public, so leave out anything private.
+  </Card>
+  <Card title="Email" href="mailto:karrixlee1231@gmail.com" icon="envelope">
+    Also in the app, under **Settings → Contact**.
+  </Card>
+</CardGroup>
+
+The output of [`/nomo-cc:status`](/sessions/commands#status) from the affected
+computer helps too.
+
+## Nothing's broken — you just want something
+
+"Why can't I do X from my phone?" is often a fair question rather than a bug.
+Some of it is a real limit of what an agent hands to a plugin, and that's
+written down: [Using Codex](/sessions/codex) covers the Codex side, and
+[Answering from your phone](/sessions/approvals) covers what a Live Activity can
+and can't host.
+
+The rest is just not built yet.
+
+<CardGroup cols={2}>
+  <Card title="Check the roadmap" href="https://nomo.gg/roadmap" icon="map">
+    What's planned and what's in progress. Your idea may already be on it.
+  </Card>
+  <Card title="Ask for it" href="https://github.com/KarrixLee/nomo/issues" icon="lightbulb">
+    Open an issue, or [email me](mailto:karrixlee1231@gmail.com). Tell me what
+    you were trying to do — that's more useful than the feature you'd designed.
+  </Card>
+</CardGroup>
+
+## Starting over
+
+[`/nomo-cc:unpair`](/sessions/commands#unpair) on the affected computer removes
+the pairing and erases its key. Then [pair it again](/setup/pairing).
+
+Forgetting a computer **from the phone** is not the same thing: it stops that
+computer appearing in your app, but the Mac keeps its local state until you run
+that command there.

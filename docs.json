@@ -43,7 +43,18 @@
         "https://x.com/karrixthediv",
         "https://apps.apple.com/app/nomo-ai-status-usage/id6779366830"
       ]
-    }
+    },
+    "metatags": {
+      "author": "Karrix Lee",
+      "robots": "index, follow",
+      "og:site_name": "Nomo",
+      "og:type": "website",
+      "og:locale": "en_US",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@karrixthediv",
+      "apple-mobile-web-app-title": "Nomo"
+    },
+    "indexing": "all"
   },
   "navigation": {
     "languages": [
@@ -92,12 +103,25 @@
                 ]
               },
               {
-                "group": "Sessions",
+                "group": "On your phone",
                 "pages": [
                   "sessions/list",
                   "sessions/island",
                   "sessions/approvals",
-                  "sessions/visibility"
+                  "sessions/settings"
+                ]
+              },
+              {
+                "group": "On your computer",
+                "pages": [
+                  "sessions/commands",
+                  "sessions/codex"
+                ]
+              },
+              {
+                "group": "Help",
+                "pages": [
+                  "sessions/troubleshooting"
                 ]
               }
             ]
@@ -142,10 +166,31 @@
             "groups": [
               {
                 "group": "Configuración",
-                "icon": "wrench",
                 "pages": [
                   "es/setup/install",
                   "es/setup/pairing"
+                ]
+              },
+              {
+                "group": "En tu iPhone",
+                "pages": [
+                  "es/sessions/list",
+                  "es/sessions/island",
+                  "es/sessions/approvals",
+                  "es/sessions/settings"
+                ]
+              },
+              {
+                "group": "En tu ordenador",
+                "pages": [
+                  "es/sessions/commands",
+                  "es/sessions/codex"
+                ]
+              },
+              {
+                "group": "Ayuda",
+                "pages": [
+                  "es/sessions/troubleshooting"
                 ]
               }
             ]
@@ -190,10 +235,31 @@
             "groups": [
               {
                 "group": "セットアップ",
-                "icon": "wrench",
                 "pages": [
                   "ja/setup/install",
                   "ja/setup/pairing"
+                ]
+              },
+              {
+                "group": "iPhone 側",
+                "pages": [
+                  "ja/sessions/list",
+                  "ja/sessions/island",
+                  "ja/sessions/approvals",
+                  "ja/sessions/settings"
+                ]
+              },
+              {
+                "group": "コンピュータ側",
+                "pages": [
+                  "ja/sessions/commands",
+                  "ja/sessions/codex"
+                ]
+              },
+              {
+                "group": "ヘルプ",
+                "pages": [
+                  "ja/sessions/troubleshooting"
                 ]
               }
             ]
@@ -238,10 +304,31 @@
             "groups": [
               {
                 "group": "설정",
-                "icon": "wrench",
                 "pages": [
                   "ko/setup/install",
                   "ko/setup/pairing"
+                ]
+              },
+              {
+                "group": "iPhone에서",
+                "pages": [
+                  "ko/sessions/list",
+                  "ko/sessions/island",
+                  "ko/sessions/approvals",
+                  "ko/sessions/settings"
+                ]
+              },
+              {
+                "group": "컴퓨터에서",
+                "pages": [
+                  "ko/sessions/commands",
+                  "ko/sessions/codex"
+                ]
+              },
+              {
+                "group": "도움말",
+                "pages": [
+                  "ko/sessions/troubleshooting"
                 ]
               }
             ]
@@ -286,10 +373,31 @@
             "groups": [
               {
                 "group": "设置",
-                "icon": "wrench",
                 "pages": [
                   "zh-Hans/setup/install",
                   "zh-Hans/setup/pairing"
+                ]
+              },
+              {
+                "group": "在手机上",
+                "pages": [
+                  "zh-Hans/sessions/list",
+                  "zh-Hans/sessions/island",
+                  "zh-Hans/sessions/approvals",
+                  "zh-Hans/sessions/settings"
+                ]
+              },
+              {
+                "group": "在电脑上",
+                "pages": [
+                  "zh-Hans/sessions/commands",
+                  "zh-Hans/sessions/codex"
+                ]
+              },
+              {
+                "group": "帮助",
+                "pages": [
+                  "zh-Hans/sessions/troubleshooting"
                 ]
               }
             ]
@@ -334,10 +442,31 @@
             "groups": [
               {
                 "group": "設定",
-                "icon": "wrench",
                 "pages": [
                   "zh-Hant/setup/install",
                   "zh-Hant/setup/pairing"
+                ]
+              },
+              {
+                "group": "在手機上",
+                "pages": [
+                  "zh-Hant/sessions/list",
+                  "zh-Hant/sessions/island",
+                  "zh-Hant/sessions/approvals",
+                  "zh-Hant/sessions/settings"
+                ]
+              },
+              {
+                "group": "在電腦上",
+                "pages": [
+                  "zh-Hant/sessions/commands",
+                  "zh-Hant/sessions/codex"
+                ]
+              },
+              {
+                "group": "說明",
+                "pages": [
+                  "zh-Hant/sessions/troubleshooting"
                 ]
               }
             ]

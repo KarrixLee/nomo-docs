@@ -1,0 +1,197 @@
+---
+title: "Commands"
+description: "Every Nomo command for Claude Code and Codex — pairing, status, approvals, reset and unpair — in one place."
+icon: "terminal"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Commands"]
+---
+
+Five commands, same five on both agents. You run them from inside an agent
+session on the computer you want to affect — a `/` command in Claude Code, a
+`$` skill in Codex.
+
+<Tip>
+  In Claude Code everything is namespaced: typing `/nomo-cc:` lists them all.
+</Tip>
+
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex |
+| --- | --- | --- |
+| <a href="#pair">Pair this computer</a> | `/nomo-cc:pair` | `$nomo-pair` |
+| <a href="#status">Check health</a> | `/nomo-cc:status` | `$nomo-status` |
+| <a href="#approvals">Pause or resume approvals</a> | `/nomo-cc:approvals` | `$nomo-approvals` |
+| <a href="#reset">Clear stuck sessions</a> | `/nomo-cc:reset` | `$nomo-reset` |
+| <a href="#unpair">Disconnect this computer</a> | `/nomo-cc:unpair` | `$nomo-unpair` |
+
+None of them can fail loudly. Every one exits cleanly even when there's nothing
+to do — `Not paired` is a success, not an error.
+
+## pair
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:pair          # QR code, opens your browser
+/nomo-cc:pair code     # one-time code, printed in the terminal
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-pair             # QR code, opens your browser
+$nomo-pair code        # one-time code, printed in the terminal
+```
+</CodeGroup>
+
+With no argument it opens a themed page in your browser with a QR code. Scan it
+in the app and the page flips to **Paired ✓** on its own.
+
+The `code` argument skips the browser entirely and prints a typeable one-time
+code, for a headless box or an SSH session. It's the second-choice path on
+purpose: that code lands in your terminal, and therefore in the agent's
+transcript.
+
+Pairings expire after **10 minutes** unused. One pairing covers the machine, not
+the agent — Claude Code and Codex on the same Mac share it. Full walkthrough in
+[Pairing](/setup/pairing).
+
+## status
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+</CodeGroup>
+
+The one to run first when anything looks wrong.
+
+```
+Paired: yes (pairing 3f9a21c8…)
+Worker: https://api.nomo.gg
+Watchdog: running (pid 48213)
+Last event sent: 8s ago
+Tracked sessions: 3
+Codex plugin: installed, trusted (7/7)
+Codex Plan answers: bridge available (shared app-server socket accepted a connection)
+```
+
+Line by line:
+
+<ResponseField name="Paired">
+  `no` means this machine was never connected. `pairing started, waiting for
+  phone scan` means you opened a pairing page and never scanned it.
+</ResponseField>
+
+<ResponseField name="Watchdog">
+  `not running` on an active session is fine — it starts itself on the next one.
+</ResponseField>
+
+<ResponseField name="Last event sent">
+  `never` with a session actually running means the hooks aren't firing. Restart
+  Claude Code so they load; for Codex, run `/hooks`.
+</ResponseField>
+
+<ResponseField name="Codex plugin">
+  `installed, hooks NOT trusted (run /hooks in Codex)` is the one that catches
+  people — see [Using Codex](/sessions/codex#hooks-have-to-be-trusted).
+</ResponseField>
+
+<ResponseField name="Codex Plan answers">
+  `bridge available` means questions reach your phone with their options.
+  `status-only` means they don't —
+  [why](/sessions/codex#questions-in-the-cli-and-the-desktop-app).
+</ResponseField>
+
+It also warns about the two setups that silently double-report every event:
+leftover Codex hooks from before the native plugin, and Codex auto-discovering
+the Claude Code plugin alongside its own. Both name the file to edit.
+
+## approvals
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:approvals off      # pause on this computer
+/nomo-cc:approvals on       # resume
+/nomo-cc:approvals status   # which way is it set
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-approvals off         # pause on this computer
+$nomo-approvals on          # resume
+$nomo-approvals status      # which way is it set
+```
+</CodeGroup>
+
+Pauses remote approvals for **this computer**, so permission prompts go straight
+to the terminal instead of waiting on your phone. The escape hatch for a phone
+that's dead or out of reach.
+
+```
+Remote approvals are OFF for this computer — Claude Code permission prompts
+will appear in the terminal as usual (your phone is not asked).
+```
+
+One switch per computer, **shared by both agents** — pausing it in Codex pauses it for Claude Code on
+that machine too. It doesn't unpair anything and doesn't touch your phone's
+settings.
+
+There's a separate, phone-wide switch: **Answer on iPhone** in
+[Settings](/sessions/settings#remote-approvals).
+
+## reset
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:reset
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-reset
+```
+</CodeGroup>
+
+Stops the watchdog and clears dead or phantom session rows, then tells your
+phone to drop them.
+
+```
+Stopped the watchdog (it restarts automatically on your next session).
+Cleared 4 stale session record(s) (4 end signals delivered to your phone).
+Left 2 live sessions untouched.
+Pairing and keys were not touched — use the unpair command if you want that.
+```
+
+The safe thing to reach for when rows look stale or duplicated, because it says
+what it left alone.
+
+## unpair
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:unpair
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-unpair
+```
+</CodeGroup>
+
+Revokes the pairing and erases the key on that computer.
+
+Forgetting a computer **from the phone** is not the same thing: that stops it
+appearing in your app, but the Mac keeps its local state until you run this
+there.
+
+## Where state lives
+
+Everything the plugin keeps sits in `~/.config/cc-status/` — the pairing, the
+encryption key (mode `0600`), one file per tracked session, and a local trace
+log. Nothing in that folder is sent anywhere.
+
+## Read the source
+
+These commands are the plugin, and the plugin is open source. If you want to
+know exactly what runs on your machine and what leaves it, the answer is in one
+repository — marketplace installs are a plain clone of it.
+
+<Card title="KarrixLee/nomo" href="https://github.com/KarrixLee/nomo" icon="github" horizontal>
+  The full plugin source, MIT licensed. Issues and bug reports live here too.
+</Card>

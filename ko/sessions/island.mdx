@@ -1,0 +1,166 @@
+---
+title: "Dynamic Island"
+description: "Nomo가 Dynamic Island와 잠금 화면에 표시하는 내용, 각 색이 뜻하는 것, 그리고 어느 세션을 표시할지 정하는 방식."
+icon: "circle-dot"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "Dynamic Island"]
+---
+
+휴대폰에는 **한 번에 세션 하나**만 표시됩니다. 컴퓨터마다 하나도 아니고,
+에이전트마다 하나도 아니며, 기기 전체에서 하나입니다. 아래 내용은 모두 그
+하나에 관한 것입니다.
+
+## 직접 켠 세션만 표시 {#nothing-appears-until-you-say-so}
+
+기본값에서는 **잠금 화면에도 Dynamic Island에도 세션이 표시되지 않습니다.**
+페어링에 성공했는데 Dynamic Island가 비어 있다면 고장이 아닙니다.
+
+Dynamic Island는 하루 종일 잠금 화면에 자리 잡고 있습니다. 시작한 세션이 모두
+그 자리를 차지한다면, 바쁜 오후 한 번이면 한 시간 전에 이미 관심을 끊은 세션이
+휴대폰을 가득 채울 것입니다. 그래서 앱은 전부 나열하고, Dynamic Island는 사용자가
+고른 것만 표시합니다.
+
+세션을 올리려면 컴퓨터를 열고 세션을 찾아 스위치를 켭니다. 새 세션마다 Nomo가
+알아서 올리게 하려면 [설정](/ko/sessions/settings#dynamic-island)에서
+**새 세션 자동 추가**를 켭니다. 이 설정은 베타입니다. iOS가 Dynamic Island를
+다시 그리는 빈도를 제한하는데, 실시간 세션이 많으면 그 한계에 부딪히기
+때문입니다.
+
+<Note>
+  의도된 예외가 하나 있습니다. **원격 승인**이 켜져 있으면 **권한을 요청하는**
+  세션은 스위치가 꺼져 있어도 Dynamic Island에 표시되며, 요청이 대기하는 동안
+  스위치가 켜진 채 비활성화됩니다. 사용자의 설정이 바뀐 것은 아닙니다.
+  [어떻게 보이는지 보기](/ko/sessions/troubleshooting).
+</Note>
+
+## 표시할 세션의 선택 기준 {#which-session-it-picks}
+
+표시 대상이 여럿일 때 Nomo는 가장 최근 세션이 아니라, 사용자를 가장 붙잡고 있을
+가능성이 큰 세션을 보여 줍니다.
+
+<Steps>
+  <Step title="기다리는 세션이 우선">
+    권한을 요청하는 세션, 또는 멈춰서 지시를 기다리는 세션이 아직 작업 중인
+    어떤 세션보다 앞섭니다.
+  </Step>
+  <Step title="가장 오래 기다린 세션이 자리를 지킴">
+    기다리는 세션끼리는 가장 오래 기다린 쪽이 Dynamic Island를 차지합니다. 새
+    요청이 그 자리를 **밀어낼 수 없습니다** — 그러지 않으면 막 답하려던 것이
+    손가락 아래에서 계속 바뀌게 됩니다.
+  </Step>
+  <Step title="그 외에는 최근 활동 순">
+    작업 중인 세션끼리는 가장 최근 것이 표시됩니다.
+  </Step>
+</Steps>
+
+30분 넘게 조용한 세션은 후보에서 아예 빠집니다. 표시 대상이 모두 끝나고 조용해지면
+Dynamic Island는 스스로 비워집니다.
+
+교체는 제자리에서 일어납니다 — 같은 카드가 갱신될 뿐, 사라졌다 다시 나타나지
+않습니다. 특정 세션을 그 자리에 고정하는 방법은 없으며, 위 규칙이 전부입니다.
+
+## 카드 읽는 법 {#reading-it}
+
+| | 레이블 | 의미 |
+| :---: | --- | --- |
+| <img src="/images/claude-code.svg" alt="Claude Code" className="agent-mark" /><img src="/images/codex.svg" alt="Codex" className="agent-mark" /> | `작업 중` | 실행 중입니다. 에이전트 고유의 마크가 자리를 잡고, 컴팩트 쪽에는 그 옆에 타이머가 표시됩니다. 카드의 나머지도 같은 색으로 물듭니다 — Claude Code는 산호색, Codex는 연보라색입니다. |
+| <Icon icon="hand" color="#E5A50A" /> | `도움 필요` | 멈춰서 사용자를 기다리지만, 탭할 것이 없습니다. Mac으로 가십시오. |
+| <Icon icon="file-lines" color="#E5A50A" /> | `계획 준비됨` | 계획이 기다리고 있습니다. **계획 보기**를 탭해 읽으십시오. |
+| <Icon icon="hand" color="#7A5CF0" /> | `권한 필요` | 권한을 요청합니다. **허용과 거부가 바로 거기 있습니다.** |
+| <Icon icon="check" color="#4CAF50" /> | `완료` | 끝났으며, 최종 실행 시간이 옆에 고정됩니다. |
+| <Icon icon="wifi-slash" color="#8E8E93" /> | `연결 끊김?` | Nomo가 이 Mac의 소식을 10분째 듣지 못했습니다. 카드 전체에서 색이 빠집니다. |
+| <Icon icon="lock" color="#8E8E93" /> | `복호화 중…` | 휴대폰이 아직 업데이트를 열지 못했습니다. 보통 잠깐입니다. |
+| <Icon icon="arrows-rotate" color="#EAA82A" /> | `다시 연결 중` | 휴대폰에 아직 키가 없거나, Mac이 중계 서버와의 연결을 잃고 재시도하는 중입니다. |
+
+<Warning>
+  **노란색과 보라색 모두 손을 든 모양입니다.** 구분은 아이콘이 아니라 **색**으로
+  하십시오. 노란색은 확인하고 Mac으로 가라는 뜻이고, 보라색은 바로 여기에서
+  답하라는 뜻입니다.
+</Warning>
+
+세션이 작업하는 동안 상태 줄은 `작업 중`과 사용 중인 모델 — `⚡ Fable`,
+`⚡ GPT 5.6 Sol` — 사이를 오갑니다. 에이전트가 지금 하는 일을 보고하면 그 내용도
+함께 실립니다: `작업 중 · 편집 중`, `작업 중 · 명령 실행 중`.
+
+## 네 가지 형태 {#the-four-shapes}
+
+<Tabs>
+  <Tab title="컴팩트">
+    왼쪽에는 에이전트의 마크가, 오른쪽에는 작업 중일 때 **타이머**, 사용자를
+    찾을 때 **손**, 끝났을 때 `✓ 6m`이 표시됩니다.
+
+    <Frame caption="자기 차례를 시작한 지 1분 된 Claude Code 세션.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-compact-working.png" alt="왼쪽에 Claude Code 마스코트, 오른쪽에 1:08 타이머가 표시된 컴팩트 형태의 Dynamic Island" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="최소">
+    다른 앱이 Dynamic Island를 함께 쓰면 Nomo는 기호 하나로 줄어듭니다. 작업
+    중에는 에이전트의 마크, 사용자를 찾을 때는 손, 끝나면 초록색 체크 표시입니다.
+
+    <Frame caption="피트니스가 Dynamic Island를 차지하고, Nomo는 오른쪽 동그라미에서 노란 손을 들고 있습니다.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-minimal-attention.png" alt="두 앱이 나눠 쓰는 Dynamic Island. Nomo는 노란 손을 든 작은 동그라미로 줄어들어 있다" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="확장">
+    Dynamic Island를 길게 터치합니다. 에이전트의 마크와 흐르는 시계, 그 아래에
+    상태, 세션 제목, 폴더, 그리고 어느 컴퓨터인지가 표시됩니다. 권한 요청이
+    대기 중이면 명령과 **허용** / **거부** 버튼이 아래쪽 절반을 대신합니다.
+    계획이 기다리고 있으면 가로 전체를 채우는 **계획 보기** 버튼이 나타납니다.
+
+    <Frame caption="계획이 준비된 Codex 세션. 상태 단어는 노란색이고, 시계는 에이전트 고유의 연보라색을 띠며, 컨트롤은 계획 보기 하나뿐입니다.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-expanded-plan.png" alt="계획 준비됨과 계획 제목, 폴더, 계획 보기 버튼이 표시된 확장 형태의 Dynamic Island" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="잠금 화면">
+    확장 형태와 같은 내용을 에이전트의 색으로 물든 카드로 보여 줍니다. 여기는
+    공간이 더 넉넉해서 상태 단어가 줄지 않고 그대로 적힙니다 — Dynamic Island가
+    `권한`으로 줄이는 자리에 `권한 필요`가 그대로 표시됩니다.
+
+    카드의 모든 곳을 탭할 수 있고, 앱에서 해당 세션으로 바로 연결되므로 찾아
+    헤맬 필요가 없습니다.
+
+    <Frame caption="잠금 화면의 권한 요청. 휴대폰을 잠금 해제하지 않고도 답할 수 있습니다.">
+      <div className="device-frame">
+        <img src="/images/lock-screen-live-activity.png" alt="권한 필요와 명령, 거부 및 허용 버튼이 표시된 Nomo 실시간 현황 카드가 놓인 iPhone 잠금 화면" />
+      </div>
+    </Frame>
+  </Tab>
+</Tabs>
+
+## 타이머 {#the-timer}
+
+세션이 작업하는 동안 컴팩트 쪽에서 시간이 올라갑니다. 처음 5분 동안은 `M:SS`가
+실시간으로 흐르고, 그 뒤에는 `7m`, `1h 2m`으로, 열 시간이 넘으면 `10h`로
+자리 잡습니다. Dynamic Island가 하루 종일 깜빡이지 않도록 하기 위해서입니다.
+
+시계는 세션 전체가 아니라 **현재 차례**를 기준으로 하므로, 새 프롬프트를 보낼
+때마다 다시 시작합니다. 세션이 끝나면 시계는 실제로 끝난 시각에 멈추며, 그 뒤에
+오는 하트비트가 시간을 부풀리지 못합니다.
+
+Nomo가 그럴듯한 시작 시각을 계산하지 못하면 틀린 타이머를 보여 주는 대신 아무것도
+표시하지 않습니다.
+
+## 업데이트가 끊겼을 때 {#when-it-goes-quiet}
+
+Dynamic Island는 Mac이 마지막으로 보낸 상태를 보여 줍니다. **10분** 동안 아무
+소식이 없으면 더 이상 그런 척하지 않습니다. 카드에서 색이 빠지고, 타이머가
+사라지며, 상태가 `연결 끊김?`으로 바뀝니다. Mac이 잠들었거나, Wi-Fi가 끊겼거나,
+터미널을 닫은 경우가 모두 여기에 해당합니다.
+
+Nomo 앱을 열면 새로고침이 강제로 일어나며, 오래된 상태는 곧바로 바로잡힙니다.
+플러그인도 5분마다 스스로 하트비트를 보내므로, 살아 있지만 놀고 있는 세션이 연결
+끊김으로 표시되지는 않습니다.
+
+끝난 세션은 오래되지 않습니다 — 더 들을 소식이 없기 때문입니다.
+
+<Tip>
+  Dynamic Island 업데이트가 느리게 느껴지면 iOS 설정 > Nomo > 실시간 현황에서
+  **더 잦은 업데이트**를 켜십시오. 이는 앱이 Dynamic Island를 얼마나 자주 다시
+  그릴 수 있는지에 대한 Apple 자체 한도이며, Nomo는 기본값을 기준으로 만들어져
+  있습니다.
+</Tip>

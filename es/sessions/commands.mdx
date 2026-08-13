@@ -1,0 +1,204 @@
+---
+title: "Comandos"
+description: "Todos los comandos de Nomo para Claude Code y Codex —vinculación, estado, aprobaciones, reinicio y desvinculación— en un solo sitio."
+icon: "terminal"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
+---
+
+Cinco comandos, los mismos cinco en los dos agentes. Se ejecutan desde dentro de
+una sesión del agente, en el ordenador al que quieras afectar: un comando con
+`/` en Claude Code, una skill con `$` en Codex.
+
+<Tip>
+  En Claude Code todo va con espacio de nombres: al escribir `/nomo-cc:` se
+  listan todos.
+</Tip>
+
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex |
+| --- | --- | --- |
+| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` |
+| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` |
+| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` |
+| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` |
+| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` |
+
+Ninguno puede fallar a gritos. Todos terminan limpiamente incluso cuando no hay
+nada que hacer: `Not paired` es un éxito, no un error.
+
+## pair {#pair}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:pair          # QR code, opens your browser
+/nomo-cc:pair code     # one-time code, printed in the terminal
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-pair             # QR code, opens your browser
+$nomo-pair code        # one-time code, printed in the terminal
+```
+</CodeGroup>
+
+Sin argumentos abre en tu navegador una página con la estética de la app y un
+código QR. Escanéalo en la app y la página cambia sola a **Paired ✓**.
+
+El argumento `code` se salta el navegador por completo e imprime un código de un
+solo uso que puedes escribir, pensado para una máquina sin interfaz gráfica o una
+sesión SSH. Es la vía de segunda opción a propósito: ese código acaba en tu
+terminal y, por tanto, en la transcripción del agente.
+
+Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubre
+la máquina, no el agente: Claude Code y Codex en el mismo Mac la comparten. El
+recorrido completo está en [Vinculación](/es/setup/pairing).
+
+## status {#status}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+</CodeGroup>
+
+El primero que hay que ejecutar cuando algo se ve raro.
+
+```
+Paired: yes (pairing 3f9a21c8…)
+Worker: https://api.nomo.gg
+Watchdog: running (pid 48213)
+Last event sent: 8s ago
+Tracked sessions: 3
+Codex plugin: installed, trusted (7/7)
+Codex Plan answers: bridge available (shared app-server socket accepted a connection)
+```
+
+Línea a línea:
+
+<ResponseField name="Paired">
+  `no` significa que esta máquina nunca llegó a conectarse. `pairing started,
+  waiting for phone scan` significa que abriste una página de vinculación y nunca
+  la escaneaste.
+</ResponseField>
+
+<ResponseField name="Watchdog">
+  `not running` con una sesión activa no pasa nada: el proceso supervisor arranca
+  solo en la siguiente.
+</ResponseField>
+
+<ResponseField name="Last event sent">
+  `never` con una sesión realmente en marcha significa que los hooks no se están
+  disparando. Reinicia Claude Code para que se carguen; en Codex, ejecuta
+  `/hooks`.
+</ResponseField>
+
+<ResponseField name="Codex plugin">
+  `installed, hooks NOT trusted (run /hooks in Codex)` es la que pilla a la
+  gente — ve [Usar Codex](/es/sessions/codex#hooks-have-to-be-trusted).
+</ResponseField>
+
+<ResponseField name="Codex Plan answers">
+  `bridge available` significa que las preguntas llegan a tu teléfono con sus
+  opciones. `status-only` significa que no —
+  [por qué](/es/sessions/codex#questions-in-the-cli-and-the-desktop-app).
+</ResponseField>
+
+También avisa de las dos configuraciones que duplican en silencio el reporte de
+cada evento: hooks de Codex sobrantes de antes del plugin nativo, y Codex
+descubriendo por su cuenta el plugin de Claude Code junto al suyo. Las dos
+nombran el archivo que hay que editar.
+
+## approvals {#approvals}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:approvals off      # pause on this computer
+/nomo-cc:approvals on       # resume
+/nomo-cc:approvals status   # which way is it set
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-approvals off         # pause on this computer
+$nomo-approvals on          # resume
+$nomo-approvals status      # which way is it set
+```
+</CodeGroup>
+
+Pausa las aprobaciones remotas en **este ordenador**, de modo que las solicitudes
+de permiso van directas al terminal en lugar de esperar a tu teléfono. La salida
+de emergencia para un teléfono sin batería o fuera de alcance.
+
+```
+Remote approvals are OFF for this computer — Claude Code permission prompts
+will appear in the terminal as usual (your phone is not asked).
+```
+
+Un interruptor por ordenador, **compartido por los dos agentes**: pausarlo en
+Codex lo pausa también para Claude Code en esa máquina. No desvincula nada y no
+toca los ajustes de tu teléfono.
+
+Hay otro interruptor aparte, para todo el teléfono: **Responder en el iPhone**
+en [Ajustes](/es/sessions/settings#remote-approvals).
+
+## reset {#reset}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:reset
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-reset
+```
+</CodeGroup>
+
+Detiene el proceso supervisor y limpia las filas de sesión muertas o fantasma, y
+después le dice a tu teléfono que las suelte.
+
+```
+Stopped the watchdog (it restarts automatically on your next session).
+Cleared 4 stale session record(s) (4 end signals delivered to your phone).
+Left 2 live sessions untouched.
+Pairing and keys were not touched — use the unpair command if you want that.
+```
+
+Es lo seguro a lo que recurrir cuando las filas se ven obsoletas o duplicadas,
+porque dice qué ha dejado intacto.
+
+## unpair {#unpair}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:unpair
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-unpair
+```
+</CodeGroup>
+
+Revoca la vinculación y borra la clave en ese ordenador.
+
+Olvidar un ordenador **desde el teléfono** no es lo mismo: eso hace que deje de
+aparecer en tu app, pero el Mac conserva su estado local hasta que ejecutes esto
+allí.
+
+## Dónde se guarda el estado {#where-state-lives}
+
+Todo lo que guarda el plugin está en `~/.config/cc-status/`: la vinculación, la
+clave de cifrado (modo `0600`), un archivo por sesión seguida y un registro de
+traza local. Nada de esa carpeta se envía a ningún sitio.
+
+## El código fuente {#read-the-source}
+
+Estos comandos son el plugin, y el plugin es de código abierto. Si quieres saber
+exactamente qué se ejecuta en tu máquina y qué sale de ella, la respuesta está en
+un solo repositorio: las instalaciones desde el marketplace son un clon literal
+de él.
+
+<Card title="KarrixLee/nomo" href="https://github.com/KarrixLee/nomo" icon="github" horizontal>
+  El código completo del plugin, con licencia MIT. Las incidencias y los informes
+  de errores también van aquí.
+</Card>

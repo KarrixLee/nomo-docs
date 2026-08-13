@@ -1,52 +1,169 @@
 ---
-title: "Reading the island"
-description: "What the colors and the hand icon mean on the Dynamic Island and Lock Screen."
+title: "The Dynamic Island"
+description: "What Nomo shows on the Dynamic Island and Lock Screen, what each colour means, and how it picks which session to show."
 icon: "circle-dot"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "The Dynamic Island"]
 ---
 
-Once a session is showing on your island, you can read its state without
-unlocking your phone. There are only two signals that matter.
+Your phone shows **one session at a time**. Not one per computer, not one per
+agent — one, device-wide. Everything below is about that one.
 
-{/* TODO: side-by-side screenshot — yellow state vs purple hand state */}
+## Nothing appears until you say so
 
-## Yellow means "look at me"
+By default, **no session appears on your Lock Screen or Dynamic Island.** If
+you paired successfully and your island is empty, nothing is broken.
 
-Claude stopped and wants you. It finished a turn, or it needs an instruction
-only you can give.
+The island sits on your Lock Screen all day. If every session you started
+claimed it, one busy afternoon would bury your phone in sessions you stopped
+caring about an hour ago. So the app lists everything, and the island shows
+only what you chose.
 
-There is nothing to tap. Yellow is a notification, not a question — you have to
-go back to your Mac to move it forward.
+To put a session there, open the computer, find the session, and flip its
+switch. To have Nomo do it for you on every new session, turn on **Auto add new
+sessions** in [Settings](/sessions/settings#dynamic-island) — a beta setting,
+because iOS meters how often the island may repaint and a large batch of live
+sessions will bump into that ceiling.
 
-## The purple hand means "answer me"
+<Note>
+  One exception, and it's deliberate: with **Remote approvals** on, a session
+  that's **asking permission** appears on the island even with its switch off —
+  and its switch shows on and greyed out for as long as the prompt waits. Your
+  setting isn't changed. [What that looks
+  like](/sessions/troubleshooting).
+</Note>
 
-Claude is asking permission for a specific action, and **this is the one you can
-answer from your phone.** The hand icon is the tell: if you see it, Allow and
-Deny buttons are there.
+## Which session it picks
 
-<Tip>
-  If you remember one thing from this page: **hand = tappable.** Everything else
-  is informational.
-</Tip>
+When several sessions are eligible, Nomo doesn't show you the newest — it shows
+you the one most likely to be blocking you:
 
-Tap into the island and answer it. Claude picks up immediately — see
-[Answering from your phone](/sessions/approvals).
+<Steps>
+  <Step title="Anything waiting on you wins">
+    A session asking permission, or one that stopped and needs an instruction,
+    outranks anything still working.
+  </Step>
+  <Step title="The oldest waiter is sticky">
+    Among sessions waiting on you, the one that has been waiting longest holds
+    the island. A newer prompt **cannot** shove it aside — otherwise the thing
+    you were about to answer would keep getting stolen from under your thumb.
+  </Step>
+  <Step title="Otherwise, most recent activity">
+    Between working sessions, the freshest one shows.
+  </Step>
+</Steps>
+
+Sessions that have been silent for over half an hour drop out of the running
+entirely. If everything eligible has finished and gone quiet, the island clears
+itself.
+
+Swapping happens in place — the same card updates, it doesn't flicker away and
+come back. There's no way to pin one session there permanently; the rule above
+is the whole story.
+
+## Reading it
+
+| | Label | What it means |
+| :---: | --- | --- |
+| <img src="/images/claude-code.svg" alt="Claude Code" className="agent-mark" /><img src="/images/codex.svg" alt="Codex" className="agent-mark" /> | `Working` | Running. The agent's own mark holds the slot, and the compact side shows a timer beside it. Everything else on the card is tinted to match — coral for Claude Code, periwinkle for Codex. |
+| <Icon icon="hand" color="#E5A50A" /> | `Need help` | Stopped, waiting on you — but there is nothing to tap. Go to the Mac. |
+| <Icon icon="file-lines" color="#E5A50A" /> | `Plan ready` | A plan is waiting. Tap **View plan** to read it. |
+| <Icon icon="hand" color="#7A5CF0" /> | `Needs permission` | Asking permission. **Allow and Deny are right there.** |
+| <Icon icon="check" color="#4CAF50" /> | `Finished` | Done, with the final run time frozen next to it. |
+| <Icon icon="wifi-slash" color="#8E8E93" /> | `Disconnected?` | Nomo hasn't heard from this Mac in 10 minutes. The whole card drains of colour. |
+| <Icon icon="lock" color="#8E8E93" /> | `Decrypting…` | Your phone hasn't unlocked the update yet. Usually momentary. |
+| <Icon icon="arrows-rotate" color="#EAA82A" /> | `Reconnecting` | Either your phone doesn't have the key yet, or the Mac lost the relay and is retrying. |
+
+<Warning>
+  **Yellow and violet both show a raised hand.** The icon is not the tell — the
+  **colour** is. Yellow means look at me and go to your Mac. Violet means answer
+  me, right here.
+</Warning>
+
+While a session is working, the status line alternates between `Working` and
+the model it's using — `⚡ Fable`, `⚡ GPT 5.6 Sol`. When the agent reports what it's
+doing, that rides along too: `Working · Editing`, `Working · Running command`.
+
+## The four shapes
+
+<Tabs>
+  <Tab title="Compact">
+    The agent's mark on the left, and on the right either a **timer** while it
+    works, a **hand** when it wants you, or `✓ 6m` when it's done.
+
+    <Frame caption="A Claude Code session one minute into its turn.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-compact-working.png" alt="The Dynamic Island in its compact form, showing Claude Code's mascot on the left and a 1:08 timer on the right" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="Minimal">
+    When another app shares the island, Nomo collapses to a single symbol: the
+    agent's mark while working, a hand when it needs you, a green checkmark when
+    it's finished.
+
+    <Frame caption="Fitness has the island; Nomo is the circle on the right, holding a yellow hand.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-minimal-attention.png" alt="The Dynamic Island shared between two apps, with Nomo reduced to a small circle showing a yellow raised hand" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="Expanded">
+    Touch and hold the island. The agent's mark and a running clock, then the status,
+    the session title, its folder, and which computer it's on. If a permission
+    prompt is live, the command and the **Allow** / **Deny** buttons replace the
+    lower half. If a plan is waiting, a full-width **View plan** button appears.
+
+    <Frame caption="A Codex session with a plan ready. The status word is yellow, the agent's own periwinkle carries the clock, and View plan is the only control.">
+      <div className="device-frame crop-top">
+        <img src="/images/island-expanded-plan.png" alt="The expanded Dynamic Island showing PLAN READY, the plan's title, its folder, and a View plan button" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="Lock Screen">
+    The same content as expanded, as a card, tinted with the agent's colour.
+    There's more room here, so the status word is written out in full —
+    `NEEDS PERMISSION` where the island shortens it to `PERMISSION`.
+
+    Everything on the card is tappable and deep-links straight to that session
+    in the app, so you don't have to hunt for it.
+
+    <Frame caption="A permission prompt on the Lock Screen. Answerable without unlocking the phone.">
+      <div className="device-frame">
+        <img src="/images/lock-screen-live-activity.png" alt="An iPhone Lock Screen with Nomo's Live Activity card showing NEEDS PERMISSION, a command, and Deny and Allow buttons" />
+      </div>
+    </Frame>
+  </Tab>
+</Tabs>
 
 ## The timer
 
-A live session shows how long it's been running. For the first minute you'll see
-seconds ticking; after that it settles into a coarser label so the island isn't
-flickering at you all day.
+While a session works, the compact side counts up. For the first five minutes
+you get live `M:SS` ticking; after that it settles into `7m`, `1h 2m`, and past
+ten hours into `10h`, so the island isn't flickering at you all day.
 
-## When the island goes quiet
+The clock is anchored to the **current turn**, not the whole session — it
+restarts each time you send a new prompt. When the session finishes, the clock
+freezes at the time it actually ended, and heartbeats afterwards can't inflate
+it.
 
-The island shows the last state your Mac sent. If your Mac sleeps, loses
-network, or the session ends abruptly, the island keeps showing the last thing
-it heard.
+If Nomo can't work out a plausible start time, it shows no timer rather than a
+wrong one.
 
-Open the Nomo app to force a refresh. If the state was stale, it corrects
-itself immediately.
+## When it goes quiet
 
-## Nothing shows up at all
+The island shows the last state your Mac sent. After **10 minutes** of silence
+it stops pretending: the card drains of colour, the timer disappears, and the
+status becomes `Disconnected?`. Your Mac sleeping, losing Wi-Fi, or the terminal
+being closed all land here.
 
-That's the default, and it's deliberate — sessions are opt-in per session. See
-[Choosing what appears](/sessions/visibility).
+Opening the Nomo app forces a refresh, and a stale state corrects itself
+immediately. The plugin also sends a heartbeat every five minutes on its own, so
+a genuinely alive but idle session doesn't get marked disconnected.
+
+Finished sessions never go stale — there's nothing left to hear from.
+
+<Tip>
+  If island updates feel sluggish, turn on **More Frequent Updates** in iOS
+  Settings → Nomo → Live Activities. That's Apple's own budget for how often an
+  app may repaint the island, and Nomo is written against the default.
+</Tip>

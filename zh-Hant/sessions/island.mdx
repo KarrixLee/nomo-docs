@@ -1,0 +1,122 @@
+---
+title: "動態島"
+description: "Nomo 在動態島和鎖定畫面上顯示什麼、每個顏色代表什麼，以及它怎麼挑出要顯示哪一個 session。"
+icon: "circle-dot"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "動態島"]
+---
+
+你的手機**一次只顯示一個 session**。不是每台電腦一個，也不是每個代理一個 — 是整支手機就一個。下面講的全是那一個。
+
+## 預設不顯示任何 session {#nothing-appears-until-you-say-so}
+
+**預設情況下，你的鎖定畫面和動態島上不會出現任何 session。**如果你配對成功、動態島卻是空的，那沒有壞掉。
+
+動態島整天都待在你的鎖定畫面上。如果你開的每個 session 都跑上去，忙碌的一個下午就會讓手機被一小時前你就不在意的 sessions 淹沒。所以 App 裡什麼都列，動態島上只放你挑的。
+
+要把一個 session 放上去，打開那台電腦，找到那個 session，把它的開關打開。想讓 Nomo 幫你對每個新 session 都這樣做，請到[設定](/zh-Hant/sessions/settings#dynamic-island)開啟「自動加入新 sessions」 — 這是一項 beta 設定，因為 iOS 會限制動態島能多常重繪，而一大批即時的 sessions 會撞到這個天花板。
+
+<Note>
+  有一個例外，而且是刻意的：開啟「遠端批准」後，正在**請求權限**的 session 即使開關是關的也會出現在動態島上 — 而且在請求等待期間，它的開關會顯示為開啟並變灰。你的設定沒有被改動。[那看起來是什麼樣子](/zh-Hant/sessions/troubleshooting)。
+</Note>
+
+## session 的挑選規則 {#which-session-it-picks}
+
+當有好幾個 session 都符合資格時，Nomo 不會給你最新的那個 — 它給你最可能正卡住你的那個：
+
+<Steps>
+  <Step title="等你的優先">
+    正在請求權限的 session，或是停下來需要指示的 session，都排在還在工作的前面。
+  </Step>
+  <Step title="等最久的黏住不放">
+    在等你的那些 session 裡，等最久的那個佔住動態島。比較新的請求**不能**把它擠掉 — 否則你正要回覆的那個，就會一直從你指尖底下被搶走。
+  </Step>
+  <Step title="其餘看最近活動">
+    在工作中的 sessions 之間，最新的那個會顯示。
+  </Step>
+</Steps>
+
+超過半小時沒有消息的 sessions 會完全退出競逐。如果所有符合資格的都已經結束而且安靜下來，動態島會自行清空。
+
+替換是原地發生的 — 同一張卡片直接更新，不會閃掉再回來。沒有辦法把某個 session 永久釘在上面；上面那條規則就是全部。
+
+## 狀態解讀 {#reading-it}
+
+| | 標籤 | 代表什麼 |
+| :---: | --- | --- |
+| <img src="/images/claude-code.svg" alt="Claude Code" className="agent-mark" /><img src="/images/codex.svg" alt="Codex" className="agent-mark" /> | `進行中` | 正在執行。代理自己的標記佔住那個位置，精簡狀態的另一側會顯示一個計時器。卡片上其餘的東西都會染成相配的色調 — Claude Code 是珊瑚色，Codex 是長春花色。 |
+| <Icon icon="hand" color="#E5A50A" /> | `需要協助` | 停下來等你 — 但沒有東西可以點。請去 Mac 上處理。 |
+| <Icon icon="file-lines" color="#E5A50A" /> | `計畫待確認` | 有一份計畫在等你。點一下「查看計畫」就能讀。 |
+| <Icon icon="hand" color="#7A5CF0" /> | `需要權限` | 正在請求權限。**「允許」和「拒絕」就在那裡。** |
+| <Icon icon="check" color="#4CAF50" /> | `已完成` | 做完了，旁邊凍結著最後的執行時間。 |
+| <Icon icon="wifi-slash" color="#8E8E93" /> | `已斷線？` | Nomo 有 10 分鐘沒收到這台 Mac 的消息了。整張卡片會褪去顏色。 |
+| <Icon icon="lock" color="#8E8E93" /> | `解密中…` | 你的手機還沒解開這則更新。通常只是一瞬間。 |
+| <Icon icon="arrows-rotate" color="#EAA82A" /> | `重新連線中` | 可能是你的手機還沒拿到金鑰，也可能是 Mac 失去中繼伺服器正在重試。 |
+
+<Warning>
+  **黃色和紫色都是一隻舉起的手。**圖示不是判斷依據 — **顏色**才是。黃色的意思是看我一眼，然後去你的 Mac。紫色的意思是就在這裡回答我。
+</Warning>
+
+session 工作期間，狀態行會在 `進行中` 和它正在用的模型之間交替 — `⚡ Fable`、`⚡ GPT 5.6 Sol`。代理有回報它在做什麼時，那也會一起帶上：`進行中 · 編輯中`、`進行中 · 執行指令`。
+
+## 四種形態 {#the-four-shapes}
+
+<Tabs>
+  <Tab title="精簡">
+    代理的標記在左邊，右邊則是工作時的**計時器**、想找你時的**一隻手**，或做完時的 `✓ 6m`。
+
+    <Frame caption="一個 Claude Code session，這一輪開始一分鐘。">
+      <div className="device-frame crop-top">
+        <img src="/images/island-compact-working.png" alt="精簡形態的動態島，左邊是 Claude Code 的吉祥物，右邊是 1:08 的計時器" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="最小">
+    當另一個 App 一起用動態島時，Nomo 會縮成單一符號：工作時是代理的標記，需要你時是一隻手，完成時是一個綠色的勾。
+
+    <Frame caption="「體能訓練」佔著動態島；Nomo 是右邊那個圓圈，裡面是一隻黃色的手。">
+      <div className="device-frame crop-top">
+        <img src="/images/island-minimal-attention.png" alt="兩個 App 共用的動態島，Nomo 縮成一個顯示黃色舉手的小圓圈" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="展開">
+    按住動態島。代理的標記和一個跑動的時鐘，接著是狀態、session 標題、它的資料夾，以及它在哪一台電腦上。如果有權限請求正在等待，指令和「允許」／「拒絕」按鈕會取代下半部。如果有計畫在等，會出現一個滿版的「查看計畫」按鈕。
+
+    <Frame caption="一個計畫待確認的 Codex session。狀態字是黃色的，代理自己的長春花色帶著時鐘，而「查看計畫」是唯一的控制項。">
+      <div className="device-frame crop-top">
+        <img src="/images/island-expanded-plan.png" alt="展開的動態島顯示「計畫待確認」、計畫標題、資料夾，以及一個「查看計畫」按鈕" />
+      </div>
+    </Frame>
+  </Tab>
+  <Tab title="鎖定畫面">
+    內容和展開形態相同，做成一張卡片，染上代理的顏色。這裡空間比較大，所以狀態字會完整寫出來 — 動態島上縮寫成 `權限` 的地方，這裡是 `需要權限`。
+
+    卡片上每個地方都能點，並直接深層連結到 App 裡的那個 session，你不必去翻找。
+
+    <Frame caption="鎖定畫面上的權限請求。不解鎖手機也能回覆。">
+      <div className="device-frame">
+        <img src="/images/lock-screen-live-activity.png" alt="iPhone 鎖定畫面上 Nomo 的即時動態卡片，顯示「需要權限」、一道指令，以及「拒絕」和「允許」按鈕" />
+      </div>
+    </Frame>
+  </Tab>
+</Tabs>
+
+## 計時器 {#the-timer}
+
+session 工作期間，精簡狀態那一側會往上數。前五分鐘你會看到 `M:SS` 即時跳動；之後就穩定成 `7m`、`1h 2m`，超過十小時後變成 `10h`，這樣動態島才不會整天閃給你看。
+
+這個時鐘錨定在**目前這一輪**，而不是整個 session — 你每送出一個新的提示它就重新開始。session 結束時，時鐘會凍結在實際結束的時間，之後的心跳訊號無法把它灌水。
+
+如果 Nomo 算不出一個合理的起始時間，它會不顯示計時器，而不是顯示一個錯的。
+
+## 斷線與逾時 {#when-it-goes-quiet}
+
+動態島顯示的是你的 Mac 送出的最後一個狀態。沉默 **10 分鐘**後它就不再假裝：卡片褪去顏色，計時器消失，狀態變成 `已斷線？`。你的 Mac 睡著、失去 Wi-Fi，或終端機被關掉，都會落到這裡。
+
+打開 Nomo App 會強制重新整理，過時的狀態會立刻自我修正。外掛程式本身也會每五分鐘送一次心跳訊號，所以一個真的活著、只是閒置的 session 不會被標成斷線。
+
+已結束的 sessions 永遠不會過時 — 已經沒有東西可以等了。
+
+<Tip>
+  如果動態島更新起來覺得遲鈍，請前往 iOS「設定」>「Nomo」>「即時動態」，開啟「更頻繁的更新」。那是 Apple 自己對一個 App 能多常重繪動態島所設的額度，而 Nomo 是照預設值寫的。
+</Tip>

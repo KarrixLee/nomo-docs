@@ -1,0 +1,249 @@
+---
+title: "Solución de problemas"
+description: "Sesiones que no se descifran, ordenadores que se quedan mudos, una Dynamic Island congelada: qué significa cada estado y qué hacer con él."
+icon: "wrench"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
+---
+
+Casi todo lo que aquí parece un fallo es Nomo siendo honesto sobre algo que no
+sabe. Esta página explica qué significa de verdad cada uno de esos estados,
+agrupados por dónde irías a arreglarlo.
+
+Si hay más de una cosa que se ve mal a la vez, sáltate lo demás y
+[empieza por el comando status](#start-with-status): suele nombrar el
+problema en una sola pantalla.
+
+## Se arregla en el iPhone {#fix-it-on-your-phone}
+
+Para ninguno de estos hay nada que hacer en tu Mac.
+
+<AccordionGroup>
+
+<Accordion title="No aparece nada en la Dynamic Island" icon="circle-dot">
+  Casi siempre es el comportamiento previsto: las sesiones se activan **una a
+  una**. Abre el ordenador, busca la sesión y activa su interruptor — o activa
+  **Añadir sesiones automáticamente** en
+  [Ajustes](/es/sessions/settings#dynamic-island).
+
+  Si el interruptor está activado y aun así no sale nada, comprueba que las
+  **Actividades en directo** estén permitidas para Nomo en los Ajustes de iOS.
+  Después comprueba que no haya otra sesión ocupando la Dynamic Island: tu
+  teléfono muestra [una cada vez](/es/sessions/island#which-session-it-picks), y
+  una sesión que lleva esperándote está por encima de una que está trabajando.
+</Accordion>
+
+<Accordion title="El interruptor de una sesión está activado, en gris y no se deja desactivar" icon="toggle-off">
+  Esa sesión está pidiendo permiso. Una solicitud llega a tu Dynamic Island esté
+  como esté su interruptor — porque si no, una solicitud que llegara con el
+  teléfono en el bolsillo sería una que no podrías responder, que es justo de lo
+  que va la función. Así que el interruptor se muestra **activado** mientras la
+  solicitud espera, porque eso es lo que está pasando de verdad.
+
+  **Por qué no puedes desactivarlo:** desactivarlo no serviría de nada. La
+  solicitud se quedaría en la Dynamic Island igualmente —es la única forma que
+  tiene de llegarte—, así que el interruptor se volvería a activar bajo tu dedo
+  un segundo después. En lugar de darte un control que te ignora, Nomo lo
+  mantiene quieto hasta que pueda volver a obedecerte.
+
+  No se ha sobrescrito nada de lo que elegiste. Responde a la solicitud y el
+  interruptor vuelve directo a desactivado, donde lo dejaste — o dentro de la
+  hora siguiente, si no responde nadie. A partir de ahí vuelve a ser tuyo.
+
+  Nada de esto pasa con las **aprobaciones remotas** desactivadas, que es lo que
+  viene de fábrica: tu interruptor nunca se sobreescribe. Ve
+  [Responder desde el iPhone](/es/sessions/approvals).
+</Accordion>
+
+<Accordion title="La Dynamic Island está congelada o dice “¿Desconectado?”" icon="wifi">
+  La Dynamic Island muestra lo último que envió tu Mac. Tras diez minutos de
+  silencio pierde el color y dice `¿Desconectado?` en lugar de seguir dando a
+  entender que la sesión está viva.
+
+  Que tu Mac se duerma, que se salga de la red o que cierres el terminal acaban
+  todos aquí. Abre la app de Nomo para forzar una actualización: un estado
+  obsoleto se corrige al momento. Si no se corrige, el Mac de verdad no está
+  reportando: ejecuta el comando de estado de más abajo.
+</Accordion>
+
+<Accordion title="Las solicitudes llegan al teléfono pero no hay nada que tocar" icon="hand">
+  Fíjate en el **color**, no en el icono. El amarillo y el violeta dibujan los
+  dos una mano levantada. El amarillo (`Necesita ayuda`) significa que el agente
+  se paró por algo que solo el terminal puede atender. El violeta (`Necesita
+  permiso`) es el que se puede responder.
+
+  Si todo sale amarillo y nunca violeta, lo más probable es que **Responder en el
+  iPhone** esté desactivado: viene desactivado de fábrica. Ve
+  [Responder desde el iPhone](/es/sessions/approvals).
+</Accordion>
+
+</AccordionGroup>
+
+## Se arregla en el ordenador {#fix-it-on-your-computer}
+
+Tu teléfono está bien. Todos estos se resuelven desde una sesión en el Mac.
+
+<AccordionGroup>
+
+<Accordion title="El panel dice que las aprobaciones remotas están en pausa" icon="pause">
+  Alguien ejecutó el comando de pausa en ese ordenador. Reanúdalas desde una
+  sesión en esa máquina:
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:approvals on
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-approvals on
+  ```
+  </CodeGroup>
+
+  Un interruptor por ordenador, compartido por los dos agentes —
+  [más](/es/sessions/commands#approvals).
+</Accordion>
+
+<Accordion title="Codex dejó de enviar solicitudes tras una actualización" icon="code">
+  Los hooks de Codex se instalan **inertes hasta que confías en ellos**, y una
+  actualización del plugin que añade un hook reabre esa revisión. Ejecuta
+  `/hooks` en Codex y confía en las entradas de Nomo. Hasta que lo hagas, las
+  aprobaciones vuelven al terminal y nada informa de ningún error.
+
+  Más en [Usar Codex](/es/sessions/codex#hooks-have-to-be-trusted).
+</Accordion>
+
+<Accordion title="Faltan opciones en el menú de mantener pulsado" icon="ellipsis">
+  **Permitir siempre**, **Denegar con nota…** y **Responder…** necesitan las
+  tres la versión **2.0.0** del plugin: responder desde el teléfono es lo que
+  añadió la 2.0. Nomo esconde las opciones que el Mac no puede cumplir en lugar
+  de ofrecer un botón que no haría nada.
+
+  Un aviso de `Actualización del plugin disponible` arriba del panel significa
+  exactamente eso. Actualiza con el mismo comando con el que instalaste.
+</Accordion>
+
+<Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
+  Limpia las muertas sin desvincular nada:
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+  </CodeGroup>
+
+  Las sesiones vivas, tu vinculación y tus claves se quedan intactas —
+  [qué imprime](/es/sessions/commands#reset).
+</Accordion>
+
+</AccordionGroup>
+
+## Vinculación y descifrado {#pairing-and-decryption}
+
+Tu teléfono está recibiendo actualizaciones que no puede leer, o tiene un
+ordenador del que ya no guarda la clave. Los tres acaban en el mismo arreglo:
+vincular ese ordenador otra vez.
+
+<AccordionGroup>
+
+<Accordion title="Una fila dice “Sesión cifrada” o “Reconectando…”" icon="lock">
+  Tu teléfono recibió la actualización pero todavía no la ha abierto. Nomo
+  reintenta cada pocos segundos, y esto suele resolverse solo en una consulta.
+
+  Si persiste, tu teléfono ya no tiene la clave correcta de ese ordenador: el Mac
+  se volvió a vincular, o la vinculación se reemplazó. Vincúlalo otra vez.
+</Accordion>
+
+<Accordion title="Una fila dice “No disponible”" icon="ban">
+  Lo mismo, después de diez minutos fallando. En lugar de dejar una fila que
+  parece viva y no lo está, Nomo la marca como muerta y deja de adivinar su
+  contenido. No va a mover la Dynamic Island y no cuenta como activa. Volver a
+  vincular el ordenador la recupera.
+</Accordion>
+
+<Accordion title="Un ordenador dice “Ya no está vinculado”" icon="laptop">
+  Esa vinculación se revocó: volviste a vincular el Mac, o ejecutaste
+  [`/nomo-cc:unpair`](/es/sessions/commands#unpair) en él. Nomo espera a una
+  racha sostenida de fallos antes de creérselo, así que esto nunca es un
+  diagnóstico de un minuto de Wi-Fi inestable.
+
+  Toca **Eliminar**, o déjalo: se retira solo más o menos un minuto después.
+  Vuelve a vincular el ordenador cuando lo quieras de vuelta.
+</Accordion>
+
+</AccordionGroup>
+
+## Empieza por el comando status {#start-with-status}
+
+Si hay más de una cosa que se ve mal, ejecuta
+[`/nomo-cc:status`](/es/sessions/commands#status) en el Mac antes que nada. Una
+sola pantalla te dice si la máquina está vinculada, si su proceso supervisor está
+vivo y si los eventos están llegando de verdad a tu teléfono — que suele bastar
+para saber qué está roto.
+
+`Last event sent: never` con una sesión realmente en marcha significa que los
+hooks no se están disparando. Reinicia Claude Code para que se carguen; en Codex,
+ejecuta `/hooks`.
+
+Todos los comandos, y qué significa lo que imprimen, están en
+[Comandos](/es/sessions/commands).
+
+## Informar de un problema {#still-wrong-send-it-over}
+
+Activa **Diagnóstico de sesiones** en
+[Ajustes](/es/sessions/settings#debug) y después despliega la sesión que se
+esté portando mal. Debajo aparece una línea con el estado interno del propio
+Nomo, algo así:
+
+```
+2.0.0 · lan:hold 0.4s · dp
+```
+
+No intentes descifrarla: eso es cosa nuestra. Haz una captura de la fila y
+mándanosla, junto con lo que esperabas y lo que obtuviste en su lugar:
+
+<CardGroup cols={2}>
+  <Card title="Abrir una incidencia" href="https://github.com/KarrixLee/nomo/issues" icon="github">
+    Lo mejor para cualquier cosa reproducible. Es público, así que deja fuera lo
+    privado.
+  </Card>
+  <Card title="Correo electrónico" href="mailto:karrixlee1231@gmail.com" icon="envelope">
+    También en la app, en **Ajustes → Contacto**.
+  </Card>
+</CardGroup>
+
+La salida de [`/nomo-cc:status`](/es/sessions/commands#status) del ordenador
+afectado también ayuda.
+
+## Solicitudes de funciones {#nothings-broken--you-just-want-something}
+
+“¿Por qué no puedo hacer X desde el teléfono?” muchas veces es una pregunta justa
+y no un fallo. Una parte es un límite real de lo que un agente le entrega a un
+plugin, y está escrito: [Usar Codex](/es/sessions/codex) cubre el lado de Codex, y
+[Responder desde el iPhone](/es/sessions/approvals) cubre lo que una actividad en
+directo puede y no puede albergar.
+
+El resto simplemente todavía no está hecho.
+
+<CardGroup cols={2}>
+  <Card title="Mira la hoja de ruta" href="https://nomo.gg/roadmap" icon="map">
+    Lo que está planeado y lo que está en marcha. Puede que tu idea ya esté ahí.
+  </Card>
+  <Card title="Pídelo" href="https://github.com/KarrixLee/nomo/issues" icon="lightbulb">
+    Abre una incidencia, o [escríbeme](mailto:karrixlee1231@gmail.com). Cuéntame
+    qué estabas intentando hacer — eso es más útil que la función que habías
+    diseñado.
+  </Card>
+</CardGroup>
+
+## Empezar de cero {#starting-over}
+
+[`/nomo-cc:unpair`](/es/sessions/commands#unpair) en el ordenador afectado
+elimina la vinculación y borra su clave. Después
+[vincúlalo otra vez](/es/setup/pairing).
+
+Olvidar un ordenador **desde el teléfono** no es lo mismo: eso hace que ese
+ordenador deje de aparecer en tu app, pero el Mac conserva su estado local hasta
+que ejecutes ese comando allí.

@@ -1,0 +1,173 @@
+---
+title: "Ordenadores y sesiones"
+description: "La pestaña Sesiones enumera tus ordenadores vinculados. Toca uno para ver sus sesiones de Claude Code y Codex, agrupadas por carpeta del proyecto."
+icon: "list"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Ordenadores y sesiones"]
+---
+
+La pestaña **Sesiones** es una lista de **ordenadores**, no de sesiones. Una
+tarjeta por cada Mac que hayas vinculado. Tus sesiones están un nivel más abajo:
+toca un ordenador para abrirlo.
+
+Eso sorprende a quien repasa la pestaña buscando una sesión que acaba de
+arrancar. Está en la tarjeta, dentro del recuento.
+
+<Frame caption="La pestaña Sesiones. Una tarjeta por cada Mac vinculado, con su recuento de sesiones y un punto para la conexión.">
+  <div className="device-frame">
+    <img src="/images/computer-paired-list.png" alt="La pestaña Sesiones de Nomo con los ordenadores vinculados, cada uno con su nombre, su recuento de sesiones y su estado de conexión" />
+  </div>
+</Frame>
+
+## La lista de ordenadores {#the-computer-list}
+
+Cada tarjeta lleva el nombre del ordenador, un resumen de una línea y un punto
+de color para la conexión.
+
+| Punto | Línea de resumen | Qué significa |
+| --- | --- | --- |
+| Verde | `Activo recientemente` | Algo ha pasado en este Mac en los últimos 10 minutos. |
+| Gris | `Sin actividad reciente` | Vinculado y sano, solo que tranquilo. |
+| Ámbar | `Reconectando…` | Nomo no pudo llegar al relé de este ordenador en la última consulta. Reintenta por su cuenta. |
+| Indicador de actividad | `Conectando…` | Recién vinculado, todavía esperando su primera sesión. |
+| Gris | `Ya no está vinculado` | Esta vinculación se reemplazó o se eliminó. Ve a [solución de problemas](/es/sessions/troubleshooting). |
+| Gris | `En pausa — renueva para reconectar` | Nomo Pro caducó. |
+
+El resumen dice `No hay sesiones activas`, `1 sesión` o `3 activas · 7 sesiones`.
+“Activa” deja fuera las sesiones terminadas, las ilegibles y cualquiera que diga
+estar trabajando pero lleve más de 10 minutos en silencio.
+
+Una etiqueta arriba a la derecha indica cuántos ordenadores has vinculado. Se
+pone naranja cuando llegas al tope.
+
+<Note>
+  Mantén pulsada una tarjeta para **Cambiar nombre** u **Olvidar este
+  ordenador**. El cambio de nombre es local a tu teléfono. Al olvidarlo, el
+  ordenador deja de aparecer aquí — puedes volver a vincularlo cuando quieras, y
+  no se toca nada en el propio Mac.
+</Note>
+
+## Dentro de un ordenador {#inside-a-computer}
+
+Al tocar una tarjeta se abre un panel con un control segmentado arriba:
+**Claude Code** y **Codex**. Nomo abre el agente que estuviera activo más
+recientemente.
+
+Las sesiones de dentro se agrupan **por carpeta del proyecto**, con la rama de
+git de la carpeta junto a la cabecera. Si solo hay una carpeta, se muestra una
+única tarjeta **Sesiones**; con dos o más hay una tarjeta por carpeta, con el
+nombre de cada una.
+
+Bajo el nombre del ordenador verás si está `Activo`, su `Última actividad` o
+`Reconectando…` — y, cuando Nomo habla con el Mac directamente por tu red en
+lugar de a través del relé, una etiqueta verde **⚡ Local**. Ve a
+[Red local](/es/sessions/settings#local-network).
+
+<Frame caption="Dentro de un ordenador: las pestañas de agente, dos carpetas de proyecto con sus ramas y el recuento 4/20. La segunda fila está pidiendo permiso — mano violeta, y su interruptor de la Dynamic Island activado y en gris mientras la solicitud espera.">
+  <div className="device-frame">
+    <img src="/images/session-list.png" alt="Las sesiones de un ordenador agrupadas por carpeta del proyecto, una fila en ejecución y otra esperando permiso" />
+  </div>
+</Frame>
+
+## La fila de sesión {#what-a-session-row-shows}
+
+<ResponseField name="Icono de estado" type="borde izquierdo">
+  Un punto, una mano, una marca de verificación o un indicador de actividad. La
+  señal es el color — ve la tabla de abajo.
+</ResponseField>
+
+<ResponseField name="Título">
+  El resumen que el propio agente hace de lo que está haciendo, así que cambia a
+  medida que la sesión pasa de una tarea a otra. **No** es el nombre de la
+  carpeta — aunque recurre a él mientras el agente no haya resumido nada.
+</ResponseField>
+
+<ResponseField name="Línea de estado">
+  El estado, más lo que está haciendo en ese momento cuando el agente lo informa
+  — `En ejecución · editing`, `Necesita permiso · Bash`.
+</ResponseField>
+
+<ResponseField name="Tiempo relativo">
+  El tiempo desde el **último evento**, no cuánto lleva corriendo la sesión.
+  `hace 2 min` significa que Nomo supo de ella por última vez hace dos minutos.
+  El tiempo transcurrido de ejecución solo aparece en la
+  [Dynamic Island](/es/sessions/island).
+</ResponseField>
+
+<ResponseField name="Interruptor" type="borde derecho">
+  Pone esta sesión en la Dynamic Island. Desactivado por defecto — ve
+  [Ajustes](/es/sessions/settings#dynamic-island).
+</ResponseField>
+
+## Estados de sesión {#session-states}
+
+| Etiqueta | Color | Significado |
+| --- | --- | --- |
+| `En ejecución` | Punto naranja | Trabajando. No necesita nada de ti. |
+| `Necesita atención` | Mano naranja | Se ha parado y te espera, sin nada que puedas responder desde el teléfono. |
+| `Necesita permiso · Bash` | Mano violeta | Pide permiso para una acción concreta. **Esta sí la puedes responder aquí** — ve [Responder desde el iPhone](/es/sessions/approvals). |
+| `Necesita una respuesta` | Mano violeta | Hace una pregunta con opciones. También se responde desde el teléfono. |
+| `Listo` | Marca verde | La sesión terminó. |
+| `Reconectando…` | Ámbar | O el Mac perdió el contacto con el relé a mitad de sesión, o Nomo todavía no ha podido descifrar esta fila. Es pasajero: reintenta. |
+| `No disponible` | Punto gris | Una fila que Nomo sigue sin poder descifrar pasados 10 minutos. Se muestra como `Sesión cifrada`. |
+| `Enviando…` | Indicador de actividad | Tu respuesta va camino del Mac. |
+
+Una vez resuelta una solicitud, la fila recoge un pie que dice cómo se resolvió:
+`Permitido`, `Denegado`, `Permitido siempre`, `Respondido`, o un fallo honesto
+como `Caducado — continúa en tu ordenador`. La lista completa está en
+[Responder desde el iPhone](/es/sessions/approvals#what-the-caption-tells-you).
+
+Las filas se ordenan por actividad más reciente. Nomo nunca esconde una fila: la
+lista refleja exactamente lo que guarda el relé.
+
+## Detalle de una fila {#tap-a-row-for-detail}
+
+Al tocar el lado del texto de una fila, esta se despliega. Todo lo de aquí se
+puede seleccionar, y va etiquetado con un símbolo en lugar de con una palabra:
+
+- **Modelo** — `Fable`, `Opus 4.8`, `GPT 5.6 Sol`. Se oculta cuando el agente no informó de ninguno.
+- **Título completo** — sin recortar.
+- **Carpeta** e **identificador de sesión** — los ocho primeros caracteres, en monoespaciada.
+- **La pregunta pendiente**, entera, cuando la hay.
+- **Ver plan** — abre el plan. Se puede responder en Claude Code; en [Codex](/es/sessions/codex) es de solo lectura.
+- **Abrir en el Mac** — pone en primer plano la ventana de terminal de esa sesión en tu Mac. Solo aparece cuando Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network).
+
+<Tip>
+  Para **responder** a una solicitud, mantén pulsada la fila en lugar de tocarla.
+  Al tocarla se despliega; al mantenerla pulsada se abre el menú de permitir o
+  denegar.
+</Tip>
+
+## Límites {#how-many}
+
+| | Tope |
+| --- | --- |
+| Sesiones por ordenador | **20**, entre los dos agentes |
+| Ordenadores vinculados | **5** |
+| Sesiones en la Dynamic Island | **Una cada vez**, en todo el dispositivo |
+
+Los dos números se fijan en el lado de Nomo en vez de compilarse en la app, así
+que pueden cambiar sin actualizarla. El recuento de sesiones aparece como una
+etiqueta `N/20` en la primera tarjeta de Sesiones, y el de ordenadores como una
+etiqueta `N/5` en la pestaña. Ambas se ponen naranjas al llegar al tope.
+
+Vincular un sexto ordenador falla con **Límite de ordenadores alcanzado**.
+Olvida uno que ya no uses y vuelve a intentarlo: los ordenadores que ya has
+vinculado nunca se revocan para hacer sitio.
+
+Cuando un ordenador está en su tope de sesiones, Nomo descarta primero las filas
+terminadas y las que llevan mucho en silencio. Una sesión realmente nueva se
+rechaza antes que echar a una viva — salvo que llegue con una solicitud de
+permiso, que siempre gana.
+
+## Filas que desaparecen {#rows-that-disappear}
+
+Las sesiones terminadas y las silenciosas se retiran solas, más o menos una hora
+después de su última actividad real. Que una fila desaparezca sola es normal y
+no significa que haya fallado nada.
+
+Una vinculación revocada — volviste a vincular ese Mac, o ejecutaste
+[`/nomo-cc:unpair`](/es/sessions/commands#unpair) en él — es otra cosa. Nomo
+espera a una racha sostenida de fallos antes de creérselo, y entonces pasa la
+tarjeta a `Ya no está vinculado` con un botón **Eliminar** de un solo toque, y la
+retira un minuto después. No va a soltar un ordenador en silencio por un minuto
+de Wi-Fi inestable.

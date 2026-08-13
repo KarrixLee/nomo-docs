@@ -1,0 +1,168 @@
+---
+title: "指令"
+description: "Claude Code 和 Codex 上的每一個 Nomo 指令 — 配對、狀態、批准、重設與解除配對，全在同一頁。"
+icon: "terminal"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "指令"]
+---
+
+五個指令，兩個代理上都是同樣五個。你在想影響的那台電腦上、從代理的 session 裡執行它們 — 在 Claude Code 裡是 `/` 指令，在 Codex 裡是 `$` skill。
+
+<Tip>
+  在 Claude Code 裡一切都有命名空間：輸入 `/nomo-cc:` 就會列出全部。
+</Tip>
+
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex |
+| --- | --- | --- |
+| <a href="#pair">配對這台電腦</a> | `/nomo-cc:pair` | `$nomo-pair` |
+| <a href="#status">檢查健康狀態</a> | `/nomo-cc:status` | `$nomo-status` |
+| <a href="#approvals">暫停或恢復批准</a> | `/nomo-cc:approvals` | `$nomo-approvals` |
+| <a href="#reset">清除卡住的 sessions</a> | `/nomo-cc:reset` | `$nomo-reset` |
+| <a href="#unpair">中斷這台電腦</a> | `/nomo-cc:unpair` | `$nomo-unpair` |
+
+它們都不會大聲失敗。即使沒事可做，每一個也都乾淨地結束 — `Not paired` 是成功，不是錯誤。
+
+## pair {#pair}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:pair          # QR code, opens your browser
+/nomo-cc:pair code     # one-time code, printed in the terminal
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-pair             # QR code, opens your browser
+$nomo-pair code        # one-time code, printed in the terminal
+```
+</CodeGroup>
+
+不帶參數時，它會在你的瀏覽器裡開啟一個套用主題樣式的頁面，上面有一個 QR code。在App裡掃描它，頁面就會自行翻成 **Paired ✓**。
+
+`code` 參數完全跳過瀏覽器，改印出一組可以打字輸入的一次性代碼，適合無圖形介面的機器或 SSH 連線。它刻意是第二選擇：那組代碼會落在你的終端機裡，因此也會進到代理的對話記錄裡。
+
+配對閒置 **10 分鐘**後過期。一次配對涵蓋的是這台機器，而不是代理 — 同一台 Mac 上的 Claude Code 和 Codex 共用它。完整說明在[配對](/zh-Hant/setup/pairing)。
+
+## status {#status}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+</CodeGroup>
+
+任何地方看起來不對勁時，第一個該執行的就是它。
+
+```
+Paired: yes (pairing 3f9a21c8…)
+Worker: https://api.nomo.gg
+Watchdog: running (pid 48213)
+Last event sent: 8s ago
+Tracked sessions: 3
+Codex plugin: installed, trusted (7/7)
+Codex Plan answers: bridge available (shared app-server socket accepted a connection)
+```
+
+逐行說明：
+
+<ResponseField name="Paired">
+  `no` 表示這台機器從來沒連上過。`pairing started, waiting for phone scan` 表示你開了配對頁面，但一直沒有掃描。
+</ResponseField>
+
+<ResponseField name="Watchdog">
+  在有 session 進行中的情況下顯示 `not running` 是正常的 — 它會在下一個 session 時自行啟動。
+</ResponseField>
+
+<ResponseField name="Last event sent">
+  在真的有 session 在跑時顯示 `never`，表示 hooks 沒有觸發。重新啟動 Claude Code 讓它們載入；Codex 的話，請執行 `/hooks`。
+</ResponseField>
+
+<ResponseField name="Codex plugin">
+  `installed, hooks NOT trusted (run /hooks in Codex)` 是最容易絆倒人的那一個 — 請看[搭配 Codex 使用](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
+</ResponseField>
+
+<ResponseField name="Codex Plan answers">
+  `bridge available` 表示問題會連同選項一起送到你的手機。`status-only` 表示不會 — [原因](/zh-Hant/sessions/codex#questions-in-the-cli-and-the-desktop-app)。
+</ResponseField>
+
+它也會針對兩種會默默把每個事件重複回報的設定提出警告：從原生外掛程式之前留下來的 Codex hooks，以及 Codex 在自己的外掛程式之外又自動探索到 Claude Code 的外掛程式。兩者都會指名要編輯哪個檔案。
+
+## approvals {#approvals}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:approvals off      # pause on this computer
+/nomo-cc:approvals on       # resume
+/nomo-cc:approvals status   # which way is it set
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-approvals off         # pause on this computer
+$nomo-approvals on          # resume
+$nomo-approvals status      # which way is it set
+```
+</CodeGroup>
+
+暫停**這台電腦**的遠端批准，讓權限請求直接進到終端機，而不是等你的手機。這是手機沒電或拿不到時的逃生口。
+
+```
+Remote approvals are OFF for this computer — Claude Code permission prompts
+will appear in the terminal as usual (your phone is not asked).
+```
+
+每台電腦一個開關，**兩個代理共用** — 在 Codex 裡暫停它，同一台機器上的 Claude Code 也會一起暫停。它不會解除任何配對，也不會動到你手機上的設定。
+
+還有一個涵蓋整支手機的獨立開關：[設定](/zh-Hant/sessions/settings#remote-approvals)裡的「在 iPhone 上回答」。
+
+## reset {#reset}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:reset
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-reset
+```
+</CodeGroup>
+
+停掉 watchdog，清除失效或幽靈的 session 列，然後叫你的手機把它們丟掉。
+
+```
+Stopped the watchdog (it restarts automatically on your next session).
+Cleared 4 stale session record(s) (4 end signals delivered to your phone).
+Left 2 live sessions untouched.
+Pairing and keys were not touched — use the unpair command if you want that.
+```
+
+當各列看起來過時或重複時，這是可以放心伸手去拿的那一個，因為它會說清楚自己沒有動到什麼。
+
+## unpair {#unpair}
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:unpair
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-unpair
+```
+</CodeGroup>
+
+撤銷配對，並清除那台電腦上的金鑰。
+
+**從手機上**移除一台電腦不是同一件事：那只會讓它不再出現在你的App裡，Mac 上的本機狀態會一直保留，直到你在那裡執行這個指令。
+
+## 狀態存放的位置 {#where-state-lives}
+
+外掛程式保存的一切都放在 `~/.config/cc-status/` 裡 — 配對、加密金鑰（權限 `0600`）、每個被追蹤的 session 一個檔案，以及一份本機的追蹤記錄。那個資料夾裡的東西不會被送到任何地方。
+
+## 閱讀原始碼 {#read-the-source}
+
+這些指令就是這個外掛程式，而這個外掛程式是開放原始碼的。如果你想確切知道你機器上跑的是什麼、離開它的又是什麼，答案就在一個儲存庫裡 — 從市集安裝的版本就是它的一份純粹複製。
+
+<Card title="KarrixLee/nomo" href="https://github.com/KarrixLee/nomo" icon="github" horizontal>
+  完整的外掛程式原始碼，採 MIT 授權。issue 與 bug 回報也在這裡。
+</Card>

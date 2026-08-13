@@ -1,54 +1,165 @@
 ---
-title: "The Sessions list"
-description: "What each row in the Sessions tab means, and how to read a session's state at a glance."
+title: "Computers and sessions"
+description: "The Sessions tab lists your paired computers. Tap one to see its Claude Code and Codex sessions, grouped by project folder."
 icon: "list"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Computers and sessions"]
 ---
 
-The Sessions tab lists the Claude Code and Codex sessions running on your paired
-computers. One row per session.
+The **Sessions** tab is a list of **computers**, not sessions. One card per Mac
+you've paired. Your sessions live one level down — tap a computer to open it.
 
-{/* TODO: screenshot of the Sessions tab with two or three rows */}
+That surprises people who scan the tab looking for a session they just started.
+It's on the card, inside the count.
 
-## What a row tells you
+<Frame caption="The Sessions tab. One card per paired Mac, with its session count and a dot for the connection.">
+  <div className="device-frame">
+    <img src="/images/computer-paired-list.png" alt="Nomo's Sessions tab listing paired computers, each showing its name, session count and connection state" />
+  </div>
+</Frame>
 
-A row carries the session's title, which computer it's on, and its current
-state. The title comes from the agent's own summary of what it's working on, so
-it changes as the session moves between tasks — it isn't the folder name.
+## The computer list
+
+Each card carries the computer's name, a one-line summary, and a coloured dot
+for the connection.
+
+| Dot | Summary line | What it means |
+| --- | --- | --- |
+| Green | `Active recently` | Something happened on this Mac in the last 10 minutes. |
+| Grey | `No recent activity` | Paired and healthy, just quiet. |
+| Amber | `Reconnecting…` | Nomo couldn't reach the relay for this computer on the last poll. It retries on its own. |
+| Spinner | `Connecting…` | Freshly paired, still waiting for its first session to land. |
+| Grey | `No longer paired` | This pairing was replaced or removed. See [troubleshooting](/sessions/troubleshooting). |
+| Grey | `Paused — renew to reconnect` | Nomo Pro lapsed. |
+
+The summary reads `No active sessions`, `1 session`, or `3 active · 7 sessions`.
+"Active" excludes finished sessions, unreadable ones, and any session that
+claims to be working but has been silent for more than 10 minutes.
+
+A chip in the top-right shows how many computers you've paired. It turns orange
+if you hit the cap.
+
+<Note>
+  Touch and hold a card to **Rename** or **Forget This Computer**. Renaming is
+  local to your phone. Forgetting stops the computer from appearing here — you
+  can pair it again anytime, and it doesn't touch anything on the Mac itself.
+</Note>
+
+## Inside a computer
+
+Tapping a card opens a drawer with a segmented control at the top: **Claude
+Code** and **Codex**. Nomo opens whichever agent was active most recently.
+
+Sessions inside are grouped **by project folder**, with the folder's git branch
+shown next to the header. One folder gets a single **Sessions** card; two or
+more get one card each, named after the folder.
+
+Under the computer name at the top you'll see whether it's `Active`, `Last
+active`, or `Reconnecting…` — and, when Nomo is talking to the Mac directly
+over your network rather than through the relay, a green **⚡ Local** chip. See
+[Local network](/sessions/settings#local-network).
+
+<Frame caption="Inside a computer: agent tabs, two project folders with their branches, and the 4/20 session count. The second row is asking permission — violet hand, and its island switch is on and greyed while the prompt waits.">
+  <div className="device-frame">
+    <img src="/images/session-list.png" alt="A computer's sessions grouped by project folder, one row running and one waiting for permission" />
+  </div>
+</Frame>
+
+## What a session row shows
+
+<ResponseField name="Status icon" type="left edge">
+  A dot, a hand, a checkmark, or a spinner. Colour is the signal — see the table
+  below.
+</ResponseField>
+
+<ResponseField name="Title">
+  The agent's own summary of what it's working on, so it changes as the session
+  moves between tasks. It is **not** the folder name — though it falls back to
+  the folder name when the agent hasn't summarised anything yet.
+</ResponseField>
+
+<ResponseField name="Status line">
+  The state, plus what it's doing right now when the agent reported it —
+  `Running · editing`, `Needs permission · Bash`.
+</ResponseField>
+
+<ResponseField name="Relative time">
+  Time since the **last event**, not how long the session has been running.
+  `2m ago` means Nomo last heard from it two minutes ago. Elapsed run time only
+  appears on the [Dynamic Island](/sessions/island).
+</ResponseField>
+
+<ResponseField name="Toggle" type="right edge">
+  Puts this session on the Dynamic Island. Off by default — see
+  [Settings](/sessions/settings#dynamic-island).
+</ResponseField>
 
 ## Session states
 
-{/* TODO: confirm the exact label wording used in the app for each state */}
+| Label | Colour | Meaning |
+| --- | --- | --- |
+| `Running` | Orange dot | Working. Nothing needed from you. |
+| `Needs attention` | Orange hand | Stopped and waiting on you, with nothing you can answer from the phone. |
+| `Needs permission · Bash` | Violet hand | Asking permission for a specific action. **This one you can answer here** — see [Answering from your phone](/sessions/approvals). |
+| `Needs an answer` | Violet hand | Asking a multiple-choice question. Also answerable from the phone. |
+| `Done` | Green check | The session finished. |
+| `Reconnecting…` | Amber | Either the Mac lost contact with the relay mid-session, or Nomo hasn't been able to decrypt this row yet. Transient — it retries. |
+| `Unavailable` | Grey dot | A row Nomo still can't decrypt after 10 minutes. It shows as `Encrypted session`. |
+| `Sending…` | Spinner | Your answer is on its way to the Mac. |
 
-<ResponseField name="Working" type="green">
-  Claude is actively doing something. Nothing is needed from you.
-</ResponseField>
+Once a prompt has been settled, the row picks up a small caption saying how:
+`Allowed`, `Denied`, `Always allowed`, `Answered`, or an honest failure like
+`Expired — continue on your computer`. The full list is in
+[Answering from your phone](/sessions/approvals#what-the-caption-tells-you).
 
-<ResponseField name="Needs attention" type="yellow">
-  Claude has stopped and is waiting on you, but there's no question you can
-  answer from the phone. Usually it finished a turn and wants your next
-  instruction.
-</ResponseField>
+Rows are ordered by most recent activity. Nomo never hides a row — the list
+mirrors what the relay holds, exactly.
 
-<ResponseField name="Waiting for approval" type="purple">
-  Claude is asking permission for a specific action. This is the one you can
-  answer from your phone — see [Answering from your phone](/sessions/approvals).
-</ResponseField>
+## Tap a row for detail
 
-<ResponseField name="Done" type="gray">
-  The session ended. Finished rows clear themselves out after a while.
-</ResponseField>
+Tapping the text side of a row expands it. Everything here is selectable, and
+labelled with a symbol rather than a word:
+
+- **Model** — `Fable`, `Opus 4.8`, `GPT 5.6 Sol`. Hidden when the agent didn't report one.
+- **Full title** — untruncated.
+- **Folder** and **session ID** — the first eight characters, monospaced.
+- **The pending question**, in full, when there is one.
+- **View plan** — opens the plan. Answerable for Claude Code, read-only for [Codex](/sessions/codex).
+- **Open on Mac** — focuses that session's terminal window on your Mac. Only appears when Nomo has a direct [local network](/sessions/settings#local-network) link.
+
+<Tip>
+  To **answer** a prompt, touch and hold the row rather than tapping it. Tapping
+  expands; holding opens the Allow / Deny menu.
+</Tip>
+
+## How many
+
+| | Limit |
+| --- | --- |
+| Sessions per computer | **20**, across both agents |
+| Paired computers | **5** |
+| Sessions on the Dynamic Island | **One at a time**, device-wide |
+
+The first two are set on Nomo's side rather than compiled into the app, so they
+can move without an app update. The session count shows as an `N/20` chip on
+the first Sessions card, and the computer count as an `N/5` chip on the tab.
+Both turn orange at the cap.
+
+Pairing a sixth computer fails with **Computer Limit Reached**. Forget one you
+no longer use and try again — computers you've already paired are never revoked
+to make room.
+
+When a computer is at its session cap, Nomo sheds finished and long-silent rows
+first. A genuinely new session is refused rather than pushing a live one off —
+unless it arrives holding a permission prompt, which always wins.
 
 ## Rows that disappear
 
-Sessions retire on their own once they've been finished for long enough. A row
-vanishing on its own is normal.
+Finished and silent sessions retire on their own, roughly an hour after their
+last real activity. A row vanishing by itself is normal and means nothing went
+wrong.
 
-A row that goes stale — its computer went to sleep, the terminal was closed —
-gets marked rather than silently dropped, so you can tell "this ended" apart
-from "this lost contact."
-
-## Multiple computers
-
-Every paired Mac contributes its own sessions to the same list. The row shows
-which computer it came from, so two sessions with similar titles stay
-distinguishable.
+A pairing that's been revoked — you re-paired that Mac, or ran
+[`/nomo-cc:unpair`](/sessions/commands#unpair) on it — is a different thing. Nomo waits for a sustained
+run of failures before believing it, then flips the card to `No longer paired`
+with a one-tap **Remove**, and clears it a minute later. It won't silently drop
+a computer over a flaky minute of Wi-Fi.

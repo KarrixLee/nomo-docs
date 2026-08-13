@@ -1,0 +1,174 @@
+---
+title: "トラブルシューティング"
+description: "復号できないセッション、応答しなくなったコンピュータ、固まった Dynamic Island — それぞれの状態の意味と対処法。"
+icon: "wrench"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "トラブルシューティング"]
+---
+
+ここで不具合に見えるものの多くは、Nomo が「わからない」ことを率直に示している状態です。このページでは、その状態がそれぞれ実際に何を意味するのかを、どこで直すかごとにまとめます。
+
+おかしいところが同時に 2 つ以上あるときは、読み飛ばして[まずはステータス確認](#start-with-status)へ進んでください — たいていは 1 画面で原因がわかります。
+
+## iPhone 側で対処する {#fix-it-on-your-phone}
+
+以下はどれも、Mac ですることはありません。
+
+<AccordionGroup>
+
+<Accordion title="Dynamic Island に何も表示されない" icon="circle-dot">
+  ほとんどの場合、これは意図した動作です。セッションの表示は**オプトイン**です。コンピュータを開いてセッションを見つけ、スイッチをオンにしてください。あるいは[設定](/ja/sessions/settings#dynamic-island)で「新規セッションを自動追加」をオンにします。
+
+  スイッチがオンなのに何も表示されない場合は、iOS の設定で Nomo の「ライブアクティビティ」が有効になっているか確認してください。次に、ほかのセッションが Dynamic Island を占有していないかを確認します。iPhone に表示されるのは[同時に 1 件](/ja/sessions/island#which-session-it-picks)だけで、あなたを待っているセッションは作業中のセッションより優先されます。
+</Accordion>
+
+<Accordion title="セッションのスイッチがオンのままグレー表示で、オフにできない" icon="toggle-off">
+  そのセッションは許可を求めています。許可リクエストは、スイッチがどちら向きでも Dynamic Island に届きます — そうでなければ、iPhone をポケットに入れている間に届いた許可リクエストには回答できなくなり、この機能の意味そのものが失われるからです。そのため、応答待ちの間はスイッチが**オン**と表示されます。実際にそうなっているからです。
+
+  **オフにできない理由。**オフにしても何も起きないからです。許可リクエストはいずれにせよ Dynamic Island に表示され続け — それがあなたに届く唯一の方法です — スイッチは指を離した 1 秒後にオンへ戻ってしまいます。言うことを聞かない操作を用意するくらいならと、Nomo は再びあなたに従えるようになるまでスイッチを固定します。
+
+  あなたが選んだ設定が上書きされたわけではありません。許可リクエストに回答すれば、スイッチは元のオフへ戻ります — 誰も回答しなくても、1 時間以内に戻ります。そこからはまた自由に設定できます。
+
+  「リモート承認」がオフのとき、つまり初期状態では、これは一切起こりません。あなたのスイッチが上書きされることはありません。[iPhone からの回答](/ja/sessions/approvals)をご覧ください。
+</Accordion>
+
+<Accordion title="Dynamic Island が固まっている、または「接続切れ？」と表示される" icon="wifi">
+  Dynamic Island は、Mac が最後に送ってきた内容を表示します。10 分間沈黙が続くと、セッションが生きているかのように見せ続けるのをやめ、色が抜けて `接続切れ？` と表示されます。
+
+  Mac のスリープ、ネットワークからの切断、ターミナルを閉じた場合も、すべてここに行き着きます。Nomo アプリを開くと更新が強制され、古い状態はただちに修正されます。それでも直らないなら、Mac が本当に報告していません。下のステータスのコマンドを実行してください。
+</Accordion>
+
+<Accordion title="許可リクエストは届くのに、タップできるものがない" icon="hand">
+  アイコンではなく**色**を確認してください。黄色も紫も、同じ挙げた手を描いています。黄色（`要対応`）は、ターミナルでしか受け取れない用件でエージェントが止まっているという意味です。回答できるのは紫（`許可が必要`）のほうです。
+
+  すべて黄色で紫が一度も出ないなら、「iPhoneで回答」がオフになっている可能性が高いです — これは初期状態でオフです。[iPhone からの回答](/ja/sessions/approvals)をご覧ください。
+</Accordion>
+
+</AccordionGroup>
+
+## コンピュータ側で対処する {#fix-it-on-your-computer}
+
+iPhone に問題はありません。以下はすべて、Mac のセッションから解決します。
+
+<AccordionGroup>
+
+<Accordion title="ドロワーにリモート承認が一時停止中と表示される" icon="pause">
+  そのコンピュータで一時停止のコマンドが実行されています。そのマシンのセッションから再開してください。
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:approvals on
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-approvals on
+  ```
+  </CodeGroup>
+
+  スイッチはコンピュータごとに 1 つで、両方のエージェントで共有されます —
+  [詳しくはこちら](/ja/sessions/commands#approvals)。
+</Accordion>
+
+<Accordion title="更新後、Codex から許可リクエストが届かなくなった" icon="code">
+  Codex のフックは**信頼するまで動作しない**状態で提供され、フックを追加するプラグインの更新があると、その確認が再び開きます。Codex で `/hooks` を実行し、Nomo の項目を信頼してください。それまでは承認がターミナルへ戻り、エラーは何も報告されません。
+
+  詳しくは [Codex での利用](/ja/sessions/codex#hooks-have-to-be-trusted)にあります。
+</Accordion>
+
+<Accordion title="押さえたままにしたときのメニューに選択肢が足りない" icon="ellipsis">
+  「Bashを常に許可（このセッション）」「メモを付けて拒否…」「回答…」は、いずれもプラグイン **2.0.0** が必要です。iPhone からの回答は 2.0 で追加された機能です。Nomo は、何も起きないボタンを出すのではなく、Mac が実行を保証できない選択肢を隠します。
+
+  ドロワー上部の `プラグインの更新があります` というバナーは、まさにそれを示しています。インストールしたときと同じコマンドで更新してください。
+</Accordion>
+
+<Accordion title="行が古いままか重複している" icon="broom">
+  ペアリングを解除せずに、無効な行を消去します。
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+  </CodeGroup>
+
+  実行中のセッション、ペアリング、鍵はそのまま残ります —
+  [出力の内容](/ja/sessions/commands#reset)。
+</Accordion>
+
+</AccordionGroup>
+
+## ペアリングと復号 {#pairing-and-decryption}
+
+iPhone が、読み取れない更新や、鍵を持っていないコンピュータの更新を受け取っている状態です。3 つとも、対処は同じ「そのコンピュータをもう一度ペアリングする」に行き着きます。
+
+<AccordionGroup>
+
+<Accordion title="行に「暗号化されたセッション」や「再接続中…」と表示される" icon="lock">
+  iPhone は更新を受け取っていますが、まだ復号できていません。Nomo は数秒ごとに再試行し、通常は 1 回のポーリングで解消します。
+
+  それでも続く場合、iPhone はそのコンピュータの正しい鍵をもう持っていません。Mac が再ペアリングされたか、ペアリングが置き換えられています。もう一度ペアリングしてください。
+</Accordion>
+
+<Accordion title="行に「取得できません」と表示される" icon="ban">
+  同じことが 10 分間続いた状態です。生きているように見えて実はそうでない行を残すのではなく、Nomo はその行を無効と見なし、中身の推測をやめます。この行が Dynamic Island を占有することも、アクティブとして数えられることもありません。コンピュータを再ペアリングすれば元に戻ります。
+</Accordion>
+
+<Accordion title="コンピュータに「ペアリング解除済み」と表示される" icon="laptop">
+  そのペアリングは取り消されています — Mac を再ペアリングしたか、そのマシンで [`/nomo-cc:unpair`](/ja/sessions/commands#unpair) を実行したかです。Nomo は失敗が続くのを見届けてからそう判断するので、Wi-Fi が一瞬不安定になっただけでこうなることはありません。
+
+  「削除」をタップするか、そのままにしておいてください — 1 分ほどで自動的に消えます。また使いたくなったら、コンピュータをもう一度ペアリングします。
+</Accordion>
+
+</AccordionGroup>
+
+## まずはステータス確認 {#start-with-status}
+
+おかしいところが 2 つ以上あるときは、何よりも先に Mac で [`/nomo-cc:status`](/ja/sessions/commands#status) を実行してください。そのマシンがペアリング済みか、ウォッチドッグが動いているか、イベントが実際に iPhone へ届いているかが 1 画面でわかり、たいていはそれだけで何が壊れているかを説明できます。
+
+セッションが実際に動いているのに `Last event sent: never` と出る場合は、フックが発火していません。Claude Code を再起動して読み込ませてください。Codex では `/hooks` を実行します。
+
+すべてのコマンドと、その出力の意味は[コマンド](/ja/sessions/commands)にまとめてあります。
+
+## それでも直らないときは {#still-wrong-send-it-over}
+
+[設定](/ja/sessions/settings#debug)で「セッション診断」をオンにし、問題のあるセッションを展開してください。その下に Nomo 内部の状態が 1 行、次のような形で表示されます。
+
+```
+2.0.0 · lan:hold 0.4s · dp
+```
+
+内容を解読しようとしなくて構いません — それは私たちの仕事です。その行のスクリーンショットを、期待していた動作と実際に起きたことを添えて送ってください。
+
+<CardGroup cols={2}>
+  <Card title="issue を立てる" href="https://github.com/KarrixLee/nomo/issues" icon="github">
+    再現できるものはこちらが最適です。公開の場なので、非公開の情報は含めないでください。
+  </Card>
+  <Card title="メール" href="mailto:karrixlee1231@gmail.com" icon="envelope">
+    アプリの「設定」＞「連絡先」からも送れます。
+  </Card>
+</CardGroup>
+
+対象のコンピュータで実行した [`/nomo-cc:status`](/ja/sessions/commands#status) の出力もあると助かります。
+
+## 機能リクエスト {#nothings-broken--you-just-want-something}
+
+「なぜこれを iPhone からできないのか」は、不具合ではなく正当な疑問であることがよくあります。その一部はエージェントがプラグインに渡すものの実際の制約で、それは文書になっています。Codex 側は [Codex での利用](/ja/sessions/codex)に、ライブアクティビティに載せられるもの・載せられないものは [iPhone からの回答](/ja/sessions/approvals)にまとめてあります。
+
+残りは、単にまだ作られていないだけです。
+
+<CardGroup cols={2}>
+  <Card title="ロードマップを見る" href="https://nomo.gg/roadmap" icon="map">
+    予定されているもの、進行中のもの。あなたのアイデアはすでに載っているかもしれません。
+  </Card>
+  <Card title="リクエストする" href="https://github.com/KarrixLee/nomo/issues" icon="lightbulb">
+    issue を立てるか、[メール](mailto:karrixlee1231@gmail.com)をください。何をしようとしていたのかを教えてください — 考えた機能そのものより、そのほうが役に立ちます。
+  </Card>
+</CardGroup>
+
+## ペアリングのやり直し {#starting-over}
+
+対象のコンピュータで [`/nomo-cc:unpair`](/ja/sessions/commands#unpair) を実行すると、ペアリングが削除され、その鍵が消去されます。そのうえで[もう一度ペアリング](/ja/setup/pairing)してください。
+
+**iPhone から**コンピュータを削除するのは別のことです。そちらはそのコンピュータがアプリに表示されなくなるだけで、Mac 側でこのコマンドを実行するまでローカルの状態は残り続けます。

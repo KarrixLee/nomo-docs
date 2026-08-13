@@ -1,0 +1,241 @@
+---
+title: "문제 해결"
+description: "복호화되지 않는 세션, 응답이 끊긴 컴퓨터, 멈춘 Dynamic Island — 각 상태의 의미와 대처 방법."
+icon: "wrench"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "문제 해결"]
+---
+
+여기에서 고장처럼 보이는 것 대부분은, Nomo가 모르는 것을 모른다고 솔직하게
+말하는 상태입니다. 이 페이지는 그 상태들이 실제로 무엇을 뜻하는지를 어디에서
+해결하는지에 따라 묶어 정리한 것입니다.
+
+한 번에 여러 가지가 이상해 보인다면 아래로 건너뛰어
+[status 명령 먼저 실행하기](#start-with-status)를 보십시오. 대개 한
+화면으로 문제를 짚어 줍니다.
+
+## iPhone에서 해결 {#fix-it-on-your-phone}
+
+아래 항목들은 Mac에서 할 일이 없습니다.
+
+<AccordionGroup>
+
+<Accordion title="Dynamic Island에 아무것도 표시되지 않음" icon="circle-dot">
+  거의 언제나 의도된 동작입니다. 세션은 **직접 켜야** 표시됩니다. 컴퓨터를 열고
+  세션을 찾아 스위치를 켜거나,
+  [설정](/ko/sessions/settings#dynamic-island)에서 **새 세션 자동 추가**를
+  켜십시오.
+
+  스위치가 켜져 있는데도 아무것도 나오지 않으면, iOS 설정에서 Nomo의 **실시간
+  현황**이 허용되어 있는지 확인하십시오. 그다음에는 다른 세션이 Dynamic Island를
+  차지하고 있지 않은지 확인하십시오. 휴대폰에는
+  [한 번에 하나](/ko/sessions/island#which-session-it-picks)만 표시되며,
+  사용자를 기다리고 있는 세션이 작업 중인 세션보다 앞섭니다.
+</Accordion>
+
+<Accordion title="세션의 Dynamic Island 스위치가 켜진 채 비활성화되어 꺼지지 않음" icon="toggle-off">
+  그 세션이 권한을 요청하는 중입니다. 권한 요청은 스위치가 어느 쪽이든 Dynamic
+  Island에 도달합니다. 그러지 않으면 휴대폰이 주머니에 있는 동안 도착한 요청은
+  답할 수 없는 요청이 되고, 그것은 이 기능의 존재 이유를 무너뜨립니다. 그래서
+  요청이 대기하는 동안 스위치는 실제로 일어나는 일 그대로 **켜짐**으로
+  표시됩니다.
+
+  **끌 수 없는 이유:** 꺼도 아무 일도 일어나지 않기 때문입니다. 요청은 어차피
+  Dynamic Island에 남아 있고 — 그것만이 사용자에게 닿을 수 있는 경로입니다 —
+  스위치는 잠시 뒤 손가락 아래에서 다시 켜질 것입니다. 사용자를 무시하는 컨트롤을
+  내놓는 대신, Nomo는 다시 따를 수 있을 때까지 스위치를 고정해 둡니다.
+
+  사용자가 선택한 내용이 덮어써진 것은 아닙니다. 요청에 답하면 스위치는 원래대로
+  꺼짐으로 돌아갑니다. 아무도 답하지 않아도 한 시간 안에 돌아갑니다. 그 뒤로는
+  다시 사용자가 정하면 됩니다.
+
+  기본값인 **원격 승인** 꺼짐 상태에서는 이런 일이 전혀 일어나지 않습니다.
+  스위치가 덮어써지지 않습니다.
+  [휴대폰에서 답변하기](/ko/sessions/approvals)를 참고하십시오.
+</Accordion>
+
+<Accordion title="Dynamic Island가 멈췄거나 연결 끊김?으로 표시됨" icon="wifi">
+  Dynamic Island는 Mac이 마지막으로 보낸 내용을 보여 줍니다. 10분 동안 소식이
+  없으면 세션이 살아 있는 것처럼 계속 암시하는 대신, 색이 빠지고 `연결 끊김?`으로
+  바뀝니다.
+
+  Mac이 잠들었거나, 네트워크를 벗어났거나, 터미널을 닫은 경우가 모두 여기에
+  해당합니다. Nomo 앱을 열어 새로고침을 강제하십시오 — 오래된 상태는 곧바로
+  바로잡힙니다. 그래도 그대로라면 Mac이 실제로 보고하지 않는 것이니, 아래의 상태
+  명령을 실행하십시오.
+</Accordion>
+
+<Accordion title="요청은 휴대폰에 오는데 탭할 것이 없음" icon="hand">
+  아이콘이 아니라 **색**을 확인하십시오. 노란색과 보라색 모두 손을 든 모양입니다.
+  노란색(`도움 필요`)은 터미널에서만 처리할 수 있는 일 때문에 에이전트가 멈췄다는
+  뜻이고, 답할 수 있는 쪽은 보라색(`권한 필요`)입니다.
+
+  전부 노란색이고 보라색이 한 번도 나오지 않는다면 **iPhone에서 답변**이 꺼져
+  있을 가능성이 큽니다. 기본값이 꺼짐입니다.
+  [휴대폰에서 답변하기](/ko/sessions/approvals)를 참고하십시오.
+</Accordion>
+
+</AccordionGroup>
+
+## 컴퓨터에서 해결 {#fix-it-on-your-computer}
+
+휴대폰에는 문제가 없습니다. 아래 항목들은 모두 Mac의 세션에서 처리합니다.
+
+<AccordionGroup>
+
+<Accordion title="드로어에 원격 승인이 일시 중지되었다고 표시됨" icon="pause">
+  그 컴퓨터에서 누군가 일시 중지 명령을 실행한 것입니다. 해당 컴퓨터의 세션에서
+  다시 켜십시오.
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:approvals on
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-approvals on
+  ```
+  </CodeGroup>
+
+  스위치는 컴퓨터마다 하나이며 두 에이전트가 공유합니다 —
+  [자세히](/ko/sessions/commands#approvals).
+</Accordion>
+
+<Accordion title="업데이트 후 Codex가 요청을 보내지 않음" icon="code">
+  Codex Hook은 **신뢰하기 전까지 동작하지 않으며**, Hook을 추가하는 플러그인
+  업데이트는 그 검토를 다시 엽니다. Codex에서 `/hooks`를 실행하고 Nomo 항목을
+  신뢰하십시오. 그 전까지 승인은 터미널로 되돌아가고 오류도 표시되지 않습니다.
+
+  자세한 내용은 [Codex 사용하기](/ko/sessions/codex#hooks-have-to-be-trusted)에 있습니다.
+</Accordion>
+
+<Accordion title="길게 터치 메뉴에 일부 항목이 없음" icon="ellipsis">
+  **항상 허용**, **메모와 함께 거부…**, **답변하기…** 세 가지는 모두 플러그인
+  **2.0.0**이 필요합니다. 휴대폰에서 답변하는 기능이 2.0에서 추가되었기
+  때문입니다. Nomo는 아무 일도 하지 않을 버튼을 내놓는 대신, Mac이 지킬 수 없는
+  항목을 숨깁니다.
+
+  드로어 위쪽의 `플러그인 업데이트 사용 가능` 배너가 바로 그 뜻입니다. 설치할 때
+  쓴 것과 같은 명령으로 업데이트하십시오.
+</Accordion>
+
+<Accordion title="행이 오래됐거나 중복되어 보임" icon="broom">
+  페어링을 해제하지 않고 죽은 행만 정리합니다.
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+  </CodeGroup>
+
+  실행 중인 세션, 페어링, 키는 건드리지 않습니다 —
+  [출력 내용](/ko/sessions/commands#reset).
+</Accordion>
+
+</AccordionGroup>
+
+## 페어링과 복호화 {#pairing-and-decryption}
+
+휴대폰이 읽을 수 없는 업데이트를 받고 있거나, 더 이상 키를 갖고 있지 않은
+컴퓨터입니다. 세 가지 모두 해결책은 같습니다. 그 컴퓨터를 다시 페어링하십시오.
+
+<AccordionGroup>
+
+<Accordion title="행에 암호화된 세션 또는 다시 연결 중…이 표시됨" icon="lock">
+  휴대폰이 업데이트를 받았지만 아직 열지 못한 상태입니다. Nomo는 몇 초마다
+  재시도하며, 보통 한 번의 조회 안에 스스로 해결됩니다.
+
+  계속된다면 휴대폰이 그 컴퓨터에 맞는 키를 더 이상 갖고 있지 않은 것입니다. Mac을
+  다시 페어링했거나 페어링이 교체된 경우입니다. 다시 페어링하십시오.
+</Accordion>
+
+<Accordion title="행에 확인 불가가 표시됨" icon="ban">
+  같은 문제가 10분 동안 이어진 경우입니다. 살아 있는 것처럼 보이지만 실제로는
+  아닌 행을 남겨 두는 대신, Nomo는 그 행을 죽은 것으로 표시하고 내용을 추측하기를
+  멈춥니다. 이 행은 Dynamic Island를 차지하지 않고 활성으로 계산되지도 않습니다.
+  컴퓨터를 다시 페어링하면 복구됩니다.
+</Accordion>
+
+<Accordion title="컴퓨터에 페어링 해제됨이 표시됨" icon="laptop">
+  그 페어링이 취소된 것입니다. 그 Mac을 다시 페어링했거나, 그 Mac에서
+  [`/nomo-cc:unpair`](/ko/sessions/commands#unpair)를 실행한 경우입니다. Nomo는
+  실패가 충분히 이어진 뒤에야 이를 사실로 받아들이므로, Wi-Fi가 잠깐 불안정했다는
+  이유로 이렇게 판단하는 일은 없습니다.
+
+  **제거**를 탭하거나 그대로 두십시오. 1분쯤 뒤에 스스로 정리됩니다. 다시 쓰고
+  싶을 때 그 컴퓨터를 페어링하면 됩니다.
+</Accordion>
+
+</AccordionGroup>
+
+## status 명령 먼저 실행하기 {#start-with-status}
+
+한 번에 여러 가지가 이상해 보인다면, 무엇보다 먼저 Mac에서
+[`/nomo-cc:status`](/ko/sessions/commands#status)를 실행하십시오. 그 컴퓨터가
+페어링되어 있는지, 워치독이 살아 있는지, 이벤트가 실제로 휴대폰에 도달하고
+있는지를 한 화면으로 알려 주며, 대개 그것으로 무엇이 고장 났는지 말할 수 있습니다.
+
+세션이 실제로 실행 중인데 `Last event sent: never`라면 Hook이 실행되지 않고 있다는
+뜻입니다. Claude Code를 재시작해 Hook을 로드하고, Codex에서는 `/hooks`를
+실행하십시오.
+
+모든 명령과 그 출력의 의미는 [명령](/ko/sessions/commands)에 있습니다.
+
+## 문제 제보하기 {#still-wrong-send-it-over}
+
+[설정](/ko/sessions/settings#debug)에서 **세션 진단**을 켠 다음, 이상하게
+동작하는 세션을 펼치십시오. 그 아래에 Nomo 내부 상태가 다음과 같이 한 줄
+표시됩니다.
+
+```
+2.0.0 · lan:hold 0.4s · dp
+```
+
+해석하려 애쓰지 않으셔도 됩니다. 그것은 저희 몫입니다. 그 행을 스크린샷으로
+찍어, 기대한 동작과 실제로 일어난 일과 함께 보내 주십시오.
+
+<CardGroup cols={2}>
+  <Card title="이슈 등록" href="https://github.com/KarrixLee/nomo/issues" icon="github">
+    재현되는 문제라면 가장 좋은 방법입니다. 공개되는 곳이니 민감한 정보는 빼
+    주십시오.
+  </Card>
+  <Card title="이메일" href="mailto:karrixlee1231@gmail.com" icon="envelope">
+    앱의 **설정 > 연락처**에서도 보낼 수 있습니다.
+  </Card>
+</CardGroup>
+
+해당 컴퓨터에서 실행한
+[`/nomo-cc:status`](/ko/sessions/commands#status)의 출력도 도움이 됩니다.
+
+## 기능 요청 {#nothings-broken--you-just-want-something}
+
+"이건 왜 휴대폰에서 못 하나요?"는 버그라기보다 타당한 질문일 때가 많습니다. 일부는
+에이전트가 플러그인에 넘겨주는 범위의 실제 한계이며, 그 내용은 문서로 적혀
+있습니다. Codex 쪽은 [Codex 사용하기](/ko/sessions/codex)가, 실시간 현황이 담을
+수 있는 것과 없는 것은
+[휴대폰에서 답변하기](/ko/sessions/approvals)가 다룹니다.
+
+나머지는 아직 만들지 않았을 뿐입니다.
+
+<CardGroup cols={2}>
+  <Card title="로드맵 보기" href="https://nomo.gg/roadmap" icon="map">
+    예정된 것과 진행 중인 것입니다. 생각하신 기능이 이미 올라 있을 수 있습니다.
+  </Card>
+  <Card title="요청하기" href="https://github.com/KarrixLee/nomo/issues" icon="lightbulb">
+    이슈를 등록하거나 [이메일](mailto:karrixlee1231@gmail.com)을 보내 주십시오.
+    설계하신 기능보다, 무엇을 하려던 참이었는지가 훨씬 도움이 됩니다.
+  </Card>
+</CardGroup>
+
+## 처음부터 다시 시작하기 {#starting-over}
+
+해당 컴퓨터에서
+[`/nomo-cc:unpair`](/ko/sessions/commands#unpair)를 실행하면 페어링이 제거되고
+키가 지워집니다. 그런 다음 [다시 페어링](/ko/setup/pairing)하십시오.
+
+**휴대폰에서** 컴퓨터를 삭제하는 것은 다릅니다. 그렇게 하면 그 컴퓨터가 앱에
+표시되지 않을 뿐이며, 그 명령을 컴퓨터에서 실행하기 전까지 Mac은 로컬 상태를 그대로
+유지합니다.

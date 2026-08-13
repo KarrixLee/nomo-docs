@@ -1,0 +1,125 @@
+---
+title: "電腦與 sessions"
+description: "Sessions 分頁列出你已配對的電腦。點一下其中一台，就能看到它的 Claude Code 與 Codex sessions，依專案資料夾分組。"
+icon: "list"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "電腦與 sessions"]
+---
+
+**Sessions** 分頁是一份**電腦**清單，不是 session 清單。每配對一台 Mac 就有一張卡片。你的 sessions 在下一層 — 點一下電腦才會打開。
+
+這一點常讓人意外：掃過分頁想找剛開的那個 session，卻看不到。它就在卡片上，被算進數量裡了。
+
+<Frame caption="Sessions 分頁。每台已配對的 Mac 一張卡片，帶著 session 數量，以及一顆代表連線狀態的圓點。">
+  <div className="device-frame">
+    <img src="/images/computer-paired-list.png" alt="Nomo 的 Sessions 分頁列出已配對的電腦，每一台都顯示名稱、session 數量與連線狀態" />
+  </div>
+</Frame>
+
+## 電腦列表 {#the-computer-list}
+
+每張卡片都帶著電腦名稱、一行摘要，以及一顆代表連線狀態的彩色圓點。
+
+| 圓點 | 摘要 | 代表什麼 |
+| --- | --- | --- |
+| 綠色 | `最近活躍` | 這台 Mac 在過去 10 分鐘內有動靜。 |
+| 灰色 | `沒有近期活動` | 配對正常，只是安靜。 |
+| 琥珀色 | `重新連線中…` | 上一次輪詢時，Nomo 連不上這台電腦的中繼伺服器。它會自行重試。 |
+| 轉圈 | `連線中…` | 剛配對好，還在等第一個 session 進來。 |
+| 灰色 | `已解除配對` | 這組配對已被取代或移除。請看[疑難排解](/zh-Hant/sessions/troubleshooting)。 |
+| 灰色 | `已暫停 — 續訂以重新連結` | Nomo Pro 已失效。 |
+
+摘要會寫成 `沒有進行中的 sessions`、`1 個 session`，或 `3 個進行中 · 共 7 個 session`。「進行中」不含已結束的 session、讀不到的 session，以及任何自稱在工作、卻已超過 10 分鐘沒有消息的 session。
+
+右上角的標籤顯示你配對了幾台電腦。碰到上限時會轉為橘色。
+
+<Note>
+  按住一張卡片可以「重新命名」或「移除此電腦」。重新命名只影響你的手機。移除後這台電腦不會再出現在這裡 — 你隨時可以重新配對，而且 Mac 上的任何東西都不會被動到。
+</Note>
+
+## 電腦內部 {#inside-a-computer}
+
+點一下卡片會打開一個面板，頂端有一個分段控制項：**Claude Code** 和 **Codex**。Nomo 會開在最近活躍的那個代理。
+
+裡面的 sessions **依專案資料夾**分組，資料夾的 git 分支顯示在標頭旁邊。只有一個資料夾時，會共用一張 **Sessions** 卡片；兩個以上則各自一張，以資料夾命名。
+
+在頂端的電腦名稱下方，你會看到它是「進行中」、「上次活動」還是「重新連線中…」 — 而當 Nomo 是透過你的網路直接和 Mac 對話、而非繞經中繼伺服器時，還會有一個綠色的 **⚡ 本機** 標籤。請看[區域網路](/zh-Hant/sessions/settings#local-network)。
+
+<Frame caption="電腦內部：代理分頁、兩個專案資料夾與各自的分支，還有 4/20 的 session 數量。第二列正在請求權限 — 紫色的手，而它的動態島開關在請求等待期間顯示為開啟並變灰。">
+  <div className="device-frame">
+    <img src="/images/session-list.png" alt="一台電腦的 sessions 依專案資料夾分組，一列正在執行，一列正在等待權限" />
+  </div>
+</Frame>
+
+## session 列顯示的內容 {#what-a-session-row-shows}
+
+<ResponseField name="狀態圖示" type="左緣">
+  一顆圓點、一隻手、一個勾，或一個轉圈。顏色才是重點 — 請看下面的表格。
+</ResponseField>
+
+<ResponseField name="標題">
+  代理自己對手上工作寫的摘要，所以它會隨著 session 換任務而改變。它**不是**資料夾名稱 — 只有在代理還沒摘要任何東西時，才會退回用資料夾名稱。
+</ResponseField>
+
+<ResponseField name="狀態行">
+  狀態，加上代理有回報時它此刻正在做的事 — `執行中 · 編輯中`、`需要權限 · Bash`。
+</ResponseField>
+
+<ResponseField name="相對時間">
+  距離**上一個事件**多久，而不是這個 session 已經跑了多久。`2 分鐘前` 表示 Nomo 在兩分鐘前最後一次收到它的消息。實際執行時間只會出現在[動態島](/zh-Hant/sessions/island)上。
+</ResponseField>
+
+<ResponseField name="開關" type="右緣">
+  把這個 session 放到動態島上。預設關閉 — 請看[設定](/zh-Hant/sessions/settings#dynamic-island)。
+</ResponseField>
+
+## session 狀態 {#session-states}
+
+| 標籤 | 顏色 | 意思 |
+| --- | --- | --- |
+| `執行中` | 橘色圓點 | 正在工作。不需要你做任何事。 |
+| `需要注意` | 橘色的手 | 停下來等你，而且沒有任何你能在手機上回覆的東西。 |
+| `需要權限 · Bash` | 紫色的手 | 正在為某個特定動作請求權限。**這個你可以在這裡回覆** — 請看[在手機上回覆](/zh-Hant/sessions/approvals)。 |
+| `需要回答` | 紫色的手 | 正在問一個選擇題。一樣可以在手機上回答。 |
+| `完成` | 綠色的勾 | 這個 session 結束了。 |
+| `重新連線中…` | 琥珀色 | 可能是 Mac 在 session 中途失去中繼伺服器，也可能是 Nomo 還沒能解開這一列。這是暫時的 — 它會重試。 |
+| `無法取得` | 灰色圓點 | 這一列在 10 分鐘後仍然解不開。它會顯示為 `加密的 session`。 |
+| `傳送中…` | 轉圈 | 你的回覆正在送往 Mac 的路上。 |
+
+一個請求被處理完之後，那一列會帶上一行小字說明怎麼處理的：`已允許`、`已拒絕`、`已設為一律允許`、`已回答`，或是一句誠實的失敗訊息，像 `已過期 — 請在電腦上繼續`。完整清單在[在手機上回覆](/zh-Hant/sessions/approvals#what-the-caption-tells-you)。
+
+各列依最近活動排序。Nomo 從不隱藏任何一列 — 這份列表就是中繼伺服器所持有內容的原樣。
+
+## 點一下查看細節 {#tap-a-row-for-detail}
+
+點一下某一列的文字側就會展開。這裡的每一項都可以選取，而且用符號而不是文字標示：
+
+- **模型** — `Fable`、`Opus 4.8`、`GPT 5.6 Sol`。代理沒有回報時就隱藏。
+- **完整標題** — 不截斷。
+- **資料夾**與 **session ID** — 前八個字元，等寬字體。
+- **待回覆的問題**全文，如果有的話。
+- **查看計畫** — 打開計畫。Claude Code 可以直接回覆，[Codex](/zh-Hant/sessions/codex) 則是唯讀。
+- **在 Mac 上開啟** — 把那個 session 的終端機視窗切到你 Mac 的最前面。只有在 Nomo 有直接的[區域網路](/zh-Hant/sessions/settings#local-network)連線時才會出現。
+
+<Tip>
+  要**回覆**一個請求，請按住那一列，而不是點一下。點一下是展開；按住才會打開「允許」／「拒絕」選單。
+</Tip>
+
+## 數量上限 {#how-many}
+
+| | 上限 |
+| --- | --- |
+| 每台電腦的 sessions | **20** 個，兩個代理合計 |
+| 已配對的電腦 | **5** 台 |
+| 動態島上的 sessions | **一次一個**，全裝置共用 |
+
+這兩個數字都設在 Nomo 那一端，而不是編進 App 裡，所以不必更新 App 就能調整。session 數量會以 `N/20` 標籤顯示在第一張 Sessions 卡片上，電腦數量則以 `N/5` 標籤顯示在分頁上。兩者到達上限時都會轉為橘色。
+
+配對第六台電腦會失敗，並顯示「已達電腦數量上限」。移除一台你已經不用的再試一次 — 已經配對過的電腦絕不會為了空出位置而被撤銷。
+
+當一台電腦達到 session 上限時，Nomo 會先淘汰已結束和長時間沒有消息的列。真正全新的 session 會被拒絕，而不是把一個還活著的擠掉 — 除非它帶著權限請求進來，那種一定贏。
+
+## 自動消失的列 {#rows-that-disappear}
+
+已結束和安靜下來的 sessions 會自行退場，大約在最後一次真正活動的一小時後。一列自己消失是正常的，不代表出了什麼問題。
+
+配對被撤銷則是另一回事 — 你重新配對了那台 Mac，或是在上面執行了 [`/nomo-cc:unpair`](/zh-Hant/sessions/commands#unpair)。Nomo 會等到連續失敗夠久才相信這件事，然後把卡片翻成 `已解除配對` 並附上一個一點就好的「移除」，一分鐘後再清掉它。它不會因為 Wi-Fi 抖了一分鐘就默默丟掉一台電腦。

@@ -401,3 +401,56 @@ h1 {
     color: CanvasText;
   }
 }
+
+/* The Dynamic Island shot is the top slice of a screenshot, not a whole phone.
+   It keeps the bezel's top corners and squares off the cut edge — rounding the
+   crop would read as a device that genuinely ends there. Slightly wider than a
+   full-phone frame because 8% of a screenshot at 18rem is unreadably small. */
+.device-frame.crop-top {
+  max-width: 22rem;
+  padding-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.device-frame.crop-top img {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* The island's working state is drawn with the agent's own logo, not a generic
+   status dot, so the state table shows both marks rather than an Icon glyph. */
+.agent-mark {
+  width: 1.125rem;
+  height: 1.125rem;
+  display: inline-block;
+  margin: 0 0.25rem 0 0;
+  vertical-align: -0.2em;
+  object-fit: contain;
+}
+
+/* Beta chip. The PRO pill above is an ::after because it badges links whose own
+   text we don't write; this one wraps its own word, so it's a plain class.
+   Amber, not the brand gradient — PRO is a tier you buy and beta is a caveat,
+   and a reader who's learned one pill shape shouldn't have to re-read it to
+   find out which meaning applies. */
+.beta-pill {
+  display: inline-block;
+  vertical-align: 0.05em;
+  margin-right: 0.5rem;
+  padding: 0.2em 0.45em;
+  border-radius: 0.35em;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #8a5b00;
+  background: rgb(234 168 42 / 0.16);
+  box-shadow: inset 0 0 0 1px rgb(234 168 42 / 0.45);
+}
+
+.dark .beta-pill {
+  color: #eaa82a;
+  background: rgb(234 168 42 / 0.14);
+}
