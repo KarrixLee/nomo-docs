@@ -155,7 +155,6 @@
             "groups": [
               {
                 "group": "Configuración",
-                "icon": "wrench",
                 "pages": [
                   "es/setup/install",
                   "es/setup/pairing"
@@ -203,7 +202,6 @@
             "groups": [
               {
                 "group": "セットアップ",
-                "icon": "wrench",
                 "pages": [
                   "ja/setup/install",
                   "ja/setup/pairing"
@@ -251,7 +249,6 @@
             "groups": [
               {
                 "group": "설정",
-                "icon": "wrench",
                 "pages": [
                   "ko/setup/install",
                   "ko/setup/pairing"
@@ -299,7 +296,6 @@
             "groups": [
               {
                 "group": "设置",
-                "icon": "wrench",
                 "pages": [
                   "zh-Hans/setup/install",
                   "zh-Hans/setup/pairing"
@@ -347,7 +343,6 @@
             "groups": [
               {
                 "group": "設定",
-                "icon": "wrench",
                 "pages": [
                   "zh-Hant/setup/install",
                   "zh-Hant/setup/pairing"
