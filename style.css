@@ -417,3 +417,14 @@ h1 {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+
+/* The island's working state is drawn with the agent's own logo, not a generic
+   status dot, so the state table shows both marks rather than an Icon glyph. */
+.agent-mark {
+  width: 1.125rem;
+  height: 1.125rem;
+  display: inline-block;
+  margin: 0 0.25rem 0 0;
+  vertical-align: -0.2em;
+  object-fit: contain;
+}
