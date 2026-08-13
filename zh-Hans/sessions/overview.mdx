@@ -44,6 +44,12 @@ Nomo 的会话功能把正在运行的 Claude Code 和 Codex 会话搬到你的 
 
 这决定了你可以期待什么 —— 你的提示词、文件路径和命令，都只属于你自己。这也意味着配对是一次真正的密码学操作，而不是一次登录，所以它需要扫一次码，或者手输一段配对码。
 
+具体方案——密钥交换、中继服务器能看到和看不到什么、插件读取哪些内容——都写在插件自己的 README 里，就挨着实现它的代码：
+
+<Card title="架构与加密" href="https://github.com/KarrixLee/nomo#architecture--end-to-end-encrypted" icon="lock" horizontal>
+  配对如何派生密钥，以及中继服务器为什么只持有密文。
+</Card>
+
 ## 开始配置
 
 <CardGroup cols={2}>
