@@ -2,13 +2,14 @@
 title: "トラブルシューティング"
 description: "復号できないセッション、応答しなくなったコンピュータ、固まった Dynamic Island — それぞれの状態の意味と対処法。"
 icon: "wrench"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "トラブルシューティング"]
 ---
 
 ここで不具合に見えるものの多くは、Nomo が「わからない」ことを率直に示している状態です。このページでは、その状態がそれぞれ実際に何を意味するのかを、どこで直すかごとにまとめます。
 
 おかしいところが同時に 2 つ以上あるときは、読み飛ばして[まずはステータス確認](#start-with-status)へ進んでください — たいていは 1 画面で原因がわかります。
 
-## iPhone 側で対処する
+## iPhone 側で対処する {#fix-it-on-your-phone}
 
 以下はどれも、Mac ですることはありません。
 
@@ -44,7 +45,7 @@ icon: "wrench"
 
 </AccordionGroup>
 
-## コンピュータ側で対処する
+## コンピュータ側で対処する {#fix-it-on-your-computer}
 
 iPhone に問題はありません。以下はすべて、Mac のセッションから解決します。
 
@@ -98,7 +99,7 @@ iPhone に問題はありません。以下はすべて、Mac のセッション
 
 </AccordionGroup>
 
-## ペアリングと復号
+## ペアリングと復号 {#pairing-and-decryption}
 
 iPhone が、読み取れない更新や、鍵を持っていないコンピュータの更新を受け取っている状態です。3 つとも、対処は同じ「そのコンピュータをもう一度ペアリングする」に行き着きます。
 
@@ -151,7 +152,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
 
 対象のコンピュータで実行した [`/nomo-cc:status`](/ja/sessions/commands#status) の出力もあると助かります。
 
-## 機能リクエスト
+## 機能リクエスト {#nothings-broken--you-just-want-something}
 
 「なぜこれを iPhone からできないのか」は、不具合ではなく正当な疑問であることがよくあります。その一部はエージェントがプラグインに渡すものの実際の制約で、それは文書になっています。Codex 側は [Codex での利用](/ja/sessions/codex)に、ライブアクティビティに載せられるもの・載せられないものは [iPhone からの回答](/ja/sessions/approvals)にまとめてあります。
 
@@ -166,7 +167,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
   </Card>
 </CardGroup>
 
-## ペアリングのやり直し
+## ペアリングのやり直し {#starting-over}
 
 対象のコンピュータで [`/nomo-cc:unpair`](/ja/sessions/commands#unpair) を実行すると、ペアリングが削除され、その鍵が消去されます。そのうえで[もう一度ペアリング](/ja/setup/pairing)してください。
 

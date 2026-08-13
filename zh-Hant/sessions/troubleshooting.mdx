@@ -2,22 +2,23 @@
 title: "疑難排解"
 description: "解不開的 sessions、失去聯絡的電腦、凍住的動態島 — 每個狀態代表什麼，以及該怎麼處理。"
 icon: "wrench"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
 ---
 
 這裡看起來像 bug 的東西，大多是 Nomo 誠實地表示它不知道某件事。這一頁說明那些狀態實際上的意思，並依你會去哪裡解決來分組。
 
-如果同時有不只一件事看起來不對，請直接往下跳到[先從 status 指令開始](#先從-status-指令開始) — 它通常一個畫面就能指出問題。
+如果同時有不只一件事看起來不對，請直接往下跳到[先從 status 指令開始](#start-with-status) — 它通常一個畫面就能指出問題。
 
-## 在手機上處理
+## 在手機上處理 {#fix-it-on-your-phone}
 
 以下這些都不必到你的 Mac 上做任何事。
 
 <AccordionGroup>
 
 <Accordion title="動態島上什麼都沒出現" icon="circle-dot">
-  幾乎一定是預期中的行為：sessions 是**你選了才會上去**的。打開那台電腦，找到那個 session，把它的開關打開 — 或是到[設定](/zh-Hant/sessions/settings#動態島)開啟「自動加入新 sessions」。
+  幾乎一定是預期中的行為：sessions 是**你選了才會上去**的。打開那台電腦，找到那個 session，把它的開關打開 — 或是到[設定](/zh-Hant/sessions/settings#dynamic-island)開啟「自動加入新 sessions」。
 
-  如果開關是開的卻還是什麼都沒有，請確認 iOS 設定裡 Nomo 的「即時動態」已啟用。接著確認不是另一個 session 佔著動態島：你的手機[一次只顯示一個](/zh-Hant/sessions/island#session-的挑選規則)，而正在等你的 session 排在工作中的前面。
+  如果開關是開的卻還是什麼都沒有，請確認 iOS 設定裡 Nomo 的「即時動態」已啟用。接著確認不是另一個 session 佔著動態島：你的手機[一次只顯示一個](/zh-Hant/sessions/island#which-session-it-picks)，而正在等你的 session 排在工作中的前面。
 </Accordion>
 
 <Accordion title="某個 session 的動態島開關是開的、變灰，而且關不掉" icon="toggle-off">
@@ -44,7 +45,7 @@ icon: "wrench"
 
 </AccordionGroup>
 
-## 在電腦上處理
+## 在電腦上處理 {#fix-it-on-your-computer}
 
 你的手機沒問題。這些全都在 Mac 上的一個 session 裡解決。
 
@@ -69,7 +70,7 @@ icon: "wrench"
 <Accordion title="Codex 在更新之後就不再送出請求" icon="code">
   Codex 的 hooks 出廠時**在被信任前不作用**，而一次加入 hook 的外掛程式更新會重新開啟那道審核。在 Codex 裡執行 `/hooks`，信任 Nomo 的項目。在你這麼做之前，批准會退回終端機，而且沒有任何東西回報錯誤。
 
-  更多內容在[搭配 Codex 使用](/zh-Hant/sessions/codex#hooks-必須先信任)。
+  更多內容在[搭配 Codex 使用](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="按住後的選單少了幾個選項" icon="ellipsis">
@@ -96,7 +97,7 @@ icon: "wrench"
 
 </AccordionGroup>
 
-## 配對與解密
+## 配對與解密 {#pairing-and-decryption}
 
 你的手機收到了它讀不了的更新，或是一台它已經沒有金鑰的電腦。這三種情況的解法都一樣：重新配對那台電腦。
 
@@ -120,7 +121,7 @@ icon: "wrench"
 
 </AccordionGroup>
 
-## 先從 status 指令開始
+## 先從 status 指令開始 {#start-with-status}
 
 如果不只一件事看起來不對，請在做任何事之前，先在 Mac 上執行 [`/nomo-cc:status`](/zh-Hant/sessions/commands#status)。一個畫面就會告訴你這台機器有沒有配對、它的 watchdog 是不是還活著，以及事件到底有沒有送到你的手機 — 這通常足以說出哪裡壞了。
 
@@ -128,9 +129,9 @@ icon: "wrench"
 
 每一個指令，以及它的輸出代表什麼，都在[指令](/zh-Hant/sessions/commands)。
 
-## 回報問題
+## 回報問題 {#still-wrong-send-it-over}
 
-到[設定](/zh-Hant/sessions/settings#偵錯)開啟「session 診斷」，然後展開那個出問題的 session。它底下會出現一行 Nomo 自己的內部狀態，長得像這樣：
+到[設定](/zh-Hant/sessions/settings#debug)開啟「session 診斷」，然後展開那個出問題的 session。它底下會出現一行 Nomo 自己的內部狀態，長得像這樣：
 
 ```
 2.0.0 · lan:hold 0.4s · dp
@@ -143,13 +144,13 @@ icon: "wrench"
     任何可重現的問題都最適合走這條路。這是公開的，所以請不要放進私密內容。
   </Card>
   <Card title="寄信" href="mailto:karrixlee1231@gmail.com" icon="envelope">
-    應用程式裡也有，在「設定」>「聯絡方式」底下。
+    App裡也有，在「設定」>「聯絡方式」底下。
   </Card>
 </CardGroup>
 
 附上受影響電腦上 [`/nomo-cc:status`](/zh-Hant/sessions/commands#status) 的輸出也很有幫助。
 
-## 功能建議
+## 功能建議 {#nothings-broken--you-just-want-something}
 
 「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)講 Codex 那一側，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
 
@@ -164,8 +165,8 @@ icon: "wrench"
   </Card>
 </CardGroup>
 
-## 重新來過
+## 重新來過 {#starting-over}
 
 在受影響的電腦上執行 [`/nomo-cc:unpair`](/zh-Hant/sessions/commands#unpair) 會移除配對並清除它的金鑰。然後[重新配對它](/zh-Hant/setup/pairing)。
 
-**從手機上**移除一台電腦不是同一件事：那只會讓那台電腦不再出現在你的應用程式裡，Mac 上的本機狀態會一直保留，直到你在那裡執行那個指令。
+**從手機上**移除一台電腦不是同一件事：那只會讓那台電腦不再出現在你的App裡，Mac 上的本機狀態會一直保留，直到你在那裡執行那個指令。

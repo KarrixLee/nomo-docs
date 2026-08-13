@@ -2,9 +2,10 @@
 title: "命令"
 description: "Claude Code 和 Codex 的全部 Nomo 命令——配对、状态、审批、重置和解除配对，都在这一页。"
 icon: "terminal"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
 
-五条命令，两个代理上是同样的五条。你要在想影响的那台电脑上、从一个代理会话里运行它们——在 Claude Code 里是 `/` 命令，在 Codex 里是 `$` skill。
+五条命令，两个智能体上是同样的五条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 里是 `/` 命令，在 Codex 里是 `$` skill。
 
 <Tip>
   Claude Code 里一切都带命名空间：输入 `/nomo-cc:` 就会列出全部。
@@ -20,7 +21,7 @@ icon: "terminal"
 
 它们都不会大声报错。即使无事可做也会干净地退出——`Not paired` 是成功，不是错误。
 
-## pair
+## pair {#pair}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -36,11 +37,11 @@ $nomo-pair code        # one-time code, printed in the terminal
 
 不带参数时，它会在浏览器里打开一个配了主题的页面，上面有二维码。在 App 里扫一下，页面会自己翻成 **Paired ✓**。
 
-`code` 参数完全跳过浏览器，直接打印一段可以手输的一次性配对码，供无头机器或 SSH 会话使用。它是刻意排在第二位的：那段配对码会落进你的终端，也就落进了代理的转录记录。
+`code` 参数完全跳过浏览器，直接打印一段可以手输的一次性配对码，供无头机器或 SSH 会话使用。它是刻意排在第二位的：那段配对码会落进你的终端，也就落进了智能体的转录记录。
 
-配对若 **10 分钟**内未使用就会过期。一次配对覆盖的是这台机器，而不是某个代理——同一台 Mac 上的 Claude Code 和 Codex 共用它。完整流程见[配对](/zh-Hans/setup/pairing)。
+配对若 **10 分钟**内未使用就会过期。一次配对覆盖的是这台机器，而不是某个智能体——同一台 Mac 上的 Claude Code 和 Codex 共用它。完整流程见[配对](/zh-Hans/setup/pairing)。
 
-## status
+## status {#status}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -79,16 +80,16 @@ Codex Plan answers: bridge available (shared app-server socket accepted a connec
 </ResponseField>
 
 <ResponseField name="Codex plugin">
-  `installed, hooks NOT trusted (run /hooks in Codex)` 是最容易绊倒人的一条——见[搭配 Codex 使用](/zh-Hans/sessions/codex#hook-需要信任)。
+  `installed, hooks NOT trusted (run /hooks in Codex)` 是最容易绊倒人的一条——见[搭配 Codex 使用](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
 </ResponseField>
 
 <ResponseField name="Codex Plan answers">
-  `bridge available` 表示问题会连同选项一起到达你的手机。`status-only` 表示不会——[原因](/zh-Hans/sessions/codex#cli-与桌面应用中的问题)。
+  `bridge available` 表示问题会连同选项一起到达你的手机。`status-only` 表示不会——[原因](/zh-Hans/sessions/codex#questions-in-the-cli-and-the-desktop-app)。
 </ResponseField>
 
 它还会对两种会让每个事件被悄悄上报两遍的配置发出警告：原生插件之前遗留下来的 Codex hook，以及 Codex 在自己的插件之外又自动发现了 Claude Code 的插件。两种情况它都会指明该改哪个文件。
 
-## approvals
+## approvals {#approvals}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -111,11 +112,11 @@ Remote approvals are OFF for this computer — Claude Code permission prompts
 will appear in the terminal as usual (your phone is not asked).
 ```
 
-一台电脑一个开关，**两个代理共用**——在 Codex 里暂停，同一台机器上的 Claude Code 也一起暂停。它不会解除任何配对，也不会碰你手机上的设置。
+一台电脑一个开关，**两个智能体共用**——在 Codex 里暂停，同一台机器上的 Claude Code 也一起暂停。它不会解除任何配对，也不会碰你手机上的设置。
 
-另外还有一个覆盖整部手机的开关：[设置](/zh-Hans/sessions/settings#远程审批)里的**在 iPhone 上回答**。
+另外还有一个覆盖整部手机的开关：[设置](/zh-Hans/sessions/settings#remote-approvals)里的**在 iPhone 上回答**。
 
-## reset
+## reset {#reset}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -138,7 +139,7 @@ Pairing and keys were not touched — use the unpair command if you want that.
 
 会话行看着陈旧或重复时，这是最稳妥的一招，因为它会告诉你自己没动过什么。
 
-## unpair
+## unpair {#unpair}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -154,11 +155,11 @@ $nomo-unpair
 
 **在手机上**移除一台电脑不是一回事：那只会让它不再出现在你的 App 里，Mac 上的本地状态会一直留着，直到你在那边运行这条命令。
 
-## 状态文件的位置
+## 状态文件的位置 {#where-state-lives}
 
 插件保存的一切都在 `~/.config/cc-status/` 里——配对信息、加密密钥（权限 `0600`）、每个被追踪会话一个文件，以及一份本地跟踪日志。这个文件夹里的东西不会发往任何地方。
 
-## 源代码
+## 源代码 {#read-the-source}
 
 这些命令就是插件，而插件是开源的。如果你想确切知道你机器上跑的是什么、有什么东西离开了它，答案就在一个仓库里——从市场安装的版本只是它的一份普通克隆。
 

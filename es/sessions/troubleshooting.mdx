@@ -2,6 +2,7 @@
 title: "Solución de problemas"
 description: "Sesiones que no se descifran, ordenadores que se quedan mudos, una Dynamic Island congelada: qué significa cada estado y qué hacer con él."
 icon: "wrench"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
 ---
 
 Casi todo lo que aquí parece un fallo es Nomo siendo honesto sobre algo que no
@@ -9,10 +10,10 @@ sabe. Esta página explica qué significa de verdad cada uno de esos estados,
 agrupados por dónde irías a arreglarlo.
 
 Si hay más de una cosa que se ve mal a la vez, sáltate lo demás y
-[empieza por el comando status](#empieza-por-el-comando-status): suele nombrar el
+[empieza por el comando status](#start-with-status): suele nombrar el
 problema en una sola pantalla.
 
-## Se arregla en el iPhone
+## Se arregla en el iPhone {#fix-it-on-your-phone}
 
 Para ninguno de estos hay nada que hacer en tu Mac.
 
@@ -27,7 +28,7 @@ Para ninguno de estos hay nada que hacer en tu Mac.
   Si el interruptor está activado y aun así no sale nada, comprueba que las
   **Actividades en directo** estén permitidas para Nomo en los Ajustes de iOS.
   Después comprueba que no haya otra sesión ocupando la Dynamic Island: tu
-  teléfono muestra [una cada vez](/es/sessions/island#qué-sesión-se-muestra), y
+  teléfono muestra [una cada vez](/es/sessions/island#which-session-it-picks), y
   una sesión que lleva esperándote está por encima de una que está trabajando.
 </Accordion>
 
@@ -77,7 +78,7 @@ Para ninguno de estos hay nada que hacer en tu Mac.
 
 </AccordionGroup>
 
-## Se arregla en el ordenador
+## Se arregla en el ordenador {#fix-it-on-your-computer}
 
 Tu teléfono está bien. Todos estos se resuelven desde una sesión en el Mac.
 
@@ -107,7 +108,7 @@ Tu teléfono está bien. Todos estos se resuelven desde una sesión en el Mac.
   `/hooks` en Codex y confía en las entradas de Nomo. Hasta que lo hagas, las
   aprobaciones vuelven al terminal y nada informa de ningún error.
 
-  Más en [Usar Codex](/es/sessions/codex#confianza-en-los-hooks).
+  Más en [Usar Codex](/es/sessions/codex#hooks-have-to-be-trusted).
 </Accordion>
 
 <Accordion title="Faltan opciones en el menú de mantener pulsado" icon="ellipsis">
@@ -139,7 +140,7 @@ Tu teléfono está bien. Todos estos se resuelven desde una sesión en el Mac.
 
 </AccordionGroup>
 
-## Vinculación y descifrado
+## Vinculación y descifrado {#pairing-and-decryption}
 
 Tu teléfono está recibiendo actualizaciones que no puede leer, o tiene un
 ordenador del que ya no guarda la clave. Los tres acaban en el mismo arreglo:
@@ -174,7 +175,7 @@ vincular ese ordenador otra vez.
 
 </AccordionGroup>
 
-## Empieza por el comando status
+## Empieza por el comando status {#start-with-status}
 
 Si hay más de una cosa que se ve mal, ejecuta
 [`/nomo-cc:status`](/es/sessions/commands#status) en el Mac antes que nada. Una
@@ -189,10 +190,10 @@ ejecuta `/hooks`.
 Todos los comandos, y qué significa lo que imprimen, están en
 [Comandos](/es/sessions/commands).
 
-## Informar de un problema
+## Informar de un problema {#still-wrong-send-it-over}
 
 Activa **Diagnóstico de sesiones** en
-[Ajustes](/es/sessions/settings#depuración) y después despliega la sesión que se
+[Ajustes](/es/sessions/settings#debug) y después despliega la sesión que se
 esté portando mal. Debajo aparece una línea con el estado interno del propio
 Nomo, algo así:
 
@@ -216,7 +217,7 @@ mándanosla, junto con lo que esperabas y lo que obtuviste en su lugar:
 La salida de [`/nomo-cc:status`](/es/sessions/commands#status) del ordenador
 afectado también ayuda.
 
-## Solicitudes de funciones
+## Solicitudes de funciones {#nothings-broken--you-just-want-something}
 
 “¿Por qué no puedo hacer X desde el teléfono?” muchas veces es una pregunta justa
 y no un fallo. Una parte es un límite real de lo que un agente le entrega a un
@@ -237,7 +238,7 @@ El resto simplemente todavía no está hecho.
   </Card>
 </CardGroup>
 
-## Empezar de cero
+## Empezar de cero {#starting-over}
 
 [`/nomo-cc:unpair`](/es/sessions/commands#unpair) en el ordenador afectado
 elimina la vinculación y borra su clave. Después

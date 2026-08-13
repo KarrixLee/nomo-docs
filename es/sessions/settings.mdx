@@ -2,6 +2,7 @@
 title: "Ajustes"
 description: "Todos los ajustes de Sesiones: entrega por red local, comportamiento de la Dynamic Island, aprobaciones remotas y diagnóstico — y qué valor trae cada uno de fábrica."
 icon: "sliders"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Ajustes"]
 ---
 
 Está todo en una sola página: **Ajustes → Sesiones**. El engranaje de arriba a
@@ -14,7 +15,7 @@ teléfono.
 
 {/* TODO: screenshot of the Sessions settings page */}
 
-## Red local
+## Red local {#local-network}
 
 <ResponseField name="Red local" type="desactivado por defecto">
   Desactivado, Nomo se comunica con tu Mac solo a través de la nube. Activado, se
@@ -44,7 +45,7 @@ enlace directo, sea cual sea el motivo.
 La conexión directa desbloquea además dos cosas: **Abrir en el Mac** en una fila
 de sesión, y volver a pedir un plan que no cupo en una actualización cifrada.
 
-## Dynamic Island
+## Dynamic Island {#dynamic-island}
 
 <ResponseField name="Expandir al actualizar" type="desactivado por defecto">
   Expande brevemente la Dynamic Island con una vibración cuando una sesión
@@ -83,10 +84,10 @@ sesión que desactivaste a mano nunca se vuelve a añadir.
 <Tip>
   Una sesión que **está pidiendo permiso** llega a la Dynamic Island
   independientemente de estas dos opciones: de eso va la función. Ve
-  [Nada aparece por defecto](/es/sessions/island#nada-aparece-por-defecto).
+  [Nada aparece por defecto](/es/sessions/island#nothing-appears-until-you-say-so).
 </Tip>
 
-## Aprobaciones remotas
+## Aprobaciones remotas {#remote-approvals}
 
 <ResponseField name="Responder en el iPhone" type="desactivado por defecto">
   Cuando una sesión en la Dynamic Island pide permiso (ejecutar un comando,
@@ -103,7 +104,7 @@ Hay una segunda pausa, por ordenador, que vive en el Mac y no aquí:
 [`/nomo-cc:approvals off`](/es/sessions/commands#approvals). Usa esa cuando lo
 que no está disponible es tu teléfono.
 
-## Depuración
+## Depuración {#debug}
 
 <ResponseField name="Diagnóstico de sesiones" type="desactivado por defecto">
   Muestra las decisiones de estado del plugin debajo de cada sesión.
@@ -113,9 +114,9 @@ Añade una línea con el estado interno de Nomo bajo cada fila de sesión
 desplegada. No cuesta nada y no muestra nada en la Dynamic Island. Déjalo
 desactivado salvo que vayas a reportar algo — entonces actívalo y mándanos la
 fila, como se explica en
-[Informar de un problema](/es/sessions/troubleshooting#informar-de-un-problema).
+[Informar de un problema](/es/sessions/troubleshooting#still-wrong-send-it-over).
 
-## Permisos de iOS
+## Permisos de iOS {#ios-permissions}
 
 **Abrir Ajustes de iOS** te lleva a la página de Nomo en los Ajustes de iOS,
 donde importan dos interruptores de la propia Apple:
@@ -126,12 +127,12 @@ donde importan dos interruptores de la propia Apple:
   defecto, más o menos una actualización cada nueve segundos. Actívalo si notas
   que la Dynamic Island va por detrás de tu terminal.
 
-## El interruptor de cada sesión
+## El interruptor de cada sesión {#the-per-session-switch}
 
 Fuera de esta página queda el interruptor de cada fila de sesión, que decide si
 *esa* sesión puede quedarse con la Dynamic Island. Está en el panel del
 ordenador, a la derecha de cada fila. Ve
-[Ordenadores y sesiones](/es/sessions/list#la-fila-de-sesión).
+[Ordenadores y sesiones](/es/sessions/list#what-a-session-row-shows).
 
 Lo que elijas sobrevive a cerrar la app y a reiniciar el teléfono. Si un
 ordenador estaba inaccesible cuando cambiaste algo, el cambio se guarda y se

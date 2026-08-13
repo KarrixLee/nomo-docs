@@ -2,6 +2,7 @@
 title: "Comandos"
 description: "Todos los comandos de Nomo para Claude Code y Codex —vinculación, estado, aprobaciones, reinicio y desvinculación— en un solo sitio."
 icon: "terminal"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
 ---
 
 Cinco comandos, los mismos cinco en los dos agentes. Se ejecutan desde dentro de
@@ -24,7 +25,7 @@ una sesión del agente, en el ordenador al que quieras afectar: un comando con
 Ninguno puede fallar a gritos. Todos terminan limpiamente incluso cuando no hay
 nada que hacer: `Not paired` es un éxito, no un error.
 
-## pair
+## pair {#pair}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -50,7 +51,7 @@ Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubr
 la máquina, no el agente: Claude Code y Codex en el mismo Mac la comparten. El
 recorrido completo está en [Vinculación](/es/setup/pairing).
 
-## status
+## status {#status}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -95,13 +96,13 @@ Línea a línea:
 
 <ResponseField name="Codex plugin">
   `installed, hooks NOT trusted (run /hooks in Codex)` es la que pilla a la
-  gente — ve [Usar Codex](/es/sessions/codex#confianza-en-los-hooks).
+  gente — ve [Usar Codex](/es/sessions/codex#hooks-have-to-be-trusted).
 </ResponseField>
 
 <ResponseField name="Codex Plan answers">
   `bridge available` significa que las preguntas llegan a tu teléfono con sus
   opciones. `status-only` significa que no —
-  [por qué](/es/sessions/codex#preguntas-en-la-cli-y-en-la-app-de-escritorio).
+  [por qué](/es/sessions/codex#questions-in-the-cli-and-the-desktop-app).
 </ResponseField>
 
 También avisa de las dos configuraciones que duplican en silencio el reporte de
@@ -109,7 +110,7 @@ cada evento: hooks de Codex sobrantes de antes del plugin nativo, y Codex
 descubriendo por su cuenta el plugin de Claude Code junto al suyo. Las dos
 nombran el archivo que hay que editar.
 
-## approvals
+## approvals {#approvals}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -139,9 +140,9 @@ Codex lo pausa también para Claude Code en esa máquina. No desvincula nada y n
 toca los ajustes de tu teléfono.
 
 Hay otro interruptor aparte, para todo el teléfono: **Responder en el iPhone**
-en [Ajustes](/es/sessions/settings#aprobaciones-remotas).
+en [Ajustes](/es/sessions/settings#remote-approvals).
 
-## reset
+## reset {#reset}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -166,7 +167,7 @@ Pairing and keys were not touched — use the unpair command if you want that.
 Es lo seguro a lo que recurrir cuando las filas se ven obsoletas o duplicadas,
 porque dice qué ha dejado intacto.
 
-## unpair
+## unpair {#unpair}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -184,13 +185,13 @@ Olvidar un ordenador **desde el teléfono** no es lo mismo: eso hace que deje de
 aparecer en tu app, pero el Mac conserva su estado local hasta que ejecutes esto
 allí.
 
-## Dónde se guarda el estado
+## Dónde se guarda el estado {#where-state-lives}
 
 Todo lo que guarda el plugin está en `~/.config/cc-status/`: la vinculación, la
 clave de cifrado (modo `0600`), un archivo por sesión seguida y un registro de
 traza local. Nada de esa carpeta se envía a ningún sitio.
 
-## El código fuente
+## El código fuente {#read-the-source}
 
 Estos comandos son el plugin, y el plugin es de código abierto. Si quieres saber
 exactamente qué se ejecuta en tu máquina y qué sale de ella, la respuesta está en

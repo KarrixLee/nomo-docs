@@ -2,6 +2,7 @@
 title: "Usar Codex"
 description: "Sesiones funciona con Codex, pero no igual que con Claude Code. Qué puedes y qué no puedes hacer desde el teléfono, y por qué."
 icon: "code"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar Codex"]
 ---
 
 Las sesiones de Codex salen en la misma lista, en la misma Dynamic Island y
@@ -19,7 +20,7 @@ otro control o bien un honesto “esto se hace en tu Mac”.
   se trataba.
 </Note>
 
-## Lo que funciona igual
+## Lo que funciona igual {#what-works-the-same}
 
 - Las sesiones, los estados, las carpetas y la Dynamic Island.
 - Las solicitudes de permiso para comandos de shell, parches y herramientas MCP:
@@ -27,7 +28,7 @@ otro control o bien un honesto “esto se hace en tu Mac”.
 - **Denegar con nota…**, para decir por qué o qué hacer en su lugar.
 - Leer planes.
 
-## Sin “Permitir siempre”
+## Sin “Permitir siempre” {#no-always-allow}
 
 Claude Code te deja permitir una herramienta durante el resto de la sesión. Codex
 rechaza la decisión entera cuando Nomo le adjunta una regla de ese tipo, así que
@@ -37,7 +38,7 @@ que un botón que falta.
 Permitir sigue funcionando con normalidad. Simplemente te lo volverá a preguntar
 la próxima vez.
 
-## Planes de solo lectura
+## Planes de solo lectura {#plans-are-read-only}
 
 La solicitud de Codex de “¿implemento este plan?” vive dentro de su propia
 interfaz de terminal. Nunca llega a un plugin, lo que significa que no hay nada
@@ -54,7 +55,7 @@ terminal de tu Mac`. Si tu teléfono puede llegar al Mac por tu red local,
   </div>
 </Frame>
 
-## Preguntas en la CLI y en la app de escritorio
+## Preguntas en la CLI y en la app de escritorio {#questions-in-the-cli-and-the-desktop-app}
 
 Para responder a una pregunta de Codex desde tu teléfono, la tarea de Codex y el
 proceso supervisor de Nomo tienen que compartir un mismo proceso `app-server`.
@@ -102,7 +103,7 @@ En cualquiera de los dos casos la sesión sigue llegando a tu teléfono. Sin el
 puente verás `Necesita ayuda` y `Responder en el Mac`: la pregunta está ahí para
 leerla, solo que no hay selector que tocar, y la respondes en Codex.
 
-## Confianza en los hooks
+## Confianza en los hooks {#hooks-have-to-be-trusted}
 
 Codex trae su propia barrera de seguridad: los hooks de un plugin se instalan
 pero quedan **inertes hasta que confías en ellos**. Ejecuta `/hooks` y confía en
@@ -119,7 +120,7 @@ ejecuta `/hooks` lo primero.
 `$nomo-status` informa de la confianza en los hooks, así que es como compruebas
 que el paso surtió efecto.
 
-## Solicitudes que nunca te llegan
+## Solicitudes que nunca te llegan {#prompts-that-never-reach-you}
 
 Cuando un turno de Codex corre bajo revisión automática o con acceso completo, el
 hook le devuelve el control a Codex antes de que Nomo envíe nada. Eso es
@@ -130,7 +131,7 @@ Codex tampoco tiene un equivalente del hook de notificación de Claude Code, as�
 que recibirás algún aviso menos de “te necesita” en las sesiones de Codex que en
 las de Claude Code.
 
-## Versión mínima
+## Versión mínima {#version-floor}
 
 Codex **0.142 o posterior**. Las versiones anteriores no tienen un sistema de
 plugins en el que Nomo pueda instalarse.

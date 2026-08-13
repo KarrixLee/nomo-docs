@@ -2,6 +2,7 @@
 title: "设置"
 description: "“会话”的每一项设置：本地网络投递、灵动岛行为、远程审批和诊断，以及它们各自的默认值。"
 icon: "sliders"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "设置"]
 ---
 
 全都在一页上：“设置”>“会话”。电脑详情页右上角的齿轮通向同一个地方。
@@ -10,7 +11,7 @@ icon: "sliders"
 
 {/* TODO: screenshot of the Sessions settings page */}
 
-## 本地网络
+## 本地网络 {#local-network}
 
 <ResponseField name="本地网络" type="默认关闭">
   关闭时，Nomo 仅通过云端连接你的 Mac。开启后，当两者处于同一网络时会直接连接已配对的 Mac，并在需要时自动回退到云端。
@@ -26,7 +27,7 @@ icon: "sliders"
 
 直连还解锁两件事：会话行上的**在 Mac 上打开**，以及重新取回那些长到装不进一条加密更新的计划。
 
-## 灵动岛
+## 灵动岛 {#dynamic-island}
 
 <ResponseField name="更新时展开" type="默认关闭">
   当会话需要你关注时，通过触感反馈短暂展开灵动岛，并在新会话出现时自动加入。Nomo 始终显示最需要你关注的那一个。
@@ -49,10 +50,10 @@ icon: "sliders"
 </Info>
 
 <Tip>
-  正在**请求权限**的会话不受这两项设置影响，照样会到达灵动岛——这正是这个功能的意义所在。见[默认不显示任何会话](/zh-Hans/sessions/island#默认不显示任何会话)。
+  正在**请求权限**的会话不受这两项设置影响，照样会到达灵动岛——这正是这个功能的意义所在。见[默认不显示任何会话](/zh-Hans/sessions/island#nothing-appears-until-you-say-so)。
 </Tip>
 
-## 远程审批
+## 远程审批 {#remote-approvals}
 
 <ResponseField name="在 iPhone 上回答" type="默认关闭">
   当灵动岛上的会话请求权限（运行命令、编辑文件）时，可在 iPhone 上选择“允许”或“拒绝”。关闭后将始终在 Mac 上决定。
@@ -62,23 +63,23 @@ icon: "sliders"
 
 另外还有一个按电脑生效的暂停开关，它在 Mac 上而不是这里：[`/nomo-cc:approvals off`](/zh-Hans/sessions/commands#approvals)。手机本身不可用时用那一个。
 
-## 调试
+## 调试 {#debug}
 
 <ResponseField name="会话诊断" type="默认关闭">
   在每个会话下方显示插件的状态判断。
 </ResponseField>
 
-在每一行展开的会话下面加一行 Nomo 的内部状态。它不耗什么资源，在灵动岛上也不显示任何东西。除非你要反馈问题，否则留着别开——要反馈就打开它，然后按[反馈问题](/zh-Hans/sessions/troubleshooting#反馈问题)里说的把那一行发给我们。
+在每一行展开的会话下面加一行 Nomo 的内部状态。它不耗什么资源，在灵动岛上也不显示任何东西。除非你要反馈问题，否则留着别开——要反馈就打开它，然后按[反馈问题](/zh-Hans/sessions/troubleshooting#still-wrong-send-it-over)里说的把那一行发给我们。
 
-## iOS 权限
+## iOS 权限 {#ios-permissions}
 
 **打开 iOS“设置”**会带你到 iOS“设置”里 Nomo 的那一页，Apple 自己的两个开关在那里很关键：
 
 - **实时活动**——必须打开，否则灵动岛上什么都出不来。
 - **更频繁的更新**——提高 iOS 允许 Nomo 重绘灵动岛的频率。Nomo 是按默认配额写的，大约每九秒一次更新。如果觉得灵动岛更新跟不上终端，就打开它。
 
-## 每个会话的开关
+## 每个会话的开关 {#the-per-session-switch}
 
-不在这一页上：每行会话上的那个开关，它决定*那一个*会话能不能占住灵动岛。它在电脑详情页里，每一行的右侧。见[电脑与会话](/zh-Hans/sessions/list#会话行的组成)。
+不在这一页上：每行会话上的那个开关，它决定*那一个*会话能不能占住灵动岛。它在电脑详情页里，每一行的右侧。见[电脑与会话](/zh-Hans/sessions/list#what-a-session-row-shows)。
 
 你的选择在退出 App、重启手机之后依然保留。如果你拨动开关时那台电脑正好联系不上，改动会先存着，等它回来再应用。

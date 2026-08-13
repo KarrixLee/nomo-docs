@@ -45,10 +45,10 @@ def page_anchors(path):
             continue
         heading = m.group(2).strip()
         explicit = re.search(r"\{#([^}]+)\}", heading)
-        if explicit:
-            anchors.add(explicit.group(1))
-            heading = heading[: explicit.start()].strip()
-        anchors.add(slug(heading))
+        # An explicit {#id} REPLACES the slugged heading text — it does not add
+        # to it. Accepting both would let a link to the old translated slug keep
+        # passing after a heading was pinned to an English one.
+        anchors.add(explicit.group(1) if explicit else slug(heading))
     return anchors
 
 

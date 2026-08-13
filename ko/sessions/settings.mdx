@@ -2,6 +2,7 @@
 title: "설정"
 description: "세션 설정 전부: 로컬 네트워크 전달, Dynamic Island 동작, 원격 승인, 진단 — 그리고 각각의 기본값."
 icon: "sliders"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "설정"]
 ---
 
 모두 한 페이지에 있습니다: **설정 > 세션**. 컴퓨터 드로어 오른쪽 위의 톱니바퀴도
@@ -13,7 +14,7 @@ icon: "sliders"
 
 {/* TODO: screenshot of the Sessions settings page */}
 
-## 로컬 네트워크
+## 로컬 네트워크 {#local-network}
 
 <ResponseField name="로컬 네트워크" type="기본값 꺼짐">
   끄면 Nomo가 클라우드를 통해서만 Mac에 연결합니다. 켜면 같은 네트워크에 있을 때
@@ -40,7 +41,7 @@ Mac을 기다리고 있지 않기 때문입니다.
 직접 연결은 두 가지를 함께 열어 줍니다. 세션 행의 **Mac에서 열기**, 그리고
 암호화된 업데이트에 다 담기지 않은 계획을 다시 가져오는 기능입니다.
 
-## Dynamic Island
+## Dynamic Island {#dynamic-island}
 
 <ResponseField name="업데이트 시 확장" type="기본값 꺼짐">
   세션에 주의가 필요할 때 햅틱과 함께 Dynamic Island를 잠깐 확장하고, 새 세션이
@@ -76,10 +77,10 @@ Mac을 기다리고 있지 않기 때문입니다.
 <Tip>
   **권한을 요청하는** 세션은 이 두 설정과 관계없이 Dynamic Island에 도달합니다.
   그것이 이 기능의 핵심입니다.
-  [직접 켠 세션만 표시](/ko/sessions/island#직접-켠-세션만-표시)를 참고하십시오.
+  [직접 켠 세션만 표시](/ko/sessions/island#nothing-appears-until-you-say-so)를 참고하십시오.
 </Tip>
 
-## 원격 승인
+## 원격 승인 {#remote-approvals}
 
 <ResponseField name="iPhone에서 답변" type="기본값 꺼짐">
   Dynamic Island의 세션이 권한을 요청하면(명령 실행, 파일 편집) iPhone에서 허용
@@ -95,7 +96,7 @@ Mac을 기다리고 있지 않기 때문입니다.
 있습니다: [`/nomo-cc:approvals off`](/ko/sessions/commands#approvals). 휴대폰
 쪽을 쓸 수 없을 때는 그쪽을 사용하십시오.
 
-## 디버그
+## 디버그 {#debug}
 
 <ResponseField name="세션 진단" type="기본값 꺼짐">
   각 세션 아래에 플러그인의 상태 판단을 표시합니다.
@@ -104,9 +105,9 @@ Mac을 기다리고 있지 않기 때문입니다.
 펼친 세션 행 아래에 Nomo 내부 상태를 한 줄 덧붙입니다. 비용이 들지 않고 Dynamic
 Island에는 아무것도 표시되지 않습니다. 무언가를 제보할 때가 아니면 꺼 두십시오.
 제보할 때는 켜고 그 행을 보내 주시면 됩니다.
-[문제 제보하기](/ko/sessions/troubleshooting#문제-제보하기)에 설명이 있습니다.
+[문제 제보하기](/ko/sessions/troubleshooting#still-wrong-send-it-over)에 설명이 있습니다.
 
-## iOS 권한
+## iOS 권한 {#ios-permissions}
 
 **iOS 설정 열기**를 누르면 iOS 설정의 Nomo 페이지로 이동합니다. 거기에서 Apple의
 스위치 두 개가 중요합니다.
@@ -116,12 +117,12 @@ Island에는 아무것도 표시되지 않습니다. 무언가를 제보할 때�
   Nomo는 기본 한도인 약 9초에 한 번을 기준으로 만들어져 있습니다. Dynamic Island
   업데이트가 터미널보다 뒤처지는 것처럼 느껴지면 이 스위치를 켜십시오.
 
-## 세션별 스위치
+## 세션별 스위치 {#the-per-session-switch}
 
 이 페이지에 없는 것이 하나 있습니다. 해당 세션이 Dynamic Island를 차지할 수
 있는지를 정하는, 세션 행마다 붙은 스위치입니다. 컴퓨터 드로어 안, 모든 행의
 오른쪽에 있습니다.
-[컴퓨터와 세션](/ko/sessions/list#세션-행의-구성)을 참고하십시오.
+[컴퓨터와 세션](/ko/sessions/list#what-a-session-row-shows)을 참고하십시오.
 
 선택한 내용은 앱을 종료하거나 휴대폰을 다시 켜도 그대로 유지됩니다. 스위치를 켤
 때 컴퓨터에 연결할 수 없었다면 변경 사항은 보관되었다가 연결이 돌아왔을 때

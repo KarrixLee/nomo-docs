@@ -2,6 +2,7 @@
 title: "명령"
 description: "Claude Code와 Codex를 위한 Nomo 명령 전부 — 페어링, 상태 확인, 승인, 초기화, 페어링 해제를 한곳에."
 icon: "terminal"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "명령"]
 ---
 
 명령은 다섯 개이며, 두 에이전트에서 같은 다섯 개를 씁니다. 적용할 컴퓨터의
@@ -24,7 +25,7 @@ Skill입니다.
 어느 것도 요란하게 실패하지 않습니다. 할 일이 없을 때에도 모두 정상적으로
 종료합니다 — `Not paired`는 오류가 아니라 성공입니다.
 
-## pair
+## pair {#pair}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -49,7 +50,7 @@ $nomo-pair code        # one-time code, printed in the terminal
 컴퓨터에 적용되므로, 같은 Mac의 Claude Code와 Codex가 이를 공유합니다. 전체 절차는
 [페어링](/ko/setup/pairing)에 있습니다.
 
-## status
+## status {#status}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -92,13 +93,13 @@ Codex Plan answers: bridge available (shared app-server socket accepted a connec
 
 <ResponseField name="Codex plugin">
   `installed, hooks NOT trusted (run /hooks in Codex)`가 사람들이 가장 많이 걸리는
-  줄입니다 — [Codex 사용하기](/ko/sessions/codex#hook-신뢰-설정)를 참고하십시오.
+  줄입니다 — [Codex 사용하기](/ko/sessions/codex#hooks-have-to-be-trusted)를 참고하십시오.
 </ResponseField>
 
 <ResponseField name="Codex Plan answers">
   `bridge available`은 질문이 선택지와 함께 휴대폰에 도달한다는 뜻입니다.
   `status-only`는 그렇지 않다는 뜻입니다 —
-  [이유](/ko/sessions/codex#cli-및-데스크톱-앱의-질문).
+  [이유](/ko/sessions/codex#questions-in-the-cli-and-the-desktop-app).
 </ResponseField>
 
 모든 이벤트가 조용히 두 번씩 보고되는 두 가지 설정에 대해서도 경고합니다. 네이티브
@@ -106,7 +107,7 @@ Codex Plan answers: bridge available (shared app-server socket accepted a connec
 함께 Claude Code 플러그인까지 자동으로 찾아내는 경우입니다. 둘 다 수정할 파일을
 알려 줍니다.
 
-## approvals
+## approvals {#approvals}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -135,9 +136,9 @@ will appear in the terminal as usual (your phone is not asked).
 건드리지 않습니다.
 
 휴대폰 전체에 적용되는 별도의 스위치가 있습니다:
-[설정](/ko/sessions/settings#원격-승인)의 **iPhone에서 답변**입니다.
+[설정](/ko/sessions/settings#remote-approvals)의 **iPhone에서 답변**입니다.
 
-## reset
+## reset {#reset}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -162,7 +163,7 @@ Pairing and keys were not touched — use the unpair command if you want that.
 행이 오래됐거나 중복되어 보일 때 안심하고 꺼내 쓸 수 있는 명령입니다. 무엇을
 건드리지 않았는지 스스로 밝히기 때문입니다.
 
-## unpair
+## unpair {#unpair}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -180,13 +181,13 @@ $nomo-unpair
 뿐이며, 이 명령을 그 컴퓨터에서 실행하기 전까지 Mac은 로컬 상태를 그대로
 유지합니다.
 
-## 상태가 저장되는 위치
+## 상태가 저장되는 위치 {#where-state-lives}
 
 플러그인이 보관하는 모든 것은 `~/.config/cc-status/` 안에 있습니다. 페어링,
 암호화 키(모드 `0600`), 추적 중인 세션마다 하나씩의 파일, 그리고 로컬 추적
 로그입니다. 이 폴더의 내용은 어디로도 전송되지 않습니다.
 
-## 소스 코드 보기
+## 소스 코드 보기 {#read-the-source}
 
 이 명령들이 곧 플러그인이고, 플러그인은 오픈 소스입니다. 내 컴퓨터에서 무엇이
 실행되고 무엇이 밖으로 나가는지 정확히 알고 싶다면 답은 저장소 하나에 있습니다.

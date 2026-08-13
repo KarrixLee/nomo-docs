@@ -2,6 +2,7 @@
 title: "コマンド"
 description: "Claude Code と Codex 向けの Nomo のコマンドをすべて — ペアリング、状態確認、承認、リセット、ペアリング解除 — 1 ページにまとめました。"
 icon: "terminal"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
 ---
 
 コマンドは 5 つ、両方のエージェントで同じ 5 つです。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code では `/` のコマンド、Codex では `$` のスキルです。
@@ -20,7 +21,7 @@ icon: "terminal"
 
 どれも派手に失敗することはありません。することが何もない場合でも、すべて正常に終了します — `Not paired` はエラーではなく成功です。
 
-## pair
+## pair {#pair}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -40,7 +41,7 @@ $nomo-pair code        # one-time code, printed in the terminal
 
 ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code と Codex は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
 
-## status
+## status {#status}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -89,7 +90,7 @@ Codex Plan answers: bridge available (shared app-server socket accepted a connec
 
 さらに、すべてのイベントが黙って二重に報告される 2 つの構成についても警告します。ネイティブプラグイン以前の Codex のフックが残っている場合と、Codex が自身のプラグインと並んで Claude Code のプラグインを自動検出している場合です。どちらも編集すべきファイル名を示します。
 
-## approvals
+## approvals {#approvals}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -116,7 +117,7 @@ will appear in the terminal as usual (your phone is not asked).
 
 iPhone 全体に効く別のスイッチもあります。[設定](/ja/sessions/settings#remote-approvals)の「iPhoneで回答」です。
 
-## reset
+## reset {#reset}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -139,7 +140,7 @@ Pairing and keys were not touched — use the unpair command if you want that.
 
 行が古いままだったり重複したりしているときに、まず試すべき安全なコマンドです。何に手を付けなかったかまで報告してくれます。
 
-## unpair
+## unpair {#unpair}
 
 <CodeGroup>
 ```bash Claude Code icon="/images/claude-code.svg"
@@ -155,11 +156,11 @@ $nomo-unpair
 
 **iPhone から**コンピュータを削除するのは別のことです。そちらはアプリに表示されなくなるだけで、このコマンドを実行するまで Mac はローカルの状態を保持し続けます。
 
-## 状態の保存場所
+## 状態の保存場所 {#where-state-lives}
 
 プラグインが保持するものはすべて `~/.config/cc-status/` にあります。ペアリング、暗号鍵（モードは `0600`）、追跡中のセッションごとのファイル 1 つずつ、そしてローカルのトレースログです。このフォルダの中身がどこかへ送られることはありません。
 
-## ソースコード
+## ソースコード {#read-the-source}
 
 これらのコマンドはプラグインそのものであり、プラグインはオープンソースです。自分のマシンで何が動き、何が外へ出るのかを正確に知りたい場合、その答えは 1 つのリポジトリにあります — マーケットプレイスからのインストールも、その単純なクローンです。
 

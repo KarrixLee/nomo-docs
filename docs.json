@@ -43,7 +43,18 @@
         "https://x.com/karrixthediv",
         "https://apps.apple.com/app/nomo-ai-status-usage/id6779366830"
       ]
-    }
+    },
+    "metatags": {
+      "author": "Karrix Lee",
+      "robots": "index, follow",
+      "og:site_name": "Nomo",
+      "og:type": "website",
+      "og:locale": "en_US",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@karrixthediv",
+      "apple-mobile-web-app-title": "Nomo"
+    },
+    "indexing": "all"
   },
   "navigation": {
     "languages": [

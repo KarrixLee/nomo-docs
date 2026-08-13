@@ -2,6 +2,7 @@
 title: "Ordenadores y sesiones"
 description: "La pestaña Sesiones enumera tus ordenadores vinculados. Toca uno para ver sus sesiones de Claude Code y Codex, agrupadas por carpeta del proyecto."
 icon: "list"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Ordenadores y sesiones"]
 ---
 
 La pestaña **Sesiones** es una lista de **ordenadores**, no de sesiones. Una
@@ -17,7 +18,7 @@ arrancar. Está en la tarjeta, dentro del recuento.
   </div>
 </Frame>
 
-## La lista de ordenadores
+## La lista de ordenadores {#the-computer-list}
 
 Cada tarjeta lleva el nombre del ordenador, un resumen de una línea y un punto
 de color para la conexión.
@@ -45,7 +46,7 @@ pone naranja cuando llegas al tope.
   no se toca nada en el propio Mac.
 </Note>
 
-## Dentro de un ordenador
+## Dentro de un ordenador {#inside-a-computer}
 
 Al tocar una tarjeta se abre un panel con un control segmentado arriba:
 **Claude Code** y **Codex**. Nomo abre el agente que estuviera activo más
@@ -59,7 +60,7 @@ nombre de cada una.
 Bajo el nombre del ordenador verás si está `Activo`, su `Última actividad` o
 `Reconectando…` — y, cuando Nomo habla con el Mac directamente por tu red en
 lugar de a través del relé, una etiqueta verde **⚡ Local**. Ve a
-[Red local](/es/sessions/settings#red-local).
+[Red local](/es/sessions/settings#local-network).
 
 <Frame caption="Dentro de un ordenador: las pestañas de agente, dos carpetas de proyecto con sus ramas y el recuento 4/20. La segunda fila está pidiendo permiso — mano violeta, y su interruptor de la Dynamic Island activado y en gris mientras la solicitud espera.">
   <div className="device-frame">
@@ -67,7 +68,7 @@ lugar de a través del relé, una etiqueta verde **⚡ Local**. Ve a
   </div>
 </Frame>
 
-## La fila de sesión
+## La fila de sesión {#what-a-session-row-shows}
 
 <ResponseField name="Icono de estado" type="borde izquierdo">
   Un punto, una mano, una marca de verificación o un indicador de actividad. La
@@ -97,7 +98,7 @@ lugar de a través del relé, una etiqueta verde **⚡ Local**. Ve a
   [Ajustes](/es/sessions/settings#dynamic-island).
 </ResponseField>
 
-## Estados de sesión
+## Estados de sesión {#session-states}
 
 | Etiqueta | Color | Significado |
 | --- | --- | --- |
@@ -113,12 +114,12 @@ lugar de a través del relé, una etiqueta verde **⚡ Local**. Ve a
 Una vez resuelta una solicitud, la fila recoge un pie que dice cómo se resolvió:
 `Permitido`, `Denegado`, `Permitido siempre`, `Respondido`, o un fallo honesto
 como `Caducado — continúa en tu ordenador`. La lista completa está en
-[Responder desde el iPhone](/es/sessions/approvals#qué-significa-cada-leyenda).
+[Responder desde el iPhone](/es/sessions/approvals#what-the-caption-tells-you).
 
 Las filas se ordenan por actividad más reciente. Nomo nunca esconde una fila: la
 lista refleja exactamente lo que guarda el relé.
 
-## Detalle de una fila
+## Detalle de una fila {#tap-a-row-for-detail}
 
 Al tocar el lado del texto de una fila, esta se despliega. Todo lo de aquí se
 puede seleccionar, y va etiquetado con un símbolo en lugar de con una palabra:
@@ -128,7 +129,7 @@ puede seleccionar, y va etiquetado con un símbolo en lugar de con una palabra:
 - **Carpeta** e **identificador de sesión** — los ocho primeros caracteres, en monoespaciada.
 - **La pregunta pendiente**, entera, cuando la hay.
 - **Ver plan** — abre el plan. Se puede responder en Claude Code; en [Codex](/es/sessions/codex) es de solo lectura.
-- **Abrir en el Mac** — pone en primer plano la ventana de terminal de esa sesión en tu Mac. Solo aparece cuando Nomo tiene un enlace directo por [red local](/es/sessions/settings#red-local).
+- **Abrir en el Mac** — pone en primer plano la ventana de terminal de esa sesión en tu Mac. Solo aparece cuando Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network).
 
 <Tip>
   Para **responder** a una solicitud, mantén pulsada la fila en lugar de tocarla.
@@ -136,7 +137,7 @@ puede seleccionar, y va etiquetado con un símbolo en lugar de con una palabra:
   denegar.
 </Tip>
 
-## Límites
+## Límites {#how-many}
 
 | | Tope |
 | --- | --- |
@@ -158,7 +159,7 @@ terminadas y las que llevan mucho en silencio. Una sesión realmente nueva se
 rechaza antes que echar a una viva — salvo que llegue con una solicitud de
 permiso, que siempre gana.
 
-## Filas que desaparecen
+## Filas que desaparecen {#rows-that-disappear}
 
 Las sesiones terminadas y las silenciosas se retiran solas, más o menos una hora
 después de su última actividad real. Que una fila desaparezca sola es normal y

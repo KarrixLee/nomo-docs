@@ -2,23 +2,24 @@
 title: "動態島"
 description: "Nomo 在動態島和鎖定畫面上顯示什麼、每個顏色代表什麼，以及它怎麼挑出要顯示哪一個 session。"
 icon: "circle-dot"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "動態島"]
 ---
 
 你的手機**一次只顯示一個 session**。不是每台電腦一個，也不是每個代理一個 — 是整支手機就一個。下面講的全是那一個。
 
-## 預設不顯示任何 session
+## 預設不顯示任何 session {#nothing-appears-until-you-say-so}
 
 **預設情況下，你的鎖定畫面和動態島上不會出現任何 session。**如果你配對成功、動態島卻是空的，那沒有壞掉。
 
 動態島整天都待在你的鎖定畫面上。如果你開的每個 session 都跑上去，忙碌的一個下午就會讓手機被一小時前你就不在意的 sessions 淹沒。所以 App 裡什麼都列，動態島上只放你挑的。
 
-要把一個 session 放上去，打開那台電腦，找到那個 session，把它的開關打開。想讓 Nomo 幫你對每個新 session 都這樣做，請到[設定](/zh-Hant/sessions/settings#動態島)開啟「自動加入新 sessions」 — 這是一項 beta 設定，因為 iOS 會限制動態島能多常重繪，而一大批即時的 sessions 會撞到這個天花板。
+要把一個 session 放上去，打開那台電腦，找到那個 session，把它的開關打開。想讓 Nomo 幫你對每個新 session 都這樣做，請到[設定](/zh-Hant/sessions/settings#dynamic-island)開啟「自動加入新 sessions」 — 這是一項 beta 設定，因為 iOS 會限制動態島能多常重繪，而一大批即時的 sessions 會撞到這個天花板。
 
 <Note>
   有一個例外，而且是刻意的：開啟「遠端批准」後，正在**請求權限**的 session 即使開關是關的也會出現在動態島上 — 而且在請求等待期間，它的開關會顯示為開啟並變灰。你的設定沒有被改動。[那看起來是什麼樣子](/zh-Hant/sessions/troubleshooting)。
 </Note>
 
-## session 的挑選規則
+## session 的挑選規則 {#which-session-it-picks}
 
 當有好幾個 session 都符合資格時，Nomo 不會給你最新的那個 — 它給你最可能正卡住你的那個：
 
@@ -38,7 +39,7 @@ icon: "circle-dot"
 
 替換是原地發生的 — 同一張卡片直接更新，不會閃掉再回來。沒有辦法把某個 session 永久釘在上面；上面那條規則就是全部。
 
-## 狀態解讀
+## 狀態解讀 {#reading-it}
 
 | | 標籤 | 代表什麼 |
 | :---: | --- | --- |
@@ -57,7 +58,7 @@ icon: "circle-dot"
 
 session 工作期間，狀態行會在 `進行中` 和它正在用的模型之間交替 — `⚡ Fable`、`⚡ GPT 5.6 Sol`。代理有回報它在做什麼時，那也會一起帶上：`進行中 · 編輯中`、`進行中 · 執行指令`。
 
-## 四種形態
+## 四種形態 {#the-four-shapes}
 
 <Tabs>
   <Tab title="精簡">
@@ -100,7 +101,7 @@ session 工作期間，狀態行會在 `進行中` 和它正在用的模型之�
   </Tab>
 </Tabs>
 
-## 計時器
+## 計時器 {#the-timer}
 
 session 工作期間，精簡狀態那一側會往上數。前五分鐘你會看到 `M:SS` 即時跳動；之後就穩定成 `7m`、`1h 2m`，超過十小時後變成 `10h`，這樣動態島才不會整天閃給你看。
 
@@ -108,7 +109,7 @@ session 工作期間，精簡狀態那一側會往上數。前五分鐘你會看
 
 如果 Nomo 算不出一個合理的起始時間，它會不顯示計時器，而不是顯示一個錯的。
 
-## 斷線與逾時
+## 斷線與逾時 {#when-it-goes-quiet}
 
 動態島顯示的是你的 Mac 送出的最後一個狀態。沉默 **10 分鐘**後它就不再假裝：卡片褪去顏色，計時器消失，狀態變成 `已斷線？`。你的 Mac 睡著、失去 Wi-Fi，或終端機被關掉，都會落到這裡。
 

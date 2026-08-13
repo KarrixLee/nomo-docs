@@ -2,6 +2,7 @@
 title: "문제 해결"
 description: "복호화되지 않는 세션, 응답이 끊긴 컴퓨터, 멈춘 Dynamic Island — 각 상태의 의미와 대처 방법."
 icon: "wrench"
+keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "문제 해결"]
 ---
 
 여기에서 고장처럼 보이는 것 대부분은, Nomo가 모르는 것을 모른다고 솔직하게
@@ -9,10 +10,10 @@ icon: "wrench"
 해결하는지에 따라 묶어 정리한 것입니다.
 
 한 번에 여러 가지가 이상해 보인다면 아래로 건너뛰어
-[status 명령 먼저 실행하기](#status-명령-먼저-실행하기)를 보십시오. 대개 한
+[status 명령 먼저 실행하기](#start-with-status)를 보십시오. 대개 한
 화면으로 문제를 짚어 줍니다.
 
-## iPhone에서 해결
+## iPhone에서 해결 {#fix-it-on-your-phone}
 
 아래 항목들은 Mac에서 할 일이 없습니다.
 
@@ -27,7 +28,7 @@ icon: "wrench"
   스위치가 켜져 있는데도 아무것도 나오지 않으면, iOS 설정에서 Nomo의 **실시간
   현황**이 허용되어 있는지 확인하십시오. 그다음에는 다른 세션이 Dynamic Island를
   차지하고 있지 않은지 확인하십시오. 휴대폰에는
-  [한 번에 하나](/ko/sessions/island#표시할-세션의-선택-기준)만 표시되며,
+  [한 번에 하나](/ko/sessions/island#which-session-it-picks)만 표시되며,
   사용자를 기다리고 있는 세션이 작업 중인 세션보다 앞섭니다.
 </Accordion>
 
@@ -75,7 +76,7 @@ icon: "wrench"
 
 </AccordionGroup>
 
-## 컴퓨터에서 해결
+## 컴퓨터에서 해결 {#fix-it-on-your-computer}
 
 휴대폰에는 문제가 없습니다. 아래 항목들은 모두 Mac의 세션에서 처리합니다.
 
@@ -104,7 +105,7 @@ icon: "wrench"
   업데이트는 그 검토를 다시 엽니다. Codex에서 `/hooks`를 실행하고 Nomo 항목을
   신뢰하십시오. 그 전까지 승인은 터미널로 되돌아가고 오류도 표시되지 않습니다.
 
-  자세한 내용은 [Codex 사용하기](/ko/sessions/codex#hook-신뢰-설정)에 있습니다.
+  자세한 내용은 [Codex 사용하기](/ko/sessions/codex#hooks-have-to-be-trusted)에 있습니다.
 </Accordion>
 
 <Accordion title="길게 터치 메뉴에 일부 항목이 없음" icon="ellipsis">
@@ -136,7 +137,7 @@ icon: "wrench"
 
 </AccordionGroup>
 
-## 페어링과 복호화
+## 페어링과 복호화 {#pairing-and-decryption}
 
 휴대폰이 읽을 수 없는 업데이트를 받고 있거나, 더 이상 키를 갖고 있지 않은
 컴퓨터입니다. 세 가지 모두 해결책은 같습니다. 그 컴퓨터를 다시 페어링하십시오.
@@ -170,7 +171,7 @@ icon: "wrench"
 
 </AccordionGroup>
 
-## status 명령 먼저 실행하기
+## status 명령 먼저 실행하기 {#start-with-status}
 
 한 번에 여러 가지가 이상해 보인다면, 무엇보다 먼저 Mac에서
 [`/nomo-cc:status`](/ko/sessions/commands#status)를 실행하십시오. 그 컴퓨터가
@@ -183,9 +184,9 @@ icon: "wrench"
 
 모든 명령과 그 출력의 의미는 [명령](/ko/sessions/commands)에 있습니다.
 
-## 문제 제보하기
+## 문제 제보하기 {#still-wrong-send-it-over}
 
-[설정](/ko/sessions/settings#디버그)에서 **세션 진단**을 켠 다음, 이상하게
+[설정](/ko/sessions/settings#debug)에서 **세션 진단**을 켠 다음, 이상하게
 동작하는 세션을 펼치십시오. 그 아래에 Nomo 내부 상태가 다음과 같이 한 줄
 표시됩니다.
 
@@ -209,7 +210,7 @@ icon: "wrench"
 해당 컴퓨터에서 실행한
 [`/nomo-cc:status`](/ko/sessions/commands#status)의 출력도 도움이 됩니다.
 
-## 기능 요청
+## 기능 요청 {#nothings-broken--you-just-want-something}
 
 "이건 왜 휴대폰에서 못 하나요?"는 버그라기보다 타당한 질문일 때가 많습니다. 일부는
 에이전트가 플러그인에 넘겨주는 범위의 실제 한계이며, 그 내용은 문서로 적혀
@@ -229,7 +230,7 @@ icon: "wrench"
   </Card>
 </CardGroup>
 
-## 처음부터 다시 시작하기
+## 처음부터 다시 시작하기 {#starting-over}
 
 해당 컴퓨터에서
 [`/nomo-cc:unpair`](/ko/sessions/commands#unpair)를 실행하면 페어링이 제거되고
