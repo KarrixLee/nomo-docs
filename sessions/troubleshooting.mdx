@@ -5,7 +5,16 @@ icon: "wrench"
 ---
 
 Most of what looks like a bug here is Nomo being honest about not knowing
-something. This page is what each of those states actually means.
+something. This page is what each of those states actually means, grouped by
+where you'd go to fix it.
+
+If more than one thing looks wrong at once, skip ahead and
+[start with status](#start-with-status) — it usually names the problem in one
+screen.
+
+## Fix it on your phone
+
+Nothing to do at your Mac for any of these.
 
 <AccordionGroup>
 
@@ -43,30 +52,6 @@ something. This page is what each of those states actually means.
   [Answering from your phone](/sessions/approvals).
 </Accordion>
 
-<Accordion title="A row says Encrypted session, or Reconnecting…" icon="lock">
-  Your phone received the update but hasn't unlocked it yet. Nomo retries every
-  few seconds, and this usually clears itself within one poll.
-
-  If it persists, your phone no longer holds the right key for that computer —
-  the Mac was re-paired, or the pairing was replaced. Pair it again.
-</Accordion>
-
-<Accordion title="A row says Unavailable" icon="ban">
-  The same thing, after ten minutes of failing. Rather than leaving a row that
-  looks alive but isn't, Nomo marks it dead and stops guessing at its contents.
-  It won't drive the island and it won't be counted as active. Re-pairing the
-  computer restores it.
-</Accordion>
-
-<Accordion title="A computer says No longer paired" icon="laptop">
-  That pairing was revoked — you re-paired the Mac, or ran `/nomo-cc:unpair` on
-  it. Nomo waits for a sustained run of failures before believing it, so this is
-  never a flaky-minute-of-Wi-Fi diagnosis.
-
-  Tap **Remove**, or leave it — it clears itself about a minute later. Pair the
-  computer again when you want it back.
-</Accordion>
-
 <Accordion title="The island is frozen, or says Disconnected?" icon="wifi">
   The island shows the last thing your Mac sent. After ten minutes of silence it
   drains of colour and says `Disconnected?` rather than continuing to imply the
@@ -87,6 +72,14 @@ something. This page is what each of those states actually means.
   off — it's off by default. See
   [Answering from your phone](/sessions/approvals).
 </Accordion>
+
+</AccordionGroup>
+
+## Fix it on your computer
+
+Your phone is fine. These are all settled from a session on the Mac.
+
+<AccordionGroup>
 
 <Accordion title="The drawer says remote approvals are paused" icon="pause">
   Someone ran the pause command on that computer. Resume it from a session on
@@ -138,6 +131,40 @@ something. This page is what each of those states actually means.
 
   Live sessions, your pairing and your keys are left alone —
   [what it prints](/sessions/commands#reset).
+</Accordion>
+
+</AccordionGroup>
+
+## Pairing and decryption
+
+Your phone is receiving updates it can't read, or a computer it no longer has a
+key for. All three end at the same fix: pair that computer again.
+
+<AccordionGroup>
+
+<Accordion title="A row says Encrypted session, or Reconnecting…" icon="lock">
+  Your phone received the update but hasn't unlocked it yet. Nomo retries every
+  few seconds, and this usually clears itself within one poll.
+
+  If it persists, your phone no longer holds the right key for that computer —
+  the Mac was re-paired, or the pairing was replaced. Pair it again.
+</Accordion>
+
+<Accordion title="A row says Unavailable" icon="ban">
+  The same thing, after ten minutes of failing. Rather than leaving a row that
+  looks alive but isn't, Nomo marks it dead and stops guessing at its contents.
+  It won't drive the island and it won't be counted as active. Re-pairing the
+  computer restores it.
+</Accordion>
+
+<Accordion title="A computer says No longer paired" icon="laptop">
+  That pairing was revoked — you re-paired the Mac, or ran
+  [`/nomo-cc:unpair`](/sessions/commands#unpair) on it. Nomo waits for a
+  sustained run of failures before believing it, so this is never a
+  flaky-minute-of-Wi-Fi diagnosis.
+
+  Tap **Remove**, or leave it — it clears itself about a minute later. Pair the
+  computer again when you want it back.
 </Accordion>
 
 </AccordionGroup>
