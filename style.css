@@ -428,3 +428,29 @@ h1 {
   vertical-align: -0.2em;
   object-fit: contain;
 }
+
+/* Beta chip. The PRO pill above is an ::after because it badges links whose own
+   text we don't write; this one wraps its own word, so it's a plain class.
+   Amber, not the brand gradient — PRO is a tier you buy and beta is a caveat,
+   and a reader who's learned one pill shape shouldn't have to re-read it to
+   find out which meaning applies. */
+.beta-pill {
+  display: inline-block;
+  vertical-align: 0.05em;
+  margin-right: 0.5rem;
+  padding: 0.2em 0.45em;
+  border-radius: 0.35em;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #8a5b00;
+  background: rgb(234 168 42 / 0.16);
+  box-shadow: inset 0 0 0 1px rgb(234 168 42 / 0.45);
+}
+
+.dark .beta-pill {
+  color: #eaa82a;
+  background: rgb(234 168 42 / 0.14);
+}
