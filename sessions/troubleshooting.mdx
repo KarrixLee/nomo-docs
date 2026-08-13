@@ -237,3 +237,100 @@ the pairing and erases its key. Then [pair it again](/setup/pairing).
 Forgetting a computer **from the phone** is not the same thing: it stops that
 computer appearing in your app, but the Mac keeps its local state until you run
 that command there.
+
+<script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Nothing appears on the Dynamic Island",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almost always the intended behaviour: sessions are opt-in. Open the computer, find the session, flip its switch — or turn on Auto add new sessions in Settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A session's island switch is on, greyed out, and won't turn off",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That session is asking permission. A prompt reaches your island whichever way its switch is set — otherwise a prompt that arrived while your phone was in your pocket would be one you couldn't answer, which is the whole point of the feature. So the switch shows on while the prompt waits, because that's what's actually happening."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The island is frozen, or says Disconnected?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The island shows the last thing your Mac sent. After ten minutes of silence it drains of colour and says Disconnected? rather than continuing to imply the session is live."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Prompts reach my phone but there's nothing to tap",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check the colour, not the icon. Yellow and violet both draw a raised hand. Yellow (Need help) means the agent stopped for something only the terminal can take. Violet (Needs permission) is the answerable one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "The drawer says remote approvals are paused",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Someone ran the pause command on that computer. Resume it from a session on that machine:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Codex stopped sending prompts after an update",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Codex hooks ship inert until trusted, and a plugin update that adds a hook re-opens that review. Run /hooks in Codex and trust the Nomo entries. Until you do, approvals fall back to the terminal and nothing reports an error."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Options are missing when I touch and hold",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Always allow, Deny with note… and Answer… all need plugin 2.0.0 — answering from the phone is what 2.0 added. Nomo hides options the Mac can't honour rather than offering a button that would do nothing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rows look stale or duplicated",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clear the dead ones without unpairing:"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A row says Encrypted session, or Reconnecting…",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your phone received the update but hasn't unlocked it yet. Nomo retries every few seconds, and this usually clears itself within one poll."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A row says Unavailable",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The same thing, after ten minutes of failing. Rather than leaving a row that looks alive but isn't, Nomo marks it dead and stops guessing at its contents. It won't drive the island and it won't be counted as active. Re-pairing the computer restores it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A computer says No longer paired",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That pairing was revoked — you re-paired the Mac, or ran /nomo-cc:unpair on it. Nomo waits for a sustained run of failures before believing it, so this is never a flaky-minute-of-Wi-Fi diagnosis."
+      }
+    }
+  ]
+}
+)}} />
