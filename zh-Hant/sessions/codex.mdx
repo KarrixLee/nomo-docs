@@ -1,0 +1,90 @@
+---
+title: "搭配 Codex 使用"
+description: "Sessions 支援 Codex，但和 Claude Code 不完全一樣。哪些事能在手機上做、哪些不能，以及原因。"
+icon: "code"
+---
+
+Codex 的 sessions 出現在同一份列表、同一個動態島上，走的也是同一組配對。但 Codex 和 Claude Code 開放給外掛程式的東西不同，所以 Codex 這一側少了幾個選項。
+
+Nomo 從頭到尾的原則是：絕不提供一個 Mac 無法兌現的按鈕。所以你拿到的不會是一個默默失敗的控制項，而是另一個控制項，或是一句誠實的「請在你的 Mac 上做這件事」。
+
+<Note>
+  Codex 沒有獨立的配對。兩個代理讀的是那台電腦上的同一份設定 — 你[把機器配對](/zh-Hant/setup/pairing)一次就好。在傳輸上，唯一的差別是一個標示它來自哪個代理的標籤。
+</Note>
+
+## 相同的部分
+
+- sessions、狀態、資料夾，以及動態島。
+- shell 指令、修補和 MCP 工具的權限請求 — 可從動態島或應用程式「允許」和「拒絕」。
+- 「拒絕並附註…」，用來說明原因或改做什麼。
+- 閱讀計畫。
+
+## 沒有「一律允許」
+
+Claude Code 讓你把某個工具允許到 session 結束為止。當 Nomo 把那種規則附加到決定上時，Codex 會把整個決定退回，所以這個選項不會顯示 — 一個被丟掉的「拒絕」，遠比一個少掉的按鈕糟糕得多。
+
+「允許」仍然正常運作。你只是下次還會被問一次。
+
+## 計畫僅供閱讀
+
+Codex 那句「要實作這份計畫嗎？」的詢問住在它自己的終端機介面裡。它從不傳到外掛程式，也就是說 Nomo 沒有東西可以接住，你的點擊也沒有東西可以解決。
+
+所以 Nomo 把計畫顯示給你 — 完整的內容，而且每次你打開時都會重新整理，因為 Codex 是邊做邊寫出來的 — 然後說 `請在 Mac 終端機中選擇`。如果你的手機能透過區域網路連上 Mac，「在 Mac 上開啟」會幫你把那個終端機視窗切到最前面。
+
+<Frame caption="唯讀的計畫閱讀器。所有內容都在這裡可讀；頁尾誠實地說明決定在哪裡下。">
+  <div className="device-frame">
+    <img src="/images/view-plan-drawer.png" alt="一份計畫在手機上全螢幕呈現，頁尾寫著「請在 Mac 終端機中選擇」" />
+  </div>
+</Frame>
+
+## CLI 與桌面應用程式裡的問題
+
+要在手機上回答 Codex 的問題，需要 Codex 的任務和 Nomo 的 watchdog 共用同一個 app-server 行程。
+
+<Tabs>
+  <Tab title="Codex CLI" icon="terminal">
+    在你啟動 Codex **之前**先啟動共用的 app-server：
+
+    ```bash
+    codex app-server daemon start
+    ```
+
+    然後確認：
+
+    ```bash
+    $nomo-status
+    ```
+
+    `Codex Plan answers: bridge available` 表示都準備好了 — 問題會連同選項一起送到你的手機，你點一個就行。
+
+    `Codex Plan answers: status-only` 表示沒有任何東西在監聽。先啟動 daemon，再啟動 Codex。順序有關係：先開起來的 session 不會接上 daemon。
+  </Tab>
+
+  <Tab title="Codex 桌面應用程式" icon="window">
+    **來自桌面應用程式 session 的問題無法在你的手機上回答。**
+
+    上面那個 daemon 監聽的是一個任何東西都能接上的共用 socket。桌面應用程式不用它 — 它為每個任務生出一個私有的 app-server，沒有 socket 可以加入。沒有任何旗標或設定能改變這件事，所以無論你事先啟動什麼，`$nomo-status` 都會一直說 `status-only`。
+
+    其他一切都正常運作：sessions 會出現，指令和修補的權限請求可以從手機回覆，計畫也讀得到。問題一樣會出現 — 你只是在手機上讀它，然後在應用程式裡回答。
+  </Tab>
+</Tabs>
+
+不管哪一種，session 仍然會到達你的手機。沒有橋接時你會看到 `需要協助` 和 `在 Mac 上回答` — 問題就在那裡可以讀，只是沒有選項可以點，你得在 Codex 裡回答它。
+
+## hooks 必須先信任
+
+Codex 自帶一道安全關卡：外掛程式的 hooks 會安裝好，但在**你信任它們之前是不作用的**。執行 `/hooks` 並信任那七個 Nomo 項目，做法寫在[安裝](/zh-Hant/setup/install)。
+
+會絆倒人的部分：升級到加入手機端 Codex 批准的那個版本時，多了一個**新的** hook，所以 Codex 會重新開啟審核。在你信任它之前，Codex 的批准會安靜地退回終端機，而且沒有任何東西回報錯誤。如果你的手機在更新之後就收不到 Codex 的請求了，請先執行 `/hooks`。
+
+`$nomo-status` 會回報 hook 的信任狀態，所以你可以用它確認這一步真的完成了。
+
+## 不會傳到你手機的請求
+
+當一輪 Codex 是在自動審核或完全存取模式下執行時，hook 會在 Nomo 送出任何東西之前就把控制權交還給 Codex。這是正確的 — 你告訴過 Codex 不要問 — 但這也表示那個請求不會出現在你的手機上。
+
+Codex 也沒有對應 Claude Code 通知 hook 的東西，所以比起 Claude Code 的 sessions，Codex 的 sessions 給你的「它想找你」提醒會少一些。
+
+## 最低版本需求
+
+Codex **0.142 或更新版本**。更早的版本沒有可以讓 Nomo 安裝進去的外掛程式系統。

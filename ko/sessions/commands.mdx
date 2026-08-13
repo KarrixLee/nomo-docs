@@ -1,0 +1,198 @@
+---
+title: "명령"
+description: "Claude Code와 Codex를 위한 Nomo 명령 전부 — 페어링, 상태 확인, 승인, 초기화, 페어링 해제를 한곳에."
+icon: "terminal"
+---
+
+명령은 다섯 개이며, 두 에이전트에서 같은 다섯 개를 씁니다. 적용할 컴퓨터의
+에이전트 세션 안에서 실행하며, Claude Code에서는 `/` 명령, Codex에서는 `$`
+Skill입니다.
+
+<Tip>
+  Claude Code에서는 모든 명령에 네임스페이스가 붙습니다. `/nomo-cc:`를 입력하면
+  전체 목록이 표시됩니다.
+</Tip>
+
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex |
+| --- | --- | --- |
+| <a href="#pair">이 컴퓨터 페어링</a> | `/nomo-cc:pair` | `$nomo-pair` |
+| <a href="#status">상태 확인</a> | `/nomo-cc:status` | `$nomo-status` |
+| <a href="#approvals">승인 일시 중지 또는 재개</a> | `/nomo-cc:approvals` | `$nomo-approvals` |
+| <a href="#reset">멈춘 세션 정리</a> | `/nomo-cc:reset` | `$nomo-reset` |
+| <a href="#unpair">이 컴퓨터 연결 해제</a> | `/nomo-cc:unpair` | `$nomo-unpair` |
+
+어느 것도 요란하게 실패하지 않습니다. 할 일이 없을 때에도 모두 정상적으로
+종료합니다 — `Not paired`는 오류가 아니라 성공입니다.
+
+## pair
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:pair          # QR code, opens your browser
+/nomo-cc:pair code     # one-time code, printed in the terminal
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-pair             # QR code, opens your browser
+$nomo-pair code        # one-time code, printed in the terminal
+```
+</CodeGroup>
+
+인자 없이 실행하면 QR 코드가 담긴 테마 페이지가 브라우저에서 열립니다. 앱에서
+스캔하면 페이지가 스스로 **Paired ✓**로 바뀝니다.
+
+`code` 인자를 주면 브라우저를 아예 건너뛰고, 헤드리스 장비나 SSH 세션을 위해
+입력 가능한 일회용 코드를 출력합니다. 이 방식이 차선책인 데에는 이유가 있습니다.
+그 코드가 터미널에, 따라서 에이전트의 트랜스크립트에 남기 때문입니다.
+
+페어링은 사용되지 않으면 **10분** 뒤에 만료됩니다. 페어링 하나는 에이전트가 아니라
+컴퓨터에 적용되므로, 같은 Mac의 Claude Code와 Codex가 이를 공유합니다. 전체 절차는
+[페어링](/ko/setup/pairing)에 있습니다.
+
+## status
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+</CodeGroup>
+
+무언가 이상해 보일 때 가장 먼저 실행할 명령입니다.
+
+```
+Paired: yes (pairing 3f9a21c8…)
+Worker: https://api.nomo.gg
+Watchdog: running (pid 48213)
+Last event sent: 8s ago
+Tracked sessions: 3
+Codex plugin: installed, trusted (7/7)
+Codex Plan answers: bridge available (shared app-server socket accepted a connection)
+```
+
+한 줄씩 보면 다음과 같습니다.
+
+<ResponseField name="Paired">
+  `no`는 이 컴퓨터가 한 번도 연결된 적이 없다는 뜻입니다. `pairing started,
+  waiting for phone scan`은 페어링 페이지를 열어 두고 스캔하지 않았다는 뜻입니다.
+</ResponseField>
+
+<ResponseField name="Watchdog">
+  실행 중인 세션이 있는데 `not running`이어도 괜찮습니다. 다음 세션에서 스스로
+  시작합니다.
+</ResponseField>
+
+<ResponseField name="Last event sent">
+  세션이 실제로 실행 중인데 `never`라면 Hook이 실행되지 않고 있다는 뜻입니다.
+  Claude Code를 재시작해 Hook을 로드하고, Codex에서는 `/hooks`를 실행하십시오.
+</ResponseField>
+
+<ResponseField name="Codex plugin">
+  `installed, hooks NOT trusted (run /hooks in Codex)`가 사람들이 가장 많이 걸리는
+  줄입니다 — [Codex 사용하기](/ko/sessions/codex#hook-신뢰-설정)를 참고하십시오.
+</ResponseField>
+
+<ResponseField name="Codex Plan answers">
+  `bridge available`은 질문이 선택지와 함께 휴대폰에 도달한다는 뜻입니다.
+  `status-only`는 그렇지 않다는 뜻입니다 —
+  [이유](/ko/sessions/codex#cli-및-데스크톱-앱의-질문).
+</ResponseField>
+
+모든 이벤트가 조용히 두 번씩 보고되는 두 가지 설정에 대해서도 경고합니다. 네이티브
+플러그인 이전에 쓰던 Codex Hook이 남아 있는 경우, 그리고 Codex가 자체 플러그인과
+함께 Claude Code 플러그인까지 자동으로 찾아내는 경우입니다. 둘 다 수정할 파일을
+알려 줍니다.
+
+## approvals
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:approvals off      # pause on this computer
+/nomo-cc:approvals on       # resume
+/nomo-cc:approvals status   # which way is it set
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-approvals off         # pause on this computer
+$nomo-approvals on          # resume
+$nomo-approvals status      # which way is it set
+```
+</CodeGroup>
+
+**이 컴퓨터**의 원격 승인을 일시 중지하여, 권한 요청이 휴대폰을 기다리지 않고
+곧바로 터미널로 가게 합니다. 휴대폰이 꺼져 있거나 손에 없을 때를 위한 비상구입니다.
+
+```
+Remote approvals are OFF for this computer — Claude Code permission prompts
+will appear in the terminal as usual (your phone is not asked).
+```
+
+스위치는 컴퓨터마다 하나이며 **두 에이전트가 공유합니다**. Codex에서 일시 중지하면
+같은 컴퓨터의 Claude Code에도 적용됩니다. 페어링을 해제하지 않고, 휴대폰의 설정도
+건드리지 않습니다.
+
+휴대폰 전체에 적용되는 별도의 스위치가 있습니다:
+[설정](/ko/sessions/settings#원격-승인)의 **iPhone에서 답변**입니다.
+
+## reset
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:reset
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-reset
+```
+</CodeGroup>
+
+워치독을 멈추고 죽었거나 유령처럼 남은 세션 행을 정리한 다음, 휴대폰에도 그것을
+지우라고 알립니다.
+
+```
+Stopped the watchdog (it restarts automatically on your next session).
+Cleared 4 stale session record(s) (4 end signals delivered to your phone).
+Left 2 live sessions untouched.
+Pairing and keys were not touched — use the unpair command if you want that.
+```
+
+행이 오래됐거나 중복되어 보일 때 안심하고 꺼내 쓸 수 있는 명령입니다. 무엇을
+건드리지 않았는지 스스로 밝히기 때문입니다.
+
+## unpair
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:unpair
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-unpair
+```
+</CodeGroup>
+
+페어링을 취소하고 해당 컴퓨터의 키를 지웁니다.
+
+**휴대폰에서** 컴퓨터를 삭제하는 것은 다릅니다. 그렇게 하면 앱에 표시되지 않을
+뿐이며, 이 명령을 그 컴퓨터에서 실행하기 전까지 Mac은 로컬 상태를 그대로
+유지합니다.
+
+## 상태가 저장되는 위치
+
+플러그인이 보관하는 모든 것은 `~/.config/cc-status/` 안에 있습니다. 페어링,
+암호화 키(모드 `0600`), 추적 중인 세션마다 하나씩의 파일, 그리고 로컬 추적
+로그입니다. 이 폴더의 내용은 어디로도 전송되지 않습니다.
+
+## 소스 코드 보기
+
+이 명령들이 곧 플러그인이고, 플러그인은 오픈 소스입니다. 내 컴퓨터에서 무엇이
+실행되고 무엇이 밖으로 나가는지 정확히 알고 싶다면 답은 저장소 하나에 있습니다.
+마켓플레이스 설치도 그 저장소를 그대로 복제한 것입니다.
+
+<Card title="KarrixLee/nomo" href="https://github.com/KarrixLee/nomo" icon="github" horizontal>
+  MIT 라이선스로 공개된 플러그인 전체 소스입니다. 이슈와 버그 제보도 여기에서
+  받습니다.
+</Card>

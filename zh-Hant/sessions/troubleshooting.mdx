@@ -1,0 +1,171 @@
+---
+title: "疑難排解"
+description: "解不開的 sessions、失去聯絡的電腦、凍住的動態島 — 每個狀態代表什麼，以及該怎麼處理。"
+icon: "wrench"
+---
+
+這裡看起來像 bug 的東西，大多是 Nomo 誠實地表示它不知道某件事。這一頁說明那些狀態實際上的意思，並依你會去哪裡解決來分組。
+
+如果同時有不只一件事看起來不對，請直接往下跳到[先從 status 指令開始](#先從-status-指令開始) — 它通常一個畫面就能指出問題。
+
+## 在手機上處理
+
+以下這些都不必到你的 Mac 上做任何事。
+
+<AccordionGroup>
+
+<Accordion title="動態島上什麼都沒出現" icon="circle-dot">
+  幾乎一定是預期中的行為：sessions 是**你選了才會上去**的。打開那台電腦，找到那個 session，把它的開關打開 — 或是到[設定](/zh-Hant/sessions/settings#動態島)開啟「自動加入新 sessions」。
+
+  如果開關是開的卻還是什麼都沒有，請確認 iOS 設定裡 Nomo 的「即時動態」已啟用。接著確認不是另一個 session 佔著動態島：你的手機[一次只顯示一個](/zh-Hant/sessions/island#session-的挑選規則)，而正在等你的 session 排在工作中的前面。
+</Accordion>
+
+<Accordion title="某個 session 的動態島開關是開的、變灰，而且關不掉" icon="toggle-off">
+  那個 session 正在請求權限。不管它的開關怎麼設，權限請求都會到達你的動態島 — 否則一個在你手機躺在口袋裡時抵達的請求，就會是一個你無法回覆的請求，而那正是這項功能的全部意義。所以在請求等待期間，開關會顯示為**開啟**，因為那才是實際正在發生的事。
+
+  **為什麼你關不掉：**關掉它不會有任何作用。那個請求無論如何都會留在動態島上 — 那是它唯一能觸及你的方式 — 所以開關一秒後就會在你的拇指底下自己彈回開啟。與其給你一個不理你的控制項，Nomo 選擇按住它不動，直到它能重新聽你的為止。
+
+  你選的東西沒有被覆寫。回覆那個請求，開關就會直接回到關閉、也就是你留下它的地方 — 或者如果沒有人回覆，一小時之內也會回去。然後它又是你的了。
+
+  在「遠端批准」關閉時 — 也就是預設狀態 — 這一切都不會發生：你的開關永遠不會被蓋過。請看[在手機上回覆](/zh-Hant/sessions/approvals)。
+</Accordion>
+
+<Accordion title="動態島凍住了，或顯示「已斷線？」" icon="wifi">
+  動態島顯示的是你的 Mac 送出的最後一則內容。沉默十分鐘後，它會褪去顏色並顯示 `已斷線？`，而不是繼續暗示這個 session 還活著。
+
+  你的 Mac 睡著、離開網路，或終端機被關掉，都會落到這裡。打開 Nomo App 強制重新整理 — 過時的狀態會立刻自我修正。如果沒有，那就是 Mac 真的沒在回報：請執行下面的狀態指令。
+</Accordion>
+
+<Accordion title="請求有到我的手機，但沒有東西可以點" icon="hand">
+  看**顏色**，不是看圖示。黃色和紫色都畫一隻舉起的手。黃色（`需要協助`）表示代理停下來，等的是只有終端機能給的東西。紫色（`需要權限`）才是可以回覆的那一種。
+
+  如果全都是黃色、從來沒有紫色，那多半是「在 iPhone 上回答」關著 — 它預設就是關的。請看[在手機上回覆](/zh-Hant/sessions/approvals)。
+</Accordion>
+
+</AccordionGroup>
+
+## 在電腦上處理
+
+你的手機沒問題。這些全都在 Mac 上的一個 session 裡解決。
+
+<AccordionGroup>
+
+<Accordion title="面板顯示遠端批准已暫停" icon="pause">
+  有人在那台電腦上執行過暫停指令。請在那台機器上的 session 裡恢復它：
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:approvals on
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-approvals on
+  ```
+  </CodeGroup>
+
+  每台電腦一個開關，兩個代理共用 — [更多說明](/zh-Hant/sessions/commands#approvals)。
+</Accordion>
+
+<Accordion title="Codex 在更新之後就不再送出請求" icon="code">
+  Codex 的 hooks 出廠時**在被信任前不作用**，而一次加入 hook 的外掛程式更新會重新開啟那道審核。在 Codex 裡執行 `/hooks`，信任 Nomo 的項目。在你這麼做之前，批准會退回終端機，而且沒有任何東西回報錯誤。
+
+  更多內容在[搭配 Codex 使用](/zh-Hant/sessions/codex#hooks-必須先信任)。
+</Accordion>
+
+<Accordion title="按住後的選單少了幾個選項" icon="ellipsis">
+  「一律允許」、「拒絕並附註…」和「回答…」都需要外掛程式 **2.0.0** — 在手機上回覆正是 2.0 加入的東西。Nomo 會隱藏 Mac 無法兌現的選項，而不是提供一個按了不會有作用的按鈕。
+
+  面板頂端的「外掛程式有可用更新」橫幅，講的就是這件事。用你當初安裝的同一個指令更新。
+</Accordion>
+
+<Accordion title="各列看起來過時或重複" icon="broom">
+  清掉失效的那些，而不解除配對：
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+  </CodeGroup>
+
+  進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。
+</Accordion>
+
+</AccordionGroup>
+
+## 配對與解密
+
+你的手機收到了它讀不了的更新，或是一台它已經沒有金鑰的電腦。這三種情況的解法都一樣：重新配對那台電腦。
+
+<AccordionGroup>
+
+<Accordion title="某一列顯示「加密的 session」或「重新連線中…」" icon="lock">
+  你的手機收到了那則更新，但還沒解開它。Nomo 每隔幾秒重試一次，通常在一次輪詢之內就會自行排除。
+
+  如果一直持續，那就是你的手機不再持有那台電腦的正確金鑰 — 那台 Mac 被重新配對過，或是配對被取代了。請重新配對它。
+</Accordion>
+
+<Accordion title="某一列顯示「無法取得」" icon="ban">
+  同一件事，只是失敗了十分鐘。與其留下一列看起來還活著、其實不是的內容，Nomo 會把它標為失效，並停止猜測它的內容。它不會驅動動態島，也不會被算成進行中。重新配對那台電腦就會恢復。
+</Accordion>
+
+<Accordion title="某台電腦顯示「已解除配對」" icon="laptop">
+  那組配對被撤銷了 — 你重新配對了那台 Mac，或是在它上面執行了 [`/nomo-cc:unpair`](/zh-Hant/sessions/commands#unpair)。Nomo 會等到連續失敗夠久才相信這件事，所以這絕不會是「Wi-Fi 抖了一分鐘」得出的判斷。
+
+  點一下「移除」，或就放著不管 — 它大約一分鐘後會自行清除。想要它回來時，再配對那台電腦一次。
+</Accordion>
+
+</AccordionGroup>
+
+## 先從 status 指令開始
+
+如果不只一件事看起來不對，請在做任何事之前，先在 Mac 上執行 [`/nomo-cc:status`](/zh-Hant/sessions/commands#status)。一個畫面就會告訴你這台機器有沒有配對、它的 watchdog 是不是還活著，以及事件到底有沒有送到你的手機 — 這通常足以說出哪裡壞了。
+
+在真的有 session 在跑時看到 `Last event sent: never`，表示 hooks 沒有觸發。重新啟動 Claude Code 讓它們載入；Codex 的話，請執行 `/hooks`。
+
+每一個指令，以及它的輸出代表什麼，都在[指令](/zh-Hant/sessions/commands)。
+
+## 回報問題
+
+到[設定](/zh-Hant/sessions/settings#偵錯)開啟「session 診斷」，然後展開那個出問題的 session。它底下會出現一行 Nomo 自己的內部狀態，長得像這樣：
+
+```
+2.0.0 · lan:hold 0.4s · dp
+```
+
+不用試著解讀它 — 那是我們的工作。把那一列截圖傳給我們，並附上你預期看到什麼、實際看到什麼：
+
+<CardGroup cols={2}>
+  <Card title="開一個 issue" href="https://github.com/KarrixLee/nomo/issues" icon="github">
+    任何可重現的問題都最適合走這條路。這是公開的，所以請不要放進私密內容。
+  </Card>
+  <Card title="寄信" href="mailto:karrixlee1231@gmail.com" icon="envelope">
+    應用程式裡也有，在「設定」>「聯絡方式」底下。
+  </Card>
+</CardGroup>
+
+附上受影響電腦上 [`/nomo-cc:status`](/zh-Hant/sessions/commands#status) 的輸出也很有幫助。
+
+## 功能建議
+
+「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)講 Codex 那一側，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
+
+其餘的就只是還沒做而已。
+
+<CardGroup cols={2}>
+  <Card title="看看藍圖" href="https://nomo.gg/roadmap" icon="map">
+    哪些在計畫中、哪些在進行中。你的點子說不定已經在上面了。
+  </Card>
+  <Card title="提出來" href="https://github.com/KarrixLee/nomo/issues" icon="lightbulb">
+    開一個 issue，或[寄信給我](mailto:karrixlee1231@gmail.com)。告訴我你原本想做什麼 — 那比你已經設計好的功能更有用。
+  </Card>
+</CardGroup>
+
+## 重新來過
+
+在受影響的電腦上執行 [`/nomo-cc:unpair`](/zh-Hant/sessions/commands#unpair) 會移除配對並清除它的金鑰。然後[重新配對它](/zh-Hant/setup/pairing)。
+
+**從手機上**移除一台電腦不是同一件事：那只會讓那台電腦不再出現在你的應用程式裡，Mac 上的本機狀態會一直保留，直到你在那裡執行那個指令。

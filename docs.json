@@ -159,6 +159,28 @@
                   "es/setup/install",
                   "es/setup/pairing"
                 ]
+              },
+              {
+                "group": "En tu iPhone",
+                "pages": [
+                  "es/sessions/list",
+                  "es/sessions/island",
+                  "es/sessions/approvals",
+                  "es/sessions/settings"
+                ]
+              },
+              {
+                "group": "En tu ordenador",
+                "pages": [
+                  "es/sessions/commands",
+                  "es/sessions/codex"
+                ]
+              },
+              {
+                "group": "Ayuda",
+                "pages": [
+                  "es/sessions/troubleshooting"
+                ]
               }
             ]
           }
@@ -205,6 +227,28 @@
                 "pages": [
                   "ja/setup/install",
                   "ja/setup/pairing"
+                ]
+              },
+              {
+                "group": "iPhone 側",
+                "pages": [
+                  "ja/sessions/list",
+                  "ja/sessions/island",
+                  "ja/sessions/approvals",
+                  "ja/sessions/settings"
+                ]
+              },
+              {
+                "group": "コンピュータ側",
+                "pages": [
+                  "ja/sessions/commands",
+                  "ja/sessions/codex"
+                ]
+              },
+              {
+                "group": "ヘルプ",
+                "pages": [
+                  "ja/sessions/troubleshooting"
                 ]
               }
             ]
@@ -253,6 +297,28 @@
                   "ko/setup/install",
                   "ko/setup/pairing"
                 ]
+              },
+              {
+                "group": "iPhone에서",
+                "pages": [
+                  "ko/sessions/list",
+                  "ko/sessions/island",
+                  "ko/sessions/approvals",
+                  "ko/sessions/settings"
+                ]
+              },
+              {
+                "group": "컴퓨터에서",
+                "pages": [
+                  "ko/sessions/commands",
+                  "ko/sessions/codex"
+                ]
+              },
+              {
+                "group": "도움말",
+                "pages": [
+                  "ko/sessions/troubleshooting"
+                ]
               }
             ]
           }
@@ -300,6 +366,28 @@
                   "zh-Hans/setup/install",
                   "zh-Hans/setup/pairing"
                 ]
+              },
+              {
+                "group": "在手机上",
+                "pages": [
+                  "zh-Hans/sessions/list",
+                  "zh-Hans/sessions/island",
+                  "zh-Hans/sessions/approvals",
+                  "zh-Hans/sessions/settings"
+                ]
+              },
+              {
+                "group": "在电脑上",
+                "pages": [
+                  "zh-Hans/sessions/commands",
+                  "zh-Hans/sessions/codex"
+                ]
+              },
+              {
+                "group": "帮助",
+                "pages": [
+                  "zh-Hans/sessions/troubleshooting"
+                ]
               }
             ]
           }
@@ -346,6 +434,28 @@
                 "pages": [
                   "zh-Hant/setup/install",
                   "zh-Hant/setup/pairing"
+                ]
+              },
+              {
+                "group": "在手機上",
+                "pages": [
+                  "zh-Hant/sessions/list",
+                  "zh-Hant/sessions/island",
+                  "zh-Hant/sessions/approvals",
+                  "zh-Hant/sessions/settings"
+                ]
+              },
+              {
+                "group": "在電腦上",
+                "pages": [
+                  "zh-Hant/sessions/commands",
+                  "zh-Hant/sessions/codex"
+                ]
+              },
+              {
+                "group": "說明",
+                "pages": [
+                  "zh-Hant/sessions/troubleshooting"
                 ]
               }
             ]

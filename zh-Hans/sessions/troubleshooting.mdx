@@ -1,0 +1,171 @@
+---
+title: "故障排查"
+description: "解不开的会话、失联的电脑、卡住的灵动岛——每种状态代表什么，以及该怎么办。"
+icon: "wrench"
+---
+
+这里看着像 bug 的东西，多半是 Nomo 在老实承认自己不知道某件事。这一页讲的是每一种状态实际代表什么，按你会去哪里解决来分组。
+
+如果同时有好几处看着不对，直接跳到[先运行状态命令](#先运行状态命令)——它通常一屏就能说清问题在哪。
+
+## 在手机上解决
+
+下面这些都不用去 Mac 上折腾。
+
+<AccordionGroup>
+
+<Accordion title="灵动岛上什么都没有" icon="circle-dot">
+  几乎总是本来就该这样：会话是**需要你主动开启**的。打开那台电脑，找到会话，打开它的开关——或者在[设置](/zh-Hans/sessions/settings#灵动岛)里打开**自动加入新会话**。
+
+  如果开关是开的却还是什么都不显示，检查 iOS“设置”里 Nomo 的**实时活动**是否已启用。然后看看是不是另一个会话占着灵动岛：你的手机[同时只显示一个](/zh-Hans/sessions/island#会话的挑选规则)，而一个正在等你的会话排在一个还在干活的会话前面。
+</Accordion>
+
+<Accordion title="会话的灵动岛开关变灰、关不掉" icon="toggle-off">
+  那个会话正在请求权限。一条请求无论开关怎么设都会到达你的灵动岛——否则，一条在你手机揣在兜里时到来的请求，就会变成一条你没法答复的请求，而那正是这个功能存在的全部意义。所以在请求等待期间，开关显示为**开启**，因为实际发生的就是这件事。
+
+  **为什么你关不掉：**关掉它也不会有任何效果。请求照样会留在灵动岛上——那是它唯一能找到你的方式——所以开关一秒之后就会在你手指底下弹回去。与其给你一个不听话的控件，Nomo 宁可先把它按住不动，等到能重新听你的时候再说。
+
+  你选过的东西没有被覆盖。答复这条请求，开关就会立刻回到关闭，也就是你原来放它的位置——如果没人答复，一小时内也会回去。之后它又归你随意设置。
+
+  关掉**远程审批**（这也是默认值）就完全不会有这一出：你的开关永远不会被覆盖。见[在手机上回答](/zh-Hans/sessions/approvals)。
+</Accordion>
+
+<Accordion title="灵动岛卡住，或者显示“已断开？”" icon="wifi">
+  灵动岛显示的是你 Mac 发来的最后一条消息。静默十分钟之后，它会褪成灰色并显示 `已断开？`，而不是继续暗示会话还活着。
+
+  Mac 睡了、掉了网、终端被关掉，都会落到这里。打开 Nomo App 强制刷新——陈旧的状态会立刻自我纠正。如果没有，那就是 Mac 确实没在上报：运行下面那条状态命令。
+</Accordion>
+
+<Accordion title="请求到了手机，却没有可点的东西" icon="hand">
+  看**颜色**，别看图标。黄色和紫色画的是同一只举起的手。黄色（`需要帮助`）表示代理为某件只有终端能处理的事停了下来。紫色（`需要权限`）才是能答复的那个。
+
+  如果一直是黄色、从来没有紫色，多半是**在 iPhone 上回答**没开——它默认就是关的。见[在手机上回答](/zh-Hans/sessions/approvals)。
+</Accordion>
+
+</AccordionGroup>
+
+## 在电脑上解决
+
+你的手机没问题。下面这些都要在 Mac 上的一个会话里解决。
+
+<AccordionGroup>
+
+<Accordion title="详情页提示远程审批已暂停" icon="pause">
+  有人在那台电脑上运行过暂停命令。在那台机器上的一个会话里恢复它：
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:approvals on
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-approvals on
+  ```
+  </CodeGroup>
+
+  一台电脑一个开关，两个代理共用——[详情](/zh-Hans/sessions/commands#approvals)。
+</Accordion>
+
+<Accordion title="更新之后 Codex 不再发来请求" icon="code">
+  Codex 的 hook 装好之后**在被信任之前是不生效的**，而一次新增了 hook 的插件更新会重新开启那次审核。在 Codex 里运行 `/hooks`，信任 Nomo 的条目。在你信任之前，审批会退回终端，而且不会有任何报错。
+
+  更多内容见[搭配 Codex 使用](/zh-Hans/sessions/codex#hook-需要信任)。
+</Accordion>
+
+<Accordion title="按住后弹出的菜单里少了选项" icon="ellipsis">
+  **始终允许**、**拒绝并附注…**和**回答…**都需要插件 **2.0.0**——在手机上答复正是 2.0 加进来的。Nomo 宁可把 Mac 兑现不了的选项藏起来，也不会给你一个按了没用的按钮。
+
+  详情页顶部的 `插件有可用更新` 横幅说的就是这件事。用你当初安装时的那条命令更新即可。
+</Accordion>
+
+<Accordion title="会话行看着陈旧或重复" icon="broom">
+  不用解除配对就能清掉失效的：
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+  </CodeGroup>
+
+  活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。
+</Accordion>
+
+</AccordionGroup>
+
+## 配对与解密
+
+你的手机收到了读不出来的更新，或者收到了一台它已经没有密钥的电脑的更新。这三种情况的解法都一样：把那台电脑重新配对一次。
+
+<AccordionGroup>
+
+<Accordion title="某一行显示“加密会话”或“重新连接中…”" icon="lock">
+  你的手机收到了更新，但还没解开。Nomo 每隔几秒重试一次，通常一轮轮询之内就好了。
+
+  如果一直不好，说明你手机已经没有那台电脑的正确密钥了——那台 Mac 被重新配对过，或者配对被替换了。重新配对一次。
+</Accordion>
+
+<Accordion title="某一行显示“无法获取”" icon="ban">
+  同一件事，只是已经失败了十分钟。与其留下一行看着还活着、其实不是的记录，Nomo 索性把它标记为失效，不再猜测它的内容。它不会驱动灵动岛，也不会被算作进行中。重新配对那台电脑就能恢复。
+</Accordion>
+
+<Accordion title="某台电脑显示“已解除配对”" icon="laptop">
+  那份配对被撤销了——你重新配对了那台 Mac，或者在上面运行了 [`/nomo-cc:unpair`](/zh-Hans/sessions/commands#unpair)。Nomo 会等到连续多次失败之后才相信这件事，所以这绝不会是“Wi-Fi 抖了一分钟”那种误判。
+
+  轻点**移除**，或者干脆不管它——大约一分钟后它会自己清掉。想让它回来时，重新配对那台电脑就行。
+</Accordion>
+
+</AccordionGroup>
+
+## 先运行状态命令
+
+如果同时有好几处看着不对，先在 Mac 上运行 [`/nomo-cc:status`](/zh-Hans/sessions/commands#status)，别的都往后放。一屏就能告诉你这台机器是否已配对、它的看门狗是否还活着，以及事件有没有真的送到你手机——这通常足以说清哪里坏了。
+
+确实有会话在跑却显示 `Last event sent: never`，说明 hook 没有触发。重启 Claude Code 让它们加载；Codex 那边运行 `/hooks`。
+
+每条命令以及它的输出各是什么意思，都在[命令](/zh-Hans/sessions/commands)里。
+
+## 反馈问题
+
+在[设置](/zh-Hans/sessions/settings#调试)里打开**会话诊断**，然后展开那个出问题的会话。它下面会出现一行 Nomo 自己的内部状态，大概长这样：
+
+```
+2.0.0 · lan:hold 0.4s · dp
+```
+
+别费劲去解读它——那是我们的活。把这一行截图发过来，连同你期待的结果和你实际拿到的结果：
+
+<CardGroup cols={2}>
+  <Card title="提交 issue" href="https://github.com/KarrixLee/nomo/issues" icon="github">
+    可复现的问题最适合走这里。这是公开的，所以别带上任何隐私内容。
+  </Card>
+  <Card title="邮件" href="mailto:karrixlee1231@gmail.com" icon="envelope">
+    App 里也有，在“设置”>“联系方式”下面。
+  </Card>
+</CardGroup>
+
+把出问题那台电脑上 [`/nomo-cc:status`](/zh-Hans/sessions/commands#status) 的输出一并发来会更好。
+
+## 功能建议
+
+“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是代理能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)讲 Codex 那边，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
+
+其余的就是还没做。
+
+<CardGroup cols={2}>
+  <Card title="看看路线图" href="https://nomo.gg/roadmap" icon="map">
+    有什么在计划中、有什么正在做。你想要的可能已经在上面了。
+  </Card>
+  <Card title="提出需求" href="https://github.com/KarrixLee/nomo/issues" icon="lightbulb">
+    提一个 issue，或者[给我发邮件](mailto:karrixlee1231@gmail.com)。告诉我你当时想做什么——这比你已经设计好的那个功能有用得多。
+  </Card>
+</CardGroup>
+
+## 重新开始
+
+在出问题的那台电脑上运行 [`/nomo-cc:unpair`](/zh-Hans/sessions/commands#unpair)，会移除配对并抹掉它的密钥。然后[重新配对](/zh-Hans/setup/pairing)。
+
+**在手机上**移除一台电脑不是一回事：那只会让那台电脑不再出现在你的 App 里，Mac 上的本地状态会一直留着，直到你在那边运行那条命令。
