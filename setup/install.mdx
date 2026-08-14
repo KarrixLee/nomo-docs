@@ -9,12 +9,31 @@ npm dependencies and runs on Node built-ins.
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
-    From inside a Claude Code session:
+    <Tabs>
+      <Tab title="Terminal" icon="terminal">
+        From inside a Claude Code session:
 
-    ```
-    /plugin marketplace add KarrixLee/nomo
-    /plugin install nomo-cc@nomo
-    ```
+        ```
+        /plugin marketplace add KarrixLee/nomo
+        /plugin install nomo-cc@nomo
+        ```
+      </Tab>
+
+      <Tab title="Desktop app" icon="window">
+        **Settings** → **Plugins** → **Add** → **Add marketplace**. Put the
+        repository in **URL**:
+
+        ```
+        KarrixLee/nomo
+        ```
+
+        Then **Sync**, and install **Nomo — Claude Code** from the list.
+
+        <Frame caption="A GitHub owner/repo is enough — Nomo's repository is the marketplace.">
+          <img src="/images/claude-desktop-add-marketplace.png" alt="The Claude desktop app's Add marketplace dialog with KarrixLee/nomo entered as the URL" />
+        </Frame>
+      </Tab>
+    </Tabs>
 
     Restart Claude Code afterward so the plugin's hooks load.
 
@@ -38,6 +57,18 @@ npm dependencies and runs on Node built-ins.
     <Steps>
       <Step title="Install the plugin">
         <Tabs>
+          <Tab title="Terminal" icon="terminal">
+            From inside a Codex session:
+
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            The desktop app's built-in terminal works too, if you'd rather type
+            than click.
+          </Tab>
+
           <Tab title="Desktop app" icon="window">
             **Plugins** → **Add** → **Add plugin marketplace**. Put the
             repository in **Source**:
@@ -54,18 +85,6 @@ npm dependencies and runs on Node built-ins.
               <img src="/images/codex-app-add-marketplace.png" alt="The Codex desktop app's Add plugin marketplace dialog with KarrixLee/nomo entered as the source" />
             </Frame>
           </Tab>
-
-          <Tab title="Terminal" icon="terminal">
-            From inside a Codex session:
-
-            ```
-            codex plugin marketplace add KarrixLee/nomo
-            codex plugin add nomo@nomo
-            ```
-
-            The desktop app's built-in terminal works too, if you'd rather type
-            than click.
-          </Tab>
         </Tabs>
 
         <Note>
@@ -77,16 +96,16 @@ npm dependencies and runs on Node built-ins.
 
       <Step title="Trust the hooks — required">
         <Tabs>
-          <Tab title="Desktop app" icon="window">
-            **Settings** → **Hooks** → **Nomo**, and turn them on.
-          </Tab>
-
           <Tab title="Terminal" icon="terminal">
             ```
             /hooks
             ```
 
             Trust the **seven Nomo entries**.
+          </Tab>
+
+          <Tab title="Desktop app" icon="window">
+            **Settings** → **Hooks** → **Nomo**, and turn them on.
           </Tab>
         </Tabs>
 

@@ -9,12 +9,30 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
-    Desde una sesión de Claude Code:
+    <Tabs>
+      <Tab title="Terminal" icon="terminal">
+        Desde una sesión de Claude Code:
 
-    ```
-    /plugin marketplace add KarrixLee/nomo
-    /plugin install nomo-cc@nomo
-    ```
+        ```
+        /plugin marketplace add KarrixLee/nomo
+        /plugin install nomo-cc@nomo
+        ```
+      </Tab>
+
+      <Tab title="App de escritorio" icon="window">
+        **Settings** → **Plugins** → **Add** → **Add marketplace**. Pon el repositorio en **URL**:
+
+        ```
+        KarrixLee/nomo
+        ```
+
+        Luego pulsa **Sync** e instala **Nomo — Claude Code** desde la lista.
+
+        <Frame caption="Basta con un owner/repo de GitHub — el repositorio de Nomo es el marketplace.">
+          <img src="/images/claude-desktop-add-marketplace.png" alt="El diálogo Add marketplace de la app de escritorio de Claude, con KarrixLee/nomo escrito en URL" />
+        </Frame>
+      </Tab>
+    </Tabs>
 
     Reinicia Claude Code después para que se carguen los hooks del plugin.
 
@@ -38,6 +56,15 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
     <Steps>
       <Step title="Instala el plugin">
         <Tabs>
+          <Tab title="Terminal" icon="terminal">
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            El terminal integrado de la app de escritorio también sirve, si prefieres escribir.
+          </Tab>
+
           <Tab title="App de escritorio" icon="window">
             **Plugins** → **Añadir** → **Añadir un marketplace**. Pon el repositorio en **Source**:
 
@@ -51,15 +78,6 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
               <img src="/images/codex-app-add-marketplace.png" alt="El diálogo Añadir un marketplace de la app de escritorio de Codex, con KarrixLee/nomo escrito en Source" />
             </Frame>
           </Tab>
-
-          <Tab title="Terminal" icon="terminal">
-            ```
-            codex plugin marketplace add KarrixLee/nomo
-            codex plugin add nomo@nomo
-            ```
-
-            El terminal integrado de la app de escritorio también sirve, si prefieres escribir.
-          </Tab>
         </Tabs>
 
         <Note>
@@ -69,16 +87,16 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
 
       <Step title="Confía en los hooks — obligatorio">
         <Tabs>
-          <Tab title="App de escritorio" icon="window">
-            Ve al engranaje → **Hooks** → **Nomo** y actívalos.
-          </Tab>
-
           <Tab title="Terminal" icon="terminal">
             ```
             /hooks
             ```
 
             Confía en las **siete entradas de Nomo**. En el terminal aparecen en inglés, como «trust».
+          </Tab>
+
+          <Tab title="App de escritorio" icon="window">
+            Ve al engranaje → **Hooks** → **Nomo** y actívalos.
           </Tab>
         </Tabs>
 
