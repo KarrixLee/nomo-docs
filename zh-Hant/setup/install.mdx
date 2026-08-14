@@ -8,12 +8,30 @@ icon: "puzzle-piece"
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
-    在 Claude Code 中執行：
+    <Tabs>
+      <Tab title="終端機" icon="terminal">
+        在 Claude Code session 裡執行：
 
-    ```
-    /plugin marketplace add KarrixLee/nomo
-    /plugin install nomo-cc@nomo
-    ```
+        ```
+        /plugin marketplace add KarrixLee/nomo
+        /plugin install nomo-cc@nomo
+        ```
+      </Tab>
+
+      <Tab title="桌面應用程式" icon="window">
+        依序進入 **Settings** → **Plugins** → **Add** → **Add marketplace**，在 **URL** 填入儲存庫：
+
+        ```
+        KarrixLee/nomo
+        ```
+
+        接著按 **Sync**，在清單裡安裝 **Nomo — Claude Code**。
+
+        <Frame caption="填 GitHub 的 owner/repo 就夠了 — Nomo 的儲存庫本身就是市集。">
+          <img src="/images/claude-desktop-add-marketplace.png" alt="Claude 桌面應用程式的 Add marketplace 對話框，URL 填的是 KarrixLee/nomo" />
+        </Frame>
+      </Tab>
+    </Tabs>
 
     之後請重新啟動 Claude Code，讓外掛程式的 hooks 載入。
 
@@ -36,6 +54,15 @@ icon: "puzzle-piece"
     <Steps>
       <Step title="安裝外掛程式">
         <Tabs>
+          <Tab title="終端機" icon="terminal">
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            如果你比較習慣打字，桌面應用程式的內建終端機也可以。
+          </Tab>
+
           <Tab title="桌面應用程式" icon="window">
             依序進入 **外掛程式** → **新增** → **新增市集**，在 **Source** 填入儲存庫：
 
@@ -49,15 +76,6 @@ icon: "puzzle-piece"
               <img src="/images/codex-app-add-marketplace.png" alt="Codex 桌面應用程式的新增市集對話框，Source 填的是 KarrixLee/nomo" />
             </Frame>
           </Tab>
-
-          <Tab title="終端機" icon="terminal">
-            ```
-            codex plugin marketplace add KarrixLee/nomo
-            codex plugin add nomo@nomo
-            ```
-
-            如果你比較習慣打字，桌面應用程式的內建終端機也可以。
-          </Tab>
         </Tabs>
 
         <Note>
@@ -67,16 +85,16 @@ icon: "puzzle-piece"
 
       <Step title="信任 hooks — 必要步驟">
         <Tabs>
-          <Tab title="桌面應用程式" icon="window">
-            開啟齒輪圖示裡的 **掛勾** → **nomo**，把它們打開。Codex 在這裡用的是「掛勾」，同一畫面上的計數卻寫成 Hook — 那是它自己的翻譯不一致，不是你看錯。
-          </Tab>
-
           <Tab title="終端機" icon="terminal">
             ```
             /hooks
             ```
 
             信任那**七個 Nomo 項目**。終端機裡顯示為英文的「trust」。
+          </Tab>
+
+          <Tab title="桌面應用程式" icon="window">
+            開啟齒輪圖示裡的 **掛勾** → **nomo**，把它們打開。Codex 在這裡用的是「掛勾」，同一畫面上的計數卻寫成 Hook — 那是它自己的翻譯不一致，不是你看錯。
           </Tab>
         </Tabs>
 
