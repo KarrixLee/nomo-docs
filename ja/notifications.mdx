@@ -14,7 +14,7 @@ icon: "bell"
 
 どの通知も、プロバイダー名と影響を受けている対象そのものを示します — **Cursor · Auto + Composer**、**OpenAI · ChatGPT Conversations** といった具合です。ロック画面を見るだけで、どの上限に達したのか、どのサービスが不調なのかがわかります。何かを開く必要はありません。
 
-## ステータスのアラート
+## ステータスのアラート {#status-alerts}
 
 マスタースイッチが 1 つ。オンにすると 2 行目が現れます。
 
@@ -31,7 +31,7 @@ icon: "bell"
 
 グループは既定で折りたたまれ、ヘッダーには全体のうち何件が有効かが表示されるので、開かなくても変更した内容がわかります。絞り込んでおく価値はあります。プロバイダーのステータスページには、実際に使っている 1 つよりずっと多くのサービスが並んでいるからです。
 
-## 使用量のアラート
+## 使用量のアラート {#usage-alerts}
 
 **70%**、**90%**、**100%** の時点で先に知らせます — 5 時間の枠と週の枠の*両方*についてです。長い午後にも、詰め込んだ 1 週間にも、それぞれ警告が届きます。
 
@@ -41,14 +41,14 @@ icon: "bell"
   <span><img src="/images/providers/claude.svg" alt="" />Claude</span>
   <span><img src="/images/providers/openai.svg" alt="" className="invert-dark" />OpenAI</span>
   <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
+  <span><img src="/images/providers/xai.svg" alt="" className="invert-dark" />xAI</span>
+  <span><img src="/images/providers/gemini.png" alt="" />Gemini</span>
 </div>
-
-xAI と Gemini は[ウィジェット](/ja/usage)に使用量を表示しますが、アラートにはまだ対応していません。
 
 <Note>
   使用量の確認はスマートフォン上で行われます。ログイン情報が端末から出ることはなく、Nomo のサーバーに送られることもありません — [サインイン](/ja/usage#signing-in)を参照してください。
 </Note>
 
-## 通知が届かなくなったら
+## 通知が届かなくなったら {#if-alerts-go-quiet}
 
 Nomo はスワイプで終了させず、バックグラウンドに残しておいてください。強制終了されたアプリを iOS は起こさなくなるため、次に開くまで通知が止まることがあります。
