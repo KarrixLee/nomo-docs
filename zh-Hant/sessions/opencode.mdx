@@ -50,6 +50,29 @@ OpenCode 把一次被拒絕的權限，當成對代理正在做的事的回答�
 
 卡片上的其他東西都正常運作，只是少了一條回到電腦的捷徑。
 
+## OpenCode 本來就問得少 {#opencode-asks-for-less}
+
+批准是通的。OpenCode 只是比 Claude Code 問得少 — 手機安靜，通常代表根本沒有人問過，而不是哪裡壞了。
+
+在預設設定下，只有四件事會來問你：
+
+- 動到專案資料夾以外的檔案。
+- 讀取 `.env` 檔案。
+- OpenCode 自己的無限迴圈防護，當它認定代理在原地打轉時。
+- 代理向你提出的問題。
+
+其他的一律不問就執行，shell 指令也一樣。
+
+這是 OpenCode 的預設設定，不是一條改不動的規則，要不要改在你。在專案的 `.opencode/opencode.json` 裡，或是要對所有專案生效就在 `~/.config/opencode/opencode.json` 裡，把某個工具設成 `ask`，它就會重新回到你面前，也就回到你的手機上：
+
+```json
+{ "permission": { "bash": "ask", "edit": "ask" } }
+```
+
+至於你要不要這樣，那是你習慣怎麼工作的問題。Nomo 只是把你的代理問的東西原樣轉過來，不會自己多加什麼。
+
+如果這些都解釋不了那份安靜，還有一個看起來一模一樣的原因：就在下面的[自動核准](#auto-approve-isnt-shown)。
+
 ## 自動核准不會顯示 {#auto-approve-isnt-shown}
 
 OpenCode 在自己的介面裡處理 `--yolo`，從不把這件事告訴外掛程式。所以 App 無法顯示某個 session 是不是在關掉批准的情況下執行 — 它看起來就和其他 session 一樣。

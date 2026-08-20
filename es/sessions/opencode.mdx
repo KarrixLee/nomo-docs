@@ -81,6 +81,37 @@ serve` puede que no haya ventana ninguna.
 Todo lo demás de la tarjeta funciona con normalidad; lo único es que no hay atajo
 de vuelta al ordenador.
 
+## OpenCode pregunta menos {#opencode-asks-for-less}
+
+Las aprobaciones funcionan. OpenCode simplemente pregunta menos que Claude Code,
+así que un teléfono en silencio suele significar que no se preguntó nada, no que
+algo esté roto.
+
+De fábrica, hay cuatro cosas que piden permiso:
+
+- Tocar un archivo fuera de la carpeta del proyecto.
+- Leer un archivo `.env`.
+- La protección antibucles de OpenCode, cuando detecta que el agente está dando
+  vueltas en círculo.
+- Las preguntas que te hace el agente.
+
+Todo lo demás corre sin preguntar, comandos de shell incluidos.
+
+Esa es la configuración por defecto de OpenCode, no una regla fija, y es tuya
+para cambiarla. Poner una herramienta en `ask` en el `.opencode/opencode.json`
+del proyecto —o en `~/.config/opencode/opencode.json`, para todos— la devuelve
+delante de ti, y por tanto a tu teléfono:
+
+```json
+{ "permission": { "bash": "ask", "edit": "ask" } }
+```
+
+Que quieras eso o no es una cuestión de cómo te gusta trabajar. Nomo refleja lo
+que pregunta tu agente y no añade nada por su cuenta.
+
+Si nada de esto explica el silencio, la otra causa se ve idéntica:
+[la aprobación automática](#auto-approve-isnt-shown), justo aquí abajo.
+
 ## La aprobación automática no se ve {#auto-approve-isnt-shown}
 
 OpenCode gestiona `--yolo` dentro de su propia interfaz y nunca se lo cuenta a un

@@ -75,6 +75,35 @@ be no window at all.
 Everything else on the card works normally; there's just no shortcut back to the
 computer.
 
+## OpenCode asks for less
+
+Approvals work. OpenCode simply asks for less than Claude Code does, so a quiet
+phone usually means nothing was asked, not that something is broken.
+
+Out of the box, four things prompt:
+
+- Touching a file outside the project folder.
+- Reading a `.env` file.
+- OpenCode's doom-loop guard, when it catches the agent going in circles.
+- Questions the agent asks you.
+
+Everything else runs unasked, shell commands included.
+
+That's OpenCode's default configuration rather than a fixed rule, and it's yours
+to change. Setting a tool to `ask` in the project's `.opencode/opencode.json` —
+or in `~/.config/opencode/opencode.json` for every project — puts it back in
+front of you, and so on your phone:
+
+```json
+{ "permission": { "bash": "ask", "edit": "ask" } }
+```
+
+Whether you want that is a question about how you like working. Nomo mirrors
+what your agent asks and adds nothing of its own.
+
+If none of this explains the silence, the other cause looks identical:
+[auto-approve](#auto-approve-isnt-shown), below.
+
 ## Auto-approve isn't shown
 
 OpenCode handles `--yolo` inside its own interface and never tells a plugin
