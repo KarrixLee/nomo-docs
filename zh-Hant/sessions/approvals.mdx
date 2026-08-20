@@ -1,8 +1,8 @@
 ---
 title: "在手機上回覆"
-description: "遠端允許、拒絕或回答 Claude Code 和 Codex 的權限請求 — 在動態島上，或在App裡使用完整選項。"
+description: "遠端允許、拒絕或回答 Claude Code、Codex 和 OpenCode 的權限請求 — 在動態島上，或在App裡使用完整選項。"
 icon: "hand"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "在手機上回覆"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "在手機上回覆"]
 ---
 
 當你的代理想執行某件它沒有既有權限的事，它會停下來詢問。平常你會在 Mac 上回覆。有了 Nomo，你可以在手機上回覆，代理會立刻接著做下去。
@@ -56,6 +56,10 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
 | **查看完整計畫** | App，以及動態島上的「查看計畫」 | 打開計畫，先讀再決定。 |
 | **在 Mac 上開啟** | 僅App | 不回答任何事 — 它把那個 session 的終端機視窗切到你 Mac 的最前面。需要[區域網路](/zh-Hant/sessions/settings#local-network)連線。 |
 
+<Note>
+  其中兩項在 OpenCode 上意思不同：「拒絕」回覆的是整輪，而不是單一工具；「在 Mac 上開啟」則完全不會出現。兩者都寫在[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)裡。
+</Note>
+
 「一律允許」、「拒絕並附註…」和「回答…」都在選單的「更多…」底下，而且三個都需要外掛程式 **2.0.0**。在 1.0.0 上你只會拿到單純的「允許」和「拒絕」 — Nomo 不會顯示一個 Mac 無法兌現的按鈕。有更新可用時，面板會告訴你。
 
 ## 回答問題 {#answering-a-question}
@@ -88,7 +92,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
   如果計畫長到一則加密更新裝不下，面板會這麼說，並告訴你有多少被省略。完整計畫一直都還在你的終端機裡。當你的手機能透過區域網路直接連上 Mac 時，Nomo 會改成重新取回全文。
 </Note>
 
-Codex 的計畫在手機上是**唯讀**的 — 你在這裡讀，在終端機裡選。[為什麼](/zh-Hant/sessions/codex#plans-are-read-only)。
+Codex 的計畫在手機上是**唯讀**的 — 你在這裡讀，在終端機裡選。[為什麼](/zh-Hant/sessions/codex#plans-are-read-only)。OpenCode 通常根本不會寫出計畫文件，所以「查看計畫」顯示的是這個 session 的待辦清單 — [為什麼](/zh-Hant/sessions/opencode#plan-mode)。
 
 ## 點下之後 {#after-you-tap}
 

@@ -1,6 +1,6 @@
 ---
 title: "安装"
-description: "为 Claude Code 或 Codex 添加 Nomo 插件。两条命令，零依赖。"
+description: "为 Claude Code、Codex 或 OpenCode 添加 Nomo 插件。两条命令，零依赖。"
 icon: "puzzle-piece"
 ---
 
@@ -119,6 +119,52 @@ icon: "puzzle-piece"
       Codex 的技能使用 `$` 前缀而不是斜杠 —— `$nomo-pair`、
       `$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
     </Tip>
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    OpenCode 既没有插件市场，也没有插件命令——它只认自己配置文件夹里现成的东西。所以 Nomo 从一份克隆安装，由一个脚本把文件放到 OpenCode 本来就会去找的位置。
+
+    <Steps>
+      <Step title="克隆并运行安装脚本">
+        ```bash
+        git clone https://github.com/KarrixLee/nomo.git ~/.nomo
+        ~/.nomo/plugin/scripts/opencode-install.sh
+        ```
+
+        克隆到哪里都行——脚本会自己算出所在位置，没有路径要查，也没有东西要手改。它会原样打印出自己写了些什么：
+
+        - `~/.config/opencode/plugins/nomo.js`——一个指回克隆目录的单行桩文件。
+        - `~/.config/opencode/commands/nomo-*.md`——那五条命令。
+
+        已经为 Claude Code 或 Codex 装过 Nomo？那就让脚本指向那份副本，不必再克隆一份——`claude plugin list` 或 `codex plugin list` 会打印出它在哪儿。
+
+        <Tip>
+          `--project` 会装进 `./.opencode`，只对一个存储库生效，而不是全局安装。重复运行是安全的，这也是搬动克隆目录的办法：在新位置再跑一次。
+        </Tip>
+      </Step>
+
+      <Step title="重启 OpenCode——必做">
+        <Warning>
+          OpenCode 只在自己的服务器启动时导入一次插件，没有热重载。在你退出并重新打开它之前，插件虽已安装却什么都不做。
+        </Warning>
+      </Step>
+
+      <Step title="确认">
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    <Note>
+      这里没有 npm 包，也没有插件市场——OpenCode 本来就没有。那个桩文件是把克隆目录重新导出，而不是复制一份，所以在克隆目录里 `git pull` 一下就是全部的升级操作。
+    </Note>
+
+    <Tip>
+      OpenCode 的命令名是扁平且全局的，所以 Nomo 的命令完全不带前缀：是 `/nomo-pair`，不是 `/nomo-cc:pair` 或 `$nomo-pair`。五条都在[命令](/zh-Hans/sessions/commands)里。
+    </Tip>
+
+    到了手机上有哪些不一样，见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)。
   </Tab>
 </Tabs>
 

@@ -2,7 +2,7 @@
 title: "Solución de problemas"
 description: "Sesiones que no se descifran, ordenadores que se quedan mudos, una Dynamic Island congelada: qué significa cada estado y qué hacer con él."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
 ---
 
 Casi todo lo que aquí parece un fallo es Nomo siendo honesto sobre algo que no
@@ -96,9 +96,13 @@ Tu teléfono está bien. Todos estos se resuelven desde una sesión en el Mac.
   ```bash Codex icon="/images/codex.svg"
   $nomo-approvals on
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-approvals on
+  ```
   </CodeGroup>
 
-  Un interruptor por ordenador, compartido por los dos agentes —
+  Un interruptor por ordenador, compartido por todos los agentes —
   [más](/es/sessions/commands#approvals).
 </Accordion>
 
@@ -132,10 +136,16 @@ Tu teléfono está bien. Todos estos se resuelven desde una sesión en el Mac.
   ```bash Codex icon="/images/codex.svg"
   $nomo-reset
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
   </CodeGroup>
 
   Las sesiones vivas, tu vinculación y tus claves se quedan intactas —
-  [qué imprime](/es/sessions/commands#reset).
+  [qué imprime](/es/sessions/commands#reset). Una fila de OpenCode pertenece
+  al servidor de OpenCode, así que cierra OpenCode primero si alguna se
+  resiste — [por qué](/es/sessions/opencode#reset-needs-opencode-closed).
 </Accordion>
 
 </AccordionGroup>
@@ -183,9 +193,9 @@ sola pantalla te dice si la máquina está vinculada, si su proceso supervisor e
 vivo y si los eventos están llegando de verdad a tu teléfono — que suele bastar
 para saber qué está roto.
 
-`Last event sent: never` con una sesión realmente en marcha significa que los
-hooks no se están disparando. Reinicia Claude Code para que se carguen; en Codex,
-ejecuta `/hooks`.
+`Last event sent: never` con una sesión realmente en marcha significa que no se
+está recogiendo nada. Reinicia Claude Code para que se carguen sus hooks; en
+Codex, ejecuta `/hooks`; en OpenCode, reinícialo para que se cargue el plugin.
 
 Todos los comandos, y qué significa lo que imprimen, están en
 [Comandos](/es/sessions/commands).
@@ -221,9 +231,10 @@ afectado también ayuda.
 
 “¿Por qué no puedo hacer X desde el teléfono?” muchas veces es una pregunta justa
 y no un fallo. Una parte es un límite real de lo que un agente le entrega a un
-plugin, y está escrito: [Usar Codex](/es/sessions/codex) cubre el lado de Codex, y
-[Responder desde el iPhone](/es/sessions/approvals) cubre lo que una actividad en
-directo puede y no puede albergar.
+plugin, y está escrito: [Usar Codex](/es/sessions/codex) y [Usar
+OpenCode](/es/sessions/opencode) cubren esos dos agentes, y [Responder desde el
+iPhone](/es/sessions/approvals) cubre lo que una actividad en directo puede y no
+puede albergar.
 
 El resto simplemente todavía no está hecho.
 

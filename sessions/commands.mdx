@@ -1,25 +1,27 @@
 ---
 title: "Commands"
-description: "Every Nomo command for Claude Code and Codex — pairing, status, approvals, reset and unpair — in one place."
+description: "Every Nomo command for Claude Code, Codex and OpenCode — pairing, status, approvals, reset and unpair — in one place."
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Commands"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Commands"]
 ---
 
-Five commands, same five on both agents. You run them from inside an agent
-session on the computer you want to affect — a `/` command in Claude Code, a
-`$` skill in Codex.
+Five commands, the same five on every agent. You run them from inside an agent
+session on the computer you want to affect — a `/` command in Claude Code and
+OpenCode, a `$` skill in Codex.
 
 <Tip>
   In Claude Code everything is namespaced: typing `/nomo-cc:` lists them all.
+  OpenCode command names are flat and global, so there Nomo's carry no prefix at
+  all.
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex |
-| --- | --- | --- |
-| <a href="#pair">Pair this computer</a> | `/nomo-cc:pair` | `$nomo-pair` |
-| <a href="#status">Check health</a> | `/nomo-cc:status` | `$nomo-status` |
-| <a href="#approvals">Pause or resume approvals</a> | `/nomo-cc:approvals` | `$nomo-approvals` |
-| <a href="#reset">Clear stuck sessions</a> | `/nomo-cc:reset` | `$nomo-reset` |
-| <a href="#unpair">Disconnect this computer</a> | `/nomo-cc:unpair` | `$nomo-unpair` |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode |
+| --- | --- | --- | --- |
+| <a href="#pair">Pair this computer</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` |
+| <a href="#status">Check health</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` |
+| <a href="#approvals">Pause or resume approvals</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">Clear stuck sessions</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">Disconnect this computer</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
 
 None of them can fail loudly. Every one exits cleanly even when there's nothing
 to do — `Not paired` is a success, not an error.
@@ -36,6 +38,11 @@ to do — `Not paired` is a success, not an error.
 $nomo-pair             # QR code, opens your browser
 $nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 With no argument it opens a themed page in your browser with a QR code. Scan it
@@ -47,8 +54,8 @@ purpose: that code lands in your terminal, and therefore in the agent's
 transcript.
 
 Pairings expire after **10 minutes** unused. One pairing covers the machine, not
-the agent — Claude Code and Codex on the same Mac share it. Full walkthrough in
-[Pairing](/setup/pairing).
+the agent — Claude Code, Codex and OpenCode on the same Mac share it. Full
+walkthrough in [Pairing](/setup/pairing).
 
 ## status
 
@@ -59,6 +66,10 @@ the agent — Claude Code and Codex on the same Mac share it. Full walkthrough i
 
 ```bash Codex icon="/images/codex.svg"
 $nomo-status
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
 ```
 </CodeGroup>
 
@@ -86,8 +97,9 @@ Line by line:
 </ResponseField>
 
 <ResponseField name="Last event sent">
-  `never` with a session actually running means the hooks aren't firing. Restart
-  Claude Code so they load; for Codex, run `/hooks`.
+  `never` with a session actually running means nothing is being picked up.
+  Restart Claude Code so its hooks load; for Codex, run `/hooks`; for OpenCode,
+  restart it so the plugin loads.
 </ResponseField>
 
 <ResponseField name="Codex plugin">
@@ -119,6 +131,12 @@ $nomo-approvals off         # pause on this computer
 $nomo-approvals on          # resume
 $nomo-approvals status      # which way is it set
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
 
 Pauses remote approvals for **this computer**, so permission prompts go straight
@@ -130,9 +148,9 @@ Remote approvals are OFF for this computer — Claude Code permission prompts
 will appear in the terminal as usual (your phone is not asked).
 ```
 
-One switch per computer, **shared by both agents** — pausing it in Codex pauses it for Claude Code on
-that machine too. It doesn't unpair anything and doesn't touch your phone's
-settings.
+One switch per computer, **shared by every agent** — pausing it in Codex pauses
+it for Claude Code and OpenCode on that machine too. It doesn't unpair anything
+and doesn't touch your phone's settings.
 
 There's a separate, phone-wide switch: **Answer on iPhone** in
 [Settings](/sessions/settings#remote-approvals).
@@ -147,6 +165,10 @@ There's a separate, phone-wide switch: **Answer on iPhone** in
 ```bash Codex icon="/images/codex.svg"
 $nomo-reset
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-reset
+```
 </CodeGroup>
 
 Stops the watchdog and clears dead or phantom session rows, then tells your
@@ -160,7 +182,9 @@ Pairing and keys were not touched — use the unpair command if you want that.
 ```
 
 The safe thing to reach for when rows look stale or duplicated, because it says
-what it left alone.
+what it left alone. An OpenCode row belongs to the OpenCode **server**, so quit
+OpenCode first if one won't clear — see
+[Using OpenCode](/sessions/opencode#reset-needs-opencode-closed).
 
 ## unpair
 
@@ -171,6 +195,10 @@ what it left alone.
 
 ```bash Codex icon="/images/codex.svg"
 $nomo-unpair
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-unpair
 ```
 </CodeGroup>
 

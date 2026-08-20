@@ -1,13 +1,13 @@
 ---
 title: "개요"
 sidebarTitle: "개요"
-description: "iPhone에서 Claude Code와 Codex를 지켜보고, Mac 앞으로 돌아가지 않고도 권한 요청에 답합니다."
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "개요"]
+description: "iPhone에서 Claude Code, Codex, OpenCode를 지켜보고, Mac 앞으로 돌아가지 않고도 권한 요청에 답합니다."
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "개요"]
 ---
 
 코딩 에이전트는 Mac에서 돌아갑니다. 그 앞에 계속 앉아 있을 필요는 없습니다.
 
-Nomo 세션은 실행 중인 Claude Code와 Codex 세션을 iPhone으로 가져옵니다 — 잠금
+Nomo 세션은 실행 중인 Claude Code, Codex, OpenCode 세션을 iPhone으로 가져옵니다 — 잠금
 화면과 Dynamic Island에 띄웁니다. 에이전트가 무언가에 대한 권한을 물으려고
 멈추면 휴대폰이 알려 주고, 그 자리에서 바로 답할 수 있습니다.
 
@@ -38,11 +38,17 @@ Nomo 세션은 실행 중인 Claude Code와 Codex 세션을 iPhone으로 가져�
 <div className="provider-row">
   <span><img src="/images/claude-code.svg" alt="" />Claude Code</span>
   <span><img src="/images/codex.svg" alt="" />Codex</span>
+  <span><img src="/images/opencode.svg" alt="" />OpenCode</span>
 </div>
+
+Codex와 OpenCode는 Claude Code보다 플러그인에 넘겨주는 것이 적어서 휴대폰에서
+몇 가지가 다르게 보입니다 — 무엇이 달라지는지는 [Codex
+사용하기](/ko/sessions/codex)와 [OpenCode 사용하기](/ko/sessions/opencode)에
+정리되어 있습니다.
 
 ## 필요한 것
 
-- Mac에서 실행되는 Claude Code, 또는 Codex 0.142 이상
+- Mac에서 실행되는 Claude Code, Codex 0.142 이상, 또는 OpenCode
 - **bun** 또는 **node 18 이상** — 이미 설치되어 있는 쪽이면 됩니다
 - 휴대폰과 컴퓨터의 페어링 — QR 스캔 한 번
 
@@ -67,7 +73,7 @@ Nomo의 서버는 봉인된 데이터를 옮길 뿐, 키는 한 번도 갖지 �
 
 <CardGroup cols={2}>
   <Card title="플러그인 설치" href="/ko/setup/install" icon="puzzle-piece">
-    Claude Code 또는 Codex에서, 명령 두 줄이면 됩니다.
+    Claude Code, Codex, OpenCode에서 명령 두 줄이면 됩니다.
   </Card>
   <Card title="컴퓨터 페어링" href="/ko/setup/pairing" icon="qrcode-read">
     QR 코드를 스캔하거나, 일회용 코드를 입력합니다.
@@ -83,7 +89,7 @@ Nomo의 서버는 봉인된 데이터를 옮길 뿐, 키는 한 번도 갖지 �
   "operatingSystem": "iOS 18.0 or later",
   "url": "https://nomo.gg",
   "downloadUrl": "https://apps.apple.com/app/nomo-ai-status-usage/id6779366830",
-  "description": "Claude Code와 Codex 세션을 iPhone의 잠금 화면과 Dynamic Island에서 확인하고, 권한 요청에 원격으로 답변합니다.",
+  "description": "Claude Code, Codex, OpenCode 세션을 iPhone의 잠금 화면과 Dynamic Island에서 확인하고, 권한 요청에 원격으로 답변합니다.",
   "offers": {
     "@type": "Offer",
     "price": "0",

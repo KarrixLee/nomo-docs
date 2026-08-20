@@ -1,8 +1,8 @@
 ---
 title: "휴대폰에서 답변하기"
-description: "Claude Code와 Codex의 권한 요청을 원격으로 허용하거나 거부하거나 답변합니다 — Dynamic Island에서, 또는 모든 선택지가 갖춰진 앱에서."
+description: "Claude Code, Codex, OpenCode의 권한 요청을 원격으로 허용하거나 거부하거나 답변합니다 — Dynamic Island에서, 또는 모든 선택지가 갖춰진 앱에서."
 icon: "hand"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "휴대폰에서 답변하기"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "휴대폰에서 답변하기"]
 ---
 
 에이전트가 상시 권한이 없는 작업을 실행하려 하면 멈춰서 물어봅니다. 원래는 Mac
@@ -69,6 +69,12 @@ Dynamic Island는 **알립니다**. 앱은 **답합니다**. 제공하는 것이
 | **전체 계획 보기** | 앱, 그리고 Dynamic Island의 **계획 보기** | 결정하기 전에 읽어 볼 수 있도록 계획을 엽니다. |
 | **Mac에서 열기** | 앱 전용 | 아무것도 답하지 않습니다 — Mac에서 해당 세션의 터미널 창을 앞으로 가져옵니다. [로컬 네트워크](/ko/sessions/settings#local-network) 연결이 필요합니다. |
 
+<Note>
+  이 가운데 두 가지는 OpenCode에서 다르게 동작합니다. **거부**는 도구 하나가
+  아니라 차례 전체에 대한 답변이 되고, **Mac에서 열기**는 아예 표시되지
+  않습니다. 둘 다 [OpenCode 사용하기](/ko/sessions/opencode)에 설명되어 있습니다.
+</Note>
+
 **항상 허용**, **메모와 함께 거부…**, **답변하기…** 세 가지는 메뉴의
 **더 보기…** 안에 있으며, 모두 플러그인 **2.0.0**이 필요합니다. 1.0.0에서는
 허용과 거부만 표시됩니다 — Nomo는 Mac이 지킬 수 없는 버튼을 보여 주지 않습니다.
@@ -119,7 +125,7 @@ Dynamic Island도 허용이나 거부를 내놓지 않고 그 사실만 알립�
 </Note>
 
 Codex의 계획은 휴대폰에서 **읽기 전용**입니다 — 여기에서 읽고 터미널에서
-선택합니다. [이유](/ko/sessions/codex#plans-are-read-only).
+선택합니다. [이유](/ko/sessions/codex#plans-are-read-only). OpenCode는 계획 문서를 아예 쓰지 않는 것이 보통이라 **계획 보기**에는 세션의 할 일 목록이 표시됩니다 — [이유](/ko/sessions/opencode#plan-mode).
 
 ## 탭한 뒤의 처리 {#after-you-tap}
 

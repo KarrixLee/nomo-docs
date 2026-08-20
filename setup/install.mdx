@@ -1,6 +1,6 @@
 ---
 title: "Installation"
-description: "Add the Nomo plugin to Claude Code or Codex. Two commands, no dependencies."
+description: "Add the Nomo plugin to Claude Code, Codex, or OpenCode. Two commands, no dependencies."
 icon: "puzzle-piece"
 ---
 
@@ -134,6 +134,68 @@ npm dependencies and runs on Node built-ins.
       Codex skills use a `$` prefix rather than a slash. All five are listed in
       [Commands](/sessions/commands).
     </Tip>
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    OpenCode has no marketplace and no plugin command — it picks up whatever it
+    finds in its own config folders. So Nomo installs from a clone, and one
+    script puts the files where OpenCode already looks.
+
+    <Steps>
+      <Step title="Clone it and run the installer">
+        ```bash
+        git clone https://github.com/KarrixLee/nomo.git ~/.nomo
+        ~/.nomo/plugin/scripts/opencode-install.sh
+        ```
+
+        Clone it wherever you like — the script works out its own location, so
+        there's no path to look up and nothing to hand-edit. It prints exactly
+        what it wrote:
+
+        - `~/.config/opencode/plugins/nomo.js` — a one-line stub pointing back
+          at the clone.
+        - `~/.config/opencode/commands/nomo-*.md` — the five commands.
+
+        Already installed Nomo for Claude Code or Codex? Point the script at
+        that copy instead of cloning a second one — `claude plugin list` or
+        `codex plugin list` prints where it lives.
+
+        <Tip>
+          `--project` installs into `./.opencode` for one repository instead of
+          globally. Re-running is safe, and it's also how you move the clone:
+          run it again from the new location.
+        </Tip>
+      </Step>
+
+      <Step title="Restart OpenCode — required">
+        <Warning>
+          OpenCode imports plugins once, when its server starts, and there's no
+          hot reload. Until you quit and reopen it, the plugin is installed and
+          doing nothing.
+        </Warning>
+      </Step>
+
+      <Step title="Confirm">
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    <Note>
+      There's no npm package and no marketplace — OpenCode doesn't have one. The
+      stub re-exports the clone rather than copying it, so a `git pull` in the
+      clone is the whole upgrade.
+    </Note>
+
+    <Tip>
+      OpenCode command names are flat and global, so Nomo's carry no prefix at
+      all: `/nomo-pair`, not `/nomo-cc:pair` or `$nomo-pair`. All five are in
+      [Commands](/sessions/commands).
+    </Tip>
+
+    What lands differently on your phone is in
+    [Using OpenCode](/sessions/opencode).
   </Tab>
 </Tabs>
 

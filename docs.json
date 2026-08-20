@@ -115,7 +115,8 @@
                 "group": "On your computer",
                 "pages": [
                   "sessions/commands",
-                  "sessions/codex"
+                  "sessions/codex",
+                  "sessions/opencode"
                 ]
               },
               {
@@ -184,7 +185,8 @@
                 "group": "En tu ordenador",
                 "pages": [
                   "es/sessions/commands",
-                  "es/sessions/codex"
+                  "es/sessions/codex",
+                  "es/sessions/opencode"
                 ]
               },
               {
@@ -253,7 +255,8 @@
                 "group": "コンピュータ側",
                 "pages": [
                   "ja/sessions/commands",
-                  "ja/sessions/codex"
+                  "ja/sessions/codex",
+                  "ja/sessions/opencode"
                 ]
               },
               {
@@ -322,7 +325,8 @@
                 "group": "컴퓨터에서",
                 "pages": [
                   "ko/sessions/commands",
-                  "ko/sessions/codex"
+                  "ko/sessions/codex",
+                  "ko/sessions/opencode"
                 ]
               },
               {
@@ -391,7 +395,8 @@
                 "group": "在电脑上",
                 "pages": [
                   "zh-Hans/sessions/commands",
-                  "zh-Hans/sessions/codex"
+                  "zh-Hans/sessions/codex",
+                  "zh-Hans/sessions/opencode"
                 ]
               },
               {
@@ -460,7 +465,8 @@
                 "group": "在電腦上",
                 "pages": [
                   "zh-Hant/sessions/commands",
-                  "zh-Hant/sessions/codex"
+                  "zh-Hant/sessions/codex",
+                  "zh-Hant/sessions/opencode"
                 ]
               },
               {

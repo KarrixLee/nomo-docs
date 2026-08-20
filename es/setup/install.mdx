@@ -1,6 +1,6 @@
 ---
 title: "Instalación"
-description: "Añade el plugin de Nomo a Claude Code o Codex. Dos comandos, sin dependencias."
+description: "Añade el plugin de Nomo a Claude Code, Codex u OpenCode. Dos comandos, sin dependencias."
 icon: "puzzle-piece"
 ---
 
@@ -129,6 +129,67 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
       Las skills de Codex usan el prefijo `$` en lugar de una barra:
       `$nomo-pair`, `$nomo-status`, `$nomo-reset`, `$nomo-unpair`.
     </Tip>
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    OpenCode no tiene marketplace ni comando de plugins: coge lo que encuentra en
+    sus propias carpetas de configuración. Así que Nomo se instala desde un clon,
+    y un solo script deja los archivos donde OpenCode ya mira.
+
+    <Steps>
+      <Step title="Clónalo y ejecuta el instalador">
+        ```bash
+        git clone https://github.com/KarrixLee/nomo.git ~/.nomo
+        ~/.nomo/plugin/scripts/opencode-install.sh
+        ```
+
+        Clónalo donde quieras: el script averigua su propia ubicación, así que no
+        hay ninguna ruta que buscar ni nada que editar a mano. Imprime
+        exactamente lo que ha escrito:
+
+        - `~/.config/opencode/plugins/nomo.js`: un stub de una línea que apunta
+          de vuelta al clon.
+        - `~/.config/opencode/commands/nomo-*.md`: los cinco comandos.
+
+        ¿Ya tienes Nomo instalado para Claude Code o Codex? Apunta el script a
+        esa copia en lugar de clonar una segunda: `claude plugin list` o `codex plugin list` te dicen dónde está.
+
+        <Tip>
+          `--project` instala en `./.opencode` para un solo repositorio en lugar
+          de globalmente. Volver a ejecutarlo no rompe nada, y es también la
+          forma de mover el clon: lo ejecutas otra vez desde la ubicación nueva.
+        </Tip>
+      </Step>
+
+      <Step title="Reinicia OpenCode — obligatorio">
+        <Warning>
+          OpenCode importa los plugins una sola vez, al arrancar su servidor, y
+          no hay recarga en caliente. Hasta que lo cierres y lo vuelvas a abrir,
+          el plugin está instalado sin hacer nada.
+        </Warning>
+      </Step>
+
+      <Step title="Comprueba">
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    <Note>
+      No hay paquete npm ni marketplace: OpenCode no tiene ninguno. El stub
+      reexporta el clon en lugar de copiarlo, así que un `git pull` en el clon es
+      toda la actualización.
+    </Note>
+
+    <Tip>
+      Los nombres de comando de OpenCode son planos y globales, así que los de
+      Nomo no llevan ningún prefijo: `/nomo-pair`, no `/nomo-cc:pair` ni
+      `$nomo-pair`. Los cinco están en [Comandos](/es/sessions/commands).
+    </Tip>
+
+    Lo que llega distinto a tu teléfono está en
+    [Usar OpenCode](/es/sessions/opencode).
   </Tab>
 </Tabs>
 

@@ -1,8 +1,8 @@
 ---
 title: "Responder desde el iPhone"
-description: "Permite, deniega o responde a las solicitudes de permiso de Claude Code y Codex a distancia: desde la Dynamic Island, o desde la app con todas las opciones."
+description: "Permite, deniega o responde a las solicitudes de permiso de Claude Code, Codex y OpenCode a distancia: desde la Dynamic Island, o desde la app con todas las opciones."
 icon: "hand"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Responder desde el iPhone"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Responder desde el iPhone"]
 ---
 
 Cuando tu agente quiere ejecutar algo para lo que no tiene permiso permanente,
@@ -73,6 +73,12 @@ propósito.
 | **Ver plan completo** | App, además de **Ver plan** en la Dynamic Island | Abre el plan para leerlo antes de decidir. |
 | **Abrir en el Mac** | Solo en la app | No responde nada: pone en primer plano la ventana de terminal de esa sesión en tu Mac. Necesita un enlace por [red local](/es/sessions/settings#local-network). |
 
+<Note>
+  Dos de estas se leen distinto en OpenCode: **Denegar** responde por todo el
+  turno y no por una sola herramienta, y **Abrir en el Mac** no aparece nunca.
+  Las dos se explican en [Usar OpenCode](/es/sessions/opencode).
+</Note>
+
 **Permitir siempre**, **Denegar con nota…** y **Responder…** viven bajo
 **Más…** en el menú, y las tres necesitan la versión **2.0.0** del plugin. Con
 la 1.0.0 tienes Permitir y Denegar a secas — Nomo no muestra un botón que el Mac
@@ -125,7 +131,7 @@ terminal.
 </Note>
 
 Los planes de Codex son de **solo lectura** en el teléfono: los lees aquí y
-eliges en el terminal. [Por qué](/es/sessions/codex#plans-are-read-only).
+eliges en el terminal. [Por qué](/es/sessions/codex#plans-are-read-only). OpenCode casi nunca escribe un documento de plan, así que **Ver plan** muestra la lista de tareas de la sesión — [por qué](/es/sessions/opencode#plan-mode).
 
 ## Después de responder {#after-you-tap}
 

@@ -1,13 +1,13 @@
 ---
 title: "總覽"
 sidebarTitle: "總覽"
-description: "在 iPhone 上盯著 Claude Code 和 Codex，不必回到 Mac 前就能回覆它們的權限請求。"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "總覽"]
+description: "在 iPhone 上盯著 Claude Code、Codex 和 OpenCode，不必回到 Mac 前就能回覆它們的權限請求。"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "總覽"]
 ---
 
 你的編碼代理跑在 Mac 上。但你不必一直坐在它前面。
 
-Nomo Sessions 會把正在執行的 Claude Code 和 Codex sessions 搬到你的 iPhone 上 — 就在鎖定畫面和動態島。當代理停下來要權限時，手機會告訴你，你也能就地回覆。
+Nomo Sessions 會把正在執行的 Claude Code、Codex 和 OpenCode sessions 搬到你的 iPhone 上 — 就在鎖定畫面和動態島。當代理停下來要權限時，手機會告訴你，你也能就地回覆。
 
 走去廚房。代理照樣在跑。它遇到一道需要核准的指令，你的手機震一下，你點一下**允許**，它就繼續做下去。你從頭到尾沒走回座位。
 
@@ -30,11 +30,14 @@ Sessions 跟的是跑在你電腦上的代理，而不是它背後的帳號，�
 <div className="provider-row">
   <span><img src="/images/claude-code.svg" alt="" />Claude Code</span>
   <span><img src="/images/codex.svg" alt="" />Codex</span>
+  <span><img src="/images/opencode.svg" alt="" />OpenCode</span>
 </div>
+
+Codex 和 OpenCode 交給外掛程式的東西比 Claude Code 少，所以有幾處在手機上的表現不一樣 — 變的是哪些，都寫在[搭配 Codex 使用](/zh-Hant/sessions/codex)和[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)裡。
 
 ## 你需要什麼
 
-- Mac 上的 Claude Code，或 Codex 0.142 以上版本
+- Mac 上的 Claude Code、Codex 0.142 以上版本，或 OpenCode
 - **bun** 或 **node 18 以上版本** — 你手上已經有哪個就用哪個
 - 手機和電腦配對好 — 掃一次 QR code就完成
 
@@ -54,7 +57,7 @@ Sessions 跟的是跑在你電腦上的代理，而不是它背後的帳號，�
 
 <CardGroup cols={2}>
   <Card title="安裝外掛程式" href="/zh-Hant/setup/install" icon="puzzle-piece">
-    兩道指令，Claude Code 或 Codex 都適用。
+    兩道指令，Claude Code、Codex 或 OpenCode 都適用。
   </Card>
   <Card title="配對你的電腦" href="/zh-Hant/setup/pairing" icon="qrcode-read">
     掃描 QR code，或手動輸入一次性代碼。
@@ -70,7 +73,7 @@ Sessions 跟的是跑在你電腦上的代理，而不是它背後的帳號，�
   "operatingSystem": "iOS 18.0 or later",
   "url": "https://nomo.gg",
   "downloadUrl": "https://apps.apple.com/app/nomo-ai-status-usage/id6779366830",
-  "description": "在 iPhone 的鎖定畫面和動態島上查看 Claude Code 與 Codex sessions，並遠端回覆它們的權限請求。",
+  "description": "在 iPhone 的鎖定畫面和動態島上查看 Claude Code、Codex 與 OpenCode sessions，並遠端回覆它們的權限請求。",
   "offers": {
     "@type": "Offer",
     "price": "0",

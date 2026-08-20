@@ -1,0 +1,116 @@
+---
+title: "Using OpenCode"
+description: "OpenCode sessions reach your phone over the same pairing. What works, what lands differently from Claude Code and Codex, and why."
+icon: "cube"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Using OpenCode"]
+---
+
+OpenCode sessions show up in the same list, on the same island, over the same
+pairing. OpenCode is built differently from the other two agents, though — no
+hooks, no terminal window of its own — so a few things land differently on your
+phone.
+
+Nomo's rule throughout is that it never offers a button the Mac can't honour. So
+where something can't be done from the phone, you get an honest "do this at your
+computer" rather than a control that quietly fails.
+
+<Note>
+  There is no separate OpenCode pairing. All three agents read the same config
+  on that computer — you [pair the machine](/setup/pairing) once, from any of
+  them. On the wire, the only difference is a label saying which agent it was.
+</Note>
+
+## What works the same
+
+- Sessions, states, folders, and the Dynamic Island.
+- Permission prompts — shell commands, file edits, reads, fetches, web searches
+  — with **Allow**, **Always allow** and **Deny** from the island or the app.
+- Questions, with their options, answered by tapping one.
+- The session's todo list, in the plan reader.
+
+## Commands have no prefix
+
+Claude Code namespaces Nomo's commands as `nomo-cc:`, and Codex runs them as `$`
+skills. OpenCode does neither: its command names are flat and global, so Nomo's
+five are just `/nomo-pair`, `/nomo-status`, `/nomo-approvals`, `/nomo-reset` and
+`/nomo-unpair`. Nothing to prefix, and no menu to find them under.
+
+`/nomo-pair` works on its own from OpenCode — a machine that has never been
+paired can be paired from here. If you already paired it from Claude Code or
+Codex, there's nothing to do: your OpenCode sessions simply appear.
+
+They're all in [Commands](/sessions/commands).
+
+<Note>
+  `/nomo-approvals` is the machine's switch, shared with Claude Code and Codex.
+  Turning it off from OpenCode turns it off for all three.
+</Note>
+
+## Restart after pairing
+
+The plugin reads the pairing once, when OpenCode's server starts. Pair a
+computer that was previously unpaired and the running OpenCode already decided
+to stay quiet — quit and reopen it, and sessions start mirroring. This is the
+same restart the [install](/setup/install) asks for, and it's the first thing to
+check when a freshly paired machine shows nothing.
+
+## Deny is a decision about the turn
+
+OpenCode treats a rejected permission as an answer about what the agent is
+doing, not about one tool. So denying from your phone also rejects **every other
+permission that session was waiting on** — their cards resolve and drop from
+your phone on their own.
+
+Declining a question ends the turn rather than asking again.
+
+**Allow** and **Always allow** only ever resolve the card you tapped.
+
+## No "Open on Mac"
+
+The button doesn't appear on OpenCode sessions. An OpenCode session belongs to
+the editor's own server process rather than to a terminal window, so there's no
+window for your phone to bring to the front — under `opencode serve` there may
+be no window at all.
+
+Everything else on the card works normally; there's just no shortcut back to the
+computer.
+
+## Auto-approve isn't shown
+
+OpenCode handles `--yolo` inside its own interface and never tells a plugin
+about it. So the app can't show whether a session is running with approvals
+turned off — it looks like any other session.
+
+If prompts you expected never reach your phone, that's the thing to check: a
+session started in auto-approve mode isn't asking anyone, including you.
+
+## Plan mode
+
+Switch to the plan agent — <kbd>Tab</kbd> in OpenCode — and your phone marks
+the session as planning for as long as it holds there.
+
+The plan itself stays on your computer. OpenCode only writes plan files when
+`OPENCODE_EXPERIMENTAL_PLAN_MODE` is set, and that's off by default, so there's
+usually no document for Nomo to send you. What the plan reader shows for an
+OpenCode session is its todo list, exactly as in a normal turn.
+
+Turn that variable on and one more thing reaches your phone: when the plan is
+done, OpenCode's own *"switch to the build agent and start implementing?"*
+question arrives as an approval you can answer with a tap. It also starts
+writing plan files into `.opencode/plans/` in your repository, which you'll
+probably want to add to `.gitignore`.
+
+## Reset needs OpenCode closed
+
+`/nomo-reset` clears rows whose process is gone. For OpenCode that process is
+the **server**, not the terminal you typed in — so a row belonging to a running
+OpenCode won't be cleared, by design. Quit OpenCode first if a stale-looking row
+refuses to go.
+
+## Update the app
+
+Every session carries a label saying which agent produced it. A version of the
+Nomo app from before OpenCode support doesn't recognise that label and falls
+back to Claude Code's mark: the sessions are all there and everything works,
+they just wear the wrong logo. Updating the app on your phone is the whole fix —
+nothing changes on the computer.

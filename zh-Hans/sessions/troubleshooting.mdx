@@ -2,7 +2,7 @@
 title: "故障排查"
 description: "解不开的会话、失联的电脑、卡住的灵动岛——每种状态代表什么，以及该怎么办。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
 ---
 
 这里看着像 bug 的东西，多半是 Nomo 在老实承认自己不知道某件事。这一页讲的是每一种状态实际代表什么，按你会去哪里解决来分组。
@@ -62,9 +62,13 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "会话", "电脑", "灵动
   ```bash Codex icon="/images/codex.svg"
   $nomo-approvals on
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-approvals on
+  ```
   </CodeGroup>
 
-  一台电脑一个开关，两个智能体共用——[详情](/zh-Hans/sessions/commands#approvals)。
+  一台电脑一个开关，所有智能体共用——[详情](/zh-Hans/sessions/commands#approvals)。
 </Accordion>
 
 <Accordion title="更新之后 Codex 不再发来请求" icon="code">
@@ -90,9 +94,13 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "会话", "电脑", "灵动
   ```bash Codex icon="/images/codex.svg"
   $nomo-reset
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
   </CodeGroup>
 
-  活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。
+  活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。OpenCode 的会话行属于 OpenCode 的服务器，所以要是有一行清不掉，先退出 OpenCode——[原因](/zh-Hans/sessions/opencode#reset-needs-opencode-closed)。
 </Accordion>
 
 </AccordionGroup>
@@ -125,7 +133,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "会话", "电脑", "灵动
 
 如果同时有好几处看着不对，先在 Mac 上运行 [`/nomo-cc:status`](/zh-Hans/sessions/commands#status)，别的都往后放。一屏就能告诉你这台机器是否已配对、它的看门狗是否还活着，以及事件有没有真的送到你手机——这通常足以说清哪里坏了。
 
-确实有会话在跑却显示 `Last event sent: never`，说明 hook 没有触发。重启 Claude Code 让它们加载；Codex 那边运行 `/hooks`。
+确实有会话在跑却显示 `Last event sent: never`，说明什么都没被接住。重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载。
 
 每条命令以及它的输出各是什么意思，都在[命令](/zh-Hans/sessions/commands)里。
 
@@ -152,7 +160,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "会话", "电脑", "灵动
 
 ## 功能建议 {#nothings-broken--you-just-want-something}
 
-“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)讲 Codex 那边，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
+“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)和[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)讲这两个智能体，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
 
 其余的就是还没做。
 

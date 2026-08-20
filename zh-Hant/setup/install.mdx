@@ -1,6 +1,6 @@
 ---
 title: "安裝"
-description: "將 Nomo 外掛程式加入 Claude Code 或 Codex。兩道指令，零相依套件。"
+description: "將 Nomo 外掛程式加入 Claude Code、Codex 或 OpenCode。兩道指令，零相依套件。"
 icon: "puzzle-piece"
 ---
 
@@ -118,6 +118,52 @@ icon: "puzzle-piece"
     <Tip>
       Codex 的 skills 使用 `$` 前綴而不是斜線 — `$nomo-pair`、`$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
     </Tip>
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    OpenCode 沒有市集，也沒有安裝外掛程式的指令 — 它只會撿取自己設定資料夾裡找得到的東西。所以 Nomo 是從一份 clone 安裝的，再由一個 script 把檔案放進 OpenCode 本來就會去看的位置。
+
+    <Steps>
+      <Step title="Clone 下來並執行安裝 script">
+        ```bash
+        git clone https://github.com/KarrixLee/nomo.git ~/.nomo
+        ~/.nomo/plugin/scripts/opencode-install.sh
+        ```
+
+        你想 clone 到哪裡都可以 — script 會自己算出所在位置，所以沒有路徑要查，也沒有東西要手動編輯。它會明確印出自己寫了什麼：
+
+        - `~/.config/opencode/plugins/nomo.js` — 一行指回那份 clone 的 stub。
+        - `~/.config/opencode/commands/nomo-*.md` — 那五個指令。
+
+        已經為 Claude Code 或 Codex 裝過 Nomo 了嗎？把 script 指向那一份就好，不用再 clone 第二份 — `claude plugin list` 或 `codex plugin list` 會印出它放在哪裡。
+
+        <Tip>
+          `--project` 會裝進 `./.opencode`，只作用於一個儲存庫而不是全域。重複執行是安全的，而且要搬動那份 clone 時也是這樣做：從新位置再執行一次。
+        </Tip>
+      </Step>
+
+      <Step title="重新啟動 OpenCode — 必要步驟">
+        <Warning>
+          OpenCode 只在伺服器啟動時匯入外掛程式一次，而且沒有熱重載。在你結束並重新開啟它之前，這個外掛程式雖然裝好了卻什麼也沒做。
+        </Warning>
+      </Step>
+
+      <Step title="確認">
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    <Note>
+      這裡沒有 npm 套件，也沒有市集 — OpenCode 本來就沒有。那個 stub 是重新匯出那份 clone，而不是複製它，所以在 clone 裡執行一次 `git pull` 就是完整的升級。
+    </Note>
+
+    <Tip>
+      OpenCode 的指令名稱是扁平而且全域的，所以 Nomo 的指令完全不帶前綴：是 `/nomo-pair`，不是 `/nomo-cc:pair` 或 `$nomo-pair`。五個都在[指令](/zh-Hant/sessions/commands)裡。
+    </Tip>
+
+    到你手機上會不一樣的部分寫在[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)。
   </Tab>
 </Tabs>
 

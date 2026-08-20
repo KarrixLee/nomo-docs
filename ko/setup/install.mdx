@@ -1,6 +1,6 @@
 ---
 title: "설치"
-description: "Claude Code 또는 Codex에 Nomo 플러그인을 추가합니다. 명령 두 줄이면 되고, 의존성은 없습니다."
+description: "Claude Code, Codex 또는 OpenCode에 Nomo 플러그인을 추가합니다. 명령 두 줄이면 되고, 의존성은 없습니다."
 icon: "puzzle-piece"
 ---
 
@@ -124,6 +124,67 @@ icon: "puzzle-piece"
       Codex 스킬은 슬래시 대신 `$` 접두사를 사용합니다 — `$nomo-pair`,
       `$nomo-status`, `$nomo-reset`, `$nomo-unpair`.
     </Tip>
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    OpenCode에는 마켓플레이스도 플러그인 명령도 없습니다 — 자체 설정 폴더에서
+    발견한 것을 그대로 가져다 씁니다. 그래서 Nomo는 클론에서 설치하며, 스크립트
+    하나가 OpenCode가 이미 들여다보는 위치에 파일을 놓아 줍니다.
+
+    <Steps>
+      <Step title="클론하고 설치 스크립트 실행">
+        ```bash
+        git clone https://github.com/KarrixLee/nomo.git ~/.nomo
+        ~/.nomo/plugin/scripts/opencode-install.sh
+        ```
+
+        클론 위치는 어디든 상관없습니다 — 스크립트가 자기 위치를 스스로
+        알아내므로 찾아볼 경로도, 손으로 고칠 것도 없습니다. 무엇을 썼는지는
+        그대로 출력합니다.
+
+        - `~/.config/opencode/plugins/nomo.js` — 클론을 가리키는 한 줄짜리 스텁.
+        - `~/.config/opencode/commands/nomo-*.md` — 명령 다섯 개.
+
+        Claude Code나 Codex용으로 Nomo를 이미 설치했습니까? 두 번 클론하지 말고
+        스크립트를 그 사본으로 가리키십시오 — `claude plugin list` 또는
+        `codex plugin list`가 위치를 알려 줍니다.
+
+        <Tip>
+          `--project`를 주면 전역 대신 저장소 하나의 `./.opencode`에 설치합니다.
+          다시 실행해도 안전하며, 클론을 옮길 때도 이 방법을 씁니다. 새 위치에서
+          한 번 더 실행하면 됩니다.
+        </Tip>
+      </Step>
+
+      <Step title="OpenCode 재시작 — 필수">
+        <Warning>
+          OpenCode는 서버가 시작될 때 플러그인을 한 번만 불러오며, 핫 리로드가
+          없습니다. 종료했다가 다시 열기 전까지 플러그인은 설치만 되어 있고 아무
+          일도 하지 않습니다.
+        </Warning>
+      </Step>
+
+      <Step title="확인">
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    <Note>
+      npm 패키지도 마켓플레이스도 없습니다 — OpenCode에 그런 것이 없기
+      때문입니다. 스텁은 클론을 복사하지 않고 다시 내보내므로, 클론에서
+      `git pull` 한 번이 업데이트의 전부입니다.
+    </Note>
+
+    <Tip>
+      OpenCode의 명령 이름은 전역에 평평하게 놓이므로 Nomo 명령에도 접두사가
+      전혀 붙지 않습니다. `/nomo-cc:pair`나 `$nomo-pair`가 아니라
+      `/nomo-pair`입니다. 다섯 개 전부 [명령](/ko/sessions/commands)에 있습니다.
+    </Tip>
+
+    휴대폰에서 다르게 나타나는 것은
+    [OpenCode 사용하기](/ko/sessions/opencode)에 정리되어 있습니다.
   </Tab>
 </Tabs>
 

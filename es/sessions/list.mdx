@@ -1,8 +1,8 @@
 ---
 title: "Ordenadores y sesiones"
-description: "La pestaña Sesiones enumera tus ordenadores vinculados. Toca uno para ver sus sesiones de Claude Code y Codex, agrupadas por carpeta del proyecto."
+description: "La pestaña Sesiones enumera tus ordenadores vinculados. Toca uno para ver sus sesiones de Claude Code, Codex y OpenCode, agrupadas por carpeta del proyecto."
 icon: "list"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Ordenadores y sesiones"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Ordenadores y sesiones"]
 ---
 
 La pestaña **Sesiones** es una lista de **ordenadores**, no de sesiones. Una
@@ -48,9 +48,9 @@ pone naranja cuando llegas al tope.
 
 ## Dentro de un ordenador {#inside-a-computer}
 
-Al tocar una tarjeta se abre un panel con un control segmentado arriba:
-**Claude Code** y **Codex**. Nomo abre el agente que estuviera activo más
-recientemente.
+Al tocar una tarjeta se abre un panel con un control segmentado arriba, un
+segmento por agente: **Claude Code**, **Codex** y **OpenCode**. Nomo abre el
+agente que estuviera activo más recientemente.
 
 Las sesiones de dentro se agrupan **por carpeta del proyecto**, con la rama de
 git de la carpeta junto a la cabecera. Si solo hay una carpeta, se muestra una
@@ -128,8 +128,8 @@ puede seleccionar, y va etiquetado con un símbolo en lugar de con una palabra:
 - **Título completo** — sin recortar.
 - **Carpeta** e **identificador de sesión** — los ocho primeros caracteres, en monoespaciada.
 - **La pregunta pendiente**, entera, cuando la hay.
-- **Ver plan** — abre el plan. Se puede responder en Claude Code; en [Codex](/es/sessions/codex) es de solo lectura.
-- **Abrir en el Mac** — pone en primer plano la ventana de terminal de esa sesión en tu Mac. Solo aparece cuando Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network).
+- **Ver plan** — abre el plan. Se puede responder en Claude Code; en [Codex](/es/sessions/codex) es de solo lectura, y en [OpenCode](/es/sessions/opencode#plan-mode) suele ser la lista de tareas de la sesión en vez de un documento.
+- **Abrir en el Mac** — pone en primer plano la ventana de terminal de esa sesión en tu Mac. Solo aparece cuando Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network), y nunca en las sesiones de [OpenCode](/es/sessions/opencode#no-open-on-mac), que no tienen ventana propia.
 
 <Tip>
   Para **responder** a una solicitud, mantén pulsada la fila en lugar de tocarla.
@@ -141,7 +141,7 @@ puede seleccionar, y va etiquetado con un símbolo en lugar de con una palabra:
 
 | | Tope |
 | --- | --- |
-| Sesiones por ordenador | **20**, entre los dos agentes |
+| Sesiones por ordenador | **20**, entre todos los agentes |
 | Ordenadores vinculados | **5** |
 | Sesiones en la Dynamic Island | **Una cada vez**, en todo el dispositivo |
 

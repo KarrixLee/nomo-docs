@@ -2,7 +2,7 @@
 title: "トラブルシューティング"
 description: "復号できないセッション、応答しなくなったコンピュータ、固まった Dynamic Island — それぞれの状態の意味と対処法。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "トラブルシューティング"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "トラブルシューティング"]
 ---
 
 ここで不具合に見えるものの多くは、Nomo が「わからない」ことを率直に示している状態です。このページでは、その状態がそれぞれ実際に何を意味するのかを、どこで直すかごとにまとめます。
@@ -62,9 +62,13 @@ iPhone に問題はありません。以下はすべて、Mac のセッション
   ```bash Codex icon="/images/codex.svg"
   $nomo-approvals on
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-approvals on
+  ```
   </CodeGroup>
 
-  スイッチはコンピュータごとに 1 つで、両方のエージェントで共有されます —
+  スイッチはコンピュータごとに 1 つで、すべてのエージェントで共有されます —
   [詳しくはこちら](/ja/sessions/commands#approvals)。
 </Accordion>
 
@@ -91,10 +95,16 @@ iPhone に問題はありません。以下はすべて、Mac のセッション
   ```bash Codex icon="/images/codex.svg"
   $nomo-reset
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
   </CodeGroup>
 
   実行中のセッション、ペアリング、鍵はそのまま残ります —
-  [出力の内容](/ja/sessions/commands#reset)。
+  [出力の内容](/ja/sessions/commands#reset)。OpenCode の行は OpenCode のサーバーに属するため、
+  消えない行があるときは先に OpenCode を終了してください —
+  [理由](/ja/sessions/opencode#reset-needs-opencode-closed)。
 </Accordion>
 
 </AccordionGroup>
@@ -127,7 +137,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
 
 おかしいところが 2 つ以上あるときは、何よりも先に Mac で [`/nomo-cc:status`](/ja/sessions/commands#status) を実行してください。そのマシンがペアリング済みか、ウォッチドッグが動いているか、イベントが実際に iPhone へ届いているかが 1 画面でわかり、たいていはそれだけで何が壊れているかを説明できます。
 
-セッションが実際に動いているのに `Last event sent: never` と出る場合は、フックが発火していません。Claude Code を再起動して読み込ませてください。Codex では `/hooks` を実行します。
+セッションが実際に動いているのに `Last event sent: never` と出る場合は、何も拾えていないという意味です。Claude Code ではフックを読み込ませるために再起動してください。Codex では `/hooks` を実行します。OpenCode ではプラグインを読み込ませるために再起動してください。
 
 すべてのコマンドと、その出力の意味は[コマンド](/ja/sessions/commands)にまとめてあります。
 
@@ -154,7 +164,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
 
 ## 機能リクエスト {#nothings-broken--you-just-want-something}
 
-「なぜこれを iPhone からできないのか」は、不具合ではなく正当な疑問であることがよくあります。その一部はエージェントがプラグインに渡すものの実際の制約で、それは文書になっています。Codex 側は [Codex での利用](/ja/sessions/codex)に、ライブアクティビティに載せられるもの・載せられないものは [iPhone からの回答](/ja/sessions/approvals)にまとめてあります。
+「なぜこれを iPhone からできないのか」は、不具合ではなく正当な疑問であることがよくあります。その一部はエージェントがプラグインに渡すものの実際の制約で、それは文書になっています。Codex 側は [Codex での利用](/ja/sessions/codex)に、OpenCode 側は [OpenCode での利用](/ja/sessions/opencode)に、ライブアクティビティに載せられるもの・載せられないものは [iPhone からの回答](/ja/sessions/approvals)にまとめてあります。
 
 残りは、単にまだ作られていないだけです。
 

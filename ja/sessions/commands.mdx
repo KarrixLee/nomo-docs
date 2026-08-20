@@ -1,23 +1,23 @@
 ---
 title: "コマンド"
-description: "Claude Code と Codex 向けの Nomo のコマンドをすべて — ペアリング、状態確認、承認、リセット、ペアリング解除 — 1 ページにまとめました。"
+description: "Claude Code、Codex、OpenCode 向けの Nomo のコマンドをすべて — ペアリング、状態確認、承認、リセット、ペアリング解除 — 1 ページにまとめました。"
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
 ---
 
-コマンドは 5 つ、両方のエージェントで同じ 5 つです。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code では `/` のコマンド、Codex では `$` のスキルです。
+コマンドは 5 つ、どのエージェントでも同じ 5 つです。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Codex では `$` のスキルです。
 
 <Tip>
-  Claude Code ではすべてが名前空間に入っています。`/nomo-cc:` と入力すると一覧が表示されます。
+  Claude Code ではすべてが名前空間に入っています。`/nomo-cc:` と入力すると一覧が表示されます。OpenCode のコマンド名はフラットでグローバルなので、そちらでは Nomo のコマンドにも接頭辞は一切付きません。
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex |
-| --- | --- | --- |
-| <a href="#pair">このコンピュータをペアリングする</a> | `/nomo-cc:pair` | `$nomo-pair` |
-| <a href="#status">状態を確認する</a> | `/nomo-cc:status` | `$nomo-status` |
-| <a href="#approvals">承認を一時停止・再開する</a> | `/nomo-cc:approvals` | `$nomo-approvals` |
-| <a href="#reset">停止したセッションを消去する</a> | `/nomo-cc:reset` | `$nomo-reset` |
-| <a href="#unpair">このコンピュータの接続を解除する</a> | `/nomo-cc:unpair` | `$nomo-unpair` |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode |
+| --- | --- | --- | --- |
+| <a href="#pair">このコンピュータをペアリングする</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` |
+| <a href="#status">状態を確認する</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` |
+| <a href="#approvals">承認を一時停止・再開する</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">停止したセッションを消去する</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">このコンピュータの接続を解除する</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
 
 どれも派手に失敗することはありません。することが何もない場合でも、すべて正常に終了します — `Not paired` はエラーではなく成功です。
 
@@ -33,13 +33,18 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "セッション", "コン�
 $nomo-pair             # QR code, opens your browser
 $nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 引数なしで実行すると、テーマの適用されたページがブラウザで開き、QR コードが表示されます。アプリでスキャンすると、ページは自動的に **Paired ✓** に切り替わります。
 
 `code` 引数を付けるとブラウザを完全に省き、入力できるワンタイムコードを出力します。ヘッドレスなマシンや SSH セッション向けです。これが第 2 の選択肢なのは意図的で、そのコードはターミナルに、つまりエージェントのトランスクリプトに残るからです。
 
-ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code と Codex は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
+ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
 
 ## status {#status}
 
@@ -50,6 +55,10 @@ $nomo-pair code        # one-time code, printed in the terminal
 
 ```bash Codex icon="/images/codex.svg"
 $nomo-status
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
 ```
 </CodeGroup>
 
@@ -76,7 +85,7 @@ Codex Plan answers: bridge available (shared app-server socket accepted a connec
 </ResponseField>
 
 <ResponseField name="Last event sent">
-  セッションが実際に動いているのに `never` の場合は、フックが発火していません。Claude Code を再起動して読み込ませてください。Codex では `/hooks` を実行します。
+  セッションが実際に動いているのに `never` の場合は、何も拾えていないという意味です。Claude Code ではフックを読み込ませるために再起動してください。Codex では `/hooks` を実行します。OpenCode ではプラグインを読み込ませるために再起動してください。
 </ResponseField>
 
 <ResponseField name="Codex plugin">
@@ -104,6 +113,12 @@ $nomo-approvals off         # pause on this computer
 $nomo-approvals on          # resume
 $nomo-approvals status      # which way is it set
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
 
 **このコンピュータ**のリモート承認を一時停止し、許可リクエストが iPhone を待たずにターミナルへ直行するようにします。iPhone の電池が切れている、手元にないといったときの逃げ道です。
@@ -113,7 +128,7 @@ Remote approvals are OFF for this computer — Claude Code permission prompts
 will appear in the terminal as usual (your phone is not asked).
 ```
 
-スイッチはコンピュータごとに 1 つで、**両方のエージェントで共有されます** — Codex で一時停止すると、そのマシンの Claude Code でも一時停止されます。ペアリングを解除することも、iPhone 側の設定に触れることもありません。
+スイッチはコンピュータごとに 1 つで、**すべてのエージェントで共有されます** — Codex で一時停止すると、そのマシンの Claude Code と OpenCode でも一時停止されます。ペアリングを解除することも、iPhone 側の設定に触れることもありません。
 
 iPhone 全体に効く別のスイッチもあります。[設定](/ja/sessions/settings#remote-approvals)の「iPhoneで回答」です。
 
@@ -127,6 +142,10 @@ iPhone 全体に効く別のスイッチもあります。[設定](/ja/sessions/
 ```bash Codex icon="/images/codex.svg"
 $nomo-reset
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-reset
+```
 </CodeGroup>
 
 ウォッチドッグを停止し、無効になったセッションや実体のないセッションの行を消去して、それらを削除するよう iPhone に伝えます。
@@ -138,7 +157,7 @@ Left 2 live sessions untouched.
 Pairing and keys were not touched — use the unpair command if you want that.
 ```
 
-行が古いままだったり重複したりしているときに、まず試すべき安全なコマンドです。何に手を付けなかったかまで報告してくれます。
+行が古いままだったり重複したりしているときに、まず試すべき安全なコマンドです。何に手を付けなかったかまで報告してくれます。OpenCode の行は OpenCode の**サーバー**に属するため、消えない行があるときは先に OpenCode を終了してください — [OpenCode での利用](/ja/sessions/opencode#reset-needs-opencode-closed)をご覧ください。
 
 ## unpair {#unpair}
 
@@ -149,6 +168,10 @@ Pairing and keys were not touched — use the unpair command if you want that.
 
 ```bash Codex icon="/images/codex.svg"
 $nomo-unpair
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-unpair
 ```
 </CodeGroup>
 

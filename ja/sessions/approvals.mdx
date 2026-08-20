@@ -1,8 +1,8 @@
 ---
 title: "iPhone からの回答"
-description: "Claude Code と Codex の許可リクエストに iPhone から回答します — Dynamic Island からの承認・拒否と、アプリでのすべての選択肢。"
+description: "Claude Code、Codex、OpenCode の許可リクエストに iPhone から回答します — Dynamic Island からの承認・拒否と、アプリでのすべての選択肢。"
 icon: "hand"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "iPhone からの回答"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "iPhone からの回答"]
 ---
 
 エージェントは、あらかじめ許可されていないものを実行しようとすると、そこで止まって確認を求めます。本来なら Mac で答えるところですが、Nomo があれば iPhone から答えられ、エージェントはすぐに続きを再開します。
@@ -58,6 +58,10 @@ Dynamic Island は**知らせる**ため、アプリは**答える**ためのも
 | **「計画全体を表示」** | アプリ、および Dynamic Island の「計画を表示」 | 決める前に読めるよう計画を開きます。 |
 | **「Macで開く」** | アプリのみ | 何も回答しません — Mac 上でそのセッションのターミナルウィンドウを前面に出します。[ローカルネットワーク](/ja/sessions/settings#local-network)での接続が必要です。 |
 
+<Note>
+  このうち 2 つは OpenCode では意味が変わります。「拒否」は 1 つのツールではなくターン全体への回答になり、「Macで開く」は表示されません。どちらも [OpenCode での利用](/ja/sessions/opencode)で説明しています。
+</Note>
+
 「Bashを常に許可（このセッション）」「メモを付けて拒否…」「回答…」の 3 つはメニューの「その他…」の中にあり、いずれもプラグイン **2.0.0** が必要です。1.0.0 では「許可」と「拒否」だけが表示されます — Nomo は Mac が実行を保証できないボタンを出しません。更新がある場合はドロワーが知らせます。
 
 ## 質問への回答 {#answering-a-question}
@@ -90,7 +94,7 @@ iPhone からの承認は、Mac でデフォルトの選択肢を選ぶのと同
   計画が長すぎて 1 回の暗号化された更新に収まらなかった場合は、その旨とどれだけ省かれたかがシートに表示されます。計画全体は常にターミナルに残っています。iPhone がローカルネットワーク経由で Mac に直接届くときは、Nomo が全文を取得し直します。
 </Note>
 
-Codex の計画は iPhone では**読み取り専用**です。ここで読み、ターミナルで選びます。[理由](/ja/sessions/codex#plans-are-read-only)。
+Codex の計画は iPhone では**読み取り専用**です。ここで読み、ターミナルで選びます。[理由](/ja/sessions/codex#plans-are-read-only)。OpenCode は計画のドキュメントを書き出さないのが通常のため、「計画を表示」ではセッションの ToDo リストが表示されます — [理由](/ja/sessions/opencode#plan-mode)。
 
 ## タップしたあとの動き {#after-you-tap}
 

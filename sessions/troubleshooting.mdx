@@ -2,7 +2,7 @@
 title: "Troubleshooting"
 description: "Sessions that won't decrypt, computers that go dead, a frozen island — what each state means and what to do about it."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
 ---
 
 Most of what looks like a bug here is Nomo being honest about not knowing
@@ -94,9 +94,13 @@ Your phone is fine. These are all settled from a session on the Mac.
   ```bash Codex icon="/images/codex.svg"
   $nomo-approvals on
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-approvals on
+  ```
   </CodeGroup>
 
-  One switch per computer, shared by both agents —
+  One switch per computer, shared by every agent —
   [more](/sessions/commands#approvals).
 </Accordion>
 
@@ -128,10 +132,16 @@ Your phone is fine. These are all settled from a session on the Mac.
   ```bash Codex icon="/images/codex.svg"
   $nomo-reset
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
   </CodeGroup>
 
   Live sessions, your pairing and your keys are left alone —
-  [what it prints](/sessions/commands#reset).
+  [what it prints](/sessions/commands#reset). An OpenCode row belongs to
+  OpenCode's server, so quit OpenCode first if one refuses to clear —
+  [why](/sessions/opencode#reset-needs-opencode-closed).
 </Accordion>
 
 </AccordionGroup>
@@ -178,8 +188,9 @@ One screen tells you whether the machine is paired, whether its watchdog is
 alive, and whether events are actually reaching your phone — which is usually
 enough to say what's broken.
 
-`Last event sent: never` with a session genuinely running means the hooks aren't
-firing. Restart Claude Code so they load; for Codex, run `/hooks`.
+`Last event sent: never` with a session genuinely running means nothing is being
+picked up. Restart Claude Code so its hooks load; for Codex, run `/hooks`; for
+OpenCode, restart it so the plugin loads.
 
 Every command, and what its output means, is on
 [Commands](/sessions/commands).
@@ -213,9 +224,9 @@ computer helps too.
 
 "Why can't I do X from my phone?" is often a fair question rather than a bug.
 Some of it is a real limit of what an agent hands to a plugin, and that's
-written down: [Using Codex](/sessions/codex) covers the Codex side, and
-[Answering from your phone](/sessions/approvals) covers what a Live Activity can
-and can't host.
+written down: [Using Codex](/sessions/codex) and [Using
+OpenCode](/sessions/opencode) cover those two agents, and [Answering from your
+phone](/sessions/approvals) covers what a Live Activity can and can't host.
 
 The rest is just not built yet.
 

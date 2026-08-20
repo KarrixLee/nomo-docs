@@ -1,8 +1,8 @@
 ---
 title: "Computers and sessions"
-description: "The Sessions tab lists your paired computers. Tap one to see its Claude Code and Codex sessions, grouped by project folder."
+description: "The Sessions tab lists your paired computers. Tap one to see its Claude Code, Codex and OpenCode sessions, grouped by project folder."
 icon: "list"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Computers and sessions"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Computers and sessions"]
 ---
 
 The **Sessions** tab is a list of **computers**, not sessions. One card per Mac
@@ -46,8 +46,9 @@ if you hit the cap.
 
 ## Inside a computer
 
-Tapping a card opens a drawer with a segmented control at the top: **Claude
-Code** and **Codex**. Nomo opens whichever agent was active most recently.
+Tapping a card opens a drawer with a segmented control at the top, one segment
+per agent — **Claude Code**, **Codex** and **OpenCode**. Nomo opens whichever
+agent was active most recently.
 
 Sessions inside are grouped **by project folder**, with the folder's git branch
 shown next to the header. One folder gets a single **Sessions** card; two or
@@ -123,8 +124,8 @@ labelled with a symbol rather than a word:
 - **Full title** — untruncated.
 - **Folder** and **session ID** — the first eight characters, monospaced.
 - **The pending question**, in full, when there is one.
-- **View plan** — opens the plan. Answerable for Claude Code, read-only for [Codex](/sessions/codex).
-- **Open on Mac** — focuses that session's terminal window on your Mac. Only appears when Nomo has a direct [local network](/sessions/settings#local-network) link.
+- **View plan** — opens the plan. Answerable for Claude Code, read-only for [Codex](/sessions/codex), and for [OpenCode](/sessions/opencode#plan-mode) usually the session's todo list rather than a document.
+- **Open on Mac** — focuses that session's terminal window on your Mac. Only appears when Nomo has a direct [local network](/sessions/settings#local-network) link, and never on [OpenCode](/sessions/opencode#no-open-on-mac) sessions, which have no window of their own.
 
 <Tip>
   To **answer** a prompt, touch and hold the row rather than tapping it. Tapping
@@ -135,7 +136,7 @@ labelled with a symbol rather than a word:
 
 | | Limit |
 | --- | --- |
-| Sessions per computer | **20**, across both agents |
+| Sessions per computer | **20**, across all agents |
 | Paired computers | **5** |
 | Sessions on the Dynamic Island | **One at a time**, device-wide |
 

@@ -2,7 +2,7 @@
 title: "疑難排解"
 description: "解不開的 sessions、失去聯絡的電腦、凍住的動態島 — 每個狀態代表什麼，以及該怎麼處理。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
 ---
 
 這裡看起來像 bug 的東西，大多是 Nomo 誠實地表示它不知道某件事。這一頁說明那些狀態實際上的意思，並依你會去哪裡解決來分組。
@@ -62,9 +62,13 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
   ```bash Codex icon="/images/codex.svg"
   $nomo-approvals on
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-approvals on
+  ```
   </CodeGroup>
 
-  每台電腦一個開關，兩個代理共用 — [更多說明](/zh-Hant/sessions/commands#approvals)。
+  每台電腦一個開關，所有代理共用 — [更多說明](/zh-Hant/sessions/commands#approvals)。
 </Accordion>
 
 <Accordion title="Codex 在更新之後就不再送出請求" icon="code">
@@ -90,9 +94,13 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
   ```bash Codex icon="/images/codex.svg"
   $nomo-reset
   ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
   </CodeGroup>
 
-  進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。
+  進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。OpenCode 的列屬於 OpenCode 的伺服器，所以有一列清不掉時，請先結束 OpenCode — [為什麼](/zh-Hant/sessions/opencode#reset-needs-opencode-closed)。
 </Accordion>
 
 </AccordionGroup>
@@ -125,7 +133,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
 
 如果不只一件事看起來不對，請在做任何事之前，先在 Mac 上執行 [`/nomo-cc:status`](/zh-Hant/sessions/commands#status)。一個畫面就會告訴你這台機器有沒有配對、它的 watchdog 是不是還活著，以及事件到底有沒有送到你的手機 — 這通常足以說出哪裡壞了。
 
-在真的有 session 在跑時看到 `Last event sent: never`，表示 hooks 沒有觸發。重新啟動 Claude Code 讓它們載入；Codex 的話，請執行 `/hooks`。
+在真的有 session 在跑時看到 `Last event sent: never`，表示什麼都沒有被接住。重新啟動 Claude Code 讓它的 hooks 載入；Codex 的話，請執行 `/hooks`；OpenCode 的話，請重新啟動它讓外掛程式載入。
 
 每一個指令，以及它的輸出代表什麼，都在[指令](/zh-Hant/sessions/commands)。
 
@@ -152,7 +160,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
 
 ## 功能建議 {#nothings-broken--you-just-want-something}
 
-「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)講 Codex 那一側，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
+「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)和[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)講這兩個代理，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
 
 其餘的就只是還沒做而已。
 

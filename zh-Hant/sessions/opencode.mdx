@@ -1,0 +1,73 @@
+---
+title: "搭配 OpenCode 使用"
+description: "OpenCode 的 sessions 走同一組配對送到你的手機。哪些一樣、哪些和 Claude Code 與 Codex 不同，以及原因。"
+icon: "cube"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "搭配 OpenCode 使用"]
+---
+
+OpenCode 的 sessions 出現在同一份列表、同一個動態島上，走的也是同一組配對。不過 OpenCode 的做法和另外兩個代理不同 — 沒有 hooks，也沒有屬於自己的終端機視窗 — 所以有幾件事到你手機上的樣子不太一樣。
+
+Nomo 從頭到尾的原則是：絕不提供一個 Mac 無法兌現的按鈕。所以碰到手機做不到的事，你拿到的不會是一個默默失敗的控制項，而是一句誠實的「請在你的電腦上做這件事」。
+
+<Note>
+  OpenCode 沒有獨立的配對。三個代理讀的是那台電腦上的同一份設定 — 你[把機器配對](/zh-Hant/setup/pairing)一次就好，從哪一個代理做都行。在傳輸上，唯一的差別是一個標示它來自哪個代理的標籤。
+</Note>
+
+## 相同的部分 {#what-works-the-same}
+
+- sessions、狀態、資料夾，以及動態島。
+- 權限請求 — shell 指令、檔案編輯、讀取、抓取與網路搜尋 — 可從動態島或 App「允許」、「一律允許」和「拒絕」。
+- 問題連同選項，點一下就能回答。
+- session 的待辦清單，在計畫閱讀器裡。
+
+## 指令沒有前綴 {#commands-have-no-prefix}
+
+Claude Code 把 Nomo 的指令放進 `nomo-cc:` 命名空間，Codex 則以 `$` skill 執行它們。OpenCode 兩者都不是：它的指令名稱是扁平而且全域的，所以 Nomo 的那五個就只是 `/nomo-pair`、`/nomo-status`、`/nomo-approvals`、`/nomo-reset` 和 `/nomo-unpair`。沒有前綴要加，也沒有選單要找。
+
+`/nomo-pair` 在 OpenCode 裡可以獨立運作 — 從來沒配對過的機器也能從這裡完成配對。如果你已經在 Claude Code 或 Codex 裡配對過了，就沒事要做：你的 OpenCode sessions 會直接出現。
+
+五個都在[指令](/zh-Hant/sessions/commands)裡。
+
+<Note>
+  `/nomo-approvals` 是這台機器的開關，和 Claude Code 與 Codex 共用。在 OpenCode 裡把它關掉，三個代理就一起關掉。
+</Note>
+
+## 配對後要重新啟動 {#restart-after-pairing}
+
+外掛程式只在 OpenCode 的伺服器啟動時讀取一次配對。把一台原本沒配對的電腦配對起來時，正在執行的 OpenCode 早就決定保持安靜了 — 結束它再重新開啟，sessions 就會開始同步過來。這和[安裝](/zh-Hant/setup/install)要求的是同一次重新啟動，也是剛配對好的機器什麼都沒顯示時，第一個該檢查的地方。
+
+## 「拒絕」是對整輪的決定 {#deny-is-a-decision-about-the-turn}
+
+OpenCode 把一次被拒絕的權限，當成對代理正在做的事的回答，而不是對某一個工具的回答。所以你從手機上拒絕，也會一併拒絕**那個 session 正在等待的其他每一個權限** — 它們的卡片會自行結束，並從你的手機上消失。
+
+婉拒一個問題會結束這一輪，而不是再問一次。
+
+「允許」和「一律允許」則永遠只解決你點的那一張卡片。
+
+## 沒有「在 Mac 上開啟」 {#no-open-on-mac}
+
+這個按鈕不會出現在 OpenCode 的 sessions 上。一個 OpenCode session 屬於編輯器自己的伺服器行程，而不屬於某個終端機視窗，所以沒有視窗可以讓你的手機切到最前面 — 在 `opencode serve` 底下，甚至可能根本沒有視窗。
+
+卡片上的其他東西都正常運作，只是少了一條回到電腦的捷徑。
+
+## 自動核准不會顯示 {#auto-approve-isnt-shown}
+
+OpenCode 在自己的介面裡處理 `--yolo`，從不把這件事告訴外掛程式。所以 App 無法顯示某個 session 是不是在關掉批准的情況下執行 — 它看起來就和其他 session 一樣。
+
+如果你預期會出現的請求一直沒有送到手機上，那就是該檢查的地方：一個以自動核准模式啟動的 session 不會問任何人，包括你。
+
+## 計畫模式 {#plan-mode}
+
+切換到計畫代理 — 在 OpenCode 裡按 <kbd>Tab</kbd> — 只要它停在那裡，你的手機就會把這個 session 標成正在規劃。
+
+計畫本身留在你的電腦上。只有設定了 `OPENCODE_EXPERIMENTAL_PLAN_MODE`，OpenCode 才會寫出計畫檔案，而它預設是關閉的，所以通常沒有文件可以讓 Nomo 傳給你。計畫閱讀器在 OpenCode 的 session 上顯示的是它的待辦清單，和一般的一輪完全一樣。
+
+把那個變數打開，就會多一件事送到你的手機上：計畫完成時，OpenCode 自己那句*「要切換到 build 代理並開始實作嗎？」*的詢問，會以一個你可以點一下回答的批准送達。它同時也會開始把計畫檔案寫進你儲存庫裡的 `.opencode/plans/`，你大概會想把它加進 `.gitignore`。
+
+## 重設前要先關閉 OpenCode {#reset-needs-opencode-closed}
+
+`/nomo-reset` 清除的是行程已經消失的那些列。對 OpenCode 來說，那個行程是**伺服器**，而不是你打字的那個終端機 — 所以屬於執行中 OpenCode 的列不會被清掉，這是刻意的。如果有一列看起來過時卻怎麼都不肯消失，請先結束 OpenCode。
+
+## 更新 App {#update-the-app}
+
+每個 session 都帶著一個標示它由哪個代理產生的標籤。支援 OpenCode 之前的 Nomo App 版本不認得那個標籤，會退回顯示 Claude Code 的標記：sessions 全都在、一切也都正常運作，只是掛著錯的標誌。更新手機上的 App 就是全部的解法 — 電腦上什麼都不用動。

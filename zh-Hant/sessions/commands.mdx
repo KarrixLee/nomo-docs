@@ -1,23 +1,23 @@
 ---
 title: "指令"
-description: "Claude Code 和 Codex 上的每一個 Nomo 指令 — 配對、狀態、批准、重設與解除配對，全在同一頁。"
+description: "Claude Code、Codex 和 OpenCode 上的每一個 Nomo 指令 — 配對、狀態、批准、重設與解除配對，全在同一頁。"
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "指令"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "指令"]
 ---
 
-五個指令，兩個代理上都是同樣五個。你在想影響的那台電腦上、從代理的 session 裡執行它們 — 在 Claude Code 裡是 `/` 指令，在 Codex 裡是 `$` skill。
+五個指令，每個代理上都是同樣五個。你在想影響的那台電腦上、從代理的 session 裡執行它們 — 在 Claude Code 和 OpenCode 裡是 `/` 指令，在 Codex 裡是 `$` skill。
 
 <Tip>
-  在 Claude Code 裡一切都有命名空間：輸入 `/nomo-cc:` 就會列出全部。
+  在 Claude Code 裡一切都有命名空間：輸入 `/nomo-cc:` 就會列出全部。OpenCode 的指令名稱是扁平而且全域的，所以 Nomo 的指令在那裡完全不帶前綴。
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex |
-| --- | --- | --- |
-| <a href="#pair">配對這台電腦</a> | `/nomo-cc:pair` | `$nomo-pair` |
-| <a href="#status">檢查健康狀態</a> | `/nomo-cc:status` | `$nomo-status` |
-| <a href="#approvals">暫停或恢復批准</a> | `/nomo-cc:approvals` | `$nomo-approvals` |
-| <a href="#reset">清除卡住的 sessions</a> | `/nomo-cc:reset` | `$nomo-reset` |
-| <a href="#unpair">中斷這台電腦</a> | `/nomo-cc:unpair` | `$nomo-unpair` |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode |
+| --- | --- | --- | --- |
+| <a href="#pair">配對這台電腦</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` |
+| <a href="#status">檢查健康狀態</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` |
+| <a href="#approvals">暫停或恢復批准</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">清除卡住的 sessions</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">中斷這台電腦</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
 
 它們都不會大聲失敗。即使沒事可做，每一個也都乾淨地結束 — `Not paired` 是成功，不是錯誤。
 
@@ -33,13 +33,18 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
 $nomo-pair             # QR code, opens your browser
 $nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 不帶參數時，它會在你的瀏覽器裡開啟一個套用主題樣式的頁面，上面有一個 QR code。在App裡掃描它，頁面就會自行翻成 **Paired ✓**。
 
 `code` 參數完全跳過瀏覽器，改印出一組可以打字輸入的一次性代碼，適合無圖形介面的機器或 SSH 連線。它刻意是第二選擇：那組代碼會落在你的終端機裡，因此也會進到代理的對話記錄裡。
 
-配對閒置 **10 分鐘**後過期。一次配對涵蓋的是這台機器，而不是代理 — 同一台 Mac 上的 Claude Code 和 Codex 共用它。完整說明在[配對](/zh-Hant/setup/pairing)。
+配對閒置 **10 分鐘**後過期。一次配對涵蓋的是這台機器，而不是代理 — 同一台 Mac 上的 Claude Code、Codex 和 OpenCode 共用它。完整說明在[配對](/zh-Hant/setup/pairing)。
 
 ## status {#status}
 
@@ -50,6 +55,10 @@ $nomo-pair code        # one-time code, printed in the terminal
 
 ```bash Codex icon="/images/codex.svg"
 $nomo-status
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
 ```
 </CodeGroup>
 
@@ -76,7 +85,7 @@ Codex Plan answers: bridge available (shared app-server socket accepted a connec
 </ResponseField>
 
 <ResponseField name="Last event sent">
-  在真的有 session 在跑時顯示 `never`，表示 hooks 沒有觸發。重新啟動 Claude Code 讓它們載入；Codex 的話，請執行 `/hooks`。
+  在真的有 session 在跑時顯示 `never`，表示什麼都沒有被接住。重新啟動 Claude Code 讓它的 hooks 載入；Codex 的話，請執行 `/hooks`；OpenCode 的話，請重新啟動它讓外掛程式載入。
 </ResponseField>
 
 <ResponseField name="Codex plugin">
@@ -103,6 +112,12 @@ $nomo-approvals off         # pause on this computer
 $nomo-approvals on          # resume
 $nomo-approvals status      # which way is it set
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
 
 暫停**這台電腦**的遠端批准，讓權限請求直接進到終端機，而不是等你的手機。這是手機沒電或拿不到時的逃生口。
@@ -112,7 +127,7 @@ Remote approvals are OFF for this computer — Claude Code permission prompts
 will appear in the terminal as usual (your phone is not asked).
 ```
 
-每台電腦一個開關，**兩個代理共用** — 在 Codex 裡暫停它，同一台機器上的 Claude Code 也會一起暫停。它不會解除任何配對，也不會動到你手機上的設定。
+每台電腦一個開關，**所有代理共用** — 在 Codex 裡暫停它，同一台機器上的 Claude Code 和 OpenCode 也會一起暫停。它不會解除任何配對，也不會動到你手機上的設定。
 
 還有一個涵蓋整支手機的獨立開關：[設定](/zh-Hant/sessions/settings#remote-approvals)裡的「在 iPhone 上回答」。
 
@@ -126,6 +141,10 @@ will appear in the terminal as usual (your phone is not asked).
 ```bash Codex icon="/images/codex.svg"
 $nomo-reset
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-reset
+```
 </CodeGroup>
 
 停掉 watchdog，清除失效或幽靈的 session 列，然後叫你的手機把它們丟掉。
@@ -137,7 +156,7 @@ Left 2 live sessions untouched.
 Pairing and keys were not touched — use the unpair command if you want that.
 ```
 
-當各列看起來過時或重複時，這是可以放心伸手去拿的那一個，因為它會說清楚自己沒有動到什麼。
+當各列看起來過時或重複時，這是可以放心伸手去拿的那一個，因為它會說清楚自己沒有動到什麼。OpenCode 的列屬於 OpenCode 的**伺服器**，所以有一列清不掉時，請先結束 OpenCode — 請看[搭配 OpenCode 使用](/zh-Hant/sessions/opencode#reset-needs-opencode-closed)。
 
 ## unpair {#unpair}
 
@@ -148,6 +167,10 @@ Pairing and keys were not touched — use the unpair command if you want that.
 
 ```bash Codex icon="/images/codex.svg"
 $nomo-unpair
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-unpair
 ```
 </CodeGroup>
 
