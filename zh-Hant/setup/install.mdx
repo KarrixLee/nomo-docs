@@ -1,10 +1,30 @@
 ---
 title: "安裝"
-description: "將 Nomo 外掛程式加入 Claude Code、Codex 或 OpenCode。兩道指令，零相依套件。"
+description: "將 Nomo 外掛程式加入 Claude Code、Codex 或 OpenCode。一道指令，或手動安裝，零相依套件。"
 icon: "puzzle-piece"
 ---
 
 每台電腦只需安裝一次。需要 **bun** 或 **node 18 以上版本** — 這個外掛程式沒有任何 npm 相依套件，只用 Node 內建模組執行。
+
+## 一道指令安裝 {#one-command}
+
+安裝工具會在你的電腦上找出 Claude Code、Codex 和 OpenCode，再把 Nomo 裝進你挑的那幾個：
+
+```bash
+bunx nomo-ai
+```
+
+`npx nomo-ai` 也可以。它會列出找到的代理，一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的 — 所以一次可以裝好幾個，而什麼都沒勾選時按 Enter 不會有任何動作。接著它就去跑每個代理本來的安裝流程 — Claude Code 和 Codex 走市集指令，OpenCode 走外掛程式資料夾。它不會在全域裝任何東西，也不會留下套件：它只是替你把下面那些步驟跑一遍，而不是一個要一直留著的相依套件。
+
+如果你已經知道要裝什麼：
+
+- `--claude`、`--codex`、`--opencode` — 只裝這幾個。`--all` 是找到多少裝多少。
+- `-y` / `--yes` — 採用預設值，略過選擇畫面。
+- `-n` / `--dry-run` — 把要做的事印出來，什麼都不改。
+
+之後就照下面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。安裝工具刻意只做到裝好為止：配對需要你手上的手機，所以那一步留給你自己做。
+
+## 手動安裝 {#install-by-hand}
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -144,7 +164,7 @@ icon: "puzzle-piece"
 
       <Step title="重新啟動 OpenCode — 必要步驟">
         <Warning>
-          OpenCode 只在伺服器啟動時匯入外掛程式一次，而且沒有熱重載。在你結束並重新開啟它之前，這個外掛程式雖然裝好了卻什麼也沒做。
+          OpenCode 只在伺服器啟動時匯入外掛程式一次，而且沒有熱重載。在你結束並重新開啟它之前，這個外掛程式雖然裝好了卻什麼也沒做。桌面應用程式跑的是同一個伺服器，所以同樣需要這次重新啟動。
         </Warning>
       </Step>
 
@@ -154,6 +174,8 @@ icon: "puzzle-piece"
         ```
       </Step>
     </Steps>
+
+    這一次安裝同時也涵蓋 OpenCode 桌面應用程式：它跑的是 OpenCode 自己的伺服器，讀的是同一個外掛程式資料夾。
 
     <Note>
       這裡沒有 npm 套件，也沒有市集 — OpenCode 本來就沒有。那個 stub 是重新匯出那份 clone，而不是複製它，所以在 clone 裡執行一次 `git pull` 就是完整的升級。

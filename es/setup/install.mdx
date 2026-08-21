@@ -1,11 +1,43 @@
 ---
 title: "Instalación"
-description: "Añade el plugin de Nomo a Claude Code, Codex u OpenCode. Dos comandos, sin dependencias."
+description: "Añade el plugin de Nomo a Claude Code, Codex u OpenCode. Un solo comando, o a mano; sin dependencias."
 icon: "puzzle-piece"
 ---
 
 Instálalo una vez por ordenador. Necesitas **bun** o **node 18+**: el plugin no
 tiene dependencias npm y funciona con los módulos integrados de Node.
+
+## Un solo comando {#one-command}
+
+El instalador busca Claude Code, Codex y OpenCode en tu máquina y deja Nomo
+puesto en los que elijas:
+
+```bash
+bunx nomo-ai
+```
+
+`npx nomo-ai` también vale. Lista los agentes que ha encontrado sin ninguno
+marcado: las teclas de flecha (o `k` y `j`) mueven, el espacio marca un agente y
+enter instala todos los marcados — así que puedes montar varios de una vez, y
+enter sin nada marcado no hace nada. Luego ejecuta la instalación propia de cada
+uno: los comandos de marketplace para Claude Code y Codex, la carpeta de plugins
+para OpenCode. No instala nada globalmente y no deja ningún paquete detrás: solo
+pone en marcha los mismos pasos de abajo, no es una dependencia que se quede.
+
+Cuando ya sabes lo que quieres:
+
+- `--claude`, `--codex`, `--opencode`: solo esos. `--all` coge todo lo que
+  encuentre.
+- `-y` / `--yes`: acepta los valores por omisión y se salta el selector.
+- `-n` / `--dry-run`: imprime lo que haría y no cambia nada.
+
+Después termina igual que en los pasos de abajo: reinicia el agente, confía en
+los hooks si es Codex, y vincula — `/nomo-pair`, o `/nomo-cc:pair` en Claude
+Code y `$nomo-pair` en Codex. El instalador se detiene una vez instalado, a
+propósito: la vinculación necesita tu teléfono en la mano, así que sigue siendo
+cosa tuya.
+
+## Instalación manual {#install-by-hand}
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -165,7 +197,8 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
         <Warning>
           OpenCode importa los plugins una sola vez, al arrancar su servidor, y
           no hay recarga en caliente. Hasta que lo cierres y lo vuelvas a abrir,
-          el plugin está instalado sin hacer nada.
+          el plugin está instalado sin hacer nada. La app de escritorio
+          ejecuta ese mismo servidor, así que necesita el mismo reinicio.
         </Warning>
       </Step>
 
@@ -175,6 +208,9 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
         ```
       </Step>
     </Steps>
+
+    Esa misma instalación vale también para la app de escritorio de OpenCode:
+    ejecuta el propio servidor de OpenCode, que lee la misma carpeta de plugins.
 
     <Note>
       No hay paquete npm ni marketplace: OpenCode no tiene ninguno. El stub

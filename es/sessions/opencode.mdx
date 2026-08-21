@@ -31,6 +31,31 @@ silencio.
 - Las preguntas, con sus opciones, que respondes tocando una.
 - La lista de tareas de la sesión, en el lector de planes.
 
+## La CLI y la app de escritorio {#the-cli-and-the-desktop-app}
+
+Las dos funcionan, y Nomo funciona igual en las dos. La app de escritorio
+ejecuta dentro de sí misma el propio servidor de OpenCode, y ese servidor carga
+los plugins desde `~/.config/opencode/plugins/` exactamente igual que la CLI:
+una sesión que arrancas en la app llega a tu teléfono de la misma manera, con su
+título, su modelo, si está trabajando o parada, y con permisos que respondes
+desde la Dynamic Island o desde la app.
+
+No hay una instalación aparte para la app de escritorio: lo que describe la
+[Instalación](/es/setup/install) vale para las dos. Y el reinicio también: los
+plugins se importan una sola vez, al arrancar el servidor, y no hay recarga en
+caliente, así que una app que ya estuviera abierta cuando instalaste hay que
+cerrarla y volver a abrirla.
+
+Lo único que no cambia es **Abrir en el Mac**: sigue sin aparecer en las
+sesiones de OpenCode, también en la app de escritorio, por lo que cuentas
+[más abajo](#no-open-on-mac).
+
+<Note>
+  La app de escritorio de OpenCode todavía está en beta. Si las sesiones que
+  arrancas ahí no llegan a tu teléfono, el reinicio de arriba es lo primero que
+  hay que comprobar.
+</Note>
+
 ## Comandos sin prefijo {#commands-have-no-prefix}
 
 Claude Code pone los comandos de Nomo bajo el espacio de nombres `nomo-cc:`, y

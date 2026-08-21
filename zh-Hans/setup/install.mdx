@@ -1,10 +1,30 @@
 ---
 title: "安装"
-description: "为 Claude Code、Codex 或 OpenCode 添加 Nomo 插件。两条命令，零依赖。"
+description: "为 Claude Code、Codex 或 OpenCode 添加 Nomo 插件。一条命令，或者手动装，零依赖。"
 icon: "puzzle-piece"
 ---
 
 每台电脑安装一次即可。需要 **bun** 或 **node 18 及以上版本** —— 该插件没有任何 npm 依赖，只用 Node 内置模块运行。
+
+## 一条命令安装 {#one-command}
+
+安装工具会在你的电脑上找出 Claude Code、Codex 和 OpenCode，然后把 Nomo 装进你挑中的那几个：
+
+```bash
+bunx nomo-ai
+```
+
+`npx nomo-ai` 也一样。它会列出找到的智能体，一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的——所以一次可以装好几个，而什么都没勾时按回车什么也不会发生。接着它就去跑每个智能体本来的安装流程——Claude Code 和 Codex 走插件市场命令，OpenCode 走插件文件夹。它不会全局安装任何东西，也不会留下包：它只是替你把下面那些步骤跑一遍，而不是一个要一直留着的依赖。
+
+如果你已经知道要装什么：
+
+- `--claude`、`--codex`、`--opencode`——只装这些。`--all` 是找到多少装多少。
+- `-y` / `--yes`——采用默认值，跳过选择界面。
+- `-n` / `--dry-run`——把要做的事打印出来，什么都不改。
+
+之后照下面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。安装工具刻意只做到装好为止：配对需要你手上的手机，所以那一步留给你自己做。
+
+## 手动安装 {#install-by-hand}
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -145,7 +165,7 @@ icon: "puzzle-piece"
 
       <Step title="重启 OpenCode——必做">
         <Warning>
-          OpenCode 只在自己的服务器启动时导入一次插件，没有热重载。在你退出并重新打开它之前，插件虽已安装却什么都不做。
+          OpenCode 只在自己的服务器启动时导入一次插件，没有热重载。在你退出并重新打开它之前，插件虽已安装却什么都不做。桌面应用跑的是同一个服务器，所以同样需要这次重启。
         </Warning>
       </Step>
 
@@ -155,6 +175,8 @@ icon: "puzzle-piece"
         ```
       </Step>
     </Steps>
+
+    这一次安装同时也覆盖 OpenCode 桌面应用：它跑的是 OpenCode 自己的服务器，读的是同一个插件文件夹。
 
     <Note>
       这里没有 npm 包，也没有插件市场——OpenCode 本来就没有。那个桩文件是把克隆目录重新导出，而不是复制一份，所以在克隆目录里 `git pull` 一下就是全部的升级操作。

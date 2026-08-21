@@ -28,6 +28,27 @@ computer" rather than a control that quietly fails.
 - Questions, with their options, answered by tapping one.
 - The session's todo list, in the plan reader.
 
+## The CLI and the desktop app
+
+Both work, and Nomo works the same in each. The desktop app runs OpenCode's own
+server inside itself, and that server loads plugins from
+`~/.config/opencode/plugins/` exactly as the CLI does — so a session you start
+in the app reaches your phone the same way, with its title, its model, its
+working-or-idle state, and approvals you can answer from the island or the app.
+
+There's no separate install for the desktop app: what
+[Installation](/setup/install) describes covers both. So does the restart —
+plugins are imported once when the server starts and there's no hot reload, so
+an app that was already open when you installed has to be quit and reopened.
+
+**Open on Mac** is the one thing that doesn't change: it stays absent on
+OpenCode sessions, the desktop app included — see [below](#no-open-on-mac).
+
+<Note>
+  The OpenCode desktop app is still in beta. If sessions started in it don't
+  reach your phone, the restart above is the first thing to check.
+</Note>
+
 ## Commands have no prefix
 
 Claude Code namespaces Nomo's commands as `nomo-cc:`, and Codex runs them as `$`

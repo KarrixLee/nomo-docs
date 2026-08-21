@@ -20,6 +20,18 @@ Nomo 一以贯之的原则是：绝不提供一个 Mac 兑现不了的按钮。�
 - 提问连同选项一起送达，点一个就能回答。
 - 会话的待办清单，在计划阅读界面里。
 
+## CLI 和桌面应用 {#the-cli-and-the-desktop-app}
+
+两边都能用，Nomo 在两边的表现也一样。桌面应用把 OpenCode 自己的服务器跑在自己内部，而那个服务器读取 `~/.config/opencode/plugins/` 里的插件，和 CLI 完全一样——所以你在应用里开的会话同样会到达手机，带着标题、模型、正在忙还是空闲的状态，权限请求也照样能在灵动岛或 App 里答复。
+
+桌面应用没有单独的安装，[安装](/zh-Hans/setup/install)里写的那一套两边通用。重启也一样：插件只在服务器启动时导入一次，没有热重载，所以安装时已经开着的那个应用，也得退出再重新打开。
+
+唯一不变的是“在 Mac 上打开”——它在 OpenCode 的会话上依然不出现，桌面应用也一样，原因就在[下面](#no-open-on-mac)。
+
+<Note>
+  OpenCode 桌面应用仍处于 beta 阶段。如果你在应用里开的会话没有到达手机，先检查上面那次重启。
+</Note>
+
 ## 命令没有前缀 {#commands-have-no-prefix}
 
 Claude Code 把 Nomo 的命令放进 `nomo-cc:` 命名空间，Codex 则把它们当作 `$` skill 运行。OpenCode 两样都不做：它的命令名是扁平且全局的，所以 Nomo 的这五条就是 `/nomo-pair`、`/nomo-status`、`/nomo-approvals`、`/nomo-reset` 和 `/nomo-unpair`。没有前缀要加，也没有菜单要翻。
