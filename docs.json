@@ -26,6 +26,9 @@
       }
     ]
   },
+  "contextual": {
+    "options": ["copy", "chatgpt", "claude"]
+  },
   "footer": {
     "socials": {
       "x": "https://x.com/karrixthediv",
