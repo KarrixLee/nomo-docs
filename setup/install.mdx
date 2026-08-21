@@ -7,35 +7,6 @@ icon: "puzzle-piece"
 Install once per computer. You need **bun** or **node 18+** — the plugin has no
 npm dependencies and runs on Node built-ins.
 
-## One command
-
-The installer looks for Claude Code, Codex and OpenCode on your machine and sets
-Nomo up in the ones you pick:
-
-```bash
-bunx nomo-ai
-```
-
-`npx nomo-ai` works too. It lists the agents it found with nothing ticked yet:
-arrow keys (or `k` / `j`) move, space ticks an agent, enter installs everything
-ticked — so you can set several up in one run, and enter with nothing ticked
-does nothing. Then it runs each agent's own install — the marketplace commands
-for Claude Code and Codex, the plugin folder for OpenCode. Nothing is installed
-globally and no package is left behind: it's a bootstrapper for the same steps
-below, not a dependency you keep.
-
-When you already know what you want:
-
-- `--claude`, `--codex`, `--opencode` — only those. `--all` takes everything it
-  finds.
-- `-y` / `--yes` — accept the defaults and skip the picker.
-- `-n` / `--dry-run` — print what it would do and change nothing.
-
-Then finish exactly as the steps below describe: restart the agent, trust the
-hooks if it's Codex, and pair — `/nomo-pair`, or `/nomo-cc:pair` in Claude Code
-and `$nomo-pair` in Codex. The installer stops at installed on purpose. Pairing
-needs your phone in your hand, so it stays yours to do.
-
 ## Install by hand
 
 <Tabs>
@@ -233,6 +204,43 @@ needs your phone in your hand, so it stays yours to do.
     [Using OpenCode](/sessions/opencode).
   </Tab>
 </Tabs>
+
+## One command
+
+The installer detects which of Claude Code, Codex and OpenCode are on this
+machine and sets Nomo up in the ones you pick:
+
+<Tabs>
+  <Tab title="bunx" icon="terminal">
+    ```bash
+    bunx nomo-ai
+    ```
+  </Tab>
+
+  <Tab title="npx" icon="terminal">
+    ```bash
+    npx nomo-ai
+    ```
+  </Tab>
+</Tabs>
+
+Nothing is ticked at the start: arrow keys (or `k` / `j`) move, space ticks an
+agent, enter installs everything ticked. Then it runs each agent's own install —
+the same three flows above. Nothing is installed globally and no package is left
+behind.
+
+For scripting and CI:
+
+| Flag | |
+| --- | --- |
+| `--claude` `--codex` `--opencode` | install exactly these — naming any one of them skips the picker |
+| `--all` | all three, detected or not |
+| `-y`, `--yes` | no picker; install everything detected |
+| `-n`, `--dry-run` | print the commands, run nothing |
+
+It never pairs your phone. Finish exactly as the steps above describe: restart
+the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
+`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex.
 
 ## What the plugin does
 

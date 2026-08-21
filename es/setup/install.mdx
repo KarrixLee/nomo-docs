@@ -7,36 +7,6 @@ icon: "puzzle-piece"
 Instálalo una vez por ordenador. Necesitas **bun** o **node 18+**: el plugin no
 tiene dependencias npm y funciona con los módulos integrados de Node.
 
-## Un solo comando {#one-command}
-
-El instalador busca Claude Code, Codex y OpenCode en tu máquina y deja Nomo
-puesto en los que elijas:
-
-```bash
-bunx nomo-ai
-```
-
-`npx nomo-ai` también vale. Lista los agentes que ha encontrado sin ninguno
-marcado: las teclas de flecha (o `k` y `j`) mueven, el espacio marca un agente y
-enter instala todos los marcados — así que puedes montar varios de una vez, y
-enter sin nada marcado no hace nada. Luego ejecuta la instalación propia de cada
-uno: los comandos de marketplace para Claude Code y Codex, la carpeta de plugins
-para OpenCode. No instala nada globalmente y no deja ningún paquete detrás: solo
-pone en marcha los mismos pasos de abajo, no es una dependencia que se quede.
-
-Cuando ya sabes lo que quieres:
-
-- `--claude`, `--codex`, `--opencode`: solo esos. `--all` coge todo lo que
-  encuentre.
-- `-y` / `--yes`: acepta los valores por omisión y se salta el selector.
-- `-n` / `--dry-run`: imprime lo que haría y no cambia nada.
-
-Después termina igual que en los pasos de abajo: reinicia el agente, confía en
-los hooks si es Codex, y vincula — `/nomo-pair`, o `/nomo-cc:pair` en Claude
-Code y `$nomo-pair` en Codex. El instalador se detiene una vez instalado, a
-propósito: la vinculación necesita tu teléfono en la mano, así que sigue siendo
-cosa tuya.
-
 ## Instalación manual {#install-by-hand}
 
 <Tabs>
@@ -228,6 +198,43 @@ cosa tuya.
     [Usar OpenCode](/es/sessions/opencode).
   </Tab>
 </Tabs>
+
+## Un solo comando {#one-command}
+
+El instalador detecta cuáles de Claude Code, Codex y OpenCode hay en esta
+máquina y deja Nomo puesto en los que elijas:
+
+<Tabs>
+  <Tab title="bunx" icon="terminal">
+    ```bash
+    bunx nomo-ai
+    ```
+  </Tab>
+
+  <Tab title="npx" icon="terminal">
+    ```bash
+    npx nomo-ai
+    ```
+  </Tab>
+</Tabs>
+
+Al principio no hay nada marcado: las teclas de flecha (o `k` y `j`) mueven, el
+espacio marca un agente y enter instala todos los marcados. Luego ejecuta la
+instalación propia de cada uno: los mismos tres caminos de arriba. No instala
+nada globalmente y no deja ningún paquete detrás.
+
+Para scripts y CI:
+
+| Opción | |
+| --- | --- |
+| `--claude` `--codex` `--opencode` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
+| `--all` | los tres, los haya encontrado o no |
+| `-y`, `--yes` | sin selector; instala todo lo que encuentre |
+| `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
+
+Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
+agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
+`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex.
 
 ## Qué hace el plugin
 

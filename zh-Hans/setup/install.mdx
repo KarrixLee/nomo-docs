@@ -6,24 +6,6 @@ icon: "puzzle-piece"
 
 每台电脑安装一次即可。需要 **bun** 或 **node 18 及以上版本** —— 该插件没有任何 npm 依赖，只用 Node 内置模块运行。
 
-## 一条命令安装 {#one-command}
-
-安装工具会在你的电脑上找出 Claude Code、Codex 和 OpenCode，然后把 Nomo 装进你挑中的那几个：
-
-```bash
-bunx nomo-ai
-```
-
-`npx nomo-ai` 也一样。它会列出找到的智能体，一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的——所以一次可以装好几个，而什么都没勾时按回车什么也不会发生。接着它就去跑每个智能体本来的安装流程——Claude Code 和 Codex 走插件市场命令，OpenCode 走插件文件夹。它不会全局安装任何东西，也不会留下包：它只是替你把下面那些步骤跑一遍，而不是一个要一直留着的依赖。
-
-如果你已经知道要装什么：
-
-- `--claude`、`--codex`、`--opencode`——只装这些。`--all` 是找到多少装多少。
-- `-y` / `--yes`——采用默认值，跳过选择界面。
-- `-n` / `--dry-run`——把要做的事打印出来，什么都不改。
-
-之后照下面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。安装工具刻意只做到装好为止：配对需要你手上的手机，所以那一步留给你自己做。
-
 ## 手动安装 {#install-by-hand}
 
 <Tabs>
@@ -189,6 +171,37 @@ bunx nomo-ai
     到了手机上有哪些不一样，见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)。
   </Tab>
 </Tabs>
+
+## 一条命令安装 {#one-command}
+
+安装工具会找出这台电脑上有哪些 Claude Code、Codex 和 OpenCode，然后把 Nomo 装进你挑中的那几个：
+
+<Tabs>
+  <Tab title="bunx" icon="terminal">
+    ```bash
+    bunx nomo-ai
+    ```
+  </Tab>
+
+  <Tab title="npx" icon="terminal">
+    ```bash
+    npx nomo-ai
+    ```
+  </Tab>
+</Tabs>
+
+一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的。接着它就去跑每个智能体本来的安装流程——也就是上面那三套。它不会全局安装任何东西，也不会留下包。
+
+写脚本或在 CI 里用时：
+
+| 选项 | |
+| --- | --- |
+| `--claude` `--codex` `--opencode` | 只装这些——只要指定其中任意一个，就会跳过选择界面 |
+| `--all` | 三个全装，无论有没有找到 |
+| `-y`、`--yes` | 不出选择界面，找到多少装多少 |
+| `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
+
+它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。
 
 ## 插件做了什么
 
