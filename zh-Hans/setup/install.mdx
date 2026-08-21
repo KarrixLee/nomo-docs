@@ -176,19 +176,15 @@ icon: "puzzle-piece"
 
 安装工具会找出这台电脑上有哪些 Claude Code、Codex 和 OpenCode，然后把 Nomo 装进你挑中的那几个：
 
-<Tabs>
-  <Tab title="bunx" icon="terminal">
-    ```bash
-    bunx nomo-ai
-    ```
-  </Tab>
+<CodeGroup>
+```bash bunx icon="terminal"
+bunx nomo-ai
+```
 
-  <Tab title="npx" icon="terminal">
-    ```bash
-    npx nomo-ai
-    ```
-  </Tab>
-</Tabs>
+```bash npx icon="terminal"
+npx nomo-ai
+```
+</CodeGroup>
 
 一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的。接着它就去跑每个智能体本来的安装流程——也就是上面那三套。它不会全局安装任何东西，也不会留下包。
 

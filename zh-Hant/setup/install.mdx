@@ -175,19 +175,15 @@ icon: "puzzle-piece"
 
 安裝工具會找出這台電腦上有哪些 Claude Code、Codex 和 OpenCode，再把 Nomo 裝進你挑的那幾個：
 
-<Tabs>
-  <Tab title="bunx" icon="terminal">
-    ```bash
-    bunx nomo-ai
-    ```
-  </Tab>
+<CodeGroup>
+```bash bunx icon="terminal"
+bunx nomo-ai
+```
 
-  <Tab title="npx" icon="terminal">
-    ```bash
-    npx nomo-ai
-    ```
-  </Tab>
-</Tabs>
+```bash npx icon="terminal"
+npx nomo-ai
+```
+</CodeGroup>
 
 一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的。接著它就去跑每個代理本來的安裝流程 — 也就是上面那三套。它不會在全域裝任何東西，也不會留下套件。
 
