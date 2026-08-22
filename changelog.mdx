@@ -4,6 +4,32 @@ description: "What shipped, and when."
 icon: "clock-rotate-left"
 ---
 
+<Update label="August 2026" description="2.2">
+  ## OpenCode
+
+  **New**
+
+  - **OpenCode** joins Claude Code and Codex — its sessions run live on the Lock Screen and Dynamic Island, with its own mark, colour and typeface
+  - Approve or deny OpenCode's permission requests and its questions from the Lock Screen, the same as the other two. The card tells you what denying will do, because a refusal in OpenCode ends the turn
+  - An OpenCode session reads **Planning** while its plan agent is working, and **View plan** opens its todo list
+  - **One command** — `bunx nomo-ai` (or `npx nomo-ai`) finds Claude Code, Codex and OpenCode on your computer and installs Nomo into the ones you pick
+
+  **Improved**
+
+  - The paywall names all three agents, and describes approvals for what they are — you answer from the Lock Screen, rather than only being notified
+  - A session whose provider is retrying reads **Reconnecting…** instead of a raw error
+
+  **Security**
+
+  - A `nomo://` link can no longer pair a computer on its own — it names the pairing and the server it would connect to, and waits for you to confirm
+  - Your subscription is reported to each paired computer separately, so no computer learns about the others
+  - Disconnecting Cursor clears its cookies, instead of leaving a session behind that could quietly sign you back in
+
+  **Fixed**
+
+  - The **Local** chip on a paired computer no longer truncates to “L…”
+</Update>
+
 <Update label="August 19, 2026" description="2.1.1">
   ## Fixes and polish
 
