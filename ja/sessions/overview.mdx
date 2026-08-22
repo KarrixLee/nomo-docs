@@ -1,13 +1,13 @@
 ---
 title: "概要"
 sidebarTitle: "概要"
-description: "Claude Code と Codex を iPhone から見守り、Mac に戻らなくても許可の確認に答えられます。"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "概要"]
+description: "Claude Code、Codex、OpenCode を iPhone から見守り、Mac に戻らなくても許可の確認に答えられます。"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "概要"]
 ---
 
 コーディングエージェントは Mac の上で動きます。その前に座り続ける必要はありません。
 
-Nomo のセッション機能は、実行中の Claude Code と Codex のセッションを iPhone に映し出します — ロック画面と Dynamic Island に。エージェントが何かの許可を求めて手を止めると、スマートフォンがそれを知らせ、その場で答えられます。
+Nomo のセッション機能は、実行中の Claude Code、Codex、OpenCode のセッションを iPhone に映し出します — ロック画面と Dynamic Island に。エージェントが何かの許可を求めて手を止めると、スマートフォンがそれを知らせ、その場で答えられます。
 
 キッチンへ歩いていきます。エージェントは動き続けます。承認の要るコマンドに行き当たるとスマートフォンが震え、**許可**をタップすれば、そのまま先へ進みます。机には戻らずじまいです。
 
@@ -30,11 +30,14 @@ Nomo のセッション機能は、実行中の Claude Code と Codex のセッ�
 <div className="provider-row">
   <span><img src="/images/claude-code.svg" alt="" />Claude Code</span>
   <span><img src="/images/codex.svg" alt="" />Codex</span>
+  <span><img src="/images/opencode.svg" alt="" />OpenCode</span>
 </div>
+
+Codex と OpenCode がプラグインに渡す情報は Claude Code より少ないため、iPhone 側での見え方がいくつか異なります — 変わる点は [Codex での利用](/ja/sessions/codex)と [OpenCode での利用](/ja/sessions/opencode)にまとめてあります。
 
 ## 必要なもの
 
-- Mac 上の Claude Code、または Codex 0.142 以降
+- Mac 上の Claude Code、Codex 0.142 以降、または OpenCode
 - **bun** または **node 18 以降** — すでに入っているほうで構いません
 - スマートフォンとコンピュータのペアリング — QR コードを 1 回スキャンするだけです
 
@@ -54,7 +57,7 @@ Mac はセッションの更新を、Nomo の中継サーバー経由でスマ�
 
 <CardGroup cols={2}>
   <Card title="プラグインをインストールする" href="/ja/setup/install" icon="puzzle-piece">
-    Claude Code でも Codex でも、コマンドは 2 つです。
+    Claude Code でも Codex でも OpenCode でも、コマンドは 2 つです。
   </Card>
   <Card title="コンピュータをペアリングする" href="/ja/setup/pairing" icon="qrcode-read">
     QR コードをスキャンするか、ワンタイムコードを入力します。
@@ -70,7 +73,7 @@ Mac はセッションの更新を、Nomo の中継サーバー経由でスマ�
   "operatingSystem": "iOS 18.0 or later",
   "url": "https://nomo.gg",
   "downloadUrl": "https://apps.apple.com/app/nomo-ai-status-usage/id6779366830",
-  "description": "Claude Code と Codex のセッションを iPhone のロック画面と Dynamic Island で確認し、許可リクエストにその場で回答できます。",
+  "description": "Claude Code、Codex、OpenCode のセッションを iPhone のロック画面と Dynamic Island で確認し、許可リクエストにその場で回答できます。",
   "offers": {
     "@type": "Offer",
     "price": "0",

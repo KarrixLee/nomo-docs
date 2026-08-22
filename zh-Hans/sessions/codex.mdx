@@ -10,7 +10,7 @@ Codex 的会话出现在同一个列表里、同一个灵动岛上，走同一�
 Nomo 一以贯之的原则是：绝不提供一个 Mac 兑现不了的按钮。所以你拿到的不是一个会悄悄失效的控件，而是要么换一个控件，要么一句老实话——“这件事去 Mac 上做”。
 
 <Note>
-  Codex 没有单独的配对。同一台电脑上的两个智能体读的是同一份配置——你只需[配对这台机器](/zh-Hans/setup/pairing)一次。在传输层面上，唯一的差别是一个标明它属于哪个智能体的标签。
+  Codex 没有单独的配对。同一台电脑上的所有智能体读的是同一份配置——你只需[配对这台机器](/zh-Hans/setup/pairing)一次。在传输层面上，唯一的差别是一个标明它属于哪个智能体的标签。
 </Note>
 
 ## 与 Claude Code 相同的部分 {#what-works-the-same}
@@ -56,9 +56,9 @@ Codex 那句“要执行这份计划吗？”的提问活在它自己的终端�
     $nomo-status
     ```
 
-    `Codex Plan answers: bridge available` 表示你准备好了——问题会连同选项一起到达你的手机，你点一个就行。
+    `bridge available` 表示你准备好了——问题会连同选项一起到达你的手机，你点一个就行。
 
-    `Codex Plan answers: status-only` 表示没有任何东西在监听。先启动守护进程，再启动 Codex。顺序很重要：先开的会话不会认到守护进程。
+    `status-only` 表示没有任何东西在监听。先启动守护进程，再启动 Codex。顺序很重要：先开的会话不会认到守护进程。
   </Tab>
 
   <Tab title="Codex 桌面应用" icon="window">

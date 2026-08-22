@@ -1,0 +1,182 @@
+---
+title: "Usar OpenCode"
+description: "Las sesiones de OpenCode llegan a tu teléfono sobre la misma vinculación. Qué funciona, qué llega distinto que en Claude Code y Codex, y por qué."
+icon: "cube"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar OpenCode"]
+---
+
+Las sesiones de OpenCode salen en la misma lista, en la misma Dynamic Island y
+sobre la misma vinculación. Pero OpenCode está hecho de otra manera que los otros
+dos agentes —sin hooks y sin ventana de terminal propia—, así que unas cuantas
+cosas llegan distintas a tu teléfono.
+
+La regla de Nomo en todo momento es no ofrecer nunca un botón que el Mac no pueda
+cumplir. Así que, donde algo no se puede hacer desde el teléfono, tienes un
+honesto “esto se hace en tu ordenador” en lugar de un control que falla en
+silencio.
+
+<Note>
+  No hay una vinculación aparte para OpenCode. Los tres agentes leen la misma
+  configuración en ese ordenador: [vinculas la máquina](/es/setup/pairing) una
+  vez, desde cualquiera de ellos. En la conexión, lo único que cambia es una
+  etiqueta que dice de qué agente se trataba.
+</Note>
+
+## Lo que funciona igual {#what-works-the-same}
+
+- Las sesiones, los estados, las carpetas y la Dynamic Island.
+- Las solicitudes de permiso —comandos de shell, ediciones de archivos, lecturas,
+  descargas y búsquedas web— con **Permitir**, **Permitir siempre** y **Denegar**
+  desde la Dynamic Island o desde la app.
+- Las preguntas, con sus opciones, que respondes tocando una.
+- La lista de tareas de la sesión, en el lector de planes.
+
+## La CLI y la app de escritorio {#the-cli-and-the-desktop-app}
+
+Las dos funcionan, y Nomo funciona igual en las dos. La app de escritorio
+ejecuta dentro de sí misma el propio servidor de OpenCode, y ese servidor carga
+los plugins desde `~/.config/opencode/plugins/` exactamente igual que la CLI:
+una sesión que arrancas en la app llega a tu teléfono de la misma manera, con su
+título, su modelo, si está trabajando o parada, y con permisos que respondes
+desde la Dynamic Island o desde la app.
+
+No hay una instalación aparte para la app de escritorio: lo que describe la
+[Instalación](/es/setup/install) vale para las dos. Y el reinicio también: los
+plugins se importan una sola vez, al arrancar el servidor, y no hay recarga en
+caliente, así que una app que ya estuviera abierta cuando instalaste hay que
+cerrarla y volver a abrirla.
+
+Lo único que no cambia es **Abrir en el Mac**: sigue sin aparecer en las
+sesiones de OpenCode, también en la app de escritorio, por lo que cuentas
+[más abajo](#no-open-on-mac).
+
+<Note>
+  La app de escritorio de OpenCode todavía está en beta. Si las sesiones que
+  arrancas ahí no llegan a tu teléfono, el reinicio de arriba es lo primero que
+  hay que comprobar.
+</Note>
+
+## Comandos sin prefijo {#commands-have-no-prefix}
+
+Claude Code pone los comandos de Nomo bajo el espacio de nombres `nomo-cc:`, y
+Codex los ejecuta como skills con `$`. OpenCode no hace ni lo uno ni lo otro: sus
+nombres de comando son planos y globales, así que los cinco de Nomo son
+simplemente `/nomo-pair`, `/nomo-status`, `/nomo-approvals`, `/nomo-reset` y
+`/nomo-unpair`. Nada que prefijar y ningún menú bajo el que buscarlos.
+
+`/nomo-pair` funciona por sí solo desde OpenCode: una máquina que nunca se ha
+vinculado se puede vincular desde aquí. Si ya la vinculaste desde Claude Code o
+Codex, no hay nada que hacer: tus sesiones de OpenCode aparecen sin más.
+
+Están todos en [Comandos](/es/sessions/commands).
+
+<Note>
+  `/nomo-approvals` es el interruptor de la máquina, compartido con Claude Code y
+  Codex. Apagarlo desde OpenCode lo apaga para los tres.
+</Note>
+
+## Reinicio después de vincular {#restart-after-pairing}
+
+El plugin lee la vinculación una sola vez, cuando arranca el servidor de
+OpenCode. Si vinculas un ordenador que antes no lo estaba, el OpenCode que ya
+está en marcha decidió callarse: ciérralo y vuelve a abrirlo, y las sesiones
+empiezan a reflejarse. Es el mismo reinicio que pide la
+[instalación](/es/setup/install), y es lo primero que hay que comprobar cuando
+una máquina recién vinculada no muestra nada.
+
+## Denegar decide sobre todo el turno {#deny-is-a-decision-about-the-turn}
+
+OpenCode entiende un permiso rechazado como una respuesta sobre lo que está
+haciendo el agente, no sobre una herramienta concreta. Así que denegar desde tu
+teléfono rechaza también **todos los demás permisos que esa sesión tenía en
+espera**: sus tarjetas se resuelven y desaparecen solas de tu teléfono.
+
+Rechazar una pregunta termina el turno en lugar de volver a preguntar.
+
+**Permitir** y **Permitir siempre** resuelven únicamente la tarjeta que has
+tocado.
+
+## Sin “Abrir en el Mac” {#no-open-on-mac}
+
+El botón no aparece en las sesiones de OpenCode. Una sesión de OpenCode pertenece
+al propio proceso servidor del editor, no a una ventana de terminal, así que no
+hay ninguna ventana que tu teléfono pueda poner en primer plano; con `opencode
+serve` puede que no haya ventana ninguna.
+
+Todo lo demás de la tarjeta funciona con normalidad; lo único es que no hay atajo
+de vuelta al ordenador.
+
+## OpenCode pregunta menos {#opencode-asks-for-less}
+
+Las aprobaciones funcionan. OpenCode simplemente pregunta menos que Claude Code,
+así que un teléfono en silencio suele significar que no se preguntó nada, no que
+algo esté roto.
+
+De fábrica, hay cuatro cosas que piden permiso:
+
+- Tocar un archivo fuera de la carpeta del proyecto.
+- Leer un archivo `.env`.
+- La protección antibucles de OpenCode, cuando detecta que el agente está dando
+  vueltas en círculo.
+- Las preguntas que te hace el agente.
+
+Todo lo demás corre sin preguntar, comandos de shell incluidos.
+
+Esa es la configuración por defecto de OpenCode, no una regla fija, y es tuya
+para cambiarla. Poner una herramienta en `ask` en el `.opencode/opencode.json`
+del proyecto —o en `~/.config/opencode/opencode.json`, para todos— la devuelve
+delante de ti, y por tanto a tu teléfono:
+
+```json
+{ "permission": { "bash": "ask", "edit": "ask" } }
+```
+
+Que quieras eso o no es una cuestión de cómo te gusta trabajar. Nomo refleja lo
+que pregunta tu agente y no añade nada por su cuenta.
+
+Si nada de esto explica el silencio, la otra causa se ve idéntica:
+[la aprobación automática](#auto-approve-isnt-shown), justo aquí abajo.
+
+## La aprobación automática no se ve {#auto-approve-isnt-shown}
+
+OpenCode gestiona `--yolo` dentro de su propia interfaz y nunca se lo cuenta a un
+plugin. Así que la app no puede mostrar si una sesión corre con las aprobaciones
+desactivadas: se ve como cualquier otra sesión.
+
+Si hay solicitudes que esperabas y nunca llegan a tu teléfono, eso es lo que hay
+que comprobar: una sesión arrancada en modo de aprobación automática no le
+pregunta a nadie, tampoco a ti.
+
+## Modo plan {#plan-mode}
+
+Cambia al agente de planificación —<kbd>Tab</kbd> en OpenCode— y tu teléfono
+marca la sesión como que está planificando durante todo el tiempo que se
+mantenga ahí.
+
+El plan en sí se queda en tu ordenador. OpenCode solo escribe archivos de plan
+cuando `OPENCODE_EXPERIMENTAL_PLAN_MODE` está activado, y por defecto no lo está,
+así que normalmente no hay ningún documento que Nomo pueda enviarte. Lo que el
+lector de planes enseña en una sesión de OpenCode es su lista de tareas, igual
+que en un turno normal.
+
+Activa esa variable y llega una cosa más a tu teléfono: cuando el plan está
+terminado, la pregunta que hace el propio OpenCode —*“¿cambio al agente de
+construcción y empiezo a implementar?”*— llega como una aprobación que puedes
+responder con un toque. También empieza a escribir archivos de plan en
+`.opencode/plans/` dentro de tu repositorio, que seguramente querrás añadir al
+`.gitignore`.
+
+## El reinicio exige cerrar OpenCode {#reset-needs-opencode-closed}
+
+`/nomo-reset` limpia las filas cuyo proceso ya no existe. En OpenCode ese proceso
+es el **servidor**, no la terminal en la que escribiste, así que una fila que
+pertenece a un OpenCode en marcha no se limpia, y es a propósito. Cierra OpenCode
+primero si una fila que parece obsoleta se resiste a irse.
+
+## Actualiza la app {#update-the-app}
+
+Cada sesión lleva una etiqueta que dice qué agente la produjo. Una versión de la
+app de Nomo anterior a la compatibilidad con OpenCode no reconoce esa etiqueta y
+recurre al distintivo de Claude Code: las sesiones están todas y todo funciona,
+solo que llevan el logo equivocado. Actualizar la app en tu teléfono es toda la
+solución; en el ordenador no cambia nada.

@@ -1,21 +1,130 @@
 ---
 title: "Troubleshooting"
-description: "Sessions that won't decrypt, computers that go dead, a frozen island — what each state means and what to do about it."
+description: "Run the status command first — it names the problem and prints the fix. Then: which row answers which symptom, and the few things status can't see."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
 ---
 
-Most of what looks like a bug here is Nomo being honest about not knowing
-something. This page is what each of those states actually means, grouped by
-where you'd go to fix it.
+The status command does most of this page's job for you now. It reads the whole
+computer, names anything that's wrong in plain English, and prints the command
+that fixes it. Run it first.
 
-If more than one thing looks wrong at once, skip ahead and
-[start with status](#start-with-status) — it usually names the problem in one
-screen.
+What's left here is a map: the symptom you arrived with, the row that answers
+it, and the handful of things status genuinely can't see.
 
-## Fix it on your phone
+## Start with status
 
-Nothing to do at your Mac for any of these.
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+</CodeGroup>
+
+It reports on the **computer**, not just your session: pairing, delivery,
+approvals, then the agent you're in and every other one it found. A `!` is a
+real problem and the `→` under it is what to do about it, spelled out in the
+command dialect of whichever agent you asked from. Most people stop there.
+
+What each row means, with a healthy machine and a broken one side by side, is on
+[Commands](/sessions/commands#status).
+
+<Note>
+  Status never makes a network call. It can tell you when this computer last
+  sent an event — not whether your phone received it, and not whether the worker
+  or your Wi-Fi is having a bad day.
+</Note>
+
+## Which row answers it
+
+<AccordionGroup>
+
+<Accordion title="Nothing from this computer reaches my phone" icon="laptop">
+  Read **Phone**. `NOT PAIRED` is the whole answer, and the arrow under it
+  prints the pair command — [Pairing](/setup/pairing) has the walkthrough.
+
+  Paired and still nothing? Carry on to **Delivery**.
+</Accordion>
+
+<Accordion title="A session is on my phone but stopped updating" icon="wifi">
+  **Delivery** says when this computer last managed to send anything. If that's
+  recent, the silence is on the phone's side — open the Nomo app, which forces a
+  refresh, and a stale card corrects itself immediately.
+
+  A card that has drained of colour and says `Disconnected?` is ten minutes of
+  hearing nothing at all. A Mac asleep, off the network, or with its terminal
+  closed all look identical from the phone.
+
+  If Delivery is old or `never` while a session is genuinely running, read
+  **Hooks** next.
+</Accordion>
+
+<Accordion title="My phone never asks me to approve anything" icon="hand">
+  Read **Approvals**. `PAUSED` means someone ran the pause command on this
+  computer — possibly months ago, which is exactly why this used to be
+  undiscoverable. Resume it from a session on that machine and prompts come
+  back: [approvals](/sessions/commands#approvals).
+
+  If it says `on`, the switch that's off is on your phone. **Answer on iPhone**
+  is off by default — [Settings](/sessions/settings#remote-approvals). The tell
+  is colour: every raised hand is yellow (`Need help`, which only the terminal
+  can take) and none are violet (`Needs permission`, the answerable one). See
+  [Answering from your phone](/sessions/approvals).
+</Accordion>
+
+<Accordion title="I started a session and it never appeared" icon="play">
+  **Hooks** — or **Plugin** in OpenCode, which has none. If it isn't firing,
+  your agent isn't handing Nomo anything, and every agent loads that wiring only
+  at startup: restart Claude Code, run `/hooks` in Codex, restart OpenCode.
+
+  Codex trusts hooks explicitly and a plugin update re-opens that review, so
+  `/hooks` after an update is the usual answer there —
+  [why](/sessions/codex#hooks-have-to-be-trusted).
+</Accordion>
+
+<Accordion title="OpenCode in particular shows nothing" icon="rotate">
+  A **Plugin** row that says installed with no activity usually means OpenCode
+  was already running when the plugin arrived. OpenCode loads plugins once, when
+  its server starts, so quitting it and starting it again is the whole fix —
+  reloading the TUI isn't enough. It's the same reason [reset needs OpenCode
+  closed](/sessions/opencode#reset-needs-opencode-closed).
+</Accordion>
+
+<Accordion title="Rows look stale or duplicated" icon="broom">
+  **Sessions** counts what this computer still believes is alive. If that's more
+  than you have, clear the dead ones without unpairing:
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
+  </CodeGroup>
+
+  Live sessions, your pairing and your keys are left alone —
+  [what it prints](/sessions/commands#reset). An OpenCode row belongs to
+  OpenCode's server, so quit OpenCode first if one refuses to clear.
+</Accordion>
+
+</AccordionGroup>
+
+## What status can't see
+
+Your Mac is doing its job for all three of these. The answer is on the phone.
 
 <AccordionGroup>
 
@@ -47,91 +156,16 @@ Nothing to do at your Mac for any of these.
   Nothing you chose was overwritten. Answer the prompt and the switch goes
   straight back to off, where you left it — or within the hour, if nobody
   answers. Then it's yours to set again.
-
-  None of this happens with **Remote approvals** off, which is the default: your
-  switch is never overridden. See
-  [Answering from your phone](/sessions/approvals).
-</Accordion>
-
-<Accordion title="The island is frozen, or says Disconnected?" icon="wifi">
-  The island shows the last thing your Mac sent. After ten minutes of silence it
-  drains of colour and says `Disconnected?` rather than continuing to imply the
-  session is live.
-
-  Your Mac asleep, off the network, or the terminal closed all land here. Open
-  the Nomo app to force a refresh — a stale state corrects itself immediately.
-  If it doesn't, the Mac genuinely isn't reporting: run the status command
-  below.
-</Accordion>
-
-<Accordion title="Prompts reach my phone but there's nothing to tap" icon="hand">
-  Check the **colour**, not the icon. Yellow and violet both draw a raised hand.
-  Yellow (`Need help`) means the agent stopped for something only the terminal
-  can take. Violet (`Needs permission`) is the answerable one.
-
-  If everything is yellow and never violet, **Answer on iPhone** is probably
-  off — it's off by default. See
-  [Answering from your phone](/sessions/approvals).
-</Accordion>
-
-</AccordionGroup>
-
-## Fix it on your computer
-
-Your phone is fine. These are all settled from a session on the Mac.
-
-<AccordionGroup>
-
-<Accordion title="The drawer says remote approvals are paused" icon="pause">
-  Someone ran the pause command on that computer. Resume it from a session on
-  that machine:
-
-  <CodeGroup>
-  ```bash Claude Code icon="/images/claude-code.svg"
-  /nomo-cc:approvals on
-  ```
-
-  ```bash Codex icon="/images/codex.svg"
-  $nomo-approvals on
-  ```
-  </CodeGroup>
-
-  One switch per computer, shared by both agents —
-  [more](/sessions/commands#approvals).
-</Accordion>
-
-<Accordion title="Codex stopped sending prompts after an update" icon="code">
-  Codex hooks ship **inert until trusted**, and a plugin update that adds a hook
-  re-opens that review. Run `/hooks` in Codex and trust the Nomo entries. Until
-  you do, approvals fall back to the terminal and nothing reports an error.
-
-  More in [Using Codex](/sessions/codex#hooks-have-to-be-trusted).
 </Accordion>
 
 <Accordion title="Options are missing when I touch and hold" icon="ellipsis">
   **Always allow**, **Deny with note…** and **Answer…** all need plugin
   **2.0.0** — answering from the phone is what 2.0 added. Nomo hides options the
-  Mac can't honour rather than offering a button that would do nothing.
+  Mac can't honour rather than offering a button that would do nothing. Status
+  prints the plugin version on its first line, so that's where to check.
 
   A `Plugin update available` banner at the top of the drawer means exactly
   that. Update from the same command you installed with.
-</Accordion>
-
-<Accordion title="Rows look stale or duplicated" icon="broom">
-  Clear the dead ones without unpairing:
-
-  <CodeGroup>
-  ```bash Claude Code icon="/images/claude-code.svg"
-  /nomo-cc:reset
-  ```
-
-  ```bash Codex icon="/images/codex.svg"
-  $nomo-reset
-  ```
-  </CodeGroup>
-
-  Live sessions, your pairing and your keys are left alone —
-  [what it prints](/sessions/commands#reset).
 </Accordion>
 
 </AccordionGroup>
@@ -170,20 +204,6 @@ key for. All three end at the same fix: pair that computer again.
 
 </AccordionGroup>
 
-## Start with status
-
-If more than one thing looks wrong, run
-[`/nomo-cc:status`](/sessions/commands#status) on the Mac before anything else.
-One screen tells you whether the machine is paired, whether its watchdog is
-alive, and whether events are actually reaching your phone — which is usually
-enough to say what's broken.
-
-`Last event sent: never` with a session genuinely running means the hooks aren't
-firing. Restart Claude Code so they load; for Codex, run `/hooks`.
-
-Every command, and what its output means, is on
-[Commands](/sessions/commands).
-
 ## Still wrong? Send it over
 
 Turn on **Session diagnostics** in [Settings](/sessions/settings#debug), then
@@ -207,15 +227,15 @@ with what you expected and what you got instead:
 </CardGroup>
 
 The output of [`/nomo-cc:status`](/sessions/commands#status) from the affected
-computer helps too.
+computer helps too — the version on its first line is half the diagnosis.
 
 ## Nothing's broken — you just want something
 
 "Why can't I do X from my phone?" is often a fair question rather than a bug.
 Some of it is a real limit of what an agent hands to a plugin, and that's
-written down: [Using Codex](/sessions/codex) covers the Codex side, and
-[Answering from your phone](/sessions/approvals) covers what a Live Activity can
-and can't host.
+written down: [Using Codex](/sessions/codex) and [Using
+OpenCode](/sessions/opencode) cover those two agents, and [Answering from your
+phone](/sessions/approvals) covers what a Live Activity can and can't host.
 
 The rest is just not built yet.
 
@@ -245,6 +265,54 @@ that command there.
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "Nothing from this computer reaches my phone",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Run the status command and read the Phone row. NOT PAIRED is the whole answer, and the arrow under it prints the pair command for the agent you're in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A session is on my phone but stopped updating",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Delivery row says when this computer last managed to send anything. If that's recent, the silence is on the phone's side — open the Nomo app, which forces a refresh. A card that has drained of colour and says Disconnected? is ten minutes of hearing nothing at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My phone never asks me to approve anything",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Read the Approvals row. PAUSED means someone ran the pause command on this computer, possibly months ago. Resume it from a session on that machine and prompts come back. If it says on, the switch that's off is Answer on iPhone in the app's settings, which is off by default."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I started a session and it never appeared",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Read the Hooks row — Plugin in OpenCode, which has none. If it isn't firing, your agent isn't handing Nomo anything, and every agent loads that wiring only at startup: restart Claude Code, run /hooks in Codex, restart OpenCode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "OpenCode in particular shows nothing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Plugin row that says installed with no activity usually means OpenCode was already running when the plugin arrived. OpenCode loads plugins once, when its server starts, so quitting it and starting it again is the whole fix — reloading the TUI isn't enough."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Rows look stale or duplicated",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Sessions row counts what this computer still believes is alive. If that's more than you have, run the reset command to clear the dead ones without unpairing. Live sessions, your pairing and your keys are left alone."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Nothing appears on the Dynamic Island",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -261,50 +329,10 @@ that command there.
     },
     {
       "@type": "Question",
-      "name": "The island is frozen, or says Disconnected?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The island shows the last thing your Mac sent. After ten minutes of silence it drains of colour and says Disconnected? rather than continuing to imply the session is live."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Prompts reach my phone but there's nothing to tap",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Check the colour, not the icon. Yellow and violet both draw a raised hand. Yellow (Need help) means the agent stopped for something only the terminal can take. Violet (Needs permission) is the answerable one."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "The drawer says remote approvals are paused",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Someone ran the pause command on that computer. Resume it from a session on that machine:"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Codex stopped sending prompts after an update",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Codex hooks ship inert until trusted, and a plugin update that adds a hook re-opens that review. Run /hooks in Codex and trust the Nomo entries. Until you do, approvals fall back to the terminal and nothing reports an error."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "Options are missing when I touch and hold",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Always allow, Deny with note… and Answer… all need plugin 2.0.0 — answering from the phone is what 2.0 added. Nomo hides options the Mac can't honour rather than offering a button that would do nothing."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Rows look stale or duplicated",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Clear the dead ones without unpairing:"
+        "text": "Always allow, Deny with note… and Answer… all need plugin 2.0.0 — answering from the phone is what 2.0 added. Nomo hides options the Mac can't honour rather than offering a button that would do nothing. The status command prints the plugin version on its first line."
       }
     },
     {

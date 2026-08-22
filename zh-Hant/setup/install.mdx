@@ -1,10 +1,12 @@
 ---
 title: "安裝"
-description: "將 Nomo 外掛程式加入 Claude Code 或 Codex。兩道指令，零相依套件。"
+description: "將 Nomo 外掛程式加入 Claude Code、Codex 或 OpenCode。一鍵安裝，也可以手動安裝，零相依套件。"
 icon: "puzzle-piece"
 ---
 
 每台電腦只需安裝一次。需要 **bun** 或 **node 18 以上版本** — 這個外掛程式沒有任何 npm 相依套件，只用 Node 內建模組執行。
+
+## 手動安裝 {#install-by-hand}
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -119,7 +121,82 @@ icon: "puzzle-piece"
       Codex 的 skills 使用 `$` 前綴而不是斜線 — `$nomo-pair`、`$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
     </Tip>
   </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    OpenCode 沒有市集，也沒有安裝外掛程式的指令 — 它只會撿取自己設定資料夾裡找得到的東西。所以 Nomo 是從一份 clone 安裝的，再由一個 script 把檔案放進 OpenCode 本來就會去看的位置。
+
+    <Steps>
+      <Step title="Clone 下來並執行安裝 script">
+        ```bash
+        git clone https://github.com/KarrixLee/nomo.git ~/.nomo
+        ~/.nomo/plugin/scripts/opencode-install.sh
+        ```
+
+        你想 clone 到哪裡都可以 — script 會自己算出所在位置，所以沒有路徑要查，也沒有東西要手動編輯。它會明確印出自己寫了什麼：
+
+        - `~/.config/opencode/plugins/nomo.js` — 一行指回那份 clone 的 stub。
+        - `~/.config/opencode/commands/nomo-*.md` — 那五個指令。
+
+        已經為 Claude Code 或 Codex 裝過 Nomo 了嗎？把 script 指向那一份就好，不用再 clone 第二份 — `claude plugin list` 或 `codex plugin list` 會印出它放在哪裡。
+
+        <Tip>
+          `--project` 會裝進 `./.opencode`，只作用於一個儲存庫而不是全域。重複執行是安全的，而且要搬動那份 clone 時也是這樣做：從新位置再執行一次。
+        </Tip>
+      </Step>
+
+      <Step title="重新啟動 OpenCode — 必要步驟">
+        <Warning>
+          OpenCode 只在伺服器啟動時匯入外掛程式一次，而且沒有熱重載。在你結束並重新開啟它之前，這個外掛程式雖然裝好了卻什麼也沒做。桌面應用程式跑的是同一個伺服器，所以同樣需要這次重新啟動。
+        </Warning>
+      </Step>
+
+      <Step title="確認">
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    這一次安裝同時也涵蓋 OpenCode 桌面應用程式：它跑的是 OpenCode 自己的伺服器，讀的是同一個外掛程式資料夾。
+
+    <Note>
+      這裡沒有 npm 套件，也沒有市集 — OpenCode 本來就沒有。那個 stub 是重新匯出那份 clone，而不是複製它，所以在 clone 裡執行一次 `git pull` 就是完整的升級。
+    </Note>
+
+    <Tip>
+      OpenCode 的指令名稱是扁平而且全域的，所以 Nomo 的指令完全不帶前綴：是 `/nomo-pair`，不是 `/nomo-cc:pair` 或 `$nomo-pair`。五個都在[指令](/zh-Hant/sessions/commands)裡。
+    </Tip>
+
+    到你手機上會不一樣的部分寫在[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)。
+  </Tab>
 </Tabs>
+
+## 一鍵安裝 {#one-command}
+
+安裝工具會找出這台電腦上有哪些 Claude Code、Codex 和 OpenCode，再把 Nomo 裝進你挑的那幾個：
+
+<CodeGroup>
+```bash bunx icon="terminal"
+bunx nomo-ai
+```
+
+```bash npx icon="terminal"
+npx nomo-ai
+```
+</CodeGroup>
+
+一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的。接著它就去跑每個代理本來的安裝流程 — 也就是上面那三套。它不會在全域裝任何東西，也不會留下套件。
+
+寫指令碼或在 CI 裡使用時：
+
+| 選項 | |
+| --- | --- |
+| `--claude` `--codex` `--opencode` | 只裝這幾個 — 只要指定其中任何一個，就會略過選擇畫面 |
+| `--all` | 三個全裝，不管有沒有找到 |
+| `-y`、`--yes` | 不出選擇畫面，找到多少裝多少 |
+| `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
+
+它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。
 
 ## 外掛程式做的事
 

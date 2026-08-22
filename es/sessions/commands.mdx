@@ -1,26 +1,27 @@
 ---
 title: "Comandos"
-description: "Todos los comandos de Nomo para Claude Code y Codex —vinculación, estado, aprobaciones, reinicio y desvinculación— en un solo sitio."
+description: "Todos los comandos de Nomo para Claude Code, Codex y OpenCode —vinculación, estado, aprobaciones, reinicio y desvinculación— en un solo sitio."
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
 ---
 
-Cinco comandos, los mismos cinco en los dos agentes. Se ejecutan desde dentro de
-una sesión del agente, en el ordenador al que quieras afectar: un comando con
-`/` en Claude Code, una skill con `$` en Codex.
+Cinco comandos, los mismos cinco en todos los agentes. Se ejecutan desde dentro
+de una sesión del agente, en el ordenador al que quieras afectar: un comando con
+`/` en Claude Code y en OpenCode, una skill con `$` en Codex.
 
 <Tip>
   En Claude Code todo va con espacio de nombres: al escribir `/nomo-cc:` se
-  listan todos.
+  listan todos. Los nombres de comando de OpenCode son planos y globales, así que
+  allí los de Nomo no llevan ningún prefijo.
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex |
-| --- | --- | --- |
-| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` |
-| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` |
-| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` |
-| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` |
-| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode |
+| --- | --- | --- | --- |
+| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` |
+| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` |
+| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
 
 Ninguno puede fallar a gritos. Todos terminan limpiamente incluso cuando no hay
 nada que hacer: `Not paired` es un éxito, no un error.
@@ -37,6 +38,11 @@ nada que hacer: `Not paired` es un éxito, no un error.
 $nomo-pair             # QR code, opens your browser
 $nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 Sin argumentos abre en tu navegador una página con la estética de la app y un
@@ -48,8 +54,8 @@ sesión SSH. Es la vía de segunda opción a propósito: ese código acaba en tu
 terminal y, por tanto, en la transcripción del agente.
 
 Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubre
-la máquina, no el agente: Claude Code y Codex en el mismo Mac la comparten. El
-recorrido completo está en [Vinculación](/es/setup/pairing).
+la máquina, no el agente: Claude Code, Codex y OpenCode en el mismo Mac la
+comparten. El recorrido completo está en [Vinculación](/es/setup/pairing).
 
 ## status {#status}
 
@@ -61,54 +67,96 @@ recorrido completo está en [Vinculación](/es/setup/pairing).
 ```bash Codex icon="/images/codex.svg"
 $nomo-status
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
 </CodeGroup>
 
-El primero que hay que ejecutar cuando algo se ve raro.
+El primero que hay que ejecutar cuando algo se ve raro. Una máquina sana son
+cuatro líneas tranquilas: no hay marcas de visto, porque que todo esté bien es
+justamente la ausencia de algo que decir.
 
 ```
-Paired: yes (pairing 3f9a21c8…)
-Worker: https://api.nomo.gg
-Watchdog: running (pid 48213)
-Last event sent: 8s ago
-Tracked sessions: 3
-Codex plugin: installed, trusted (7/7)
-Codex Plan answers: bridge available (shared app-server socket accepted a connection)
+Nomo 2.1.17 · Claude Code
+
+Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
+Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Approvals     on — permission prompts are held and sent to your phone
+
+Claude Code — you are here
+  Hooks       firing · last 8s ago
+  Sessions    1 of 4 tracked here
 ```
 
-Línea a línea:
+Las tres primeras filas describen el **ordenador**, y se leen igual desde
+cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
+`— you are here`.
 
-<ResponseField name="Paired">
-  `no` significa que esta máquina nunca llegó a conectarse. `pairing started,
-  waiting for phone scan` significa que abriste una página de vinculación y nunca
-  la escaneaste.
+<ResponseField name="Phone">
+  Si este ordenador está vinculado siquiera, además del worker con el que habla y
+  la vinculación que guarda. `NOT PAIRED` significa que nada de aquí llega a la
+  app, y la flecha de debajo imprime el comando de [vinculación](#pair) del
+  agente en el que estás.
 </ResponseField>
 
-<ResponseField name="Watchdog">
-  `not running` con una sesión activa no pasa nada: el proceso supervisor arranca
-  solo en la siguiente.
+<ResponseField name="Delivery">
+  Cuándo salió realmente el último evento de este ordenador, y si el proceso
+  supervisor está en marcha. Que el supervisor no esté corriendo no pasa nada por
+  sí solo: arranca en la siguiente sesión. Que no se haya enviado nada (`never`)
+  con una sesión realmente en marcha sí es un problema.
 </ResponseField>
 
-<ResponseField name="Last event sent">
-  `never` con una sesión realmente en marcha significa que los hooks no se están
-  disparando. Reinicia Claude Code para que se carguen; en Codex, ejecuta
-  `/hooks`.
+<ResponseField name="Approvals">
+  `on` significa que las solicitudes de permiso se retienen aquí y se envían a tu
+  teléfono. `PAUSED` significa que no: van al terminal, y siguen así hasta que
+  alguien las reanude, por muchos meses que pasen. Si tu teléfono ha dejado de
+  preguntarte nada, esta fila es la explicación entera — ve
+  [Pausar las aprobaciones](/es/sessions/approvals#pausing-it).
 </ResponseField>
 
-<ResponseField name="Codex plugin">
-  `installed, hooks NOT trusted (run /hooks in Codex)` es la que pilla a la
-  gente — ve [Usar Codex](/es/sessions/codex#hooks-have-to-be-trusted).
+<ResponseField name="Hooks">
+  Si tu agente le está pasando algo a Nomo, y cuánto hace de la última vez.
+  OpenCode no tiene hooks, así que allí la fila se llama `Plugin`. ¿No se dispara
+  nada? Reinicia Claude Code para que se carguen sus hooks; en Codex, ejecuta
+  `/hooks`; en OpenCode, reinícialo para que se cargue el plugin.
 </ResponseField>
 
-<ResponseField name="Codex Plan answers">
-  `bridge available` significa que las preguntas llegan a tu teléfono con sus
-  opciones. `status-only` significa que no —
-  [por qué](/es/sessions/codex#questions-in-the-cli-and-the-desktop-app).
+<ResponseField name="Sessions">
+  Ahora se cuentan por agente: `1 of 4 tracked here` significa que este ordenador
+  sigue cuatro sesiones y una de ellas es la tuya. Para las filas que deberían
+  haber muerto está [reset](#reset).
 </ResponseField>
 
-También avisa de las dos configuraciones que duplican en silencio el reporte de
-cada evento: hooks de Codex sobrantes de antes del plugin nativo, y Codex
-descubriendo por su cuenta el plugin de Claude Code junto al suyo. Las dos
-nombran el archivo que hay que editar.
+Los problemas llevan dos marcas y nada más: `!` es el problema y `→` es qué hacer
+al respecto, escrito en el dialecto de comandos del agente desde el que
+preguntaste. Cada uno de los demás agentes del ordenador tiene una línea
+condensada bajo **Also on this computer** — y cuando el roto es *uno de esos*, lo
+dice aquí en lugar de esperar a que vayas a mirar:
+
+```
+Nomo 2.1.17 · Claude Code
+
+Phone         NOT PAIRED — nothing from this computer reaches the app
+              → run /nomo-cc:pair
+
+Claude Code — you are here
+  Hooks       firing · last 6s ago
+  Sessions    1 of 3 tracked here
+
+Also on this computer
+  Codex       firing · last 12h ago · 2 of 3 tracked here
+              ! Also runs the Claude Code plugin's hooks on every Codex event — double the work, no benefit.
+              → in Codex run /hooks and untrust the `nomo-cc@nomo` entries
+              → full detail: run $nomo-status inside Codex
+  OpenCode    installed · no activity yet
+```
+
+Las filas que no tienen nada que decir se omiten: un ordenador sin vincular no
+tiene entrega ni aprobaciones que reportar. El problema de otro agente se explica
+aquí entero y después te remite al comando de estado de ese agente para el resto
+del detalle. Y la primera línea lleva la versión del plugin: cítala si abres una
+incidencia.
 
 ## approvals {#approvals}
 
@@ -124,6 +172,12 @@ $nomo-approvals off         # pause on this computer
 $nomo-approvals on          # resume
 $nomo-approvals status      # which way is it set
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
 
 Pausa las aprobaciones remotas en **este ordenador**, de modo que las solicitudes
@@ -135,9 +189,9 @@ Remote approvals are OFF for this computer — Claude Code permission prompts
 will appear in the terminal as usual (your phone is not asked).
 ```
 
-Un interruptor por ordenador, **compartido por los dos agentes**: pausarlo en
-Codex lo pausa también para Claude Code en esa máquina. No desvincula nada y no
-toca los ajustes de tu teléfono.
+Un interruptor por ordenador, **compartido por todos los agentes**: pausarlo en
+Codex lo pausa también para Claude Code y OpenCode en esa máquina. No desvincula
+nada y no toca los ajustes de tu teléfono.
 
 Hay otro interruptor aparte, para todo el teléfono: **Responder en el iPhone**
 en [Ajustes](/es/sessions/settings#remote-approvals).
@@ -152,6 +206,10 @@ en [Ajustes](/es/sessions/settings#remote-approvals).
 ```bash Codex icon="/images/codex.svg"
 $nomo-reset
 ```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-reset
+```
 </CodeGroup>
 
 Detiene el proceso supervisor y limpia las filas de sesión muertas o fantasma, y
@@ -165,7 +223,9 @@ Pairing and keys were not touched — use the unpair command if you want that.
 ```
 
 Es lo seguro a lo que recurrir cuando las filas se ven obsoletas o duplicadas,
-porque dice qué ha dejado intacto.
+porque dice qué ha dejado intacto. Una fila de OpenCode pertenece al **servidor**
+de OpenCode, así que cierra OpenCode primero si alguna no se va — ve
+[Usar OpenCode](/es/sessions/opencode#reset-needs-opencode-closed).
 
 ## unpair {#unpair}
 
@@ -176,6 +236,10 @@ porque dice qué ha dejado intacto.
 
 ```bash Codex icon="/images/codex.svg"
 $nomo-unpair
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-unpair
 ```
 </CodeGroup>
 

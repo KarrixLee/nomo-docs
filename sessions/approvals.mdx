@@ -1,8 +1,8 @@
 ---
 title: "Answering from your phone"
-description: "Allow, deny, or answer Claude Code and Codex permission prompts remotely — from the island, or from the app with the full set of options."
+description: "Allow, deny, or answer Claude Code, Codex and OpenCode permission prompts remotely — from the island, or from the app with the full set of options."
 icon: "hand"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Answering from your phone"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Answering from your phone"]
 ---
 
 When your agent wants to run something it doesn't have standing permission for,
@@ -70,6 +70,12 @@ purpose.
 | **View full plan** | App, plus **View plan** on the island | Opens the plan to read before deciding. |
 | **Open on Mac** | App only | Answers nothing — it brings that session's terminal window to the front on your Mac. Needs a [local network](/sessions/settings#local-network) link. |
 
+<Note>
+  Two of these read differently on OpenCode: **Deny** answers for the whole turn
+  rather than one tool, and **Open on Mac** never appears. Both are explained in
+  [Using OpenCode](/sessions/opencode).
+</Note>
+
 **Always allow**, **Deny with note…** and **Answer…** live under **More…** in the
 menu, and all three need plugin **2.0.0**. On 1.0.0 you get plain Allow and Deny
 — Nomo won't show a button the Mac can't honour. The drawer tells you when an
@@ -121,7 +127,9 @@ edits automatically and confirming each one; that stays a terminal decision.
 </Note>
 
 Codex plans are **read-only** on the phone — you read them here and choose in
-the terminal. [Why](/sessions/codex#plans-are-read-only).
+the terminal. [Why](/sessions/codex#plans-are-read-only). OpenCode usually
+writes no plan document at all, so **View plan** shows the session's todo list
+instead — [why](/sessions/opencode#plan-mode).
 
 ## After you tap
 

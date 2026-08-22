@@ -1,17 +1,97 @@
 ---
 title: "疑難排解"
-description: "解不開的 sessions、失去聯絡的電腦、凍住的動態島 — 每個狀態代表什麼，以及該怎麼處理。"
+description: "先執行 status 指令 — 它會指出問題，並印出解法。接著是：哪一列回答哪個症狀，以及 status 看不到的那幾件事。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
 ---
 
-這裡看起來像 bug 的東西，大多是 Nomo 誠實地表示它不知道某件事。這一頁說明那些狀態實際上的意思，並依你會去哪裡解決來分組。
+status 指令現在已經替這一頁做掉大部分的工作。它會讀過整台電腦，用白話指出任何不對勁的地方，並印出可以修好它的指令。請先執行它。
 
-如果同時有不只一件事看起來不對，請直接往下跳到[先從 status 指令開始](#start-with-status) — 它通常一個畫面就能指出問題。
+這裡剩下的是一張對照表：你帶著來的症狀、回答它的那一列，以及 status 真的看不到的那幾件事。
 
-## 在手機上處理 {#fix-it-on-your-phone}
+## 先從 status 開始 {#start-with-status}
 
-以下這些都不必到你的 Mac 上做任何事。
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+</CodeGroup>
+
+它回報的是整台**電腦**，不只是你的 session：配對、傳送、批准，接著是你所在的那個代理，以及它找到的其他每一個代理。`!` 表示真的有問題，底下的 `→` 就是該怎麼處理，並以你發問時所在代理的指令寫法寫出來。大多數人看到這裡就結束了。
+
+每一列各是什麼意思，以及一台健康的機器和一台壞掉的機器並排長什麼樣，都在[指令](/zh-Hant/sessions/commands#status)。
+
+<Note>
+  status 從不發出網路請求。它能告訴你這台電腦上一次送出事件是什麼時候 — 但不能告訴你你的手機有沒有收到，也不能告訴你中繼伺服器或你的 Wi-Fi 今天是不是狀況不好。
+</Note>
+
+## 對症看哪一列 {#which-row-answers-it}
+
+<AccordionGroup>
+
+<Accordion title="這台電腦送出的東西完全到不了我的手機" icon="laptop">
+  看 **Phone**。`NOT PAIRED` 就是全部的答案，底下那個箭頭會印出配對指令 — [配對](/zh-Hant/setup/pairing)有完整流程。
+
+  已經配對了卻還是什麼都沒有？請接著看 **Delivery**。
+</Accordion>
+
+<Accordion title="某個 session 在手機上，但停止更新了" icon="wifi">
+  **Delivery** 說的是這台電腦上一次成功送出任何東西是什麼時候。如果那是不久前的事，沉默就出在手機那一側 — 打開 Nomo App，它會強制重新整理，過時的卡片會立刻自我修正。
+
+  一張褪去顏色、寫著 `已斷線？` 的卡片，代表整整十分鐘什麼消息都沒聽到。Mac 睡著、離開網路，或終端機被關掉，從手機看起來都一模一樣。
+
+  如果在真的有 session 在跑時，Delivery 很舊或顯示 `never`，請接著看 **Hooks**。
+</Accordion>
+
+<Accordion title="我的手機從來不問我要不要批准" icon="hand">
+  看 **Approvals**。`PAUSED` 表示有人在這台電腦上執行過暫停指令 — 可能是好幾個月前的事，而這正是它以前根本沒人找得到的原因。在那台機器上的 session 裡恢復它，請求就會回來：[approvals](/zh-Hant/sessions/commands#approvals)。
+
+  如果它顯示 `on`，那關著的開關是在你的手機上。「在 iPhone 上回答」預設就是關的 — 請看[設定](/zh-Hant/sessions/settings#remote-approvals)。判斷方式是顏色：每一隻舉起的手都是黃色（`需要協助`，那種只有終端機能處理），沒有一隻是紫色（`需要權限`，可以回覆的那一種）。請看[在手機上回覆](/zh-Hant/sessions/approvals)。
+</Accordion>
+
+<Accordion title="我開了一個 session，它卻從來沒出現" icon="play">
+  看 **Hooks** — 在 OpenCode 裡則是 **Plugin**，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 `/hooks`、重新啟動 OpenCode。
+
+  Codex 的 hooks 必須被明確信任，而一次外掛程式更新會重新開啟那道審核，所以在 Codex 那邊，更新後執行 `/hooks` 通常就是答案 — [為什麼](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
+</Accordion>
+
+<Accordion title="偏偏只有 OpenCode 什麼都不顯示" icon="rotate">
+  一列 **Plugin** 寫著已安裝卻沒有任何活動，通常表示外掛程式送達時 OpenCode 已經在跑了。OpenCode 只在伺服器啟動時載入一次外掛程式，所以把它結束再重新開起來就是全部的解法 — 只重新載入 TUI 是不夠的。這和[重設前要先關閉 OpenCode](/zh-Hant/sessions/opencode#reset-needs-opencode-closed) 是同一個原因。
+</Accordion>
+
+<Accordion title="各列看起來過時或重複" icon="broom">
+  **Sessions** 算的是這台電腦仍然認為還活著的數量。如果那比你實際有的還多，清掉失效的那些，而不解除配對：
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
+  </CodeGroup>
+
+  進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。OpenCode 的列屬於 OpenCode 的伺服器，所以有一列清不掉時，請先結束 OpenCode。
+</Accordion>
+
+</AccordionGroup>
+
+## status 看不到的部分 {#what-status-cant-see}
+
+以下三件事，你的 Mac 都把它該做的做好了。答案在手機上。
 
 <AccordionGroup>
 
@@ -27,72 +107,12 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
   **為什麼你關不掉：**關掉它不會有任何作用。那個請求無論如何都會留在動態島上 — 那是它唯一能觸及你的方式 — 所以開關一秒後就會在你的拇指底下自己彈回開啟。與其給你一個不理你的控制項，Nomo 選擇按住它不動，直到它能重新聽你的為止。
 
   你選的東西沒有被覆寫。回覆那個請求，開關就會直接回到關閉、也就是你留下它的地方 — 或者如果沒有人回覆，一小時之內也會回去。然後它又是你的了。
-
-  在「遠端批准」關閉時 — 也就是預設狀態 — 這一切都不會發生：你的開關永遠不會被蓋過。請看[在手機上回覆](/zh-Hant/sessions/approvals)。
-</Accordion>
-
-<Accordion title="動態島凍住了，或顯示「已斷線？」" icon="wifi">
-  動態島顯示的是你的 Mac 送出的最後一則內容。沉默十分鐘後，它會褪去顏色並顯示 `已斷線？`，而不是繼續暗示這個 session 還活著。
-
-  你的 Mac 睡著、離開網路，或終端機被關掉，都會落到這裡。打開 Nomo App 強制重新整理 — 過時的狀態會立刻自我修正。如果沒有，那就是 Mac 真的沒在回報：請執行下面的狀態指令。
-</Accordion>
-
-<Accordion title="請求有到我的手機，但沒有東西可以點" icon="hand">
-  看**顏色**，不是看圖示。黃色和紫色都畫一隻舉起的手。黃色（`需要協助`）表示代理停下來，等的是只有終端機能給的東西。紫色（`需要權限`）才是可以回覆的那一種。
-
-  如果全都是黃色、從來沒有紫色，那多半是「在 iPhone 上回答」關著 — 它預設就是關的。請看[在手機上回覆](/zh-Hant/sessions/approvals)。
-</Accordion>
-
-</AccordionGroup>
-
-## 在電腦上處理 {#fix-it-on-your-computer}
-
-你的手機沒問題。這些全都在 Mac 上的一個 session 裡解決。
-
-<AccordionGroup>
-
-<Accordion title="面板顯示遠端批准已暫停" icon="pause">
-  有人在那台電腦上執行過暫停指令。請在那台機器上的 session 裡恢復它：
-
-  <CodeGroup>
-  ```bash Claude Code icon="/images/claude-code.svg"
-  /nomo-cc:approvals on
-  ```
-
-  ```bash Codex icon="/images/codex.svg"
-  $nomo-approvals on
-  ```
-  </CodeGroup>
-
-  每台電腦一個開關，兩個代理共用 — [更多說明](/zh-Hant/sessions/commands#approvals)。
-</Accordion>
-
-<Accordion title="Codex 在更新之後就不再送出請求" icon="code">
-  Codex 的 hooks 出廠時**在被信任前不作用**，而一次加入 hook 的外掛程式更新會重新開啟那道審核。在 Codex 裡執行 `/hooks`，信任 Nomo 的項目。在你這麼做之前，批准會退回終端機，而且沒有任何東西回報錯誤。
-
-  更多內容在[搭配 Codex 使用](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="按住後的選單少了幾個選項" icon="ellipsis">
-  「一律允許」、「拒絕並附註…」和「回答…」都需要外掛程式 **2.0.0** — 在手機上回覆正是 2.0 加入的東西。Nomo 會隱藏 Mac 無法兌現的選項，而不是提供一個按了不會有作用的按鈕。
+  「一律允許」、「拒絕並附註…」和「回答…」都需要外掛程式 **2.0.0** — 在手機上回覆正是 2.0 加入的東西。Nomo 會隱藏 Mac 無法兌現的選項，而不是提供一個按了不會有作用的按鈕。status 會在第一行印出外掛程式版本，所以要確認就看那裡。
 
   面板頂端的「外掛程式有可用更新」橫幅，講的就是這件事。用你當初安裝的同一個指令更新。
-</Accordion>
-
-<Accordion title="各列看起來過時或重複" icon="broom">
-  清掉失效的那些，而不解除配對：
-
-  <CodeGroup>
-  ```bash Claude Code icon="/images/claude-code.svg"
-  /nomo-cc:reset
-  ```
-
-  ```bash Codex icon="/images/codex.svg"
-  $nomo-reset
-  ```
-  </CodeGroup>
-
-  進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。
 </Accordion>
 
 </AccordionGroup>
@@ -121,14 +141,6 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
 
 </AccordionGroup>
 
-## 先從 status 指令開始 {#start-with-status}
-
-如果不只一件事看起來不對，請在做任何事之前，先在 Mac 上執行 [`/nomo-cc:status`](/zh-Hant/sessions/commands#status)。一個畫面就會告訴你這台機器有沒有配對、它的 watchdog 是不是還活著，以及事件到底有沒有送到你的手機 — 這通常足以說出哪裡壞了。
-
-在真的有 session 在跑時看到 `Last event sent: never`，表示 hooks 沒有觸發。重新啟動 Claude Code 讓它們載入；Codex 的話，請執行 `/hooks`。
-
-每一個指令，以及它的輸出代表什麼，都在[指令](/zh-Hant/sessions/commands)。
-
 ## 回報問題 {#still-wrong-send-it-over}
 
 到[設定](/zh-Hant/sessions/settings#debug)開啟「session 診斷」，然後展開那個出問題的 session。它底下會出現一行 Nomo 自己的內部狀態，長得像這樣：
@@ -148,11 +160,11 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
   </Card>
 </CardGroup>
 
-附上受影響電腦上 [`/nomo-cc:status`](/zh-Hant/sessions/commands#status) 的輸出也很有幫助。
+附上受影響電腦上 [`/nomo-cc:status`](/zh-Hant/sessions/commands#status) 的輸出也很有幫助 — 它第一行的版本就已經是一半的診斷了。
 
 ## 功能建議 {#nothings-broken--you-just-want-something}
 
-「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)講 Codex 那一側，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
+「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)和[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)講這兩個代理，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
 
 其餘的就只是還沒做而已。
 
@@ -178,6 +190,54 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "這台電腦送出的東西完全到不了我的手機",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "執行 status 指令，看 Phone 那一列。NOT PAIRED 就是全部的答案，底下那個箭頭會印出你當下所在代理的配對指令。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "某個 session 在手機上，但停止更新了",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Delivery 那一列說的是這台電腦上一次成功送出任何東西是什麼時候。如果那是不久前的事，沉默就出在手機那一側 — 打開 Nomo App，它會強制重新整理。一張褪去顏色、寫著「已斷線？」的卡片，代表整整十分鐘什麼消息都沒聽到。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我的手機從來不問我要不要批准",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看 Approvals 那一列。PAUSED 表示有人在這台電腦上執行過暫停指令，可能是好幾個月前的事。在那台機器上的 session 裡恢復它，請求就會回來。如果它顯示 on，那關著的開關是 App 設定裡的「在 iPhone 上回答」，它預設就是關的。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我開了一個 session，它卻從來沒出現",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看 Hooks 那一列 — 在 OpenCode 裡則是 Plugin，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 /hooks、重新啟動 OpenCode。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "偏偏只有 OpenCode 什麼都不顯示",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一列 Plugin 寫著已安裝卻沒有任何活動，通常表示外掛程式送達時 OpenCode 已經在跑了。OpenCode 只在伺服器啟動時載入一次外掛程式，所以把它結束再重新開起來就是全部的解法 — 只重新載入 TUI 是不夠的。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "各列看起來過時或重複",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sessions 那一列算的是這台電腦仍然認為還活著的數量。如果那比你實際有的還多，執行 reset 指令清掉失效的那些，而不解除配對。進行中的 sessions、你的配對和金鑰都不會被動到。"
+      }
+    },
+    {
+      "@type": "Question",
       "name": "動態島上什麼都沒出現",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -194,50 +254,10 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
     },
     {
       "@type": "Question",
-      "name": "動態島凍住了，或顯示「已斷線？」",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "動態島顯示的是你的 Mac 送出的最後一則內容。沉默十分鐘後，它會褪去顏色並顯示 已斷線？，而不是繼續暗示這個 session 還活著。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "請求有到我的手機，但沒有東西可以點",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "看顏色，不是看圖示。黃色和紫色都畫一隻舉起的手。黃色（需要協助）表示代理停下來，等的是只有終端機能給的東西。紫色（需要權限）才是可以回覆的那一種。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "面板顯示遠端批准已暫停",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "有人在那台電腦上執行過暫停指令。請在那台機器上的 session 裡恢復它："
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Codex 在更新之後就不再送出請求",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Codex 的 hooks 出廠時在被信任前不作用，而一次加入 hook 的外掛程式更新會重新開啟那道審核。在 Codex 裡執行 /hooks，信任 Nomo 的項目。在你這麼做之前，批准會退回終端機，而且沒有任何東西回報錯誤。"
-      }
-    },
-    {
-      "@type": "Question",
       "name": "按住後的選單少了幾個選項",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "「一律允許」、「拒絕並附註…」和「回答…」都需要外掛程式 2.0.0 — 在手機上回覆正是 2.0 加入的東西。Nomo 會隱藏 Mac 無法兌現的選項，而不是提供一個按了不會有作用的按鈕。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "各列看起來過時或重複",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "清掉失效的那些，而不解除配對："
+        "text": "「一律允許」、「拒絕並附註…」和「回答…」都需要外掛程式 2.0.0 — 在手機上回覆正是 2.0 加入的東西。Nomo 會隱藏 Mac 無法兌現的選項，而不是提供一個按了不會有作用的按鈕。status 指令會在第一行印出外掛程式版本。"
       }
     },
     {

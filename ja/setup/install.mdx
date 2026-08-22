@@ -1,10 +1,12 @@
 ---
 title: "インストール"
-description: "Claude Code または Codex に Nomo プラグインを追加します。コマンドは 2 つ、依存関係はありません。"
+description: "Claude Code、Codex、OpenCode のいずれかに Nomo プラグインを追加します。コマンド 1 つでも、手動でも。依存関係はありません。"
 icon: "puzzle-piece"
 ---
 
 コンピュータごとに 1 回インストールします。**bun** または **node 18 以降**が必要です — プラグインに npm 依存関係はなく、Node の組み込み機能だけで動作します。
+
+## 手動インストール {#install-by-hand}
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -119,7 +121,82 @@ icon: "puzzle-piece"
       `$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
     </Tip>
   </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    OpenCode にはマーケットプレイスもプラグイン用のコマンドもありません — 自身の設定フォルダにあるものをそのまま読み込みます。そのため Nomo はクローンからインストールし、スクリプト 1 つで、OpenCode がもともと見ている場所へファイルを配置します。
+
+    <Steps>
+      <Step title="クローンしてインストーラーを実行する">
+        ```bash
+        git clone https://github.com/KarrixLee/nomo.git ~/.nomo
+        ~/.nomo/plugin/scripts/opencode-install.sh
+        ```
+
+        クローン先はどこでも構いません — スクリプトが自身の場所を判断するため、調べるパスも手で書き換える箇所もありません。何を書き込んだかは、そのつど表示されます。
+
+        - `~/.config/opencode/plugins/nomo.js` — クローンを指す 1 行のスタブ。
+        - `~/.config/opencode/commands/nomo-*.md` — 5 つのコマンド。
+
+        Claude Code や Codex 向けに Nomo をインストール済みの場合は、2 つ目をクローンせずに、そのコピーをスクリプトに指定してください — 場所は `claude plugin list` または `codex plugin list` で確認できます。
+
+        <Tip>
+          `--project` を付けると、グローバルではなく 1 つのリポジトリの `./.opencode` にインストールします。再実行しても安全で、クローンを移動するときもこの方法を使います。新しい場所からもう一度実行してください。
+        </Tip>
+      </Step>
+
+      <Step title="OpenCode を再起動する — 必須">
+        <Warning>
+          OpenCode がプラグインを読み込むのはサーバーの起動時の 1 回だけで、ホットリロードはありません。終了して開き直すまで、プラグインはインストール済みでも何もしません。デスクトップアプリも同じサーバーを動かしているので、同じ再起動が必要です。
+        </Warning>
+      </Step>
+
+      <Step title="確認する">
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    このインストール 1 回で OpenCode のデスクトップアプリもカバーされます。アプリは OpenCode 自身のサーバーを動かしており、同じプラグインフォルダを読むからです。
+
+    <Note>
+      npm パッケージもマーケットプレイスもありません — OpenCode にその仕組みがないからです。スタブはクローンをコピーせず再エクスポートしているだけなので、クローン側で `git pull` すればそれが更新のすべてです。
+    </Note>
+
+    <Tip>
+      OpenCode のコマンド名はフラットでグローバルなので、Nomo のコマンドにも接頭辞は一切付きません。`/nomo-cc:pair` でも `$nomo-pair` でもなく `/nomo-pair` です。5 つとも[コマンド](/ja/sessions/commands)にまとめてあります。
+    </Tip>
+
+    iPhone 側で違って見える点は[OpenCode での利用](/ja/sessions/opencode)にあります。
+  </Tab>
 </Tabs>
+
+## コマンド 1 つでインストール {#one-command}
+
+インストーラーがこのマシン上の Claude Code、Codex、OpenCode を検出し、選んだものに Nomo を組み込みます。
+
+<CodeGroup>
+```bash bunx icon="terminal"
+bunx nomo-ai
+```
+
+```bash npx icon="terminal"
+npx nomo-ai
+```
+</CodeGroup>
+
+最初はどれも選択されていません。矢印キー（または `k` / `j`）で移動し、スペースキーで選択、Enter キーで選択したものをまとめてインストールします。そのあと、それぞれのエージェント本来のインストール手順 — 上の 3 つの流れ — が実行されます。グローバルには何もインストールせず、パッケージも残しません。
+
+スクリプトや CI で使うときは、次のオプションが使えます。
+
+| オプション | |
+| --- | --- |
+| `--claude` `--codex` `--opencode` | 指定したものだけをインストールします。いずれかを指定すると選択画面は出ません |
+| `--all` | 検出の有無にかかわらず 3 つすべて |
+| `-y`、`--yes` | 選択画面を出さず、検出したものをすべてインストールします |
+| `-n`、`--dry-run` | 実行するコマンドを表示するだけで、何も実行しません |
+
+iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です。
 
 ## プラグインの動作
 

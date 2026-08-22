@@ -14,7 +14,7 @@ rather than a control that silently fails, you get either a different control or
 an honest "do this at your Mac."
 
 <Note>
-  There is no separate Codex pairing. Both agents read the same config on that
+  There is no separate Codex pairing. Every agent reads the same config on that
   computer — you [pair the machine](/setup/pairing) once. On the wire, the only
   difference is a label saying which agent it was.
 </Note>
@@ -72,12 +72,11 @@ watchdog to share one app-server process.
     $nomo-status
     ```
 
-    `Codex Plan answers: bridge available` means you're set — questions reach
-    your phone with their options, and you tap one.
+    `bridge available` means you're set — questions reach your phone with
+    their options, and you tap one.
 
-    `Codex Plan answers: status-only` means nothing is listening. Start the
-    daemon, then start Codex. Order matters: a session that opened first won't
-    pick the daemon up.
+    `status-only` means nothing is listening. Start the daemon, then start
+    Codex. Order matters: a session that opened first won't pick the daemon up.
   </Tab>
 
   <Tab title="Codex desktop app" icon="window">

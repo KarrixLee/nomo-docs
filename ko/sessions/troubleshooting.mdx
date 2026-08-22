@@ -1,21 +1,132 @@
 ---
 title: "문제 해결"
-description: "복호화되지 않는 세션, 응답이 끊긴 컴퓨터, 멈춘 Dynamic Island — 각 상태의 의미와 대처 방법."
+description: "먼저 status 명령을 실행하십시오. 문제를 짚어 주고 고치는 명령까지 출력해 줍니다. 그다음은 증상별로 어느 줄을 읽을지, 그리고 status가 볼 수 없는 몇 가지입니다."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "문제 해결"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "문제 해결"]
 ---
 
-여기에서 고장처럼 보이는 것 대부분은, Nomo가 모르는 것을 모른다고 솔직하게
-말하는 상태입니다. 이 페이지는 그 상태들이 실제로 무엇을 뜻하는지를 어디에서
-해결하는지에 따라 묶어 정리한 것입니다.
+이제 이 페이지가 할 일의 대부분은 status 명령이 대신해 줍니다. 컴퓨터 전체를 읽어
+잘못된 것을 평이한 말로 짚어 주고, 그것을 고치는 명령까지 출력합니다. 먼저
+실행하십시오.
 
-한 번에 여러 가지가 이상해 보인다면 아래로 건너뛰어
-[status 명령 먼저 실행하기](#start-with-status)를 보십시오. 대개 한
-화면으로 문제를 짚어 줍니다.
+여기 남은 것은 지도입니다. 어떤 증상으로 찾아왔는지, 그 답이 되는 줄은 무엇인지,
+그리고 status가 정말로 볼 수 없는 몇 가지입니다.
 
-## iPhone에서 해결 {#fix-it-on-your-phone}
+## status 명령 먼저 실행하기 {#start-with-status}
 
-아래 항목들은 Mac에서 할 일이 없습니다.
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+</CodeGroup>
+
+이 명령은 지금 세션만이 아니라 **컴퓨터**를 보고합니다. 페어링, 전송, 승인, 그다음
+지금 사용 중인 에이전트와 발견된 다른 모든 에이전트입니다. `!`는 실제 문제이고 그
+아래 `→`는 그에 대한 대처이며, 명령을 실행한 에이전트의 문법으로 적힙니다. 대부분은
+여기에서 끝납니다.
+
+각 줄의 의미는 정상인 컴퓨터와 고장 난 컴퓨터의 출력을 나란히 놓고
+[명령](/ko/sessions/commands#status)에 정리해 두었습니다.
+
+<Note>
+  status는 네트워크 요청을 하지 않습니다. 이 컴퓨터가 마지막으로 이벤트를 보낸
+  시점은 알려 주지만, 휴대폰이 그것을 받았는지, 워커나 Wi-Fi에 문제가 있는지는 알 수
+  없습니다.
+</Note>
+
+## 증상별로 읽을 줄 {#which-row-answers-it}
+
+<AccordionGroup>
+
+<Accordion title="이 컴퓨터에서 보낸 것이 휴대폰에 전혀 도착하지 않음" icon="laptop">
+  **Phone**을 읽으십시오. `NOT PAIRED`가 답의 전부이며, 그 아래 화살표가 페어링
+  명령을 출력합니다 — [페어링](/ko/setup/pairing)에 전체 과정이 있습니다.
+
+  페어링되어 있는데도 아무것도 오지 않는다면 **Delivery**로 넘어가십시오.
+</Accordion>
+
+<Accordion title="휴대폰에 있는 세션이 갱신을 멈춤" icon="wifi">
+  **Delivery**는 이 컴퓨터가 마지막으로 무언가를 보내는 데 성공한 시점을 알려 줍니다.
+  그 시점이 최근이라면 조용한 쪽은 휴대폰입니다. Nomo 앱을 열면 새로고침이 강제되어
+  오래된 카드는 곧바로 바로잡힙니다.
+
+  색이 빠지고 `연결 끊김?`으로 바뀐 카드는 10분 동안 아무 소식도 듣지 못했다는
+  뜻입니다. Mac이 잠들었거나, 네트워크를 벗어났거나, 터미널을 닫은 경우가 휴대폰에서는
+  모두 똑같이 보입니다.
+
+  세션이 분명히 실행 중인데 Delivery가 오래됐거나 `never`라면, 다음으로 **Hooks**를
+  읽으십시오.
+</Accordion>
+
+<Accordion title="휴대폰이 승인을 전혀 물어보지 않음" icon="hand">
+  **Approvals**를 읽으십시오. `PAUSED`는 이 컴퓨터에서 누군가 일시 중지 명령을
+  실행했다는 뜻입니다. 몇 달 전일 수도 있고, 그래서 예전에는 이 사실을 알아차릴
+  방법이 없었습니다. 해당 컴퓨터의 세션에서 다시 켜면 요청이 돌아옵니다 —
+  [approvals](/ko/sessions/commands#approvals).
+
+  `on`이라면 꺼져 있는 스위치는 휴대폰 쪽입니다. **iPhone에서 답변**은 기본값이
+  꺼짐입니다 — [설정](/ko/sessions/settings#remote-approvals). 구분하는 방법은
+  색입니다. 든 손이 전부 노란색(`도움 필요`, 터미널에서만 처리할 수 있는 것)이고
+  보라색(`권한 필요`, 답할 수 있는 것)은 하나도 없습니다.
+  [휴대폰에서 답변하기](/ko/sessions/approvals)를 참고하십시오.
+</Accordion>
+
+<Accordion title="세션을 시작했는데 나타나지 않음" icon="play">
+  **Hooks** — OpenCode에는 Hook이 없으므로 그쪽에서는 **Plugin**입니다. 동작하지
+  않는다면 에이전트가 Nomo에 아무것도 넘기지 않고 있는 것이고, 어느 에이전트든 그
+  연결을 시작할 때 한 번만 로드합니다. Claude Code는 재시작하고, Codex에서는
+  `/hooks`를 실행하고, OpenCode는 재시작하십시오.
+
+  Codex는 Hook을 명시적으로 신뢰해야 하며 플러그인 업데이트는 그 검토를 다시 엽니다.
+  그래서 Codex에서는 업데이트 뒤에 `/hooks`를 실행하는 것이 대개의 답입니다 —
+  [이유](/ko/sessions/codex#hooks-have-to-be-trusted).
+</Accordion>
+
+<Accordion title="OpenCode에서만 아무것도 보이지 않음" icon="rotate">
+  설치됨이라고 나오는데 활동이 없는 **Plugin** 줄은, 플러그인이 도착했을 때 OpenCode가
+  이미 실행 중이었다는 뜻인 경우가 많습니다. OpenCode는 서버가 시작될 때 플러그인을
+  한 번만 로드하므로, 종료했다가 다시 시작하는 것이 해결책의 전부입니다. TUI를 다시
+  로드하는 것만으로는 부족합니다.
+  [초기화하려면 OpenCode를 종료해야 하는 것](/ko/sessions/opencode#reset-needs-opencode-closed)과
+  같은 이유입니다.
+</Accordion>
+
+<Accordion title="행이 오래됐거나 중복되어 보임" icon="broom">
+  **Sessions**는 이 컴퓨터가 아직 살아 있다고 믿는 세션의 수입니다. 실제보다 많다면,
+  페어링을 해제하지 않고 죽은 행만 정리하십시오.
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
+  </CodeGroup>
+
+  실행 중인 세션, 페어링, 키는 건드리지 않습니다 —
+  [출력 내용](/ko/sessions/commands#reset). OpenCode 행은 OpenCode 서버에 속하므로,
+  지워지지 않는 행이 있으면 OpenCode를 먼저 종료하십시오.
+</Accordion>
+
+</AccordionGroup>
+
+## status가 볼 수 없는 것 {#what-status-cant-see}
+
+아래 세 가지는 Mac이 제 할 일을 하고 있는 경우입니다. 답은 휴대폰에 있습니다.
 
 <AccordionGroup>
 
@@ -47,92 +158,17 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dyn
   사용자가 선택한 내용이 덮어써진 것은 아닙니다. 요청에 답하면 스위치는 원래대로
   꺼짐으로 돌아갑니다. 아무도 답하지 않아도 한 시간 안에 돌아갑니다. 그 뒤로는
   다시 사용자가 정하면 됩니다.
-
-  기본값인 **원격 승인** 꺼짐 상태에서는 이런 일이 전혀 일어나지 않습니다.
-  스위치가 덮어써지지 않습니다.
-  [휴대폰에서 답변하기](/ko/sessions/approvals)를 참고하십시오.
-</Accordion>
-
-<Accordion title="Dynamic Island가 멈췄거나 연결 끊김?으로 표시됨" icon="wifi">
-  Dynamic Island는 Mac이 마지막으로 보낸 내용을 보여 줍니다. 10분 동안 소식이
-  없으면 세션이 살아 있는 것처럼 계속 암시하는 대신, 색이 빠지고 `연결 끊김?`으로
-  바뀝니다.
-
-  Mac이 잠들었거나, 네트워크를 벗어났거나, 터미널을 닫은 경우가 모두 여기에
-  해당합니다. Nomo 앱을 열어 새로고침을 강제하십시오 — 오래된 상태는 곧바로
-  바로잡힙니다. 그래도 그대로라면 Mac이 실제로 보고하지 않는 것이니, 아래의 상태
-  명령을 실행하십시오.
-</Accordion>
-
-<Accordion title="요청은 휴대폰에 오는데 탭할 것이 없음" icon="hand">
-  아이콘이 아니라 **색**을 확인하십시오. 노란색과 보라색 모두 손을 든 모양입니다.
-  노란색(`도움 필요`)은 터미널에서만 처리할 수 있는 일 때문에 에이전트가 멈췄다는
-  뜻이고, 답할 수 있는 쪽은 보라색(`권한 필요`)입니다.
-
-  전부 노란색이고 보라색이 한 번도 나오지 않는다면 **iPhone에서 답변**이 꺼져
-  있을 가능성이 큽니다. 기본값이 꺼짐입니다.
-  [휴대폰에서 답변하기](/ko/sessions/approvals)를 참고하십시오.
-</Accordion>
-
-</AccordionGroup>
-
-## 컴퓨터에서 해결 {#fix-it-on-your-computer}
-
-휴대폰에는 문제가 없습니다. 아래 항목들은 모두 Mac의 세션에서 처리합니다.
-
-<AccordionGroup>
-
-<Accordion title="드로어에 원격 승인이 일시 중지되었다고 표시됨" icon="pause">
-  그 컴퓨터에서 누군가 일시 중지 명령을 실행한 것입니다. 해당 컴퓨터의 세션에서
-  다시 켜십시오.
-
-  <CodeGroup>
-  ```bash Claude Code icon="/images/claude-code.svg"
-  /nomo-cc:approvals on
-  ```
-
-  ```bash Codex icon="/images/codex.svg"
-  $nomo-approvals on
-  ```
-  </CodeGroup>
-
-  스위치는 컴퓨터마다 하나이며 두 에이전트가 공유합니다 —
-  [자세히](/ko/sessions/commands#approvals).
-</Accordion>
-
-<Accordion title="업데이트 후 Codex가 요청을 보내지 않음" icon="code">
-  Codex Hook은 **신뢰하기 전까지 동작하지 않으며**, Hook을 추가하는 플러그인
-  업데이트는 그 검토를 다시 엽니다. Codex에서 `/hooks`를 실행하고 Nomo 항목을
-  신뢰하십시오. 그 전까지 승인은 터미널로 되돌아가고 오류도 표시되지 않습니다.
-
-  자세한 내용은 [Codex 사용하기](/ko/sessions/codex#hooks-have-to-be-trusted)에 있습니다.
 </Accordion>
 
 <Accordion title="길게 터치 메뉴에 일부 항목이 없음" icon="ellipsis">
   **항상 허용**, **메모와 함께 거부…**, **답변하기…** 세 가지는 모두 플러그인
   **2.0.0**이 필요합니다. 휴대폰에서 답변하는 기능이 2.0에서 추가되었기
   때문입니다. Nomo는 아무 일도 하지 않을 버튼을 내놓는 대신, Mac이 지킬 수 없는
-  항목을 숨깁니다.
+  항목을 숨깁니다. status는 첫 줄에 플러그인 버전을 출력하니 거기에서 확인하면
+  됩니다.
 
   드로어 위쪽의 `플러그인 업데이트 사용 가능` 배너가 바로 그 뜻입니다. 설치할 때
   쓴 것과 같은 명령으로 업데이트하십시오.
-</Accordion>
-
-<Accordion title="행이 오래됐거나 중복되어 보임" icon="broom">
-  페어링을 해제하지 않고 죽은 행만 정리합니다.
-
-  <CodeGroup>
-  ```bash Claude Code icon="/images/claude-code.svg"
-  /nomo-cc:reset
-  ```
-
-  ```bash Codex icon="/images/codex.svg"
-  $nomo-reset
-  ```
-  </CodeGroup>
-
-  실행 중인 세션, 페어링, 키는 건드리지 않습니다 —
-  [출력 내용](/ko/sessions/commands#reset).
 </Accordion>
 
 </AccordionGroup>
@@ -171,19 +207,6 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dyn
 
 </AccordionGroup>
 
-## status 명령 먼저 실행하기 {#start-with-status}
-
-한 번에 여러 가지가 이상해 보인다면, 무엇보다 먼저 Mac에서
-[`/nomo-cc:status`](/ko/sessions/commands#status)를 실행하십시오. 그 컴퓨터가
-페어링되어 있는지, 워치독이 살아 있는지, 이벤트가 실제로 휴대폰에 도달하고
-있는지를 한 화면으로 알려 주며, 대개 그것으로 무엇이 고장 났는지 말할 수 있습니다.
-
-세션이 실제로 실행 중인데 `Last event sent: never`라면 Hook이 실행되지 않고 있다는
-뜻입니다. Claude Code를 재시작해 Hook을 로드하고, Codex에서는 `/hooks`를
-실행하십시오.
-
-모든 명령과 그 출력의 의미는 [명령](/ko/sessions/commands)에 있습니다.
-
 ## 문제 제보하기 {#still-wrong-send-it-over}
 
 [설정](/ko/sessions/settings#debug)에서 **세션 진단**을 켠 다음, 이상하게
@@ -208,15 +231,16 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dyn
 </CardGroup>
 
 해당 컴퓨터에서 실행한
-[`/nomo-cc:status`](/ko/sessions/commands#status)의 출력도 도움이 됩니다.
+[`/nomo-cc:status`](/ko/sessions/commands#status)의 출력도 도움이 됩니다. 첫 줄의
+버전만으로도 진단의 절반은 끝납니다.
 
 ## 기능 요청 {#nothings-broken--you-just-want-something}
 
 "이건 왜 휴대폰에서 못 하나요?"는 버그라기보다 타당한 질문일 때가 많습니다. 일부는
 에이전트가 플러그인에 넘겨주는 범위의 실제 한계이며, 그 내용은 문서로 적혀
-있습니다. Codex 쪽은 [Codex 사용하기](/ko/sessions/codex)가, 실시간 현황이 담을
-수 있는 것과 없는 것은
-[휴대폰에서 답변하기](/ko/sessions/approvals)가 다룹니다.
+있습니다. Codex 쪽은 [Codex 사용하기](/ko/sessions/codex)가, OpenCode 쪽은
+[OpenCode 사용하기](/ko/sessions/opencode)가, 실시간 현황이 담을 수 있는 것과
+없는 것은 [휴대폰에서 답변하기](/ko/sessions/approvals)가 다룹니다.
 
 나머지는 아직 만들지 않았을 뿐입니다.
 
@@ -247,6 +271,54 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dyn
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "이 컴퓨터에서 보낸 것이 휴대폰에 전혀 도착하지 않음",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "status 명령을 실행하고 Phone 줄을 읽으십시오. NOT PAIRED가 답의 전부이며, 그 아래 화살표가 지금 사용 중인 에이전트에 맞는 페어링 명령을 출력합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "휴대폰에 있는 세션이 갱신을 멈춤",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Delivery 줄은 이 컴퓨터가 마지막으로 무언가를 보내는 데 성공한 시점을 알려 줍니다. 그 시점이 최근이라면 조용한 쪽은 휴대폰입니다. Nomo 앱을 열면 새로고침이 강제됩니다. 색이 빠지고 연결 끊김?으로 바뀐 카드는 10분 동안 아무 소식도 듣지 못했다는 뜻입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "휴대폰이 승인을 전혀 물어보지 않음",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Approvals 줄을 읽으십시오. PAUSED는 이 컴퓨터에서 누군가 일시 중지 명령을 실행했다는 뜻이며, 몇 달 전일 수도 있습니다. 해당 컴퓨터의 세션에서 다시 켜면 요청이 돌아옵니다. on이라면 꺼져 있는 스위치는 앱 설정의 iPhone에서 답변이며, 기본값이 꺼짐입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "세션을 시작했는데 나타나지 않음",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hooks 줄을 읽으십시오. OpenCode에는 Hook이 없으므로 그쪽에서는 Plugin입니다. 동작하지 않는다면 에이전트가 Nomo에 아무것도 넘기지 않고 있는 것이고, 어느 에이전트든 그 연결을 시작할 때 한 번만 로드합니다. Claude Code는 재시작하고, Codex에서는 /hooks를 실행하고, OpenCode는 재시작하십시오."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "OpenCode에서만 아무것도 보이지 않음",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "설치됨이라고 나오는데 활동이 없는 Plugin 줄은, 플러그인이 도착했을 때 OpenCode가 이미 실행 중이었다는 뜻인 경우가 많습니다. OpenCode는 서버가 시작될 때 플러그인을 한 번만 로드하므로, 종료했다가 다시 시작하는 것이 해결책의 전부입니다. TUI를 다시 로드하는 것만으로는 부족합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "행이 오래됐거나 중복되어 보임",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sessions 줄은 이 컴퓨터가 아직 살아 있다고 믿는 세션의 수입니다. 실제보다 많다면 초기화 명령으로 페어링을 해제하지 않고 죽은 행만 정리하십시오. 실행 중인 세션, 페어링, 키는 건드리지 않습니다."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Dynamic Island에 아무것도 표시되지 않음",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -263,50 +335,10 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "세션", "컴퓨터", "Dyn
     },
     {
       "@type": "Question",
-      "name": "Dynamic Island가 멈췄거나 연결 끊김?으로 표시됨",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Dynamic Island는 Mac이 마지막으로 보낸 내용을 보여 줍니다. 10분 동안 소식이 없으면 세션이 살아 있는 것처럼 계속 암시하는 대신, 색이 빠지고 연결 끊김?으로 바뀝니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "요청은 휴대폰에 오는데 탭할 것이 없음",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "아이콘이 아니라 색을 확인하십시오. 노란색과 보라색 모두 손을 든 모양입니다. 노란색(도움 필요)은 터미널에서만 처리할 수 있는 일 때문에 에이전트가 멈췄다는 뜻이고, 답할 수 있는 쪽은 보라색(권한 필요)입니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "드로어에 원격 승인이 일시 중지되었다고 표시됨",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "그 컴퓨터에서 누군가 일시 중지 명령을 실행한 것입니다. 해당 컴퓨터의 세션에서 다시 켜십시오."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "업데이트 후 Codex가 요청을 보내지 않음",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Codex Hook은 신뢰하기 전까지 동작하지 않으며, Hook을 추가하는 플러그인 업데이트는 그 검토를 다시 엽니다. Codex에서 /hooks를 실행하고 Nomo 항목을 신뢰하십시오. 그 전까지 승인은 터미널로 되돌아가고 오류도 표시되지 않습니다."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "길게 터치 메뉴에 일부 항목이 없음",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "항상 허용, 메모와 함께 거부…, 답변하기… 세 가지는 모두 플러그인 2.0.0이 필요합니다. 휴대폰에서 답변하는 기능이 2.0에서 추가되었기 때문입니다. Nomo는 아무 일도 하지 않을 버튼을 내놓는 대신, Mac이 지킬 수 없는 항목을 숨깁니다."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "행이 오래됐거나 중복되어 보임",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "페어링을 해제하지 않고 죽은 행만 정리합니다."
+        "text": "항상 허용, 메모와 함께 거부…, 답변하기… 세 가지는 모두 플러그인 2.0.0이 필요합니다. 휴대폰에서 답변하는 기능이 2.0에서 추가되었기 때문입니다. Nomo는 아무 일도 하지 않을 버튼을 내놓는 대신, Mac이 지킬 수 없는 항목을 숨깁니다. status 명령은 첫 줄에 플러그인 버전을 출력합니다."
       }
     },
     {

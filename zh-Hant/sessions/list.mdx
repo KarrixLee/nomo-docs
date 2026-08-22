@@ -1,8 +1,8 @@
 ---
 title: "電腦與 sessions"
-description: "Sessions 分頁列出你已配對的電腦。點一下其中一台，就能看到它的 Claude Code 與 Codex sessions，依專案資料夾分組。"
+description: "Sessions 分頁列出你已配對的電腦。點一下其中一台，就能看到它的 Claude Code、Codex 與 OpenCode sessions，依專案資料夾分組。"
 icon: "list"
-keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "電腦與 sessions"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "電腦與 sessions"]
 ---
 
 **Sessions** 分頁是一份**電腦**清單，不是 session 清單。每配對一台 Mac 就有一張卡片。你的 sessions 在下一層 — 點一下電腦才會打開。
@@ -38,7 +38,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
 
 ## 電腦內部 {#inside-a-computer}
 
-點一下卡片會打開一個面板，頂端有一個分段控制項：**Claude Code** 和 **Codex**。Nomo 會開在最近活躍的那個代理。
+點一下卡片會打開一個面板，頂端有一個分段控制項，每個代理一段：**Claude Code**、**Codex** 和 **OpenCode**。Nomo 會開在最近活躍的那個代理。
 
 裡面的 sessions **依專案資料夾**分組，資料夾的 git 分支顯示在標頭旁邊。只有一個資料夾時，會共用一張 **Sessions** 卡片；兩個以上則各自一張，以資料夾命名。
 
@@ -97,8 +97,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
 - **完整標題** — 不截斷。
 - **資料夾**與 **session ID** — 前八個字元，等寬字體。
 - **待回覆的問題**全文，如果有的話。
-- **查看計畫** — 打開計畫。Claude Code 可以直接回覆，[Codex](/zh-Hant/sessions/codex) 則是唯讀。
-- **在 Mac 上開啟** — 把那個 session 的終端機視窗切到你 Mac 的最前面。只有在 Nomo 有直接的[區域網路](/zh-Hant/sessions/settings#local-network)連線時才會出現。
+- **查看計畫** — 打開計畫。Claude Code 可以直接回覆，[Codex](/zh-Hant/sessions/codex) 則是唯讀，而 [OpenCode](/zh-Hant/sessions/opencode#plan-mode) 通常是這個 session 的待辦清單，而不是一份文件。
+- **在 Mac 上開啟** — 把那個 session 的終端機視窗切到你 Mac 的最前面。只有在 Nomo 有直接的[區域網路](/zh-Hant/sessions/settings#local-network)連線時才會出現，而且不會出現在沒有自己視窗的 [OpenCode](/zh-Hant/sessions/opencode#no-open-on-mac) sessions 上。
 
 <Tip>
   要**回覆**一個請求，請按住那一列，而不是點一下。點一下是展開；按住才會打開「允許」／「拒絕」選單。
@@ -108,7 +108,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動�
 
 | | 上限 |
 | --- | --- |
-| 每台電腦的 sessions | **20** 個，兩個代理合計 |
+| 每台電腦的 sessions | **20** 個，所有代理合計 |
 | 已配對的電腦 | **5** 台 |
 | 動態島上的 sessions | **一次一個**，全裝置共用 |
 
