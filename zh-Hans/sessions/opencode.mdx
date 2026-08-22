@@ -34,7 +34,7 @@ Nomo 一以贯之的原则是：绝不提供一个 Mac 兑现不了的按钮。�
 
 ## 命令没有前缀 {#commands-have-no-prefix}
 
-Claude Code 把 Nomo 的命令放进 `nomo-cc:` 命名空间，Codex 则把它们当作 `$` skill 运行。OpenCode 两样都不做：它的命令名是扁平且全局的，所以 Nomo 的这五条就是 `/nomo-pair`、`/nomo-status`、`/nomo-approvals`、`/nomo-reset` 和 `/nomo-unpair`。没有前缀要加，也没有菜单要翻。
+Claude Code 把 Nomo 的命令放进 `nomo-cc:` 命名空间，Codex 则把它们当作 `$` skill 运行。OpenCode 两样都不做：它的命令名是扁平且全局的，所以 Nomo 的这六条就是 `/nomo-pair`、`/nomo-status`、`/nomo-approvals`、`/nomo-reset`、`/nomo-unpair` 和 `/nomo-update`。没有前缀要加，也没有菜单要翻。
 
 `/nomo-pair` 在 OpenCode 里可以独立使用——一台从未配对过的机器可以从这里完成配对。如果你已经在 Claude Code 或 Codex 里配对过它，那就什么都不用做：你的 OpenCode 会话会直接出现。
 
@@ -102,6 +102,12 @@ OpenCode 在自己的界面里处理 `--yolo`，从不把这件事告诉插件�
 ## 重置前需要关闭 OpenCode {#reset-needs-opencode-closed}
 
 `/nomo-reset` 清理的是进程已经不在的会话行。对 OpenCode 来说，那个进程是**服务器**，不是你敲命令的那个终端——所以属于一个正在运行的 OpenCode 的会话行不会被清掉，这是有意为之。如果某一行看着陈旧却怎么都不肯走，先退出 OpenCode。
+
+## 更新插件 {#updating-the-plugin}
+
+`/nomo-update` 只属于 OpenCode。Claude Code 和 Codex 由各自的宿主负责更新；OpenCode 没有宿主可问，所以这条命令随插件一起发。
+
+它先报告再动手——`Already on 2.1.22 — nothing to do.`，或者它即将取回的版本号——然后拉取更新，并要求做这一页上其他地方同样要求的那次重启。它做什么、什么时候会拒绝，都在[命令](/zh-Hans/sessions/commands#update)里。
 
 ## 更新 App {#update-the-app}
 

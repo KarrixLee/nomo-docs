@@ -1,11 +1,11 @@
 ---
 title: "命令"
-description: "Claude Code、Codex 和 OpenCode 的全部 Nomo 命令——配对、状态、审批、重置和解除配对，都在这一页。"
+description: "Claude Code、Codex 和 OpenCode 的全部 Nomo 命令——配对、状态、审批、重置、解除配对和更新，都在这一页。"
 icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
 
-五条命令，每个智能体上都是同样的五条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Codex 里是 `$` skill。
+每个智能体上都有的五条命令，外加只有 OpenCode 才需要的第六条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Codex 里是 `$` skill。
 
 <Tip>
   Claude Code 里一切都带命名空间：输入 `/nomo-cc:` 就会列出全部。OpenCode 的命令名是扁平且全局的，所以在那里 Nomo 的命令完全不带前缀。
@@ -18,8 +18,11 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
 | <a href="#approvals">暂停或恢复审批</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
 | <a href="#reset">清理卡住的会话</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
 | <a href="#unpair">断开这台电脑</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">更新插件</a> | — | — | `/nomo-update` |
 
 它们都不会大声报错。即使无事可做也会干净地退出——`Not paired` 是成功，不是错误。
+
+最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令。它们各自需要什么——Codex 通常什么都不需要——都写在[安装](/zh-Hans/setup/install#updating)里。
 
 ## pair {#pair}
 
@@ -199,6 +202,36 @@ $nomo-unpair
 撤销配对，并抹掉那台电脑上的密钥。
 
 **在手机上**移除一台电脑不是一回事：那只会让它不再出现在你的 App 里，Mac 上的本地状态会一直留着，直到你在那边运行这条命令。
+
+## update {#update}
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-update
+```
+
+**只有 OpenCode 有**，而且它在动手之前先检查。已经是最新的，就到此为止，不会顺手再拉一次：
+
+```
+OpenCode plugin: /Users/you/.nomo
+Already on 2.1.22 — nothing to do.
+```
+
+真有东西可拿时，它会先说是什么，再去拿：
+
+```
+OpenCode plugin: /Users/you/.nomo
+Update available: 2.1.22 → 2.1.23.
+```
+
+接着它拉取更新、重新运行安装脚本——新版本要是加了新的 `/nomo-*` 命令，就是靠这一步收进来的——然后让你重启 OpenCode。插件只在服务器启动时导入一次，所以在你重启之前，跑着的仍然是旧的那一份。
+
+拿不准的时候，它宁可拒绝也不动手，而且每一次拒绝都会说清楚该怎么办：被之前的 `--ref` 安装钉住的克隆目录、还有未提交改动的工作区、被搬走或删掉的克隆目录，以及这里根本什么都没装。
+
+<Note>
+  它更新的是**桩文件**指向的那份克隆目录——也就是 OpenCode 真正导入的那一份——未必是你输入的命令文件所属的那一份。如果你留着不止一份克隆，这个区别就要紧了。
+</Note>
+
+Claude Code 和 Codex 没有对应的命令，因为更新归它们各自的宿主管，而 Codex 通常根本没有什么要执行：两边都写在[安装](/zh-Hans/setup/install#updating)里。
 
 ## 状态文件的位置 {#where-state-lives}
 

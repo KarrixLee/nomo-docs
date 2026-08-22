@@ -136,7 +136,7 @@ icon: "puzzle-piece"
         克隆到哪里都行——脚本会自己算出所在位置，没有路径要查，也没有东西要手改。它会原样打印出自己写了些什么：
 
         - `~/.config/opencode/plugins/nomo.js`——一个指回克隆目录的单行桩文件。
-        - `~/.config/opencode/commands/nomo-*.md`——那五条命令。
+        - `~/.config/opencode/commands/nomo-*.md`——那六条命令。
 
         已经为 Claude Code 或 Codex 装过 Nomo？那就让脚本指向那份副本，不必再克隆一份——`claude plugin list` 或 `codex plugin list` 会打印出它在哪儿。
 
@@ -161,11 +161,11 @@ icon: "puzzle-piece"
     这一次安装同时也覆盖 OpenCode 桌面应用：它跑的是 OpenCode 自己的服务器，读的是同一个插件文件夹。
 
     <Note>
-      这里没有 npm 包，也没有插件市场——OpenCode 本来就没有。那个桩文件是把克隆目录重新导出，而不是复制一份，所以在克隆目录里 `git pull` 一下就是全部的升级操作。
+      以后更新，在 OpenCode 里一条命令就够：`/nomo-update` 会先检查，再拉取并重新运行这个安装脚本——[它做什么、什么时候会拒绝](/zh-Hans/sessions/commands#update)。
     </Note>
 
     <Tip>
-      OpenCode 的命令名是扁平且全局的，所以 Nomo 的命令完全不带前缀：是 `/nomo-pair`，不是 `/nomo-cc:pair` 或 `$nomo-pair`。五条都在[命令](/zh-Hans/sessions/commands)里。
+      OpenCode 的命令名是扁平且全局的，所以 Nomo 的命令完全不带前缀：是 `/nomo-pair`，不是 `/nomo-cc:pair` 或 `$nomo-pair`。六条都在[命令](/zh-Hans/sessions/commands)里。
     </Tip>
 
     到了手机上有哪些不一样，见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)。
@@ -198,6 +198,37 @@ npx nomo-ai
 | `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
 
 它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。
+
+### 更新 {#updating}
+
+同一条命令也负责更新。没有额外选项：已经装了 Nomo 的智能体，会显示成更新而不是安装。
+
+真正会跑的只有 OpenCode 那一份。另外两个需要什么，是**打印出来给你自己执行**的——前提是真有东西要执行。
+
+**Claude Code** 一条命令就够：
+
+```bash
+claude plugin update nomo-cc@nomo
+```
+
+Claude Code 确实会自动更新插件，但那是按插件市场分别设置的，而且这个开关对第三方插件市场默认是关闭的。Nomo 属于第三方，所以能让这边的安装动起来的只有这条命令——除非你自己把 Nomo 那个插件市场的自动更新打开：运行 `/plugin`，进入 **Marketplaces**，选中 Nomo 的那个，再选 **Enable auto-update**。
+
+**Codex 通常没有什么要执行。** 根本不存在 `codex plugin update` 这个动词，而更新到底意味着什么，取决于这个插件市场当初是怎么添加的——Codex 正是把这件事记在 `~/.codex/config.toml` 的 `source_type` 里：
+
+- `local`——Codex 直接从那个路径实时读取插件。没有快照需要刷新，所以在那份克隆目录里拉取更新就是全部的更新，Codex 这边没有命令要执行。Codex 自带的插件市场全都是 local，所以这才是常见情况，而不是特例。
+- `git`——Codex 存着一份快照，刷新它就是插件的更新：
+
+  ```bash
+  codex plugin marketplace upgrade <插件市场名称>
+  ```
+
+  这个名称是当初添加这个插件市场时用的名字，未必是 `nomo`——它就写在同一个 `config.toml` 的 `[marketplaces.…]` 段落里。
+
+安装工具会读这个键，所以只有确实有命令时才打印 Codex 那一条，没有的时候什么都不打印。
+
+只打印而不代你执行是有意为之，不是缺漏。那两个的安装都以 `marketplace add` 开头，而一次更新要是悄悄把你原本指向某个 fork 或本地克隆的插件市场改掉，之后每一次更新都会来自你从没选过的地方。一个会偷偷改写插件来源的工具，比一个把命令交给你的工具更糟。
+
+OpenCode 没有可交给你的宿主命令，所以它才是真正会跑的那一份——也是唯一自带 [`/nomo-update`](/zh-Hans/sessions/commands#update) 的智能体。
 
 ## 插件做了什么
 

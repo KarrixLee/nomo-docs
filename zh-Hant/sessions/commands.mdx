@@ -1,11 +1,11 @@
 ---
 title: "指令"
-description: "Claude Code、Codex 和 OpenCode 上的每一個 Nomo 指令 — 配對、狀態、批准、重設與解除配對，全在同一頁。"
+description: "Claude Code、Codex 和 OpenCode 上的每一個 Nomo 指令 — 配對、狀態、批准、重設、解除配對與更新，全在同一頁。"
 icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "指令"]
 ---
 
-五個指令，每個代理上都是同樣五個。你在想影響的那台電腦上、從代理的 session 裡執行它們 — 在 Claude Code 和 OpenCode 裡是 `/` 指令，在 Codex 裡是 `$` skill。
+每個代理上都有的五個指令，再加上只有 OpenCode 需要的第六個。你在想影響的那台電腦上、從代理的 session 裡執行它們 — 在 Claude Code 和 OpenCode 裡是 `/` 指令，在 Codex 裡是 `$` skill。
 
 <Tip>
   在 Claude Code 裡一切都有命名空間：輸入 `/nomo-cc:` 就會列出全部。OpenCode 的指令名稱是扁平而且全域的，所以 Nomo 的指令在那裡完全不帶前綴。
@@ -18,8 +18,11 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電
 | <a href="#approvals">暫停或恢復批准</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
 | <a href="#reset">清除卡住的 sessions</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
 | <a href="#unpair">中斷這台電腦</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">更新外掛程式</a> | — | — | `/nomo-update` |
 
 它們都不會大聲失敗。即使沒事可做，每一個也都乾淨地結束 — `Not paired` 是成功，不是錯誤。
+
+最後一列留白不是漏掉：Claude Code 和 Codex 由各自的主程式負責更新，所以 Nomo 沒有在那邊多加指令。它們各自需要什麼 — Codex 通常什麼都不需要 — 都寫在[安裝](/zh-Hant/setup/install#updating)裡。
 
 ## pair {#pair}
 
@@ -199,6 +202,36 @@ $nomo-unpair
 撤銷配對，並清除那台電腦上的金鑰。
 
 **從手機上**移除一台電腦不是同一件事：那只會讓它不再出現在你的App裡，Mac 上的本機狀態會一直保留，直到你在那裡執行這個指令。
+
+## update {#update}
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-update
+```
+
+**只有 OpenCode 有**，而且它在動手之前會先檢查。已經是最新的就到此為止，不會順手再拉一次：
+
+```
+OpenCode plugin: /Users/you/.nomo
+Already on 2.1.22 — nothing to do.
+```
+
+真的有東西可以拿時，它會先說是什麼，再去拿：
+
+```
+OpenCode plugin: /Users/you/.nomo
+Update available: 2.1.22 → 2.1.23.
+```
+
+接著它會拉取更新、重新執行安裝 script — 新版本要是加了新的 `/nomo-*` 指令，就是靠這一步收進來的 — 然後要你重新啟動 OpenCode。外掛程式只在伺服器啟動時匯入一次，所以在你重新啟動之前，跑著的還是舊的那一份。
+
+沒有把握的時候，它寧可拒絕也不動手，而且每一次拒絕都會說該怎麼辦：被先前 `--ref` 安裝釘住的 clone、還留著未提交變更的工作目錄、被搬走或刪掉的 clone，以及這裡根本什麼都沒裝。
+
+<Note>
+  它更新的是 **stub** 指向的那份 clone — 也就是 OpenCode 真正匯入的那一份 — 未必是你輸入的那個指令檔所屬的那一份。如果你留著不只一份 clone，這個區別就很重要。
+</Note>
+
+Claude Code 和 Codex 沒有對應的指令，因為更新由它們各自的主程式負責，而 Codex 通常根本沒有什麼要執行：兩邊都寫在[安裝](/zh-Hant/setup/install#updating)裡。
 
 ## 狀態存放的位置 {#where-state-lives}
 

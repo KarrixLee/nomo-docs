@@ -151,7 +151,7 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
 
         - `~/.config/opencode/plugins/nomo.js`: un stub de una línea que apunta
           de vuelta al clon.
-        - `~/.config/opencode/commands/nomo-*.md`: los cinco comandos.
+        - `~/.config/opencode/commands/nomo-*.md`: los seis comandos.
 
         ¿Ya tienes Nomo instalado para Claude Code o Codex? Apunta el script a
         esa copia en lugar de clonar una segunda: `claude plugin list` o `codex plugin list` te dicen dónde está.
@@ -183,15 +183,16 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
     ejecuta el propio servidor de OpenCode, que lee la misma carpeta de plugins.
 
     <Note>
-      No hay paquete npm ni marketplace: OpenCode no tiene ninguno. El stub
-      reexporta el clon en lugar de copiarlo, así que un `git pull` en el clon es
-      toda la actualización.
+      Actualizar más adelante es un solo comando desde dentro de OpenCode:
+      `/nomo-update` comprueba primero, y luego trae los cambios y vuelve a
+      ejecutar este instalador — [qué hace y cuándo se
+      niega](/es/sessions/commands#update).
     </Note>
 
     <Tip>
       Los nombres de comando de OpenCode son planos y globales, así que los de
       Nomo no llevan ningún prefijo: `/nomo-pair`, no `/nomo-cc:pair` ni
-      `$nomo-pair`. Los cinco están en [Comandos](/es/sessions/commands).
+      `$nomo-pair`. Los seis están en [Comandos](/es/sessions/commands).
     </Tip>
 
     Lo que llega distinto a tu teléfono está en
@@ -231,6 +232,59 @@ Para scripts y CI:
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
 agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
 `/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex.
+
+### Actualizaciones {#updating}
+
+El mismo comando actualiza. No hay ninguna opción extra: un agente que ya tiene
+Nomo aparece como actualización en lugar de como instalación.
+
+Solo se ejecuta la de OpenCode. Lo que necesitan los otros dos **se imprime para
+que lo ejecutes tú**, cuando hay algo que ejecutar.
+
+**Claude Code** se resuelve con un comando:
+
+```bash
+claude plugin update nomo-cc@nomo
+```
+
+Claude Code sí actualiza los plugins solo, pero por marketplace, y esa opción
+viene desactivada para los marketplaces de terceros. Nomo es de terceros, así que
+ese comando es lo único que mueve una instalación aquí, a no ser que actives tú
+la actualización automática para el marketplace de Nomo: ejecuta `/plugin`, entra
+en **Marketplaces**, elige el de Nomo y luego **Enable auto-update**.
+
+**Codex normalmente no tiene nada que ejecutar.** No existe ningún verbo
+`codex plugin update`, y lo que significa actualizar depende de cómo se añadió
+el marketplace, que es justo lo que Codex anota como `source_type` en
+`~/.codex/config.toml`:
+
+- `local`: Codex lee el plugin en vivo desde esa ruta. No hay ninguna
+  instantánea que refrescar, así que traer los cambios en ese clon es toda la
+  actualización y no hay ningún comando de Codex que ejecutar. Todos los
+  marketplaces que Codex trae de serie son locales, lo que hace que este sea el
+  caso habitual y no la excepción.
+- `git`: Codex guarda una instantánea, y refrescarla es la actualización:
+
+  ```bash
+  codex plugin marketplace upgrade <nombre-del-marketplace>
+  ```
+
+  El nombre es aquel con el que se añadió el marketplace, no necesariamente
+  `nomo`: es el de la sección `[marketplaces.…]` de ese mismo `config.toml`.
+
+El instalador lee esa clave, así que imprime el comando de Codex solo cuando lo
+hay, y no imprime nada cuando no.
+
+Que se imprima en lugar de ejecutarse es deliberado, no una carencia. Instalar
+en esos dos empieza por `marketplace add`, y una actualización que reapuntara
+sin avisar un marketplace que tú habías dirigido a un fork o a un clon local
+mandaría todas las actualizaciones siguientes a un sitio que nunca elegiste. Una
+herramienta que reescribe de dónde viene tu plugin es peor que una que te da el
+comando.
+
+OpenCode no tiene ningún comando propio del anfitrión que darte, y por eso es el
+único que se ejecuta — y el único agente con un
+[`/nomo-update`](/es/sessions/commands#update) propio.
 
 ## Qué hace el plugin
 

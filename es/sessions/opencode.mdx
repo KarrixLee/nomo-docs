@@ -60,9 +60,10 @@ sesiones de OpenCode, también en la app de escritorio, por lo que cuentas
 
 Claude Code pone los comandos de Nomo bajo el espacio de nombres `nomo-cc:`, y
 Codex los ejecuta como skills con `$`. OpenCode no hace ni lo uno ni lo otro: sus
-nombres de comando son planos y globales, así que los cinco de Nomo son
-simplemente `/nomo-pair`, `/nomo-status`, `/nomo-approvals`, `/nomo-reset` y
-`/nomo-unpair`. Nada que prefijar y ningún menú bajo el que buscarlos.
+nombres de comando son planos y globales, así que los seis de Nomo son
+simplemente `/nomo-pair`, `/nomo-status`, `/nomo-approvals`, `/nomo-reset`,
+`/nomo-unpair` y `/nomo-update`. Nada que prefijar y ningún menú bajo el que
+buscarlos.
 
 `/nomo-pair` funciona por sí solo desde OpenCode: una máquina que nunca se ha
 vinculado se puede vincular desde aquí. Si ya la vinculaste desde Claude Code o
@@ -172,6 +173,17 @@ responder con un toque. También empieza a escribir archivos de plan en
 es el **servidor**, no la terminal en la que escribiste, así que una fila que
 pertenece a un OpenCode en marcha no se limpia, y es a propósito. Cierra OpenCode
 primero si una fila que parece obsoleta se resiste a irse.
+
+## Actualizar el plugin {#updating-the-plugin}
+
+`/nomo-update` es de OpenCode y de nadie más. Claude Code y Codex se actualizan a
+través de sus propios anfitriones; OpenCode no tiene ninguno al que preguntar,
+así que el comando viene con el plugin.
+
+Informa antes de actuar —`Already on 2.1.22 — nothing to do.`, o la versión que
+está a punto de traer— y luego trae los cambios y pide el mismo reinicio que
+todo lo demás de esta página. Qué hace y cuándo se niega está en
+[Comandos](/es/sessions/commands#update).
 
 ## Actualiza la app {#update-the-app}
 

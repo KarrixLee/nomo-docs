@@ -135,7 +135,7 @@ icon: "puzzle-piece"
         你想 clone 到哪裡都可以 — script 會自己算出所在位置，所以沒有路徑要查，也沒有東西要手動編輯。它會明確印出自己寫了什麼：
 
         - `~/.config/opencode/plugins/nomo.js` — 一行指回那份 clone 的 stub。
-        - `~/.config/opencode/commands/nomo-*.md` — 那五個指令。
+        - `~/.config/opencode/commands/nomo-*.md` — 那六個指令。
 
         已經為 Claude Code 或 Codex 裝過 Nomo 了嗎？把 script 指向那一份就好，不用再 clone 第二份 — `claude plugin list` 或 `codex plugin list` 會印出它放在哪裡。
 
@@ -160,11 +160,11 @@ icon: "puzzle-piece"
     這一次安裝同時也涵蓋 OpenCode 桌面應用程式：它跑的是 OpenCode 自己的伺服器，讀的是同一個外掛程式資料夾。
 
     <Note>
-      這裡沒有 npm 套件，也沒有市集 — OpenCode 本來就沒有。那個 stub 是重新匯出那份 clone，而不是複製它，所以在 clone 裡執行一次 `git pull` 就是完整的升級。
+      之後要更新，在 OpenCode 裡一個指令就好：`/nomo-update` 會先檢查，再拉取並重新執行這個安裝 script — [它做什麼，以及什麼時候會拒絕](/zh-Hant/sessions/commands#update)。
     </Note>
 
     <Tip>
-      OpenCode 的指令名稱是扁平而且全域的，所以 Nomo 的指令完全不帶前綴：是 `/nomo-pair`，不是 `/nomo-cc:pair` 或 `$nomo-pair`。五個都在[指令](/zh-Hant/sessions/commands)裡。
+      OpenCode 的指令名稱是扁平而且全域的，所以 Nomo 的指令完全不帶前綴：是 `/nomo-pair`，不是 `/nomo-cc:pair` 或 `$nomo-pair`。六個都在[指令](/zh-Hant/sessions/commands)裡。
     </Tip>
 
     到你手機上會不一樣的部分寫在[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)。
@@ -197,6 +197,37 @@ npx nomo-ai
 | `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
 
 它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。
+
+### 更新 {#updating}
+
+同一個指令也負責更新。沒有額外的選項：已經裝了 Nomo 的代理，會顯示成更新而不是安裝。
+
+真正會執行的只有 OpenCode 那一份。另外兩個需要什麼，是**印出來給你自己執行**的 — 前提是真的有東西要執行。
+
+**Claude Code** 一個指令就好：
+
+```bash
+claude plugin update nomo-cc@nomo
+```
+
+Claude Code 確實會自動更新外掛程式，但那是按市集分別設定的，而且這個開關對第三方市集預設是關閉的。Nomo 屬於第三方，所以能讓這邊的安裝動起來的只有這個指令 — 除非你自己把 Nomo 那個市集的自動更新打開：執行 `/plugin`，進入 **Marketplaces**，選中 Nomo 的那個，再選 **Enable auto-update**。
+
+**Codex 通常沒有什麼要執行。** 根本沒有 `codex plugin update` 這個動詞，而更新到底是什麼意思，取決於這個市集當初是怎麼加進來的 — Codex 正是把這件事記在 `~/.codex/config.toml` 的 `source_type` 裡：
+
+- `local` — Codex 直接從那個路徑即時讀取外掛程式。沒有快照要更新，所以在那份 clone 裡拉取更新就是全部的更新，Codex 這邊沒有指令要執行。Codex 內建的市集全都是 local，所以這才是常見情況，而不是特例。
+- `git` — Codex 存著一份快照，更新它就是外掛程式的更新：
+
+  ```bash
+  codex plugin marketplace upgrade <市集名稱>
+  ```
+
+  這個名稱是當初加入這個市集時用的名字，未必是 `nomo` — 它就寫在同一個 `config.toml` 的 `[marketplaces.…]` 區段裡。
+
+安裝工具會讀這個鍵，所以只有真的有指令時才印出 Codex 那一行，沒有的時候什麼都不印。
+
+只印出來而不替你執行是刻意的，不是缺漏。那兩個的安裝都從 `marketplace add` 開始，而一次更新如果默默把你原本指向某個 fork 或本機 clone 的市集改掉，之後每一次更新都會來自你從沒挑過的地方。一個會偷偷改寫外掛程式來源的工具，比一個把指令交給你的工具更糟。
+
+OpenCode 沒有可以交給你的主程式指令，所以它才是真正會執行的那一份 — 也是唯一自備 [`/nomo-update`](/zh-Hant/sessions/commands#update) 的代理。
 
 ## 外掛程式做的事
 
