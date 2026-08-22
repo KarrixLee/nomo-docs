@@ -200,34 +200,35 @@ npx nomo-ai
 
 ### 更新 {#updating}
 
-同一個指令也負責更新。沒有額外的選項：已經裝了 Nomo 的代理，會顯示成更新而不是安裝。
+同一個指令也負責更新：已經裝了 Nomo 的代理，會顯示成更新而不是安裝。真正會執行的只有 OpenCode 那一份，另外兩個只是印出來給你。
 
-真正會執行的只有 OpenCode 那一份。另外兩個需要什麼，是**印出來給你自己執行**的 — 前提是真的有東西要執行。
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
 
-**Claude Code** 一個指令就好：
+    自動更新對第三方市集預設是關閉的，所以安裝不會自己動。要打開：`/plugin` → **Marketplaces** → Nomo 那個 → **Enable auto-update**。
+  </Tab>
 
-```bash
-claude plugin update nomo-cc@nomo
-```
+  <Tab title="Codex" icon="/images/codex.svg">
+    通常沒有什麼要執行。Codex 直接從外掛程式所在路徑即時讀取，所以在那份 clone 裡拉取更新就是全部的更新 — 而且根本沒有 `codex plugin update` 這個動詞。
 
-Claude Code 確實會自動更新外掛程式，但那是按市集分別設定的，而且這個開關對第三方市集預設是關閉的。Nomo 屬於第三方，所以能讓這邊的安裝動起來的只有這個指令 — 除非你自己把 Nomo 那個市集的自動更新打開：執行 `/plugin`，進入 **Marketplaces**，選中 Nomo 的那個，再選 **Enable auto-update**。
+    如果你這個市集是從 git 加入的，那 Codex 存著一份快照，更新它就是更新：
 
-**Codex 通常沒有什麼要執行。** 根本沒有 `codex plugin update` 這個動詞，而更新到底是什麼意思，取決於這個市集當初是怎麼加進來的 — Codex 正是把這件事記在 `~/.codex/config.toml` 的 `source_type` 裡：
+    ```bash
+    codex plugin marketplace upgrade <市集名稱>
+    ```
 
-- `local` — Codex 直接從那個路徑即時讀取外掛程式。沒有快照要更新，所以在那份 clone 裡拉取更新就是全部的更新，Codex 這邊沒有指令要執行。Codex 內建的市集全都是 local，所以這才是常見情況，而不是特例。
-- `git` — Codex 存著一份快照，更新它就是外掛程式的更新：
+    名稱是你當初加入時用的那個，未必是 `nomo`。
+  </Tab>
 
-  ```bash
-  codex plugin marketplace upgrade <市集名稱>
-  ```
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    這一份由安裝工具代勞。在 OpenCode 裡執行 [`/nomo-update`](/zh-Hant/sessions/commands#update) 也一樣。
 
-  這個名稱是當初加入這個市集時用的名字，未必是 `nomo` — 它就寫在同一個 `config.toml` 的 `[marketplaces.…]` 區段裡。
-
-安裝工具會讀這個鍵，所以只有真的有指令時才印出 Codex 那一行，沒有的時候什麼都不印。
-
-只印出來而不替你執行是刻意的，不是缺漏。那兩個的安裝都從 `marketplace add` 開始，而一次更新如果默默把你原本指向某個 fork 或本機 clone 的市集改掉，之後每一次更新都會來自你從沒挑過的地方。一個會偷偷改寫外掛程式來源的工具，比一個把指令交給你的工具更糟。
-
-OpenCode 沒有可以交給你的主程式指令，所以它才是真正會執行的那一份 — 也是唯一自備 [`/nomo-update`](/zh-Hant/sessions/commands#update) 的代理。
+    兩種方式之後都要重新啟動 OpenCode — 外掛程式只在伺服器啟動時匯入一次。
+  </Tab>
+</Tabs>
 
 ## 外掛程式做的事
 

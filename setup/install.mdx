@@ -240,53 +240,43 @@ the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
 
 ### Updating
 
-The same command updates. There's no extra flag: an agent that already has Nomo
-shows up as an update rather than an install.
+The same command updates: an agent that already has Nomo shows up as an update
+rather than an install. Only OpenCode's runs — the other two are printed for you.
 
-Only OpenCode's runs. What the other two need is **printed for you to run
-yourself** — when there's anything to run at all.
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
 
-**Claude Code** takes one command:
+    Auto-update defaults off for third-party marketplaces, so nothing moves an
+    install on its own. To turn it on: `/plugin` → **Marketplaces** → Nomo's →
+    **Enable auto-update**.
+  </Tab>
 
-```bash
-claude plugin update nomo-cc@nomo
-```
+  <Tab title="Codex" icon="/images/codex.svg">
+    Usually nothing to run. Codex reads the plugin live from its path, so
+    pulling that checkout is the whole update — and there is no
+    `codex plugin update` verb.
 
-Claude Code does auto-update plugins, but per marketplace, and that flag
-defaults off for third-party marketplaces. Nomo is third-party, so this command
-is the only thing that moves an install here — unless you turn auto-update on
-for Nomo's marketplace yourself: run `/plugin`, choose **Marketplaces**, pick
-Nomo's, then **Enable auto-update**.
+    If you added the marketplace from git, Codex holds a snapshot instead, and
+    refreshing it is the update:
 
-**Codex usually has nothing to run.** There is no `codex plugin update` verb at
-all, and what an update even means depends on how the marketplace was added —
-which Codex records as `source_type` in `~/.codex/config.toml`:
+    ```bash
+    codex plugin marketplace upgrade <marketplace-name>
+    ```
 
-- `local` — Codex reads the plugin live from that path. There's no snapshot to
-  refresh, so pulling that checkout is the whole update and there is no Codex
-  command to run. Every marketplace Codex ships with is local, which makes this
-  the common case rather than the corner one.
-- `git` — Codex holds a snapshot, and refreshing it is the update:
+    The name is whatever you added it as, not necessarily `nomo`.
+  </Tab>
 
-  ```bash
-  codex plugin marketplace upgrade <marketplace-name>
-  ```
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    The installer does it. So does
+    [`/nomo-update`](/sessions/commands#update) from inside OpenCode.
 
-  The name is whatever the marketplace was added as, not necessarily `nomo` —
-  it's the one in the `[marketplaces.…]` section of that same `config.toml`.
-
-The installer reads that key, so it prints the Codex command only when there is
-one, and prints nothing when there isn't.
-
-Printing rather than running is deliberate, not a gap. Installing on those two
-begins with `marketplace add`, and an update that quietly repointed a
-marketplace you had aimed at a fork or a local checkout would send every later
-update somewhere you never chose. A tool that rewrites where your plugin comes
-from is worse than one that hands you the command.
-
-OpenCode has no host command to hand you, which is why it's the leg that runs —
-and why it's the one agent with a
-[`/nomo-update`](/sessions/commands#update) of its own.
+    Either way, restart OpenCode afterwards — plugins are imported once at
+    server start.
+  </Tab>
+</Tabs>
 
 ## What the plugin does
 

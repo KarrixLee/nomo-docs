@@ -201,34 +201,35 @@ npx nomo-ai
 
 ### 更新 {#updating}
 
-同一条命令也负责更新。没有额外选项：已经装了 Nomo 的智能体，会显示成更新而不是安装。
+同一条命令也负责更新：已经装了 Nomo 的智能体，会显示成更新而不是安装。真正会跑的只有 OpenCode 那一份，另外两个只是打印出来给你。
 
-真正会跑的只有 OpenCode 那一份。另外两个需要什么，是**打印出来给你自己执行**的——前提是真有东西要执行。
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
 
-**Claude Code** 一条命令就够：
+    自动更新对第三方插件市场默认是关闭的，所以安装不会自己动。要打开：`/plugin` → **Marketplaces** → Nomo 那个 → **Enable auto-update**。
+  </Tab>
 
-```bash
-claude plugin update nomo-cc@nomo
-```
+  <Tab title="Codex" icon="/images/codex.svg">
+    通常没有什么要执行。Codex 直接从插件所在路径实时读取，所以在那份克隆目录里拉取更新就是全部的更新——而且根本不存在 `codex plugin update` 这个动词。
 
-Claude Code 确实会自动更新插件，但那是按插件市场分别设置的，而且这个开关对第三方插件市场默认是关闭的。Nomo 属于第三方，所以能让这边的安装动起来的只有这条命令——除非你自己把 Nomo 那个插件市场的自动更新打开：运行 `/plugin`，进入 **Marketplaces**，选中 Nomo 的那个，再选 **Enable auto-update**。
+    如果你这个插件市场是从 git 添加的，那 Codex 存着一份快照，刷新它就是更新：
 
-**Codex 通常没有什么要执行。** 根本不存在 `codex plugin update` 这个动词，而更新到底意味着什么，取决于这个插件市场当初是怎么添加的——Codex 正是把这件事记在 `~/.codex/config.toml` 的 `source_type` 里：
+    ```bash
+    codex plugin marketplace upgrade <插件市场名称>
+    ```
 
-- `local`——Codex 直接从那个路径实时读取插件。没有快照需要刷新，所以在那份克隆目录里拉取更新就是全部的更新，Codex 这边没有命令要执行。Codex 自带的插件市场全都是 local，所以这才是常见情况，而不是特例。
-- `git`——Codex 存着一份快照，刷新它就是插件的更新：
+    名称是你当初添加时用的那个，未必是 `nomo`。
+  </Tab>
 
-  ```bash
-  codex plugin marketplace upgrade <插件市场名称>
-  ```
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    这一份由安装工具代劳。在 OpenCode 里运行 [`/nomo-update`](/zh-Hans/sessions/commands#update) 也一样。
 
-  这个名称是当初添加这个插件市场时用的名字，未必是 `nomo`——它就写在同一个 `config.toml` 的 `[marketplaces.…]` 段落里。
-
-安装工具会读这个键，所以只有确实有命令时才打印 Codex 那一条，没有的时候什么都不打印。
-
-只打印而不代你执行是有意为之，不是缺漏。那两个的安装都以 `marketplace add` 开头，而一次更新要是悄悄把你原本指向某个 fork 或本地克隆的插件市场改掉，之后每一次更新都会来自你从没选过的地方。一个会偷偷改写插件来源的工具，比一个把命令交给你的工具更糟。
-
-OpenCode 没有可交给你的宿主命令，所以它才是真正会跑的那一份——也是唯一自带 [`/nomo-update`](/zh-Hans/sessions/commands#update) 的智能体。
+    两种方式之后都要重启 OpenCode——插件只在服务器启动时导入一次。
+  </Tab>
+</Tabs>
 
 ## 插件做了什么
 
