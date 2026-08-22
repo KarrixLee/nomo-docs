@@ -1,90 +1,74 @@
 ---
 title: "故障排查"
-description: "解不开的会话、失联的电脑、卡住的灵动岛——每种状态代表什么，以及该怎么办。"
+description: "先运行状态命令——它会直接说出问题所在，并打印出对应的修复命令。然后：哪一行回答哪个症状，以及状态命令看不到的少数几件事。"
 icon: "wrench"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
 ---
 
-这里看着像 bug 的东西，多半是 Nomo 在老实承认自己不知道某件事。这一页讲的是每一种状态实际代表什么，按你会去哪里解决来分组。
+这一页的活，现在大半由状态命令替你干了。它会把整台电脑读一遍，用大白话说出哪里不对，并打印出能修好它的那条命令。先运行它。
 
-如果同时有好几处看着不对，直接跳到[先运行状态命令](#start-with-status)——它通常一屏就能说清问题在哪。
+这里剩下的是一张对照表：你带着的症状、回答它的那一行，以及状态命令确实看不到的那几件事。
 
-## 在手机上解决 {#fix-it-on-your-phone}
+## 先运行状态命令 {#start-with-status}
 
-下面这些都不用去 Mac 上折腾。
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
 
-<AccordionGroup>
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
 
-<Accordion title="灵动岛上什么都没有" icon="circle-dot">
-  几乎总是本来就该这样：会话是**需要你主动开启**的。打开那台电脑，找到会话，打开它的开关——或者在[设置](/zh-Hans/sessions/settings#dynamic-island)里打开**自动加入新会话**。
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+</CodeGroup>
 
-  如果开关是开的却还是什么都不显示，检查 iOS“设置”里 Nomo 的**实时活动**是否已启用。然后看看是不是另一个会话占着灵动岛：你的手机[同时只显示一个](/zh-Hans/sessions/island#which-session-it-picks)，而一个正在等你的会话排在一个还在干活的会话前面。
-</Accordion>
+它报告的是**这台电脑**，而不只是你当前的会话：配对、投递、审批，然后是你所在的这个智能体，以及它找到的其他每一个。`!` 是真正的问题，它下面的 `→` 就是该怎么办，并且按你发起询问的那个智能体的命令写法写出来。多数人看到这里就够了。
 
-<Accordion title="会话的灵动岛开关变灰、关不掉" icon="toggle-off">
-  那个会话正在请求权限。一条请求无论开关怎么设都会到达你的灵动岛——否则，一条在你手机揣在兜里时到来的请求，就会变成一条你没法答复的请求，而那正是这个功能存在的全部意义。所以在请求等待期间，开关显示为**开启**，因为实际发生的就是这件事。
+每一行分别是什么意思，以及一台健康的机器和一台出问题的机器并排长什么样，都在[命令](/zh-Hans/sessions/commands#status)里。
 
-  **为什么你关不掉：**关掉它也不会有任何效果。请求照样会留在灵动岛上——那是它唯一能找到你的方式——所以开关一秒之后就会在你手指底下弹回去。与其给你一个不听话的控件，Nomo 宁可先把它按住不动，等到能重新听你的时候再说。
+<Note>
+  状态命令从不发起网络请求。它能告诉你这台电脑上一次发出事件是什么时候——但不知道你的手机有没有收到，也不知道是不是 worker 或者你的 Wi-Fi 今天状态不好。
+</Note>
 
-  你选过的东西没有被覆盖。答复这条请求，开关就会立刻回到关闭，也就是你原来放它的位置——如果没人答复，一小时内也会回去。之后它又归你随意设置。
-
-  关掉**远程审批**（这也是默认值）就完全不会有这一出：你的开关永远不会被覆盖。见[在手机上回答](/zh-Hans/sessions/approvals)。
-</Accordion>
-
-<Accordion title="灵动岛卡住，或者显示“已断开？”" icon="wifi">
-  灵动岛显示的是你 Mac 发来的最后一条消息。静默十分钟之后，它会褪成灰色并显示 `已断开？`，而不是继续暗示会话还活着。
-
-  Mac 睡了、掉了网、终端被关掉，都会落到这里。打开 Nomo App 强制刷新——陈旧的状态会立刻自我纠正。如果没有，那就是 Mac 确实没在上报：运行下面那条状态命令。
-</Accordion>
-
-<Accordion title="请求到了手机，却没有可点的东西" icon="hand">
-  看**颜色**，别看图标。黄色和紫色画的是同一只举起的手。黄色（`需要帮助`）表示智能体为某件只有终端能处理的事停了下来。紫色（`需要权限`）才是能答复的那个。
-
-  如果一直是黄色、从来没有紫色，多半是**在 iPhone 上回答**没开——它默认就是关的。见[在手机上回答](/zh-Hans/sessions/approvals)。
-</Accordion>
-
-</AccordionGroup>
-
-## 在电脑上解决 {#fix-it-on-your-computer}
-
-你的手机没问题。下面这些都要在 Mac 上的一个会话里解决。
+## 哪一行回答你的问题 {#which-row-answers-it}
 
 <AccordionGroup>
 
-<Accordion title="详情页提示远程审批已暂停" icon="pause">
-  有人在那台电脑上运行过暂停命令。在那台机器上的一个会话里恢复它：
+<Accordion title="这台电脑的任何东西都到不了手机" icon="laptop">
+  看 **Phone**。`NOT PAIRED` 就是全部答案，它下面的箭头会打印出配对命令——[配对](/zh-Hans/setup/pairing)里有完整流程。
 
-  <CodeGroup>
-  ```bash Claude Code icon="/images/claude-code.svg"
-  /nomo-cc:approvals on
-  ```
-
-  ```bash Codex icon="/images/codex.svg"
-  $nomo-approvals on
-  ```
-
-  ```bash OpenCode icon="/images/opencode.svg"
-  /nomo-approvals on
-  ```
-  </CodeGroup>
-
-  一台电脑一个开关，所有智能体共用——[详情](/zh-Hans/sessions/commands#approvals)。
+  已经配对了却还是什么都没有？接着往下看 **Delivery**。
 </Accordion>
 
-<Accordion title="更新之后 Codex 不再发来请求" icon="code">
-  Codex 的 hook 装好之后**在被信任之前是不生效的**，而一次新增了 hook 的插件更新会重新开启那次审核。在 Codex 里运行 `/hooks`，信任 Nomo 的条目。在你信任之前，审批会退回终端，而且不会有任何报错。
+<Accordion title="会话在手机上，但不再更新了" icon="wifi">
+  **Delivery**说的是这台电脑上一次成功发出东西是什么时候。如果时间很近，那沉默就出在手机这一侧——打开 Nomo App，它会强制刷新，陈旧的卡片会立刻自我纠正。
 
-  更多内容见[搭配 Codex 使用](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
+  一张褪成灰色、写着 `已断开？` 的卡片，代表整整十分钟什么都没听到。Mac 睡了、掉了网、终端被关掉，从手机上看起来一模一样。
+
+  如果确实有会话在跑，Delivery 却很旧或者是 `never`，接着看 **Hooks**。
 </Accordion>
 
-<Accordion title="按住后弹出的菜单里少了选项" icon="ellipsis">
-  **始终允许**、**拒绝并附注…**和**回答…**都需要插件 **2.0.0**——在手机上答复正是 2.0 加进来的。Nomo 宁可把 Mac 兑现不了的选项藏起来，也不会给你一个按了没用的按钮。
+<Accordion title="手机从来不来问我要不要批准" icon="hand">
+  看 **Approvals**。`PAUSED` 表示有人在这台电脑上运行过暂停命令——可能是好几个月以前，而这正是过去这件事根本无从发现的原因。在那台机器上的一个会话里恢复它，请求就回来了：[approvals](/zh-Hans/sessions/commands#approvals)。
 
-  详情页顶部的 `插件有可用更新` 横幅说的就是这件事。用你当初安装时的那条命令更新即可。
+  如果它显示 `on`，那关着的开关就在你手机上。**在 iPhone 上回答**默认是关的——见[设置](/zh-Hans/sessions/settings#remote-approvals)。判断的依据是颜色：每一只举起的手都是黄色（`需要帮助`，只有终端能处理），没有一只是紫色（`需要权限`，那才是能答复的）。见[在手机上回答](/zh-Hans/sessions/approvals)。
+</Accordion>
+
+<Accordion title="我开了一个会话，它一直没出现" icon="play">
+  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode。
+
+  Codex 需要你明确信任 hook，而一次插件更新会重新开启那次审核，所以在那边，更新之后运行 `/hooks` 通常就是答案——[原因](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
+</Accordion>
+
+<Accordion title="偏偏 OpenCode 什么都不显示" icon="rotate">
+  **Plugin** 那一行显示已安装却毫无活动，通常意味着插件装上时 OpenCode 已经在运行了。OpenCode 只在服务器启动时加载一次插件，所以退出再重开就是全部的修复——只重新加载 TUI 是不够的。这也是[重置前需要关闭 OpenCode](/zh-Hans/sessions/opencode#reset-needs-opencode-closed) 的同一个原因。
 </Accordion>
 
 <Accordion title="会话行看着陈旧或重复" icon="broom">
-  不用解除配对就能清掉失效的：
+  **Sessions** 统计的是这台电脑仍然认为还活着的会话。如果比你实际有的多，不用解除配对就能清掉失效的：
 
   <CodeGroup>
   ```bash Claude Code icon="/images/claude-code.svg"
@@ -100,7 +84,35 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
   ```
   </CodeGroup>
 
-  活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。OpenCode 的会话行属于 OpenCode 的服务器，所以要是有一行清不掉，先退出 OpenCode——[原因](/zh-Hans/sessions/opencode#reset-needs-opencode-closed)。
+  活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。OpenCode 的会话行属于 OpenCode 的服务器，所以要是有一行清不掉，先退出 OpenCode。
+</Accordion>
+
+</AccordionGroup>
+
+## 状态命令看不到的部分 {#what-status-cant-see}
+
+下面这三件事，你的 Mac 都在好好干活。答案在手机上。
+
+<AccordionGroup>
+
+<Accordion title="灵动岛上什么都没有" icon="circle-dot">
+  几乎总是本来就该这样：会话是**需要你主动开启**的。打开那台电脑，找到会话，打开它的开关——或者在[设置](/zh-Hans/sessions/settings#dynamic-island)里打开**自动加入新会话**。
+
+  如果开关是开的却还是什么都不显示，检查 iOS“设置”里 Nomo 的**实时活动**是否已启用。然后看看是不是另一个会话占着灵动岛：你的手机[同时只显示一个](/zh-Hans/sessions/island#which-session-it-picks)，而一个正在等你的会话排在一个还在干活的会话前面。
+</Accordion>
+
+<Accordion title="会话的灵动岛开关变灰、关不掉" icon="toggle-off">
+  那个会话正在请求权限。一条请求无论开关怎么设都会到达你的灵动岛——否则，一条在你手机揣在兜里时到来的请求，就会变成一条你没法答复的请求，而那正是这个功能存在的全部意义。所以在请求等待期间，开关显示为**开启**，因为实际发生的就是这件事。
+
+  **为什么你关不掉：**关掉它也不会有任何效果。请求照样会留在灵动岛上——那是它唯一能找到你的方式——所以开关一秒之后就会在你手指底下弹回去。与其给你一个不听话的控件，Nomo 宁可先把它按住不动，等到能重新听你的时候再说。
+
+  你选过的东西没有被覆盖。答复这条请求，开关就会立刻回到关闭，也就是你原来放它的位置——如果没人答复，一小时内也会回去。之后它又归你随意设置。
+</Accordion>
+
+<Accordion title="按住后弹出的菜单里少了选项" icon="ellipsis">
+  **始终允许**、**拒绝并附注…**和**回答…**都需要插件 **2.0.0**——在手机上答复正是 2.0 加进来的。Nomo 宁可把 Mac 兑现不了的选项藏起来，也不会给你一个按了没用的按钮。状态命令的第一行就写着插件版本，去那里看即可。
+
+  详情页顶部的 `插件有可用更新` 横幅说的就是这件事。用你当初安装时的那条命令更新即可。
 </Accordion>
 
 </AccordionGroup>
@@ -129,14 +141,6 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
 
 </AccordionGroup>
 
-## 先运行状态命令 {#start-with-status}
-
-如果同时有好几处看着不对，先在 Mac 上运行 [`/nomo-cc:status`](/zh-Hans/sessions/commands#status)，别的都往后放。一屏就能告诉你这台机器是否已配对、它的看门狗是否还活着，以及事件有没有真的送到你手机——这通常足以说清哪里坏了。
-
-确实有会话在跑却显示 `Last event sent: never`，说明什么都没被接住。重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载。
-
-每条命令以及它的输出各是什么意思，都在[命令](/zh-Hans/sessions/commands)里。
-
 ## 反馈问题 {#still-wrong-send-it-over}
 
 在[设置](/zh-Hans/sessions/settings#debug)里打开**会话诊断**，然后展开那个出问题的会话。它下面会出现一行 Nomo 自己的内部状态，大概长这样：
@@ -156,7 +160,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
   </Card>
 </CardGroup>
 
-把出问题那台电脑上 [`/nomo-cc:status`](/zh-Hans/sessions/commands#status) 的输出一并发来会更好。
+把出问题那台电脑上 [`/nomo-cc:status`](/zh-Hans/sessions/commands#status) 的输出一并发来会更好——第一行的版本号已经是一半的诊断了。
 
 ## 功能建议 {#nothings-broken--you-just-want-something}
 
@@ -186,6 +190,54 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "这台电脑的任何东西都到不了手机",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "运行状态命令，看 Phone 这一行。NOT PAIRED 就是全部答案，它下面的箭头会按你所在智能体的写法打印出配对命令。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "会话在手机上，但不再更新了",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Delivery 这一行说的是这台电脑上一次成功发出东西是什么时候。如果时间很近，那沉默就出在手机这一侧——打开 Nomo App，它会强制刷新。一张褪成灰色、写着“已断开？”的卡片，代表整整十分钟什么都没听到。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "手机从来不来问我要不要批准",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看 Approvals 这一行。PAUSED 表示有人在这台电脑上运行过暂停命令，可能是好几个月以前。在那台机器上的一个会话里恢复它，请求就回来了。如果它显示 on，那关着的开关就是 App 设置里的“在 iPhone 上回答”，它默认是关的。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我开了一个会话，它一直没出现",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "看 Hooks 这一行——在 OpenCode 里叫 Plugin，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 /hooks；重启 OpenCode。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "偏偏 OpenCode 什么都不显示",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Plugin 那一行显示已安装却毫无活动，通常意味着插件装上时 OpenCode 已经在运行了。OpenCode 只在服务器启动时加载一次插件，所以退出再重开就是全部的修复——只重新加载 TUI 是不够的。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "会话行看着陈旧或重复",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sessions 这一行统计的是这台电脑仍然认为还活着的会话。如果比你实际有的多，运行重置命令，不用解除配对就能清掉失效的。活跃的会话、你的配对和密钥都不会被动。"
+      }
+    },
+    {
+      "@type": "Question",
       "name": "灵动岛上什么都没有",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -202,50 +254,10 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
     },
     {
       "@type": "Question",
-      "name": "灵动岛卡住，或者显示“已断开？”",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "灵动岛显示的是你 Mac 发来的最后一条消息。静默十分钟之后，它会褪成灰色并显示 已断开？，而不是继续暗示会话还活着。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "请求到了手机，却没有可点的东西",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "看颜色，别看图标。黄色和紫色画的是同一只举起的手。黄色（需要帮助）表示智能体为某件只有终端能处理的事停了下来。紫色（需要权限）才是能答复的那个。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "详情页提示远程审批已暂停",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "有人在那台电脑上运行过暂停命令。在那台机器上的一个会话里恢复它："
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "更新之后 Codex 不再发来请求",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Codex 的 hook 装好之后在被信任之前是不生效的，而一次新增了 hook 的插件更新会重新开启那次审核。在 Codex 里运行 /hooks，信任 Nomo 的条目。在你信任之前，审批会退回终端，而且不会有任何报错。"
-      }
-    },
-    {
-      "@type": "Question",
       "name": "按住后弹出的菜单里少了选项",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "始终允许、拒绝并附注…和回答…都需要插件 2.0.0——在手机上答复正是 2.0 加进来的。Nomo 宁可把 Mac 兑现不了的选项藏起来，也不会给你一个按了没用的按钮。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "会话行看着陈旧或重复",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "不用解除配对就能清掉失效的："
+        "text": "始终允许、拒绝并附注…和回答…都需要插件 2.0.0——在手机上答复正是 2.0 加进来的。Nomo 宁可把 Mac 兑现不了的选项藏起来，也不会给你一个按了没用的按钮。状态命令的第一行就写着插件版本。"
       }
     },
     {

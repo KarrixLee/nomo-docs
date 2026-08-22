@@ -73,52 +73,90 @@ $nomo-status
 ```
 </CodeGroup>
 
-El primero que hay que ejecutar cuando algo se ve raro.
+El primero que hay que ejecutar cuando algo se ve raro. Una máquina sana son
+cuatro líneas tranquilas: no hay marcas de visto, porque que todo esté bien es
+justamente la ausencia de algo que decir.
 
 ```
-Paired: yes (pairing 3f9a21c8…)
-Worker: https://api.nomo.gg
-Watchdog: running (pid 48213)
-Last event sent: 8s ago
-Tracked sessions: 3
-Codex plugin: installed, trusted (7/7)
-Codex Plan answers: bridge available (shared app-server socket accepted a connection)
+Nomo 2.1.17 · Claude Code
+
+Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
+Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Approvals     on — permission prompts are held and sent to your phone
+
+Claude Code — you are here
+  Hooks       firing · last 8s ago
+  Sessions    1 of 4 tracked here
 ```
 
-Línea a línea:
+Las tres primeras filas describen el **ordenador**, y se leen igual desde
+cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
+`— you are here`.
 
-<ResponseField name="Paired">
-  `no` significa que esta máquina nunca llegó a conectarse. `pairing started,
-  waiting for phone scan` significa que abriste una página de vinculación y nunca
-  la escaneaste.
+<ResponseField name="Phone">
+  Si este ordenador está vinculado siquiera, además del worker con el que habla y
+  la vinculación que guarda. `NOT PAIRED` significa que nada de aquí llega a la
+  app, y la flecha de debajo imprime el comando de [vinculación](#pair) del
+  agente en el que estás.
 </ResponseField>
 
-<ResponseField name="Watchdog">
-  `not running` con una sesión activa no pasa nada: el proceso supervisor arranca
-  solo en la siguiente.
+<ResponseField name="Delivery">
+  Cuándo salió realmente el último evento de este ordenador, y si el proceso
+  supervisor está en marcha. Que el supervisor no esté corriendo no pasa nada por
+  sí solo: arranca en la siguiente sesión. Que no se haya enviado nada (`never`)
+  con una sesión realmente en marcha sí es un problema.
 </ResponseField>
 
-<ResponseField name="Last event sent">
-  `never` con una sesión realmente en marcha significa que no se está recogiendo
-  nada. Reinicia Claude Code para que se carguen sus hooks; en Codex, ejecuta
+<ResponseField name="Approvals">
+  `on` significa que las solicitudes de permiso se retienen aquí y se envían a tu
+  teléfono. `PAUSED` significa que no: van al terminal, y siguen así hasta que
+  alguien las reanude, por muchos meses que pasen. Si tu teléfono ha dejado de
+  preguntarte nada, esta fila es la explicación entera — ve
+  [Pausar las aprobaciones](/es/sessions/approvals#pausing-it).
+</ResponseField>
+
+<ResponseField name="Hooks">
+  Si tu agente le está pasando algo a Nomo, y cuánto hace de la última vez.
+  OpenCode no tiene hooks, así que allí la fila se llama `Plugin`. ¿No se dispara
+  nada? Reinicia Claude Code para que se carguen sus hooks; en Codex, ejecuta
   `/hooks`; en OpenCode, reinícialo para que se cargue el plugin.
 </ResponseField>
 
-<ResponseField name="Codex plugin">
-  `installed, hooks NOT trusted (run /hooks in Codex)` es la que pilla a la
-  gente — ve [Usar Codex](/es/sessions/codex#hooks-have-to-be-trusted).
+<ResponseField name="Sessions">
+  Ahora se cuentan por agente: `1 of 4 tracked here` significa que este ordenador
+  sigue cuatro sesiones y una de ellas es la tuya. Para las filas que deberían
+  haber muerto está [reset](#reset).
 </ResponseField>
 
-<ResponseField name="Codex Plan answers">
-  `bridge available` significa que las preguntas llegan a tu teléfono con sus
-  opciones. `status-only` significa que no —
-  [por qué](/es/sessions/codex#questions-in-the-cli-and-the-desktop-app).
-</ResponseField>
+Los problemas llevan dos marcas y nada más: `!` es el problema y `→` es qué hacer
+al respecto, escrito en el dialecto de comandos del agente desde el que
+preguntaste. Cada uno de los demás agentes del ordenador tiene una línea
+condensada bajo **Also on this computer** — y cuando el roto es *uno de esos*, lo
+dice aquí en lugar de esperar a que vayas a mirar:
 
-También avisa de las dos configuraciones que duplican en silencio el reporte de
-cada evento: hooks de Codex sobrantes de antes del plugin nativo, y Codex
-descubriendo por su cuenta el plugin de Claude Code junto al suyo. Las dos
-nombran el archivo que hay que editar.
+```
+Nomo 2.1.17 · Claude Code
+
+Phone         NOT PAIRED — nothing from this computer reaches the app
+              → run /nomo-cc:pair
+
+Claude Code — you are here
+  Hooks       firing · last 6s ago
+  Sessions    1 of 3 tracked here
+
+Also on this computer
+  Codex       firing · last 12h ago · 2 of 3 tracked here
+              ! Also runs the Claude Code plugin's hooks on every Codex event — double the work, no benefit.
+              → in Codex run /hooks and untrust the `nomo-cc@nomo` entries
+              → full detail: run $nomo-status inside Codex
+  OpenCode    installed · no activity yet
+```
+
+Las filas que no tienen nada que decir se omiten: un ordenador sin vincular no
+tiene entrega ni aprobaciones que reportar. El problema de otro agente se explica
+aquí entero y después te remite al comando de estado de ese agente para el resto
+del detalle. Y la primera línea lleva la versión del plugin: cítala si abres una
+incidencia.
 
 ## approvals {#approvals}
 

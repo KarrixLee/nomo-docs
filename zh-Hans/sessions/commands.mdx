@@ -62,41 +62,63 @@ $nomo-status
 ```
 </CodeGroup>
 
-一旦哪里看着不对，先运行它。
+一旦哪里看着不对，先运行它。一台健康的机器只有寥寥几行平静的输出——这里没有对勾，因为一切正常本身就是无话可说：
 
 ```
-Paired: yes (pairing 3f9a21c8…)
-Worker: https://api.nomo.gg
-Watchdog: running (pid 48213)
-Last event sent: 8s ago
-Tracked sessions: 3
-Codex plugin: installed, trusted (7/7)
-Codex Plan answers: bridge available (shared app-server socket accepted a connection)
+Nomo 2.1.17 · Claude Code
+
+Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
+Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Approvals     on — permission prompts are held and sent to your phone
+
+Claude Code — you are here
+  Hooks       firing · last 8s ago
+  Sessions    1 of 4 tracked here
 ```
 
-逐行来看：
+最上面三行描述的是**这台电脑**，无论你从哪个智能体运行，它们都一样。再往下才是你当前所在的那个智能体，用 `— you are here` 标出来。
 
-<ResponseField name="Paired">
-  `no` 表示这台机器从来没连上过。`pairing started, waiting for phone scan` 表示你打开过配对页面，但一直没扫。
+<ResponseField name="Phone">
+  这台电脑到底有没有配对，以及它连的 worker 和它持有的配对。`NOT PAIRED` 表示这里的任何东西都到不了 App，下面那个箭头会按你所在智能体的写法打印出 [pair](#pair) 命令。
 </ResponseField>
 
-<ResponseField name="Watchdog">
-  会话正跑着却显示 `not running` 也没关系——它会在下一个会话时自己启动。
+<ResponseField name="Delivery">
+  上一次真正有事件离开这台电脑是什么时候，以及看门狗在不在。看门狗没跑本身没关系——下一个会话开始时它会自己起来。但确实有会话在跑却显示 `never`，那就不对了。
 </ResponseField>
 
-<ResponseField name="Last event sent">
-  确实有会话在跑却显示 `never`，说明什么都没被接住。重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载。
+<ResponseField name="Approvals">
+  `on` 表示权限请求会被拦在这里并发到你手机。`PAUSED` 表示不会——它们直接进终端，而且会一直这样，直到有人恢复它，哪怕是几个月以后。如果你的手机不再问你任何事，这一行就是全部答案：见[暂停远程审批](/zh-Hans/sessions/approvals#pausing-it)。
 </ResponseField>
 
-<ResponseField name="Codex plugin">
-  `installed, hooks NOT trusted (run /hooks in Codex)` 是最容易绊倒人的一条——见[搭配 Codex 使用](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
+<ResponseField name="Hooks">
+  你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载。
 </ResponseField>
 
-<ResponseField name="Codex Plan answers">
-  `bridge available` 表示问题会连同选项一起到达你的手机。`status-only` 表示不会——[原因](/zh-Hans/sessions/codex#questions-in-the-cli-and-the-desktop-app)。
+<ResponseField name="Sessions">
+  现在是按智能体分别计数的：`1 of 4 tracked here` 表示这台电脑正在跟踪四个会话，其中一个是你的。那些本该消失却还在的行，正是 [reset](#reset) 要处理的。
 </ResponseField>
 
-它还会对两种会让每个事件被悄悄上报两遍的配置发出警告：原生插件之前遗留下来的 Codex hook，以及 Codex 在自己的插件之外又自动发现了 Claude Code 的插件。两种情况它都会指明该改哪个文件。
+有问题时只会多出两个记号，别的什么都没有：`!` 是问题本身，`→` 是该怎么办，并且按你所在智能体的命令写法给出。这台电脑上其他每个智能体各占一行浓缩信息，放在 **Also on this computer** 下面——而当出问题的是*那些*智能体之一时，它也会在这里直接说出来，不必等你自己过去看：
+
+```
+Nomo 2.1.17 · Claude Code
+
+Phone         NOT PAIRED — nothing from this computer reaches the app
+              → run /nomo-cc:pair
+
+Claude Code — you are here
+  Hooks       firing · last 6s ago
+  Sessions    1 of 3 tracked here
+
+Also on this computer
+  Codex       firing · last 12h ago · 2 of 3 tracked here
+              ! Also runs the Claude Code plugin's hooks on every Codex event — double the work, no benefit.
+              → in Codex run /hooks and untrust the `nomo-cc@nomo` entries
+              → full detail: run $nomo-status inside Codex
+  OpenCode    installed · no activity yet
+```
+
+无话可说的行会被略去——一台没配对的电脑，没有什么投递和审批可报。别的智能体的问题会在这里完整写出来，剩下的细节再指向那个智能体自己的状态命令。第一行还带着插件版本：反馈问题时请把它一并贴上。
 
 ## approvals {#approvals}
 

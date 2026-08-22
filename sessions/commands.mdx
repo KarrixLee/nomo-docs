@@ -73,49 +73,88 @@ $nomo-status
 ```
 </CodeGroup>
 
-The one to run first when anything looks wrong.
+The one to run first when anything looks wrong. A healthy machine is a handful
+of calm lines — there are no checkmarks, because everything being fine is the
+absence of anything to say:
 
 ```
-Paired: yes (pairing 3f9a21c8…)
-Worker: https://api.nomo.gg
-Watchdog: running (pid 48213)
-Last event sent: 8s ago
-Tracked sessions: 3
-Codex plugin: installed, trusted (7/7)
-Codex Plan answers: bridge available (shared app-server socket accepted a connection)
+Nomo 2.1.17 · Claude Code
+
+Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
+Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Approvals     on — permission prompts are held and sent to your phone
+
+Claude Code — you are here
+  Hooks       firing · last 8s ago
+  Sessions    1 of 4 tracked here
 ```
 
-Line by line:
+The top three rows describe the **computer**, and read the same whichever agent
+you asked from. Below them comes the agent you're actually in, marked `— you are
+here`.
 
-<ResponseField name="Paired">
-  `no` means this machine was never connected. `pairing started, waiting for
-  phone scan` means you opened a pairing page and never scanned it.
+<ResponseField name="Phone">
+  Whether this computer is paired at all, plus the worker it talks to and the
+  pairing it holds. `NOT PAIRED` means nothing from here reaches the app, and
+  the arrow underneath prints the [pair](#pair) command for the agent you're
+  standing in.
 </ResponseField>
 
-<ResponseField name="Watchdog">
-  `not running` on an active session is fine — it starts itself on the next one.
+<ResponseField name="Delivery">
+  When an event last actually left this computer, and whether the watchdog is
+  up. A watchdog that isn't running is fine on its own — it starts itself on the
+  next session. `never` sent, with a session genuinely running, is not fine.
 </ResponseField>
 
-<ResponseField name="Last event sent">
-  `never` with a session actually running means nothing is being picked up.
-  Restart Claude Code so its hooks load; for Codex, run `/hooks`; for OpenCode,
-  restart it so the plugin loads.
+<ResponseField name="Approvals">
+  `on` means permission prompts are held here and sent to your phone. `PAUSED`
+  means they aren't — they go to the terminal instead, and stay that way until
+  someone resumes them, however many months later. If your phone has stopped
+  asking you anything, this row is the entire explanation: see [Pausing
+  it](/sessions/approvals#pausing-it).
 </ResponseField>
 
-<ResponseField name="Codex plugin">
-  `installed, hooks NOT trusted (run /hooks in Codex)` is the one that catches
-  people — see [Using Codex](/sessions/codex#hooks-have-to-be-trusted).
+<ResponseField name="Hooks">
+  Whether your agent is feeding Nomo, and how long ago it last did. OpenCode has
+  no hooks, so there the row is called `Plugin` instead. Nothing firing? Restart
+  Claude Code so its hooks load; in Codex run `/hooks`; in OpenCode restart it so
+  the plugin loads.
 </ResponseField>
 
-<ResponseField name="Codex Plan answers">
-  `bridge available` means questions reach your phone with their options.
-  `status-only` means they don't —
-  [why](/sessions/codex#questions-in-the-cli-and-the-desktop-app).
+<ResponseField name="Sessions">
+  Counted per agent now: `1 of 4 tracked here` means this computer is tracking
+  four sessions and one of them is yours. Rows that should have died are what
+  [reset](#reset) is for.
 </ResponseField>
 
-It also warns about the two setups that silently double-report every event:
-leftover Codex hooks from before the native plugin, and Codex auto-discovering
-the Claude Code plugin alongside its own. Both name the file to edit.
+Problems carry two marks and nothing else: `!` is the problem, `→` is what to do
+about it, written in the command dialect of the agent you asked from. Every
+other agent on the computer gets one condensed line under **Also on this
+computer** — and when one of *those* is broken, it says so here rather than
+waiting for you to go and look:
+
+```
+Nomo 2.1.17 · Claude Code
+
+Phone         NOT PAIRED — nothing from this computer reaches the app
+              → run /nomo-cc:pair
+
+Claude Code — you are here
+  Hooks       firing · last 6s ago
+  Sessions    1 of 3 tracked here
+
+Also on this computer
+  Codex       firing · last 12h ago · 2 of 3 tracked here
+              ! Also runs the Claude Code plugin's hooks on every Codex event — double the work, no benefit.
+              → in Codex run /hooks and untrust the `nomo-cc@nomo` entries
+              → full detail: run $nomo-status inside Codex
+  OpenCode    installed · no activity yet
+```
+
+Rows with nothing to say are left out — an unpaired computer has no delivery or
+approvals to report. Another agent's problem is spelled out here in full, then
+pointed at that agent's own status command for the rest of the detail. And the
+first line carries the plugin version: quote it if you file a bug.
 
 ## approvals
 

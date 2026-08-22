@@ -62,42 +62,63 @@ $nomo-status
 ```
 </CodeGroup>
 
-何かおかしいと思ったら、まず実行するコマンドです。
+何かおかしいと思ったら、まず最初に実行するコマンドです。正常なマシンの出力は、落ち着いた数行だけです — チェックマークは出てきません。問題がないというのは、言うべきことが何もないということだからです。
 
 ```
-Paired: yes (pairing 3f9a21c8…)
-Worker: https://api.nomo.gg
-Watchdog: running (pid 48213)
-Last event sent: 8s ago
-Tracked sessions: 3
-Codex plugin: installed, trusted (7/7)
-Codex Plan answers: bridge available (shared app-server socket accepted a connection)
+Nomo 2.1.17 · Claude Code
+
+Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
+Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Approvals     on — permission prompts are held and sent to your phone
+
+Claude Code — you are here
+  Hooks       firing · last 8s ago
+  Sessions    1 of 4 tracked here
 ```
 
-1 行ずつ見ていきます。
+上の 3 行は**コンピュータ**についての報告で、どのエージェントから実行しても同じ内容になります。その下に来るのが、いま実際にいるエージェントで、`— you are here` の印が付きます。
 
-<ResponseField name="Paired">
-  `no` は、このマシンが一度も接続されたことがないという意味です。`pairing started, waiting for phone scan` は、ペアリングページを開いたまま一度もスキャンしていないという意味です。
+<ResponseField name="Phone">
+  このコンピュータがそもそもペアリングされているか、通信先の中継サーバー、そして保持しているペアリングを示します。`NOT PAIRED` は、ここから何ひとつアプリに届かないという意味です。その下の矢印には、いま使っているエージェント向けの [pair](#pair) コマンドが出力されます。
 </ResponseField>
 
-<ResponseField name="Watchdog">
-  実行中のセッションがあるのに `not running` でも問題ありません — 次のセッションで自動的に起動します。
+<ResponseField name="Delivery">
+  このコンピュータから最後にイベントが実際に出ていったのがいつか、そしてウォッチドッグが動いているかどうかです。ウォッチドッグが動いていないこと自体は問題ありません — 次のセッションで自動的に起動します。セッションが実際に動いているのに `never` と出ている場合は、問題です。
 </ResponseField>
 
-<ResponseField name="Last event sent">
-  セッションが実際に動いているのに `never` の場合は、何も拾えていないという意味です。Claude Code ではフックを読み込ませるために再起動してください。Codex では `/hooks` を実行します。OpenCode ではプラグインを読み込ませるために再起動してください。
+<ResponseField name="Approvals">
+  `on` は、許可リクエストがここで保留され、iPhone に送られるという意味です。`PAUSED` はそうならないという意味で、代わりにターミナルへ出ます。誰かが再開するまで — 何か月後であっても — その状態が続きます。iPhone が何も尋ねてこなくなったなら、この行がその答えのすべてです。[一時停止する](/ja/sessions/approvals#pausing-it)をご覧ください。
 </ResponseField>
 
-<ResponseField name="Codex plugin">
-  `installed, hooks NOT trusted (run /hooks in Codex)` が、よく人をつまずかせるものです — [Codex での利用](/ja/sessions/codex#hooks-have-to-be-trusted)をご覧ください。
+<ResponseField name="Hooks">
+  エージェントが Nomo にデータを渡しているか、そして最後に渡したのがどれくらい前かを示します。OpenCode にフックはないので、そちらではこの行の名前が `Plugin` になります。何も発火していないときは、Claude Code ではフックを読み込ませるために再起動してください。Codex では `/hooks` を実行します。OpenCode ではプラグインを読み込ませるために再起動してください。
 </ResponseField>
 
-<ResponseField name="Codex Plan answers">
-  `bridge available` は、質問が選択肢付きで iPhone に届くという意味です。`status-only` は届かないという意味です —
-  [理由](/ja/sessions/codex#questions-in-the-cli-and-the-desktop-app)。
+<ResponseField name="Sessions">
+  いまはエージェントごとに数えます。`1 of 4 tracked here` は、このコンピュータが 4 件のセッションを追跡していて、そのうち 1 件があなたのものだという意味です。とっくに終わっているはずの行は、[reset](#reset) の出番です。
 </ResponseField>
 
-さらに、すべてのイベントが黙って二重に報告される 2 つの構成についても警告します。ネイティブプラグイン以前の Codex のフックが残っている場合と、Codex が自身のプラグインと並んで Claude Code のプラグインを自動検出している場合です。どちらも編集すべきファイル名を示します。
+問題には 2 つの印だけが付きます。`!` が問題そのもの、`→` がその対処で、実行したエージェントのコマンドの書き方に合わせて書かれます。そのコンピュータ上のほかのエージェントは、**Also on this computer** の下に 1 行ずつ凝縮して並びます — そして*そちら*が壊れているときは、あなたが見に行くのを待たずに、ここでそう伝えます。
+
+```
+Nomo 2.1.17 · Claude Code
+
+Phone         NOT PAIRED — nothing from this computer reaches the app
+              → run /nomo-cc:pair
+
+Claude Code — you are here
+  Hooks       firing · last 6s ago
+  Sessions    1 of 3 tracked here
+
+Also on this computer
+  Codex       firing · last 12h ago · 2 of 3 tracked here
+              ! Also runs the Claude Code plugin's hooks on every Codex event — double the work, no benefit.
+              → in Codex run /hooks and untrust the `nomo-cc@nomo` entries
+              → full detail: run $nomo-status inside Codex
+  OpenCode    installed · no activity yet
+```
+
+何も言うことがない行は省かれます — ペアリングされていないコンピュータには、報告する配信も承認もありません。ほかのエージェントの問題はここで詳しく説明したうえで、残りの詳細についてはそのエージェント自身のステータスのコマンドを案内します。そして 1 行目にはプラグインのバージョンが載ります。バグを報告するときは、これを添えてください。
 
 ## approvals {#approvals}
 

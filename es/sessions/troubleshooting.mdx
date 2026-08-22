@@ -1,21 +1,136 @@
 ---
 title: "Solución de problemas"
-description: "Sesiones que no se descifran, ordenadores que se quedan mudos, una Dynamic Island congelada: qué significa cada estado y qué hacer con él."
+description: "Ejecuta primero el comando status: nombra el problema e imprime el arreglo. Después, qué fila responde a cada síntoma y las pocas cosas que status no puede ver."
 icon: "wrench"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
 ---
 
-Casi todo lo que aquí parece un fallo es Nomo siendo honesto sobre algo que no
-sabe. Esta página explica qué significa de verdad cada uno de esos estados,
-agrupados por dónde irías a arreglarlo.
+El comando status hace hoy casi todo el trabajo de esta página. Lee el ordenador
+entero, nombra en castellano llano lo que esté mal e imprime el comando que lo
+arregla. Ejecútalo antes que nada.
 
-Si hay más de una cosa que se ve mal a la vez, sáltate lo demás y
-[empieza por el comando status](#start-with-status): suele nombrar el
-problema en una sola pantalla.
+Lo que queda aquí es un mapa: el síntoma con el que llegaste, la fila que lo
+responde y el puñado de cosas que status genuinamente no puede ver.
 
-## Se arregla en el iPhone {#fix-it-on-your-phone}
+## Empieza por el comando status {#start-with-status}
 
-Para ninguno de estos hay nada que hacer en tu Mac.
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+/nomo-cc:status
+```
+
+```bash Codex icon="/images/codex.svg"
+$nomo-status
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+</CodeGroup>
+
+Informa sobre el **ordenador**, no solo sobre tu sesión: vinculación, entrega,
+aprobaciones, y después el agente en el que estás y todos los demás que
+encuentre. Un `!` es un problema de verdad y el `→` de debajo es qué hacer al
+respecto, escrito en el dialecto de comandos del agente desde el que
+preguntaste. La mayoría de la gente no necesita pasar de ahí.
+
+Qué significa cada fila, con una máquina sana y una rota una al lado de la otra,
+está en [Comandos](/es/sessions/commands#status).
+
+<Note>
+  Status nunca hace ninguna llamada de red. Puede decirte cuándo envió un evento
+  este ordenador por última vez, pero no si tu teléfono lo recibió, ni si el
+  worker o tu Wi-Fi están teniendo un mal día.
+</Note>
+
+## Qué fila responde a cada síntoma {#which-row-answers-it}
+
+<AccordionGroup>
+
+<Accordion title="No llega nada de este ordenador a mi teléfono" icon="laptop">
+  Lee **Phone**. `NOT PAIRED` es la respuesta entera, y la flecha de debajo
+  imprime el comando de vinculación — el recorrido está en
+  [Vinculación](/es/setup/pairing).
+
+  ¿Vinculado y aun así nada? Sigue con **Delivery**.
+</Accordion>
+
+<Accordion title="Una sesión está en mi teléfono pero dejó de actualizarse" icon="wifi">
+  **Delivery** dice cuándo consiguió enviar algo este ordenador por última vez.
+  Si es reciente, el silencio está del lado del teléfono: abre la app de Nomo,
+  que fuerza una actualización, y una tarjeta obsoleta se corrige al momento.
+
+  Una tarjeta que ha perdido el color y dice `¿Desconectado?` son diez minutos
+  sin oír absolutamente nada. Que tu Mac se duerma, que se salga de la red o que
+  cierres el terminal se ven todos igual desde el teléfono.
+
+  Si Delivery está viejo o dice `never` mientras hay una sesión realmente en
+  marcha, lee **Hooks** a continuación.
+</Accordion>
+
+<Accordion title="Mi teléfono nunca me pide aprobar nada" icon="hand">
+  Lee **Approvals**. `PAUSED` significa que alguien ejecutó el comando de pausa
+  en este ordenador — puede que hace meses, que es justo por lo que esto antes
+  era imposible de descubrir. Reanúdalas desde una sesión en esa máquina y las
+  solicitudes vuelven: [approvals](/es/sessions/commands#approvals).
+
+  Si dice `on`, el interruptor que está desactivado está en tu teléfono.
+  **Responder en el iPhone** viene desactivado de fábrica —
+  [Ajustes](/es/sessions/settings#remote-approvals). La pista es el color: todas
+  las manos levantadas salen amarillas (`Necesita ayuda`, que solo el terminal
+  puede atender) y ninguna violeta (`Necesita permiso`, la que se puede
+  responder). Ve [Responder desde el iPhone](/es/sessions/approvals).
+</Accordion>
+
+<Accordion title="Empecé una sesión y nunca apareció" icon="play">
+  **Hooks** — o **Plugin** en OpenCode, que no tiene. Si no se dispara, tu agente
+  no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo
+  al arrancar: reinicia Claude Code, ejecuta `/hooks` en Codex, reinicia
+  OpenCode.
+
+  Codex confía en los hooks de forma explícita y una actualización del plugin
+  reabre esa revisión, así que `/hooks` después de actualizar es ahí la respuesta
+  habitual — [por qué](/es/sessions/codex#hooks-have-to-be-trusted).
+</Accordion>
+
+<Accordion title="OpenCode en concreto no muestra nada" icon="rotate">
+  Una fila **Plugin** que dice instalado pero sin actividad suele significar que
+  OpenCode ya estaba en marcha cuando llegó el plugin. OpenCode carga los plugins
+  una sola vez, cuando arranca su servidor, así que cerrarlo y volver a abrirlo
+  es el arreglo entero: recargar la TUI no basta. Es la misma razón por la que
+  [el reinicio exige cerrar
+  OpenCode](/es/sessions/opencode#reset-needs-opencode-closed).
+</Accordion>
+
+<Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
+  **Sessions** cuenta lo que este ordenador todavía cree vivo. Si son más de las
+  que tienes, limpia las muertas sin desvincular nada:
+
+  <CodeGroup>
+  ```bash Claude Code icon="/images/claude-code.svg"
+  /nomo-cc:reset
+  ```
+
+  ```bash Codex icon="/images/codex.svg"
+  $nomo-reset
+  ```
+
+  ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
+  </CodeGroup>
+
+  Las sesiones vivas, tu vinculación y tus claves se quedan intactas —
+  [qué imprime](/es/sessions/commands#reset). Una fila de OpenCode pertenece al
+  servidor de OpenCode, así que cierra OpenCode primero si alguna se resiste.
+</Accordion>
+
+</AccordionGroup>
+
+## Lo que status no puede ver {#what-status-cant-see}
+
+Tu Mac está haciendo su trabajo en los tres casos. La respuesta está en el
+teléfono.
 
 <AccordionGroup>
 
@@ -48,104 +163,17 @@ Para ninguno de estos hay nada que hacer en tu Mac.
   No se ha sobrescrito nada de lo que elegiste. Responde a la solicitud y el
   interruptor vuelve directo a desactivado, donde lo dejaste — o dentro de la
   hora siguiente, si no responde nadie. A partir de ahí vuelve a ser tuyo.
-
-  Nada de esto pasa con las **aprobaciones remotas** desactivadas, que es lo que
-  viene de fábrica: tu interruptor nunca se sobreescribe. Ve
-  [Responder desde el iPhone](/es/sessions/approvals).
-</Accordion>
-
-<Accordion title="La Dynamic Island está congelada o dice “¿Desconectado?”" icon="wifi">
-  La Dynamic Island muestra lo último que envió tu Mac. Tras diez minutos de
-  silencio pierde el color y dice `¿Desconectado?` en lugar de seguir dando a
-  entender que la sesión está viva.
-
-  Que tu Mac se duerma, que se salga de la red o que cierres el terminal acaban
-  todos aquí. Abre la app de Nomo para forzar una actualización: un estado
-  obsoleto se corrige al momento. Si no se corrige, el Mac de verdad no está
-  reportando: ejecuta el comando de estado de más abajo.
-</Accordion>
-
-<Accordion title="Las solicitudes llegan al teléfono pero no hay nada que tocar" icon="hand">
-  Fíjate en el **color**, no en el icono. El amarillo y el violeta dibujan los
-  dos una mano levantada. El amarillo (`Necesita ayuda`) significa que el agente
-  se paró por algo que solo el terminal puede atender. El violeta (`Necesita
-  permiso`) es el que se puede responder.
-
-  Si todo sale amarillo y nunca violeta, lo más probable es que **Responder en el
-  iPhone** esté desactivado: viene desactivado de fábrica. Ve
-  [Responder desde el iPhone](/es/sessions/approvals).
-</Accordion>
-
-</AccordionGroup>
-
-## Se arregla en el ordenador {#fix-it-on-your-computer}
-
-Tu teléfono está bien. Todos estos se resuelven desde una sesión en el Mac.
-
-<AccordionGroup>
-
-<Accordion title="El panel dice que las aprobaciones remotas están en pausa" icon="pause">
-  Alguien ejecutó el comando de pausa en ese ordenador. Reanúdalas desde una
-  sesión en esa máquina:
-
-  <CodeGroup>
-  ```bash Claude Code icon="/images/claude-code.svg"
-  /nomo-cc:approvals on
-  ```
-
-  ```bash Codex icon="/images/codex.svg"
-  $nomo-approvals on
-  ```
-
-  ```bash OpenCode icon="/images/opencode.svg"
-  /nomo-approvals on
-  ```
-  </CodeGroup>
-
-  Un interruptor por ordenador, compartido por todos los agentes —
-  [más](/es/sessions/commands#approvals).
-</Accordion>
-
-<Accordion title="Codex dejó de enviar solicitudes tras una actualización" icon="code">
-  Los hooks de Codex se instalan **inertes hasta que confías en ellos**, y una
-  actualización del plugin que añade un hook reabre esa revisión. Ejecuta
-  `/hooks` en Codex y confía en las entradas de Nomo. Hasta que lo hagas, las
-  aprobaciones vuelven al terminal y nada informa de ningún error.
-
-  Más en [Usar Codex](/es/sessions/codex#hooks-have-to-be-trusted).
 </Accordion>
 
 <Accordion title="Faltan opciones en el menú de mantener pulsado" icon="ellipsis">
   **Permitir siempre**, **Denegar con nota…** y **Responder…** necesitan las
   tres la versión **2.0.0** del plugin: responder desde el teléfono es lo que
   añadió la 2.0. Nomo esconde las opciones que el Mac no puede cumplir en lugar
-  de ofrecer un botón que no haría nada.
+  de ofrecer un botón que no haría nada. Status imprime la versión del plugin en
+  su primera línea, así que ahí es donde mirar.
 
   Un aviso de `Actualización del plugin disponible` arriba del panel significa
   exactamente eso. Actualiza con el mismo comando con el que instalaste.
-</Accordion>
-
-<Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
-  Limpia las muertas sin desvincular nada:
-
-  <CodeGroup>
-  ```bash Claude Code icon="/images/claude-code.svg"
-  /nomo-cc:reset
-  ```
-
-  ```bash Codex icon="/images/codex.svg"
-  $nomo-reset
-  ```
-
-  ```bash OpenCode icon="/images/opencode.svg"
-  /nomo-reset
-  ```
-  </CodeGroup>
-
-  Las sesiones vivas, tu vinculación y tus claves se quedan intactas —
-  [qué imprime](/es/sessions/commands#reset). Una fila de OpenCode pertenece
-  al servidor de OpenCode, así que cierra OpenCode primero si alguna se
-  resiste — [por qué](/es/sessions/opencode#reset-needs-opencode-closed).
 </Accordion>
 
 </AccordionGroup>
@@ -185,21 +213,6 @@ vincular ese ordenador otra vez.
 
 </AccordionGroup>
 
-## Empieza por el comando status {#start-with-status}
-
-Si hay más de una cosa que se ve mal, ejecuta
-[`/nomo-cc:status`](/es/sessions/commands#status) en el Mac antes que nada. Una
-sola pantalla te dice si la máquina está vinculada, si su proceso supervisor está
-vivo y si los eventos están llegando de verdad a tu teléfono — que suele bastar
-para saber qué está roto.
-
-`Last event sent: never` con una sesión realmente en marcha significa que no se
-está recogiendo nada. Reinicia Claude Code para que se carguen sus hooks; en
-Codex, ejecuta `/hooks`; en OpenCode, reinícialo para que se cargue el plugin.
-
-Todos los comandos, y qué significa lo que imprimen, están en
-[Comandos](/es/sessions/commands).
-
 ## Informar de un problema {#still-wrong-send-it-over}
 
 Activa **Diagnóstico de sesiones** en
@@ -225,7 +238,7 @@ mándanosla, junto con lo que esperabas y lo que obtuviste en su lugar:
 </CardGroup>
 
 La salida de [`/nomo-cc:status`](/es/sessions/commands#status) del ordenador
-afectado también ayuda.
+afectado también ayuda: la versión de su primera línea es medio diagnóstico.
 
 ## Solicitudes de funciones {#nothings-broken--you-just-want-something}
 
@@ -266,6 +279,54 @@ que ejecutes ese comando allí.
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "No llega nada de este ordenador a mi teléfono",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ejecuta el comando status y lee la fila Phone. NOT PAIRED es la respuesta entera, y la flecha de debajo imprime el comando de vinculación del agente en el que estás."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Una sesión está en mi teléfono pero dejó de actualizarse",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La fila Delivery dice cuándo consiguió enviar algo este ordenador por última vez. Si es reciente, el silencio está del lado del teléfono: abre la app de Nomo, que fuerza una actualización. Una tarjeta que ha perdido el color y dice ¿Desconectado? son diez minutos sin oír absolutamente nada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mi teléfono nunca me pide aprobar nada",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lee la fila Approvals. PAUSED significa que alguien ejecutó el comando de pausa en este ordenador, puede que hace meses. Reanúdalas desde una sesión en esa máquina y las solicitudes vuelven. Si dice on, el interruptor que está desactivado es Responder en el iPhone en los ajustes de la app, que viene desactivado de fábrica."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Empecé una sesión y nunca apareció",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lee la fila Hooks — Plugin en OpenCode, que no tiene. Si no se dispara, tu agente no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo al arrancar: reinicia Claude Code, ejecuta /hooks en Codex, reinicia OpenCode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "OpenCode en concreto no muestra nada",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Una fila Plugin que dice instalado pero sin actividad suele significar que OpenCode ya estaba en marcha cuando llegó el plugin. OpenCode carga los plugins una sola vez, cuando arranca su servidor, así que cerrarlo y volver a abrirlo es el arreglo entero: recargar la TUI no basta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Las filas parecen obsoletas o duplicadas",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La fila Sessions cuenta lo que este ordenador todavía cree vivo. Si son más de las que tienes, ejecuta el comando de reinicio para limpiar las muertas sin desvincular nada. Las sesiones vivas, tu vinculación y tus claves se quedan intactas."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "No aparece nada en la Dynamic Island",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -282,50 +343,10 @@ que ejecutes ese comando allí.
     },
     {
       "@type": "Question",
-      "name": "La Dynamic Island está congelada o dice “¿Desconectado?”",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La Dynamic Island muestra lo último que envió tu Mac. Tras diez minutos de silencio pierde el color y dice ¿Desconectado? en lugar de seguir dando a entender que la sesión está viva."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Las solicitudes llegan al teléfono pero no hay nada que tocar",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Fíjate en el color, no en el icono. El amarillo y el violeta dibujan los dos una mano levantada. El amarillo (Necesita ayuda) significa que el agente se paró por algo que solo el terminal puede atender. El violeta (Necesita permiso) es el que se puede responder."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "El panel dice que las aprobaciones remotas están en pausa",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Alguien ejecutó el comando de pausa en ese ordenador. Reanúdalas desde una sesión en esa máquina:"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Codex dejó de enviar solicitudes tras una actualización",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Los hooks de Codex se instalan inertes hasta que confías en ellos, y una actualización del plugin que añade un hook reabre esa revisión. Ejecuta /hooks en Codex y confía en las entradas de Nomo. Hasta que lo hagas, las aprobaciones vuelven al terminal y nada informa de ningún error."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "Faltan opciones en el menú de mantener pulsado",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Permitir siempre, Denegar con nota… y Responder… necesitan las tres la versión 2.0.0 del plugin: responder desde el teléfono es lo que añadió la 2.0. Nomo esconde las opciones que el Mac no puede cumplir en lugar de ofrecer un botón que no haría nada."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Las filas parecen obsoletas o duplicadas",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Limpia las muertas sin desvincular nada:"
+        "text": "Permitir siempre, Denegar con nota… y Responder… necesitan las tres la versión 2.0.0 del plugin: responder desde el teléfono es lo que añadió la 2.0. Nomo esconde las opciones que el Mac no puede cumplir en lugar de ofrecer un botón que no haría nada. El comando status imprime la versión del plugin en su primera línea."
       }
     },
     {
