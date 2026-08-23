@@ -156,7 +156,7 @@ npm dependencies and runs on Node built-ins.
 
         - `~/.config/opencode/plugins/nomo.js` — a one-line stub pointing back
           at the clone.
-        - `~/.config/opencode/commands/nomo-*.md` — the five commands.
+        - `~/.config/opencode/commands/nomo-*.md` — the six commands.
 
         Already installed Nomo for Claude Code or Codex? Point the script at
         that copy instead of cloning a second one — `claude plugin list` or
@@ -189,14 +189,14 @@ npm dependencies and runs on Node built-ins.
     own server, which reads the same plugin folder.
 
     <Note>
-      There's no npm package and no marketplace — OpenCode doesn't have one. The
-      stub re-exports the clone rather than copying it, so a `git pull` in the
-      clone is the whole upgrade.
+      Updating later is one command from inside OpenCode: `/nomo-update` checks
+      first, then pulls and re-runs this installer —
+      [what it does, and when it refuses](/sessions/commands#update).
     </Note>
 
     <Tip>
       OpenCode command names are flat and global, so Nomo's carry no prefix at
-      all: `/nomo-pair`, not `/nomo-cc:pair` or `$nomo-pair`. All five are in
+      all: `/nomo-pair`, not `/nomo-cc:pair` or `$nomo-pair`. All six are in
       [Commands](/sessions/commands).
     </Tip>
 
@@ -237,6 +237,46 @@ For scripting and CI:
 It never pairs your phone. Finish exactly as the steps above describe: restart
 the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
 `/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex.
+
+## Updating
+
+The same command updates: an agent that already has Nomo shows up as an update
+rather than an install. Only OpenCode's runs — the other two are printed for you.
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
+
+    Auto-update defaults off for third-party marketplaces, so nothing moves an
+    install on its own. To turn it on: `/plugin` → **Marketplaces** → Nomo's →
+    **Enable auto-update**.
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    Usually nothing to run. Codex reads the plugin live from its path, so
+    pulling that checkout is the whole update — and there is no
+    `codex plugin update` verb.
+
+    If you added the marketplace from git, Codex holds a snapshot instead, and
+    refreshing it is the update:
+
+    ```bash
+    codex plugin marketplace upgrade <marketplace-name>
+    ```
+
+    The name is whatever you added it as, not necessarily `nomo`.
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    The installer does it. So does
+    [`/nomo-update`](/sessions/commands#update) from inside OpenCode.
+
+    Either way, restart OpenCode afterwards — plugins are imported once at
+    server start.
+  </Tab>
+</Tabs>
 
 ## What the plugin does
 

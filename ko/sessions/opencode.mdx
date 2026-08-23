@@ -52,8 +52,9 @@ Nomo의 원칙은 언제나 같습니다. Mac이 지킬 수 없는 버튼은 내
 
 Claude Code는 Nomo 명령에 `nomo-cc:` 네임스페이스를 붙이고, Codex는 `$` Skill로
 실행합니다. OpenCode는 둘 다 하지 않습니다. 명령 이름이 전역에 평평하게 놓이므로
-Nomo의 다섯 개는 그대로 `/nomo-pair`, `/nomo-status`, `/nomo-approvals`,
-`/nomo-reset`, `/nomo-unpair`입니다. 붙일 접두사도, 찾아 들어갈 메뉴도 없습니다.
+Nomo의 여섯 개는 그대로 `/nomo-pair`, `/nomo-status`, `/nomo-approvals`,
+`/nomo-reset`, `/nomo-unpair`, `/nomo-update`입니다. 붙일 접두사도, 찾아 들어갈
+메뉴도 없습니다.
 
 `/nomo-pair`는 OpenCode에서 단독으로 동작합니다. 한 번도 페어링한 적 없는 컴퓨터도
 여기에서 페어링할 수 있습니다. 이미 Claude Code나 Codex에서 페어링했다면 할 일이
@@ -151,6 +152,17 @@ OpenCode는 `--yolo`를 자체 인터페이스 안에서 처리하며 플러그�
 입력한 터미널이 아니라 **서버**입니다. 그래서 실행 중인 OpenCode에 속한 행은
 의도적으로 정리되지 않습니다. 오래된 것처럼 보이는 행이 사라지지 않으면 OpenCode를
 먼저 종료하십시오.
+
+## 플러그인 업데이트 {#updating-the-plugin}
+
+`/nomo-update`는 OpenCode만의 것입니다. Claude Code와 Codex는 각자의 호스트를
+통해 업데이트되지만, OpenCode에는 물어볼 호스트가 없어서 이 명령이 플러그인과 함께
+따라옵니다.
+
+행동하기 전에 먼저 알려 줍니다 — `Already on 2.1.22 — nothing to do.`, 또는 지금
+받아 올 버전입니다. 그런 다음 받아 오고, 이 페이지의 다른 모든 항목과 같은
+재시작을 요청합니다. 무엇을 하고 언제 거부하는지는
+[명령](/ko/sessions/commands#update)에 있습니다.
 
 ## 앱 업데이트 {#update-the-app}
 

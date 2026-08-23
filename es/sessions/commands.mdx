@@ -1,13 +1,14 @@
 ---
 title: "Comandos"
-description: "Todos los comandos de Nomo para Claude Code, Codex y OpenCode —vinculación, estado, aprobaciones, reinicio y desvinculación— en un solo sitio."
+description: "Todos los comandos de Nomo para Claude Code, Codex y OpenCode —vinculación, estado, aprobaciones, reinicio, desvinculación y actualización— en un solo sitio."
 icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
 ---
 
-Cinco comandos, los mismos cinco en todos los agentes. Se ejecutan desde dentro
-de una sesión del agente, en el ordenador al que quieras afectar: un comando con
-`/` en Claude Code y en OpenCode, una skill con `$` en Codex.
+Cinco comandos en todos los agentes, y un sexto que solo OpenCode necesita. Se
+ejecutan desde dentro de una sesión del agente, en el ordenador al que quieras
+afectar: un comando con `/` en Claude Code y en OpenCode, una skill con `$` en
+Codex.
 
 <Tip>
   En Claude Code todo va con espacio de nombres: al escribir `/nomo-cc:` se
@@ -22,9 +23,15 @@ de una sesión del agente, en el ordenador al que quieras afectar: un comando co
 | <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
 | <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
 | <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">Actualizar el plugin</a> | — | — | `/nomo-update` |
 
 Ninguno puede fallar a gritos. Todos terminan limpiamente incluso cuando no hay
 nada que hacer: `Not paired` es un éxito, no un error.
+
+Las casillas vacías de la última fila no son un olvido: Claude Code y Codex se
+actualizan a través de sus propios anfitriones, así que Nomo no añade ningún
+comando ahí. Lo que necesita cada uno —que en el caso de Codex suele ser nada—
+está en [Instalación](/es/setup/install#updating).
 
 ## pair {#pair}
 
@@ -248,6 +255,47 @@ Revoca la vinculación y borra la clave en ese ordenador.
 Olvidar un ordenador **desde el teléfono** no es lo mismo: eso hace que deje de
 aparecer en tu app, pero el Mac conserva su estado local hasta que ejecutes esto
 allí.
+
+## update {#update}
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-update
+```
+
+**Solo OpenCode**, y comprueba antes de cambiar nada. Estar al día es una
+parada, no un no-op con un pull detrás:
+
+```
+OpenCode plugin: /Users/you/.nomo
+Already on 2.1.22 — nothing to do.
+```
+
+Cuando sí hay algo que traer, dice qué antes de traerlo:
+
+```
+OpenCode plugin: /Users/you/.nomo
+Update available: 2.1.22 → 2.1.23.
+```
+
+Después trae los cambios, vuelve a ejecutar el instalador —que es lo que recoge
+cualquier comando `/nomo-*` nuevo que traiga la versión— y te dice que reinicies
+OpenCode. Los plugins se importan una sola vez, al arrancar su servidor, así que
+hasta entonces la copia vieja sigue siendo la que corre.
+
+Se niega en lugar de actuar cuando no puede estar seguro, y cada negativa dice
+qué hacer en su lugar: un clon fijado por una instalación anterior con `--ref`,
+un árbol de trabajo con cambios sin confirmar, un clon que se ha movido o
+borrado, o que aquí no haya nada instalado.
+
+<Note>
+  Actualiza el clon al que apunta el **stub** —la copia que OpenCode importa de
+  verdad—, que no es necesariamente aquel de cuyo archivo de comando saliste. Si
+  mantienes más de un clon, esa es la distinción que importa.
+</Note>
+
+Claude Code y Codex no tienen equivalente, porque sus anfitriones se encargan de
+las actualizaciones —y Codex normalmente no tiene nada que ejecutar—:
+[Instalación](/es/setup/install#updating) cubre los dos.
 
 ## Dónde se guarda el estado {#where-state-lives}
 

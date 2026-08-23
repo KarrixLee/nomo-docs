@@ -145,7 +145,7 @@ icon: "puzzle-piece"
         그대로 출력합니다.
 
         - `~/.config/opencode/plugins/nomo.js` — 클론을 가리키는 한 줄짜리 스텁.
-        - `~/.config/opencode/commands/nomo-*.md` — 명령 다섯 개.
+        - `~/.config/opencode/commands/nomo-*.md` — 명령 여섯 개.
 
         Claude Code나 Codex용으로 Nomo를 이미 설치했습니까? 두 번 클론하지 말고
         스크립트를 그 사본으로 가리키십시오 — `claude plugin list` 또는
@@ -178,15 +178,15 @@ icon: "puzzle-piece"
     자체 서버를 실행하고, 그 서버가 같은 플러그인 폴더를 읽습니다.
 
     <Note>
-      npm 패키지도 마켓플레이스도 없습니다 — OpenCode에 그런 것이 없기
-      때문입니다. 스텁은 클론을 복사하지 않고 다시 내보내므로, 클론에서
-      `git pull` 한 번이 업데이트의 전부입니다.
+      나중에 업데이트하는 것은 OpenCode 안에서 명령 하나면 됩니다.
+      `/nomo-update`는 먼저 확인한 다음 받아 오고, 이 설치 스크립트를 다시
+      실행합니다 — [무엇을 하고 언제 거부하는지](/ko/sessions/commands#update).
     </Note>
 
     <Tip>
       OpenCode의 명령 이름은 전역에 평평하게 놓이므로 Nomo 명령에도 접두사가
       전혀 붙지 않습니다. `/nomo-cc:pair`나 `$nomo-pair`가 아니라
-      `/nomo-pair`입니다. 다섯 개 전부 [명령](/ko/sessions/commands)에 있습니다.
+      `/nomo-pair`입니다. 여섯 개 전부 [명령](/ko/sessions/commands)에 있습니다.
     </Tip>
 
     휴대폰에서 다르게 나타나는 것은
@@ -226,6 +226,47 @@ npx nomo-ai
 휴대폰 페어링은 하지 않습니다. 그다음은 위 단계와 똑같이 마무리합니다. 에이전트를
 재시작하고, Codex라면 Hook을 신뢰하고, 페어링합니다 — `/nomo-pair`, Claude
 Code에서는 `/nomo-cc:pair`, Codex에서는 `$nomo-pair`입니다.
+
+## 업데이트 {#updating}
+
+같은 명령이 업데이트도 합니다. Nomo가 이미 설치된 에이전트는 설치가 아니라
+업데이트로 표시됩니다. 실제로 실행되는 것은 OpenCode 쪽뿐이고, 나머지 둘은
+출력만 됩니다.
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
+
+    자동 업데이트는 서드파티 마켓플레이스에서 꺼짐이 기본값이므로, 저절로 설치가
+    움직이는 일은 없습니다. 켜려면 `/plugin` → **Marketplaces** → Nomo의 것 →
+    **Enable auto-update**.
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    대개 실행할 것이 없습니다. Codex는 플러그인을 그 경로에서 바로 읽으므로 그
+    클론에서 받아 오는 것이 업데이트의 전부이며, `codex plugin update`라는 명령
+    자체가 없습니다.
+
+    마켓플레이스를 git에서 추가했다면 Codex가 스냅샷을 들고 있으며, 그것을
+    갱신하는 것이 곧 업데이트입니다.
+
+    ```bash
+    codex plugin marketplace upgrade <마켓플레이스-이름>
+    ```
+
+    이름은 추가할 때 쓴 이름이며, 반드시 `nomo`인 것은 아닙니다.
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    이쪽은 설치 도구가 해 줍니다. OpenCode 안에서
+    [`/nomo-update`](/ko/sessions/commands#update)를 실행해도 같습니다.
+
+    어느 쪽이든 끝나면 OpenCode를 재시작하십시오. 플러그인은 서버가 시작될 때 한
+    번만 불러옵니다.
+  </Tab>
+</Tabs>
 
 ## 플러그인이 하는 일
 

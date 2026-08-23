@@ -34,7 +34,7 @@ Nomo が一貫して守っているのは、Mac が実行を保証できない�
 
 ## 接頭辞のないコマンド {#commands-have-no-prefix}
 
-Claude Code は Nomo のコマンドを `nomo-cc:` の名前空間に置き、Codex は `$` のスキルとして実行します。OpenCode はそのどちらでもありません。コマンド名はフラットでグローバルなので、Nomo の 5 つはそのまま `/nomo-pair`、`/nomo-status`、`/nomo-approvals`、`/nomo-reset`、`/nomo-unpair` です。付ける接頭辞も、探すメニューもありません。
+Claude Code は Nomo のコマンドを `nomo-cc:` の名前空間に置き、Codex は `$` のスキルとして実行します。OpenCode はそのどちらでもありません。コマンド名はフラットでグローバルなので、Nomo の 6 つはそのまま `/nomo-pair`、`/nomo-status`、`/nomo-approvals`、`/nomo-reset`、`/nomo-unpair`、`/nomo-update` です。付ける接頭辞も、探すメニューもありません。
 
 `/nomo-pair` は OpenCode だけで完結します — 一度もペアリングしたことのないマシンを、ここからペアリングできます。すでに Claude Code や Codex からペアリング済みなら、することは何もありません。OpenCode のセッションがそのまま表示されます。
 
@@ -102,6 +102,12 @@ plan エージェントに切り替えると — OpenCode では <kbd>Tab</kbd> 
 ## リセットには OpenCode の終了が必要 {#reset-needs-opencode-closed}
 
 `/nomo-reset` は、プロセスが失われた行を消去します。OpenCode の場合そのプロセスは、あなたが入力したターミナルではなく**サーバー**です — そのため、動作中の OpenCode に属する行は仕様として消去されません。古そうに見える行が消えないときは、先に OpenCode を終了してください。
+
+## プラグインの更新 {#updating-the-plugin}
+
+`/nomo-update` は OpenCode だけのものです。Claude Code と Codex はそれぞれのホスト側で更新しますが、OpenCode には尋ねるホストがないため、このコマンドがプラグインに同梱されています。
+
+実行する前にまず報告します — `Already on 2.1.22 — nothing to do.`、または取得しようとしているバージョンです。そのあと取得し、このページの他の項目と同じ再起動を求めます。動作と、実行を断る条件は[コマンド](/ja/sessions/commands#update)にあります。
 
 ## アプリの更新 {#update-the-app}
 

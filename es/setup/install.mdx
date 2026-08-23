@@ -151,7 +151,7 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
 
         - `~/.config/opencode/plugins/nomo.js`: un stub de una línea que apunta
           de vuelta al clon.
-        - `~/.config/opencode/commands/nomo-*.md`: los cinco comandos.
+        - `~/.config/opencode/commands/nomo-*.md`: los seis comandos.
 
         ¿Ya tienes Nomo instalado para Claude Code o Codex? Apunta el script a
         esa copia en lugar de clonar una segunda: `claude plugin list` o `codex plugin list` te dicen dónde está.
@@ -183,15 +183,16 @@ tiene dependencias npm y funciona con los módulos integrados de Node.
     ejecuta el propio servidor de OpenCode, que lee la misma carpeta de plugins.
 
     <Note>
-      No hay paquete npm ni marketplace: OpenCode no tiene ninguno. El stub
-      reexporta el clon en lugar de copiarlo, así que un `git pull` en el clon es
-      toda la actualización.
+      Actualizar más adelante es un solo comando desde dentro de OpenCode:
+      `/nomo-update` comprueba primero, y luego trae los cambios y vuelve a
+      ejecutar este instalador — [qué hace y cuándo se
+      niega](/es/sessions/commands#update).
     </Note>
 
     <Tip>
       Los nombres de comando de OpenCode son planos y globales, así que los de
       Nomo no llevan ningún prefijo: `/nomo-pair`, no `/nomo-cc:pair` ni
-      `$nomo-pair`. Los cinco están en [Comandos](/es/sessions/commands).
+      `$nomo-pair`. Los seis están en [Comandos](/es/sessions/commands).
     </Tip>
 
     Lo que llega distinto a tu teléfono está en
@@ -231,6 +232,47 @@ Para scripts y CI:
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
 agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
 `/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex.
+
+## Actualizaciones {#updating}
+
+El mismo comando actualiza: un agente que ya tiene Nomo aparece como
+actualización en lugar de como instalación. Solo se ejecuta la de OpenCode; las
+otras dos se imprimen para que las ejecutes tú.
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
+
+    La actualización automática viene desactivada para los marketplaces de
+    terceros, así que nada mueve una instalación por su cuenta. Para activarla:
+    `/plugin` → **Marketplaces** → el de Nomo → **Enable auto-update**.
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    Normalmente no hay nada que ejecutar. Codex lee el plugin en vivo desde su
+    ruta, así que traer los cambios en ese clon es toda la actualización, y no
+    existe ningún verbo `codex plugin update`.
+
+    Si añadiste el marketplace desde git, Codex guarda una instantánea, y
+    refrescarla es la actualización:
+
+    ```bash
+    codex plugin marketplace upgrade <nombre-del-marketplace>
+    ```
+
+    El nombre es aquel con el que lo añadiste, no necesariamente `nomo`.
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    De esta se encarga el instalador. Y también
+    [`/nomo-update`](/es/sessions/commands#update) desde dentro de OpenCode.
+
+    En ambos casos, reinicia OpenCode después: los plugins se importan una sola
+    vez, al arrancar el servidor.
+  </Tab>
+</Tabs>
 
 ## Qué hace el plugin
 

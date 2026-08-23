@@ -4,6 +4,32 @@ description: "Qué salió, y cuándo."
 icon: "clock-rotate-left"
 ---
 
+<Update label="agosto de 2026" description="2.2">
+  ## OpenCode
+
+  **Nuevo**
+
+  - **OpenCode** se suma a Claude Code y Codex: sus sesiones se ven en directo en la pantalla de bloqueo y en la Dynamic Island, con su propia marca, su color y su tipografía
+  - Aprueba o deniega desde la pantalla de bloqueo las solicitudes de permiso de OpenCode, y también sus preguntas, igual que con los otros dos. La tarjeta te dice qué implica denegar, porque en OpenCode un rechazo termina el turno
+  - Una sesión de OpenCode muestra **Planificando** mientras trabaja su agente de planificación, y **Ver plan** abre su lista de tareas
+  - **Un solo comando**: `bunx nomo-ai` (o `npx nomo-ai`) detecta Claude Code, Codex y OpenCode en tu ordenador e instala Nomo en los que elijas
+
+  **Mejorado**
+
+  - El muro de pago nombra los tres agentes y explica qué hacen de verdad las aprobaciones: respondes desde la pantalla de bloqueo, no solo te avisan
+  - Una sesión cuyo proveedor está reintentando muestra **Reconectando…** en lugar de un error en crudo
+
+  **Seguridad**
+
+  - Un enlace `nomo://` ya no puede vincular un ordenador por su cuenta: indica la vinculación y el servidor al que se conectaría, y espera a que lo confirmes
+  - Tu suscripción se comunica por separado a cada ordenador vinculado, así que ninguno se entera de los demás
+  - Al desconectar Cursor también se borran sus cookies, así que ya no queda una sesión capaz de volver a autenticarte sin que te enteres
+
+  **Corregido**
+
+  - La etiqueta **Local** de un ordenador vinculado ya no se corta a “L…”
+</Update>
+
 <Update label="19 de agosto de 2026" description="2.1.1">
   ## Correcciones y pulido
 
@@ -44,7 +70,7 @@ icon: "clock-rotate-left"
   - Diseño y estabilidad en widgets, notificaciones y Live Activities
 </Update>
 
-<Update label="julio de 2026" description="2.0">
+<Update label="14 de julio de 2026" description="2.0">
   ## Sesiones
 
   **Nuevo**

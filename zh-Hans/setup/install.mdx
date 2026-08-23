@@ -136,7 +136,7 @@ icon: "puzzle-piece"
         克隆到哪里都行——脚本会自己算出所在位置，没有路径要查，也没有东西要手改。它会原样打印出自己写了些什么：
 
         - `~/.config/opencode/plugins/nomo.js`——一个指回克隆目录的单行桩文件。
-        - `~/.config/opencode/commands/nomo-*.md`——那五条命令。
+        - `~/.config/opencode/commands/nomo-*.md`——那六条命令。
 
         已经为 Claude Code 或 Codex 装过 Nomo？那就让脚本指向那份副本，不必再克隆一份——`claude plugin list` 或 `codex plugin list` 会打印出它在哪儿。
 
@@ -161,11 +161,11 @@ icon: "puzzle-piece"
     这一次安装同时也覆盖 OpenCode 桌面应用：它跑的是 OpenCode 自己的服务器，读的是同一个插件文件夹。
 
     <Note>
-      这里没有 npm 包，也没有插件市场——OpenCode 本来就没有。那个桩文件是把克隆目录重新导出，而不是复制一份，所以在克隆目录里 `git pull` 一下就是全部的升级操作。
+      以后更新，在 OpenCode 里一条命令就够：`/nomo-update` 会先检查，再拉取并重新运行这个安装脚本——[它做什么、什么时候会拒绝](/zh-Hans/sessions/commands#update)。
     </Note>
 
     <Tip>
-      OpenCode 的命令名是扁平且全局的，所以 Nomo 的命令完全不带前缀：是 `/nomo-pair`，不是 `/nomo-cc:pair` 或 `$nomo-pair`。五条都在[命令](/zh-Hans/sessions/commands)里。
+      OpenCode 的命令名是扁平且全局的，所以 Nomo 的命令完全不带前缀：是 `/nomo-pair`，不是 `/nomo-cc:pair` 或 `$nomo-pair`。六条都在[命令](/zh-Hans/sessions/commands)里。
     </Tip>
 
     到了手机上有哪些不一样，见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)。
@@ -198,6 +198,38 @@ npx nomo-ai
 | `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
 
 它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。
+
+## 更新 {#updating}
+
+同一条命令也负责更新：已经装了 Nomo 的智能体，会显示成更新而不是安装。真正会跑的只有 OpenCode 那一份，另外两个只是打印出来给你。
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
+
+    自动更新对第三方插件市场默认是关闭的，所以安装不会自己动。要打开：`/plugin` → **Marketplaces** → Nomo 那个 → **Enable auto-update**。
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    通常没有什么要执行。Codex 直接从插件所在路径实时读取，所以在那份克隆目录里拉取更新就是全部的更新——而且根本不存在 `codex plugin update` 这个动词。
+
+    如果你这个插件市场是从 git 添加的，那 Codex 存着一份快照，刷新它就是更新：
+
+    ```bash
+    codex plugin marketplace upgrade <插件市场名称>
+    ```
+
+    名称是你当初添加时用的那个，未必是 `nomo`。
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    这一份由安装工具代劳。在 OpenCode 里运行 [`/nomo-update`](/zh-Hans/sessions/commands#update) 也一样。
+
+    两种方式之后都要重启 OpenCode——插件只在服务器启动时导入一次。
+  </Tab>
+</Tabs>
 
 ## 插件做了什么
 

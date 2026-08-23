@@ -1,13 +1,13 @@
 ---
 title: "Commands"
-description: "Every Nomo command for Claude Code, Codex and OpenCode — pairing, status, approvals, reset and unpair — in one place."
+description: "Every Nomo command for Claude Code, Codex and OpenCode — pairing, status, approvals, reset, unpair and update — in one place."
 icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Commands"]
 ---
 
-Five commands, the same five on every agent. You run them from inside an agent
-session on the computer you want to affect — a `/` command in Claude Code and
-OpenCode, a `$` skill in Codex.
+Five commands on every agent, and a sixth that only OpenCode needs. You run them
+from inside an agent session on the computer you want to affect — a `/` command
+in Claude Code and OpenCode, a `$` skill in Codex.
 
 <Tip>
   In Claude Code everything is namespaced: typing `/nomo-cc:` lists them all.
@@ -22,9 +22,15 @@ OpenCode, a `$` skill in Codex.
 | <a href="#approvals">Pause or resume approvals</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
 | <a href="#reset">Clear stuck sessions</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
 | <a href="#unpair">Disconnect this computer</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">Update the plugin</a> | — | — | `/nomo-update` |
 
 None of them can fail loudly. Every one exits cleanly even when there's nothing
 to do — `Not paired` is a success, not an error.
+
+The empty cells on the last row aren't an omission: Claude Code and Codex update
+through their own hosts, so Nomo adds no command there. What each of them needs
+— which for Codex is usually nothing — is in
+[Installation](/setup/install#updating).
 
 ## pair
 
@@ -246,6 +252,47 @@ Revokes the pairing and erases the key on that computer.
 Forgetting a computer **from the phone** is not the same thing: that stops it
 appearing in your app, but the Mac keeps its local state until you run this
 there.
+
+## update
+
+```bash OpenCode icon="/images/opencode.svg"
+/nomo-update
+```
+
+**OpenCode only** — and it checks before it changes anything. Already current is
+a stop, not a no-op with a pull attached:
+
+```
+OpenCode plugin: /Users/you/.nomo
+Already on 2.1.22 — nothing to do.
+```
+
+When there's something to get, it says what before it takes it:
+
+```
+OpenCode plugin: /Users/you/.nomo
+Update available: 2.1.22 → 2.1.23.
+```
+
+Then it pulls, re-runs the installer — which is what picks up any new `/nomo-*`
+command the release added — and tells you to restart OpenCode. Plugins are
+imported once when its server starts, so until you do, the old copy is still the
+one running.
+
+It refuses rather than acting when it can't be sure, and each refusal says what
+to do instead: a checkout pinned by an earlier `--ref` install, a working tree
+with uncommitted changes, a checkout that's been moved or deleted, or nothing
+installed here at all.
+
+<Note>
+  It updates the checkout the **stub** points at — the copy OpenCode actually
+  imports — which isn't necessarily the one whose command file you typed. If you
+  keep more than one clone, that's the distinction that matters.
+</Note>
+
+Claude Code and Codex have no counterpart, because their hosts own updates —
+and Codex usually has nothing to run at all:
+[Installation](/setup/install#updating) covers both.
 
 ## Where state lives
 

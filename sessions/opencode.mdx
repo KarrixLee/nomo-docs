@@ -53,8 +53,9 @@ OpenCode sessions, the desktop app included — see [below](#no-open-on-mac).
 
 Claude Code namespaces Nomo's commands as `nomo-cc:`, and Codex runs them as `$`
 skills. OpenCode does neither: its command names are flat and global, so Nomo's
-five are just `/nomo-pair`, `/nomo-status`, `/nomo-approvals`, `/nomo-reset` and
-`/nomo-unpair`. Nothing to prefix, and no menu to find them under.
+six are just `/nomo-pair`, `/nomo-status`, `/nomo-approvals`, `/nomo-reset`,
+`/nomo-unpair` and `/nomo-update`. Nothing to prefix, and no menu to find them
+under.
 
 `/nomo-pair` works on its own from OpenCode — a machine that has never been
 paired can be paired from here. If you already paired it from Claude Code or
@@ -156,6 +157,16 @@ probably want to add to `.gitignore`.
 the **server**, not the terminal you typed in — so a row belonging to a running
 OpenCode won't be cleared, by design. Quit OpenCode first if a stale-looking row
 refuses to go.
+
+## Updating the plugin
+
+`/nomo-update` is OpenCode's alone. Claude Code and Codex update through their
+own hosts; OpenCode has no host to ask, so the command ships with the plugin.
+
+It reports before it acts — `Already on 2.1.22 — nothing to do.`, or the version
+it's about to fetch — then pulls and asks for the same restart everything else
+on this page asks for. What it does and when it refuses is in
+[Commands](/sessions/commands#update).
 
 ## Update the app
 
