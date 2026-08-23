@@ -68,10 +68,13 @@ $nomo-status
 一旦哪里看着不对，先运行它。一台健康的机器只有寥寥几行平静的输出——这里没有对勾，因为一切正常本身就是无话可说：
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
-Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Delivery      last event sent 4m ago · watchdog running (pid 25780)
+LAN           listening on port 51843 (id 9f3c1a20) since 3h ago
+              phone last reached this Mac 12s ago (ping)
+              address last advertised 4m ago (2 interfaces)
 Approvals     on — permission prompts are held and sent to your phone
 
 Claude Code — you are here
@@ -79,7 +82,7 @@ Claude Code — you are here
   Sessions    1 of 4 tracked here
 ```
 
-最上面三行描述的是**这台电脑**，无论你从哪个智能体运行，它们都一样。再往下才是你当前所在的那个智能体，用 `— you are here` 标出来。
+空行以上描述的是**这台电脑**，无论你从哪个智能体运行，它们都一样。再往下才是你当前所在的那个智能体，用 `— you are here` 标出来。
 
 <ResponseField name="Phone">
   这台电脑到底有没有配对，以及它连的 worker 和它持有的配对。`NOT PAIRED` 表示这里的任何东西都到不了 App，下面那个箭头会按你所在智能体的写法打印出 [pair](#pair) 命令。
@@ -87,6 +90,10 @@ Claude Code — you are here
 
 <ResponseField name="Delivery">
   上一次真正有事件离开这台电脑是什么时候，以及看门狗在不在。看门狗没跑本身没关系——下一个会话开始时它会自己起来。但确实有会话在跑却显示 `never`，那就不对了。
+</ResponseField>
+
+<ResponseField name="LAN">
+  经由[本地网络](/zh-Hans/sessions/settings#local-network)的直连：这台电脑正在监听的端口和 id、你的手机上一次真正连上它是什么时候，以及这台 Mac 上一次广播自己地址是什么时候。中间那行才是关键——它是直连确实通过的唯一证据。地址早就广播出去却从未被连上，说明你的手机路由不到这里；刚广播完还没被连上，那只是还太早，判断不了。请求被拒绝时会写出原因，而不是留下一片沉默。从未监听过的电脑上根本不会出现这一行——开关在你的手机上，而且默认是关的。
 </ResponseField>
 
 <ResponseField name="Approvals">
@@ -104,7 +111,7 @@ Claude Code — you are here
 有问题时只会多出两个记号，别的什么都没有：`!` 是问题本身，`→` 是该怎么办，并且按你所在智能体的命令写法给出。这台电脑上其他每个智能体各占一行浓缩信息，放在 **Also on this computer** 下面——而当出问题的是*那些*智能体之一时，它也会在这里直接说出来，不必等你自己过去看：
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
               → run /nomo-cc:pair
@@ -121,7 +128,7 @@ Also on this computer
   OpenCode    installed · no activity yet
 ```
 
-无话可说的行会被略去——一台没配对的电脑，没有什么投递和审批可报。别的智能体的问题会在这里完整写出来，剩下的细节再指向那个智能体自己的状态命令。第一行还带着插件版本：反馈问题时请把它一并贴上。
+无话可说的行会被略去——一台没配对的电脑，没有什么投递、LAN 和审批可报。别的智能体的问题会在这里完整写出来，剩下的细节再指向那个智能体自己的状态命令。第一行还带着插件版本：反馈问题时请把它一并贴上。
 
 ## approvals {#approvals}
 

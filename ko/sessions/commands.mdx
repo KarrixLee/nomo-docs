@@ -83,10 +83,13 @@ $nomo-status
 뜻이기 때문입니다.
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
-Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Delivery      last event sent 4m ago · watchdog running (pid 25780)
+LAN           listening on port 51843 (id 9f3c1a20) since 3h ago
+              phone last reached this Mac 12s ago (ping)
+              address last advertised 4m ago (2 interfaces)
 Approvals     on — permission prompts are held and sent to your phone
 
 Claude Code — you are here
@@ -94,7 +97,7 @@ Claude Code — you are here
   Sessions    1 of 4 tracked here
 ```
 
-위쪽 세 줄은 **컴퓨터**를 설명하며, 어느 에이전트에서 실행하든 내용이 같습니다. 그
+빈 줄 위쪽은 **컴퓨터**를 설명하며, 어느 에이전트에서 실행하든 내용이 같습니다. 그
 아래에는 지금 실제로 사용 중인 에이전트가 `— you are here` 표시와 함께 나옵니다.
 
 <ResponseField name="Phone">
@@ -108,6 +111,17 @@ Claude Code — you are here
   이벤트가 이 컴퓨터를 마지막으로 실제로 떠난 시점과 워치독의 실행 여부입니다.
   워치독이 실행 중이 아니어도 그 자체는 문제가 아닙니다. 다음 세션에서 스스로
   시작합니다. 세션이 분명히 실행 중인데 `never`라면 그것은 문제입니다.
+</ResponseField>
+
+<ResponseField name="LAN">
+  [로컬 네트워크](/ko/sessions/settings#local-network)를 통한 직접 연결입니다. 이
+  컴퓨터가 열어 둔 포트와 id, 휴대폰이 마지막으로 여기에 도달한 시점, 그리고 이 Mac이
+  마지막으로 주소를 알린 시점입니다. 중요한 것은 가운데 줄입니다. 직접 연결이 실제로
+  동작한 적이 있다는 유일한 증거이기 때문입니다. 주소를 알린 지 한참인데 한 번도
+  도달하지 않았다면 휴대폰이 여기까지 오지 못하는 것이고, 방금 알렸는데 아직 도달하지
+  않았다면 판단하기에 이릅니다. 요청이 거부되면 침묵 대신 그 이유가 함께 나옵니다. 한
+  번도 열어 본 적이 없는 컴퓨터에서는 이 줄 자체가 나오지 않습니다. 스위치는 휴대폰에
+  있고 기본값은 꺼짐입니다.
 </ResponseField>
 
 <ResponseField name="Approvals">
@@ -136,7 +150,7 @@ this computer** 아래에 한 줄씩 요약됩니다. 그중 하나에 문제가
 확인하러 갈 때까지 기다리지 않고 여기에서 알려 줍니다.
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
               → run /nomo-cc:pair
@@ -153,7 +167,7 @@ Also on this computer
   OpenCode    installed · no activity yet
 ```
 
-할 말이 없는 줄은 빠집니다. 페어링되지 않은 컴퓨터에는 보고할 전송 상태도 승인
+할 말이 없는 줄은 빠집니다. 페어링되지 않은 컴퓨터에는 보고할 전송 상태도 LAN도 승인
 상태도 없습니다. 다른 에이전트의 문제는 여기에 전부 적히고, 나머지 세부 내용은 그
 에이전트의 status 명령으로 안내합니다. 그리고 첫 줄에는 플러그인 버전이 담겨
 있습니다. 버그를 제보할 때 이 줄을 함께 적어 주십시오.

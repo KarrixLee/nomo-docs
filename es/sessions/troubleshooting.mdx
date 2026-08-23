@@ -29,10 +29,11 @@ $nomo-status
 </CodeGroup>
 
 Informa sobre el **ordenador**, no solo sobre tu sesión: vinculación, entrega,
-aprobaciones, y después el agente en el que estás y todos los demás que
-encuentre. Un `!` es un problema de verdad y el `→` de debajo es qué hacer al
-respecto, escrito en el dialecto de comandos del agente desde el que
-preguntaste. La mayoría de la gente no necesita pasar de ahí.
+el enlace directo por red local, aprobaciones, y después el agente en el que
+estás y todos los demás que encuentre. Un `!` es un problema de verdad y el `→`
+de debajo es qué hacer al respecto, escrito en el dialecto de comandos del
+agente desde el que preguntaste. La mayoría de la gente no necesita pasar de
+ahí.
 
 Qué significa cada fila, con una máquina sana y una rota una al lado de la otra,
 está en [Comandos](/es/sessions/commands#status).
@@ -66,6 +67,20 @@ está en [Comandos](/es/sessions/commands#status).
 
   Si Delivery está viejo o dice `never` mientras hay una sesión realmente en
   marcha, lee **Hooks** a continuación.
+</Accordion>
+
+<Accordion title="El enlace directo por red local nunca se activa" icon="bolt">
+  Lee **LAN**. Su línea del medio — cuándo alcanzó tu teléfono este Mac por
+  última vez — es la única prueba de que la vía directa haya funcionado alguna
+  vez. Las líneas de alrededor dicen si este ordenador está escuchando y cuándo
+  anunció su dirección por última vez.
+
+  Anunciada hace poco y nunca alcanzada significa que tu teléfono no encuentra la
+  ruta: comprueba que los dos están en la misma red, que **Red local** está
+  activada en [Ajustes](/es/sessions/settings#local-network) y que Nomo tiene
+  permiso de red local en el teléfono. Nunca anunciada significa que todavía no
+  ha habido ninguna sesión que sacara la dirección. Sin fila `LAN` en absoluto,
+  este ordenador no ha escuchado nunca.
 </Accordion>
 
 <Accordion title="Mi teléfono nunca me pide aprobar nada" icon="hand">

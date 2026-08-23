@@ -66,17 +66,18 @@ watchdog to share one app-server process.
     codex app-server daemon start
     ```
 
-    Then confirm:
+    Then confirm, in the `Plan` row of Codex's own section:
 
     ```bash
     $nomo-status
     ```
 
-    `bridge available` means you're set — questions reach your phone with
-    their options, and you tap one.
+    `questions are answerable from your phone` means you're set — questions
+    reach your phone with their options, and you tap one.
 
-    `status-only` means nothing is listening. Start the daemon, then start
-    Codex. Order matters: a session that opened first won't pick the daemon up.
+    `questions can only be answered here` means nothing is listening. Start the
+    daemon, then start Codex. Order matters: a session that opened first won't
+    pick the daemon up.
   </Tab>
 
   <Tab title="Codex desktop app" icon="window">
@@ -84,9 +85,9 @@ watchdog to share one app-server process.
 
     The daemon above listens on a shared socket that anything can attach to. The
     desktop app doesn't use it — it spawns a private app-server per task, with
-    no socket to join. There's no flag or setting that changes that, so
-    `$nomo-status` will keep saying `status-only` no matter what you start
-    beforehand.
+    no socket to join. There's no flag or setting that changes that, so the `Plan`
+    row will keep saying `questions can only be answered here` no matter what you
+    start beforehand.
 
     Everything else works normally: sessions appear, permission prompts for
     commands and patches are answerable from the phone, and plans are readable.

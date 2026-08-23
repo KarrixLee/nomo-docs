@@ -81,14 +81,17 @@ $nomo-status
 </CodeGroup>
 
 El primero que hay que ejecutar cuando algo se ve raro. Una máquina sana son
-cuatro líneas tranquilas: no hay marcas de visto, porque que todo esté bien es
-justamente la ausencia de algo que decir.
+unas pocas líneas tranquilas: no hay marcas de visto, porque que todo esté bien
+es justamente la ausencia de algo que decir.
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
-Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Delivery      last event sent 4m ago · watchdog running (pid 25780)
+LAN           listening on port 51843 (id 9f3c1a20) since 3h ago
+              phone last reached this Mac 12s ago (ping)
+              address last advertised 4m ago (2 interfaces)
 Approvals     on — permission prompts are held and sent to your phone
 
 Claude Code — you are here
@@ -96,7 +99,7 @@ Claude Code — you are here
   Sessions    1 of 4 tracked here
 ```
 
-Las tres primeras filas describen el **ordenador**, y se leen igual desde
+Las filas de arriba describen el **ordenador**, y se leen igual desde
 cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
 `— you are here`.
 
@@ -112,6 +115,18 @@ cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
   supervisor está en marcha. Que el supervisor no esté corriendo no pasa nada por
   sí solo: arranca en la siguiente sesión. Que no se haya enviado nada (`never`)
   con una sesión realmente en marcha sí es un problema.
+</ResponseField>
+
+<ResponseField name="LAN">
+  El enlace directo por [red local](/es/sessions/settings#local-network): el
+  puerto y el id en los que escucha este ordenador, cuándo lo alcanzó tu teléfono
+  por última vez y cuándo anunció el Mac su dirección. La línea del medio es la
+  que importa: es la única prueba de que la vía directa haya funcionado alguna
+  vez. Anunciada hace mucho y nunca alcanzada significa que tu teléfono no llega
+  hasta aquí; anunciada hace segundos y todavía sin alcanzar es simplemente
+  demasiado pronto para saberlo. Una petición rechazada imprime su motivo en
+  lugar de dejar silencio. La fila desaparece entera en un ordenador que nunca ha
+  escuchado: el interruptor está en tu teléfono y viene desactivado.
 </ResponseField>
 
 <ResponseField name="Approvals">
@@ -142,7 +157,7 @@ condensada bajo **Also on this computer** — y cuando el roto es *uno de esos*,
 dice aquí en lugar de esperar a que vayas a mirar:
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
               → run /nomo-cc:pair
@@ -160,10 +175,10 @@ Also on this computer
 ```
 
 Las filas que no tienen nada que decir se omiten: un ordenador sin vincular no
-tiene entrega ni aprobaciones que reportar. El problema de otro agente se explica
-aquí entero y después te remite al comando de estado de ese agente para el resto
-del detalle. Y la primera línea lleva la versión del plugin: cítala si abres una
-incidencia.
+tiene entrega, LAN ni aprobaciones que reportar. El problema de otro agente se
+explica aquí entero y después te remite al comando de estado de ese agente para
+el resto del detalle. Y la primera línea lleva la versión del plugin: cítala si
+abres una incidencia.
 
 ## approvals {#approvals}
 

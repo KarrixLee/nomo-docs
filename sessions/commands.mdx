@@ -84,10 +84,13 @@ of calm lines — there are no checkmarks, because everything being fine is the
 absence of anything to say:
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
-Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Delivery      last event sent 4m ago · watchdog running (pid 25780)
+LAN           listening on port 51843 (id 9f3c1a20) since 3h ago
+              phone last reached this Mac 12s ago (ping)
+              address last advertised 4m ago (2 interfaces)
 Approvals     on — permission prompts are held and sent to your phone
 
 Claude Code — you are here
@@ -95,9 +98,9 @@ Claude Code — you are here
   Sessions    1 of 4 tracked here
 ```
 
-The top three rows describe the **computer**, and read the same whichever agent
-you asked from. Below them comes the agent you're actually in, marked `— you are
-here`.
+The rows above the gap describe the **computer**, and read the same whichever
+agent you asked from. Below them comes the agent you're actually in, marked
+`— you are here`.
 
 <ResponseField name="Phone">
   Whether this computer is paired at all, plus the worker it talks to and the
@@ -110,6 +113,17 @@ here`.
   When an event last actually left this computer, and whether the watchdog is
   up. A watchdog that isn't running is fine on its own — it starts itself on the
   next session. `never` sent, with a session genuinely running, is not fine.
+</ResponseField>
+
+<ResponseField name="LAN">
+  The direct [local network](/sessions/settings#local-network) link: the port
+  and id this computer listens on, when your phone last reached it, and when the
+  Mac last advertised its address. The middle line is the one that matters —
+  it's the only proof the direct leg has ever worked. Advertised long ago and
+  never reached means your phone can't get here; advertised seconds ago and not
+  yet reached is simply too early to tell. A refused request prints its reason
+  rather than leaving silence. The row is absent entirely on a computer that has
+  never listened — the switch is on your phone and off by default.
 </ResponseField>
 
 <ResponseField name="Approvals">
@@ -140,7 +154,7 @@ computer** — and when one of *those* is broken, it says so here rather than
 waiting for you to go and look:
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
               → run /nomo-cc:pair
@@ -157,10 +171,10 @@ Also on this computer
   OpenCode    installed · no activity yet
 ```
 
-Rows with nothing to say are left out — an unpaired computer has no delivery or
-approvals to report. Another agent's problem is spelled out here in full, then
-pointed at that agent's own status command for the rest of the detail. And the
-first line carries the plugin version: quote it if you file a bug.
+Rows with nothing to say are left out — an unpaired computer has no delivery,
+LAN or approvals to report. Another agent's problem is spelled out here in full,
+then pointed at that agent's own status command for the rest of the detail. And
+the first line carries the plugin version: quote it if you file a bug.
 
 ## approvals
 

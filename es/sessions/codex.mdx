@@ -68,16 +68,16 @@ proceso supervisor de Nomo tienen que compartir un mismo proceso `app-server`.
     codex app-server daemon start
     ```
 
-    Después confírmalo:
+    Después confírmalo, en la fila `Plan` de la sección de Codex:
 
     ```bash
     $nomo-status
     ```
 
-    `bridge available` significa que lo tienes: las preguntas
-    llegan a tu teléfono con sus opciones y tocas una.
+    `questions are answerable from your phone` significa que lo tienes: las
+    preguntas llegan a tu teléfono con sus opciones y tocas una.
 
-    `status-only` significa que no hay nadie escuchando.
+    `questions can only be answered here` significa que no hay nadie escuchando.
     Arranca el daemon y después Codex. El orden importa: una sesión que se abrió
     primero no va a coger el daemon.
   </Tab>
@@ -89,8 +89,8 @@ proceso supervisor de Nomo tienen que compartir un mismo proceso `app-server`.
     El daemon de arriba escucha en un socket compartido al que se puede enganchar
     cualquiera. La app de escritorio no lo usa: lanza un `app-server` privado por
     tarea, sin socket al que unirse. No hay ninguna opción ni ajuste que cambie
-    eso, así que `$nomo-status` seguirá diciendo `status-only` por mucho que
-    arranques antes.
+    eso, así que la fila `Plan` seguirá diciendo `questions can only be answered
+    here` por mucho que arranques antes.
 
     Todo lo demás funciona con normalidad: las sesiones aparecen, las solicitudes
     de permiso para comandos y parches se responden desde el teléfono y los planes
