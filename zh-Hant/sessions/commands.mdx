@@ -68,10 +68,13 @@ $nomo-status
 任何地方看起來不對勁時，第一個該執行的就是它。一台健康的機器只會印出幾行平靜的輸出 — 沒有任何打勾記號，因為一切正常本來就沒什麼好說的：
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
-Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Delivery      last event sent 4m ago · watchdog running (pid 25780)
+LAN           listening on port 51843 (id 9f3c1a20) since 3h ago
+              phone last reached this Mac 12s ago (ping)
+              address last advertised 4m ago (2 interfaces)
 Approvals     on — permission prompts are held and sent to your phone
 
 Claude Code — you are here
@@ -79,7 +82,7 @@ Claude Code — you are here
   Sessions    1 of 4 tracked here
 ```
 
-最上面三列描述的是這台**電腦**，不管你從哪個代理問，讀到的都一樣。它們底下才是你實際所在的那個代理，標著 `— you are here`。
+空行以上描述的是這台**電腦**，不管你從哪個代理問，讀到的都一樣。它們底下才是你實際所在的那個代理，標著 `— you are here`。
 
 <ResponseField name="Phone">
   這台電腦到底有沒有配對，以及它對話的中繼伺服器和它持有的配對。`NOT PAIRED` 表示從這裡送出的東西沒有任何一樣會到達 App，底下那個箭頭會印出你當下所在代理的 [pair](#pair) 指令。
@@ -87,6 +90,10 @@ Claude Code — you are here
 
 <ResponseField name="Delivery">
   上一次真的有事件離開這台電腦是什麼時候，以及 watchdog 有沒有起來。watchdog 沒在跑本身不是問題 — 它會在下一個 session 時自行啟動。在真的有 session 在跑的情況下顯示 `never`，那就是問題。
+</ResponseField>
+
+<ResponseField name="LAN">
+  透過[區域網路](/zh-Hant/sessions/settings#local-network)的直接連線：這台電腦正在監聽的連接埠和 id、你的手機上一次真的連上它是什麼時候，以及這台 Mac 上一次廣播自己位址是什麼時候。中間那一列才是重點 — 它是直接連線確實成功過的唯一證據。位址早就廣播出去卻從來沒被連上，代表你的手機到不了這裡；剛廣播完還沒被連上，那只是太早，還判斷不了。請求被拒絕時會寫出原因，而不是留下一片沉默。從來沒有監聽過的電腦上根本不會有這一列 — 開關在你的手機上，而且預設是關的。
 </ResponseField>
 
 <ResponseField name="Approvals">
@@ -104,7 +111,7 @@ Claude Code — you are here
 出問題時只帶兩個記號，沒有別的：`!` 是問題，`→` 是該怎麼處理，並以你發問時所在代理的指令寫法寫出來。這台電腦上其他每一個代理，會在 **Also on this computer** 底下各得到一行濃縮的輸出 — 而當*其中一個*壞掉時，它會直接在這裡說出來，而不是等你自己過去看：
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
               → run /nomo-cc:pair
@@ -121,7 +128,7 @@ Also on this computer
   OpenCode    installed · no activity yet
 ```
 
-沒什麼好說的列會被留白略過 — 一台沒配對的電腦，沒有 delivery 或 approvals 可以回報。其他代理的問題會在這裡完整寫出來，剩下的細節則指向那個代理自己的 status 指令。還有，第一行帶著外掛程式版本：回報 bug 時請附上它。
+沒什麼好說的列會被留白略過 — 一台沒配對的電腦，沒有 delivery、LAN 或 approvals 可以回報。其他代理的問題會在這裡完整寫出來，剩下的細節則指向那個代理自己的 status 指令。還有，第一行帶著外掛程式版本：回報 bug 時請附上它。
 
 ## approvals {#approvals}
 

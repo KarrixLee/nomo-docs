@@ -68,10 +68,13 @@ $nomo-status
 何かおかしいと思ったら、まず最初に実行するコマンドです。正常なマシンの出力は、落ち着いた数行だけです — チェックマークは出てきません。問題がないというのは、言うべきことが何もないということだからです。
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
-Delivery      last event sent 11h ago · watchdog running (pid 25780)
+Delivery      last event sent 4m ago · watchdog running (pid 25780)
+LAN           listening on port 51843 (id 9f3c1a20) since 3h ago
+              phone last reached this Mac 12s ago (ping)
+              address last advertised 4m ago (2 interfaces)
 Approvals     on — permission prompts are held and sent to your phone
 
 Claude Code — you are here
@@ -79,7 +82,7 @@ Claude Code — you are here
   Sessions    1 of 4 tracked here
 ```
 
-上の 3 行は**コンピュータ**についての報告で、どのエージェントから実行しても同じ内容になります。その下に来るのが、いま実際にいるエージェントで、`— you are here` の印が付きます。
+空行より上は**コンピュータ**についての報告で、どのエージェントから実行しても同じ内容になります。その下に来るのが、いま実際にいるエージェントで、`— you are here` の印が付きます。
 
 <ResponseField name="Phone">
   このコンピュータがそもそもペアリングされているか、通信先の中継サーバー、そして保持しているペアリングを示します。`NOT PAIRED` は、ここから何ひとつアプリに届かないという意味です。その下の矢印には、いま使っているエージェント向けの [pair](#pair) コマンドが出力されます。
@@ -87,6 +90,10 @@ Claude Code — you are here
 
 <ResponseField name="Delivery">
   このコンピュータから最後にイベントが実際に出ていったのがいつか、そしてウォッチドッグが動いているかどうかです。ウォッチドッグが動いていないこと自体は問題ありません — 次のセッションで自動的に起動します。セッションが実際に動いているのに `never` と出ている場合は、問題です。
+</ResponseField>
+
+<ResponseField name="LAN">
+  [ローカルネットワーク](/ja/sessions/settings#local-network)による直接接続です。このコンピュータが待ち受けているポートと id、iPhone が最後にここへ到達した時刻、そしてこの Mac が最後にアドレスを広告した時刻が並びます。重要なのは真ん中の行で、直接接続が実際に機能したことを示す唯一の証拠です。広告からかなり経っているのに一度も到達がないなら、iPhone からここへ届いていません。広告した直後でまだ到達がないだけなら、判断するには早すぎます。リクエストが拒否された場合は、沈黙のままにせず理由が表示されます。一度も待ち受けたことのないコンピュータでは、この行そのものが出ません — スイッチは iPhone 側にあり、初期状態ではオフです。
 </ResponseField>
 
 <ResponseField name="Approvals">
@@ -104,7 +111,7 @@ Claude Code — you are here
 問題には 2 つの印だけが付きます。`!` が問題そのもの、`→` がその対処で、実行したエージェントのコマンドの書き方に合わせて書かれます。そのコンピュータ上のほかのエージェントは、**Also on this computer** の下に 1 行ずつ凝縮して並びます — そして*そちら*が壊れているときは、あなたが見に行くのを待たずに、ここでそう伝えます。
 
 ```
-Nomo 2.1.17 · Claude Code
+Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
               → run /nomo-cc:pair
@@ -121,7 +128,7 @@ Also on this computer
   OpenCode    installed · no activity yet
 ```
 
-何も言うことがない行は省かれます — ペアリングされていないコンピュータには、報告する配信も承認もありません。ほかのエージェントの問題はここで詳しく説明したうえで、残りの詳細についてはそのエージェント自身のステータスのコマンドを案内します。そして 1 行目にはプラグインのバージョンが載ります。バグを報告するときは、これを添えてください。
+何も言うことがない行は省かれます — ペアリングされていないコンピュータには、報告する配信も LAN も承認もありません。ほかのエージェントの問題はここで詳しく説明したうえで、残りの詳細についてはそのエージェント自身のステータスのコマンドを案内します。そして 1 行目にはプラグインのバージョンが載ります。バグを報告するときは、これを添えてください。
 
 ## approvals {#approvals}
 

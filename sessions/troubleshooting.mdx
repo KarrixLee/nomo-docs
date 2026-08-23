@@ -28,10 +28,11 @@ $nomo-status
 ```
 </CodeGroup>
 
-It reports on the **computer**, not just your session: pairing, delivery,
-approvals, then the agent you're in and every other one it found. A `!` is a
-real problem and the `→` under it is what to do about it, spelled out in the
-command dialect of whichever agent you asked from. Most people stop there.
+It reports on the **computer**, not just your session: pairing, delivery, the
+direct local network link, approvals, then the agent you're in and every other
+one it found. A `!` is a real problem and the `→` under it is what to do about
+it, spelled out in the command dialect of whichever agent you asked from. Most
+people stop there.
 
 What each row means, with a healthy machine and a broken one side by side, is on
 [Commands](/sessions/commands#status).
@@ -64,6 +65,18 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
   If Delivery is old or `never` while a session is genuinely running, read
   **Hooks** next.
+</Accordion>
+
+<Accordion title="The direct local network link never engages" icon="bolt">
+  Read **LAN**. Its middle line — when your phone last reached this Mac — is the
+  only proof the direct leg has ever worked. The lines around it say whether
+  this computer is listening, and when it last advertised its address.
+
+  Advertised recently and never reached means your phone can't route here: check
+  that both are on the same network, that **Local network** is on in
+  [Settings](/sessions/settings#local-network), and that Nomo has local network
+  permission on the phone. Never advertised means no session has carried the
+  address out yet. No `LAN` row at all means this computer has never listened.
 </Accordion>
 
 <Accordion title="My phone never asks me to approve anything" icon="hand">

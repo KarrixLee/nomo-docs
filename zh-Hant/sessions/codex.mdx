@@ -56,15 +56,15 @@ Codex 那句「要實作這份計畫嗎？」的詢問住在它自己的終端�
     $nomo-status
     ```
 
-    `bridge available` 表示都準備好了 — 問題會連同選項一起送到你的手機，你點一個就行。
+    看 Codex 自己那一段裡的 `Plan` 這一列：`questions are answerable from your phone` 表示都準備好了 — 問題會連同選項一起送到你的手機，你點一個就行。
 
-    `status-only` 表示沒有任何東西在監聽。先啟動 daemon，再啟動 Codex。順序有關係：先開起來的 session 不會接上 daemon。
+    `questions can only be answered here` 表示沒有任何東西在監聽。先啟動 daemon，再啟動 Codex。順序有關係：先開起來的 session 不會接上 daemon。
   </Tab>
 
   <Tab title="Codex 桌面App" icon="window">
     **來自桌面App session 的問題無法在你的手機上回答。**
 
-    上面那個 daemon 監聽的是一個任何東西都能接上的共用 socket。桌面App不用它 — 它為每個任務生出一個私有的 app-server，沒有 socket 可以加入。沒有任何旗標或設定能改變這件事，所以無論你事先啟動什麼，`$nomo-status` 都會一直說 `status-only`。
+    上面那個 daemon 監聽的是一個任何東西都能接上的共用 socket。桌面App不用它 — 它為每個任務生出一個私有的 app-server，沒有 socket 可以加入。沒有任何旗標或設定能改變這件事，所以無論你事先啟動什麼，`Plan` 這一列都會一直說 `questions can only be answered here`。
 
     其他一切都正常運作：sessions 會出現，指令和修補的權限請求可以從手機回覆，計畫也讀得到。問題一樣會出現 — 你只是在手機上讀它，然後在App裡回答。
   </Tab>
