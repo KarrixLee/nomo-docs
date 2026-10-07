@@ -68,21 +68,27 @@ propósito.
 | **Permitir** | Dynamic Island, app | Ejecuta la acción y continúa. |
 | **Denegar** | Dynamic Island, app | La salta y continúa sin ella. |
 | **Permitir siempre Bash (esta sesión)** | Solo en la app | Lo permite y deja de preguntar **durante el resto de esta sesión**. Nunca se escribe en disco ni se arrastra a la sesión siguiente. |
-| **Denegar con nota…** | Solo en la app | Deniega y transmite lo que hayas escrito: *por qué*, o *qué hacer en su lugar*. |
-| **Responder…** | Solo en la app | Elige una opción para una pregunta de varias opciones. |
+| **Aprobar y cambiar al modo automático** | Solo en la app | Lo permite y pasa esa sesión al modo automático durante el resto de la sesión. En un plan, la elección es **Aprobar y aceptar ediciones automáticamente** o **Aprobar y usar el modo automático**. Solo en Claude Code. |
+| **Denegar con nota…** | Solo en la app | Deniega y transmite lo que hayas escrito: *por qué*, o *qué hacer en su lugar*. En un plan dice **Seguir planificando…**. |
+| **Responder…** | Solo en la app | Elige una opción para una pregunta de varias opciones, o envía una respuesta que hayas escrito, cuando el agente la admite. |
 | **Ver plan completo** | App, además de **Ver plan** en la Dynamic Island | Abre el plan para leerlo antes de decidir. |
 | **Abrir en el Mac** | Solo en la app | No responde nada: pone en primer plano la ventana de terminal de esa sesión en tu Mac. Necesita un enlace por [red local](/es/sessions/settings#local-network). |
 
 <Note>
-  Dos de estas se leen distinto en OpenCode: **Denegar** responde por todo el
-  turno y no por una sola herramienta, y **Abrir en el Mac** no aparece nunca.
-  Las dos se explican en [Usar OpenCode](/es/sessions/opencode).
+  No todos los agentes admiten todas las opciones. Las opciones **Aprobar y…**
+  son solo de Claude Code. Codex no tiene **Permitir siempre**, y OpenCode no
+  tiene **Denegar con nota…**. En OpenCode, además, **Denegar** responde por
+  todo el turno y no por una sola herramienta, y **Abrir en el Mac** no aparece
+  nunca. [Usar Codex](/es/sessions/codex) y [Usar
+  OpenCode](/es/sessions/opencode) explican cada caso.
 </Note>
 
 **Permitir siempre**, **Denegar con nota…** y **Responder…** viven bajo
 **Más…** en el menú, y las tres necesitan la versión **2.0.0** del plugin. Con
 la 1.0.0 tienes Permitir y Denegar a secas — Nomo no muestra un botón que el Mac
-no pueda cumplir. El panel te avisa cuando hay una actualización disponible.
+no pueda cumplir. Las opciones **Aprobar y…** también están bajo **Más…**, y
+necesitan la versión **2.2.2** del plugin. El panel te avisa cuando hay una
+actualización disponible.
 
 ## Responder a una pregunta {#answering-a-question}
 
@@ -106,18 +112,38 @@ Cuando el agente ha hecho más de una pregunta, te llegan de una en una, con
 que ya habías elegido. `Selecciona todas las que correspondan` aparece cuando se
 admite más de una respuesta.
 
+### Cuando ninguna opción encaja {#when-none-of-the-options-fits}
+
+Debajo de las opciones, **Otra respuesta…** abre un campo: `Escribe tu propia
+respuesta`. En una pregunta de una sola respuesta, lo que escribas sustituye a
+tu elección; cuando se admiten varias, se envía junto a ellas. **Añadir nota**
+adjunta un comentario a tu respuesta sin cambiarla.
+
+Si el agente adjuntó una vista previa a una opción —un fragmento de código, un
+boceto de un diseño—, aparece debajo de la lista cuando eliges esa opción.
+
+Las tres cosas necesitan la versión **2.2.2** del plugin. Las notas y las vistas
+previas son de Claude Code. Codex muestra **Otra respuesta…** solo en las
+preguntas que admiten una respuesta de texto libre, y OpenCode no tiene ninguna
+de las tres.
+
 ## Revisar un plan {#reviewing-a-plan}
 
 Una sesión que ha terminado de planificar muestra `Plan listo`. Abre **Ver
 plan** y tienes el plan entero maquetado, con desplazamiento y con **Permitir**
 y **Denegar** fijados abajo.
 
-Aprobar desde el teléfono es una aprobación normal: la misma que darías eligiendo
-la opción por defecto en tu Mac. No te deja elegir entre aceptar las ediciones
-automáticamente y confirmarlas una a una; eso sigue siendo una decisión del
-terminal.
+**Permitir** es una aprobación normal: la misma que darías eligiendo la opción
+por defecto en tu Mac. Debajo están las otras dos respuestas de Claude Code,
+**Aprobar y aceptar ediciones automáticamente** y **Aprobar y usar el modo
+automático**: cada una aprueba el plan y cambia el modo de permisos de esa
+sesión con el mismo toque. Necesitan la versión **2.2.2** del plugin; antes de
+ella, cómo se confirman las ediciones sigue siendo una decisión de la terminal.
 
-<Frame caption="El plan entero, con desplazamiento y la decisión fijada abajo. Denegar con nota queda debajo, para cuando hace falta reorientarlo en vez de decir que no.">
+**Seguir planificando…** es la negativa que reorienta. Deniega el plan y
+transmite lo que hayas escrito, así que Claude lo revisa en lugar de detenerse.
+
+<Frame caption="El plan entero, con desplazamiento y la decisión fijada abajo. Seguir planificando… queda debajo, para cuando hace falta reorientarlo en vez de decir que no.">
   <div className="device-frame">
     <img src="/images/view-plan-claude.png" alt="Un plan de Claude Code a pantalla completa en el teléfono, con los botones Denegar y Permitir fijados abajo" />
   </div>
