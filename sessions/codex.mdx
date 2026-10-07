@@ -36,6 +36,10 @@ button.
 
 Allow still works normally. You'll just be asked again next time.
 
+Claude Code's **Approve + auto mode** choices are missing for the same reason:
+they switch a Claude Code permission mode, and a Codex prompt takes Allow or
+Deny and nothing else.
+
 ## Plans are read-only
 
 Codex's "implement this plan?" prompt lives inside its own terminal UI. It never
@@ -99,6 +103,11 @@ watchdog to share one app-server process.
 Either way the session still reaches your phone. Without the bridge you'll see
 `Need help` and `Answer on Mac` — the question is there to read, there's just no
 picker to tap, and you answer it in Codex.
+
+Where a Codex question has its own free-text row — *None of the above* in the
+terminal — the picker on your phone shows **Other…**, and what you type reaches
+Codex the way it would from the keyboard. That needs plugin **2.2.2**. There's
+no **Add note** on a Codex question: Codex has nowhere to put one.
 
 ## Hooks have to be trusted
 

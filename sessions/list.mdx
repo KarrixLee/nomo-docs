@@ -107,6 +107,11 @@ over your network rather than through the relay, a green **⚡ Local** chip. See
 | `Unavailable` | Grey dot | A row Nomo still can't decrypt after 10 minutes. It shows as `Encrypted session`. |
 | `Sending…` | Spinner | Your answer is on its way to the Mac. |
 
+A Claude Code session you've opened or resumed but not prompted yet reads
+`Running` for about 20 seconds, then settles to `Done` until you give it
+something to do. Before plugin **2.2.2** it could sit at `Running` for half an
+hour.
+
 Once a prompt has been settled, the row picks up a small caption saying how:
 `Allowed`, `Denied`, `Always allowed`, `Answered`, or an honest failure like
 `Expired — continue on your computer`. The full list is in

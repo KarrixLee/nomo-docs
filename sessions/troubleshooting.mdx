@@ -133,6 +133,17 @@ What each row means, with a healthy machine and a broken one side by side, is on
   OpenCode's server, so quit OpenCode first if one refuses to clear.
 </Accordion>
 
+<Accordion title="A session says Running when nothing is" icon="hourglass">
+  Read the first line, which prints the plugin version. Before **2.2.2**, a
+  Claude Code session opened or resumed and left at an empty prompt read
+  `Running` for up to half an hour, and an OpenCode session created without a
+  prompt — a fork, say — read `Running` until OpenCode quit.
+
+  On 2.2.2 the first settles to `Done` in about 20 seconds, and the second
+  doesn't appear until it has work to do.
+  [Update the plugin](/setup/install#updating).
+</Accordion>
+
 </AccordionGroup>
 
 ## What status can't see
@@ -176,6 +187,9 @@ Your Mac is doing its job for all three of these. The answer is on the phone.
   **2.0.0** — answering from the phone is what 2.0 added. Nomo hides options the
   Mac can't honour rather than offering a button that would do nothing. Status
   prints the plugin version on its first line, so that's where to check.
+
+  The **Approve + …** choices on a Claude Code prompt, and **Other…** and **Add
+  note** on a question, are newer: they need plugin **2.2.2**.
 
   A `Plugin update available` banner at the top of the drawer means exactly
   that. Update from the same command you installed with.
@@ -326,6 +340,14 @@ that command there.
     },
     {
       "@type": "Question",
+      "name": "A session says Running when nothing is",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Read the first line of the status command, which prints the plugin version. Before 2.2.2, a Claude Code session opened or resumed and left at an empty prompt read Running for up to half an hour, and an OpenCode session created without a prompt read Running until OpenCode quit. On 2.2.2 the first settles to Done in about 20 seconds, and the second doesn't appear until it has work to do. Update the plugin."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Nothing appears on the Dynamic Island",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -345,7 +367,7 @@ that command there.
       "name": "Options are missing when I touch and hold",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Always allow, Deny with note… and Answer… all need plugin 2.0.0 — answering from the phone is what 2.0 added. Nomo hides options the Mac can't honour rather than offering a button that would do nothing. The status command prints the plugin version on its first line."
+        "text": "Always allow, Deny with note… and Answer… all need plugin 2.0.0 — answering from the phone is what 2.0 added. Nomo hides options the Mac can't honour rather than offering a button that would do nothing. The status command prints the plugin version on its first line. The Approve + … choices on a Claude Code prompt, and Other… and Add note on a question, are newer: they need plugin 2.2.2."
       }
     },
     {
