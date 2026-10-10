@@ -65,20 +65,25 @@ purpose.
 | **Allow** | Island, app | Runs the action and continues. |
 | **Deny** | Island, app | Skips it and continues without it. |
 | **Always allow Bash (this session)** | App only | Allows it and stops asking **for the rest of this session**. Never written to disk, never carried into the next session. |
-| **Deny with note…** | App only | Denies, and passes along what you typed — *why*, or *what to do instead*. |
-| **Answer…** | App only | Picks an option for a multiple-choice question. |
+| **Approve + switch to auto mode** | App only | Allows it and switches that session to auto mode, for the rest of the session. On a plan the choice is **Approve + auto-accept edits** or **Approve + auto mode**. Claude Code only. |
+| **Deny with note…** | App only | Denies, and passes along what you typed — *why*, or *what to do instead*. On a plan it reads **Keep planning…**. |
+| **Answer…** | App only | Picks an option for a multiple-choice question — or sends an answer you typed, where the agent takes one. |
 | **View full plan** | App, plus **View plan** on the island | Opens the plan to read before deciding. |
 | **Open on Mac** | App only | Answers nothing — it brings that session's terminal window to the front on your Mac. Needs a [local network](/sessions/settings#local-network) link. |
 
 <Note>
-  Two of these read differently on OpenCode: **Deny** answers for the whole turn
-  rather than one tool, and **Open on Mac** never appears. Both are explained in
-  [Using OpenCode](/sessions/opencode).
+  Not every agent takes every option. The **Approve + …** choices are Claude
+  Code's alone. Codex has no **Always allow**, and OpenCode has no **Deny with
+  note…**. On OpenCode, **Deny** also answers for the whole turn rather than one
+  tool, and **Open on Mac** never appears. [Using Codex](/sessions/codex) and
+  [Using OpenCode](/sessions/opencode) explain each.
 </Note>
 
-**Always allow**, **Deny with note…** and **Answer…** live under **More…** in the
-menu, and all three need plugin **2.0.0**. On 1.0.0 you get plain Allow and Deny
-— Nomo won't show a button the Mac can't honour. The drawer tells you when an
+**Always allow** and **Deny with note…** live under **More…** in the menu;
+**Answer…** is in the menu itself. All three need plugin **2.0.0**. On 1.0.0 you
+get plain Allow and Deny
+— Nomo won't show a button the Mac can't honour. The **Approve + …** choices sit
+under **More…** too, and need plugin **2.2.2**. The drawer tells you when an
 update is available.
 
 ## Answering a question
@@ -103,17 +108,36 @@ Where the agent asked more than one question you'll get them one at a time, with
 picks intact. `Select all that apply` appears where more than one answer is
 allowed.
 
+### When none of the options fits
+
+Under the options, **Other…** opens a field — `Type your own answer`. On a
+pick-one question, what you type replaces your pick; where several are allowed,
+it's sent alongside them. **Add note** attaches a comment to your answer without
+changing it.
+
+If the agent attached a preview to an option — a snippet of code, a sketch of a
+layout — it appears beneath the list when you pick that option.
+
+All three need plugin **2.2.2**. Notes and previews are Claude Code's. Codex
+shows **Other…** only on a question that offers a free-text answer, and OpenCode
+has none of the three.
+
 ## Reviewing a plan
 
 A session that's finished planning shows `Plan ready`. Open **View plan** and
 you get the whole thing typeset, scrollable, with **Allow** and **Deny** pinned
 to the bottom.
 
-Approving from the phone is a plain approval — the same one you'd give by
-picking the default at your Mac. It doesn't let you choose between accepting
-edits automatically and confirming each one; that stays a terminal decision.
+**Allow** is a plain approval — the same one you'd give by picking the default
+at your Mac. Under it sit Claude Code's other two answers, **Approve +
+auto-accept edits** and **Approve + auto mode**: each approves the plan and
+switches that session's permission mode in the same tap. They need plugin
+**2.2.2** — before that, how edits get confirmed stays a terminal decision.
 
-<Frame caption="The whole plan, scrollable, with the decision pinned to the bottom. Deny with note sits underneath for when it needs a steer rather than a no.">
+**Keep planning…** is the refusal with a steer. It denies the plan and passes
+along what you typed, so Claude revises it rather than stopping.
+
+<Frame caption="The whole plan, scrollable, with the decision pinned to the bottom. Keep planning… sits underneath for when it needs a steer rather than a no.">
   <div className="device-frame">
     <img src="/images/view-plan-claude.png" alt="A Claude Code plan rendered full-screen on the phone with Deny and Allow buttons pinned to the bottom" />
   </div>

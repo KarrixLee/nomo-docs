@@ -140,6 +140,18 @@ está en [Comandos](/es/sessions/commands#status).
   servidor de OpenCode, así que cierra OpenCode primero si alguna se resiste.
 </Accordion>
 
+<Accordion title="Una sesión dice En ejecución cuando no hay nada en marcha" icon="hourglass">
+  Lee la primera línea, que imprime la versión del plugin. Antes de la
+  **2.2.2**, una sesión de Claude Code abierta o reanudada y dejada en un prompt
+  vacío decía `En ejecución` hasta media hora, y una sesión de OpenCode creada
+  sin un prompt —un fork, por ejemplo— decía `En ejecución` hasta que se cerraba
+  OpenCode.
+
+  Con la 2.2.2, la primera pasa a `Listo` en unos 20 segundos, y la segunda no
+  aparece hasta que tiene trabajo que hacer.
+  [Actualiza el plugin](/es/setup/install#updating).
+</Accordion>
+
 </AccordionGroup>
 
 ## Lo que status no puede ver {#what-status-cant-see}
@@ -186,6 +198,10 @@ teléfono.
   añadió la 2.0. Nomo esconde las opciones que el Mac no puede cumplir en lugar
   de ofrecer un botón que no haría nada. Status imprime la versión del plugin en
   su primera línea, así que ahí es donde mirar.
+
+  Las opciones **Aprobar y…** de una solicitud de Claude Code, y **Otra
+  respuesta…** y **Añadir nota** en una pregunta, son más recientes: necesitan
+  la versión **2.2.2** del plugin.
 
   Un aviso de `Actualización del plugin disponible` arriba del panel significa
   exactamente eso. Actualiza con el mismo comando con el que instalaste.
@@ -342,6 +358,14 @@ que ejecutes ese comando allí.
     },
     {
       "@type": "Question",
+      "name": "Una sesión dice En ejecución cuando no hay nada en marcha",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lee la primera línea del comando status, que imprime la versión del plugin. Antes de la 2.2.2, una sesión de Claude Code abierta o reanudada y dejada en un prompt vacío decía En ejecución hasta media hora, y una sesión de OpenCode creada sin un prompt decía En ejecución hasta que se cerraba OpenCode. Con la 2.2.2, la primera pasa a Listo en unos 20 segundos, y la segunda no aparece hasta que tiene trabajo que hacer. Actualiza el plugin."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "No aparece nada en la Dynamic Island",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -361,7 +385,7 @@ que ejecutes ese comando allí.
       "name": "Faltan opciones en el menú de mantener pulsado",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Permitir siempre, Denegar con nota… y Responder… necesitan las tres la versión 2.0.0 del plugin: responder desde el teléfono es lo que añadió la 2.0. Nomo esconde las opciones que el Mac no puede cumplir en lugar de ofrecer un botón que no haría nada. El comando status imprime la versión del plugin en su primera línea."
+        "text": "Permitir siempre, Denegar con nota… y Responder… necesitan las tres la versión 2.0.0 del plugin: responder desde el teléfono es lo que añadió la 2.0. Nomo esconde las opciones que el Mac no puede cumplir en lugar de ofrecer un botón que no haría nada. El comando status imprime la versión del plugin en su primera línea. Las opciones Aprobar y… de una solicitud de Claude Code, y Otra respuesta… y Añadir nota en una pregunta, son más recientes: necesitan la versión 2.2.2 del plugin."
       }
     },
     {

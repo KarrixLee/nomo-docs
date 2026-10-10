@@ -38,6 +38,10 @@ que un botón que falta.
 Permitir sigue funcionando con normalidad. Simplemente te lo volverá a preguntar
 la próxima vez.
 
+Las opciones **Aprobar y usar el modo automático** de Claude Code faltan por la
+misma razón: cambian un modo de permisos de Claude Code, y una solicitud de
+Codex admite Permitir o Denegar y nada más.
+
 ## Planes de solo lectura {#plans-are-read-only}
 
 La solicitud de Codex de “¿implemento este plan?” vive dentro de su propia
@@ -102,6 +106,12 @@ proceso supervisor de Nomo tienen que compartir un mismo proceso `app-server`.
 En cualquiera de los dos casos la sesión sigue llegando a tu teléfono. Sin el
 puente verás `Necesita ayuda` y `Responder en el Mac`: la pregunta está ahí para
 leerla, solo que no hay selector que tocar, y la respondes en Codex.
+
+Cuando una pregunta de Codex tiene su propia fila de texto libre —*None of the
+above* en la terminal—, el selector de tu teléfono muestra **Otra respuesta…**,
+y lo que escribas llega a Codex igual que si lo hubieras tecleado. Eso necesita
+la versión **2.2.2** del plugin. En una pregunta de Codex no hay **Añadir
+nota**: Codex no tiene dónde ponerla.
 
 ## Confianza en los hooks {#hooks-have-to-be-trusted}
 
