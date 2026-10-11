@@ -1,6 +1,6 @@
 ---
 title: "Installation"
-description: "Add the Nomo plugin to Claude Code, Codex, or OpenCode. One command, or by hand — no dependencies."
+description: "Add the Nomo plugin to Claude Code, Codex, OpenCode, or Cursor. One command, or by hand — no dependencies."
 icon: "puzzle-piece"
 ---
 
@@ -203,12 +203,69 @@ npm dependencies and runs on Node built-ins.
     What lands differently on your phone is in
     [Using OpenCode](/sessions/opencode).
   </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    One install covers both the Cursor desktop app's agent and the
+    `cursor-agent` CLI. Cursor sessions are read-only in this version —
+    [Using Cursor](/sessions/cursor) has what that means.
+
+    <Steps>
+      <Step title="Run the installer">
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --cursor
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --cursor
+        ```
+        </CodeGroup>
+
+        It does three things:
+
+        - Clones the plugin to `~/.nomo`.
+        - Adds Nomo's hook entries to `~/.cursor/hooks.json`. It merges with
+          whatever is already there and leaves other tools' entries untouched.
+        - Installs four skills under `~/.cursor/skills/`.
+      </Step>
+
+      <Step title="Restart Cursor — required">
+        <Warning>
+          Cursor only picks hooks up when it starts. Quit and reopen Cursor,
+          and restart any `cursor-agent` session you have open. Until you do,
+          the plugin is installed and doing nothing.
+        </Warning>
+      </Step>
+
+      <Step title="Confirm">
+        In Cursor, type `/` to pick a skill, and run:
+
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    <Tip>
+      Nomo's Cursor commands are skills with no prefix: `/nomo-pair`,
+      `/nomo-status`, `/nomo-reset` and `/nomo-unpair`. All four are in
+      [Commands](/sessions/commands).
+    </Tip>
+
+    To remove it later:
+
+    ```bash
+    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+    ```
+
+    Then restart Cursor.
+  </Tab>
 </Tabs>
 
 ## One command
 
-The installer detects which of Claude Code, Codex and OpenCode are on this
-machine and sets Nomo up in the ones you pick:
+The installer detects which of Claude Code, Codex, OpenCode and Cursor are on
+this machine and sets Nomo up in the ones you pick:
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -222,15 +279,15 @@ npx nomo-ai
 
 Nothing is ticked at the start: arrow keys (or `k` / `j`) move, space ticks an
 agent, enter installs everything ticked. Then it runs each agent's own install —
-the same three flows above. Nothing is installed globally and no package is left
+the same four flows above. Nothing is installed globally and no package is left
 behind.
 
 For scripting and CI:
 
 | Flag | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` | install exactly these — naming any one of them skips the picker |
-| `--all` | all three, detected or not |
+| `--claude` `--codex` `--opencode` `--cursor` | install exactly these — naming any one of them skips the picker |
+| `--all` | all four, detected or not |
 | `-y`, `--yes` | no picker; install everything detected |
 | `-n`, `--dry-run` | print the commands, run nothing |
 
@@ -241,7 +298,8 @@ the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
 ## Updating
 
 The same command updates: an agent that already has Nomo shows up as an update
-rather than an install. Only OpenCode's runs — the other two are printed for you.
+rather than an install. Only OpenCode's and Cursor's run — the other two are
+printed for you.
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -275,6 +333,16 @@ rather than an install. Only OpenCode's runs — the other two are printed for y
 
     Either way, restart OpenCode afterwards — plugins are imported once at
     server start.
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    The same command that installed it:
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    Restart Cursor afterwards, and any open `cursor-agent` session.
   </Tab>
 </Tabs>
 

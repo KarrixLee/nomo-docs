@@ -1,28 +1,30 @@
 ---
 title: "コマンド"
-description: "Claude Code、Codex、OpenCode 向けの Nomo のコマンドをすべて — ペアリング、状態確認、承認、リセット、ペアリング解除、更新 — 1 ページにまとめました。"
+description: "Claude Code、Codex、OpenCode、Cursor 向けの Nomo のコマンドをすべて — ペアリング、状態確認、承認、リセット、ペアリング解除、更新 — 1 ページにまとめました。"
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
 ---
 
-どのエージェントにも共通のコマンドが 5 つ、そして OpenCode だけに必要な 6 つ目があります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Codex では `$` のスキルです。
+Claude Code、Codex、OpenCode に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor では `/` のスキル、Codex では `$` のスキルです。
 
 <Tip>
-  Claude Code ではすべてが名前空間に入っています。`/nomo-cc:` と入力すると一覧が表示されます。OpenCode のコマンド名はフラットでグローバルなので、そちらでは Nomo のコマンドにも接頭辞は一切付きません。
+  Claude Code ではすべてが名前空間に入っています。`/nomo-cc:` と入力すると一覧が表示されます。OpenCode のコマンド名はフラットでグローバルなので、そちらでは Nomo のコマンドにも接頭辞は一切付きません — Cursor のスキルにも付きません。
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode |
-| --- | --- | --- | --- |
-| <a href="#pair">このコンピュータをペアリングする</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` |
-| <a href="#status">状態を確認する</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` |
-| <a href="#approvals">承認を一時停止・再開する</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
-| <a href="#reset">停止したセッションを消去する</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">このコンピュータの接続を解除する</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">プラグインを更新する</a> | — | — | `/nomo-update` |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor |
+| --- | --- | --- | --- | --- |
+| <a href="#pair">このコンピュータをペアリングする</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">状態を確認する</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">承認を一時停止・再開する</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — |
+| <a href="#reset">停止したセッションを消去する</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">このコンピュータの接続を解除する</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">プラグインを更新する</a> | — | — | `/nomo-update` | — |
 
 どれも派手に失敗することはありません。することが何もない場合でも、すべて正常に終了します — `Not paired` はエラーではなく成功です。
 
-最終行が空欄なのは、抜けているからではありません。Claude Code と Codex はそれぞれのホスト側で更新するため、Nomo はそこにコマンドを足していません。それぞれに必要なもの — Codex の場合はたいてい何もありません — は[インストール](/ja/setup/install#updating)にまとめてあります。
+最終行が空欄なのは、抜けているからではありません。Claude Code と Codex はそれぞれのホスト側で更新するため、Nomo はそこにコマンドを足していません。Cursor はインストーラーをもう一度実行して更新します。それぞれに必要なもの — Codex の場合はたいてい何もありません — は[インストール](/ja/setup/install#updating)にまとめてあります。
+
+承認の行で Cursor が空欄なのも、抜けているからではありません。Cursor のセッションは読み取り専用で、一時停止するリモート承認がありません — [Cursor での利用](/ja/sessions/cursor)。
 
 ## pair {#pair}
 
@@ -41,13 +43,18 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Cursor icon="/images/providers/cursor.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 引数なしで実行すると、テーマの適用されたページがブラウザで開き、QR コードが表示されます。アプリでスキャンすると、ページは自動的に **Paired ✓** に切り替わります。
 
 `code` 引数を付けるとブラウザを完全に省き、入力できるワンタイムコードを出力します。ヘッドレスなマシンや SSH セッション向けです。これが第 2 の選択肢なのは意図的で、そのコードはターミナルに、つまりエージェントのトランスクリプトに残るからです。
 
-ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
+ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode、Cursor は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
 
 ## status {#status}
 
@@ -61,6 +68,10 @@ $nomo-status
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
 </CodeGroup>
@@ -101,7 +112,7 @@ Claude Code — you are here
 </ResponseField>
 
 <ResponseField name="Hooks">
-  エージェントが Nomo にデータを渡しているか、そして最後に渡したのがどれくらい前かを示します。OpenCode にフックはないので、そちらではこの行の名前が `Plugin` になります。何も発火していないときは、Claude Code ではフックを読み込ませるために再起動してください。Codex では `/hooks` を実行します。OpenCode ではプラグインを読み込ませるために再起動してください。
+  エージェントが Nomo にデータを渡しているか、そして最後に渡したのがどれくらい前かを示します。OpenCode にフックはないので、そちらではこの行の名前が `Plugin` になります。何も発火していないときは、Claude Code ではフックを読み込ませるために再起動してください。Codex では `/hooks` を実行します。OpenCode ではプラグインを読み込ませるために再起動してください。Cursor も再起動してください。Cursor がフックを読み込むのは起動時だけです。
 </ResponseField>
 
 <ResponseField name="Sessions">
@@ -163,6 +174,8 @@ will appear in the terminal as usual (your phone is not asked).
 
 iPhone 全体に効く別のスイッチもあります。[設定](/ja/sessions/settings#remote-approvals)の「iPhoneで回答」です。
 
+Cursor に approvals コマンドはありません。Cursor の許可リクエストは iPhone に届かないため、一時停止するものがありません。
+
 ## reset {#reset}
 
 <CodeGroup>
@@ -175,6 +188,10 @@ $nomo-reset
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-reset
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
 ```
 </CodeGroup>
@@ -202,6 +219,10 @@ $nomo-unpair
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-unpair
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-unpair
 ```
 </CodeGroup>

@@ -2,7 +2,7 @@
 title: "疑難排解"
 description: "先執行 status 指令 — 它會指出問題，並印出解法。接著是：哪一列回答哪個症狀，以及 status 看不到的那幾件事。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
 ---
 
 status 指令現在已經替這一頁做掉大部分的工作。它會讀過整台電腦，用白話指出任何不對勁的地方，並印出可以修好它的指令。請先執行它。
@@ -21,6 +21,10 @@ $nomo-status
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
 </CodeGroup>
@@ -58,19 +62,39 @@ $nomo-status
 </Accordion>
 
 <Accordion title="我的手機從來不問我要不要批准" icon="hand">
+  如果那是一個 Cursor 的 session，這是預期中的行為：Cursor 的 sessions 是唯讀的，它的請求從來不會送到你的手機 — [為什麼](/zh-Hant/sessions/cursor#what-this-version-doesnt-do)。其他每個代理則是：
+
   看 **Approvals**。`PAUSED` 表示有人在這台電腦上執行過暫停指令 — 可能是好幾個月前的事，而這正是它以前根本沒人找得到的原因。在那台機器上的 session 裡恢復它，請求就會回來：[approvals](/zh-Hant/sessions/commands#approvals)。
 
   如果它顯示 `on`，那關著的開關是在你的手機上。「在 iPhone 上回答」預設就是關的 — 請看[設定](/zh-Hant/sessions/settings#remote-approvals)。判斷方式是顏色：每一隻舉起的手都是黃色（`需要協助`，那種只有終端機能處理），沒有一隻是紫色（`需要權限`，可以回覆的那一種）。請看[在手機上回覆](/zh-Hant/sessions/approvals)。
 </Accordion>
 
 <Accordion title="我開了一個 session，它卻從來沒出現" icon="play">
-  看 **Hooks** — 在 OpenCode 裡則是 **Plugin**，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 `/hooks`、重新啟動 OpenCode。
+  看 **Hooks** — 在 OpenCode 裡則是 **Plugin**，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 `/hooks`、重新啟動 OpenCode、重新啟動 Cursor。
 
   Codex 的 hooks 必須被明確信任，而一次外掛程式更新會重新開啟那道審核，所以在 Codex 那邊，更新後執行 `/hooks` 通常就是答案 — [為什麼](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="偏偏只有 OpenCode 什麼都不顯示" icon="rotate">
   一列 **Plugin** 寫著已安裝卻沒有任何活動，通常表示外掛程式送達時 OpenCode 已經在跑了。OpenCode 只在伺服器啟動時載入一次外掛程式，所以把它結束再重新開起來就是全部的解法 — 只重新載入 TUI 是不夠的。這和[重設前要先關閉 OpenCode](/zh-Hant/sessions/opencode#reset-needs-opencode-closed) 是同一個原因。
+</Accordion>
+
+<Accordion title="偏偏只有 Cursor 什麼都不顯示" icon="arrow-pointer">
+  有三件事要檢查，依這個順序：
+
+  - **Cursor 沒有重新啟動**。Cursor 只在啟動時載入 hooks，所以安裝之後，請結束並重新開啟 Cursor — 也重新啟動任何開著的 `cursor-agent` session。
+  - **Cursor 分頁被隱藏了**。面板最多顯示三個代理分頁。點一下 **+** 按鈕（「選擇代理」），把 Cursor 打開。
+  - **這台 Mac 沒有配對**。在 Cursor 裡執行 `/nomo-status` 來確認。
+
+  安裝時已經在跑的那一輪，會從它的下一個提示開始出現。還有，session 要等你送出某個對話的第一個提示才會出現 — 只打開對話是不夠的。完整的設定步驟在[搭配 Cursor 使用](/zh-Hant/sessions/cursor)。
+</Accordion>
+
+<Accordion title="Cursor 的對話顯示成 Claude Code 的 session" icon="clone">
+  更新 Claude Code 的 Nomo 外掛程式。舊版本會透過 Cursor 匯入 Claude Code 外掛程式的機制，在 Cursor 裡面執行；目前的版本會忽略 Cursor。指令在[更新](/zh-Hant/setup/install#updating)裡。
+</Accordion>
+
+<Accordion title="Cursor 結束後，它的 session 還停在「執行中」" icon="hourglass-half">
+  如果 Cursor 被強制結束或當機，session 可能會停在執行中，直到逾時為止 — 大約 30 分鐘 — 而不是立刻結束。`/nomo-reset` 會清除卡住的 session 列，而不解除配對。
 </Accordion>
 
 <Accordion title="各列看起來過時或重複" icon="broom">
@@ -86,6 +110,10 @@ $nomo-status
   ```
 
   ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
+
+  ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
   ```
   </CodeGroup>
@@ -178,7 +206,7 @@ $nomo-status
 
 ## 功能建議 {#nothings-broken--you-just-want-something}
 
-「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)和[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)講這兩個代理，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
+「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)、[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)和[搭配 Cursor 使用](/zh-Hant/sessions/cursor)講這三個代理，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
 
 其餘的就只是還沒做而已。
 
@@ -240,6 +268,30 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "一列 Plugin 寫著已安裝卻沒有任何活動，通常表示外掛程式送達時 OpenCode 已經在跑了。OpenCode 只在伺服器啟動時載入一次外掛程式，所以把它結束再重新開起來就是全部的解法 — 只重新載入 TUI 是不夠的。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "偏偏只有 Cursor 什麼都不顯示",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "有三件事要檢查。Cursor 只在啟動時載入 hooks，所以安裝之後，請結束並重新開啟 Cursor，也重新啟動任何開著的 cursor-agent session。面板最多顯示三個代理分頁，所以點一下 + 按鈕（「選擇代理」），把 Cursor 打開。還有，在 Cursor 裡執行 /nomo-status，確認這台 Mac 已經配對。安裝時已經在跑的那一輪，會從它的下一個提示開始出現。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor 的對話顯示成 Claude Code 的 session",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "更新 Claude Code 的 Nomo 外掛程式。舊版本會透過 Cursor 匯入 Claude Code 外掛程式的機制，在 Cursor 裡面執行；目前的版本會忽略 Cursor。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor 結束後，它的 session 還停在「執行中」",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "如果 Cursor 被強制結束或當機，session 可能會停在執行中，直到逾時為止 — 大約 30 分鐘 — 而不是立刻結束。/nomo-reset 會清除卡住的 session 列，而不解除配對。"
       }
     },
     {

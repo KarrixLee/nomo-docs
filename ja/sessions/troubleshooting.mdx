@@ -2,7 +2,7 @@
 title: "トラブルシューティング"
 description: "まずはステータスのコマンドを実行してください — 問題を名指しし、その対処法まで出力します。そのうえで、どの症状をどの行が説明するのか、そしてステータスには見えない数少ないものをまとめます。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "トラブルシューティング"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "トラブルシューティング"]
 ---
 
 いまは、このページの仕事のほとんどをステータスのコマンドが代わりにやってくれます。コンピュータ全体を読み取り、おかしいところを平易な言葉で名指しし、それを直すコマンドを出力します。まずはこれを実行してください。
@@ -21,6 +21,10 @@ $nomo-status
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
 </CodeGroup>
@@ -58,19 +62,39 @@ $nomo-status
 </Accordion>
 
 <Accordion title="iPhone が承認を求めてこない" icon="hand">
+  Cursor のセッションであれば、それは想定どおりです。Cursor のセッションは読み取り専用で、許可リクエストは iPhone に届きません — [理由](/ja/sessions/cursor#what-this-version-doesnt-do)。それ以外のエージェントでは、次のとおりです。
+
   **Approvals** を見てください。`PAUSED` は、そのコンピュータで一時停止のコマンドが実行されたという意味です — 何か月も前かもしれません。だからこそ、これまでは気づきようがありませんでした。そのマシンのセッションから再開すれば、許可リクエストは戻ってきます — [approvals](/ja/sessions/commands#approvals)。
 
   `on` と出ているなら、オフになっているスイッチは iPhone 側にあります。「iPhoneで回答」は初期状態でオフです — [設定](/ja/sessions/settings#remote-approvals)。見分け方は色です。挙がった手がすべて黄色（`要対応`、ターミナルでしか受け取れないもの）で、紫（`許可が必要`、回答できるほう）が 1 つもない、というのがその印です。[iPhone からの回答](/ja/sessions/approvals)をご覧ください。
 </Accordion>
 
 <Accordion title="セッションを開始したのに表示されない" icon="play">
-  **Hooks** — フックのない OpenCode では **Plugin** です。これが発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動してください。Codex では `/hooks` を実行します。OpenCode も再起動してください。
+  **Hooks** — フックのない OpenCode では **Plugin** です。これが発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動してください。Codex では `/hooks` を実行します。OpenCode も再起動してください。Cursor も再起動してください。
 
   Codex はフックを明示的に信頼する必要があり、プラグインの更新があるとその確認が再び開きます。更新後に `/hooks` を実行するのが、そちらでのいつもの答えです — [理由](/ja/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="OpenCode だけ何も表示されない" icon="rotate">
   **Plugin** の行が installed なのに活動がないと出ている場合、たいていはプラグインが入ったときに OpenCode がすでに起動していたということです。OpenCode がプラグインを読み込むのはサーバーの起動時の 1 回だけなので、終了してもう一度起動すればそれだけで直ります — TUI の再読み込みでは足りません。[reset に OpenCode を閉じる必要がある](/ja/sessions/opencode#reset-needs-opencode-closed)のと同じ理由です。
+</Accordion>
+
+<Accordion title="Cursor だけ何も表示されない" icon="arrow-pointer">
+  次の 3 つを、この順で確認してください。
+
+  - **Cursor を再起動していない**。Cursor がフックを読み込むのは起動時だけなので、インストールしたら Cursor を終了して開き直し、開いている `cursor-agent` のセッションがあればそれも再起動してください。
+  - **Cursor タブが非表示になっている**。ドロワーに表示されるエージェントのタブは最大 3 つです**。+** ボタン（「エージェントを選択」）をタップして、Cursor をオンにしてください。
+  - **Mac がペアリングされていない**。Cursor で `/nomo-status` を実行して確認してください。
+
+  インストールしたときにすでに実行中だったターンは、次のプロンプトから表示されます。また、セッションが現れるのは、チャットの最初のプロンプトを送ったあとです — チャットを開いただけでは足りません。セットアップの全体は [Cursor での利用](/ja/sessions/cursor)にあります。
+</Accordion>
+
+<Accordion title="Cursor のチャットが Claude Code のセッションとして表示される" icon="clone">
+  Claude Code 向けの Nomo プラグインを更新してください。以前のバージョンは、Cursor による Claude Code プラグインの取り込みを通じて Cursor の中でも動いていました。現在のバージョンは Cursor を無視します。コマンドは[更新](/ja/setup/install#updating)にあります。
+</Accordion>
+
+<Accordion title="Cursor を終了しても Cursor のセッションが「実行中」のまま" icon="hourglass-half">
+  Cursor が強制終了されたりクラッシュしたりすると、セッションはすぐには終了せず、タイムアウトするまで — およそ 30 分 — `実行中` のまま残ることがあります。`/nomo-reset` を実行すると、ペアリングを解除せずに、停止したセッションの行を消去できます。
 </Accordion>
 
 <Accordion title="行が古いままか重複している" icon="broom">
@@ -86,6 +110,10 @@ $nomo-status
   ```
 
   ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
+
+  ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
   ```
   </CodeGroup>
@@ -180,7 +208,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
 
 ## 機能リクエスト {#nothings-broken--you-just-want-something}
 
-「なぜこれを iPhone からできないのか」は、不具合ではなく正当な疑問であることがよくあります。その一部はエージェントがプラグインに渡すものの実際の制約で、それは文書になっています。Codex 側は [Codex での利用](/ja/sessions/codex)に、OpenCode 側は [OpenCode での利用](/ja/sessions/opencode)に、ライブアクティビティに載せられるもの・載せられないものは [iPhone からの回答](/ja/sessions/approvals)にまとめてあります。
+「なぜこれを iPhone からできないのか」は、不具合ではなく正当な疑問であることがよくあります。その一部はエージェントがプラグインに渡すものの実際の制約で、それは文書になっています。Codex 側は [Codex での利用](/ja/sessions/codex)に、OpenCode 側は [OpenCode での利用](/ja/sessions/opencode)に、Cursor 側は [Cursor での利用](/ja/sessions/cursor)に、ライブアクティビティに載せられるもの・載せられないものは [iPhone からの回答](/ja/sessions/approvals)にまとめてあります。
 
 残りは、単にまだ作られていないだけです。
 
@@ -242,6 +270,30 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Plugin の行が installed なのに活動がないと出ている場合、たいていはプラグインが入ったときに OpenCode がすでに起動していたということです。OpenCode がプラグインを読み込むのはサーバーの起動時の 1 回だけなので、終了してもう一度起動すればそれだけで直ります — TUI の再読み込みでは足りません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor だけ何も表示されない",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "確認することは 3 つです。Cursor がフックを読み込むのは起動時だけなので、インストールしたら Cursor を終了して開き直し、開いている cursor-agent のセッションがあればそれも再起動してください。ドロワーに表示されるエージェントのタブは最大 3 つなので、+ ボタン（「エージェントを選択」）をタップして Cursor をオンにしてください。そして Cursor で /nomo-status を実行して、Mac がペアリングされているか確認してください。インストールしたときにすでに実行中だったターンは、次のプロンプトから表示されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor のチャットが Claude Code のセッションとして表示される",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Claude Code 向けの Nomo プラグインを更新してください。以前のバージョンは、Cursor による Claude Code プラグインの取り込みを通じて Cursor の中でも動いていました。現在のバージョンは Cursor を無視します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor を終了しても Cursor のセッションが「実行中」のまま",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cursor が強制終了されたりクラッシュしたりすると、セッションはすぐには終了せず、タイムアウトするまで — およそ 30 分 — 実行中 のまま残ることがあります。/nomo-reset を実行すると、ペアリングを解除せずに、停止したセッションの行を消去できます。"
       }
     },
     {

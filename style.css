@@ -157,7 +157,8 @@ a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
    inversion is the whole fix — no light/dark asset pair to keep in sync.
    Only for monochrome marks: Claude's coral and Gemini's four-color spark
    would come back wrong, so they don't carry the class. */
-.dark .provider-row img.invert-dark {
+.dark .provider-row img.invert-dark,
+.dark img.agent-mark.invert-dark {
   filter: invert(1);
 }
 

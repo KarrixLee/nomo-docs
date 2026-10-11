@@ -2,7 +2,7 @@
 title: "Solución de problemas"
 description: "Ejecuta primero el comando status: nombra el problema e imprime el arreglo. Después, qué fila responde a cada síntoma y las pocas cosas que status no puede ver."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
 ---
 
 El comando status hace hoy casi todo el trabajo de esta página. Lee el ordenador
@@ -24,6 +24,10 @@ $nomo-status
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
 </CodeGroup>
@@ -84,6 +88,11 @@ está en [Comandos](/es/sessions/commands#status).
 </Accordion>
 
 <Accordion title="Mi teléfono nunca me pide aprobar nada" icon="hand">
+  Si la sesión es de Cursor, es lo esperado: las sesiones de Cursor son de solo
+  lectura y sus solicitudes nunca llegan a tu teléfono —
+  [por qué](/es/sessions/cursor#what-this-version-doesnt-do). Para cualquier
+  otro agente:
+
   Lee **Approvals**. `PAUSED` significa que alguien ejecutó el comando de pausa
   en este ordenador — puede que hace meses, que es justo por lo que esto antes
   era imposible de descubrir. Reanúdalas desde una sesión en esa máquina y las
@@ -101,7 +110,7 @@ está en [Comandos](/es/sessions/commands#status).
   **Hooks** — o **Plugin** en OpenCode, que no tiene. Si no se dispara, tu agente
   no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo
   al arrancar: reinicia Claude Code, ejecuta `/hooks` en Codex, reinicia
-  OpenCode.
+  OpenCode, reinicia Cursor.
 
   Codex confía en los hooks de forma explícita y una actualización del plugin
   reabre esa revisión, así que `/hooks` después de actualizar es ahí la respuesta
@@ -115,6 +124,37 @@ está en [Comandos](/es/sessions/commands#status).
   es el arreglo entero: recargar la TUI no basta. Es la misma razón por la que
   [el reinicio exige cerrar
   OpenCode](/es/sessions/opencode#reset-needs-opencode-closed).
+</Accordion>
+
+<Accordion title="Cursor en concreto no muestra nada" icon="arrow-pointer">
+  Tres cosas que comprobar, en este orden:
+
+  - **Cursor no se reinició.** Cursor solo recoge los hooks al arrancar, así que
+    después de instalar, cierra Cursor y vuelve a abrirlo — y reinicia cualquier
+    sesión de `cursor-agent` abierta.
+  - **La pestaña Cursor está oculta.** El panel muestra hasta tres pestañas de
+    agente. Toca el botón **+** (**Elegir agentes**) y activa Cursor.
+  - **El Mac no está vinculado.** Ejecuta `/nomo-status` en Cursor para
+    comprobarlo.
+
+  Un turno que ya estaba en marcha cuando instalaste aparece a partir de su
+  siguiente prompt. Y una sesión solo aparece cuando has enviado el primer
+  prompt de un chat: abrir un chat no basta. La configuración completa está en
+  [Usar Cursor](/es/sessions/cursor).
+</Accordion>
+
+<Accordion title="Un chat de Cursor aparece como sesión de Claude Code" icon="clone">
+  Actualiza el plugin de Nomo para Claude Code. Las versiones anteriores se
+  ejecutaban dentro de Cursor, a través de la importación de plugins de Claude
+  Code que hace Cursor; la versión actual ignora Cursor.
+  [Actualizaciones](/es/setup/install#updating) tiene el comando.
+</Accordion>
+
+<Accordion title="Una sesión de Cursor sigue En ejecución después de cerrarse Cursor" icon="hourglass-half">
+  Si se fuerza el cierre de Cursor o se cierra por un fallo, una sesión puede
+  quedarse como `En ejecución` hasta que agota el tiempo de espera —unos 30
+  minutos— en lugar de terminar al momento. `/nomo-reset` limpia las filas de
+  sesión atascadas sin desvincular nada.
 </Accordion>
 
 <Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
@@ -131,6 +171,10 @@ está en [Comandos](/es/sessions/commands#status).
   ```
 
   ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
+
+  ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
   ```
   </CodeGroup>
@@ -275,8 +319,9 @@ afectado también ayuda: la versión de su primera línea es medio diagnóstico.
 
 “¿Por qué no puedo hacer X desde el teléfono?” muchas veces es una pregunta justa
 y no un fallo. Una parte es un límite real de lo que un agente le entrega a un
-plugin, y está escrito: [Usar Codex](/es/sessions/codex) y [Usar
-OpenCode](/es/sessions/opencode) cubren esos dos agentes, y [Responder desde el
+plugin, y está escrito: [Usar Codex](/es/sessions/codex), [Usar
+OpenCode](/es/sessions/opencode) y [Usar Cursor](/es/sessions/cursor) cubren
+esos tres agentes, y [Responder desde el
 iPhone](/es/sessions/approvals) cubre lo que una actividad en directo puede y no
 puede albergar.
 
@@ -346,6 +391,30 @@ que ejecutes ese comando allí.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Una fila Plugin que dice instalado pero sin actividad suele significar que OpenCode ya estaba en marcha cuando llegó el plugin. OpenCode carga los plugins una sola vez, cuando arranca su servidor, así que cerrarlo y volver a abrirlo es el arreglo entero: recargar la TUI no basta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor en concreto no muestra nada",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tres cosas que comprobar. Cursor solo recoge los hooks al arrancar, así que después de instalar, cierra Cursor y vuelve a abrirlo, y reinicia cualquier sesión de cursor-agent abierta. El panel muestra hasta tres pestañas de agente, así que toca el botón + (Elegir agentes) y activa Cursor. Y ejecuta /nomo-status en Cursor para comprobar que el Mac está vinculado. Un turno que ya estaba en marcha cuando instalaste aparece a partir de su siguiente prompt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Un chat de Cursor aparece como sesión de Claude Code",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Actualiza el plugin de Nomo para Claude Code. Las versiones anteriores se ejecutaban dentro de Cursor, a través de la importación de plugins de Claude Code que hace Cursor; la versión actual ignora Cursor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Una sesión de Cursor sigue En ejecución después de cerrarse Cursor",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si se fuerza el cierre de Cursor o se cierra por un fallo, una sesión puede quedarse como En ejecución hasta que agota el tiempo de espera —unos 30 minutos— en lugar de terminar al momento. /nomo-reset limpia las filas de sesión atascadas sin desvincular nada."
       }
     },
     {

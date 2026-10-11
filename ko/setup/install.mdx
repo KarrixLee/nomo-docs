@@ -1,6 +1,6 @@
 ---
 title: "설치"
-description: "Claude Code, Codex 또는 OpenCode에 Nomo 플러그인을 추가합니다. 명령 한 줄로도, 직접도 설치할 수 있으며 의존성은 없습니다."
+description: "Claude Code, Codex, OpenCode 또는 Cursor에 Nomo 플러그인을 추가합니다. 명령 한 줄로도, 직접도 설치할 수 있으며 의존성은 없습니다."
 icon: "puzzle-piece"
 ---
 
@@ -192,11 +192,68 @@ icon: "puzzle-piece"
     휴대폰에서 다르게 나타나는 것은
     [OpenCode 사용하기](/ko/sessions/opencode)에 정리되어 있습니다.
   </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    설치 한 번으로 Cursor 데스크톱 앱의 에이전트와 `cursor-agent` CLI가 모두
+    처리됩니다. 이 버전에서 Cursor 세션은 읽기 전용입니다 — 그것이 무슨 뜻인지는
+    [Cursor 사용하기](/ko/sessions/cursor)에 있습니다.
+
+    <Steps>
+      <Step title="설치 도구 실행">
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --cursor
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --cursor
+        ```
+        </CodeGroup>
+
+        다음 세 가지를 합니다.
+
+        - 플러그인을 `~/.nomo`에 클론합니다.
+        - `~/.cursor/hooks.json`에 Nomo의 Hook 항목을 추가합니다. 이미 있는
+          내용과 병합하며 다른 도구의 항목은 건드리지 않습니다.
+        - `~/.cursor/skills/` 아래에 Skill 네 개를 설치합니다.
+      </Step>
+
+      <Step title="Cursor 재시작 — 필수">
+        <Warning>
+          Cursor는 시작할 때에만 Hook을 읽어 들입니다. Cursor를 종료했다가 다시
+          열고, 열려 있는 `cursor-agent` 세션도 재시작하십시오. 그러기 전까지
+          플러그인은 설치만 되어 있고 아무 일도 하지 않습니다.
+        </Warning>
+      </Step>
+
+      <Step title="확인">
+        Cursor에서 `/`를 입력해 Skill을 고르고 다음을 실행합니다.
+
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    <Tip>
+      Nomo의 Cursor 명령은 접두사가 없는 Skill입니다 — `/nomo-pair`,
+      `/nomo-status`, `/nomo-reset`, `/nomo-unpair`. 네 개 전부
+      [명령](/ko/sessions/commands)에 있습니다.
+    </Tip>
+
+    나중에 제거하려면 다음을 실행합니다.
+
+    ```bash
+    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+    ```
+
+    그런 다음 Cursor를 재시작하십시오.
+  </Tab>
 </Tabs>
 
 ## 명령 한 줄 {#one-command}
 
-설치 도구가 이 컴퓨터에서 Claude Code, Codex, OpenCode를 찾아내고, 고른 것들에
+설치 도구가 이 컴퓨터에서 Claude Code, Codex, OpenCode, Cursor를 찾아내고, 고른 것들에
 Nomo를 넣어 줍니다.
 
 <CodeGroup>
@@ -211,15 +268,15 @@ npx nomo-ai
 
 처음에는 아무것도 선택되어 있지 않습니다. 방향 키(또는 `k` / `j`)로 옮기고,
 스페이스로 선택하고, 엔터로 선택한 것들을 한꺼번에 설치합니다. 그다음에는 각
-에이전트 고유의 설치 절차 — 위의 세 가지 — 를 그대로 실행합니다. 전역에 무언가를
+에이전트 고유의 설치 절차 — 위의 네 가지 — 를 그대로 실행합니다. 전역에 무언가를
 설치하지도, 패키지를 남기지도 않습니다.
 
 스크립트나 CI에서는 다음 옵션을 쓸 수 있습니다.
 
 | 옵션 | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` | 그것들만 설치합니다. 하나라도 지정하면 선택 화면을 건너뜁니다 |
-| `--all` | 찾아냈든 아니든 셋 모두 |
+| `--claude` `--codex` `--opencode` `--cursor` | 그것들만 설치합니다. 하나라도 지정하면 선택 화면을 건너뜁니다 |
+| `--all` | 찾아냈든 아니든 넷 모두 |
 | `-y`, `--yes` | 선택 화면 없이, 찾아낸 것을 모두 설치합니다 |
 | `-n`, `--dry-run` | 실행할 명령을 출력만 하고 아무것도 실행하지 않습니다 |
 
@@ -230,7 +287,7 @@ Code에서는 `/nomo-cc:pair`, Codex에서는 `$nomo-pair`입니다.
 ## 업데이트 {#updating}
 
 같은 명령이 업데이트도 합니다. Nomo가 이미 설치된 에이전트는 설치가 아니라
-업데이트로 표시됩니다. 실제로 실행되는 것은 OpenCode 쪽뿐이고, 나머지 둘은
+업데이트로 표시됩니다. 실제로 실행되는 것은 OpenCode와 Cursor 쪽뿐이고, 나머지 둘은
 출력만 됩니다.
 
 <Tabs>
@@ -265,6 +322,16 @@ Code에서는 `/nomo-cc:pair`, Codex에서는 `$nomo-pair`입니다.
 
     어느 쪽이든 끝나면 OpenCode를 재시작하십시오. 플러그인은 서버가 시작될 때 한
     번만 불러옵니다.
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    설치할 때 쓴 것과 같은 명령입니다.
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    끝나면 Cursor를 재시작하고, 열려 있는 `cursor-agent` 세션도 재시작하십시오.
   </Tab>
 </Tabs>
 

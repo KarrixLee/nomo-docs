@@ -1,6 +1,6 @@
 ---
 title: "安装"
-description: "为 Claude Code、Codex 或 OpenCode 添加 Nomo 插件。一键安装，也可以手动装，零依赖。"
+description: "为 Claude Code、Codex、OpenCode 或 Cursor 添加 Nomo 插件。一键安装，也可以手动装，零依赖。"
 icon: "puzzle-piece"
 ---
 
@@ -170,11 +170,61 @@ icon: "puzzle-piece"
 
     到了手机上有哪些不一样，见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)。
   </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    一次安装同时覆盖 Cursor 桌面应用里的智能体和 `cursor-agent` CLI。Cursor 会话在这个版本里是只读的——这意味着什么，见[搭配 Cursor 使用](/zh-Hans/sessions/cursor)。
+
+    <Steps>
+      <Step title="运行安装工具">
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --cursor
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --cursor
+        ```
+        </CodeGroup>
+
+        它做三件事：
+
+        - 把插件克隆到 `~/.nomo`。
+        - 把 Nomo 的 hook 条目加进 `~/.cursor/hooks.json`。它会和已有的内容合并，其他工具的条目原样不动。
+        - 在 `~/.cursor/skills/` 下安装四个 skill。
+      </Step>
+
+      <Step title="重启 Cursor——必做">
+        <Warning>
+          Cursor 只在启动时加载 hook。退出并重新打开 Cursor，并重启你开着的每一个 `cursor-agent` 会话。在你这样做之前，插件虽已安装却什么都不做。
+        </Warning>
+      </Step>
+
+      <Step title="确认">
+        在 Cursor 里输入 `/` 来挑选 skill，然后运行：
+
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    <Tip>
+      Nomo 的 Cursor 命令是不带前缀的 skill：`/nomo-pair`、`/nomo-status`、`/nomo-reset` 和 `/nomo-unpair`。四个都在[命令](/zh-Hans/sessions/commands)里。
+    </Tip>
+
+    以后要移除它：
+
+    ```bash
+    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+    ```
+
+    然后重启 Cursor。
+  </Tab>
 </Tabs>
 
 ## 一键安装 {#one-command}
 
-安装工具会找出这台电脑上有哪些 Claude Code、Codex 和 OpenCode，然后把 Nomo 装进你挑中的那几个：
+安装工具会找出这台电脑上有哪些 Claude Code、Codex、OpenCode 和 Cursor，然后把 Nomo 装进你挑中的那几个：
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -186,14 +236,14 @@ npx nomo-ai
 ```
 </CodeGroup>
 
-一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的。接着它就去跑每个智能体本来的安装流程——也就是上面那三套。它不会全局安装任何东西，也不会留下包。
+一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的。接着它就去跑每个智能体本来的安装流程——也就是上面那四套。它不会全局安装任何东西，也不会留下包。
 
 写脚本或在 CI 里用时：
 
 | 选项 | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` | 只装这些——只要指定其中任意一个，就会跳过选择界面 |
-| `--all` | 三个全装，无论有没有找到 |
+| `--claude` `--codex` `--opencode` `--cursor` | 只装这些——只要指定其中任意一个，就会跳过选择界面 |
+| `--all` | 四个全装，无论有没有找到 |
 | `-y`、`--yes` | 不出选择界面，找到多少装多少 |
 | `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
 
@@ -201,7 +251,7 @@ npx nomo-ai
 
 ## 更新 {#updating}
 
-同一条命令也负责更新：已经装了 Nomo 的智能体，会显示成更新而不是安装。真正会跑的只有 OpenCode 那一份，另外两个只是打印出来给你。
+同一条命令也负责更新：已经装了 Nomo 的智能体，会显示成更新而不是安装。真正会跑的只有 OpenCode 和 Cursor 那两份，另外两个只是打印出来给你。
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -228,6 +278,16 @@ npx nomo-ai
     这一份由安装工具代劳。在 OpenCode 里运行 [`/nomo-update`](/zh-Hans/sessions/commands#update) 也一样。
 
     两种方式之后都要重启 OpenCode——插件只在服务器启动时导入一次。
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    和安装时是同一条命令：
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    之后重启 Cursor，以及所有开着的 `cursor-agent` 会话。
   </Tab>
 </Tabs>
 
