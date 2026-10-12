@@ -101,10 +101,33 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
 - **待答复的问题**，有的话就完整显示。
 - **查看计划**——打开计划。Claude Code 的可以答复，[Codex](/zh-Hans/sessions/codex) 的只能读，[OpenCode](/zh-Hans/sessions/opencode#plan-mode) 的通常是这个会话的待办清单，而不是一份文档。
 - **在 Mac 上打开**——把这个会话的终端窗口在 Mac 上调到最前。只有当 Nomo 有一条直连的[本地网络](/zh-Hans/sessions/settings#local-network)链路时才会出现，而且 [OpenCode](/zh-Hans/sessions/opencode#no-open-on-mac) 会话上永远不会出现，因为它们没有自己的窗口。
+- **停止**——停掉正在运行的这一轮，相当于在 Mac 上按 Esc。只出现在 `运行中` 的 Claude Code 或 Codex 会话上，而且同样需要那条直连链路——见[下文](#interrupt-a-running-session)。
 
 <Tip>
   想**答复**一条请求，请按住这一行，而不是轻点。轻点是展开；按住才会打开“允许 / 拒绝”菜单。
 </Tip>
+
+## 停止运行中的会话 {#interrupt-a-running-session}
+
+**停止**会停掉当前这一轮，和在 Mac 上按 Esc 一样。它在展开后的会话行里，紧挨着**在 Mac 上打开**，而且只有下面几条全部满足时才会出现：
+
+- 会话处于 `运行中`。正在等你的行——权限请求、问题、计划——或者已经 `完成` 的行，没有什么可停的。
+- 是 Claude Code 或 Codex 的会话。OpenCode 上永远不会出现。
+- Nomo 和那台 Mac 之间有一条直连的[本地网络](/zh-Hans/sessions/settings#local-network)链路——也就是绿色的 **⚡ 本地**角标。停止信号绝不会走中继服务器。
+- 那台电脑上的插件是 **2.3.0** 或更新版本。
+
+轻点之后，按钮会显示**已发送**；如果没能连上 Mac，则显示**重试**。**已发送**的意思是 Mac 收到了，不代表这一轮已经停下。
+
+它只停这一轮，别的都不动。会话仍然开着，停在 Mac 上的提示符处，这一行变成 `完成`；想继续，就在 Mac 上输入新的提示。它不是暂停，也不会关闭会话。
+
+| | 实际效果 |
+| --- | --- |
+| **Claude Code** | 在下一次工具调用处停下。它正要运行的那个工具会被拒绝，这一轮随之结束，Claude Code 会显示 `Interrupted from Nomo`。Claude 还在输出文字，或者一条耗时的命令已经在跑的时候，要等那一步结束才会有反应。 |
+| **Codex** | 立刻停下，前提是会话在 Codex 的共享 app-server 上——见[限制](/zh-Hans/sessions/codex#interrupt)。Codex 已经启动的 shell 命令可能会在后台继续运行。 |
+
+对 Claude Code 来说还有两点。如果这一轮先自己结束了，停止信号就什么都不做——它绝不会留到你的下一条提示上。如果活是在子智能体里干的，它会先停掉那个子智能体。
+
+插件版本是按电脑上报的，不是按智能体。如果你在同一台 Mac 上同时用 Claude Code 和 Codex，请把两个插件都更新到 **2.3.0**——否则按钮可能出现在插件过旧的会话上，显示**已发送**，却什么都没发生。
 
 ## 数量上限 {#how-many}
 

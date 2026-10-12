@@ -113,6 +113,21 @@ y lo que escribas llega a Codex igual que si lo hubieras tecleado. Eso necesita
 la versión **2.2.2** del plugin. En una pregunta de Codex no hay **Añadir
 nota**: Codex no tiene dónde ponerla.
 
+## Detener {#interrupt}
+
+**Detener**, en una fila de Codex que esté `En ejecución`, corta el turno al
+momento: no espera a una llamada a una herramienta, como hace Claude Code. Un
+comando de shell que Codex ya hubiera lanzado puede seguir corriendo en segundo
+plano.
+
+Llega a Codex por el mismo `app-server` compartido que hace falta para
+[responder preguntas](#questions-in-the-cli-and-the-desktop-app). Una sesión a
+la que Nomo no puede llegar por esa vía muestra **Enviado** y sigue corriendo.
+
+Una sesión que acaba de empezar puede tardar un momento en ofrecer el botón. El
+resto —cuándo aparece y qué significa **Enviado**— está en
+[Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
+
 ## Confianza en los hooks {#hooks-have-to-be-trusted}
 
 Codex trae su propia barrera de seguridad: los hooks de un plugin se instalan

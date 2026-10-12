@@ -99,6 +99,16 @@ $nomo-status
   到了 2.2.2，前者大约 20 秒就会落定为 `完成`，后者要等到有活可干才会出现。[更新插件](/zh-Hans/setup/install#updating)。
 </Accordion>
 
+<Accordion title="“停止”显示“已发送”，会话却还在运行" icon="circle-stop">
+  **已发送**的意思是 Mac 收到了，不代表这一轮已经停下。有三种情况会让它继续跑：
+
+  - **Claude Code 要等到下一次工具调用**。它还在输出文字，或者一条耗时的命令已经在跑的时候，要等那一步结束才会有反应。
+  - **够不到那个 Codex 会话**。停止信号要走 Codex 的共享 app-server——见[它覆盖哪些会话](/zh-Hans/sessions/codex#interrupt)。
+  - **两个插件里有一个低于 2.3.0**。版本是按电脑上报的，所以同一台 Mac 上既有 Claude Code 又有 Codex 时，两个都要更新。状态命令的第一行就写着版本。
+
+  根本没有**停止**按钮？它需要绿色的 **⚡ 本地**角标、一个 `运行中` 的会话、插件 **2.3.0**，而且必须是 Claude Code 或 Codex——OpenCode 上永远没有。详见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
+</Accordion>
+
 </AccordionGroup>
 
 ## 状态命令看不到的部分 {#what-status-cant-see}

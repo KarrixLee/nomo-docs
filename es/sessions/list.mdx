@@ -135,12 +135,50 @@ puede seleccionar, y va etiquetado con un símbolo en lugar de con una palabra:
 - **La pregunta pendiente**, entera, cuando la hay.
 - **Ver plan** — abre el plan. Se puede responder en Claude Code; en [Codex](/es/sessions/codex) es de solo lectura, y en [OpenCode](/es/sessions/opencode#plan-mode) suele ser la lista de tareas de la sesión en vez de un documento.
 - **Abrir en el Mac** — pone en primer plano la ventana de terminal de esa sesión en tu Mac. Solo aparece cuando Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network), y nunca en las sesiones de [OpenCode](/es/sessions/opencode#no-open-on-mac), que no tienen ventana propia.
+- **Detener** — detiene el turno en curso, como pulsar Esc en el Mac. Solo en una sesión de Claude Code o Codex que esté `En ejecución`, y solo por ese mismo enlace directo — ve [más abajo](#interrupt-a-running-session).
 
 <Tip>
   Para **responder** a una solicitud, mantén pulsada la fila en lugar de tocarla.
   Al tocarla se despliega; al mantenerla pulsada se abre el menú de permitir o
   denegar.
 </Tip>
+
+## Detener una sesión en ejecución {#interrupt-a-running-session}
+
+**Detener** corta el turno en curso, igual que Esc en el Mac. Está junto a
+**Abrir en el Mac** en la fila desplegada, y solo aparece cuando se cumple todo
+esto:
+
+- La sesión está `En ejecución`. En una fila que te espera —una solicitud de
+  permiso, una pregunta, un plan— o que ya está en `Listo` no hay nada que
+  detener.
+- Es una sesión de Claude Code o de Codex. Nunca de OpenCode.
+- Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network)
+  con ese Mac: la etiqueta verde **⚡ Local**. La orden nunca se envía a través
+  del relé.
+- Ese ordenador tiene la versión **2.3.0** del plugin o una posterior.
+
+Después de tocar, el botón dice **Enviado**, o **Reintentar** si no se pudo
+llegar al Mac. **Enviado** significa que el Mac lo recibió, no que el turno ya
+se haya detenido.
+
+Detiene el turno y nada más. La sesión sigue abierta en su prompt en el Mac y la
+fila pasa a `Listo`; para continuar, escribe allí un prompt nuevo. No es una
+pausa, y no cierra la sesión.
+
+| | Qué ocurre |
+| --- | --- |
+| **Claude Code** | Se detiene en la siguiente llamada a una herramienta. La herramienta que iba a ejecutar se rechaza, el turno termina y Claude Code muestra `Interrupted from Nomo`. Mientras Claude escribe texto, o mientras corre un comando largo ya iniciado, no pasa nada hasta que ese paso termina. |
+| **Codex** | Se detiene al momento, en las sesiones que están en el `app-server` compartido de Codex — ve [el límite](/es/sessions/codex#interrupt). Un comando de shell que Codex ya hubiera lanzado puede seguir corriendo en segundo plano. |
+
+Dos cosas más en Claude Code. Si el turno termina por su cuenta antes, la orden
+no hace nada: nunca se arrastra a tu siguiente prompt. Y si el trabajo ocurre
+dentro de un subagente, detiene primero a ese subagente.
+
+La versión del plugin se informa por ordenador, no por agente. Si usas Claude
+Code y Codex en el mismo Mac, actualiza los dos plugins a la **2.3.0**; si no,
+el botón puede aparecer en una sesión cuyo plugin es demasiado antiguo, decir
+**Enviado** y no hacer nada.
 
 ## Límites {#how-many}
 

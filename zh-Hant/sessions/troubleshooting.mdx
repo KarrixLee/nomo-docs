@@ -99,6 +99,16 @@ $nomo-status
   在 2.2.2 上，前者大約 20 秒就會定為 `完成`，後者則要等到有事可做才會出現。[更新外掛程式](/zh-Hant/setup/install#updating)。
 </Accordion>
 
+<Accordion title="「停止」顯示「已傳送」，session 卻還在執行" icon="circle-stop">
+  「已傳送」表示 Mac 收到了，不代表這一輪已經停下。有三種情況會讓它繼續跑：
+
+  - **Claude Code 要等到下一次工具呼叫**。它還在輸出文字，或一個耗時的指令已經在跑的時候，要等那一步結束才會有反應。
+  - **連不上那個 Codex session**。停止訊號要經過 Codex 的共用 app-server — 請看[它涵蓋哪些 sessions](/zh-Hant/sessions/codex#interrupt)。
+  - **兩個外掛程式裡有一個比 2.3.0 舊**。版本是依電腦回報的，所以同一台 Mac 上同時有 Claude Code 和 Codex 時，兩個都要更新。status 會在第一行印出版本。
+
+  完全沒有「停止」按鈕？它需要綠色的 **⚡ 本機** 標籤、一個 `執行中` 的 session、外掛程式 **2.3.0**，而且必須是 Claude Code 或 Codex — OpenCode 上不會有。詳情請看[電腦與 sessions](/zh-Hant/sessions/list#interrupt-a-running-session)。
+</Accordion>
+
 </AccordionGroup>
 
 ## status 看不到的部分 {#what-status-cant-see}

@@ -152,6 +152,25 @@ está en [Comandos](/es/sessions/commands#status).
   [Actualiza el plugin](/es/setup/install#updating).
 </Accordion>
 
+<Accordion title="Detener dice Enviado pero la sesión sigue en marcha" icon="circle-stop">
+  **Enviado** significa que el Mac lo recibió, no que el turno se haya detenido.
+  Hay tres cosas que lo dejan corriendo:
+
+  - **Claude Code espera a la siguiente llamada a una herramienta.** Mientras
+    escribe texto, o mientras corre un comando largo ya iniciado, no pasa nada
+    hasta que ese paso termina.
+  - **No se puede llegar a la sesión de Codex.** La orden pasa por el
+    `app-server` compartido de Codex —
+    [qué sesiones cubre](/es/sessions/codex#interrupt).
+  - **Uno de los dos plugins es anterior a la 2.3.0.** La versión se informa por
+    ordenador, así que con Claude Code y Codex en el mismo Mac hay que
+    actualizar los dos. Status imprime la versión en su primera línea.
+
+  ¿No hay botón **Detener**? Necesita la etiqueta verde **⚡ Local**, una sesión
+  `En ejecución`, la versión **2.3.0** del plugin, y Claude Code o Codex — nunca
+  OpenCode. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
+</Accordion>
+
 </AccordionGroup>
 
 ## Lo que status no puede ver {#what-status-cant-see}

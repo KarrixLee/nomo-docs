@@ -106,6 +106,20 @@ Codex 질문에 자체 자유 입력 행 — 터미널의 *None of the above* �
 똑같이 Codex에 전달됩니다. 플러그인 **2.2.2**가 필요합니다. Codex 질문에는
 **메모 추가**가 없습니다. Codex에 메모를 둘 자리가 없기 때문입니다.
 
+## 세션 중단 {#interrupt}
+
+`실행 중`인 Codex 행에서 **중단**을 탭하면 턴이 즉시 멈춥니다. Claude Code처럼 도구
+호출을 기다리지 않습니다. Codex가 이미 실행한 셸 명령은 백그라운드에서 계속 실행될
+수 있습니다.
+
+중단은 [질문에 답할 때](#questions-in-the-cli-and-the-desktop-app) 필요한 것과 같은
+공유 `app-server`를 통해 Codex에 전달됩니다. Nomo가 그 경로로 닿을 수 없는 세션은
+**전송됨**이 표시된 채 계속 실행됩니다.
+
+막 시작한 세션에는 잠시 버튼이 나타나지 않을 수 있습니다. 버튼이 나타나는 조건과
+**전송됨**의 의미는 [컴퓨터와 세션](/ko/sessions/list#interrupt-a-running-session) 문서를
+참고하십시오.
+
 ## Hook 신뢰 설정 {#hooks-have-to-be-trusted}
 
 Codex에는 자체 안전장치가 있습니다. 플러그인 Hook은 설치되지만 **신뢰하기 전까지

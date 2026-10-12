@@ -144,6 +144,23 @@ What each row means, with a healthy machine and a broken one side by side, is on
   [Update the plugin](/setup/install#updating).
 </Accordion>
 
+<Accordion title="Interrupt says Sent but the session keeps running" icon="circle-stop">
+  **Sent** means the Mac received it, not that the turn has stopped. Three
+  things leave it running:
+
+  - **Claude Code waits for the next tool call.** While it's writing text, or a
+    long command is already running, nothing happens until that step finishes.
+  - **The Codex session isn't reachable.** Interrupt goes through Codex's shared
+    app-server — [which sessions that covers](/sessions/codex#interrupt).
+  - **One of the two plugins is older than 2.3.0.** The version is reported per
+    computer, so with Claude Code and Codex on one Mac, update both. Status
+    prints the version on its first line.
+
+  No **Interrupt** button at all? It needs the green **⚡ Local** chip, a
+  `Running` session, plugin **2.3.0**, and Claude Code or Codex — never
+  OpenCode. More in [Computers and sessions](/sessions/list#interrupt-a-running-session).
+</Accordion>
+
 </AccordionGroup>
 
 ## What status can't see

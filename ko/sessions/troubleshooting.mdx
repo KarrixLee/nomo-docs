@@ -145,6 +145,24 @@ $nomo-status
   [플러그인을 업데이트](/ko/setup/install#updating)하십시오.
 </Accordion>
 
+<Accordion title="중단이 전송됨으로 표시되는데 세션이 계속 실행됨" icon="circle-stop">
+  **전송됨**은 Mac이 받았다는 뜻이지, 턴이 멈췄다는 뜻이 아닙니다. 계속 실행되는
+  이유는 세 가지입니다.
+
+  - **Claude Code는 다음 도구 호출을 기다립니다.** 글을 쓰는 중이거나 긴 명령이
+    이미 실행 중이면 그 단계가 끝날 때까지 아무 일도 일어나지 않습니다.
+  - **Codex 세션에 닿을 수 없습니다.** 중단은 Codex의 공유 `app-server`를
+    거칩니다 — [대상 세션](/ko/sessions/codex#interrupt)을 참고하십시오.
+  - **두 플러그인 중 하나가 2.3.0보다 오래되었습니다.** 버전은 컴퓨터별로
+    보고되므로, 한 Mac에서 Claude Code와 Codex를 함께 쓴다면 둘 다
+    업데이트하십시오. status는 첫 줄에 버전을 출력합니다.
+
+  **중단** 버튼이 아예 없다면, 초록색 **⚡ 로컬** 칩, `실행 중`인 세션, 플러그인
+  **2.3.0**이 필요하고, Claude Code 또는 Codex 세션이어야 합니다. OpenCode에는
+  나타나지 않습니다. 자세한 내용은
+  [컴퓨터와 세션](/ko/sessions/list#interrupt-a-running-session) 문서를 참고하십시오.
+</Accordion>
+
 </AccordionGroup>
 
 ## status가 볼 수 없는 것 {#what-status-cant-see}
