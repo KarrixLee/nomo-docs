@@ -457,3 +457,28 @@ h1 {
   color: #eaa82a;
   background: rgb(234 168 42 / 0.14);
 }
+
+/* The Sessions feature table: one row per feature, one column per agent. The
+   note under a feature's name is a caption, not a second line of the name, and
+   the header keeps each agent's mark on one line with its name. */
+.feature-table th {
+  white-space: nowrap;
+}
+
+.feature-table .feature-note {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  opacity: 0.7;
+}
+
+.feature-table th:first-child,
+.feature-table td:first-child {
+  width: 34%;
+  min-width: 11rem;
+}
+
+.feature-table td:not(:first-child) {
+  font-size: 0.8125rem;
+}

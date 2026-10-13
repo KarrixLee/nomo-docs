@@ -1,7 +1,6 @@
 ---
 title: "搭配 Codex 使用"
 description: "Sessions 支援 Codex，但和 Claude Code 不完全一樣。哪些事能在手機上做、哪些不能，以及原因。"
-icon: "code"
 keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "電腦", "動態島", "權限", "配對", "搭配 Codex 使用"]
 ---
 
@@ -86,7 +85,7 @@ Codex 那句「要實作這份計畫嗎？」的詢問住在它自己的終端�
 
 ## hooks 必須先信任 {#hooks-have-to-be-trusted}
 
-Codex 自帶一道安全關卡：外掛程式的 hooks 會安裝好，但在**你信任它們之前是不作用的**。執行 `/hooks` 並信任那七個 Nomo 項目，做法寫在[安裝](/zh-Hant/setup/install)。
+Codex 自帶一道安全關卡：外掛程式的 hooks 會安裝好，但在**你信任它們之前是不作用的**。執行 `/hooks` 並信任那十個 Nomo 項目，做法寫在[安裝](/zh-Hant/setup/install)。
 
 會絆倒人的部分：升級到加入手機端 Codex 批准的那個版本時，多了一個**新的** hook，所以 Codex 會重新開啟審核。在你信任它之前，Codex 的批准會安靜地退回終端機，而且沒有任何東西回報錯誤。如果你的手機在更新之後就收不到 Codex 的請求了，請先執行 `/hooks`。
 

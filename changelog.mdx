@@ -5,16 +5,32 @@ icon: "clock-rotate-left"
 ---
 
 <Update label="October 2026" description="2.3">
-  ## Interrupt
+  ## Cursor, and Interrupt
 
   **New**
 
+  - **Cursor** joins Claude Code, Codex and OpenCode — sessions from the Cursor desktop app and `cursor-agent` run live in the Sessions tab and on the Dynamic Island, with Cursor's own chat title and model. Read-only in this version: you watch from your phone and answer at your computer. Install with `bunx nomo-ai --cursor`
+  - Choose which agents a computer shows — the **+** button (**Choose agents**) in its drawer picks up to three tabs
   - Stop a running Claude Code or Codex turn from your phone — **Interrupt**, beside **Open on Mac** in a session row. It stops the turn and leaves the session open — Codex straight away, Claude Code at its next tool call
-  - Needs plugin **2.3.0** on your computer — update both the Claude Code and Codex plugins
-  - Needs **Local network** turned on and both devices on the same network: it goes over the direct link, never the relay
+  - Interrupt needs plugin **2.3.0** on your computer — update both the Claude Code and Codex plugins
+  - Interrupt needs **Local network** turned on and both devices on the same network: it goes over the direct link, never the relay
+
+  **Improved**
+
+  - Pressing Esc in Codex reaches your phone straight away, instead of 20 seconds later
+  - The plugin registers three more Codex hooks. After updating, run `/hooks` in Codex and trust the new entries — ten in all
+
+  **Fixed**
+
+  - A Claude Code turn that ended on an API error read **Running** for up to half an hour. It now settles to **Done**
+  - A tool that failed could leave a Claude Code session asking for you after it had moved on
+  - A Claude Code session waiting on a background subagent keeps reading as working, instead of **Done** too early
+  - A prompt from an OpenCode subagent now shows on its session, and the session goes back to working as soon as it's answered
+  - On a slow connection the Dynamic Island could go stale — **Disconnected?** — in the middle of a turn. The plugin now re-sends what didn't get through, and the Sessions tab brings a stale island back once the Mac confirms the session is alive
+  - The Status tab, alerts and the widget follow xAI's new status page. A widget set to one of xAI's APIs showed the first API in the list whichever one you picked
 </Update>
 
-<Update label="October 2026" description="2.2.2">
+<Update label="October 10, 2026" description="2.2.2">
   ## More ways to answer
 
   **New**

@@ -27,7 +27,11 @@
     ]
   },
   "contextual": {
-    "options": ["copy", "chatgpt", "claude"]
+    "options": [
+      "copy",
+      "chatgpt",
+      "claude"
+    ]
   },
   "footer": {
     "socials": {
@@ -108,6 +112,7 @@
               {
                 "group": "On your phone",
                 "pages": [
+                  "sessions/features",
                   "sessions/list",
                   "sessions/island",
                   "sessions/approvals",
@@ -179,6 +184,7 @@
               {
                 "group": "En tu iPhone",
                 "pages": [
+                  "es/sessions/features",
                   "es/sessions/list",
                   "es/sessions/island",
                   "es/sessions/approvals",
@@ -250,6 +256,7 @@
               {
                 "group": "iPhone 側",
                 "pages": [
+                  "ja/sessions/features",
                   "ja/sessions/list",
                   "ja/sessions/island",
                   "ja/sessions/approvals",
@@ -321,6 +328,7 @@
               {
                 "group": "iPhone에서",
                 "pages": [
+                  "ko/sessions/features",
                   "ko/sessions/list",
                   "ko/sessions/island",
                   "ko/sessions/approvals",
@@ -392,6 +400,7 @@
               {
                 "group": "在手机上",
                 "pages": [
+                  "zh-Hans/sessions/features",
                   "zh-Hans/sessions/list",
                   "zh-Hans/sessions/island",
                   "zh-Hans/sessions/approvals",
@@ -463,6 +472,7 @@
               {
                 "group": "在手機上",
                 "pages": [
+                  "zh-Hant/sessions/features",
                   "zh-Hant/sessions/list",
                   "zh-Hant/sessions/island",
                   "zh-Hant/sessions/approvals",

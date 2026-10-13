@@ -1,7 +1,6 @@
 ---
 title: "搭配 Codex 使用"
 description: "会话功能支持 Codex，但和 Claude Code 不完全一样。哪些能在手机上做、哪些不能，以及为什么。"
-icon: "code"
 keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "搭配 Codex 使用"]
 ---
 
@@ -80,13 +79,13 @@ Codex 那句“要执行这份计划吗？”的提问活在它自己的终端�
 
 在 `运行中` 的 Codex 会话行上轻点**停止**，这一轮会立刻停下——不像 Claude Code 那样要等到下一次工具调用。Codex 已经启动的 shell 命令可能会在后台继续运行。
 
-停止信号通过共享的 app-server 送达 Codex，也就是[回答问题](#questions-in-the-cli-and-the-desktop-app)所依赖的那一个。Nomo 没法通过它够到的会话，会显示**已发送**，然后照常运行。
+停止信号通过共用的 app-server 送达 Codex，也就是[回答问题](#questions-in-the-cli-and-the-desktop-app)所依赖的那一个。Nomo 没法通过它够到的会话，会显示**已发送**，然后照常运行。
 
 刚刚启动的会话可能要过一会儿才会出现这个按钮。它什么时候出现、**已发送**是什么意思，见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
 
 ## hook 需要信任 {#hooks-have-to-be-trusted}
 
-Codex 自带一道安全闸：插件的 hook 装好了，但**在你信任它们之前是不生效的**。运行 `/hooks`，信任那七条 Nomo 条目，具体见[安装](/zh-Hans/setup/install)。
+Codex 自带一道安全闸：插件的 hook 装好了，但**在你信任它们之前是不生效的**。运行 `/hooks`，信任那十条 Nomo 条目，具体见[安装](/zh-Hans/setup/install)。
 
 最容易绊倒人的地方：升级到加入了“手机接管 Codex 审批”的那个版本时，引入了一条**新的** hook，于是 Codex 会重新开启一次审核。在你信任它之前，Codex 的审批会悄悄退回终端，而且不会有任何报错。如果更新之后你的手机不再收到 Codex 的请求，先运行 `/hooks`。
 

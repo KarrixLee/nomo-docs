@@ -129,7 +129,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
 | | 实际效果 |
 | --- | --- |
 | **Claude Code** | 在下一次工具调用处停下。它正要运行的那个工具会被拒绝，这一轮随之结束，Claude Code 会显示 `Interrupted from Nomo`。Claude 还在输出文字，或者一条耗时的命令已经在跑的时候，要等那一步结束才会有反应。 |
-| **Codex** | 立刻停下，前提是会话在 Codex 的共享 app-server 上——见[限制](/zh-Hans/sessions/codex#interrupt)。Codex 已经启动的 shell 命令可能会在后台继续运行。 |
+| **Codex** | 立刻停下，前提是会话在 Codex 的共用 app-server 上——见[限制](/zh-Hans/sessions/codex#interrupt)。Codex 已经启动的 shell 命令可能会在后台继续运行。 |
 
 对 Claude Code 来说还有两点。如果这一轮先自己结束了，停止信号就什么都不做——它绝不会留到你的下一条提示上。如果活是在子智能体里干的，它会先停掉那个子智能体。
 
