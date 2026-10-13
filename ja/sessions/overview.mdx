@@ -23,35 +23,6 @@ Nomo のセッション機能は、実行中の Claude Code、Codex、OpenCode�
   セッションは Nomo Pro の機能です。ステータスの監視と使用量ウィジェットは無料で、以下のセットアップなしで使えます。
 </Note>
 
-## できること
-
-<CardGroup cols={2}>
-  <Card title="すべてのセッションの一覧" href="/ja/sessions/list" icon="list">
-    ペアリングした各コンピュータのセッションを、エージェント別・フォルダ別にまとめて表示します。
-  </Card>
-  <Card title="Dynamic Island でのライブ表示" href="/ja/sessions/island" icon="circle-dot">
-    選んだセッションを、ロック画面と画面の上端にライブで表示します。
-  </Card>
-  <Card title="許可リクエストへの回答" href="/ja/sessions/approvals" icon="hand">
-    Dynamic Island またはアプリから、許可リクエストに「許可」か「拒否」で答えます。
-  </Card>
-  <Card title="質問への回答" href="/ja/sessions/approvals#answering-a-question" icon="circle-question">
-    エージェントが示した選択肢から選ぶか、自分で回答を入力します。
-  </Card>
-  <Card title="計画の確認" href="/ja/sessions/approvals#reviewing-a-plan" icon="list-check">
-    計画全体を読んでから、承認するか差し戻します。
-  </Card>
-  <Card title="実行中のターンの中断" href="/ja/sessions/list#interrupt-a-running-session" icon="stop">
-    Mac で Esc を押すのと同じように、ターンを止めます。
-  </Card>
-  <Card title="Macで開く" href="/ja/sessions/list#tap-a-row-for-detail" icon="window-restore">
-    Mac 上でそのセッションのターミナルウィンドウを前面に出します。
-  </Card>
-  <Card title="リモート承認の一時停止" href="/ja/sessions/approvals#pausing-it" icon="pause">
-    iPhone から、または特定のコンピュータから、許可リクエストをターミナルに戻します。
-  </Card>
-</CardGroup>
-
 ## 対応エージェント
 
 セッション機能が追いかけるのは、コンピュータ上で動いているエージェントであって、その背後のアカウントではありません。そのため、[ステータスと使用量](/ja/status-usage)より対応範囲は狭くなります。
@@ -65,18 +36,9 @@ Nomo のセッション機能は、実行中の Claude Code、Codex、OpenCode�
 
 Codex と OpenCode がプラグインに渡す情報は Claude Code より少ないため、iPhone 側での見え方がいくつか異なります — 変わる点は [Codex での利用](/ja/sessions/codex)と [OpenCode での利用](/ja/sessions/opencode)にまとめてあります。Cursor はこのバージョンでは読み取り専用です。セッションは表示されますが、許可リクエストに iPhone から回答することはできません — [Cursor での利用](/ja/sessions/cursor)をご覧ください。
 
-機能ごとの対応状況は次のとおりです。
-
-| | Claude Code | Codex | OpenCode | Cursor |
-| --- | :---: | :---: | :---: | :---: |
-| [セッションと Dynamic Island](/ja/sessions/list) | ✓ | ✓ | ✓ | ✓ |
-| [「許可」と「拒否」](/ja/sessions/approvals) | ✓ | ✓ | ✓ | — |
-| [「常に許可」](/ja/sessions/approvals#everything-you-can-answer) | ✓ | — | ✓ | — |
-| [「メモを付けて拒否…」](/ja/sessions/approvals#everything-you-can-answer) | ✓ | ✓ | — | — |
-| [質問への回答](/ja/sessions/approvals#answering-a-question) | ✓ | [共有の app-server が必要](/ja/sessions/codex#questions-in-the-cli-and-the-desktop-app) | ✓ | — |
-| [計画の確認](/ja/sessions/approvals#reviewing-a-plan) | ✓ | [読み取り専用](/ja/sessions/codex#plans-are-read-only) | [ToDo リスト](/ja/sessions/opencode#plan-mode) | — |
-| [「中断」](/ja/sessions/list#interrupt-a-running-session) | ✓ | [共有の app-server が必要](/ja/sessions/codex#interrupt) | — | — |
-| [「Macで開く」](/ja/sessions/list#tap-a-row-for-detail) | ✓ | ✓ | — | — |
+<Card title="できること" href="/ja/sessions/features" icon="list-check" horizontal>
+  機能の一覧と、エージェントごとの対応状況。
+</Card>
 
 ## 必要なもの
 
