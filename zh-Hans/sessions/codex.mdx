@@ -85,7 +85,7 @@ Codex 那句“要执行这份计划吗？”的提问活在它自己的终端�
 
 ## hook 需要信任 {#hooks-have-to-be-trusted}
 
-Codex 自带一道安全闸：插件的 hook 装好了，但**在你信任它们之前是不生效的**。运行 `/hooks`，信任那七条 Nomo 条目，具体见[安装](/zh-Hans/setup/install)。
+Codex 自带一道安全闸：插件的 hook 装好了，但**在你信任它们之前是不生效的**。运行 `/hooks`，信任那十条 Nomo 条目，具体见[安装](/zh-Hans/setup/install)。
 
 最容易绊倒人的地方：升级到加入了“手机接管 Codex 审批”的那个版本时，引入了一条**新的** hook，于是 Codex 会重新开启一次审核。在你信任它之前，Codex 的审批会悄悄退回终端，而且不会有任何报错。如果更新之后你的手机不再收到 Codex 的请求，先运行 `/hooks`。
 
