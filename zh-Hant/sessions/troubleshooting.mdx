@@ -97,6 +97,10 @@ $nomo-status
   如果 Cursor 被強制結束或當機，session 可能會停在執行中，直到逾時為止 — 大約 30 分鐘 — 而不是立刻結束。`/nomo-reset` 會清除卡住的 session 列，而不解除配對。
 </Accordion>
 
+<Accordion title="在 Cursor 送出提示時會停頓一下" icon="pause">
+  連不上 Nomo 的中繼伺服器時，在 Cursor 送出提示可能會停頓最多約 2 秒才送出去。它絕不會擋下你的提示。
+</Accordion>
+
 <Accordion title="各列看起來過時或重複" icon="broom">
   **Sessions** 算的是這台電腦仍然認為還活著的數量。如果那比你實際有的還多，清掉失效的那些，而不解除配對：
 
@@ -302,6 +306,14 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "如果 Cursor 被強制結束或當機，session 可能會停在執行中，直到逾時為止 — 大約 30 分鐘 — 而不是立刻結束。/nomo-reset 會清除卡住的 session 列，而不解除配對。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "在 Cursor 送出提示時會停頓一下",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "連不上 Nomo 的中繼伺服器時，在 Cursor 送出提示可能會停頓最多約 2 秒才送出去。它絕不會擋下你的提示。"
       }
     },
     {

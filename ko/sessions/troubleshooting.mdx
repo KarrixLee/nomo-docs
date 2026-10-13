@@ -148,6 +148,11 @@ $nomo-status
   해제하지 않고 멈춘 세션 행을 정리합니다.
 </Accordion>
 
+<Accordion title="Cursor에서 프롬프트를 보낼 때 잠깐 멈춤" icon="pause">
+  Nomo 중계 서버에 연결할 수 없으면, Cursor에서 프롬프트를 제출할 때 전송되기까지
+  최대 약 2초 동안 멈출 수 있습니다. 프롬프트를 막는 일은 없습니다.
+</Accordion>
+
 <Accordion title="행이 오래됐거나 중복되어 보임" icon="broom">
   **Sessions**는 이 컴퓨터가 아직 살아 있다고 믿는 세션의 수입니다. 실제보다 많다면,
   페어링을 해제하지 않고 죽은 행만 정리하십시오.
@@ -417,6 +422,14 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Cursor가 강제 종료되거나 크래시가 나면, 세션이 곧바로 끝나지 않고 시간 초과될 때까지 — 약 30분 — 실행 중으로 남을 수 있습니다. /nomo-reset은 페어링을 해제하지 않고 멈춘 세션 행을 정리합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor에서 프롬프트를 보낼 때 잠깐 멈춤",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo 중계 서버에 연결할 수 없으면, Cursor에서 프롬프트를 제출할 때 전송되기까지 최대 약 2초 동안 멈출 수 있습니다. 프롬프트를 막는 일은 없습니다."
       }
     },
     {

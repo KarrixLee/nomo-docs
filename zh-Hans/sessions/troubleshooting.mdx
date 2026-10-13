@@ -97,6 +97,10 @@ $nomo-status
   如果 Cursor 被强制退出或崩溃，会话可能一直停在运行中，直到超时——大约 30 分钟——而不是立刻结束。`/nomo-reset` 会清理卡住的会话行，无需解除配对。
 </Accordion>
 
+<Accordion title="在 Cursor 里发送提示时会停顿一下" icon="pause">
+  连不上 Nomo 的中继服务器时，在 Cursor 里提交提示可能会停顿最多约 2 秒才发出去。它绝不会拦下你的提示。
+</Accordion>
+
 <Accordion title="会话行看着陈旧或重复" icon="broom">
   **Sessions** 统计的是这台电脑仍然认为还活着的会话。如果比你实际有的多，不用解除配对就能清掉失效的：
 
@@ -302,6 +306,14 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "如果 Cursor 被强制退出或崩溃，会话可能一直停在运行中，直到超时——大约 30 分钟——而不是立刻结束。/nomo-reset 会清理卡住的会话行，无需解除配对。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "在 Cursor 里发送提示时会停顿一下",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "连不上 Nomo 的中继服务器时，在 Cursor 里提交提示可能会停顿最多约 2 秒才发出去。它绝不会拦下你的提示。"
       }
     },
     {

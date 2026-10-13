@@ -157,6 +157,12 @@ está en [Comandos](/es/sessions/commands#status).
   sesión atascadas sin desvincular nada.
 </Accordion>
 
+<Accordion title="Al enviar un prompt en Cursor hay una pausa breve" icon="pause">
+  Cuando no se puede alcanzar el relé de Nomo, enviar un prompt en Cursor puede
+  quedarse en pausa hasta unos 2 segundos antes de salir. Nunca bloquea el
+  prompt.
+</Accordion>
+
 <Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
   **Sessions** cuenta lo que este ordenador todavía cree vivo. Si son más de las
   que tienes, limpia las muertas sin desvincular nada:
@@ -434,6 +440,14 @@ que ejecutes ese comando allí.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Si se fuerza el cierre de Cursor o se cierra por un fallo, una sesión puede quedarse como En ejecución hasta que agota el tiempo de espera —unos 30 minutos— en lugar de terminar al momento. /nomo-reset limpia las filas de sesión atascadas sin desvincular nada."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Al enviar un prompt en Cursor hay una pausa breve",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuando no se puede alcanzar el relé de Nomo, enviar un prompt en Cursor puede quedarse en pausa hasta unos 2 segundos antes de salir. Nunca bloquea el prompt."
       }
     },
     {

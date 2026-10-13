@@ -147,6 +147,11 @@ What each row means, with a healthy machine and a broken one side by side, is on
   clears stuck session rows without unpairing.
 </Accordion>
 
+<Accordion title="Sending a prompt in Cursor pauses for a moment" icon="pause">
+  When the Nomo relay can't be reached, submitting a prompt in Cursor can pause
+  for up to about 2 seconds before it goes through. It never blocks the prompt.
+</Accordion>
+
 <Accordion title="Rows look stale or duplicated" icon="broom">
   **Sessions** counts what this computer still believes is alive. If that's more
   than you have, clear the dead ones without unpairing:
@@ -411,6 +416,14 @@ that command there.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "If Cursor is force-quit or crashes, a session can linger as working until it times out — about 30 minutes — rather than ending immediately. /nomo-reset clears stuck session rows without unpairing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sending a prompt in Cursor pauses for a moment",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When the Nomo relay can't be reached, submitting a prompt in Cursor can pause for up to about 2 seconds before it goes through. It never blocks the prompt."
       }
     },
     {
