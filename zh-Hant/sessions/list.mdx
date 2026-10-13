@@ -101,10 +101,39 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電
 - **待回覆的問題**全文，如果有的話。
 - **查看計畫** — 打開計畫。Claude Code 可以直接回覆，[Codex](/zh-Hant/sessions/codex) 則是唯讀，而 [OpenCode](/zh-Hant/sessions/opencode#plan-mode) 通常是這個 session 的待辦清單，而不是一份文件。
 - **在 Mac 上開啟** — 把那個 session 的終端機視窗切到你 Mac 的最前面。只有在 Nomo 有直接的[區域網路](/zh-Hant/sessions/settings#local-network)連線時才會出現，而且不會出現在沒有自己視窗的 [OpenCode](/zh-Hant/sessions/opencode#no-open-on-mac) sessions 上，也不會出現在 [Cursor](/zh-Hant/sessions/cursor#what-this-version-doesnt-do) 的 sessions 上。
+- **停止** — 停下正在執行的這一輪，就像在 Mac 上按 Esc。只會出現在 `執行中` 的 Claude Code 或 Codex session 上，而且同樣需要那條直接連線 — 請看[下方](#interrupt-a-running-session)。
 
 <Tip>
   要**回覆**一個請求，請按住那一列，而不是點一下。點一下是展開；按住才會打開「允許」／「拒絕」選單。
 </Tip>
+
+## 停止執行中的 session {#interrupt-a-running-session}
+
+<Frame caption="展開後的執行中 session，詳細資訊最下方是「停止」。">
+  <div className="device-frame">
+    <img src="/images/interrupt-button.png" alt="展開的 session 列，顯示「停止」按鈕" />
+  </div>
+</Frame>
+
+「停止」會停下目前這一輪，就像在 Mac 上按 Esc 一樣。它在展開後的那一列裡，就在「在 Mac 上開啟」旁邊，而且只有以下條件全部成立時才會出現：
+
+- 這個 session 是 `執行中`。正在等你的列 — 權限請求、問題、計畫 — 或已經 `完成` 的列，沒有東西可以停。
+- 是 Claude Code 或 Codex 的 session。OpenCode 上不會出現。
+- Nomo 和那台 Mac 之間有直接的[區域網路](/zh-Hant/sessions/settings#local-network)連線 — 也就是綠色的 **⚡ 本機** 標籤。停止訊號絕不會經由中繼伺服器傳送。
+- 那台電腦上的外掛程式是 **2.3.0** 或更新版本。
+
+點一下之後，按鈕會顯示「已傳送」；如果連不上 Mac，則顯示「重試」。「已傳送」表示 Mac 收到了，不代表這一輪已經停下。
+
+它只停這一輪，其他都不動。session 仍然開著，停在 Mac 上的提示處，那一列則變成 `完成`；要繼續，就在 Mac 上輸入新的提示。它不是暫停，也不會關閉 session。
+
+| | 實際行為 |
+| --- | --- |
+| **Claude Code** | 在下一次工具呼叫時停下。它正要執行的工具會被拒絕，這一輪隨之結束，Claude Code 會顯示 `Interrupted from Nomo`。Claude 還在輸出文字，或一個耗時的指令已經在跑的時候，要等那一步結束才會有反應。 |
+| **Codex** | 立刻停下，前提是 session 在 Codex 的共用 app-server 上 — 請看[限制](/zh-Hant/sessions/codex#interrupt)。Codex 已經啟動的 shell 指令可能會在背景繼續執行。 |
+
+Claude Code 還有兩點要注意。如果這一輪先自己結束了，停止訊號就什麼都不做 — 它絕不會留到你的下一個提示。如果工作是在子代理裡進行，它會先停下那個子代理。
+
+外掛程式版本是依電腦回報的，不是依代理。如果你在同一台 Mac 上同時使用 Claude Code 和 Codex，請把兩個外掛程式都更新到 **2.3.0** — 否則按鈕可能出現在外掛程式太舊的 session 上，顯示「已傳送」，卻什麼都沒發生。
 
 ## 數量上限 {#how-many}
 

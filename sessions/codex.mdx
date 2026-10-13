@@ -109,6 +109,20 @@ terminal — the picker on your phone shows **Other…**, and what you type reac
 Codex the way it would from the keyboard. That needs plugin **2.2.2**. There's
 no **Add note** on a Codex question: Codex has nowhere to put one.
 
+## Interrupt
+
+**Interrupt** on a `Running` Codex row stops the turn straight away — it doesn't
+wait for a tool call, as Claude Code does. A shell command Codex had already
+launched may keep running in the background.
+
+It reaches Codex through the same shared app-server that
+[answering questions](#questions-in-the-cli-and-the-desktop-app) needs. A
+session Nomo can't reach that way shows **Sent** and keeps running.
+
+A session that has only just started may not offer the button for a moment. The
+rest — when it appears, and what **Sent** means — is in
+[Computers and sessions](/sessions/list#interrupt-a-running-session).
+
 ## Hooks have to be trusted
 
 Codex ships its own safety gate: plugin hooks are installed but **inert until

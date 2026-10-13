@@ -76,6 +76,14 @@ Codex 那句「要實作這份計畫嗎？」的詢問住在它自己的終端�
 
 當 Codex 的問題自帶一列自由輸入 — 終端機裡的 *None of the above* — 你手機上的選項清單會顯示「其他…」，你輸入的內容會像從鍵盤打進去一樣送到 Codex。這需要外掛程式 **2.2.2**。Codex 的問題上沒有「新增附註」：Codex 沒有地方可以放它。
 
+## 停止這一輪 {#interrupt}
+
+在 `執行中` 的 Codex 列上點一下「停止」，這一輪會立刻停下 — 不像 Claude Code 要等到下一次工具呼叫。Codex 已經啟動的 shell 指令可能會在背景繼續執行。
+
+停止訊號是透過共用的 app-server 傳到 Codex，也就是[回答問題](#questions-in-the-cli-and-the-desktop-app)所需要的那一個。Nomo 無法透過它連上的 session，會顯示「已傳送」，然後繼續執行。
+
+剛啟動的 session 可能要過一會兒才會出現這個按鈕。它什麼時候出現、「已傳送」代表什麼，請看[電腦與 sessions](/zh-Hant/sessions/list#interrupt-a-running-session)。
+
 ## hooks 必須先信任 {#hooks-have-to-be-trusted}
 
 Codex 自帶一道安全關卡：外掛程式的 hooks 會安裝好，但在**你信任它們之前是不作用的**。執行 `/hooks` 並信任那七個 Nomo 項目，做法寫在[安裝](/zh-Hant/setup/install)。
