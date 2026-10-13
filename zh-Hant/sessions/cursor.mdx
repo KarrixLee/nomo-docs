@@ -1,0 +1,110 @@
+---
+title: "搭配 Cursor 使用"
+description: "在 Cursor 上安裝 Nomo 外掛程式、完成配對，然後在手機上看著它的代理 sessions。這個版本是唯讀的 — 哪些會出現、哪些不會。"
+icon: "arrow-pointer"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "session", "電腦", "動態島", "權限", "配對", "搭配 Cursor 使用"]
+---
+
+Cursor 的 sessions 出現在同一份列表、同一個動態島上，走的也是同一組配對 — 不管是來自 Cursor 桌面應用程式的代理，還是來自 `cursor-agent` CLI。在這個版本裡它們是**唯讀**的：你在手機上看著一個 Cursor session，回覆則要回到電腦上做。
+
+<Note>
+  Sessions 屬於 Nomo Pro，Cursor 和其他每個代理都一樣。Cursor 的 sessions 還需要你手機上的 Nomo 是最新版本。
+</Note>
+
+## 設定步驟 {#set-it-up}
+
+<Steps>
+  <Step title="執行安裝工具">
+    在你的 Mac 上：
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --cursor
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --cursor
+    ```
+    </CodeGroup>
+
+    一次安裝同時涵蓋桌面應用程式和 `cursor-agent`。它會做三件事：
+
+    - 把外掛程式 clone 到 `~/.nomo`。
+    - 把 Nomo 的 hook 項目加進 `~/.cursor/hooks.json`。它會和原本就在那裡的內容合併，其他工具的項目則原封不動。
+    - 在 `~/.cursor/skills/` 底下安裝四個 skills。
+  </Step>
+
+  <Step title="重新啟動 Cursor — 必要步驟">
+    <Warning>
+      Cursor 只在啟動時載入 hooks。請結束並重新開啟 Cursor，也重新啟動你開著的任何 `cursor-agent` session。在你這麼做之前，這個外掛程式雖然裝好了卻什麼也沒做。
+    </Warning>
+  </Step>
+
+  <Step title="配對">
+    在 Cursor 裡輸入 `/` 來挑選 skill，然後執行：
+
+    ```
+    /nomo-pair
+    ```
+
+    它會顯示一個 QR code — 用 Nomo App 掃描它。在無法開啟瀏覽器的地方，`/nomo-pair code` 會改給你一組可以打字輸入的短代碼。兩條路徑的完整流程都在[配對](/zh-Hant/setup/pairing)裡。
+
+    配對由同一台 Mac 上的所有代理共用。已經為 Claude Code、Codex 或 OpenCode 配對過的電腦，不需要為 Cursor 再配對一次 — 安裝好就夠了，這一步可以跳過。
+  </Step>
+
+  <Step title="顯示 Cursor 分頁">
+    在 App 裡打開那台電腦。Cursor 的 sessions 放在它 session 面板裡的 **Cursor** 分頁底下。
+
+    面板最多顯示三個代理分頁。如果 Cursor 不在其中，點一下 **+** 按鈕（「選擇代理」）把它打開。
+  </Step>
+</Steps>
+
+## 指令 {#commands}
+
+四個 skills，不帶前綴。在 Cursor 裡輸入 `/` 來挑選：
+
+| | |
+| --- | --- |
+| `/nomo-pair` | 顯示一個 QR code，用 Nomo App 掃描。`/nomo-pair code` 是不開瀏覽器的那條路徑。 |
+| `/nomo-status` | 配對與 hook 的健康狀態。 |
+| `/nomo-reset` | 清除卡住的 session 列，而不解除配對。 |
+| `/nomo-unpair` | 解除這台電腦的配對。 |
+
+Cursor 沒有 approvals 指令 — 沒有遠端批准可以暫停。其餘的細節在[指令](/zh-Hant/sessions/commands)裡。
+
+## 你會看到什麼 {#what-you-see}
+
+- session 會在你於某個對話裡送出**第一個提示**時出現 — 而不是在對話只是被打開的時候。
+- 代理執行期間它顯示為執行中，這一輪結束時顯示為完成。
+- 對話、視窗或 CLI 關閉時，它就會被移除。
+- 標題是 Cursor 替那個對話取的名稱 — 也就是對話分頁和歷史紀錄裡的那個。它一開始是你的第一個提示，在這一輪進行中或結束後不久，換成 Cursor 取的名稱。
+- 模型標籤顯示的是 Cursor 回報的模型。
+- [動態島](/zh-Hant/sessions/island)的運作和其他代理一樣，對象是你選擇要顯示在那裡的 sessions。
+
+## 這個版本的限制 {#what-this-version-doesnt-do}
+
+- **沒有遠端批准**。你無法從手機上「允許」或「拒絕」Cursor 的 Run / Skip 請求，手機也不會顯示 Cursor 正在等你。Cursor 沒有把這些開放給外掛程式。
+- **沒有問題，也沒有計畫批准**。Cursor 的問題和計畫批准不會顯示，也無法從手機上回答。
+- **沒有「在 Mac 上開啟」**。這個按鈕在 Cursor 的 sessions 上無法使用。
+- **沒有「停止」**。[「停止」](/zh-Hant/sessions/list#interrupt-a-running-session)按鈕在 Cursor 的 sessions 上同樣無法使用。
+- **沒有雲端代理**。Cursor 的雲端代理和背景代理不會顯示 — 只有跑在你 Mac 上的代理才會。
+- **標題可能一直是你的第一個提示**。如果讀不到 Cursor 替對話取的名稱，標題就維持第一個提示 — 這一輪結束後，Nomo 還會繼續檢查大約兩分鐘。用 `cursor-agent` CLI 執行的對話，標題一直是第一個提示。Nomo 只從 Cursor 的本機資料庫讀取對話名稱，其中的其他內容一概不會傳送。
+- **當機可能留下一個 session**。如果 Cursor 被強制結束或當機，session 可能會停在執行中，直到逾時為止 — 大約 30 分鐘 — 而不是立刻結束。
+
+## 更新 {#updating}
+
+再執行一次同一個指令，然後重新啟動 Cursor：
+
+```bash
+bunx nomo-ai --cursor
+```
+
+## 解除安裝 {#uninstalling}
+
+```bash
+node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+```
+
+然後重新啟動 Cursor。解除安裝會移除那四個 skills，但不會動到配對 — 配對是這台電腦上所有代理共用的。如果也要解除這台電腦的配對，請在解除安裝之前執行 `/nomo-unpair`。
+
+如果有東西沒出現，[疑難排解](/zh-Hant/sessions/troubleshooting)裡關於 Cursor 的那幾項是該先看的地方。

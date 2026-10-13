@@ -2,7 +2,7 @@
 title: "Troubleshooting"
 description: "Run the status command first — it names the problem and prints the fix. Then: which row answers which symptom, and the few things status can't see."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
 ---
 
 The status command does most of this page's job for you now. It reads the whole
@@ -24,6 +24,10 @@ $nomo-status
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
 </CodeGroup>
@@ -80,6 +84,10 @@ What each row means, with a healthy machine and a broken one side by side, is on
 </Accordion>
 
 <Accordion title="My phone never asks me to approve anything" icon="hand">
+  If the session is a Cursor one, that's expected: Cursor sessions are read-only
+  and its prompts never reach your phone —
+  [why](/sessions/cursor#what-this-version-doesnt-do). For every other agent:
+
   Read **Approvals**. `PAUSED` means someone ran the pause command on this
   computer — possibly months ago, which is exactly why this used to be
   undiscoverable. Resume it from a session on that machine and prompts come
@@ -95,7 +103,8 @@ What each row means, with a healthy machine and a broken one side by side, is on
 <Accordion title="I started a session and it never appeared" icon="play">
   **Hooks** — or **Plugin** in OpenCode, which has none. If it isn't firing,
   your agent isn't handing Nomo anything, and every agent loads that wiring only
-  at startup: restart Claude Code, run `/hooks` in Codex, restart OpenCode.
+  at startup: restart Claude Code, run `/hooks` in Codex, restart OpenCode,
+  restart Cursor.
 
   Codex trusts hooks explicitly and a plugin update re-opens that review, so
   `/hooks` after an update is the usual answer there —
@@ -108,6 +117,39 @@ What each row means, with a healthy machine and a broken one side by side, is on
   its server starts, so quitting it and starting it again is the whole fix —
   reloading the TUI isn't enough. It's the same reason [reset needs OpenCode
   closed](/sessions/opencode#reset-needs-opencode-closed).
+</Accordion>
+
+<Accordion title="Cursor in particular shows nothing" icon="arrow-pointer">
+  Three things to check, in this order:
+
+  - **Cursor wasn't restarted.** Cursor only picks hooks up when it starts, so
+    after installing, quit and reopen Cursor — and restart any open
+    `cursor-agent` session.
+  - **The Cursor tab is hidden.** The drawer shows up to three agent tabs. Tap
+    the **+** button (**Choose agents**) and turn Cursor on.
+  - **The Mac isn't paired.** Run `/nomo-status` in Cursor to check.
+
+  A turn that was already running when you installed appears from its next
+  prompt. And a session only appears once you've sent a chat's first prompt —
+  opening a chat isn't enough. The full setup is in
+  [Using Cursor](/sessions/cursor).
+</Accordion>
+
+<Accordion title="A Cursor chat shows up as a Claude Code session" icon="clone">
+  Update the Nomo plugin for Claude Code. Older versions ran inside Cursor,
+  through Cursor's import of Claude Code plugins; the current version ignores
+  Cursor. [Updating](/setup/install#updating) has the command.
+</Accordion>
+
+<Accordion title="A Cursor session stays working after Cursor has quit" icon="hourglass-half">
+  If Cursor is force-quit or crashes, a session can linger as working until it
+  times out — about 30 minutes — rather than ending immediately. `/nomo-reset`
+  clears stuck session rows without unpairing.
+</Accordion>
+
+<Accordion title="Sending a prompt in Cursor pauses for a moment" icon="pause">
+  When the Nomo relay can't be reached, submitting a prompt in Cursor can pause
+  for up to about 2 seconds before it goes through. It never blocks the prompt.
 </Accordion>
 
 <Accordion title="Rows look stale or duplicated" icon="broom">
@@ -124,6 +166,10 @@ What each row means, with a healthy machine and a broken one side by side, is on
   ```
 
   ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
+
+  ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
   ```
   </CodeGroup>
@@ -277,8 +323,9 @@ computer helps too — the version on its first line is half the diagnosis.
 
 "Why can't I do X from my phone?" is often a fair question rather than a bug.
 Some of it is a real limit of what an agent hands to a plugin, and that's
-written down: [Using Codex](/sessions/codex) and [Using
-OpenCode](/sessions/opencode) cover those two agents, and [Answering from your
+written down: [Using Codex](/sessions/codex), [Using
+OpenCode](/sessions/opencode) and [Using Cursor](/sessions/cursor) cover those
+three agents, and [Answering from your
 phone](/sessions/approvals) covers what a Live Activity can and can't host.
 
 The rest is just not built yet.
@@ -345,6 +392,38 @@ that command there.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "A Plugin row that says installed with no activity usually means OpenCode was already running when the plugin arrived. OpenCode loads plugins once, when its server starts, so quitting it and starting it again is the whole fix — reloading the TUI isn't enough."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor in particular shows nothing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Three things to check. Cursor only picks hooks up when it starts, so after installing, quit and reopen Cursor and restart any open cursor-agent session. The drawer shows up to three agent tabs, so tap the + button (Choose agents) and turn Cursor on. And run /nomo-status in Cursor to check the Mac is paired. A turn that was already running when you installed appears from its next prompt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A Cursor chat shows up as a Claude Code session",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Update the Nomo plugin for Claude Code. Older versions ran inside Cursor, through Cursor's import of Claude Code plugins; the current version ignores Cursor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A Cursor session stays working after Cursor has quit",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If Cursor is force-quit or crashes, a session can linger as working until it times out — about 30 minutes — rather than ending immediately. /nomo-reset clears stuck session rows without unpairing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sending a prompt in Cursor pauses for a moment",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When the Nomo relay can't be reached, submitting a prompt in Cursor can pause for up to about 2 seconds before it goes through. It never blocks the prompt."
       }
     },
     {

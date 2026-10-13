@@ -119,7 +119,8 @@
                 "pages": [
                   "sessions/commands",
                   "sessions/codex",
-                  "sessions/opencode"
+                  "sessions/opencode",
+                  "sessions/cursor"
                 ]
               },
               {
@@ -189,7 +190,8 @@
                 "pages": [
                   "es/sessions/commands",
                   "es/sessions/codex",
-                  "es/sessions/opencode"
+                  "es/sessions/opencode",
+                  "es/sessions/cursor"
                 ]
               },
               {
@@ -259,7 +261,8 @@
                 "pages": [
                   "ja/sessions/commands",
                   "ja/sessions/codex",
-                  "ja/sessions/opencode"
+                  "ja/sessions/opencode",
+                  "ja/sessions/cursor"
                 ]
               },
               {
@@ -329,7 +332,8 @@
                 "pages": [
                   "ko/sessions/commands",
                   "ko/sessions/codex",
-                  "ko/sessions/opencode"
+                  "ko/sessions/opencode",
+                  "ko/sessions/cursor"
                 ]
               },
               {
@@ -399,7 +403,8 @@
                 "pages": [
                   "zh-Hans/sessions/commands",
                   "zh-Hans/sessions/codex",
-                  "zh-Hans/sessions/opencode"
+                  "zh-Hans/sessions/opencode",
+                  "zh-Hans/sessions/cursor"
                 ]
               },
               {
@@ -469,7 +474,8 @@
                 "pages": [
                   "zh-Hant/sessions/commands",
                   "zh-Hant/sessions/codex",
-                  "zh-Hant/sessions/opencode"
+                  "zh-Hant/sessions/opencode",
+                  "zh-Hant/sessions/cursor"
                 ]
               },
               {

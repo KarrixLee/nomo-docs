@@ -1,0 +1,143 @@
+---
+title: "Cursor 사용하기"
+description: "Cursor에 Nomo 플러그인을 설치하고 페어링해, 에이전트 세션을 휴대폰에서 지켜봅니다. 이 버전에서는 읽기 전용입니다 — 표시되는 것과 표시되지 않는 것."
+icon: "arrow-pointer"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "Cursor 사용하기"]
+---
+
+Cursor 세션도 같은 목록에, 같은 Dynamic Island에, 같은 페어링 위에 나타납니다 —
+Cursor 데스크톱 앱의 에이전트에서 시작한 것이든 `cursor-agent` CLI에서 시작한
+것이든 같습니다. 이 버전에서는 **읽기 전용**입니다. Cursor 세션은 휴대폰에서
+지켜보고, 답은 컴퓨터에서 합니다.
+
+<Note>
+  세션은 Nomo Pro에 포함되며, Cursor도 다른 모든 에이전트와 마찬가지입니다. Cursor
+  세션에는 휴대폰의 Nomo도 최신 버전이어야 합니다.
+</Note>
+
+## 설정 {#set-it-up}
+
+<Steps>
+  <Step title="설치 도구 실행">
+    Mac에서 실행합니다.
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --cursor
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --cursor
+    ```
+    </CodeGroup>
+
+    설치 한 번으로 데스크톱 앱과 `cursor-agent`가 모두 처리됩니다. 다음 세 가지를
+    합니다.
+
+    - 플러그인을 `~/.nomo`에 클론합니다.
+    - `~/.cursor/hooks.json`에 Nomo의 Hook 항목을 추가합니다. 이미 있는 내용과
+      병합하며 다른 도구의 항목은 건드리지 않습니다.
+    - `~/.cursor/skills/` 아래에 Skill 네 개를 설치합니다.
+  </Step>
+
+  <Step title="Cursor 재시작 — 필수">
+    <Warning>
+      Cursor는 시작할 때에만 Hook을 읽어 들입니다. Cursor를 종료했다가 다시 열고,
+      열려 있는 `cursor-agent` 세션도 재시작하십시오. 그러기 전까지 플러그인은
+      설치만 되어 있고 아무 일도 하지 않습니다.
+    </Warning>
+  </Step>
+
+  <Step title="페어링">
+    Cursor에서 `/`를 입력해 Skill을 고르고 다음을 실행합니다.
+
+    ```
+    /nomo-pair
+    ```
+
+    QR 코드가 표시되면 Nomo 앱으로 스캔합니다. 브라우저를 열 수 없는 환경에서는
+    `/nomo-pair code`가 대신 입력할 짧은 코드를 줍니다. 두 방법 모두
+    [페어링](/ko/setup/pairing)에 단계별로 설명되어 있습니다.
+
+    페어링은 한 Mac의 에이전트들이 공유합니다. 이미 Claude Code, Codex 또는
+    OpenCode용으로 페어링한 컴퓨터는 Cursor를 위해 다시 페어링할 필요가 없습니다 —
+    설치만으로 충분하며, 이 단계는 건너뛰어도 됩니다.
+  </Step>
+
+  <Step title="Cursor 탭 표시">
+    앱에서 컴퓨터를 엽니다. Cursor 세션은 세션 드로어의 **Cursor** 탭 아래에
+    있습니다.
+
+    드로어에는 에이전트 탭이 최대 세 개까지 표시됩니다. Cursor가 그중에 없으면
+    **+** 버튼(**에이전트 선택**)을 탭해 켭니다.
+  </Step>
+</Steps>
+
+## 명령 {#commands}
+
+접두사가 없는 Skill 네 개입니다. Cursor에서 `/`를 입력해 고릅니다.
+
+| | |
+| --- | --- |
+| `/nomo-pair` | Nomo 앱으로 스캔할 QR 코드를 표시합니다. `/nomo-pair code`는 브라우저 없이 쓰는 방법입니다. |
+| `/nomo-status` | 페어링과 Hook의 상태. |
+| `/nomo-reset` | 페어링을 해제하지 않고 멈춘 세션 행을 정리합니다. |
+| `/nomo-unpair` | 이 컴퓨터의 페어링을 해제합니다. |
+
+Cursor에는 approvals 명령이 없습니다 — 일시 중지할 원격 승인이 없기 때문입니다.
+나머지 세부 내용은 [명령](/ko/sessions/commands)에 있습니다.
+
+## 표시되는 것 {#what-you-see}
+
+- 세션은 채팅에서 **첫 프롬프트**를 보낼 때 나타납니다 — 채팅을 열기만 해서는
+  나타나지 않습니다.
+- 에이전트가 실행되는 동안에는 실행 중으로, 차례가 끝나면 완료로 표시됩니다.
+- 채팅이나 창, CLI가 닫히면 제거됩니다.
+- 제목은 Cursor가 채팅에 붙이는 이름입니다 — 채팅 탭과 기록에 표시되는 그
+  이름입니다. 처음에는 첫 프롬프트로 표시되다가, 차례가 진행되는 동안이나 차례가
+  끝난 직후에 Cursor의 이름으로 바뀝니다.
+- 모델 배지에는 Cursor가 보고하는 모델이 표시됩니다.
+- [Dynamic Island](/ko/sessions/island)는 거기에 표시하도록 고른 세션에 대해 다른
+  에이전트와 똑같이 동작합니다.
+
+## 이 버전에서 지원하지 않는 것 {#what-this-version-doesnt-do}
+
+- **원격 승인 미지원.** Cursor의 Run / Skip 요청은 휴대폰에서 **허용**하거나
+  **거부**할 수 없으며, Cursor가 사용자를 기다리고 있어도 휴대폰에는 표시되지
+  않습니다. Cursor가 이를 플러그인에 공개하지 않습니다.
+- **질문과 계획 승인 미지원.** Cursor의 질문과 계획 승인은 표시되지 않으며,
+  휴대폰에서 답할 수도 없습니다.
+- **‘Mac에서 열기’ 미지원.** Cursor 세션에서는 이 버튼을 쓸 수 없습니다.
+- **‘중단’ 미지원.** Cursor 세션에서는
+  [**중단**](/ko/sessions/list#interrupt-a-running-session) 버튼도 쓸 수 없습니다.
+- **클라우드 에이전트 미지원.** Cursor의 클라우드 에이전트와 백그라운드
+  에이전트는 표시되지 않습니다 — Mac에서 실행 중인 에이전트만 표시됩니다.
+- **제목이 첫 프롬프트로 남을 수 있습니다.** Cursor가 붙인 채팅 이름을 읽을 수
+  없으면 첫 프롬프트가 그대로 남습니다 — Nomo는 차례가 끝난 뒤 약 2분 동안 계속
+  확인합니다. `cursor-agent` CLI로 실행한 채팅은 첫 프롬프트 제목을 유지합니다.
+  Cursor의 로컬 데이터베이스에서는 채팅 이름만 읽으며, 그 밖의 것은 아무것도
+  전송되지 않습니다.
+- **크래시가 나면 세션이 남을 수 있습니다.** Cursor가 강제 종료되거나 크래시가
+  나면, 세션이 곧바로 끝나지 않고 시간 초과될 때까지 — 약 30분 — 실행 중으로 남을
+  수 있습니다.
+
+## 업데이트 {#updating}
+
+같은 명령을 다시 실행한 다음 Cursor를 재시작합니다.
+
+```bash
+bunx nomo-ai --cursor
+```
+
+## 제거 {#uninstalling}
+
+```bash
+node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+```
+
+그런 다음 Cursor를 재시작하십시오. 제거하면 Skill 네 개는 삭제되지만 페어링은
+그대로 남습니다. 이 컴퓨터의 다른 에이전트와 공유되기 때문입니다. 컴퓨터의
+페어링까지 해제하려면 제거하기 전에 `/nomo-unpair`를 실행합니다.
+
+무언가 표시되지 않는다면 [문제 해결](/ko/sessions/troubleshooting)의 Cursor 항목부터
+확인하십시오.

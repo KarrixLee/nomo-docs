@@ -1,0 +1,110 @@
+---
+title: "搭配 Cursor 使用"
+description: "在 Cursor 上安装 Nomo 插件、完成配对，然后在手机上看着它的智能体会话。这个版本里是只读的——哪些会显示，哪些不会。"
+icon: "arrow-pointer"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "搭配 Cursor 使用"]
+---
+
+Cursor 的会话出现在同一个列表里、同一个灵动岛上，走同一份配对——无论来自 Cursor 桌面应用里的智能体，还是来自 `cursor-agent` CLI。在这个版本里它们是**只读**的：你在手机上看着 Cursor 的会话，在电脑上答复它。
+
+<Note>
+  会话功能属于 Nomo Pro，Cursor 和其他每个智能体都一样。Cursor 会话还需要你手机上的 Nomo 是最新版本。
+</Note>
+
+## 配置步骤 {#set-it-up}
+
+<Steps>
+  <Step title="运行安装工具">
+    在你的 Mac 上：
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --cursor
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --cursor
+    ```
+    </CodeGroup>
+
+    一次安装同时覆盖桌面应用和 `cursor-agent`。它做三件事：
+
+    - 把插件克隆到 `~/.nomo`。
+    - 把 Nomo 的 hook 条目加进 `~/.cursor/hooks.json`。它会和已有的内容合并，其他工具的条目原样不动。
+    - 在 `~/.cursor/skills/` 下安装四个 skill。
+  </Step>
+
+  <Step title="重启 Cursor——必做">
+    <Warning>
+      Cursor 只在启动时加载 hook。退出并重新打开 Cursor，并重启你开着的每一个 `cursor-agent` 会话。在你这样做之前，插件虽已安装却什么都不做。
+    </Warning>
+  </Step>
+
+  <Step title="配对">
+    在 Cursor 里输入 `/` 来挑选 skill，然后运行：
+
+    ```
+    /nomo-pair
+    ```
+
+    它会显示一个二维码——用 Nomo App 扫一下。打不开浏览器的地方，`/nomo-pair code` 会改为给你一段可以手输的短码。两种方式的完整流程都在[配对](/zh-Hans/setup/pairing)里。
+
+    同一台 Mac 上的各个智能体共用配对。一台已经为 Claude Code、Codex 或 OpenCode 配对过的电脑，不需要为 Cursor 再配对一次——安装就够了，这一步可以跳过。
+  </Step>
+
+  <Step title="显示 Cursor 标签页">
+    在 App 里打开那台电脑。Cursor 的会话在它会话详情页的 **Cursor** 标签页下面。
+
+    详情页最多显示三个智能体标签页。如果 Cursor 不在其中，轻点 **+** 按钮（**选择智能体**），把它打开。
+  </Step>
+</Steps>
+
+## 命令 {#commands}
+
+四个 skill，不带前缀。在 Cursor 里输入 `/` 来挑选：
+
+| | |
+| --- | --- |
+| `/nomo-pair` | 显示一个二维码，用 Nomo App 扫描。`/nomo-pair code` 是不用浏览器的方式。 |
+| `/nomo-status` | 配对和 hook 的健康状况。 |
+| `/nomo-reset` | 清理卡住的会话行，无需解除配对。 |
+| `/nomo-unpair` | 解除这台电脑的配对。 |
+
+Cursor 没有 approvals 命令——没有远程审批可以暂停。其余细节见[命令](/zh-Hans/sessions/commands)。
+
+## 会显示的内容 {#what-you-see}
+
+- 会话在你发出一个聊天的**第一条提示**时出现——只是打开聊天并不会出现。
+- 智能体运行时它显示为运行中，这一轮结束时显示为完成。
+- 聊天、窗口或 CLI 关闭时，它会被移除。
+- 标题是 Cursor 给这个聊天起的名称——也就是聊天标签页和历史记录里的那个。它一开始是你的第一条提示，在这一轮进行中或结束后不久，换成 Cursor 起的名称。
+- 模型徽标显示的是 Cursor 报告的模型。
+- [灵动岛](/zh-Hans/sessions/island)和其他智能体一样可用，显示你选择放上去的那些会话。
+
+## 这个版本的限制 {#what-this-version-doesnt-do}
+
+- **没有远程审批**。你没法在手机上**允许**或**拒绝** Cursor 的 Run / Skip 请求，手机也不会显示 Cursor 正在等你。Cursor 没有把这些开放给插件。
+- **没有提问和计划审批**。Cursor 的提问和计划审批不会显示，也没法在手机上答复。
+- **没有“在 Mac 上打开”**。这个按钮在 Cursor 会话上不可用。
+- **没有“停止”**。[**停止**](/zh-Hans/sessions/list#interrupt-a-running-session)按钮在 Cursor 会话上同样不可用。
+- **没有云端智能体**。Cursor 的云端智能体和后台智能体不会显示——只显示在你 Mac 上运行的智能体。
+- **标题可能一直是你的第一条提示**。如果读不到 Cursor 给聊天起的名称，标题就保持第一条提示——这一轮结束后，Nomo 还会继续检查大约两分钟。用 `cursor-agent` CLI 运行的聊天，标题始终是第一条提示。Nomo 只从 Cursor 的本地数据库读取聊天名称，其中的其他内容一概不会发送。
+- **崩溃可能留下一个会话**。如果 Cursor 被强制退出或崩溃，会话可能一直停在运行中，直到超时——大约 30 分钟——而不是立刻结束。
+
+## 更新 {#updating}
+
+再运行一次同一条命令，然后重启 Cursor：
+
+```bash
+bunx nomo-ai --cursor
+```
+
+## 卸载 {#uninstalling}
+
+```bash
+node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+```
+
+然后重启 Cursor。卸载会删掉那四个 skill，但不会动配对——配对是这台电脑上所有智能体共用的。如果还想解除这台电脑的配对，请在卸载之前运行 `/nomo-unpair`。
+
+如果有东西没有显示出来，先看[故障排查](/zh-Hans/sessions/troubleshooting)里关于 Cursor 的那几条。

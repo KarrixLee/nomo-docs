@@ -2,7 +2,7 @@
 title: "故障排查"
 description: "先运行状态命令——它会直接说出问题所在，并打印出对应的修复命令。然后：哪一行回答哪个症状，以及状态命令看不到的少数几件事。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
 ---
 
 这一页的活，现在大半由状态命令替你干了。它会把整台电脑读一遍，用大白话说出哪里不对，并打印出能修好它的那条命令。先运行它。
@@ -21,6 +21,10 @@ $nomo-status
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
 </CodeGroup>
@@ -58,19 +62,43 @@ $nomo-status
 </Accordion>
 
 <Accordion title="手机从来不来问我要不要批准" icon="hand">
+  如果是 Cursor 的会话，那是预期之中的：Cursor 会话是只读的，它的请求永远到不了你的手机——[原因](/zh-Hans/sessions/cursor#what-this-version-doesnt-do)。其他智能体的话：
+
   看 **Approvals**。`PAUSED` 表示有人在这台电脑上运行过暂停命令——可能是好几个月以前，而这正是过去这件事根本无从发现的原因。在那台机器上的一个会话里恢复它，请求就回来了：[approvals](/zh-Hans/sessions/commands#approvals)。
 
   如果它显示 `on`，那关着的开关就在你手机上。**在 iPhone 上回答**默认是关的——见[设置](/zh-Hans/sessions/settings#remote-approvals)。判断的依据是颜色：每一只举起的手都是黄色（`需要帮助`，只有终端能处理），没有一只是紫色（`需要权限`，那才是能答复的）。见[在手机上回答](/zh-Hans/sessions/approvals)。
 </Accordion>
 
 <Accordion title="我开了一个会话，它一直没出现" icon="play">
-  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode。
+  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode；重启 Cursor。
 
   Codex 需要你明确信任 hook，而一次插件更新会重新开启那次审核，所以在那边，更新之后运行 `/hooks` 通常就是答案——[原因](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="偏偏 OpenCode 什么都不显示" icon="rotate">
   **Plugin** 那一行显示已安装却毫无活动，通常意味着插件装上时 OpenCode 已经在运行了。OpenCode 只在服务器启动时加载一次插件，所以退出再重开就是全部的修复——只重新加载 TUI 是不够的。这也是[重置前需要关闭 OpenCode](/zh-Hans/sessions/opencode#reset-needs-opencode-closed) 的同一个原因。
+</Accordion>
+
+<Accordion title="偏偏 Cursor 什么都不显示" icon="arrow-pointer">
+  按这个顺序检查三件事：
+
+  - **Cursor 没有重启**。Cursor 只在启动时加载 hook，所以安装之后要退出并重新打开 Cursor——并重启所有开着的 `cursor-agent` 会话。
+  - **Cursor 标签页被隐藏了**。详情页最多显示三个智能体标签页。轻点 **+** 按钮（**选择智能体**），把 Cursor 打开。
+  - **这台 Mac 没有配对**。在 Cursor 里运行 `/nomo-status` 检查一下。
+
+  安装时已经在跑的那一轮，会从它的下一条提示开始出现。而且会话要等你发出聊天的第一条提示才会出现——只是打开聊天是不够的。完整的配置步骤在[搭配 Cursor 使用](/zh-Hans/sessions/cursor)里。
+</Accordion>
+
+<Accordion title="Cursor 的聊天显示成了 Claude Code 会话" icon="clone">
+  更新 Claude Code 的 Nomo 插件。旧版本会通过 Cursor 对 Claude Code 插件的导入在 Cursor 里运行；当前版本会忽略 Cursor。命令在[更新](/zh-Hans/setup/install#updating)里。
+</Accordion>
+
+<Accordion title="Cursor 退出之后，会话还停在“运行中”" icon="hourglass-half">
+  如果 Cursor 被强制退出或崩溃，会话可能一直停在运行中，直到超时——大约 30 分钟——而不是立刻结束。`/nomo-reset` 会清理卡住的会话行，无需解除配对。
+</Accordion>
+
+<Accordion title="在 Cursor 里发送提示时会停顿一下" icon="pause">
+  连不上 Nomo 的中继服务器时，在 Cursor 里提交提示可能会停顿最多约 2 秒才发出去。它绝不会拦下你的提示。
 </Accordion>
 
 <Accordion title="会话行看着陈旧或重复" icon="broom">
@@ -86,6 +114,10 @@ $nomo-status
   ```
 
   ```bash OpenCode icon="/images/opencode.svg"
+  /nomo-reset
+  ```
+
+  ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
   ```
   </CodeGroup>
@@ -188,7 +220,7 @@ $nomo-status
 
 ## 功能建议 {#nothings-broken--you-just-want-something}
 
-“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)和[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)讲这两个智能体，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
+“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)、[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)和[搭配 Cursor 使用](/zh-Hans/sessions/cursor)讲这三个智能体，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
 
 其余的就是还没做。
 
@@ -250,6 +282,38 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Plugin 那一行显示已安装却毫无活动，通常意味着插件装上时 OpenCode 已经在运行了。OpenCode 只在服务器启动时加载一次插件，所以退出再重开就是全部的修复——只重新加载 TUI 是不够的。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "偏偏 Cursor 什么都不显示",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "检查三件事。Cursor 只在启动时加载 hook，所以安装之后要退出并重新打开 Cursor，并重启所有开着的 cursor-agent 会话。详情页最多显示三个智能体标签页，所以轻点 + 按钮（选择智能体），把 Cursor 打开。再在 Cursor 里运行 /nomo-status，检查这台 Mac 是否已配对。安装时已经在跑的那一轮，会从它的下一条提示开始出现。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor 的聊天显示成了 Claude Code 会话",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "更新 Claude Code 的 Nomo 插件。旧版本会通过 Cursor 对 Claude Code 插件的导入在 Cursor 里运行；当前版本会忽略 Cursor。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cursor 退出之后，会话还停在“运行中”",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "如果 Cursor 被强制退出或崩溃，会话可能一直停在运行中，直到超时——大约 30 分钟——而不是立刻结束。/nomo-reset 会清理卡住的会话行，无需解除配对。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "在 Cursor 里发送提示时会停顿一下",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "连不上 Nomo 的中继服务器时，在 Cursor 里提交提示可能会停顿最多约 2 秒才发出去。它绝不会拦下你的提示。"
       }
     },
     {

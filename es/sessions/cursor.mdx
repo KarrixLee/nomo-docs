@@ -1,0 +1,151 @@
+---
+title: "Usar Cursor"
+description: "Instala el plugin de Nomo en Cursor, vincula y sigue las sesiones de su agente desde tu teléfono. De solo lectura en esta versión: qué aparece y qué no."
+icon: "arrow-pointer"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar Cursor"]
+---
+
+Las sesiones de Cursor salen en la misma lista, en la misma Dynamic Island y
+sobre la misma vinculación, tanto las del agente de la app de escritorio de
+Cursor como las de la CLI `cursor-agent`. En esta versión son **de solo
+lectura**: sigues una sesión de Cursor desde tu teléfono, y le respondes en tu
+ordenador.
+
+<Note>
+  Sesiones forma parte de Nomo Pro, para Cursor igual que para cualquier otro
+  agente. Las sesiones de Cursor necesitan además la última versión de Nomo en
+  tu teléfono.
+</Note>
+
+## Puesta en marcha {#set-it-up}
+
+<Steps>
+  <Step title="Ejecuta el instalador">
+    En tu Mac:
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --cursor
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --cursor
+    ```
+    </CodeGroup>
+
+    Una sola instalación cubre tanto la app de escritorio como `cursor-agent`.
+    Hace tres cosas:
+
+    - Clona el plugin en `~/.nomo`.
+    - Añade las entradas de hooks de Nomo a `~/.cursor/hooks.json`. Las fusiona
+      con lo que ya haya y deja intactas las entradas de otras herramientas.
+    - Instala cuatro skills en `~/.cursor/skills/`.
+  </Step>
+
+  <Step title="Reinicia Cursor — obligatorio">
+    <Warning>
+      Cursor solo recoge los hooks al arrancar. Cierra Cursor y vuelve a
+      abrirlo, y reinicia cualquier sesión de `cursor-agent` que tengas abierta.
+      Hasta que lo hagas, el plugin está instalado sin hacer nada.
+    </Warning>
+  </Step>
+
+  <Step title="Vincula">
+    En Cursor, escribe `/` para elegir una skill, y ejecuta:
+
+    ```
+    /nomo-pair
+    ```
+
+    Muestra un código QR: escanéalo con la app de Nomo. Donde no puedas abrir un
+    navegador, `/nomo-pair code` te da un código corto para escribirlo. Las dos
+    vías están explicadas paso a paso en [Vinculación](/es/setup/pairing).
+
+    La vinculación se comparte entre los agentes de un mismo Mac. Un ordenador
+    ya vinculado para Claude Code, Codex u OpenCode no necesita vincularse otra
+    vez para Cursor: basta con instalar, y puedes saltarte este paso.
+  </Step>
+
+  <Step title="Muestra la pestaña Cursor">
+    En la app, abre el ordenador. Las sesiones de Cursor están bajo la pestaña
+    **Cursor** de su panel de sesiones.
+
+    El panel muestra hasta tres pestañas de agente. Si Cursor no es una de
+    ellas, toca el botón **+** (**Elegir agentes**) y actívalo.
+  </Step>
+</Steps>
+
+## Comandos {#commands}
+
+Cuatro skills, sin prefijo. Escribe `/` en Cursor para elegir una:
+
+| | |
+| --- | --- |
+| `/nomo-pair` | Muestra un código QR para escanear con la app de Nomo. `/nomo-pair code` es la vía sin navegador. |
+| `/nomo-status` | Salud de la vinculación y de los hooks. |
+| `/nomo-reset` | Limpia las filas de sesión atascadas sin desvincular nada. |
+| `/nomo-unpair` | Desvincula este ordenador. |
+
+No hay comando de aprobaciones para Cursor: no hay aprobaciones remotas que
+pausar. El resto del detalle está en [Comandos](/es/sessions/commands).
+
+## Lo que ves {#what-you-see}
+
+- Una sesión aparece cuando envías tu **primer prompt** en un chat, no cuando
+  el chat simplemente se abre.
+- Se muestra como `En ejecución` mientras el agente corre, y como `Listo` cuando
+  termina el turno.
+- Se quita cuando se cierra el chat, la ventana o la CLI.
+- El título es el nombre que Cursor le da al chat, el de su pestaña y su
+  historial. Empieza siendo tu primer prompt y cambia al nombre de Cursor
+  durante el turno, o poco después de que termine.
+- La etiqueta del modelo muestra el modelo que indica Cursor.
+- La [Dynamic Island](/es/sessions/island) funciona igual que con los demás
+  agentes, para las sesiones que elijas mostrar ahí.
+
+## Lo que esta versión no hace {#what-this-version-doesnt-do}
+
+- **Sin aprobaciones remotas.** No puedes **Permitir** ni **Denegar** desde tu
+  teléfono las solicitudes Run / Skip de Cursor, y tu teléfono no muestra cuándo
+  Cursor te está esperando. Cursor no expone eso a los plugins.
+- **Sin preguntas ni aprobaciones de planes.** Las preguntas y las aprobaciones
+  de planes de Cursor no se muestran, y no se pueden responder desde el
+  teléfono.
+- **Sin “Abrir en el Mac”.** El botón no está disponible en las sesiones de
+  Cursor.
+- **Sin “Detener”.** El botón [**Detener**](/es/sessions/list#interrupt-a-running-session)
+  tampoco está disponible en las sesiones de Cursor.
+- **Sin agentes en la nube.** Los agentes en la nube y en segundo plano de
+  Cursor no se muestran: solo los agentes que corren en tu Mac.
+- **El título puede quedarse en tu primer prompt.** Si no se puede leer el
+  nombre que Cursor le da al chat, se queda el primer prompt; Nomo lo sigue
+  comprobando durante unos dos minutos después de que termine el turno. Los
+  chats que corren con la CLI `cursor-agent` conservan el título del primer
+  prompt. De la base de datos local de Cursor solo se lee el nombre del chat;
+  no se envía nada más de ella.
+- **Un fallo puede dejar una sesión colgada.** Si se fuerza el cierre de Cursor o
+  se cierra por un fallo, una sesión puede quedarse como `En ejecución` hasta
+  que agota el tiempo de espera —unos 30 minutos— en lugar de terminar al
+  momento.
+
+## Actualizaciones {#updating}
+
+Vuelve a ejecutar el mismo comando y después reinicia Cursor:
+
+```bash
+bunx nomo-ai --cursor
+```
+
+## Desinstalación {#uninstalling}
+
+```bash
+node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+```
+
+Después reinicia Cursor. La desinstalación quita las cuatro skills y no toca la
+vinculación, que se comparte con los demás agentes de este ordenador. Para
+desvincular también el ordenador, ejecuta `/nomo-unpair` antes de desinstalar.
+
+Si algo no aparece, las entradas de Cursor en
+[Solución de problemas](/es/sessions/troubleshooting) son el sitio por donde
+empezar.

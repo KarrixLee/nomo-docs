@@ -1,0 +1,143 @@
+---
+title: "Using Cursor"
+description: "Install the Nomo plugin on Cursor, pair, and watch its agent sessions from your phone. Read-only in this version — what shows up, and what doesn't."
+icon: "arrow-pointer"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Using Cursor"]
+---
+
+Cursor sessions show up in the same list, on the same island, over the same
+pairing — from the Cursor desktop app's agent and from the `cursor-agent` CLI
+alike. In this version they're **read-only**: you watch a Cursor session from
+your phone, and you answer it at your computer.
+
+<Note>
+  Sessions is part of Nomo Pro, for Cursor as for every other agent. Cursor
+  sessions also need the latest version of Nomo on your phone.
+</Note>
+
+## Set it up
+
+<Steps>
+  <Step title="Run the installer">
+    On your Mac:
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --cursor
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --cursor
+    ```
+    </CodeGroup>
+
+    One install covers both the desktop app and `cursor-agent`. It does three
+    things:
+
+    - Clones the plugin to `~/.nomo`.
+    - Adds Nomo's hook entries to `~/.cursor/hooks.json`. It merges with
+      whatever is already there and leaves other tools' entries untouched.
+    - Installs four skills under `~/.cursor/skills/`.
+  </Step>
+
+  <Step title="Restart Cursor — required">
+    <Warning>
+      Cursor only picks hooks up when it starts. Quit and reopen Cursor, and
+      restart any `cursor-agent` session you have open. Until you do, the
+      plugin is installed and doing nothing.
+    </Warning>
+  </Step>
+
+  <Step title="Pair">
+    In Cursor, type `/` to pick a skill, and run:
+
+    ```
+    /nomo-pair
+    ```
+
+    It shows a QR code — scan it with the Nomo app. Where you can't open a
+    browser, `/nomo-pair code` gives you a short code to type instead. Both
+    paths are walked through in [Pairing](/setup/pairing).
+
+    Pairing is shared across agents on one Mac. A computer already paired for
+    Claude Code, Codex or OpenCode doesn't need pairing again for Cursor —
+    installing is enough, and you can skip this step.
+  </Step>
+
+  <Step title="Show the Cursor tab">
+    In the app, open the computer. Cursor sessions sit under a **Cursor** tab
+    in its session drawer.
+
+    The drawer shows up to three agent tabs. If Cursor isn't one of them, tap
+    the **+** button (**Choose agents**) and turn it on.
+  </Step>
+</Steps>
+
+## Commands
+
+Four skills, with no prefix. Type `/` in Cursor to pick one:
+
+| | |
+| --- | --- |
+| `/nomo-pair` | Shows a QR code to scan with the Nomo app. `/nomo-pair code` is the no-browser path. |
+| `/nomo-status` | Pairing and hook health. |
+| `/nomo-reset` | Clears stuck session rows without unpairing. |
+| `/nomo-unpair` | Unpairs this computer. |
+
+There's no approvals command for Cursor — there are no remote approvals to
+pause. The rest of the detail is in [Commands](/sessions/commands).
+
+## What you see
+
+- A session appears when you send your **first prompt** in a chat — not when
+  the chat is merely opened.
+- It shows as working while the agent runs, and as done when the turn finishes.
+- It's removed when the chat, the window or the CLI closes.
+- The title is the name Cursor gives the chat — the one on its chat tab and in
+  its history. It starts as your first prompt and switches to Cursor's name
+  during the turn, or shortly after it ends.
+- The model badge shows the model Cursor reports.
+- The [Dynamic Island](/sessions/island) works as it does for the other agents,
+  for the sessions you choose to show there.
+
+## What this version doesn't do
+
+- **No remote approvals.** You can't **Allow** or **Deny** Cursor's Run / Skip
+  prompts from your phone, and your phone doesn't show when Cursor is waiting
+  on you. Cursor doesn't expose that to plugins.
+- **No questions or plan approvals.** Cursor's questions and plan approvals
+  aren't shown, and can't be answered from the phone.
+- **No "Open on Mac".** The button isn't available on Cursor sessions.
+- **No Interrupt.** The [**Interrupt**](/sessions/list#interrupt-a-running-session)
+  button isn't available on Cursor sessions either.
+- **No cloud agents.** Cursor's cloud and background agents aren't shown — only
+  agents running on your Mac.
+- **The title can stay your first prompt.** If Cursor's name for the chat can't
+  be read, the first prompt stays — Nomo keeps checking for about two minutes
+  after the turn ends. Chats run with the `cursor-agent` CLI keep the
+  first-prompt title. Only the chat name is read from Cursor's local database;
+  nothing else from it is sent.
+- **A crash can leave a session behind.** If Cursor is force-quit or crashes, a
+  session can linger as working until it times out — about 30 minutes — rather
+  than ending immediately.
+
+## Updating
+
+Run the same command again, then restart Cursor:
+
+```bash
+bunx nomo-ai --cursor
+```
+
+## Uninstalling
+
+```bash
+node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+```
+
+Then restart Cursor. Uninstalling removes the four skills and leaves the
+pairing alone — it's shared with the other agents on this computer. To unpair
+the computer as well, run `/nomo-unpair` before you uninstall.
+
+If something isn't showing up, the Cursor entries in
+[Troubleshooting](/sessions/troubleshooting) are the place to start.

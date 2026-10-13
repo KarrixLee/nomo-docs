@@ -1,36 +1,41 @@
 ---
 title: "명령"
-description: "Claude Code, Codex, OpenCode를 위한 Nomo 명령 전부 — 페어링, 상태 확인, 승인, 초기화, 페어링 해제, 업데이트를 한곳에."
+description: "Claude Code, Codex, OpenCode, Cursor를 위한 Nomo 명령 전부 — 페어링, 상태 확인, 승인, 초기화, 페어링 해제, 업데이트를 한곳에."
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "명령"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "명령"]
 ---
 
-모든 에이전트에서 쓰는 명령 다섯 개, 그리고 OpenCode에만 필요한 여섯 번째가
-있습니다. 적용할 컴퓨터의 에이전트 세션 안에서 실행하며, Claude Code와
-OpenCode에서는 `/` 명령, Codex에서는 `$` Skill입니다.
+Claude Code, Codex, OpenCode에서 쓰는 명령 다섯 개, OpenCode에만 필요한 여섯
+번째, 그리고 Cursor에서 쓰는 네 개가 있습니다. 적용할 컴퓨터의 에이전트 세션
+안에서 실행하며, Claude Code와 OpenCode에서는 `/` 명령, Cursor에서는 `/` Skill,
+Codex에서는 `$` Skill입니다.
 
 <Tip>
   Claude Code에서는 모든 명령에 네임스페이스가 붙습니다. `/nomo-cc:`를 입력하면
   전체 목록이 표시됩니다. OpenCode의 명령 이름은 전역에 평평하게 놓이므로, 그쪽에서
-  Nomo 명령에는 접두사가 전혀 붙지 않습니다.
+  Nomo 명령에는 접두사가 전혀 붙지 않습니다. Cursor의 Skill도 마찬가지입니다.
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode |
-| --- | --- | --- | --- |
-| <a href="#pair">이 컴퓨터 페어링</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` |
-| <a href="#status">상태 확인</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` |
-| <a href="#approvals">승인 일시 중지 또는 재개</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
-| <a href="#reset">멈춘 세션 정리</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">이 컴퓨터 연결 해제</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">플러그인 업데이트</a> | — | — | `/nomo-update` |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor |
+| --- | --- | --- | --- | --- |
+| <a href="#pair">이 컴퓨터 페어링</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">상태 확인</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">승인 일시 중지 또는 재개</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — |
+| <a href="#reset">멈춘 세션 정리</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">이 컴퓨터 연결 해제</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">플러그인 업데이트</a> | — | — | `/nomo-update` | — |
 
 어느 것도 요란하게 실패하지 않습니다. 할 일이 없을 때에도 모두 정상적으로
 종료합니다 — `Not paired`는 오류가 아니라 성공입니다.
 
 마지막 줄의 빈칸은 빠뜨린 것이 아닙니다. Claude Code와 Codex는 각자의 호스트를
-통해 업데이트되므로 Nomo가 거기에 명령을 더하지 않습니다. 각각 무엇이 필요한지는
+통해 업데이트되므로 Nomo가 거기에 명령을 더하지 않고, Cursor는 설치 도구를 다시
+실행해 업데이트합니다. 각각 무엇이 필요한지는
 — Codex는 대개 아무것도 필요 없습니다 —
 [설치](/ko/setup/install#updating)에 있습니다.
+
+승인 줄에서 Cursor의 빈칸도 빠뜨린 것이 아닙니다. Cursor 세션은 읽기 전용이라
+일시 중지할 원격 승인이 없습니다 — [Cursor 사용하기](/ko/sessions/cursor).
 
 ## pair {#pair}
 
@@ -49,6 +54,11 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Cursor icon="/images/providers/cursor.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 인자 없이 실행하면 QR 코드가 담긴 테마 페이지가 브라우저에서 열립니다. 앱에서
@@ -59,7 +69,7 @@ $nomo-pair code        # one-time code, printed in the terminal
 그 코드가 터미널에, 따라서 에이전트의 트랜스크립트에 남기 때문입니다.
 
 페어링은 사용되지 않으면 **10분** 뒤에 만료됩니다. 페어링 하나는 에이전트가 아니라
-컴퓨터에 적용되므로, 같은 Mac의 Claude Code, Codex, OpenCode가 이를 공유합니다.
+컴퓨터에 적용되므로, 같은 Mac의 Claude Code, Codex, OpenCode, Cursor가 이를 공유합니다.
 전체 절차는 [페어링](/ko/setup/pairing)에 있습니다.
 
 ## status {#status}
@@ -74,6 +84,10 @@ $nomo-status
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
 </CodeGroup>
@@ -135,7 +149,8 @@ Claude Code — you are here
   에이전트가 Nomo에 내용을 넘기고 있는지, 마지막으로 넘긴 것이 언제인지입니다.
   OpenCode에는 Hook이 없으므로 그쪽에서는 이 줄의 이름이 `Plugin`입니다. 아무것도
   동작하지 않는다면, Claude Code는 재시작해 Hook을 로드하고, Codex에서는 `/hooks`를
-  실행하고, OpenCode는 플러그인이 로드되도록 재시작하십시오.
+  실행하고, OpenCode는 플러그인이 로드되도록 재시작하고, Cursor는 시작할 때에만
+  Hook을 읽어 들이므로 재시작하십시오.
 </ResponseField>
 
 <ResponseField name="Sessions">
@@ -209,6 +224,9 @@ will appear in the terminal as usual (your phone is not asked).
 휴대폰 전체에 적용되는 별도의 스위치가 있습니다:
 [설정](/ko/sessions/settings#remote-approvals)의 **iPhone에서 답변**입니다.
 
+Cursor에는 approvals 명령이 없습니다. Cursor의 요청은 휴대폰에 도달하지 않으므로
+일시 중지할 것이 없습니다.
+
 ## reset {#reset}
 
 <CodeGroup>
@@ -221,6 +239,10 @@ $nomo-reset
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-reset
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
 ```
 </CodeGroup>
@@ -253,6 +275,10 @@ $nomo-unpair
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-unpair
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-unpair
 ```
 </CodeGroup>
