@@ -32,6 +32,35 @@ hay en marcha, separado por agente.
   de uso son gratis y funcionan sin nada de la configuración de abajo.
 </Note>
 
+## Qué puedes hacer
+
+<CardGroup cols={2}>
+  <Card title="Todas tus sesiones" href="/es/sessions/list" icon="list">
+    Cada ordenador vinculado, con sus sesiones separadas por agente y agrupadas por carpeta.
+  </Card>
+  <Card title="Una sesión en la Dynamic Island" href="/es/sessions/island" icon="circle-dot">
+    La sesión que elijas, en vivo en la pantalla de bloqueo y en la parte de arriba de la pantalla.
+  </Card>
+  <Card title="Permitir o denegar solicitudes" href="/es/sessions/approvals" icon="hand">
+    Responde a una solicitud de permiso desde la Dynamic Island o desde la app.
+  </Card>
+  <Card title="Responder preguntas" href="/es/sessions/approvals#answering-a-question" icon="circle-question">
+    Elige una de las opciones del agente, o escribe la tuya.
+  </Card>
+  <Card title="Revisar planes" href="/es/sessions/approvals#reviewing-a-plan" icon="list-check">
+    Lee el plan entero y luego apruébalo o devuélvelo.
+  </Card>
+  <Card title="Detener un turno en curso" href="/es/sessions/list#interrupt-a-running-session" icon="stop">
+    Detén el turno, como al pulsar Esc en el Mac.
+  </Card>
+  <Card title="Abrir en el Mac" href="/es/sessions/list#tap-a-row-for-detail" icon="window-restore">
+    Pon en primer plano la ventana de terminal de esa sesión.
+  </Card>
+  <Card title="Pausar las aprobaciones" href="/es/sessions/approvals#pausing-it" icon="pause">
+    Devuelve las solicitudes a la terminal, desde tu teléfono o desde un solo ordenador.
+  </Card>
+</CardGroup>
+
 ## Con qué funciona
 
 Sesiones sigue al agente que corre en tu ordenador, no a la cuenta que hay
@@ -50,6 +79,19 @@ OpenCode](/es/sessions/opencode) son las listas cortas de lo que cambia. Cursor
 es de solo lectura en esta versión: sus sesiones aparecen, pero sus solicitudes
 no se pueden responder desde tu teléfono — ve
 [Usar Cursor](/es/sessions/cursor).
+
+Función por función:
+
+| | Claude Code | Codex | OpenCode | Cursor |
+| --- | :---: | :---: | :---: | :---: |
+| [Sesiones y la Dynamic Island](/es/sessions/list) | ✓ | ✓ | ✓ | ✓ |
+| [**Permitir** y **Denegar**](/es/sessions/approvals) | ✓ | ✓ | ✓ | — |
+| [**Permitir siempre**](/es/sessions/approvals#everything-you-can-answer) | ✓ | — | ✓ | — |
+| [**Denegar con nota…**](/es/sessions/approvals#everything-you-can-answer) | ✓ | ✓ | — | — |
+| [Responder preguntas](/es/sessions/approvals#answering-a-question) | ✓ | [Con el `app-server` compartido](/es/sessions/codex#questions-in-the-cli-and-the-desktop-app) | ✓ | — |
+| [Revisar planes](/es/sessions/approvals#reviewing-a-plan) | ✓ | [Solo lectura](/es/sessions/codex#plans-are-read-only) | [Lista de tareas](/es/sessions/opencode#plan-mode) | — |
+| [**Detener**](/es/sessions/list#interrupt-a-running-session) | ✓ | [Con el `app-server` compartido](/es/sessions/codex#interrupt) | — | — |
+| [**Abrir en el Mac**](/es/sessions/list#tap-a-row-for-detail) | ✓ | ✓ | — | — |
 
 ## Qué necesitas
 

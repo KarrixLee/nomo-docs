@@ -23,6 +23,35 @@ Nomo Sessions 會把正在執行的 Claude Code、Codex、OpenCode 和 Cursor se
   Sessions 屬於 Nomo Pro。狀態監控和用量小工具是免費的，下面這些設定一個都不用做就能運作。
 </Note>
 
+## 功能一覽
+
+<CardGroup cols={2}>
+  <Card title="所有 sessions" href="/zh-Hant/sessions/list" icon="list">
+    每台已配對的電腦，底下的 sessions 依代理分開、依資料夾分組。
+  </Card>
+  <Card title="動態島即時顯示" href="/zh-Hant/sessions/island" icon="circle-dot">
+    你選的那個 session，即時顯示在鎖定畫面和螢幕上方。
+  </Card>
+  <Card title="允許或拒絕請求" href="/zh-Hant/sessions/approvals" icon="hand">
+    從動態島或 App 回覆權限請求。
+  </Card>
+  <Card title="回答問題" href="/zh-Hant/sessions/approvals#answering-a-question" icon="circle-question">
+    從代理給的選項裡挑一個，或自行輸入回答。
+  </Card>
+  <Card title="檢視計畫" href="/zh-Hant/sessions/approvals#reviewing-a-plan" icon="list-check">
+    讀完整份計畫，再批准，或讓它繼續規劃。
+  </Card>
+  <Card title="停止執行中的一輪" href="/zh-Hant/sessions/list#interrupt-a-running-session" icon="stop">
+    停下這一輪，就像在 Mac 上按 Esc。
+  </Card>
+  <Card title="在 Mac 上開啟" href="/zh-Hant/sessions/list#tap-a-row-for-detail" icon="window-restore">
+    把那個 session 的終端機視窗切到最前面。
+  </Card>
+  <Card title="暫停遠端批准" href="/zh-Hant/sessions/approvals#pausing-it" icon="pause">
+    把請求送回終端機，從手機或從某一台電腦都可以。
+  </Card>
+</CardGroup>
+
 ## 支援哪些代理
 
 Sessions 跟的是跑在你電腦上的代理，而不是它背後的帳號，所以名單比[狀態與用量](/zh-Hant/status-usage)短。
@@ -35,6 +64,19 @@ Sessions 跟的是跑在你電腦上的代理，而不是它背後的帳號，�
 </div>
 
 Codex 和 OpenCode 交給外掛程式的東西比 Claude Code 少，所以有幾處在手機上的表現不一樣 — 變的是哪些，都寫在[搭配 Codex 使用](/zh-Hant/sessions/codex)和[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)裡。Cursor 在這個版本是唯讀的：它的 sessions 會出現，但它的請求無法從手機上回覆 — 請看[搭配 Cursor 使用](/zh-Hant/sessions/cursor)。
+
+逐項功能來看：
+
+| | Claude Code | Codex | OpenCode | Cursor |
+| --- | :---: | :---: | :---: | :---: |
+| [sessions 與動態島](/zh-Hant/sessions/list) | ✓ | ✓ | ✓ | ✓ |
+| [**允許**與**拒絕**](/zh-Hant/sessions/approvals) | ✓ | ✓ | ✓ | — |
+| [**一律允許**](/zh-Hant/sessions/approvals#everything-you-can-answer) | ✓ | — | ✓ | — |
+| [**拒絕並附註…**](/zh-Hant/sessions/approvals#everything-you-can-answer) | ✓ | ✓ | — | — |
+| [回答問題](/zh-Hant/sessions/approvals#answering-a-question) | ✓ | [需要共用的 app-server](/zh-Hant/sessions/codex#questions-in-the-cli-and-the-desktop-app) | ✓ | — |
+| [檢視計畫](/zh-Hant/sessions/approvals#reviewing-a-plan) | ✓ | [唯讀](/zh-Hant/sessions/codex#plans-are-read-only) | [待辦清單](/zh-Hant/sessions/opencode#plan-mode) | — |
+| [**停止**](/zh-Hant/sessions/list#interrupt-a-running-session) | ✓ | [需要共用的 app-server](/zh-Hant/sessions/codex#interrupt) | — | — |
+| [**在 Mac 上開啟**](/zh-Hant/sessions/list#tap-a-row-for-detail) | ✓ | ✓ | — | — |
 
 ## 你需要什麼
 

@@ -32,6 +32,35 @@ sessions, split by agent and grouped by project folder.
   work without any of the setup below.
 </Note>
 
+## What you can do
+
+<CardGroup cols={2}>
+  <Card title="See every session" href="/sessions/list" icon="list">
+    Each paired computer, with its sessions split by agent and grouped by folder.
+  </Card>
+  <Card title="Follow one on the Dynamic Island" href="/sessions/island" icon="circle-dot">
+    The session you choose, live on the Lock Screen and at the top of the screen.
+  </Card>
+  <Card title="Allow or deny prompts" href="/sessions/approvals" icon="hand">
+    Answer a permission prompt from the island or the app.
+  </Card>
+  <Card title="Answer questions" href="/sessions/approvals#answering-a-question" icon="circle-question">
+    Pick one of the agent's options, or type your own.
+  </Card>
+  <Card title="Review plans" href="/sessions/approvals#reviewing-a-plan" icon="list-check">
+    Read the whole plan, then approve it or send it back.
+  </Card>
+  <Card title="Interrupt a running turn" href="/sessions/list#interrupt-a-running-session" icon="stop">
+    Stop the turn, like pressing Esc at the Mac.
+  </Card>
+  <Card title="Open on Mac" href="/sessions/list#tap-a-row-for-detail" icon="window-restore">
+    Bring that session's terminal window to the front.
+  </Card>
+  <Card title="Pause approvals" href="/sessions/approvals#pausing-it" icon="pause">
+    Send prompts back to the terminal, from your phone or from one computer.
+  </Card>
+</CardGroup>
+
 ## What's supported
 
 Sessions follows the agent running on your computer, not the account behind it,
@@ -49,6 +78,19 @@ land differently on your phone — [Using Codex](/sessions/codex) and [Using
 OpenCode](/sessions/opencode) are the short lists of what changes. Cursor is
 read-only in this version: its sessions show up, but its prompts can't be
 answered from your phone — see [Using Cursor](/sessions/cursor).
+
+Feature by feature:
+
+| | Claude Code | Codex | OpenCode | Cursor |
+| --- | :---: | :---: | :---: | :---: |
+| [Sessions and the Dynamic Island](/sessions/list) | ✓ | ✓ | ✓ | ✓ |
+| [**Allow** and **Deny**](/sessions/approvals) | ✓ | ✓ | ✓ | — |
+| [**Always allow**](/sessions/approvals#everything-you-can-answer) | ✓ | — | ✓ | — |
+| [**Deny with note…**](/sessions/approvals#everything-you-can-answer) | ✓ | ✓ | — | — |
+| [Answering questions](/sessions/approvals#answering-a-question) | ✓ | [With the shared app-server](/sessions/codex#questions-in-the-cli-and-the-desktop-app) | ✓ | — |
+| [Reviewing plans](/sessions/approvals#reviewing-a-plan) | ✓ | [Read-only](/sessions/codex#plans-are-read-only) | [Todo list](/sessions/opencode#plan-mode) | — |
+| [**Interrupt**](/sessions/list#interrupt-a-running-session) | ✓ | [With the shared app-server](/sessions/codex#interrupt) | — | — |
+| [**Open on Mac**](/sessions/list#tap-a-row-for-detail) | ✓ | ✓ | — | — |
 
 ## What you need
 

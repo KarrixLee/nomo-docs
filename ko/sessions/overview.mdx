@@ -30,6 +30,35 @@ Nomo 세션은 실행 중인 Claude Code, Codex, OpenCode, Cursor 세션을 iPho
   아래의 설정 없이도 동작합니다.
 </Note>
 
+## 할 수 있는 일
+
+<CardGroup cols={2}>
+  <Card title="전체 세션 보기" href="/ko/sessions/list" icon="list">
+    페어링한 컴퓨터마다, 세션을 에이전트별로 나누고 폴더별로 묶어 보여 줍니다.
+  </Card>
+  <Card title="Dynamic Island에서 세션 지켜보기" href="/ko/sessions/island" icon="circle-dot">
+    직접 고른 세션을 잠금 화면과 화면 위쪽에 실시간으로 띄웁니다.
+  </Card>
+  <Card title="권한 요청 허용 또는 거부" href="/ko/sessions/approvals" icon="hand">
+    Dynamic Island나 앱에서 권한 요청에 답합니다.
+  </Card>
+  <Card title="질문에 답변" href="/ko/sessions/approvals#answering-a-question" icon="circle-question">
+    에이전트가 내놓은 선택지 중 하나를 고르거나 직접 입력합니다.
+  </Card>
+  <Card title="계획 검토" href="/ko/sessions/approvals#reviewing-a-plan" icon="list-check">
+    계획 전체를 읽은 뒤 승인하거나 돌려보냅니다.
+  </Card>
+  <Card title="실행 중인 턴 중단" href="/ko/sessions/list#interrupt-a-running-session" icon="stop">
+    Mac에서 Esc를 누를 때처럼 턴을 멈춥니다.
+  </Card>
+  <Card title="Mac에서 열기" href="/ko/sessions/list#tap-a-row-for-detail" icon="window-restore">
+    해당 세션의 터미널 창을 앞으로 가져옵니다.
+  </Card>
+  <Card title="승인 일시 중지" href="/ko/sessions/approvals#pausing-it" icon="pause">
+    휴대폰에서 전체를, 또는 컴퓨터 한 대만 골라 요청을 터미널로 돌려보냅니다.
+  </Card>
+</CardGroup>
+
 ## 지원 범위
 
 세션은 계정이 아니라 컴퓨터에서 실행 중인 에이전트를 따라가므로, 목록이
@@ -48,6 +77,19 @@ Codex와 OpenCode는 Claude Code보다 플러그인에 넘겨주는 것이 적�
 정리되어 있습니다. Cursor는 이 버전에서 읽기 전용입니다. 세션은 표시되지만
 Cursor의 요청에는 휴대폰에서 답할 수 없습니다 — [Cursor
 사용하기](/ko/sessions/cursor)를 참고하십시오.
+
+기능별로 보면 다음과 같습니다.
+
+| | Claude Code | Codex | OpenCode | Cursor |
+| --- | :---: | :---: | :---: | :---: |
+| [세션과 Dynamic Island](/ko/sessions/list) | ✓ | ✓ | ✓ | ✓ |
+| [**허용**과 **거부**](/ko/sessions/approvals) | ✓ | ✓ | ✓ | — |
+| [**항상 허용**](/ko/sessions/approvals#everything-you-can-answer) | ✓ | — | ✓ | — |
+| [**메모와 함께 거부…**](/ko/sessions/approvals#everything-you-can-answer) | ✓ | ✓ | — | — |
+| [질문에 답변하기](/ko/sessions/approvals#answering-a-question) | ✓ | [공유 app-server 사용 시](/ko/sessions/codex#questions-in-the-cli-and-the-desktop-app) | ✓ | — |
+| [계획 검토하기](/ko/sessions/approvals#reviewing-a-plan) | ✓ | [읽기 전용](/ko/sessions/codex#plans-are-read-only) | [할 일 목록](/ko/sessions/opencode#plan-mode) | — |
+| [**중단**](/ko/sessions/list#interrupt-a-running-session) | ✓ | [공유 app-server 사용 시](/ko/sessions/codex#interrupt) | — | — |
+| [**Mac에서 열기**](/ko/sessions/list#tap-a-row-for-detail) | ✓ | ✓ | — | — |
 
 ## 필요한 것
 
