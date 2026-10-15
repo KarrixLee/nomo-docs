@@ -2,14 +2,14 @@
 title: "總覽"
 sidebarTitle: "總覽"
 description: "在 iPhone 上盯著 Claude Code、Codex 和 OpenCode，不必回到 Mac 前就能回覆它們的權限請求。"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "總覽"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "session", "電腦", "動態島", "權限", "配對", "總覽"]
 ---
 
 你的編碼代理跑在 Mac 上。但你不必一直坐在它前面。
 
-Nomo Sessions 會把正在執行的 Claude Code、Codex 和 OpenCode sessions 搬到你的 iPhone 上 — 就在鎖定畫面和動態島。當代理停下來要權限時，手機會告訴你，你也能就地回覆。
+Nomo Sessions 會把正在執行的 Claude Code、Codex、OpenCode 和 Cursor sessions 搬到你的 iPhone 上 — 就在鎖定畫面和動態島。當代理停下來要權限時，手機會告訴你，你也能就地回覆。
 
-走去廚房。代理照樣在跑。它遇到一道需要核准的指令，你的手機震一下，你點一下**允許**，它就繼續做下去。你從頭到尾沒走回座位。
+走去廚房。代理照樣在跑。它遇到一道需要批准的指令，你的手機震一下，你點一下**允許**，它就繼續做下去。你從頭到尾沒走回座位。
 
 <Frame caption="同一個 session 出現在兩個地方：即時顯示在螢幕上方，以及 Sessions 分頁裡、執行它的那台電腦底下。">
   <div className="device-frame">
@@ -31,13 +31,18 @@ Sessions 跟的是跑在你電腦上的代理，而不是它背後的帳號，�
   <span><img src="/images/claude-code.svg" alt="" />Claude Code</span>
   <span><img src="/images/codex.svg" alt="" />Codex</span>
   <span><img src="/images/opencode.svg" alt="" />OpenCode</span>
+  <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
 </div>
 
-Codex 和 OpenCode 交給外掛程式的東西比 Claude Code 少，所以有幾處在手機上的表現不一樣 — 變的是哪些，都寫在[搭配 Codex 使用](/zh-Hant/sessions/codex)和[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)裡。
+Codex 和 OpenCode 交給外掛程式的東西比 Claude Code 少，所以有幾處在手機上的表現不一樣 — 變的是哪些，都寫在[搭配 Codex 使用](/zh-Hant/sessions/codex)和[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)裡。Cursor 在這個版本是唯讀的：它的 sessions 會出現，但它的請求無法從手機上回覆 — 請看[搭配 Cursor 使用](/zh-Hant/sessions/cursor)。
+
+<Card title="功能一覽" href="/zh-Hant/sessions/features" icon="star" horizontal>
+  完整的功能列表，以及每個代理的支援情況。
+</Card>
 
 ## 你需要什麼
 
-- Mac 上的 Claude Code、Codex 0.142 以上版本，或 OpenCode
+- Mac 上的 Claude Code、Codex 0.142 以上版本、OpenCode，或 Cursor
 - **bun** 或 **node 18 以上版本** — 你手上已經有哪個就用哪個
 - 手機和電腦配對好 — 掃一次 QR code就完成
 
@@ -57,7 +62,7 @@ Codex 和 OpenCode 交給外掛程式的東西比 Claude Code 少，所以有幾
 
 <CardGroup cols={2}>
   <Card title="安裝外掛程式" href="/zh-Hant/setup/install" icon="puzzle-piece">
-    兩道指令，Claude Code、Codex 或 OpenCode 都適用。
+    兩道指令，Claude Code、Codex、OpenCode 或 Cursor 都適用。
   </Card>
   <Card title="配對你的電腦" href="/zh-Hant/setup/pairing" icon="qrcode-read">
     掃描 QR code，或手動輸入一次性代碼。

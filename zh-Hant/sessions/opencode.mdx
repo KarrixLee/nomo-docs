@@ -1,7 +1,6 @@
 ---
 title: "搭配 OpenCode 使用"
 description: "OpenCode 的 sessions 走同一組配對送到你的手機。哪些一樣、哪些和 Claude Code 與 Codex 不同，以及原因。"
-icon: "cube"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "搭配 OpenCode 使用"]
 ---
 
@@ -66,7 +65,9 @@ OpenCode 把一次被拒絕的權限，當成對代理正在做的事的回答�
 
 這個按鈕不會出現在 OpenCode 的 sessions 上。一個 OpenCode session 屬於編輯器自己的伺服器行程，而不屬於某個終端機視窗，所以沒有視窗可以讓你的手機切到最前面 — 在 `opencode serve` 底下，甚至可能根本沒有視窗。
 
-卡片上的其他東西都正常運作，只是少了一條回到電腦的捷徑。
+[「停止」](/zh-Hant/sessions/list#interrupt-a-running-session)同樣不會出現在 OpenCode 的 sessions 上。
+
+卡片上的其他東西都正常運作，只是少了這兩個按鈕。
 
 ## OpenCode 本來就問得少 {#opencode-asks-for-less}
 
@@ -89,13 +90,13 @@ OpenCode 把一次被拒絕的權限，當成對代理正在做的事的回答�
 
 至於你要不要這樣，那是你習慣怎麼工作的問題。Nomo 只是把你的代理問的東西原樣轉過來，不會自己多加什麼。
 
-如果這些都解釋不了那份安靜，還有一個看起來一模一樣的原因：就在下面的[自動核准](#auto-approve-isnt-shown)。
+如果這些都解釋不了那份安靜，還有一個看起來一模一樣的原因：就在下面的[自動批准](#auto-approve-isnt-shown)。
 
-## 自動核准不會顯示 {#auto-approve-isnt-shown}
+## 自動批准不會顯示 {#auto-approve-isnt-shown}
 
 OpenCode 在自己的介面裡處理 `--yolo`，從不把這件事告訴外掛程式。所以 App 無法顯示某個 session 是不是在關掉批准的情況下執行 — 它看起來就和其他 session 一樣。
 
-如果你預期會出現的請求一直沒有送到手機上，那就是該檢查的地方：一個以自動核准模式啟動的 session 不會問任何人，包括你。
+如果你預期會出現的請求一直沒有送到手機上，那就是該檢查的地方：一個以自動批准模式啟動的 session 不會問任何人，包括你。
 
 ## 計畫模式 {#plan-mode}
 

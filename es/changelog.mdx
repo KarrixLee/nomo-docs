@@ -4,7 +4,39 @@ description: "Qué salió, y cuándo."
 icon: "clock-rotate-left"
 ---
 
-<Update label="octubre de 2026" description="2.2.2">
+<Update label="octubre de 2026" description="2.3">
+  ## Cursor y Detener
+
+  **Nuevo**
+
+  - **Cursor** se suma a Claude Code, Codex y OpenCode: las sesiones de la app de escritorio de Cursor y de `cursor-agent` se ven en directo en la pestaña Sesiones y en la Dynamic Island, con el título del chat y el modelo que les da el propio Cursor. De solo lectura en esta versión: miras desde el teléfono y respondes en tu ordenador. Instálalo con `bunx nomo-ai --cursor`
+  - Elige qué agentes muestra cada ordenador: el botón **+** (**Elegir agentes**) de su panel admite hasta tres pestañas
+  - Detén desde el teléfono un turno de Claude Code o Codex en ejecución: **Detener**, junto a **Abrir en el Mac** en una fila de sesión. Detiene el turno y deja la sesión abierta: Codex al momento, Claude Code en su siguiente llamada a una herramienta
+  - Detener necesita la versión **2.3.0** del plugin en tu ordenador: actualiza tanto el plugin de Claude Code como el de Codex
+  - Detener necesita **Red local** activada y los dos dispositivos en la misma red: va por el enlace directo, nunca por el relé
+  - Un widget configurado con **Grok Bot** de Cursor muestra un bot de Grok animado en lugar del logotipo de Cursor. Sigue el estado: dormita por la noche, se preocupa cuando el servicio va lento y se pone triste durante una interrupción
+
+  <Frame>
+    <img src="/images/changelog-2-3-moved-in.webp" alt="Un pequeño bot redondo salta a la pantalla de inicio de un iPhone y aterriza en un widget de Nomo" />
+  </Frame>
+
+  **Mejorado**
+
+  - Pulsar Esc en Codex llega a tu teléfono al momento, en lugar de 20 segundos después
+  - El plugin registra tres hooks más de Codex. Después de actualizar, ejecuta `/hooks` en Codex y confía en las entradas nuevas: diez en total
+  - El estado de Cursor en el widget usa un texto algo más pequeño, para que “Interrupción grave” y los demás estados largos quepan mejor
+
+  **Corregido**
+
+  - Un turno de Claude Code que terminaba con un error de la API decía **En ejecución** hasta media hora. Ahora pasa a **Listo**
+  - Una herramienta que fallaba podía dejar una sesión de Claude Code pidiéndote algo cuando ya había seguido adelante
+  - Una sesión de Claude Code que espera a un subagente en segundo plano sigue figurando como en marcha, en lugar de pasar a **Listo** antes de tiempo
+  - Una solicitud de un subagente de OpenCode ahora aparece en su sesión, y la sesión vuelve a figurar como en marcha en cuanto la respondes
+  - Con una conexión lenta, la Dynamic Island podía quedarse obsoleta —**¿Desconectado?**— en mitad de un turno. Ahora el plugin reenvía lo que no llegó, y la pestaña Sesiones la devuelve al día en cuanto el Mac confirma que la sesión sigue viva
+  - La pestaña Estado, las alertas y el widget siguen la nueva página de estado de xAI. Un widget configurado con una de las API de xAI mostraba la primera API de la lista, eligieras la que eligieras
+</Update>
+
+<Update label="10 de octubre de 2026" description="2.2.2">
   ## Más formas de responder
 
   **Nuevo**

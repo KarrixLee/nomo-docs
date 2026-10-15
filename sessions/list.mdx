@@ -47,8 +47,15 @@ if you hit the cap.
 ## Inside a computer
 
 Tapping a card opens a drawer with a segmented control at the top, one segment
-per agent — **Claude Code**, **Codex** and **OpenCode**. Nomo opens whichever
-agent was active most recently.
+per agent — up to three of **Claude Code**, **Codex**, **OpenCode** and
+**Cursor**, chosen with the **+** button (**Choose agents**). Nomo opens
+whichever agent was active most recently.
+
+<Frame caption="Choose agents, opened from the + button at the bottom of the drawer. Tick up to three — each becomes a tab.">
+  <div className="device-frame">
+    <img src="/images/agent-chooser.png" alt="The Choose agents menu, with Claude Code, Codex and Cursor ticked and OpenCode unticked" />
+  </div>
+</Frame>
 
 Sessions inside are grouped **by project folder**, with the folder's git branch
 shown next to the header. One folder gets a single **Sessions** card; two or
@@ -130,12 +137,54 @@ labelled with a symbol rather than a word:
 - **Folder** and **session ID** — the first eight characters, monospaced.
 - **The pending question**, in full, when there is one.
 - **View plan** — opens the plan. Answerable for Claude Code, read-only for [Codex](/sessions/codex), and for [OpenCode](/sessions/opencode#plan-mode) usually the session's todo list rather than a document.
-- **Open on Mac** — focuses that session's terminal window on your Mac. Only appears when Nomo has a direct [local network](/sessions/settings#local-network) link, and never on [OpenCode](/sessions/opencode#no-open-on-mac) sessions, which have no window of their own.
+- **Open on Mac** — focuses that session's terminal window on your Mac. Only appears when Nomo has a direct [local network](/sessions/settings#local-network) link, and never on [OpenCode](/sessions/opencode#no-open-on-mac) sessions, which have no window of their own, or on [Cursor](/sessions/cursor#what-this-version-doesnt-do) sessions.
+- **Interrupt** — stops the turn that's running, like pressing Esc at the Mac. Only on a `Running` Claude Code or Codex session, and only over that same direct link — see [below](#interrupt-a-running-session).
 
 <Tip>
   To **answer** a prompt, touch and hold the row rather than tapping it. Tapping
   expands; holding opens the Allow / Deny menu.
 </Tip>
+
+## Interrupt a running session
+
+<Frame caption="A running session, expanded, with Interrupt at the bottom of its detail.">
+  <div className="device-frame">
+    <img src="/images/interrupt-button.png" alt="An expanded session row showing the Interrupt button" />
+  </div>
+</Frame>
+
+**Interrupt** stops the current turn, the way Esc does at the Mac. It sits
+beside **Open on Mac** in the expanded row, and it only appears when all of this
+is true:
+
+- The session is `Running`. A row that's waiting on you — a permission prompt,
+  a question, a plan — or one that's already `Done` has nothing to interrupt.
+- It's a Claude Code or Codex session. Never OpenCode.
+- Nomo has a direct [local network](/sessions/settings#local-network) link to
+  that Mac — the green **⚡ Local** chip. An interrupt is never sent through the
+  relay.
+- That computer runs plugin **2.3.0** or later.
+
+After you tap, the label reads **Sent**, or **Try again** if the Mac couldn't be
+reached. **Sent** means the Mac received it — not that the turn has stopped yet.
+
+It stops the turn and nothing else. The session stays open at its prompt on the
+Mac and the row goes to `Done`; type a new prompt there to carry on. It isn't a
+pause, and it doesn't close the session.
+
+| | What happens |
+| --- | --- |
+| **Claude Code** | Stops at the next tool call. The tool it was about to run is refused, the turn ends, and Claude Code shows `Interrupted from Nomo`. While Claude is writing text, or a long command is already running, nothing happens until that step finishes. |
+| **Codex** | Stops straight away, for sessions on Codex's shared app-server — see [the limit](/sessions/codex#interrupt). A shell command Codex had already launched may keep running in the background. |
+
+Two more things on Claude Code. If the turn ends on its own first, the interrupt
+does nothing — it never carries over to your next prompt. And if the work is
+happening inside a subagent, it stops that subagent first.
+
+The plugin version is reported per computer, not per agent. If you use both
+Claude Code and Codex on one Mac, update both plugins to **2.3.0** — otherwise
+the button can appear on a session whose plugin is too old, say **Sent**, and do
+nothing.
 
 ## How many
 

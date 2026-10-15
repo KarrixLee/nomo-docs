@@ -1,7 +1,6 @@
 ---
 title: "Using Codex"
 description: "Sessions works with Codex, but not identically to Claude Code. What you can and can't do from your phone, and why."
-icon: "code"
 keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Using Codex"]
 ---
 
@@ -109,10 +108,24 @@ terminal — the picker on your phone shows **Other…**, and what you type reac
 Codex the way it would from the keyboard. That needs plugin **2.2.2**. There's
 no **Add note** on a Codex question: Codex has nowhere to put one.
 
+## Interrupt
+
+**Interrupt** on a `Running` Codex row stops the turn straight away — it doesn't
+wait for a tool call, as Claude Code does. A shell command Codex had already
+launched may keep running in the background.
+
+It reaches Codex through the same shared app-server that
+[answering questions](#questions-in-the-cli-and-the-desktop-app) needs. A
+session Nomo can't reach that way shows **Sent** and keeps running.
+
+A session that has only just started may not offer the button for a moment. The
+rest — when it appears, and what **Sent** means — is in
+[Computers and sessions](/sessions/list#interrupt-a-running-session).
+
 ## Hooks have to be trusted
 
 Codex ships its own safety gate: plugin hooks are installed but **inert until
-you trust them**. Run `/hooks` and trust the seven Nomo entries, as described in
+you trust them**. Run `/hooks` and trust the ten Nomo entries, as described in
 [Installation](/setup/install).
 
 The part that catches people: upgrading to the version that added phone-held

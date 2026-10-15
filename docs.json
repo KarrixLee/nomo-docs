@@ -27,7 +27,11 @@
     ]
   },
   "contextual": {
-    "options": ["copy", "chatgpt", "claude"]
+    "options": [
+      "copy",
+      "chatgpt",
+      "claude"
+    ]
   },
   "footer": {
     "socials": {
@@ -108,6 +112,7 @@
               {
                 "group": "On your phone",
                 "pages": [
+                  "sessions/features",
                   "sessions/list",
                   "sessions/island",
                   "sessions/approvals",
@@ -119,7 +124,8 @@
                 "pages": [
                   "sessions/commands",
                   "sessions/codex",
-                  "sessions/opencode"
+                  "sessions/opencode",
+                  "sessions/cursor"
                 ]
               },
               {
@@ -178,6 +184,7 @@
               {
                 "group": "En tu iPhone",
                 "pages": [
+                  "es/sessions/features",
                   "es/sessions/list",
                   "es/sessions/island",
                   "es/sessions/approvals",
@@ -189,7 +196,8 @@
                 "pages": [
                   "es/sessions/commands",
                   "es/sessions/codex",
-                  "es/sessions/opencode"
+                  "es/sessions/opencode",
+                  "es/sessions/cursor"
                 ]
               },
               {
@@ -248,6 +256,7 @@
               {
                 "group": "iPhone 側",
                 "pages": [
+                  "ja/sessions/features",
                   "ja/sessions/list",
                   "ja/sessions/island",
                   "ja/sessions/approvals",
@@ -259,7 +268,8 @@
                 "pages": [
                   "ja/sessions/commands",
                   "ja/sessions/codex",
-                  "ja/sessions/opencode"
+                  "ja/sessions/opencode",
+                  "ja/sessions/cursor"
                 ]
               },
               {
@@ -318,6 +328,7 @@
               {
                 "group": "iPhone에서",
                 "pages": [
+                  "ko/sessions/features",
                   "ko/sessions/list",
                   "ko/sessions/island",
                   "ko/sessions/approvals",
@@ -329,7 +340,8 @@
                 "pages": [
                   "ko/sessions/commands",
                   "ko/sessions/codex",
-                  "ko/sessions/opencode"
+                  "ko/sessions/opencode",
+                  "ko/sessions/cursor"
                 ]
               },
               {
@@ -388,6 +400,7 @@
               {
                 "group": "在手机上",
                 "pages": [
+                  "zh-Hans/sessions/features",
                   "zh-Hans/sessions/list",
                   "zh-Hans/sessions/island",
                   "zh-Hans/sessions/approvals",
@@ -399,7 +412,8 @@
                 "pages": [
                   "zh-Hans/sessions/commands",
                   "zh-Hans/sessions/codex",
-                  "zh-Hans/sessions/opencode"
+                  "zh-Hans/sessions/opencode",
+                  "zh-Hans/sessions/cursor"
                 ]
               },
               {
@@ -458,6 +472,7 @@
               {
                 "group": "在手機上",
                 "pages": [
+                  "zh-Hant/sessions/features",
                   "zh-Hant/sessions/list",
                   "zh-Hant/sessions/island",
                   "zh-Hant/sessions/approvals",
@@ -469,7 +484,8 @@
                 "pages": [
                   "zh-Hant/sessions/commands",
                   "zh-Hant/sessions/codex",
-                  "zh-Hant/sessions/opencode"
+                  "zh-Hant/sessions/opencode",
+                  "zh-Hant/sessions/cursor"
                 ]
               },
               {

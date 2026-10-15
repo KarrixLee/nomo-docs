@@ -2,12 +2,12 @@
 title: "概览"
 sidebarTitle: "概览"
 description: "在 iPhone 上盯着 Claude Code、Codex 和 OpenCode，不用跑回 Mac 前面就能答复它们的权限请求。"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "概览"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "概览"]
 ---
 
 你的编程智能体 跑在 Mac 上，但你不必一直守在它跟前。
 
-Nomo 的会话功能把正在运行的 Claude Code、Codex 和 OpenCode 会话搬到你的 iPhone 上 —— 显示在锁定屏幕和灵动岛里。每当智能体 停下来请求权限，手机就会提示你，你直接在手机上答复即可。
+Nomo 的会话功能把正在运行的 Claude Code、Codex、OpenCode 和 Cursor 会话搬到你的 iPhone 上 —— 显示在锁定屏幕和灵动岛里。每当智能体 停下来请求权限，手机就会提示你，你直接在手机上答复即可。
 
 你起身去趟厨房，智能体 照常干活。它撞上一条需要授权的命令，手机震一下，你点**允许**，它接着往下跑。工位你一趟都没回。
 
@@ -31,13 +31,18 @@ Nomo 的会话功能把正在运行的 Claude Code、Codex 和 OpenCode 会话�
   <span><img src="/images/claude-code.svg" alt="" />Claude Code</span>
   <span><img src="/images/codex.svg" alt="" />Codex</span>
   <span><img src="/images/opencode.svg" alt="" />OpenCode</span>
+  <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
 </div>
 
-Codex 和 OpenCode 交给插件的东西比 Claude Code 少，所以有几处到了手机上表现不一样——变的是哪些，都写在[搭配 Codex 使用](/zh-Hans/sessions/codex)和[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)里。
+Codex 和 OpenCode 交给插件的东西比 Claude Code 少，所以有几处到了手机上表现不一样——变的是哪些，都写在[搭配 Codex 使用](/zh-Hans/sessions/codex)和[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)里。Cursor 在这个版本里是只读的：它的会话会显示出来，但它的请求没法在手机上答复——见[搭配 Cursor 使用](/zh-Hans/sessions/cursor)。
+
+<Card title="功能一览" href="/zh-Hans/sessions/features" icon="star" horizontal>
+  完整的功能列表，以及每个智能体的支持情况。
+</Card>
 
 ## 你需要准备什么
 
-- 一台 Mac，上面装着 Claude Code、Codex 0.142 及以上版本，或者 OpenCode
+- 一台 Mac，上面装着 Claude Code、Codex 0.142 及以上版本、OpenCode，或者 Cursor
 - **bun** 或 **node 18+**，你已经装了哪个就用哪个
 - 手机和电脑配对好 —— 扫一次二维码的事
 
@@ -57,7 +62,7 @@ Codex 和 OpenCode 交给插件的东西比 Claude Code 少，所以有几处到
 
 <CardGroup cols={2}>
   <Card title="安装插件" href="/zh-Hans/setup/install" icon="puzzle-piece">
-    两条命令，Claude Code、Codex 和 OpenCode 都适用。
+    两条命令，Claude Code、Codex、OpenCode 和 Cursor 都适用。
   </Card>
   <Card title="配对你的电脑" href="/zh-Hans/setup/pairing" icon="qrcode-read">
     扫一个二维码，或者输入一次性配对码。

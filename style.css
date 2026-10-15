@@ -156,8 +156,11 @@ a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
    disappears on a dark page. They have no second color to lose, so a straight
    inversion is the whole fix — no light/dark asset pair to keep in sync.
    Only for monochrome marks: Claude's coral and Gemini's four-color spark
-   would come back wrong, so they don't carry the class. */
-.dark .provider-row img.invert-dark {
+   would come back wrong, so they don't carry the class.
+   Tab and code-block icons can't carry a class, so Cursor's is matched by path. */
+.dark .provider-row img.invert-dark,
+.dark img.agent-mark.invert-dark,
+.dark img[src$="/providers/cursor.svg"] {
   filter: invert(1);
 }
 
@@ -453,4 +456,29 @@ h1 {
 .dark .beta-pill {
   color: #eaa82a;
   background: rgb(234 168 42 / 0.14);
+}
+
+/* The Sessions feature table: one row per feature, one column per agent. The
+   note under a feature's name is a caption, not a second line of the name, and
+   the header keeps each agent's mark on one line with its name. */
+.feature-table th {
+  white-space: nowrap;
+}
+
+.feature-table .feature-note {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  opacity: 0.7;
+}
+
+.feature-table th:first-child,
+.feature-table td:first-child {
+  width: 34%;
+  min-width: 11rem;
+}
+
+.feature-table td:not(:first-child) {
+  font-size: 0.8125rem;
 }

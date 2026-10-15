@@ -1,37 +1,42 @@
 ---
 title: "Comandos"
-description: "Todos los comandos de Nomo para Claude Code, Codex y OpenCode —vinculación, estado, aprobaciones, reinicio, desvinculación y actualización— en un solo sitio."
+description: "Todos los comandos de Nomo para Claude Code, Codex, OpenCode y Cursor —vinculación, estado, aprobaciones, reinicio, desvinculación y actualización— en un solo sitio."
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
 ---
 
-Cinco comandos en todos los agentes, y un sexto que solo OpenCode necesita. Se
-ejecutan desde dentro de una sesión del agente, en el ordenador al que quieras
-afectar: un comando con `/` en Claude Code y en OpenCode, una skill con `$` en
-Codex.
+Cinco comandos en Claude Code, Codex y OpenCode, un sexto que solo OpenCode
+necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del agente,
+en el ordenador al que quieras afectar: un comando con `/` en Claude Code y en
+OpenCode, una skill con `/` en Cursor, una skill con `$` en Codex.
 
 <Tip>
   En Claude Code todo va con espacio de nombres: al escribir `/nomo-cc:` se
   listan todos. Los nombres de comando de OpenCode son planos y globales, así que
-  allí los de Nomo no llevan ningún prefijo.
+  allí los de Nomo no llevan ningún prefijo, y sus skills de Cursor tampoco.
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode |
-| --- | --- | --- | --- |
-| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` |
-| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` |
-| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` |
-| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">Actualizar el plugin</a> | — | — | `/nomo-update` |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor |
+| --- | --- | --- | --- | --- |
+| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — |
+| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">Actualizar el plugin</a> | — | — | `/nomo-update` | — |
 
 Ninguno puede fallar a gritos. Todos terminan limpiamente incluso cuando no hay
 nada que hacer: `Not paired` es un éxito, no un error.
 
 Las casillas vacías de la última fila no son un olvido: Claude Code y Codex se
 actualizan a través de sus propios anfitriones, así que Nomo no añade ningún
-comando ahí. Lo que necesita cada uno —que en el caso de Codex suele ser nada—
-está en [Instalación](/es/setup/install#updating).
+comando ahí, y Cursor se actualiza volviendo a ejecutar su instalador. Lo que
+necesita cada uno —que en el caso de Codex suele ser nada— está en
+[Instalación](/es/setup/install#updating).
+
+La casilla vacía de Cursor en la fila de aprobaciones tampoco lo es: las
+sesiones de Cursor son de solo lectura, así que no hay aprobaciones remotas que
+pausar — [Usar Cursor](/es/sessions/cursor).
 
 ## pair {#pair}
 
@@ -50,6 +55,11 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Cursor icon="/images/providers/cursor.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 Sin argumentos abre en tu navegador una página con la estética de la app y un
@@ -61,8 +71,8 @@ sesión SSH. Es la vía de segunda opción a propósito: ese código acaba en tu
 terminal y, por tanto, en la transcripción del agente.
 
 Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubre
-la máquina, no el agente: Claude Code, Codex y OpenCode en el mismo Mac la
-comparten. El recorrido completo está en [Vinculación](/es/setup/pairing).
+la máquina, no el agente: Claude Code, Codex, OpenCode y Cursor en el mismo Mac
+la comparten. El recorrido completo está en [Vinculación](/es/setup/pairing).
 
 ## status {#status}
 
@@ -76,6 +86,10 @@ $nomo-status
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-status
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
 </CodeGroup>
@@ -131,7 +145,7 @@ cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
 
 <ResponseField name="Approvals">
   `on` significa que las solicitudes de permiso se retienen aquí y se envían a tu
-  teléfono. `PAUSED` significa que no: van al terminal, y siguen así hasta que
+  teléfono. `PAUSED` significa que no: van a la terminal, y siguen así hasta que
   alguien las reanude, por muchos meses que pasen. Si tu teléfono ha dejado de
   preguntarte nada, esta fila es la explicación entera — ve
   [Pausar las aprobaciones](/es/sessions/approvals#pausing-it).
@@ -141,7 +155,8 @@ cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
   Si tu agente le está pasando algo a Nomo, y cuánto hace de la última vez.
   OpenCode no tiene hooks, así que allí la fila se llama `Plugin`. ¿No se dispara
   nada? Reinicia Claude Code para que se carguen sus hooks; en Codex, ejecuta
-  `/hooks`; en OpenCode, reinícialo para que se cargue el plugin.
+  `/hooks`; en OpenCode, reinícialo para que se cargue el plugin; reinicia
+  Cursor, que solo recoge los hooks al arrancar.
 </ResponseField>
 
 <ResponseField name="Sessions">
@@ -203,7 +218,7 @@ $nomo-approvals status      # which way is it set
 </CodeGroup>
 
 Pausa las aprobaciones remotas en **este ordenador**, de modo que las solicitudes
-de permiso van directas al terminal en lugar de esperar a tu teléfono. La salida
+de permiso van directas a la terminal en lugar de esperar a tu teléfono. La salida
 de emergencia para un teléfono sin batería o fuera de alcance.
 
 ```
@@ -218,6 +233,9 @@ nada y no toca los ajustes de tu teléfono.
 Hay otro interruptor aparte, para todo el teléfono: **Responder en el iPhone**
 en [Ajustes](/es/sessions/settings#remote-approvals).
 
+Cursor no tiene comando de aprobaciones. Sus solicitudes nunca llegan a tu
+teléfono, así que no hay nada que pausar.
+
 ## reset {#reset}
 
 <CodeGroup>
@@ -230,6 +248,10 @@ $nomo-reset
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-reset
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
 ```
 </CodeGroup>
@@ -261,6 +283,10 @@ $nomo-unpair
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
+/nomo-unpair
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-unpair
 ```
 </CodeGroup>

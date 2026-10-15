@@ -1,7 +1,6 @@
 ---
 title: "Usar Codex"
 description: "Sesiones funciona con Codex, pero no igual que con Claude Code. Qué puedes y qué no puedes hacer desde el teléfono, y por qué."
-icon: "code"
 keywords: ["Nomo", "Claude Code", "Codex", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar Codex"]
 ---
 
@@ -113,17 +112,32 @@ y lo que escribas llega a Codex igual que si lo hubieras tecleado. Eso necesita
 la versión **2.2.2** del plugin. En una pregunta de Codex no hay **Añadir
 nota**: Codex no tiene dónde ponerla.
 
+## Detener {#interrupt}
+
+**Detener**, en una fila de Codex que esté `En ejecución`, corta el turno al
+momento: no espera a una llamada a una herramienta, como hace Claude Code. Un
+comando de shell que Codex ya hubiera lanzado puede seguir corriendo en segundo
+plano.
+
+Llega a Codex por el mismo `app-server` compartido que hace falta para
+[responder preguntas](#questions-in-the-cli-and-the-desktop-app). Una sesión a
+la que Nomo no puede llegar por esa vía muestra **Enviado** y sigue corriendo.
+
+Una sesión que acaba de empezar puede tardar un momento en ofrecer el botón. El
+resto —cuándo aparece y qué significa **Enviado**— está en
+[Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
+
 ## Confianza en los hooks {#hooks-have-to-be-trusted}
 
 Codex trae su propia barrera de seguridad: los hooks de un plugin se instalan
 pero quedan **inertes hasta que confías en ellos**. Ejecuta `/hooks` y confía en
-las siete entradas de Nomo, como se explica en
+las diez entradas de Nomo, como se explica en
 [Instalación](/es/setup/install).
 
 La parte que pilla a la gente: al actualizar a la versión que añadió las
 aprobaciones de Codex desde el teléfono se introdujo un hook **nuevo**, así que
 Codex reabre la revisión para él. Hasta que confíes en él, las aprobaciones de
-Codex vuelven al terminal en silencio y nada informa de ningún error. Si tu
+Codex vuelven a la terminal en silencio y nada informa de ningún error. Si tu
 teléfono dejó de recibir solicitudes de Codex después de una actualización,
 ejecuta `/hooks` lo primero.
 
