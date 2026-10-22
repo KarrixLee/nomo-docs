@@ -165,6 +165,12 @@ a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
   filter: invert(1);
 }
 
+/* Kimi's K is black with a blue dot: invert the K, then rotate the hue back so
+   the dot stays blue. */
+.dark .provider-row img[src*="/providers/kimi.svg"] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* Full-height app screenshots, in a device bezel. The captures are raw
    1206x2622, so at column width they'd be a 1500px-tall wall — pinned to a
    phone-sized column instead. Fixed width rather than fluid because the two
