@@ -1,6 +1,6 @@
 ---
 title: "Ajustes"
-description: "Todos los ajustes de Sesiones: entrega por red local, comportamiento de la Dynamic Island, aprobaciones remotas y diagnóstico — y qué valor trae cada uno de fábrica."
+description: "Todos los ajustes de Sesiones: entrega por red local, comportamiento de la Dynamic Island, aprobaciones remotas, Face ID y diagnóstico — y qué valor trae cada uno de fábrica."
 icon: "sliders"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Ajustes"]
 ---
@@ -8,10 +8,11 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "sesión", "ord
 Está todo en una sola página: **Ajustes → Sesiones**. El menú **···** de arriba a
 la derecha del panel de un ordenador tiene una opción **Ajustes** que lleva al mismo sitio.
 
-Todo lo de aquí viene **desactivado de fábrica**. Nomo no te activa cosas por su
-cuenta: varias de estas cuestan batería, red o una solicitud de permiso, y una
-de ellas decide si tu Mac le entrega o no las decisiones de permiso a tu
-teléfono.
+Casi todo lo de aquí viene **desactivado de fábrica**. Nomo no te activa cosas
+por su cuenta: varias de estas cuestan batería, red o una solicitud de permiso,
+y una de ellas decide si tu Mac le entrega o no las decisiones de permiso a tu
+teléfono. La única excepción te protege en lugar de costarte algo:
+[Face ID para permitir](#face-id) viene activado.
 
 {/* TODO: screenshot of the Sessions settings page */}
 
@@ -108,6 +109,38 @@ Hay una segunda pausa, por ordenador, que vive en el Mac y no aquí:
 que no está disponible es tu teléfono.
 
 Ese empieza **activado**, así que este interruptor es el único que tienes que activar: en el ordenador no hay nada que habilitar.
+
+## Face ID {#face-id}
+
+Debajo de **Responder en el iPhone**, **Face ID** abre una página propia. Sus dos
+interruptores deciden cuánta prueba necesita un **Permitir**. **Denegar** nunca
+lo pide: rechazar solo puede impedir que tu Mac haga algo. En un iPhone con
+Touch ID, la página dice Touch ID.
+
+<ResponseField name="Face ID para permitir" type="activado por defecto">
+  Con el iPhone bloqueado, Permitir pide Face ID primero. Denegar nunca lo pide.
+</ResponseField>
+
+Es lo que se interpone entre tu Mac y quien tenga tu teléfono en la mano.
+**Permitir** en la pantalla de bloqueo o en la Dynamic Island pide Face ID —o tu
+código— antes de enviar nada. Si cancelas, no se envía nada: la solicitud sigue
+ahí para responderla.
+
+Desactivarlo pide Face ID, después de un aviso: `Cualquiera que tenga tu iPhone
+bloqueado podría aprobar comandos en tu Mac.`
+
+<ResponseField name="Incluso desbloqueado" type="desactivado por defecto">
+  Pide Face ID en cada Permitir, en la app y en la Dynamic Island.
+</ResponseField>
+
+Cubre todas las respuestas que dejan seguir al agente: **Permitir**, **Permitir
+siempre**, las opciones **Aprobar y…**, la aprobación de un plan y la respuesta a
+una pregunta. **Denegar** y **Denegar con nota…** siguen sin pedirlo. Antes de
+iOS 26, la Dynamic Island solo lo pide con el iPhone bloqueado, así que ahí solo
+cubre la app.
+
+Se apoya en **Face ID para permitir**, así que se queda desactivado y en gris
+mientras ese esté desactivado. Desactivarlo también pide Face ID.
 
 ## Depuración {#debug}
 

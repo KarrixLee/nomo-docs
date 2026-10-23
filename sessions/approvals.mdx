@@ -30,6 +30,15 @@ purpose.
     Two buttons, no more: **Allow** and **Deny**. That's everything a Live
     Activity can host, and Nomo won't put a button there that it can't honour.
 
+    With your iPhone locked, **Allow** asks for Face ID first; **Deny** is
+    always one tap. That's [Face ID to Allow](/sessions/settings#face-id), on by
+    default.
+
+    For a shell command you see the real command, not the agent's summary of it.
+    A long one is shortened in the middle, so both its start and its end stay in
+    view, and `+3 lines` says how much more there is. The agent's own
+    description sits underneath in small type.
+
     For a question, you get **Think first** — a real deny meaning *none of
     these, reconsider* — and **Answer**, which deep-links into the app where the
     options actually fit.
@@ -49,6 +58,10 @@ purpose.
 
     Holding shows a preview card with the command, the file path, or the
     question, and a menu underneath.
+
+    Here your phone is already unlocked, so **Allow** is one tap — unless you
+    turn on [Even When Unlocked](/sessions/settings#face-id), which asks for
+    Face ID on every Allow.
 
     <Frame caption="The card above the menu is the prompt itself — the tool, the command, and which folder it came from.">
       <div className="device-frame">
@@ -182,6 +195,13 @@ you believing something happened.
 | `Approvals paused — answer on your computer` | Paused on that computer — see below. |
 | `Not sent — try again` | It failed and the retries ran out. Tap again. |
 | `Too long to send — answer on your computer` | Your answer doesn't fit in one encrypted update. This one won't succeed on a retry. |
+
+### When only Deny is offered
+
+Your phone only lets you approve what it can show you. If it can't confirm that
+the card on screen matches the request waiting on your computer, it offers
+**Deny** alone — refusing is always safe. **Allow** comes back with the next
+update that matches, or answer at your Mac.
 
 An answer that arrives too late is discarded, never applied. You'll never come
 back to find something ran because you tapped it twenty minutes ago.

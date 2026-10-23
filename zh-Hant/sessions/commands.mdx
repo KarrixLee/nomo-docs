@@ -115,6 +115,10 @@ Claude Code — you are here
   你的代理有沒有在餵東西給 Nomo，以及上一次是多久以前。OpenCode 沒有 hooks，所以在那裡這一列叫做 `Plugin`。什麼都沒觸發？重新啟動 Claude Code 讓它的 hooks 載入；Codex 的話，請執行 `/hooks`；OpenCode 的話，請重新啟動它讓外掛程式載入；Cursor 的話，請重新啟動它，它只在啟動時載入 hooks。
 </ResponseField>
 
+<ResponseField name="Runtime">
+  只有在 hooks 所用的執行環境過舊時才會出現：bun 舊於 **1.4.4**，或 Node.js 22 舊於 **22.23.4**。箭頭會告訴你怎麼升級 — bun 的話是 `bun upgrade`。這只是警告：hooks 照常執行。
+</ResponseField>
+
 <ResponseField name="Sessions">
   現在是按代理分別計算的：`1 of 4 tracked here` 表示這台電腦正在追蹤四個 sessions，其中一個是你的。該死掉卻還在的列，就是 [reset](#reset) 要處理的東西。
 </ResponseField>
@@ -253,7 +257,9 @@ Update available: 2.1.22 → 2.1.23.
 
 接著它會拉取更新、重新執行安裝 script — 新版本要是加了新的 `/nomo-*` 指令，就是靠這一步收進來的 — 然後要你重新啟動 OpenCode。外掛程式只在伺服器啟動時匯入一次，所以在你重新啟動之前，跑著的還是舊的那一份。
 
-沒有把握的時候，它寧可拒絕也不動手，而且每一次拒絕都會說該怎麼辦：被先前 `--ref` 安裝釘住的 clone、還留著未提交變更的工作目錄、被搬走或刪掉的 clone，以及這裡根本什麼都沒裝。
+沒有把握的時候，它寧可拒絕也不動手，而且每一次拒絕都會說該怎麼辦：被先前 `--ref` 安裝釘住的 clone、還留著未提交變更的工作目錄、被搬走或刪掉的 clone、不是 Nomo 自己儲存庫的 clone，以及這裡根本什麼都沒裝。
+
+`bunx nomo-ai` 會帶著 `--global` 執行同樣的更新：不管你在哪個資料夾執行，它都只更新全域安裝。`--project` 安裝則要在那個專案裡，於 OpenCode 中執行 `/nomo-update` 來更新。
 
 <Note>
   它更新的是 **stub** 指向的那份 clone — 也就是 OpenCode 真正匯入的那一份 — 未必是你輸入的那個指令檔所屬的那一份。如果你留著不只一份 clone，這個區別就很重要。

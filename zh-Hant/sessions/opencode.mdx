@@ -114,7 +114,7 @@ OpenCode 在自己的介面裡處理 `--yolo`，從不把這件事告訴外掛�
 
 `/nomo-update` 只屬於 OpenCode。Claude Code 和 Codex 由各自的主程式負責更新；OpenCode 沒有主程式可問，所以這個指令隨外掛程式一起附上。
 
-它會先回報再動手 — `Already on 2.1.22 — nothing to do.`，或是它接下來要取回的版本 — 然後拉取更新，並要求做這一頁其他地方同樣要求的那次重新啟動。它做什麼、什麼時候會拒絕，都寫在[指令](/zh-Hant/sessions/commands#update)裡。
+它會先回報再動手 — `Already on 2.1.22 — nothing to do.`，或是它接下來要取回的版本 — 然後拉取更新，並要求做這一頁其他地方同樣要求的那次重新啟動。它只會動到 Nomo 自己的 clone，而 `bunx nomo-ai` 只更新全域安裝 — `--project` 安裝要在那個專案裡用 `/nomo-update` 更新。它做什麼、什麼時候會拒絕，都寫在[指令](/zh-Hant/sessions/commands#update)裡。
 
 ## 更新 App {#update-the-app}
 

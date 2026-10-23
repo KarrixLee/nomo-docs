@@ -4,6 +4,31 @@ description: "Qué salió, y cuándo."
 icon: "clock-rotate-left"
 ---
 
+<Update label="octubre de 2026" description="2.3.4">
+  ## Mejoras de seguridad
+
+  **Nuevo**
+
+  - Las aprobaciones piden Face ID: con el iPhone bloqueado, **Permitir** en la pantalla de bloqueo o en la Dynamic Island pide Face ID primero. **Denegar** sigue siendo un solo toque. Viene activado de fábrica — **Ajustes → Sesiones → Face ID**
+  - **Incluso desbloqueado** pide Face ID en cada Permitir, aunque el iPhone esté desbloqueado — en la app y en la Dynamic Island. Desactivado de fábrica
+  - Desactivar cualquiera de los dos interruptores pide Face ID, y desactivar **Face ID para permitir** te avisa antes
+
+  **Mejorado**
+
+  - Ves el comando real: un comando de shell que espera aprobación aparece en la Dynamic Island tal cual. Si es largo, se acorta por el medio, así que ves cómo empieza y cómo acaba, con **+N líneas** cuando hay más. La descripción que da el agente queda debajo, como leyenda
+  - Si tu teléfono no puede confirmar que una tarjeta de aprobación corresponde a la solicitud que espera en tu ordenador, solo ofrece **Denegar**
+  - La pantalla de confirmación de la vinculación siempre vincula el ordenador que te muestra
+  - **Olvidar este ordenador** sigue intentando cancelar la vinculación en el servidor de Nomo hasta que lo consigue, aunque estuvieras sin conexión al tocarlo
+  - Un nuevo error de vinculación, **No se pudo verificar este iPhone**, para cuando el servidor de Nomo no puede verificar tu teléfono
+
+  **Plugin 2.3.4**
+
+  - **Permitir siempre** desde el teléfono se queda en esa sesión: nunca se guarda en los ajustes de tu proyecto
+  - Los hooks de Nomo ya no cargan el `bunfig.toml` ni el `.env` de tu proyecto
+  - `status` ahora te avisa si tu Bun está afectado por CVE-2026-111497 (corregido en Bun 1.4.4): si ves el aviso, actualiza Bun. También avisa cuando Node.js 22 es anterior a la **22.23.4**
+  - OpenCode: `/nomo-update` solo actualiza el clon propio de Nomo, y `bunx nomo-ai` solo actualiza la instalación global. Para actualizar una instalación de proyecto, usa `/nomo-update` dentro de ese proyecto
+</Update>
+
 <Update label="22 de octubre de 2026" description="2.3.3">
   ## iPhone Duo, Kimi, DeepSeek y Antigravity
 

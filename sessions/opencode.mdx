@@ -176,7 +176,9 @@ own hosts; OpenCode has no host to ask, so the command ships with the plugin.
 
 It reports before it acts — `Already on 2.1.22 — nothing to do.`, or the version
 it's about to fetch — then pulls and asks for the same restart everything else
-on this page asks for. What it does and when it refuses is in
+on this page asks for. It only ever touches Nomo's own checkout, and
+`bunx nomo-ai` updates only the global install — a `--project` install updates
+with `/nomo-update` inside that project. What it does and when it refuses is in
 [Commands](/sessions/commands#update).
 
 ## Update the app
