@@ -4,6 +4,32 @@ description: "What shipped, and when."
 icon: "clock-rotate-left"
 ---
 
+<Update label="October 2026" description="2.3.4">
+  ## Security improvements
+
+  **New**
+
+  - Approvals need Face ID: with your iPhone locked, **Allow** on the Lock Screen or the Dynamic Island asks for Face ID first. **Deny** stays one tap. It's on by default — **Settings → Sessions → Face ID**
+  - **Even When Unlocked** asks for Face ID on every Allow, even with your iPhone unlocked — in the app and on the Dynamic Island. Off by default
+  - Turning either switch down asks for Face ID, and turning off **Face ID to Allow** warns you first
+
+  **Improved**
+
+  - You see the real command: a shell command waiting for approval shows on the island as the command itself. A long one is shortened in the middle, so you see how it starts and how it ends, with **+N lines** when there's more. The agent's description of it sits underneath as a caption
+  - If your phone can't confirm that an approval card matches the request waiting on your computer, it offers **Deny** only
+  - The pairing confirm screen always pairs the computer it shows you
+  - **Forget This Computer** keeps trying to cancel the pairing on Nomo's server until it goes through, even if you were offline when you tapped it
+  - A new pairing error, **Couldn't Verify This iPhone**, for when Nomo's server can't verify your phone
+
+  **Plugin 2.3.4**
+
+  - Shell approval cards keep the command: the agent's description is kept short, and it's the first thing dropped when space runs out
+  - **Always allow** from your phone stays in that session — it's never saved to your project's settings
+  - Nomo's hooks no longer load your project's `bunfig.toml` or `.env`
+  - `status` now warns if your Bun is affected by CVE-2026-111497 (fixed in Bun 1.4.4) — update Bun if you see it. It also warns when Node.js 22 is older than **22.23.4**
+  - OpenCode: `/nomo-update` only ever updates Nomo's own checkout, and `bunx nomo-ai` updates only the global install. Update a project install with `/nomo-update` inside that project
+</Update>
+
 <Update label="October 22, 2026" description="2.3.3">
   ## iPhone Duo, Kimi, DeepSeek and Antigravity
 

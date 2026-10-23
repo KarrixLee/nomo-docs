@@ -4,7 +4,7 @@ description: "將 Nomo 外掛程式加入 Claude Code、Codex、OpenCode 或 Cur
 icon: "puzzle-piece"
 ---
 
-每台電腦只需安裝一次。需要 **bun** 或 **node 18 以上版本** — 這個外掛程式沒有任何 npm 相依套件，只用 Node 內建模組執行。
+每台電腦只需安裝一次。需要 **bun** 或 **node 18 以上版本** — 這個外掛程式沒有任何 npm 相依套件，只用 Node 內建模組執行。請讓 bun 保持在 **1.4.4** 以上、Node.js 22 保持在 **22.23.4** 以上：版本較舊時，status 指令會提醒你。
 
 ## 手動安裝 {#install-by-hand}
 
@@ -274,7 +274,7 @@ npx nomo-ai
   </Tab>
 
   <Tab title="OpenCode" icon="/images/opencode.svg">
-    這一份由安裝工具代勞。在 OpenCode 裡執行 [`/nomo-update`](/zh-Hant/sessions/commands#update) 也一樣。
+    全域安裝的話，這一份由安裝工具代勞。在 OpenCode 裡執行 [`/nomo-update`](/zh-Hant/sessions/commands#update) 也一樣 — 這也是更新 `--project` 安裝的唯一方式，請在那個專案裡執行。
 
     兩種方式之後都要重新啟動 OpenCode — 外掛程式只在伺服器啟動時匯入一次。
   </Tab>
@@ -295,6 +295,8 @@ npx nomo-ai
 它會監看 session，並把狀態變化回報到你的手機：代理正在處理什麼、什麼時候停下來，以及什麼時候需要你授予權限。
 
 在你[配對手機](/zh-Hant/setup/pairing)之前，它不會送出任何東西；而所有送出的內容都會先在這台電腦上加密。
+
+它的 hooks 會在你的專案資料夾裡執行，但絕不會載入那個專案的 `bunfig.toml` 或 `.env` 檔案。
 
 這個外掛程式是**開源**的 — 你可以在安裝之前，確切讀到它收集與送出的內容：
 

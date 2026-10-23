@@ -5,7 +5,9 @@ icon: "puzzle-piece"
 ---
 
 Instálalo una vez por ordenador. Necesitas **bun** o **node 18+**: el plugin no
-tiene dependencias npm y funciona con los módulos integrados de Node.
+tiene dependencias npm y funciona con los módulos integrados de Node. Mantén
+bun en la **1.4.4** o posterior, y Node.js 22 en la **22.23.4** o posterior: el
+comando status te avisa si son más antiguos.
 
 ## Instalación manual {#install-by-hand}
 
@@ -324,8 +326,10 @@ otras dos se imprimen para que las ejecutes tú.
   </Tab>
 
   <Tab title="OpenCode" icon="/images/opencode.svg">
-    De esta se encarga el instalador. Y también
-    [`/nomo-update`](/es/sessions/commands#update) desde dentro de OpenCode.
+    De esta se encarga el instalador, en una instalación global. Y también
+    [`/nomo-update`](/es/sessions/commands#update) desde dentro de OpenCode: la
+    única forma de actualizar una instalación con `--project`, ejecutándolo en
+    ese proyecto.
 
     En ambos casos, reinicia OpenCode después: los plugins se importan una sola
     vez, al arrancar el servidor.
@@ -349,6 +353,9 @@ trabajando el agente, cuándo se detiene y cuándo necesita permiso para algo.
 
 No envía nada hasta que [vincules un teléfono](/es/setup/pairing), y todo lo que
 sí envía se cifra antes en esta máquina.
+
+Sus hooks se ejecutan en la carpeta de tu proyecto, pero nunca cargan los
+archivos `bunfig.toml` ni `.env` de ese proyecto.
 
 El plugin es **de código abierto**: puedes leer exactamente qué recopila y qué
 envía antes de instalarlo:

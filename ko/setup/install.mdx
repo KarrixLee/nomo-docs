@@ -4,7 +4,7 @@ description: "Claude Code, Codex, OpenCode 또는 Cursor에 Nomo 플러그인을
 icon: "puzzle-piece"
 ---
 
-컴퓨터마다 한 번씩 설치합니다. **bun** 또는 **node 18 이상**이 필요합니다 — 플러그인에는 npm 의존성이 없으며 Node 내장 기능만으로 동작합니다.
+컴퓨터마다 한 번씩 설치합니다. **bun** 또는 **node 18 이상**이 필요합니다 — 플러그인에는 npm 의존성이 없으며 Node 내장 기능만으로 동작합니다. bun은 **1.4.4** 이상, Node.js 22는 **22.23.4** 이상으로 유지하십시오. 그보다 오래된 버전이면 status 명령이 경고합니다.
 
 ## 수동 설치 {#install-by-hand}
 
@@ -317,8 +317,10 @@ Code에서는 `/nomo-cc:pair`, Codex에서는 `$nomo-pair`입니다.
   </Tab>
 
   <Tab title="OpenCode" icon="/images/opencode.svg">
-    이쪽은 설치 도구가 해 줍니다. OpenCode 안에서
+    전역 설치라면 설치 도구가 해 줍니다. OpenCode 안에서
     [`/nomo-update`](/ko/sessions/commands#update)를 실행해도 같습니다.
+    `--project` 설치는 이 방법으로만 업데이트할 수 있으며, 그 프로젝트에서
+    실행합니다.
 
     어느 쪽이든 끝나면 OpenCode를 재시작하십시오. 플러그인은 서버가 시작될 때 한
     번만 불러옵니다.
@@ -342,6 +344,9 @@ Code에서는 `/nomo-cc:pair`, Codex에서는 `$nomo-pair`입니다.
 
 [휴대폰을 페어링](/ko/setup/pairing)하기 전까지는 아무것도 보내지 않으며, 보내는
 모든 내용은 이 컴퓨터에서 먼저 암호화됩니다.
+
+Hook은 프로젝트 폴더에서 실행되지만, 그 프로젝트의 `bunfig.toml`이나 `.env` 파일은
+절대 불러오지 않습니다.
 
 이 플러그인은 **오픈 소스**입니다 — 설치하기 전에 무엇을 수집하고 무엇을
 전송하는지 그대로 읽어볼 수 있습니다:

@@ -5,7 +5,9 @@ icon: "puzzle-piece"
 ---
 
 Install once per computer. You need **bun** or **node 18+** — the plugin has no
-npm dependencies and runs on Node built-ins.
+npm dependencies and runs on Node built-ins. Keep bun at **1.4.4** or newer, and
+Node.js 22 at **22.23.4** or newer: the status command warns you about older
+ones.
 
 ## Install by hand
 
@@ -328,8 +330,9 @@ printed for you.
   </Tab>
 
   <Tab title="OpenCode" icon="/images/opencode.svg">
-    The installer does it. So does
-    [`/nomo-update`](/sessions/commands#update) from inside OpenCode.
+    The installer does it for a global install. So does
+    [`/nomo-update`](/sessions/commands#update) from inside OpenCode — the only
+    way to update a `--project` install, run in that project.
 
     Either way, restart OpenCode afterwards — plugins are imported once at
     server start.
@@ -353,6 +356,9 @@ is working on, when it stops, and when it needs permission for something.
 
 It sends nothing until you [pair a phone](/setup/pairing), and everything it
 does send is encrypted on this machine first.
+
+Its hooks run in your project's folder, but never load that project's
+`bunfig.toml` or `.env` files.
 
 The plugin is **open source** — you can read exactly what it collects and sends
 before you install it:
