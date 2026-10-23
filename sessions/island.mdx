@@ -111,7 +111,13 @@ doing, that rides along too: `Working · Editing`, `Working · Running command`.
     Touch and hold the island. The agent's mark and a running clock, then the status,
     the session title, its folder, and which computer it's on. If a permission
     prompt is live, the command and the **Allow** / **Deny** buttons replace the
-    lower half. If a plan is waiting, a full-width **View plan** button appears.
+    lower half. A shell command shows as the command itself, shortened in the
+    middle when it's long, with `+3 lines` for the rest and the agent's
+    description under it. If a plan is waiting, a full-width **View plan**
+    button appears.
+
+    The headline is never a `#` comment line, and a command too long to send
+    reads `Command too long — open Nomo to review`.
 
     <Frame caption="A Codex session with a plan ready. The status word is yellow, the agent's own periwinkle carries the clock, and View plan is the only control.">
       <div className="device-frame crop-top">
@@ -127,7 +133,10 @@ doing, that rides along too: `Working · Editing`, `Working · Running command`.
     Everything on the card is tappable and deep-links straight to that session
     in the app, so you don't have to hunt for it.
 
-    <Frame caption="A permission prompt on the Lock Screen. Answerable without unlocking the phone.">
+    **Deny** works straight from the Lock Screen. **Allow** asks for Face ID
+    first — see [Face ID to Allow](/sessions/settings#face-id).
+
+    <Frame caption="A permission prompt on the Lock Screen. Deny is one tap; Allow asks for Face ID.">
       <div className="device-frame">
         <img src="/images/lock-screen-live-activity.png" alt="An iPhone Lock Screen with Nomo's Live Activity card showing NEEDS PERMISSION, a command, and Deny and Allow buttons" />
       </div>

@@ -116,8 +116,14 @@ Ejecutando comando`.
     Mantén pulsada la Dynamic Island. La marca del agente y un reloj en marcha,
     y después el estado, el título de la sesión, su carpeta y en qué ordenador
     está. Si hay una solicitud de permiso viva, el comando y los botones
-    **Permitir** y **Denegar** ocupan la mitad inferior. Si hay un plan
-    esperando, aparece un botón **Ver plan** a todo lo ancho.
+    **Permitir** y **Denegar** ocupan la mitad inferior. Un comando de shell
+    aparece tal cual, acortado por el medio cuando es largo, con `+3 líneas`
+    para el resto y la descripción del agente debajo. Si hay un plan esperando,
+    aparece un botón **Ver plan** a todo lo ancho.
+
+    El titular nunca es una línea de comentario `#`, y un comando demasiado
+    largo para enviarlo dice `Comando demasiado largo — abre Nomo para
+    revisarlo`.
 
     <Frame caption="Una sesión de Codex con un plan listo. La palabra de estado va en amarillo, el azul lavanda del propio agente lleva el reloj, y Ver plan es el único control.">
       <div className="device-frame crop-top">
@@ -133,7 +139,10 @@ Ejecutando comando`.
     Todo lo de la tarjeta se puede tocar y lleva directamente a esa sesión
     dentro de la app, así que no tienes que buscarla.
 
-    <Frame caption="Una solicitud de permiso en la pantalla de bloqueo. Se responde sin desbloquear el teléfono.">
+    **Denegar** funciona directamente desde la pantalla de bloqueo. **Permitir**
+    pide Face ID primero — ve [Face ID para permitir](/es/sessions/settings#face-id).
+
+    <Frame caption="Una solicitud de permiso en la pantalla de bloqueo. Denegar es un solo toque; Permitir pide Face ID.">
       <div className="device-frame">
         <img src="/images/lock-screen-live-activity.png" alt="La pantalla de bloqueo de un iPhone con la actividad en directo de Nomo mostrando NECESITA PERMISO, un comando y los botones Denegar y Permitir" />
       </div>

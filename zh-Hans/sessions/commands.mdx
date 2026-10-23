@@ -115,6 +115,10 @@ Claude Code — you are here
   你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载；Cursor 也要重启，它只在启动时加载 hook。
 </ResponseField>
 
+<ResponseField name="Runtime">
+  只在运行你 hook 的运行时版本过旧时出现：bun 低于 **1.4.4**，或者 Node.js 22 低于 **22.23.4**。箭头会告诉你怎么升级——bun 用 `bun upgrade`。这只是一条警告：hook 照常运行。
+</ResponseField>
+
 <ResponseField name="Sessions">
   现在是按智能体分别计数的：`1 of 4 tracked here` 表示这台电脑正在跟踪四个会话，其中一个是你的。那些本该消失却还在的行，正是 [reset](#reset) 要处理的。
 </ResponseField>
@@ -253,7 +257,9 @@ Update available: 2.1.22 → 2.1.23.
 
 接着它拉取更新、重新运行安装脚本——新版本要是加了新的 `/nomo-*` 命令，就是靠这一步收进来的——然后让你重启 OpenCode。插件只在服务器启动时导入一次，所以在你重启之前，跑着的仍然是旧的那一份。
 
-拿不准的时候，它宁可拒绝也不动手，而且每一次拒绝都会说清楚该怎么办：被之前的 `--ref` 安装钉住的克隆目录、还有未提交改动的工作区、被搬走或删掉的克隆目录，以及这里根本什么都没装。
+拿不准的时候，它宁可拒绝也不动手，而且每一次拒绝都会说清楚该怎么办：被之前的 `--ref` 安装钉住的克隆目录、还有未提交改动的工作区、被搬走或删掉的克隆目录、不是 Nomo 自己存储库的克隆目录，以及这里根本什么都没装。
+
+`bunx nomo-ai` 会带上 `--global` 执行同样的更新：不管你在哪个文件夹里运行，它都只更新全局安装。`--project` 安装要用 `/nomo-update` 更新——在那个项目的 OpenCode 里运行。
 
 <Note>
   它更新的是**桩文件**指向的那份克隆目录——也就是 OpenCode 真正导入的那一份——未必是你输入的命令文件所属的那一份。如果你留着不止一份克隆，这个区别就要紧了。

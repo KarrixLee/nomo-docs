@@ -1,6 +1,6 @@
 ---
 title: "Settings"
-description: "Every Sessions setting: local network delivery, island behaviour, remote approvals, and diagnostics — and what each one defaults to."
+description: "Every Sessions setting: local network delivery, island behaviour, remote approvals, Face ID, and diagnostics — and what each one defaults to."
 icon: "sliders"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Settings"]
 ---
@@ -8,9 +8,11 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "com
 All of it lives on one page: **Settings → Sessions**. The **···** menu in the top-right
 of a computer's drawer has a **Settings** item that goes to the same place.
 
-Everything here is **off by default**. Nomo doesn't turn things on for you —
-several of these cost battery, network, or a permission prompt, and one of them
-decides whether your Mac hands permission decisions to your phone at all.
+Almost everything here is **off by default**. Nomo doesn't turn things on for
+you — several of these cost battery, network, or a permission prompt, and one of
+them decides whether your Mac hands permission decisions to your phone at all.
+The one exception protects you rather than costing you:
+[Face ID to Allow](#face-id) starts on.
 
 {/* TODO: screenshot of the Sessions settings page */}
 
@@ -106,6 +108,37 @@ phone is the thing that's unavailable.
 
 It starts **on**, so this switch is the only one you have to turn on — there is
 nothing to enable on your computer.
+
+## Face ID
+
+Under **Answer on iPhone**, **Face ID** opens a page of its own. Its two
+switches decide how much proof an **Allow** needs. **Deny** never asks —
+refusing can only ever stop your Mac from doing something. On an iPhone with
+Touch ID, the page says Touch ID instead.
+
+<ResponseField name="Face ID to Allow" type="on by default">
+  When your iPhone is locked, Allow asks for Face ID first. Deny never does.
+</ResponseField>
+
+This is what stands between your Mac and someone holding your phone. **Allow**
+on the Lock Screen or the Dynamic Island asks for Face ID — or your passcode —
+before it goes anywhere. Cancel, and nothing is sent: the prompt stays there to
+answer.
+
+Turning it off asks for Face ID, after a warning: `Anyone holding your locked
+iPhone could approve commands on your Mac.`
+
+<ResponseField name="Even When Unlocked" type="off by default">
+  Ask for Face ID on every Allow, in the app and on the Dynamic Island.
+</ResponseField>
+
+Covers every answer that lets the agent carry on — **Allow**, **Always allow**,
+the **Approve + …** choices, a plan approval, and an answer to a question.
+**Deny** and **Deny with note…** still don't ask. Before iOS 26, the Dynamic
+Island asks only when your iPhone is locked, so there it covers the app alone.
+
+It builds on **Face ID to Allow**, so it stays off and greyed out while that one
+is off. Turning it off asks for Face ID too.
 
 ## Debug
 

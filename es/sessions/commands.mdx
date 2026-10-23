@@ -159,6 +159,13 @@ cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
   Cursor, que solo recoge los hooks al arrancar.
 </ResponseField>
 
+<ResponseField name="Runtime">
+  Solo aparece cuando el entorno de ejecución de tus hooks está desactualizado:
+  bun anterior a la **1.4.4**, o Node.js 22 anterior a la **22.23.4**. La flecha
+  dice cómo actualizarlo: `bun upgrade` para bun. Es solo un aviso: los hooks
+  siguen funcionando.
+</ResponseField>
+
 <ResponseField name="Sessions">
   Ahora se cuentan por agente: `1 of 4 tracked here` significa que este ordenador
   sigue cuatro sesiones y una de ellas es la tuya. Para las filas que deberían
@@ -326,7 +333,13 @@ hasta entonces la copia vieja sigue siendo la que corre.
 Se niega en lugar de actuar cuando no puede estar seguro, y cada negativa dice
 qué hacer en su lugar: un clon fijado por una instalación anterior con `--ref`,
 un árbol de trabajo con cambios sin confirmar, un clon que se ha movido o
-borrado, o que aquí no haya nada instalado.
+borrado, un clon que no es el repositorio propio de Nomo, o que aquí no haya
+nada instalado.
+
+`bunx nomo-ai` ejecuta la misma actualización con `--global`: solo actualiza la
+instalación global, sea cual sea la carpeta desde la que lo ejecutes. Una
+instalación con `--project` se actualiza con `/nomo-update`, ejecutado dentro de
+OpenCode en ese proyecto.
 
 <Note>
   Actualiza el clon al que apunta el **stub** —la copia que OpenCode importa de

@@ -1,13 +1,13 @@
 ---
 title: "設定"
-description: "Sessions 的每一項設定：區域網路傳送、動態島行為、遠端批准與診斷 — 以及各自的預設值。"
+description: "Sessions 的每一項設定：區域網路傳送、動態島行為、遠端批准、Face ID 與診斷 — 以及各自的預設值。"
 icon: "sliders"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電腦", "動態島", "權限", "配對", "設定"]
 ---
 
 全部都在同一頁上：「設定」>「Sessions」。電腦面板右上角 **···** 選單裡的 **設定** 也是去同一個地方。
 
-這裡的每一項**預設都是關閉的**。Nomo 不會替你打開東西 — 其中好幾項會耗電、耗網路，或需要一次權限請求，而其中一項還決定了你的 Mac 到底要不要把權限決定交給你的手機。
+這裡幾乎每一項**預設都是關閉的**。Nomo 不會替你打開東西 — 其中好幾項會耗電、耗網路，或需要一次權限請求，而其中一項還決定了你的 Mac 到底要不要把權限決定交給你的手機。唯一的例外是用來保護你，而不是讓你付出什麼：[「允許時使用 Face ID」](#face-id)一開始就是開著的。
 
 {/* TODO: screenshot of the Sessions settings page */}
 
@@ -66,6 +66,26 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電
 還有第二個以電腦為單位的暫停，它住在 Mac 上而不是這裡：[`/nomo-cc:approvals off`](/zh-Hant/sessions/commands#approvals)。當你的手機才是那個聯絡不上的東西時，用那一個。
 
 那邊預設就是**開著**的，所以你只需要打開這一個開關，電腦上沒有需要啟用的東西。
+
+## Face ID {#face-id}
+
+在「在 iPhone 上回答」底下，「Face ID」會打開它自己的一頁。頁面上的兩個開關決定一次「允許」需要多少驗證。「拒絕」從不要求 — 拒絕頂多只會讓你的 Mac 不去做某件事。在使用 Touch ID 的 iPhone 上，這一頁寫的會是 Touch ID。
+
+<ResponseField name="允許時使用 Face ID" type="預設開啟">
+  iPhone 鎖定時，「允許」會先要求 Face ID。「拒絕」從不要求。
+</ResponseField>
+
+擋在你的 Mac 和拿著你手機的人之間的，就是這一項。鎖定畫面或動態島上的「允許」在送出之前，會先要求 Face ID — 或你的密碼。取消的話什麼都不會送出：那個請求會留在原地，等你回答。
+
+關閉它時會先顯示一則警告，然後要求 Face ID：`任何拿著你鎖定的 iPhone 的人都能批准 Mac 上的指令。`
+
+<ResponseField name="解鎖時也要求" type="預設關閉">
+  在 App 和動態島中，每次「允許」都要求 Face ID。
+</ResponseField>
+
+它涵蓋每一個會讓代理繼續下去的回覆 — 「允許」、「一律允許」、「批准並…」這幾個選項、批准計畫，以及回答問題。「拒絕」和「拒絕並附註…」依然不會要求。在 iOS 26 之前，動態島只在 iPhone 鎖定時要求，所以在那裡這一項只涵蓋 App。
+
+它建立在「允許時使用 Face ID」之上，所以那一項關閉時，這一項也會保持關閉並顯示為灰色。關閉它同樣會要求 Face ID。
 
 ## 偵錯 {#debug}
 

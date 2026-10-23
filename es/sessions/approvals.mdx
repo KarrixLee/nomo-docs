@@ -32,6 +32,22 @@ propósito.
     albergar una actividad en directo, y Nomo no va a poner ahí un botón que no
     pueda cumplir.
 
+    Con el iPhone bloqueado, **Permitir** pide Face ID primero; **Denegar** es
+    siempre un solo toque. Es [Face ID para permitir](/es/sessions/settings#face-id),
+    activado de fábrica.
+
+    En un comando de shell ves el comando real, no el resumen que hace de él el
+    agente. Si es largo, se acorta por el medio, así que tanto el principio como
+    el final quedan a la vista, y `+3 líneas` dice cuánto más hay. La propia
+    descripción del agente va debajo, en letra pequeña.
+
+    El titular es la primera línea del comando que no es un comentario `#`. Si
+    el comando es demasiado largo para enviarlo al teléfono, la tarjeta dice
+    `Comando demasiado largo — abre Nomo para revisarlo`, con la descripción
+    debajo en letra pequeña. La descripción se mantiene corta y es lo primero
+    que se quita si falta espacio, así que la tarjeta siempre conserva el
+    comando.
+
     Para una pregunta tienes **Pensarlo** — una denegación de verdad que
     significa *ninguna de estas, replantéatelo* — y **Responder**, que abre
     directamente la app, donde las opciones sí caben.
@@ -52,6 +68,10 @@ propósito.
 
     Al mantenerla pulsada aparece una tarjeta de vista previa con el comando, la
     ruta del archivo o la pregunta, y un menú debajo.
+
+    Aquí el teléfono ya está desbloqueado, así que **Permitir** es un solo toque
+    — salvo que actives [Incluso desbloqueado](/es/sessions/settings#face-id),
+    que pide Face ID en cada Permitir.
 
     <Frame caption="La tarjeta de encima del menú es la solicitud en sí: la herramienta, el comando y de qué carpeta viene.">
       <div className="device-frame">
@@ -186,6 +206,13 @@ dejarte creyendo que pasó algo.
 | `Aprobaciones en pausa — responde en tu ordenador` | En pausa en ese ordenador — ve más abajo. |
 | `No se envió — inténtalo de nuevo` | Falló y se agotaron los reintentos. Tócalo otra vez. |
 | `Demasiado largo para enviar — responde en tu ordenador` | Tu respuesta no cabe en una actualización cifrada. Esta no va a salir bien por mucho que se reintente. |
+
+### Cuando solo aparece Denegar {#when-only-deny-is-offered}
+
+Tu teléfono solo te deja aprobar lo que puede mostrarte. Si no puede confirmar
+que la tarjeta en pantalla corresponde a la solicitud que espera en tu
+ordenador, ofrece solo **Denegar**: rechazar siempre es seguro. **Permitir**
+vuelve con la siguiente actualización que coincida; si no, responde en el Mac.
 
 Una respuesta que llega tarde se descarta, nunca se aplica. Nunca vas a volver y
 encontrarte con que algo se ejecutó porque lo tocaste hace veinte minutos.
