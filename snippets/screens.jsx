@@ -73,7 +73,18 @@ export const Screens = ({ shots, slide = 240, gap = 24 }) => {
               onClick={() => (k === i ? setZoomed(true) : setI(k))}
               aria-label={k === i ? `Enlarge: ${s.alt}` : s.alt}
             >
-              <img src={s.src} alt={k === i ? s.alt : ""} draggable="false" />
+              {/* width/height reserve the box before the file lands (no layout
+                  shift); every shot is a 660×1434 App Store export. Only the
+                  first slide is shown on load, so the rest load lazily. */}
+              <img
+                src={s.src}
+                alt={k === i ? s.alt : ""}
+                width="660"
+                height="1434"
+                loading={k === 0 ? "eager" : "lazy"}
+                decoding="async"
+                draggable="false"
+              />
             </button>
           ))}
         </div>
