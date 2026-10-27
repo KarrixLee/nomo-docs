@@ -5,24 +5,28 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
 
-Claude Code、Codex 和 OpenCode 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor 里是 `/` skill，在 Codex 里是 `$` skill。Antigravity 没有自己的命令：在那里要到终端里运行——[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#commands)。
+Claude Code、Codex、OpenCode 和 Antigravity 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor 和 Antigravity 里是 `/` skill，在 Codex 里是 `$` skill。
+
+<Note>
+  在 Antigravity 里，每条 Nomo 命令都会先问你。选择 **Allow**（允许）——Antigravity 在你的电脑上运行任何命令前都会先问。详见[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#commands)。
+</Note>
 
 <Tip>
-  Claude Code 里一切都带命名空间：输入 `/nomo-cc:` 就会列出全部。OpenCode 的命令名是扁平且全局的，所以在那里 Nomo 的命令完全不带前缀——它的 Cursor skill 也一样。
+  Claude Code 里一切都带命名空间：输入 `/nomo-cc:` 就会列出全部。OpenCode 的命令名是扁平且全局的，所以在那里 Nomo 的命令完全不带前缀——它的 Cursor 和 Antigravity skill 也一样。
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor |
-| --- | --- | --- | --- | --- |
-| <a href="#pair">配对这台电脑</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">检查健康状况</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">暂停或恢复审批</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — |
-| <a href="#reset">清理卡住的会话</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">断开这台电脑</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">更新插件</a> | — | — | `/nomo-update` | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
+| --- | --- | --- | --- | --- | --- |
+| <a href="#pair">配对这台电脑</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">检查健康状况</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">暂停或恢复审批</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
+| <a href="#reset">清理卡住的会话</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">断开这台电脑</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">更新插件</a> | — | — | `/nomo-update` | — | — |
 
 它们都不会大声报错。即使无事可做也会干净地退出——`Not paired` 是成功，不是错误。
 
-最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令，而 Cursor 靠再运行一次它的安装工具来更新。它们各自需要什么——Codex 通常什么都不需要——都写在[安装](/zh-Hans/setup/install#updating)里。
+最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令，而 Cursor 靠再运行一次它的安装工具来更新，Antigravity 也一样。它们各自需要什么——Codex 通常什么都不需要——都写在[安装](/zh-Hans/setup/install#updating)里。
 
 审批那一行上 Cursor 的空格同样不是漏写：Cursor 会话是只读的，所以没有远程审批可以暂停——[搭配 Cursor 使用](/zh-Hans/sessions/cursor)。
 
@@ -50,10 +54,8 @@ $nomo-pair code        # one-time code, printed in the terminal
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-# in a terminal — QR code, opens your browser
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-# one-time code, printed in the terminal
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
 ```
 </CodeGroup>
 
@@ -83,7 +85,8 @@ $nomo-status
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+/nomo-status           # a short summary in plain words
+/nomo-status verbose   # the full readout below
 ```
 </CodeGroup>
 
@@ -176,6 +179,12 @@ $nomo-approvals status      # which way is it set
 /nomo-approvals on          # resume
 /nomo-approvals status      # which way is it set
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
 
 暂停**这台电脑**的远程审批，让权限请求直接进终端，而不是等你的手机。这是手机没电或不在手边时的应急出口。
@@ -189,7 +198,7 @@ will appear in the terminal as usual (your phone is not asked).
 
 另外还有一个覆盖整部手机的开关：[设置](/zh-Hans/sessions/settings#remote-approvals)里的**在 iPhone 上回答**。
 
-Cursor 没有 approvals 命令。它的请求永远到不了你的手机，所以没有什么可暂停的。Antigravity 同样没有，但它的请求确实会到你的手机——用上面任一条命令暂停即可，因为这个开关是共用的。
+Cursor 没有 approvals 命令。它的请求永远到不了你的手机，所以没有什么可暂停的。
 
 ## reset {#reset}
 
@@ -211,7 +220,7 @@ $nomo-reset
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+/nomo-reset
 ```
 </CodeGroup>
 
@@ -246,7 +255,7 @@ $nomo-unpair
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs
+/nomo-unpair
 ```
 </CodeGroup>
 

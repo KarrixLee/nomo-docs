@@ -29,9 +29,11 @@ $nomo-status
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+/nomo-status
 ```
 </CodeGroup>
+
+Antigravity では、Nomo のコマンドを実行してよいか確認されたら「Allow」を選んでください。わかりやすい言葉の短い要約と、問題ごとに対処を示す 1 行が表示されます — 以下で説明する詳しい出力を見るには `/nomo-status verbose` と入力してください。
 
 報告の対象は、あなたのセッションだけでなく**コンピュータ**全体です。ペアリング、配信、ローカルネットワークによる直接接続、承認、そのあとにいま使っているエージェントと、見つかったほかのすべてのエージェントが続きます。`!` は実際の問題で、その下の `→` がその対処です。実行したエージェントのコマンドの書き方に合わせて書かれます。たいていの場合、ここで終わります。
 
@@ -105,23 +107,33 @@ $nomo-status
   Nomo の中継サーバーに接続できないときは、Cursor でプロンプトを送信してから実際に送られるまで、最大で約 2 秒待たされることがあります。プロンプトがブロックされることはありません。
 </Accordion>
 
-<Accordion title="Antigravity だけ何も表示されない" icon="rocket">
-  次の 4 つを、この順で確認してください。
+<Accordion title="Antigravity のセッションが iPhone に何も表示されない" icon="rocket">
+  1. Antigravity を再起動します — 完全に終了してから、もう一度開いてください。
+  2. `/nomo-status` と入力し、「Allow」を選びます。
+  3. ⚠️ または ❌ で始まる行の指示に従います。
+  4. メッセージを送ります。セッションが現れるのは、最初のメッセージを送ったあとです。
 
-  - **Antigravity を再起動していない**。Antigravity がフックを読み込むのは起動時だけなので、インストールしたらアプリを終了して開き直し、開いている `agy` のセッションがあればそれも再起動してください。
-  - **Antigravity タブが非表示になっている**。ドロワーに表示されるエージェントのタブは最大 3 つです。**+** ボタン（「エージェントを選択」）をタップして、Antigravity をオンにしてください。
-  - **Mac がペアリングされていない**。Antigravity には Nomo のコマンドがないため、ターミナルから確認してください。
+  それでも表示されない場合は、Nomo で **+** ボタン（「エージェントを選択」）をタップして、Antigravity をオンにしてください。詳しくは [Antigravity での利用](/ja/sessions/antigravity#troubleshooting)をご覧ください。
+</Accordion>
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-    ```
-  - **プラグインのフォルダが移動している**。Antigravity のフックは `~/.nomo` を指しています。このフォルダを移動または削除した場合は、`bunx nomo-ai --antigravity` をもう一度実行し、Antigravity を再起動してください。
+<Accordion title="Antigravity のセッションが 2 つずつ表示される" icon="clone">
+  Nomo の Claude Code プラグインが Antigravity に読み込まれています。ターミナルで次を実行してから、Antigravity を再起動してください。
 
-  セッションが現れるのは、会話の最初のプロンプトを送ったあとです。セットアップの全体は [Antigravity での利用](/ja/sessions/antigravity)にあります。
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Accordion>
+
+<Accordion title="Antigravity のコマンドで Nomo のファイルが見つからないと表示される" icon="folder-open">
+  Nomo のフォルダが移動または削除されています。Antigravity はそのまま使えますが、iPhone には何も届きません。インストーラーをもう一度実行してから、Antigravity を再起動してください。
+
+  ```bash
+  bunx nomo-ai --antigravity
+  ```
 </Accordion>
 
 <Accordion title="キャンセルした Antigravity のターンが「実行中」のまま" icon="hourglass-half">
-  Antigravity はターンのキャンセルをプラグインに知らせないため、Nomo は Antigravity 自身の記録からそれを判断します。数秒後に行は `完了` になります。
+  数秒待ってください — Nomo が自動で気づき、行は `完了` になります。iPhone にカードが表示されていた場合は、それも消えます。
 </Accordion>
 
 <Accordion title="行が古いままか重複している" icon="broom">
@@ -145,7 +157,7 @@ $nomo-status
   ```
 
   ```bash Antigravity icon="/images/providers/antigravity.png"
-  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  /nomo-reset
   ```
   </CodeGroup>
 
@@ -354,10 +366,26 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
     },
     {
       "@type": "Question",
-      "name": "Antigravity だけ何も表示されない",
+      "name": "Antigravity のセッションが iPhone に何も表示されない",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "確認することは 4 つです。Antigravity がフックを読み込むのは起動時だけなので、インストールしたらアプリを終了して開き直し、開いている agy のセッションがあればそれも再起動してください。ドロワーに表示されるエージェントのタブは最大 3 つなので、+ ボタン（「エージェントを選択」）をタップして Antigravity をオンにしてください。ターミナルで ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity を実行して、Mac がペアリングされているか確認してください。そして ~/.nomo フォルダを移動または削除した場合は、bunx nomo-ai --antigravity をもう一度実行して Antigravity を再起動してください。"
+        "text": "Antigravity を再起動します — 完全に終了してから、もう一度開いてください。/nomo-status と入力して Allow を選び、⚠️ または ❌ で始まる行の指示に従います。そのあとメッセージを送ってください。セッションが現れるのは、最初のメッセージを送ったあとです。それでも表示されない場合は、Nomo で + ボタン（「エージェントを選択」）をタップして、Antigravity をオンにしてください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Antigravity のセッションが 2 つずつ表示される",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo の Claude Code プラグインが Antigravity に読み込まれています。ターミナルで agy plugin uninstall nomo-cc を実行してから、Antigravity を再起動してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Antigravity のコマンドで Nomo のファイルが見つからないと表示される",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo のフォルダが移動または削除されています。Antigravity はそのまま使えますが、iPhone には何も届きません。bunx nomo-ai --antigravity をもう一度実行してから、Antigravity を再起動してください。"
       }
     },
     {
@@ -365,7 +393,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
       "name": "キャンセルした Antigravity のターンが「実行中」のまま",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Antigravity はターンのキャンセルをプラグインに知らせないため、Nomo は Antigravity 自身の記録からそれを判断します。数秒後に行は 完了 になります。"
+        "text": "数秒待ってください — Nomo が自動で気づき、行は 完了 になります。iPhone にカードが表示されていた場合は、それも消えます。"
       }
     },
     {

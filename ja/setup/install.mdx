@@ -225,6 +225,8 @@ icon: "puzzle-piece"
 
     <Steps>
       <Step title="インストーラーを実行する">
+        ターミナルに次を貼り付けて、Return キーを押します。
+
         <CodeGroup>
         ```bash bunx icon="terminal"
         bunx nomo-ai --antigravity
@@ -235,26 +237,29 @@ icon: "puzzle-piece"
         ```
         </CodeGroup>
 
-        行うことは 2 つです。
+        次のように表示されます。
 
-        - プラグインを `~/.nomo` にクローンします。
-        - `~/.gemini/config/hooks.json` に `nomo` という名前のブロックを 1 つ追加します。そのファイルのほかのブロックには手を付けません。
+        ```
+        ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
+        ```
       </Step>
 
       <Step title="Antigravity を再起動する — 必須">
         <Warning>
-          Antigravity がフックを読み込むのは起動時だけです。Antigravity アプリを終了して開き直し、開いている `agy` のセッションがあればそれも再起動してください。そうするまで、プラグインはインストール済みでも何もしません。
+          Antigravity を完全に終了してから、もう一度開いてください。`agy` を使っている場合は、それも再起動してください。再起動するまで Nomo は動きません。
         </Warning>
       </Step>
 
-      <Step title="確認する">
-        Antigravity には Nomo のコマンドがないため、ターミナルから確認します。
+      <Step title="/nomo-pair と入力する">
+        Antigravity のチャットで `/nomo-pair` と入力して送信します。Antigravity が Nomo のコマンドを実行してよいか確認してきたら、「Allow」を選びます。そのあと、iPhone の Nomo で QR コードをスキャンします。
 
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-        ```
+        ほかのエージェントですでにペアリング済みの場合は、代わりに `/nomo-status` と入力して確認してください。
       </Step>
     </Steps>
+
+    <Warning>
+      Nomo の Claude Code プラグインを Antigravity に読み込まないでください — どのセッションも 2 つずつ表示されてしまいます。読み込んでしまった場合は、`agy plugin uninstall nomo-cc` を実行して Antigravity を再起動してください。
+    </Warning>
 
     あとから削除するには、次を実行します。
 
@@ -262,7 +267,7 @@ icon: "puzzle-piece"
     node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
     ```
 
-    削除されるのは `nomo` ブロックだけです。そのあと Antigravity を再起動します。
+    そのあと Antigravity を再起動します。
   </Tab>
 </Tabs>
 
@@ -291,7 +296,7 @@ npx nomo-ai
 | `-y`、`--yes` | 選択画面を出さず、検出したものをすべてインストールします |
 | `-n`、`--dry-run` | 実行するコマンドを表示するだけで、何も実行しません |
 
-iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です。Antigravity にはコマンドがないため、[Antigravity での利用](/ja/sessions/antigravity#set-it-up)のとおりターミナルからペアリングします。
+iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です。
 
 ## 更新 {#updating}
 

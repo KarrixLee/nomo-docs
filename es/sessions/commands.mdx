@@ -5,34 +5,41 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
 ---
 
-Cinco comandos en Claude Code, Codex y OpenCode, un sexto que solo OpenCode
-necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del agente,
-en el ordenador al que quieras afectar: un comando con `/` en Claude Code y en
-OpenCode, una skill con `/` en Cursor, una skill con `$` en Codex. Antigravity
-no tiene comandos propios: allí se ejecutan en una terminal — [Usar
-Antigravity](/es/sessions/antigravity#commands).
+Cinco comandos en Claude Code, Codex, OpenCode y Antigravity, un sexto que solo
+OpenCode necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del
+agente, en el ordenador al que quieras afectar: un comando con `/` en Claude Code
+y en OpenCode, una skill con `/` en Cursor y en Antigravity, una skill con `$` en
+Codex.
+
+<Note>
+  En Antigravity, cada comando de Nomo pregunta antes. Elige **Allow**
+  (permitir): Antigravity pregunta antes de ejecutar cualquier comando en tu
+  ordenador. Más en [Usar Antigravity](/es/sessions/antigravity#commands).
+</Note>
 
 <Tip>
   En Claude Code todo va con espacio de nombres: al escribir `/nomo-cc:` se
   listan todos. Los nombres de comando de OpenCode son planos y globales, así que
-  allí los de Nomo no llevan ningún prefijo, y sus skills de Cursor tampoco.
+  allí los de Nomo no llevan ningún prefijo, y sus skills de Cursor y
+  Antigravity tampoco.
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor |
-| --- | --- | --- | --- | --- |
-| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — |
-| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">Actualizar el plugin</a> | — | — | `/nomo-update` | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
+| --- | --- | --- | --- | --- | --- |
+| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
+| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">Actualizar el plugin</a> | — | — | `/nomo-update` | — | — |
 
 Ninguno puede fallar a gritos. Todos terminan limpiamente incluso cuando no hay
 nada que hacer: `Not paired` es un éxito, no un error.
 
 Las casillas vacías de la última fila no son un olvido: Claude Code y Codex se
 actualizan a través de sus propios anfitriones, así que Nomo no añade ningún
-comando ahí, y Cursor se actualiza volviendo a ejecutar su instalador. Lo que
+comando ahí, y Cursor se actualiza volviendo a ejecutar su instalador, igual que
+Antigravity. Lo que
 necesita cada uno —que en el caso de Codex suele ser nada— está en
 [Instalación](/es/setup/install#updating).
 
@@ -64,10 +71,8 @@ $nomo-pair code        # one-time code, printed in the terminal
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-# in a terminal — QR code, opens your browser
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-# one-time code, printed in the terminal
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
 ```
 </CodeGroup>
 
@@ -103,7 +108,8 @@ $nomo-status
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+/nomo-status           # a short summary in plain words
+/nomo-status verbose   # the full readout below
 ```
 </CodeGroup>
 
@@ -235,6 +241,12 @@ $nomo-approvals status      # which way is it set
 /nomo-approvals on          # resume
 /nomo-approvals status      # which way is it set
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
 
 Pausa las aprobaciones remotas en **este ordenador**, de modo que las solicitudes
@@ -254,9 +266,7 @@ Hay otro interruptor aparte, para todo el teléfono: **Responder en el iPhone**
 en [Ajustes](/es/sessions/settings#remote-approvals).
 
 Cursor no tiene comando de aprobaciones. Sus solicitudes nunca llegan a tu
-teléfono, así que no hay nada que pausar. Antigravity tampoco lo tiene, pero sus
-solicitudes sí llegan a tu teléfono: páusalas con cualquiera de los comandos de
-arriba, ya que el interruptor es compartido.
+teléfono, así que no hay nada que pausar.
 
 ## reset {#reset}
 
@@ -278,7 +288,7 @@ $nomo-reset
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+/nomo-reset
 ```
 </CodeGroup>
 
@@ -317,7 +327,7 @@ $nomo-unpair
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs
+/nomo-unpair
 ```
 </CodeGroup>
 

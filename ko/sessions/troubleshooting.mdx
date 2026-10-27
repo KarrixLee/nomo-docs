@@ -32,9 +32,13 @@ $nomo-status
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+/nomo-status
 ```
 </CodeGroup>
+
+Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택하십시오. 쉬운 말로
+된 짧은 요약과, 문제마다 무엇을 해야 하는지 알려 주는 줄이 하나씩 표시됩니다 —
+아래에 설명된 전체 내용을 보려면 `/nomo-status verbose`를 입력하십시오.
 
 이 명령은 지금 세션만이 아니라 **컴퓨터**를 보고합니다. 페어링, 전송, 로컬 네트워크
 직접 연결, 승인, 그다음 지금 사용 중인 에이전트와 발견된 다른 모든 에이전트입니다.
@@ -160,31 +164,38 @@ $nomo-status
   최대 약 2초 동안 멈출 수 있습니다. 프롬프트를 막는 일은 없습니다.
 </Accordion>
 
-<Accordion title="Antigravity에서만 아무것도 보이지 않음" icon="rocket">
-  다음 네 가지를 이 순서대로 확인하십시오.
+<Accordion title="휴대폰에 Antigravity가 아무것도 표시되지 않음" icon="rocket">
+  1. Antigravity를 재시작합니다 — 완전히 종료한 다음 다시 엽니다.
+  2. `/nomo-status`를 입력하고 **Allow**를 선택합니다.
+  3. ⚠️ 또는 ❌로 시작하는 줄의 안내를 따릅니다.
+  4. 메시지를 보냅니다. 세션은 첫 메시지를 보낸 뒤에야 나타납니다.
 
-  - **Antigravity를 재시작하지 않았습니다.** Antigravity는 시작할 때에만 Hook을
-    읽어 들이므로, 설치한 뒤 앱을 종료했다가 다시 여십시오 — 열려 있는 `agy`
-    세션도 재시작하십시오.
-  - **Antigravity 탭이 숨겨져 있습니다.** 드로어에는 에이전트 탭이 최대 세 개까지
-    표시됩니다. **+** 버튼(**에이전트 선택**)을 탭해 Antigravity를 켜십시오.
-  - **Mac이 페어링되어 있지 않습니다.** Antigravity에는 Nomo 명령이 없으므로
-    터미널에서 확인하십시오.
+  그래도 표시되지 않나요? Nomo에서 **+** 버튼(**에이전트 선택**)을 탭해
+  Antigravity를 켭니다. 자세한 내용은 [Antigravity 사용하기](/ko/sessions/antigravity#troubleshooting)에 있습니다.
+</Accordion>
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-    ```
-  - **플러그인 폴더가 옮겨졌습니다.** Antigravity의 Hook은 `~/.nomo`를 가리킵니다.
-    그 폴더를 옮기거나 삭제했다면 `bunx nomo-ai --antigravity`를 다시 실행한 다음
-    Antigravity를 재시작하십시오.
+<Accordion title="모든 Antigravity 세션이 두 번씩 표시됨" icon="clone">
+  Nomo의 Claude Code 플러그인을 Antigravity로 가져온 상태입니다. 터미널에서
+  다음을 실행한 다음 Antigravity를 재시작하십시오.
 
-  세션은 대화의 첫 프롬프트를 보낸 뒤에야 나타납니다. 전체 설정 과정은
-  [Antigravity 사용하기](/ko/sessions/antigravity)에 있습니다.
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Accordion>
+
+<Accordion title="Antigravity 명령에 Nomo가 파일을 찾을 수 없다고 표시됨" icon="folder-open">
+  Nomo 폴더가 옮겨졌거나 삭제되었습니다. Antigravity는 계속 동작하지만 휴대폰에는
+  아무것도 오지 않습니다. 설치 도구를 다시 실행한 다음 Antigravity를
+  재시작하십시오.
+
+  ```bash
+  bunx nomo-ai --antigravity
+  ```
 </Accordion>
 
 <Accordion title="취소한 Antigravity 턴이 계속 실행 중으로 표시됨" icon="hourglass-half">
-  Antigravity는 턴을 취소해도 플러그인에 알리지 않으므로, Nomo가 Antigravity 자체의
-  기록을 보고 이를 알아냅니다. 몇 초 뒤에 행이 `완료`로 바뀝니다.
+  몇 초 기다리십시오 — Nomo가 스스로 알아채고 행이 `완료`로 바뀝니다. 휴대폰에
+  카드가 떠 있었다면 그것도 사라집니다.
 </Accordion>
 
 <Accordion title="행이 오래됐거나 중복되어 보임" icon="broom">
@@ -209,7 +220,7 @@ $nomo-status
   ```
 
   ```bash Antigravity icon="/images/providers/antigravity.png"
-  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  /nomo-reset
   ```
   </CodeGroup>
 
@@ -487,10 +498,26 @@ $nomo-status
     },
     {
       "@type": "Question",
-      "name": "Antigravity에서만 아무것도 보이지 않음",
+      "name": "휴대폰에 Antigravity가 아무것도 표시되지 않음",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "네 가지를 확인하십시오. Antigravity는 시작할 때에만 Hook을 읽어 들이므로, 설치한 뒤 앱을 종료했다가 다시 열고 열려 있는 agy 세션도 재시작하십시오. 드로어에는 에이전트 탭이 최대 세 개까지 표시되므로, + 버튼(에이전트 선택)을 탭해 Antigravity를 켜십시오. 터미널에서 ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity를 실행해 Mac이 페어링되어 있는지 확인하십시오. 그리고 ~/.nomo 폴더를 옮기거나 삭제했다면 bunx nomo-ai --antigravity를 다시 실행하고 Antigravity를 재시작하십시오."
+        "text": "Antigravity를 재시작합니다 — 완전히 종료한 다음 다시 엽니다. /nomo-status를 입력하고 Allow를 선택한 다음, ⚠️ 또는 ❌로 시작하는 줄의 안내를 따릅니다. 그런 다음 메시지를 보냅니다. 세션은 첫 메시지를 보낸 뒤에야 나타납니다. 그래도 표시되지 않나요? Nomo에서 + 버튼(에이전트 선택)을 탭해 Antigravity를 켭니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "모든 Antigravity 세션이 두 번씩 표시됨",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo의 Claude Code 플러그인을 Antigravity로 가져온 상태입니다. 터미널에서 agy plugin uninstall nomo-cc를 실행한 다음 Antigravity를 재시작하십시오."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Antigravity 명령에 Nomo가 파일을 찾을 수 없다고 표시됨",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo 폴더가 옮겨졌거나 삭제되었습니다. Antigravity는 계속 동작하지만 휴대폰에는 아무것도 오지 않습니다. bunx nomo-ai --antigravity를 다시 실행한 다음 Antigravity를 재시작하십시오."
       }
     },
     {
@@ -498,7 +525,7 @@ $nomo-status
       "name": "취소한 Antigravity 턴이 계속 실행 중으로 표시됨",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Antigravity는 턴을 취소해도 플러그인에 알리지 않으므로, Nomo가 Antigravity 자체의 기록을 보고 이를 알아냅니다. 몇 초 뒤에 행이 완료로 바뀝니다."
+        "text": "몇 초 기다리십시오 — Nomo가 스스로 알아채고 행이 완료로 바뀝니다. 휴대폰에 카드가 떠 있었다면 그것도 사라집니다."
       }
     },
     {

@@ -271,6 +271,8 @@ ones.
 
     <Steps>
       <Step title="Run the installer">
+        Paste this into Terminal and press Return:
+
         <CodeGroup>
         ```bash bunx icon="terminal"
         bunx nomo-ai --antigravity
@@ -281,29 +283,34 @@ ones.
         ```
         </CodeGroup>
 
-        It does two things:
+        You should see:
 
-        - Clones the plugin to `~/.nomo`.
-        - Adds one block named `nomo` to `~/.gemini/config/hooks.json`. Every
-          other block in that file is left alone.
+        ```
+        ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
+        ```
       </Step>
 
       <Step title="Restart Antigravity — required">
         <Warning>
-          Antigravity only reads its hooks when it starts. Quit and reopen the
-          Antigravity app, and restart any `agy` session you have open. Until
-          you do, the plugin is installed and doing nothing.
+          Quit Antigravity completely and open it again. If you use `agy`,
+          restart it too. Nomo stays off until you do.
         </Warning>
       </Step>
 
-      <Step title="Confirm">
-        Antigravity has no Nomo commands, so check from a terminal:
+      <Step title="Type /nomo-pair">
+        In an Antigravity chat, type `/nomo-pair` and send it. When Antigravity
+        asks to run a Nomo command, choose **Allow**. Then scan the QR code with
+        Nomo on your iPhone.
 
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-        ```
+        Already paired from another agent? Type `/nomo-status` instead to check.
       </Step>
     </Steps>
+
+    <Warning>
+      Don't import Nomo's Claude Code plugin into Antigravity — every session
+      would show up twice. If you did, run `agy plugin uninstall nomo-cc` and
+      restart Antigravity.
+    </Warning>
 
     To remove it later:
 
@@ -311,7 +318,7 @@ ones.
     node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
     ```
 
-    It removes only the `nomo` block. Then restart Antigravity.
+    Then restart Antigravity.
   </Tab>
 </Tabs>
 
@@ -347,9 +354,7 @@ For scripting and CI:
 
 It never pairs your phone. Finish exactly as the steps above describe: restart
 the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
-`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex. Antigravity has no
-commands — pair from a terminal, as [Using
-Antigravity](/sessions/antigravity#set-it-up) shows.
+`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex.
 
 ## Updating
 

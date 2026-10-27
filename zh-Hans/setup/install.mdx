@@ -226,6 +226,8 @@ icon: "puzzle-piece"
 
     <Steps>
       <Step title="运行安装工具">
+        把下面这条粘贴到终端里，然后按回车：
+
         <CodeGroup>
         ```bash bunx icon="terminal"
         bunx nomo-ai --antigravity
@@ -236,26 +238,29 @@ icon: "puzzle-piece"
         ```
         </CodeGroup>
 
-        它做两件事：
+        你应该会看到：
 
-        - 把插件克隆到 `~/.nomo`。
-        - 在 `~/.gemini/config/hooks.json` 里加入一个名为 `nomo` 的区块。这个文件里的其他区块原样不动。
+        ```
+        ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
+        ```
       </Step>
 
       <Step title="重启 Antigravity——必做">
         <Warning>
-          Antigravity 只在启动时读取 hook。退出并重新打开 Antigravity 应用，并重启你开着的每一个 `agy` 会话。在你这样做之前，插件虽已安装却什么都不做。
+          完全退出 Antigravity，再重新打开。如果你用 `agy`，也把它重启。在你这样做之前，Nomo 不会生效。
         </Warning>
       </Step>
 
-      <Step title="确认">
-        Antigravity 没有 Nomo 命令，所以要在终端里检查：
+      <Step title="输入 /nomo-pair">
+        在 Antigravity 的对话里输入 `/nomo-pair` 并发送。Antigravity 问你要不要运行 Nomo 命令时，选择 **Allow**（允许）。然后用 iPhone 上的 Nomo 扫描二维码。
 
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-        ```
+        已经在别的智能体里配对过？改为输入 `/nomo-status` 检查一下。
       </Step>
     </Steps>
+
+    <Warning>
+      不要把 Nomo 的 Claude Code 插件导入 Antigravity——否则每个会话都会出现两次。如果你已经导入了，运行 `agy plugin uninstall nomo-cc`，然后重启 Antigravity。
+    </Warning>
 
     以后要移除它：
 
@@ -263,7 +268,7 @@ icon: "puzzle-piece"
     node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
     ```
 
-    它只会删掉 `nomo` 区块。然后重启 Antigravity。
+    然后重启 Antigravity。
   </Tab>
 </Tabs>
 
@@ -292,7 +297,7 @@ npx nomo-ai
 | `-y`、`--yes` | 不出选择界面，找到多少装多少 |
 | `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
 
-它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。Antigravity 没有命令——要在终端里配对，见[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#set-it-up)。
+它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。
 
 ## 更新 {#updating}
 

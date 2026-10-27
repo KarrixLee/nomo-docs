@@ -29,9 +29,11 @@ $nomo-status
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+/nomo-status
 ```
 </CodeGroup>
+
+在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。它會用簡單的話顯示一段簡短摘要，每個問題各一行，告訴你該怎麼做 — 輸入 `/nomo-status verbose` 就能看到下面說明的完整報告。
 
 它回報的是整台**電腦**，不只是你的 session：配對、傳送、區域網路直連、批准，接著是你所在的那個代理，以及它找到的其他每一個代理。`!` 表示真的有問題，底下的 `→` 就是該怎麼處理，並以你發問時所在代理的指令寫法寫出來。大多數人看到這裡就結束了。
 
@@ -105,23 +107,33 @@ $nomo-status
   連不上 Nomo 的中繼伺服器時，在 Cursor 送出提示可能會停頓最多約 2 秒才送出去。它絕不會擋下你的提示。
 </Accordion>
 
-<Accordion title="偏偏只有 Antigravity 什麼都不顯示" icon="rocket">
-  有四件事要檢查，依這個順序：
+<Accordion title="我的手機沒有顯示 Antigravity 的任何東西" icon="rocket">
+  1. 重新啟動 Antigravity — 完全結束它，再重新打開。
+  2. 輸入 `/nomo-status`，然後選擇 **Allow**（允許）。
+  3. 照著以 ⚠️ 或 ❌ 開頭的那一行做。
+  4. 送出一則訊息。session 要等你送出第一則訊息後才會出現。
 
-  - **Antigravity 沒有重新啟動**。Antigravity 只在啟動時讀取 hooks，所以安裝之後，請結束並重新開啟應用程式 — 也重新啟動任何開著的 `agy` session。
-  - **Antigravity 分頁被隱藏了**。面板最多顯示三個代理分頁。點一下 **+** 按鈕（「選擇代理」），把 Antigravity 打開。
-  - **這台 Mac 沒有配對**。Antigravity 沒有 Nomo 指令，所以請在終端機裡確認：
+  還是沒有？在 Nomo 裡點一下 **+** 按鈕（「選擇代理」），把 Antigravity 打開。更多內容請看[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#troubleshooting)。
+</Accordion>
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-    ```
-  - **外掛程式資料夾被搬走了**。Antigravity 的 hooks 指向 `~/.nomo`。如果那個資料夾被搬走或刪除，請再執行一次 `bunx nomo-ai --antigravity`，然後重新啟動 Antigravity。
+<Accordion title="每個 Antigravity session 都出現兩次" icon="clone">
+  Nomo 的 Claude Code 外掛程式被匯入了 Antigravity。請在終端機裡執行下面這行，然後重新啟動 Antigravity：
 
-  session 要等你送出某個對話的第一個提示才會出現。完整的設定步驟在[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity)。
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Accordion>
+
+<Accordion title="Antigravity 的指令說 Nomo 找不到自己的檔案" icon="folder-open">
+  Nomo 的資料夾被搬走或刪除了。Antigravity 還是能用，但什麼都不會送到你的手機。請再執行一次安裝工具，然後重新啟動 Antigravity：
+
+  ```bash
+  bunx nomo-ai --antigravity
+  ```
 </Accordion>
 
 <Accordion title="取消了的 Antigravity 一輪還顯示「執行中」" icon="hourglass-half">
-  Antigravity 不會在你取消一輪時通知外掛程式，所以 Nomo 是從 Antigravity 自己的紀錄推斷出來的。幾秒後這一列就會變成 `完成`。
+  等幾秒 — Nomo 會自己發現，這一列就會變成 `完成`。如果手機上有卡片，它也會一起消失。
 </Accordion>
 
 <Accordion title="各列看起來過時或重複" icon="broom">
@@ -145,7 +157,7 @@ $nomo-status
   ```
 
   ```bash Antigravity icon="/images/providers/antigravity.png"
-  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  /nomo-reset
   ```
   </CodeGroup>
 
@@ -352,10 +364,26 @@ $nomo-status
     },
     {
       "@type": "Question",
-      "name": "偏偏只有 Antigravity 什麼都不顯示",
+      "name": "我的手機沒有顯示 Antigravity 的任何東西",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "有四件事要檢查。Antigravity 只在啟動時讀取 hooks，所以安裝之後，請結束並重新開啟應用程式，也重新啟動任何開著的 agy session。面板最多顯示三個代理分頁，所以點一下 + 按鈕（「選擇代理」），把 Antigravity 打開。在終端機裡執行 ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity，確認這台 Mac 已經配對。還有，如果 ~/.nomo 資料夾被搬走或刪除，請再執行一次 bunx nomo-ai --antigravity，然後重新啟動 Antigravity。"
+        "text": "重新啟動 Antigravity — 完全結束它，再重新打開。輸入 /nomo-status，選擇 Allow（允許），然後照著以 ⚠️ 或 ❌ 開頭的那一行做。接著送出一則訊息：session 要等你送出第一則訊息後才會出現。還是沒有？在 Nomo 裡點一下 + 按鈕（「選擇代理」），把 Antigravity 打開。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "每個 Antigravity session 都出現兩次",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo 的 Claude Code 外掛程式被匯入了 Antigravity。請在終端機裡執行 agy plugin uninstall nomo-cc，然後重新啟動 Antigravity。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Antigravity 的指令說 Nomo 找不到自己的檔案",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo 的資料夾被搬走或刪除了。Antigravity 還是能用，但什麼都不會送到你的手機。請再執行一次 bunx nomo-ai --antigravity，然後重新啟動 Antigravity。"
       }
     },
     {
@@ -363,7 +391,7 @@ $nomo-status
       "name": "取消了的 Antigravity 一輪還顯示「執行中」",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Antigravity 不會在你取消一輪時通知外掛程式，所以 Nomo 是從 Antigravity 自己的紀錄推斷出來的。幾秒後這一列就會變成「完成」。"
+        "text": "等幾秒 — Nomo 會自己發現，這一列就會變成「完成」。如果手機上有卡片，它也會一起消失。"
       }
     },
     {

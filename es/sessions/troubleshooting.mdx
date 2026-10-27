@@ -32,9 +32,14 @@ $nomo-status
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+/nomo-status
 ```
 </CodeGroup>
+
+En Antigravity, elige **Allow** (permitir) cuando pregunte si ejecuta un comando
+de Nomo. Muestra un resumen corto en palabras sencillas, y una línea por cada
+problema que dice qué hacer; escribe `/nomo-status verbose` para ver el informe
+completo que se describe abajo.
 
 Informa sobre el **ordenador**, no solo sobre tu sesión: vinculación, entrega,
 el enlace directo por red local, aprobaciones, y después el agente en el que
@@ -170,34 +175,38 @@ está en [Comandos](/es/sessions/commands#status).
   prompt.
 </Accordion>
 
-<Accordion title="Antigravity en concreto no muestra nada" icon="rocket">
-  Cuatro cosas que comprobar, en este orden:
+<Accordion title="Mi teléfono no muestra nada de Antigravity" icon="rocket">
+  1. Reinicia Antigravity: ciérralo del todo y vuelve a abrirlo.
+  2. Escribe `/nomo-status` y elige **Allow**.
+  3. Haz lo que dice la línea que empieza por ⚠️ o ❌.
+  4. Envía un mensaje. Una sesión solo aparece después de tu primer mensaje.
 
-  - **Antigravity no se reinició.** Antigravity solo lee sus hooks al arrancar,
-    así que después de instalar, cierra la app y vuelve a abrirla — y reinicia
-    cualquier sesión de `agy` abierta.
-  - **La pestaña Antigravity está oculta.** El panel muestra hasta tres
-    pestañas de agente. Toca el botón **+** (**Elegir agentes**) y activa
-    Antigravity.
-  - **El Mac no está vinculado.** Antigravity no tiene comandos de Nomo, así
-    que compruébalo desde una terminal:
+  ¿Sigue sin salir nada? En Nomo, toca el botón **+** (**Elegir agentes**) y
+  activa Antigravity. Más en [Usar Antigravity](/es/sessions/antigravity#troubleshooting).
+</Accordion>
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-    ```
-  - **La carpeta del plugin se movió.** Los hooks de Antigravity apuntan a
-    `~/.nomo`. Si esa carpeta se movió o se borró, vuelve a ejecutar
-    `bunx nomo-ai --antigravity` y después reinicia Antigravity.
+<Accordion title="Cada sesión de Antigravity sale dos veces" icon="clone">
+  El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta esto
+  en Terminal y después reinicia Antigravity:
 
-  Una sesión solo aparece cuando has enviado el primer prompt de una
-  conversación. La puesta en marcha completa está en [Usar
-  Antigravity](/es/sessions/antigravity).
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Accordion>
+
+<Accordion title="Un comando de Antigravity dice que Nomo no encuentra sus archivos" icon="folder-open">
+  La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero
+  nada llega a tu teléfono. Vuelve a ejecutar el instalador y después reinicia
+  Antigravity:
+
+  ```bash
+  bunx nomo-ai --antigravity
+  ```
 </Accordion>
 
 <Accordion title="Un turno cancelado de Antigravity sigue En ejecución" icon="hourglass-half">
-  Antigravity no avisa a los plugins cuando cancelas un turno, así que Nomo lo
-  deduce de los propios registros de Antigravity. La fila pasa a `Listo` unos
-  segundos después.
+  Espera unos segundos: Nomo se da cuenta solo y la fila pasa a `Listo`. Si
+  había una tarjeta en tu teléfono, también desaparece.
 </Accordion>
 
 <Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
@@ -222,7 +231,7 @@ está en [Comandos](/es/sessions/commands#status).
   ```
 
   ```bash Antigravity icon="/images/providers/antigravity.png"
-  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  /nomo-reset
   ```
   </CodeGroup>
 
@@ -509,10 +518,26 @@ que ejecutes ese comando allí.
     },
     {
       "@type": "Question",
-      "name": "Antigravity en concreto no muestra nada",
+      "name": "Mi teléfono no muestra nada de Antigravity",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cuatro cosas que comprobar. Antigravity solo lee sus hooks al arrancar, así que después de instalar, cierra la app y vuelve a abrirla, y reinicia cualquier sesión de agy abierta. El panel muestra hasta tres pestañas de agente, así que toca el botón + (Elegir agentes) y activa Antigravity. Comprueba que el Mac está vinculado ejecutando ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity en una terminal. Y si la carpeta ~/.nomo se movió o se borró, vuelve a ejecutar bunx nomo-ai --antigravity y reinicia Antigravity."
+        "text": "Reinicia Antigravity: ciérralo del todo y vuelve a abrirlo. Escribe /nomo-status, elige Allow y haz lo que dice la línea que empieza por ⚠️ o ❌. Después envía un mensaje: una sesión solo aparece después de tu primer mensaje. ¿Sigue sin salir nada? En Nomo, toca el botón + (Elegir agentes) y activa Antigravity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cada sesión de Antigravity sale dos veces",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta agy plugin uninstall nomo-cc en Terminal y después reinicia Antigravity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Un comando de Antigravity dice que Nomo no encuentra sus archivos",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero nada llega a tu teléfono. Vuelve a ejecutar bunx nomo-ai --antigravity y después reinicia Antigravity."
       }
     },
     {
@@ -520,7 +545,7 @@ que ejecutes ese comando allí.
       "name": "Un turno cancelado de Antigravity sigue En ejecución",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Antigravity no avisa a los plugins cuando cancelas un turno, así que Nomo lo deduce de los propios registros de Antigravity. La fila pasa a Listo unos segundos después."
+        "text": "Espera unos segundos: Nomo se da cuenta solo y la fila pasa a Listo. Si había una tarjeta en tu teléfono, también desaparece."
       }
     },
     {

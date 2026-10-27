@@ -1,116 +1,202 @@
 ---
-title: "Antigravity での利用"
-description: "Google Antigravity に Nomo プラグインをインストールしてペアリングし、そのセッションを iPhone から見守ります — シェルコマンドとファイルの書き込みは「許可」と「拒否」で回答できます。"
+title: "Antigravity のセッションを iPhone で見守り、承認する"
+sidebarTitle: "Antigravity での利用"
+description: "数ステップで Google Antigravity に Nomo をセットアップし、iPhone とペアリングして、セッションを iPhone から見守ります — コマンドの実行とファイルの変更には「許可」と「拒否」で回答できます。"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "Antigravity での利用"]
 ---
 
-Google Antigravity のセッションも、同じ一覧、同じ Dynamic Island、同じペアリングの上に表示されます — Antigravity デスクトップアプリでも、`agy` CLI でも同じです。Antigravity がシェルコマンドを実行したりファイルに書き込んだりしようとするとき、iPhone から「許可」または「拒否」で回答できます。
+Google Antigravity のセッションを、iPhone のロック画面と Dynamic Island で確認できます。Antigravity がコマンドを実行したりファイルを変更したりしようとすると、iPhone で「許可」か「拒否」を選べます。
+
+Antigravity デスクトップアプリでも、`agy` コマンドラインツールでも使えます。
 
 <Note>
-  セッションは Nomo Pro の機能で、これは Antigravity でもほかのエージェントでも変わりません。Antigravity のセッションには、iPhone 側に Nomo **2.3.5**、Mac 側にプラグイン **2.3.5** が必要です。
+  セッションは Nomo Pro の機能です。iPhone に Nomo **2.3.5** 以降、Mac にプラグイン **2.3.5** 以降が必要です。
 </Note>
 
 ## セットアップ {#set-it-up}
 
 <Steps>
-  <Step title="インストーラーを実行する">
-    Mac で実行します。
+  <Step title="ターミナルを開く">
+    Mac で**ターミナル**アプリを開きます。「アプリケーション」＞「ユーティリティ」の中にあります。
+  </Step>
 
-    <CodeGroup>
-    ```bash bunx icon="terminal"
+  <Step title="インストーラーを実行する">
+    次の行をコピーしてターミナルに貼り付け、Return キーを押します。
+
+    ```bash
     bunx nomo-ai --antigravity
     ```
 
-    ```bash npx icon="terminal"
-    npx nomo-ai --antigravity
+    `bunx` がない場合は、代わりに `npx nomo-ai --antigravity` を使ってください。
+
+    次のように表示されます。
+
     ```
-    </CodeGroup>
-
-    このインストール 1 回で、デスクトップアプリと `agy` の両方がカバーされます。行うことは 2 つです。
-
-    - プラグインを `~/.nomo` にクローンします。
-    - `~/.gemini/config/hooks.json` に `nomo` という名前のブロックを 1 つ追加します。そのファイルのほかのブロックには手を付けません。
+    ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
+    ```
   </Step>
 
-  <Step title="Antigravity を再起動する — 必須">
+  <Step title="Antigravity を再起動する">
+    Antigravity を完全に終了してから、もう一度開きます。`agy` を使っている場合は、それも閉じてもう一度起動してください。
+
     <Warning>
-      Antigravity がフックを読み込むのは起動時だけです。Antigravity アプリを終了して開き直し、開いている `agy` のセッションがあればそれも再起動してください。そうするまで、プラグインはインストール済みでも何もしません。
+      この手順は飛ばさないでください。Antigravity を再起動するまで、Nomo は動きません。
     </Warning>
   </Step>
 
-  <Step title="ペアリングする">
-    Antigravity には Nomo のコマンドがないため、ターミナルからペアリングします。
+  <Step title="/nomo-pair と入力する">
+    Antigravity のチャットで次のように入力して、送信します。
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
     ```
-
-    QR コード付きのペアリングページが開くので、Nomo アプリでスキャンしてください。ブラウザを開けない環境では、`--show-code` を付けると代わりに入力できる短いコードが得られます。どちらの手順も[ペアリング](/ja/setup/pairing)で順を追って説明しています。
-
-    ペアリングは、1 台の Mac 上のエージェントで共有されます。Claude Code、Codex、OpenCode、Cursor のいずれかですでにペアリング済みのコンピュータは、Antigravity のためにもう一度ペアリングする必要はありません — インストールするだけで十分で、この手順は飛ばせます。
+    /nomo-pair
+    ```
   </Step>
 
-  <Step title="Antigravity タブを表示する">
-    アプリでそのコンピュータを開きます。Antigravity のセッションは、セッションのドロワーの **Antigravity** タブの下に並びます。
+  <Step title="「Allow」を選ぶ">
+    Antigravity は Nomo のコマンドを実行する前に確認してきます。「Allow」を選んでください。
 
-    ドロワーに表示されるエージェントのタブは最大 3 つです。Antigravity がその中にない場合は、**+** ボタン（「エージェントを選択」）をタップしてオンにしてください。
+    ブラウザで QR コードのページが開きます。
+  </Step>
+
+  <Step title="QR コードをスキャンする">
+    iPhone で Nomo を開き、**セッション** → **コンピュータをペアリング**の順に進んで、QR コードをスキャンします。
+
+    Antigravity に「Done! This computer is connected to your phone.」と表示されます。
+  </Step>
+
+  <Step title="Antigravity でメッセージを送る">
+    チャットを始めて、何か送信します。
+
+    Nomo で、そのコンピュータの **Antigravity** タブにセッションが表示されます。Antigravity タブがない場合は、**+** ボタン（「エージェントを選択」）をタップして Antigravity をオンにしてください。
   </Step>
 </Steps>
 
+<Tip>
+  **Claude Code、Codex、OpenCode、Cursor ですでにペアリング済みですか？** ペアリングは 1 回でコンピュータ全体に有効です。手順 4〜6 は飛ばしてください — その場合、インストーラーには「type /nomo-status to check」と表示されます。
+</Tip>
+
+<Tip>
+  **このコンピュータにブラウザがない場合は、** 代わりに `/nomo-pair code` と入力します。Antigravity に短いコードが表示されます。iPhone で Nomo を開き、**セッション** → **コンピュータをペアリング** → **コードを入力**の順に進んで、コードを入力してください。コードの有効期限は 10 分です。
+</Tip>
+
+<Warning>
+  **Nomo の Claude Code プラグインを Antigravity に読み込まないでください**（たとえば `agy plugin import claude` で）。どのセッションも 2 つずつ表示されてしまいます。読み込んでしまった場合は、インストーラーが次のように警告します。
+
+  ```
+  ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+  ```
+
+  直すには、ターミナルで次を実行してから、Antigravity を再起動してください。
+
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Warning>
+
 ## コマンド {#commands}
 
-Antigravity には Nomo 用のコマンドがありません。代わりにターミナルで次を実行するか、同じ Mac のほかのエージェントで対応するコマンドを使ってください — ペアリングをはじめ、ここにあるものはすべてコンピュータ全体で共通です。
+Antigravity のチャットで入力します。毎回 Antigravity が先に確認してくるので、「Allow」を選んでください。
 
-| | |
+| 入力するもの | すること |
 | --- | --- |
-| ペアリング | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
-| 状態の確認 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
-| 停止したセッションの消去 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
-| ペアリングの解除 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+| `/nomo-pair` | このコンピュータを iPhone とペアリングする |
+| `/nomo-pair code` | 同じことを、QR コードの代わりに短いコードで行う |
+| `/nomo-status` | すべて正常に動いているか確認する |
+| `/nomo-status verbose` | 同じことを、詳しい情報つきで行う |
+| `/nomo-approvals off` | iPhone への確認をやめる — 代わりにコンピュータ上の Antigravity で確認されます |
+| `/nomo-approvals on` | iPhone への確認を再開する |
+| `/nomo-approvals status` | iPhone での承認がオンか一時停止中かを確認する |
+| `/nomo-reset` | 止まったままのセッションを iPhone から消去する（ペアリングはそのまま） |
+| `/nomo-unpair` | このコンピュータと iPhone のペアリングを解除する |
 
-Antigravity に approvals コマンドはありません。このコンピュータでリモート承認を一時停止するには、Claude Code の `/nomo-cc:approvals off`（または Codex、OpenCode の同等のコマンド）を使ってください — このスイッチはすべてのエージェントで共有されています。各コマンドの出力内容は[コマンド](/ja/sessions/commands)にあります。
+問題がなければ、`/nomo-status` には次のような 1 行が表示されます。
+
+```
+✅ Connected to your phone as “MacBook Pro” · Phone approvals: on · Last activity: 2 min ago
+```
+
+何か問題があると、どうすればよいかを示す行が追加されます。
+
+ペアリングと承認のスイッチは、このコンピュータのすべてのコーディングアプリで共有されます。ここで承認をオフにすると、Claude Code と Codex でもオフになります。
 
 ## 表示されるもの {#what-you-see}
 
-- セッションが現れるのは、**最初のプロンプト**を送ったときです — 会話を開いただけでは現れません。
-- エージェントが動いている間は作業中、ターンが終わると完了と表示されます。
-- タイトルは、Antigravity がその会話に付ける名前です。Antigravity が名前を付けるのは最初のターンが終わってからなので、それまでは最初のプロンプトが行の名前になります。
-- モデルのバッジには、Antigravity が報告するモデルが表示されます。
-- [Dynamic Island](/ja/sessions/island) は、そこに表示すると選んだセッションについて、ほかのエージェントと同じように動作します。
+- セッションが現れるのは、**最初のメッセージ**を送ったときです。チャットを開いただけでは現れません。
+- Antigravity が作業している間は `実行中`、終わると `完了` と表示されます。
+- 名前は、Antigravity 自身が付けるチャットのタイトルです。タイトルが付くまでは、最初のメッセージ、またはフォルダ名が使われます。
+- バッジには、Antigravity が使っているモデルが表示されます。
+- [Dynamic Island](/ja/sessions/island) は、ほかのエージェントと同じように動作します。
 
 ## iPhone からの回答 {#answering-from-your-phone}
 
-iPhone に届くのは、シェルコマンドと、ファイルの書き込みや編集です。読み取り、検索、そのほかのツールは届きません — Antigravity はそれらを Nomo に確認せずに実行します。
+Antigravity が**コマンドを実行**したり、**ファイルを作成・変更**したりしようとすると、iPhone で確認されます。ファイルの読み取りや検索が iPhone に届くことはありません。
 
-行をタッチして押さえたままにするか、Dynamic Island を使うと、次の選択肢が表示されます。
+セッションをタッチして押さえたままにするか、Dynamic Island を使って、次から選びます。
 
-- **「許可」** — コマンドが実行されるか、ファイルが書き込まれます。
-- **「拒否」** — Antigravity はその操作を飛ばして、実行せずに続行します。
-- **「メモを付けて拒否…」** — 拒否したうえで、入力した内容を理由としてエージェントに伝えます。
+- **「許可」** — Antigravity はそのまま進めます。
+- **「拒否」** — Antigravity はその操作を飛ばして続けます。
+- **「メモを付けて拒否…」** — 飛ばしたうえで、その理由をあなたの言葉で Antigravity に伝えます。
 
-Antigravity にはまだ「常に許可」がありません。それ以外は [iPhone からの回答](/ja/sessions/approvals)と同じように動作します。
+詳しくは [iPhone からの回答](/ja/sessions/approvals)をご覧ください。
 
-Antigravity で設定した独自のルールも有効なままです。
+知っておくと便利なこと:
 
-- **許可ルールがあれば iPhone は使われません**。`agy` CLI では、`~/.gemini/antigravity-cli/settings.json` の許可ルールですでにカバーされているコマンドは、iPhone に確認せずに実行されます。
-- **拒否ルールが常に優先されます**。拒否ルールが iPhone から覆されることはありません。
-- **デスクトップアプリではすべてが確認されます**。デスクトップアプリの権限プリセット — Turbo を含む — はプラグインから読み取れないため、デスクトップアプリではすべてのシェルコマンドとファイルの書き込みが iPhone に届きます。
-
-カードが iPhone に表示されている間、Mac 上の Antigravity の許可リクエストはあなたの回答を待ちます。iPhone やネットワークに接続できない場合や、リモート承認が[一時停止中](/ja/sessions/approvals#pausing-it)の場合は、Antigravity は Nomo がないときとまったく同じように、Mac で通常の許可リクエストを表示します。
+- **Antigravity で設定したルールが優先されます。** ルールでブロックしているものはブロックされたままで、iPhone で「許可」をタップしても覆ることはありません。`agy` では、ルールですでに許可しているコマンドは iPhone に確認せずに実行されます。
+- **デスクトップアプリでは、すべてが iPhone に届きます。** Nomo はデスクトップアプリの権限設定を読み取れないため、すべてのコマンドとファイルの変更が iPhone に届きます。
+- **iPhone がなくても大丈夫です。** iPhone に接続できないときや、承認を[一時停止中](/ja/sessions/approvals#pausing-it)のときは、Nomo がないときと同じように、Antigravity がコンピュータ上で確認します。
+- **コンピュータでチャットを止めた場合は、** iPhone のカードは自動で消えます。
 
 ## 中断 {#interrupt}
 
-[「中断」](/ja/sessions/list#interrupt-a-running-session)は、`実行中` の Antigravity のセッションで、Claude Code と同じ条件で使えます。緑色の**⚡ ローカル**チップと、プラグイン **2.3.5** です。ターンは現在のステップ — すでに実行中のモデル呼び出しやツール — が終わったところで止まり、行は `完了` になります。会話は開いたまま残るので、続けるには新しいプロンプトを入力してください。
+`実行中` の Antigravity のセッションで[「中断」](/ja/sessions/list#interrupt-a-running-session)をタップすると、止められます。緑色の**⚡ ローカル**チップが必要です。Antigravity はいまのステップを終えてから止まり、セッションは `完了` になります。チャットは開いたままなので、続けるには新しいメッセージを送ってください。
 
 ## このバージョンでの制限 {#what-this-version-doesnt-do}
 
-- **質問と計画は非対応**。Antigravity の質問と計画の確認は iPhone に表示されません。
-- **「Macで開く」は非対応**。Antigravity のセッションでは、このボタンは使えません。
-- **「常に許可」は非対応**。どのコマンドも、その場限りの「許可」か「拒否」です。
+- **質問と計画は非対応。** Antigravity の質問と計画の確認は iPhone に表示されません。
+- **「Macで開く」は非対応。** Antigravity のセッションでは、このボタンは使えません。
+- **「常に許可」は非対応。** どの回答も、その場限りの「許可」か「拒否」です。
+
+## うまくいかないとき {#troubleshooting}
+
+<AccordionGroup>
+  <Accordion title="iPhone に何も表示されない">
+    1. Antigravity を再起動します。
+    2. `/nomo-status` と入力し、「Allow」を選びます。
+    3. ⚠️ または ❌ で始まる行の指示に従います。
+
+    それでも表示されない場合は、Nomo で **+** ボタン（「エージェントを選択」）をタップして、Antigravity をオンにしてください。
+  </Accordion>
+
+  <Accordion title="どのセッションも 2 つずつ表示される">
+    Nomo の Claude Code プラグインが Antigravity に読み込まれています。ターミナルで次を実行してから、Antigravity を再起動してください。
+
+    ```bash
+    agy plugin uninstall nomo-cc
+    ```
+  </Accordion>
+
+  <Accordion title="Nomo のコマンドでファイルが見つからないと表示される">
+    Nomo のフォルダが移動または削除されています。Antigravity はそのまま使えますが、iPhone には何も届きません。インストーラーをもう一度実行してから、Antigravity を再起動してください。
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+  </Accordion>
+
+  <Accordion title="iPhone で承認を求められなくなった">
+    `/nomo-approvals on` と入力してください。すでにオンだった場合は、[設定](/ja/sessions/settings#remote-approvals)の「iPhoneで回答」を確認してください。
+  </Accordion>
+
+  <Accordion title="セッションが「実行中」のまま止まっている">
+    数秒待ってください — 止まったチャットには Nomo が自動で気づきます。それでも変わらない場合は、`/nomo-reset` と入力してください。
+  </Accordion>
+</AccordionGroup>
+
+ほかの対処法は[トラブルシューティング](/ja/sessions/troubleshooting)にあります。
 
 ## 更新 {#updating}
 
-同じコマンドをもう一度実行し、そのあと Antigravity を再起動します。
+インストーラーをもう一度実行してから、Antigravity を再起動します。
 
 ```bash
 bunx nomo-ai --antigravity
@@ -118,10 +204,55 @@ bunx nomo-ai --antigravity
 
 ## アンインストール {#uninstalling}
 
-```bash
-node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
-```
+<Steps>
+  <Step title="ターミナルで次を実行する">
+    ```bash
+    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    ```
 
-そのあと Antigravity を再起動します。アンインストールで削除されるのは `~/.gemini/config/hooks.json` の `nomo` ブロックだけで、ペアリングはそのまま残ります — このコンピュータのほかのエージェントと共有されているためです。コンピュータのペアリングも解除する場合は、アンインストールの前に上記のペアリング解除コマンドを実行してください。
+    次のように表示されます。
 
-うまく表示されないときは、まず[トラブルシューティング](/ja/sessions/troubleshooting)の Antigravity の項目をご覧ください。
+    ```
+    ✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
+    ```
+  </Step>
+
+  <Step title="Antigravity を再起動する">
+    Antigravity を終了して、もう一度開きます。
+  </Step>
+</Steps>
+
+このコンピュータと iPhone のペアリングも解除したい場合は、アンインストールする**前に** Antigravity で `/nomo-unpair` と入力してください。
+
+## 上級者向け {#advanced}
+
+<AccordionGroup>
+  <Accordion title="コマンドを使わずに実行する" icon="terminal">
+    同じコマンドを、Antigravity のチャットではなくターミナルから実行できます。
+
+    | | |
+    | --- | --- |
+    | ペアリング | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+    | コードを入力してペアリング | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+    | 状態の確認 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+    | 承認の一時停止 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+    | 承認の再開 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+    | 止まったセッションの消去 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+    | ペアリングの解除 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+    インストーラーに `--verbose` を付けると、何を変更するかを確認できます。
+  </Accordion>
+
+  <Accordion title="しくみ" icon="gear">
+    - **インストーラーが変更するもの。** プラグインを `~/.nomo` にクローンし、`~/.gemini/config/hooks.json` に `nomo` という名前のブロックを 1 つ追加し（ほかのブロックには手を付けません）、5 つの `/nomo-*` コマンドを備えた小さな Antigravity プラグイン `nomo` を `~/.gemini/config/plugins/nomo` にコピーします。`hooks.json` が有効な JSON でない場合や、そこにある `nomo` プラグインのフォルダが自分のものでない場合は、何も変更せずに中止します。アンインストールで削除されるのは、そのブロックとそのフォルダだけです。
+    - **フック。** `SessionStart`、`PreInvocation`、`PostInvocation`、`Stop`、`PostToolUse` が状態を報告します。どれもすぐに `{}` を返して処理をバックグラウンドで行うので、Antigravity が Nomo を待つことはありません。行が作られるのは、`SessionStart` ではなく最初の `PreInvocation` のときです。
+    - **承認。** `PreToolUse` フックは、シェルコマンドとファイルの書き込み・編集（`run_command`、`write_file`、`write_to_file`、`edit_file`、`replace_file_content`、`multi_replace_file_content`）にだけ一致し、タイムアウトは 24 時間です。「許可」は `auto_approve`、「拒否」は `deny` を返し、メモがその理由になります。それ以外の結果はすべて `allow` を返し、判断を Antigravity 自身の設定と許可リクエストに任せます。`agy` の `~/.gemini/antigravity-cli/settings.json` の `deny` ルールに一致しうるものは iPhone に届きません。単純な前方一致の `allow` ルールでカバーされ、どの `ask` ルールにも当てはまらない呼び出しは、そのまま通ります。
+    - **フェイルセーフ。** 各フックのコマンドは、まずスクリプトがまだ存在するかを確認します。`~/.nomo` が移動または削除されていれば自分で応答するので、何かがブロックされることはありません。承認フックでエラーが起きた場合も、Antigravity 自身の許可リクエストに戻ります。
+    - **中断。** iPhone が 1 回限りのフラグを立て、次の `PostInvocation` でターンが終わります。フラグが立っている間に iPhone を待っているシェルコマンドやファイルの書き込みは、「Stopped from phone」として拒否されます。使われなかったフラグは 10 分後に破棄されます。Nomo が `agy` のプロセスにシグナルを送ることはありません。
+    - **イベントなしで終わるターン。** ターンをキャンセルしたときや、実行が終了したときは、Nomo がフックを実行したプロセスと Antigravity 自身の会話インデックスを監視して、行を完了にします。30 分間動きのないセッションは、最後の手段として消去されます。カードが iPhone に表示されている間にキャンセルすると、カードは取り下げられます。
+    - **タイトル。** Antigravity の `conversation_summaries.db` から、システムの `sqlite3` で読み取り専用で読み取ります。それがまだない間は、会話のトランスクリプトの最初の行、次にワークスペースのフォルダ名を使います。
+    - **コマンド。** `/nomo-*` コマンドが実行するのは、Nomo 自身のローカルコマンド — ペアリング、状態確認、承認のスイッチ、リセット、ペアリング解除 — だけで、どれも Antigravity 自身のコマンド実行の確認を経由します。ペアリングのリンクや QR のシークレットを表示することはありません。
+
+    詳しくは、プラグインの [README](https://github.com/KarrixLee/nomo#install--antigravity) をご覧ください。
+  </Accordion>
+</AccordionGroup>

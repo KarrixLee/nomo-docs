@@ -267,6 +267,8 @@ comando status te avisa si son más antiguos.
 
     <Steps>
       <Step title="Ejecuta el instalador">
+        Pega esto en Terminal y pulsa Retorno:
+
         <CodeGroup>
         ```bash bunx icon="terminal"
         bunx nomo-ai --antigravity
@@ -277,31 +279,35 @@ comando status te avisa si son más antiguos.
         ```
         </CodeGroup>
 
-        Hace dos cosas:
+        Deberías ver:
 
-        - Clona el plugin en `~/.nomo`.
-        - Añade un bloque llamado `nomo` a `~/.gemini/config/hooks.json`. El
-          resto de bloques de ese archivo quedan intactos.
+        ```
+        ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
+        ```
       </Step>
 
       <Step title="Reinicia Antigravity — obligatorio">
         <Warning>
-          Antigravity solo lee sus hooks al arrancar. Cierra la app de
-          Antigravity y vuelve a abrirla, y reinicia cualquier sesión de `agy`
-          que tengas abierta. Hasta que lo hagas, el plugin está instalado sin
-          hacer nada.
+          Cierra Antigravity del todo y vuelve a abrirlo. Si usas `agy`,
+          reinícialo también. Nomo no se activa hasta que lo hagas.
         </Warning>
       </Step>
 
-      <Step title="Comprueba">
-        Antigravity no tiene comandos de Nomo, así que compruébalo desde una
-        terminal:
+      <Step title="Escribe /nomo-pair">
+        En un chat de Antigravity, escribe `/nomo-pair` y envíalo. Cuando
+        Antigravity pregunte si ejecuta un comando de Nomo, elige **Allow**
+        (permitir). Después escanea el código QR con Nomo en tu iPhone.
 
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-        ```
+        ¿Ya vinculaste el ordenador desde otro agente? Escribe `/nomo-status`
+        para comprobarlo.
       </Step>
     </Steps>
+
+    <Warning>
+      No importes en Antigravity el plugin de Nomo para Claude Code: cada sesión
+      saldría dos veces. Si lo hiciste, ejecuta `agy plugin uninstall nomo-cc` y
+      reinicia Antigravity.
+    </Warning>
 
     Para quitarlo más adelante:
 
@@ -309,7 +315,7 @@ comando status te avisa si son más antiguos.
     node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
     ```
 
-    Solo quita el bloque `nomo`. Después reinicia Antigravity.
+    Después reinicia Antigravity.
   </Tab>
 </Tabs>
 
@@ -344,9 +350,7 @@ Para scripts y CI:
 
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
 agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
-`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex. Antigravity no tiene
-comandos: vincula desde una terminal, como muestra [Usar
-Antigravity](/es/sessions/antigravity#set-it-up).
+`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex.
 
 ## Actualizaciones {#updating}
 

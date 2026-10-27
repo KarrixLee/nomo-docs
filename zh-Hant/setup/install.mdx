@@ -225,6 +225,8 @@ icon: "puzzle-piece"
 
     <Steps>
       <Step title="執行安裝工具">
+        把這行貼到終端機裡，然後按下 Return：
+
         <CodeGroup>
         ```bash bunx icon="terminal"
         bunx nomo-ai --antigravity
@@ -235,26 +237,29 @@ icon: "puzzle-piece"
         ```
         </CodeGroup>
 
-        它會做兩件事：
+        你應該會看到：
 
-        - 把外掛程式 clone 到 `~/.nomo`。
-        - 在 `~/.gemini/config/hooks.json` 裡加入一個名為 `nomo` 的區塊。那個檔案裡的其他區塊都原封不動。
+        ```
+        ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
+        ```
       </Step>
 
       <Step title="重新啟動 Antigravity — 必要步驟">
         <Warning>
-          Antigravity 只在啟動時讀取 hooks。請結束並重新開啟 Antigravity 應用程式，也重新啟動你開著的任何 `agy` session。在你這麼做之前，這個外掛程式雖然裝好了卻什麼也沒做。
+          完全結束 Antigravity，再重新打開它。如果你有在用 `agy`，也把它重新啟動。在你這麼做之前，Nomo 都不會運作。
         </Warning>
       </Step>
 
-      <Step title="確認">
-        Antigravity 沒有 Nomo 指令，所以請在終端機裡確認：
+      <Step title="輸入 /nomo-pair">
+        在 Antigravity 的對話裡輸入 `/nomo-pair` 並送出。當 Antigravity 問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。然後用 iPhone 上的 Nomo 掃描 QR code。
 
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-        ```
+        已經從其他代理配對過了？改輸入 `/nomo-status` 確認就好。
       </Step>
     </Steps>
+
+    <Warning>
+      不要把 Nomo 的 Claude Code 外掛程式匯入 Antigravity — 否則每個 session 都會出現兩次。如果你已經這麼做了，請執行 `agy plugin uninstall nomo-cc`，然後重新啟動 Antigravity。
+    </Warning>
 
     之後要移除它：
 
@@ -262,7 +267,7 @@ icon: "puzzle-piece"
     node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
     ```
 
-    它只會移除 `nomo` 區塊。然後重新啟動 Antigravity。
+    然後重新啟動 Antigravity。
   </Tab>
 </Tabs>
 
@@ -291,7 +296,7 @@ npx nomo-ai
 | `-y`、`--yes` | 不出選擇畫面，找到多少裝多少 |
 | `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
 
-它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。Antigravity 沒有指令 — 請在終端機裡配對，做法寫在[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#set-it-up)裡。
+它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。
 
 ## 更新 {#updating}
 

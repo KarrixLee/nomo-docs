@@ -37,10 +37,11 @@ icon: "qrcode-read"
         ```
 
         ```bash Antigravity icon="/images/providers/antigravity.png"
-        # in a terminal
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        /nomo-pair
         ```
         </CodeGroup>
+
+        在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。
 
         瀏覽器會開啟一個套用主題樣式的配對頁面，上面有一個 QR code。
 
@@ -79,7 +80,7 @@ icon: "qrcode-read"
 
     <Steps>
       <Step title="索取代碼">
-        把 `code` 當成參數傳入（Antigravity 的終端機指令則用 `--show-code`）：
+        把 `code` 當成參數傳入：
 
         <CodeGroup>
         ```bash Claude Code icon="/images/claude-code.svg"
@@ -99,8 +100,7 @@ icon: "qrcode-read"
         ```
 
         ```bash Antigravity icon="/images/providers/antigravity.png"
-        # in a terminal
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+        /nomo-pair code
         ```
         </CodeGroup>
 

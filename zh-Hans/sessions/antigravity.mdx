@@ -1,116 +1,202 @@
 ---
-title: "搭配 Antigravity 使用"
-description: "在 Google Antigravity 上安装 Nomo 插件、完成配对，然后在手机上看着它的会话——shell 命令和文件写入可以直接允许或拒绝。"
+title: "在 iPhone 上查看并批准 Antigravity 会话"
+sidebarTitle: "搭配 Antigravity 使用"
+description: "几步就能为 Google Antigravity 配置好 Nomo、配对手机，然后在 iPhone 上跟进你的会话——命令和文件改动都能直接允许或拒绝。"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "搭配 Antigravity 使用"]
 ---
 
-Google Antigravity 的会话出现在同一个列表里、同一个灵动岛上，走同一份配对——无论来自 Antigravity 桌面应用，还是来自 `agy` CLI。Antigravity 想运行 shell 命令或写入文件时，你可以在手机上**允许**或**拒绝**。
+在 iPhone 上看你的 Google Antigravity 会话——锁定屏幕上、灵动岛里都能看到。Antigravity 想运行命令或改动文件时，手机会问你要**允许**还是**拒绝**。
+
+Antigravity 桌面应用和 `agy` 命令行工具都支持。
 
 <Note>
-  会话功能属于 Nomo Pro，Antigravity 和其他每个智能体都一样。Antigravity 会话需要你手机上的 Nomo **2.3.5** 和 Mac 上的插件 **2.3.5**。
+  会话功能属于 Nomo Pro。你需要手机上的 Nomo **2.3.5** 或更高版本，以及 Mac 上的插件 **2.3.5** 或更高版本。
 </Note>
 
 ## 配置步骤 {#set-it-up}
 
 <Steps>
-  <Step title="运行安装工具">
-    在你的 Mac 上：
+  <Step title="打开终端">
+    在 Mac 上打开**终端** App。它在**应用程序 → 实用工具**里。
+  </Step>
 
-    <CodeGroup>
-    ```bash bunx icon="terminal"
+  <Step title="运行安装工具">
+    复制下面这一行，粘贴到终端里，然后按回车：
+
+    ```bash
     bunx nomo-ai --antigravity
     ```
 
-    ```bash npx icon="terminal"
-    npx nomo-ai --antigravity
+    没有 `bunx`？改用 `npx nomo-ai --antigravity`。
+
+    你应该会看到：
+
     ```
-    </CodeGroup>
-
-    一次安装同时覆盖桌面应用和 `agy`。它做两件事：
-
-    - 把插件克隆到 `~/.nomo`。
-    - 在 `~/.gemini/config/hooks.json` 里加入一个名为 `nomo` 的区块。这个文件里的其他区块原样不动。
+    ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
+    ```
   </Step>
 
-  <Step title="重启 Antigravity——必做">
+  <Step title="重启 Antigravity">
+    完全退出 Antigravity，再重新打开。如果你用 `agy`，也把它关掉再重新启动。
+
     <Warning>
-      Antigravity 只在启动时读取 hook。退出并重新打开 Antigravity 应用，并重启你开着的每一个 `agy` 会话。在你这样做之前，插件虽已安装却什么都不做。
+      别跳过这一步。Antigravity 重启之前，Nomo 不会生效。
     </Warning>
   </Step>
 
-  <Step title="配对">
-    Antigravity 没有 Nomo 命令，所以要在终端里配对：
+  <Step title="输入 /nomo-pair">
+    在 Antigravity 的对话里输入下面这条并发送：
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
     ```
-
-    它会打开带二维码的配对页面——用 Nomo App 扫一下。打不开浏览器的地方，加上 `--show-code`，会改为给你一段可以手输的短码。两种方式的完整流程都在[配对](/zh-Hans/setup/pairing)里。
-
-    同一台 Mac 上的各个智能体共用配对。一台已经为 Claude Code、Codex、OpenCode 或 Cursor 配对过的电脑，不需要为 Antigravity 再配对一次——安装就够了，这一步可以跳过。
+    /nomo-pair
+    ```
   </Step>
 
-  <Step title="显示 Antigravity 标签页">
-    在 App 里打开那台电脑。Antigravity 的会话在它会话详情页的 **Antigravity** 标签页下面。
+  <Step title="选择 Allow">
+    Antigravity 运行 Nomo 命令前会先问你。选择 **Allow**（允许）。
 
-    详情页最多显示三个智能体标签页。如果 Antigravity 不在其中，轻点 **+** 按钮（**选择智能体**），把它打开。
+    你应该会看到浏览器里打开一个带二维码的页面。
+  </Step>
+
+  <Step title="扫描二维码">
+    在 iPhone 上打开 Nomo → **会话** → **配对电脑**，扫描这个二维码。
+
+    你应该会在 Antigravity 里看到：“Done! This computer is connected to your phone.”（完成！这台电脑已连接到你的手机。）
+  </Step>
+
+  <Step title="在 Antigravity 里发一条消息">
+    开始一个对话，随便发点什么。
+
+    你应该会看到这个会话出现在 Nomo 里，在你这台电脑的 **Antigravity** 标签页下。没有 Antigravity 标签页？轻点 **+** 按钮（**选择智能体**），把 Antigravity 打开。
   </Step>
 </Steps>
 
+<Tip>
+  **已经在 Claude Code、Codex、OpenCode 或 Cursor 里配对过？**一次配对覆盖整台电脑。跳过第 4–6 步——安装工具会改为提示你“type /nomo-status to check”（输入 /nomo-status 检查一下）。
+</Tip>
+
+<Tip>
+  **这台电脑上没有浏览器？**改为输入 `/nomo-pair code`。Antigravity 会显示一段短码。在 iPhone 上打开 Nomo → **会话** → **配对电脑** → **输入代码**，把它输进去。这段代码 10 分钟后失效。
+</Tip>
+
+<Warning>
+  **不要把 Nomo 的 Claude Code 插件导入 Antigravity**（比如用 `agy plugin import claude`）。否则每个会话都会出现两次。如果你已经导入了，安装工具会提醒你：
+
+  ```
+  ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+  ```
+
+  要修复，在终端里运行下面这条，然后重启 Antigravity：
+
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Warning>
+
 ## 命令 {#commands}
 
-Antigravity 没有给 Nomo 用的斜杠命令。请改在终端里运行下面这些，或者用同一台 Mac 上其他任一智能体里对应的命令——配对和这里的其他一切都是整台电脑共用的：
+在 Antigravity 的对话里输入这些。每次 Antigravity 都会先问你——选择 **Allow**。
 
-| | |
+| 输入 | 作用 |
 | --- | --- |
-| 配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
-| 检查健康状况 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
-| 清理卡住的会话 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
-| 解除配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+| `/nomo-pair` | 把这台电脑连接到你的手机 |
+| `/nomo-pair code` | 同上，但改用一段短码代替二维码 |
+| `/nomo-status` | 检查一切是否正常 |
+| `/nomo-status verbose` | 同上，显示全部细节 |
+| `/nomo-approvals off` | 不再问手机——改由 Antigravity 在电脑上问你 |
+| `/nomo-approvals on` | 重新问手机 |
+| `/nomo-approvals status` | 查看手机审批是开着还是已暂停 |
+| `/nomo-reset` | 清掉手机上卡住的会话，连接保持不变 |
+| `/nomo-unpair` | 断开这台电脑和手机的连接 |
 
-Antigravity 里没有 approvals 命令。要暂停这台电脑的远程审批，请在 Claude Code 里用 `/nomo-cc:approvals off`（或 Codex、OpenCode 里对应的命令）——这个开关是所有智能体共用的。每条命令会输出什么，见[命令](/zh-Hans/sessions/commands)。
+一切正常时，`/nomo-status` 只显示一行，像这样：
+
+```
+✅ Connected to your phone as “MacBook Pro” · Phone approvals: on · Last activity: 2 min ago
+```
+
+如果有问题，它会多加一行，告诉你该怎么做。
+
+连接和审批开关由这台电脑上的所有编程工具共用。在这里关掉审批，Claude Code 和 Codex 的审批也会一起关掉。
 
 ## 会显示的内容 {#what-you-see}
 
-- 会话在你发出**第一条提示**时出现——只是打开一个对话并不会出现。
-- 智能体运行时它显示为运行中，这一轮结束时显示为完成。
-- 标题是 Antigravity 自己给这个对话起的名称。Antigravity 要等第一轮结束才会起名，在那之前，这一行以你的第一条提示命名。
-- 模型徽标显示的是 Antigravity 报告的模型。
-- [灵动岛](/zh-Hans/sessions/island)和其他智能体一样可用，显示你选择放上去的那些会话。
+- 会话在你发出**第一条消息**时出现——只是打开一个对话并不会出现。
+- Antigravity 工作时显示**运行中**，结束后显示**完成**。
+- 名称是 Antigravity 自己给这个对话起的标题。在它起好之前，会用你的第一条消息，或者文件夹名称。
+- 徽标显示 Antigravity 正在使用的模型。
+- [灵动岛](/zh-Hans/sessions/island)和其他智能体一样可用。
 
 ## 在手机上回答 {#answering-from-your-phone}
 
-shell 命令以及文件的写入或编辑会送到你的手机。读取、搜索和其他所有工具永远不会——Antigravity 直接运行它们，不会询问 Nomo。
+Antigravity 想**运行命令**或**创建、改动文件**时，手机会问你。读取和搜索文件永远不会送到手机。
 
-按住那一行会话，或者用灵动岛，你会看到：
+按住那一行会话，或者用灵动岛，然后选择：
 
-- **允许**——命令执行，或者文件被写入。
-- **拒绝**——Antigravity 跳过它，不做这一步继续往下。
-- **拒绝并附注…**——拒绝，并把你输入的内容作为理由交给智能体。
+- **允许**——Antigravity 继续执行。
+- **拒绝**——Antigravity 跳过这一步，接着往下做。
+- **拒绝并附注…**——跳过这一步，并用你自己的话告诉 Antigravity 原因。
 
-Antigravity 暂时没有**始终允许**。其余部分和[在手机上回答](/zh-Hans/sessions/approvals)里一样。
+更多内容见[在手机上回答](/zh-Hans/sessions/approvals)。
 
-你自己的 Antigravity 规则依然有效：
+小提示：
 
-- **允许规则会跳过手机**。在 `agy` CLI 里，已被 `~/.gemini/antigravity-cli/settings.json` 中某条允许规则覆盖的命令会直接运行，不会询问你的手机。
-- **拒绝规则永远优先**。拒绝规则绝不会被手机上的操作推翻。
-- **桌面应用每样都会问**。它的权限预设——包括 Turbo——插件读不到，所以在桌面应用里，每一条 shell 命令和每一次文件写入都会送到你的手机。
-
-卡片在你手机上时，Mac 上 Antigravity 自己的请求会等你的答复。如果手机或网络连不上，或者远程审批已[暂停](/zh-Hans/sessions/approvals#pausing-it)，Antigravity 会在 Mac 上显示它平常的请求，和没有 Nomo 时完全一样。
+- **你自己的 Antigravity 规则优先。**被你的规则拦下的操作始终会被拦下——在手机上轻点允许也推翻不了。在 `agy` 里，你的规则已经允许的命令会直接运行，不会问手机。
+- **桌面应用里，每样都会问手机。**Nomo 读不到桌面应用的权限设置，所以每条命令、每次文件改动都会送到你的手机。
+- **手机不在身边也没关系。**如果手机连不上，或者远程审批已[暂停](/zh-Hans/sessions/approvals#pausing-it)，Antigravity 会在电脑上问你，和没有 Nomo 时一样。
+- **在电脑上停掉了对话？**手机上的卡片会自己消失。
 
 ## 停止这一轮 {#interrupt}
 
-[**停止**](/zh-Hans/sessions/list#interrupt-a-running-session)可以用在 `运行中` 的 Antigravity 会话上，条件和 Claude Code 一样：绿色的 **⚡ 本地**角标，以及插件 **2.3.5**。这一轮会在当前这一步——已经在运行的模型调用或工具——结束后停下，这一行变为 `完成`。对话仍然开着；输入新的提示即可接着来。
+在**运行中**的 Antigravity 会话上轻点[**停止**](/zh-Hans/sessions/list#interrupt-a-running-session)，就能让它停下。需要绿色的 **⚡ 本地**角标。Antigravity 会做完当前这一步再停下，会话显示**完成**。对话仍然开着——发一条新消息就能接着来。
 
 ## 这个版本的限制 {#what-this-version-doesnt-do}
 
-- **没有提问和计划**。Antigravity 的提问和计划审批不会显示在你的手机上。
-- **没有“在 Mac 上打开”**。这个按钮在 Antigravity 会话上不可用。
-- **没有“始终允许”**。每条命令都是一次性的**允许**或**拒绝**。
+- **没有提问和计划。**Antigravity 的提问和计划审批不会显示在你的手机上。
+- **没有“在 Mac 上打开”。**这个按钮在 Antigravity 会话上不可用。
+- **没有“始终允许”。**每次回答都是一次性的**允许**或**拒绝**。
+
+## 出了问题 {#troubleshooting}
+
+<AccordionGroup>
+  <Accordion title="手机上什么都没显示">
+    1. 重启 Antigravity。
+    2. 输入 `/nomo-status`，然后选择 **Allow**。
+    3. 照着以 ⚠️ 或 ❌ 开头的那一行去做。
+
+    还是没有？在 Nomo 里轻点 **+** 按钮（**选择智能体**），把 Antigravity 打开。
+  </Accordion>
+
+  <Accordion title="每个会话都出现两次">
+    Nomo 的 Claude Code 插件被导入了 Antigravity。在终端里运行下面这条，然后重启 Antigravity：
+
+    ```bash
+    agy plugin uninstall nomo-cc
+    ```
+  </Accordion>
+
+  <Accordion title="Nomo 命令提示找不到它的文件">
+    Nomo 文件夹被移动或删除了。Antigravity 照常工作，但什么都不会送到你的手机。重新运行安装工具，然后重启 Antigravity：
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+  </Accordion>
+
+  <Accordion title="手机不再问我审批了">
+    输入 `/nomo-approvals on`。如果审批本来就是开着的，检查[设置](/zh-Hans/sessions/settings#remote-approvals)里的**在 iPhone 上回答**。
+  </Accordion>
+
+  <Accordion title="会话一直卡在运行中">
+    等几秒钟——Nomo 会自己发现对话已经停了。还是卡着？输入 `/nomo-reset`。
+  </Accordion>
+</AccordionGroup>
+
+更多帮助见[故障排查](/zh-Hans/sessions/troubleshooting)。
 
 ## 更新 {#updating}
 
-再运行一次同一条命令，然后重启 Antigravity：
+再运行一次安装工具，然后重启 Antigravity：
 
 ```bash
 bunx nomo-ai --antigravity
@@ -118,10 +204,55 @@ bunx nomo-ai --antigravity
 
 ## 卸载 {#uninstalling}
 
-```bash
-node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
-```
+<Steps>
+  <Step title="在终端里运行这条">
+    ```bash
+    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    ```
 
-然后重启 Antigravity。卸载只会从 `~/.gemini/config/hooks.json` 删掉 `nomo` 区块，不会动配对——配对是这台电脑上所有智能体共用的。如果还想解除这台电脑的配对，请在卸载之前运行上面的解除配对命令。
+    你应该会看到：
 
-如果有东西没有显示出来，先看[故障排查](/zh-Hans/sessions/troubleshooting)里关于 Antigravity 的那几条。
+    ```
+    ✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
+    ```
+  </Step>
+
+  <Step title="重启 Antigravity">
+    退出 Antigravity，再重新打开。
+  </Step>
+</Steps>
+
+如果还想断开这台电脑和手机的连接，请在卸载**之前**在 Antigravity 里输入 `/nomo-unpair`。
+
+## 进阶 {#advanced}
+
+<AccordionGroup>
+  <Accordion title="不用斜杠命令" icon="terminal">
+    同样的命令，改在终端里运行，而不是在 Antigravity 对话里：
+
+    | | |
+    | --- | --- |
+    | 配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+    | 用手输代码配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+    | 检查状态 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+    | 暂停审批 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+    | 恢复审批 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+    | 清理卡住的会话 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+    | 解除配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+    给安装工具加上 `--verbose`，可以看到它改了哪些东西。
+  </Accordion>
+
+  <Accordion title="工作原理" icon="gear">
+    - **安装工具改了什么。**它把插件克隆到 `~/.nomo`，在 `~/.gemini/config/hooks.json` 里加入一个名为 `nomo` 的区块（其他区块原样不动），并把一个小小的 Antigravity 插件 `nomo`——带五条 `/nomo-*` 命令——复制到 `~/.gemini/config/plugins/nomo`。如果 `hooks.json` 不是有效的 JSON，或者那里的 `nomo` 插件文件夹不是它自己的，它会拒绝执行，什么都不改。卸载只删掉那个区块和那个文件夹。
+    - **Hook。**`SessionStart`、`PreInvocation`、`PostInvocation`、`Stop` 和 `PostToolUse` 负责上报状态。它们立刻回答 `{}`，在后台完成自己的工作，所以 Antigravity 从不等待 Nomo。一行会话从第一次 `PreInvocation` 开始，而不是 `SessionStart`。
+    - **审批。**`PreToolUse` hook 只匹配 shell 命令和文件的写入与编辑（`run_command`、`write_file`、`write_to_file`、`edit_file`、`replace_file_content`、`multi_replace_file_content`），超时时间为 24 小时。允许回答 `auto_approve`；拒绝回答 `deny`，并把你的附注作为理由。其他所有结果都回答 `allow`，也就是把决定交还给 Antigravity 自己的设置和权限请求。`agy` 的 `~/.gemini/antigravity-cli/settings.json` 里任何 `deny` 规则可能匹配的操作永远不会送到手机；被纯前缀 `allow` 规则覆盖、且没有任何 `ask` 规则涉及的调用会直接放行。
+    - **故障保护。**每条 hook 命令都会先检查它的脚本是否还在。如果 `~/.nomo` 被移动或删除，它会自己作答，所以永远不会挡住任何操作。审批 hook 里出任何错误，也会退回到 Antigravity 自己的权限请求。
+    - **停止。**你的手机设置一个一次性标记；下一次 `PostInvocation` 会结束这一轮。标记存在期间，正在等手机答复的 shell 命令或文件写入会以“Stopped from phone”被拒绝。没用上的标记 10 分钟后丢弃。Nomo 从不向 `agy` 进程发送信号。
+    - **没有事件就结束的轮次。**当你取消一轮，或者一次运行退出时，Nomo 会盯着运行 hook 的那个进程和 Antigravity 自己的对话索引，把这一行标为完成。安静 30 分钟的会话会作为最后手段被清掉。卡片还在手机上时取消，卡片会被撤回。
+    - **标题。**用系统自带的 `sqlite3` 以只读方式读取 Antigravity 的 `conversation_summaries.db`。在它出现之前：用对话记录的第一行，再不行就用工作区文件夹名称。
+    - **命令。**`/nomo-*` 命令只运行 Nomo 自己的本地命令——配对、状态、审批开关、重置、解除配对——每条都要先经过 Antigravity 自己的运行命令请求。它们从不输出配对链接或二维码密钥。
+
+    完整细节见插件的 [README](https://github.com/KarrixLee/nomo#install--antigravity)。
+  </Accordion>
+</AccordionGroup>

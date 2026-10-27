@@ -1,116 +1,202 @@
 ---
-title: "搭配 Antigravity 使用"
-description: "在 Google Antigravity 上安裝 Nomo 外掛程式、完成配對，然後在手機上看著它的 sessions — shell 指令和檔案寫入都能「允許」或「拒絕」。"
+title: "在 iPhone 上看著並批准 Antigravity sessions"
+sidebarTitle: "搭配 Antigravity 使用"
+description: "幾個步驟就能為 Google Antigravity 設定好 Nomo、配對手機，然後在 iPhone 上跟著你的 sessions — 指令和檔案變更都能「允許」或「拒絕」。"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "session", "電腦", "動態島", "權限", "配對", "搭配 Antigravity 使用"]
 ---
 
-Google Antigravity 的 sessions 出現在同一份列表、同一個動態島上，走的也是同一組配對 — 不管是來自 Antigravity 桌面應用程式，還是來自 `agy` CLI。當 Antigravity 想執行一個 shell 指令或寫入一個檔案時，你可以在手機上「允許」或「拒絕」。
+在 iPhone 的鎖定畫面和動態島上，看著你的 Google Antigravity sessions。當 Antigravity 想執行一個指令或變更一個檔案時，手機會問你要「允許」還是「拒絕」。
+
+Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
 
 <Note>
-  Sessions 屬於 Nomo Pro，Antigravity 和其他每個代理都一樣。Antigravity 的 sessions 需要你手機上的 Nomo **2.3.5**，以及 Mac 上的外掛程式 **2.3.5**。
+  Sessions 屬於 Nomo Pro。你的手機需要 Nomo **2.3.5** 以上，Mac 上需要外掛程式 **2.3.5** 以上。
 </Note>
 
 ## 設定步驟 {#set-it-up}
 
 <Steps>
-  <Step title="執行安裝工具">
-    在你的 Mac 上：
+  <Step title="打開終端機">
+    在你的 Mac 上打開「終端機」App。它在「應用程式」>「工具程式」裡。
+  </Step>
 
-    <CodeGroup>
-    ```bash bunx icon="terminal"
+  <Step title="執行安裝工具">
+    複製下面這一行，貼到終端機裡，然後按下 Return：
+
+    ```bash
     bunx nomo-ai --antigravity
     ```
 
-    ```bash npx icon="terminal"
-    npx nomo-ai --antigravity
+    沒有 `bunx`？改用 `npx nomo-ai --antigravity`。
+
+    你應該會看到：
+
     ```
-    </CodeGroup>
-
-    一次安裝同時涵蓋桌面應用程式和 `agy`。它會做兩件事：
-
-    - 把外掛程式 clone 到 `~/.nomo`。
-    - 在 `~/.gemini/config/hooks.json` 裡加入一個名為 `nomo` 的區塊。那個檔案裡的其他區塊都原封不動。
+    ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
+    ```
   </Step>
 
-  <Step title="重新啟動 Antigravity — 必要步驟">
+  <Step title="重新啟動 Antigravity">
+    完全結束 Antigravity，再重新打開它。如果你有在用 `agy`，也把它關掉再重新啟動。
+
     <Warning>
-      Antigravity 只在啟動時讀取 hooks。請結束並重新開啟 Antigravity 應用程式，也重新啟動你開著的任何 `agy` session。在你這麼做之前，這個外掛程式雖然裝好了卻什麼也沒做。
+      別跳過這一步。在 Antigravity 重新啟動之前，Nomo 都不會運作。
     </Warning>
   </Step>
 
-  <Step title="配對">
-    Antigravity 沒有 Nomo 指令，所以請在終端機裡配對：
+  <Step title="輸入 /nomo-pair">
+    在 Antigravity 的對話裡輸入下面這行並送出：
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
     ```
-
-    它會開啟帶有 QR code 的配對頁面 — 用 Nomo App 掃描它。在無法開啟瀏覽器的地方，加上 `--show-code` 就會改給你一組可以打字輸入的短代碼。兩條路徑的完整流程都在[配對](/zh-Hant/setup/pairing)裡。
-
-    配對由同一台 Mac 上的所有代理共用。已經為 Claude Code、Codex、OpenCode 或 Cursor 配對過的電腦，不需要為 Antigravity 再配對一次 — 安裝好就夠了，這一步可以跳過。
+    /nomo-pair
+    ```
   </Step>
 
-  <Step title="顯示 Antigravity 分頁">
-    在 App 裡打開那台電腦。Antigravity 的 sessions 放在它 session 面板裡的 **Antigravity** 分頁底下。
+  <Step title="選擇 Allow">
+    Antigravity 在執行 Nomo 的指令之前會先問你。請選擇 **Allow**（允許）。
 
-    面板最多顯示三個代理分頁。如果 Antigravity 不在其中，點一下 **+** 按鈕（「選擇代理」）把它打開。
+    你應該會看到瀏覽器打開一個有 QR code 的頁面。
+  </Step>
+
+  <Step title="掃描 QR code">
+    在 iPhone 上打開 Nomo → **Sessions** → **配對電腦**，然後掃描 QR code。
+
+    你應該會在 Antigravity 裡看到：「Done! This computer is connected to your phone.」（完成！這台電腦已經連上你的手機。）
+  </Step>
+
+  <Step title="在 Antigravity 裡送出一則訊息">
+    開始一段對話，隨便送出什麼都可以。
+
+    你應該會看到這個 session 出現在 Nomo 裡，在你那台電腦的 **Antigravity** 分頁底下。沒有 Antigravity 分頁？點一下 **+** 按鈕（「選擇代理」），把 Antigravity 打開。
   </Step>
 </Steps>
 
+<Tip>
+  **已經從 Claude Code、Codex、OpenCode 或 Cursor 配對過了？**一次配對涵蓋整台電腦。跳過步驟 4–6 — 安裝工具會改成提示你「type /nomo-status to check」（輸入 /nomo-status 確認）。
+</Tip>
+
+<Tip>
+  **這台電腦沒有瀏覽器？**改輸入 `/nomo-pair code`。Antigravity 會顯示一組短代碼。在 iPhone 上打開 Nomo → **Sessions** → **配對電腦** → **輸入代碼**，把它打進去。代碼 10 分鐘後過期。
+</Tip>
+
+<Warning>
+  **不要把 Nomo 的 Claude Code 外掛程式匯入 Antigravity**（例如用 `agy plugin import claude`）。否則每個 session 都會出現兩次。如果你已經這麼做了，安裝工具會警告你：
+
+  ```
+  ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+  ```
+
+  要修正它，請在終端機裡執行下面這行，然後重新啟動 Antigravity：
+
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Warning>
+
 ## 指令 {#commands}
 
-Antigravity 沒有 Nomo 的 `/` 指令。請改在終端機裡執行下面這些，或使用同一台 Mac 上任何其他代理的對應指令 — 配對和這裡的其他一切都是整台機器共用的：
+在 Antigravity 的對話裡輸入這些。每一次 Antigravity 都會先問你 — 請選擇 **Allow**。
 
-| | |
+| 輸入這個 | 它會做什麼 |
 | --- | --- |
-| 配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
-| 檢查健康狀態 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
-| 清除卡住的 sessions | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
-| 解除配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+| `/nomo-pair` | 把這台電腦連上你的手機 |
+| `/nomo-pair code` | 一樣，但改用一組可以打字輸入的短代碼，而不是 QR code |
+| `/nomo-status` | 確認一切正常 |
+| `/nomo-status verbose` | 一樣，但列出所有細節 |
+| `/nomo-approvals off` | 不再問你的手機 — 改由 Antigravity 在電腦上問 |
+| `/nomo-approvals on` | 重新改回問你的手機 |
+| `/nomo-approvals status` | 看手機批准是開著還是已暫停 |
+| `/nomo-reset` | 從手機上清除卡住的 sessions，連線保持不變 |
+| `/nomo-unpair` | 解除這台電腦和手機的配對 |
 
-Antigravity 裡沒有 approvals 指令。要暫停這台電腦的批准，請在 Claude Code 裡使用 `/nomo-cc:approvals off`（或 Codex、OpenCode 裡對應的指令）— 這個開關由所有代理共用。每個指令會印出什麼，請看[指令](/zh-Hant/sessions/commands)。
+一切正常時，`/nomo-status` 會顯示像這樣的一行：
+
+```
+✅ Connected to your phone as “MacBook Pro” · Phone approvals: on · Last activity: 2 min ago
+```
+
+如果有哪裡不對，它會多加一行，告訴你該怎麼做。
+
+連線和批准開關是這台電腦上所有寫程式的 App 共用的。在這裡關掉批准，Claude Code 和 Codex 的批准也會一起關掉。
 
 ## 你會看到什麼 {#what-you-see}
 
-- session 會在你送出**第一個提示**時出現 — 而不是在對話只是被打開的時候。
-- 代理執行期間它顯示為執行中，這一輪結束時顯示為完成。
-- 標題是 Antigravity 替那個對話取的名稱。Antigravity 要等第一輪結束後才會命名，所以在那之前，這一列會以你的第一個提示命名。
-- 模型標籤顯示的是 Antigravity 回報的模型。
-- [動態島](/zh-Hant/sessions/island)的運作和其他代理一樣，對象是你選擇要顯示在那裡的 sessions。
+- session 會在你送出**第一則訊息**時出現，而不是在你打開對話的時候。
+- Antigravity 工作時它顯示 `執行中`，結束時顯示 `完成`。
+- 它的名稱就是 Antigravity 自己的對話標題。在 Antigravity 取好標題之前，會先用你的第一則訊息，沒有的話就用資料夾名稱。
+- 標籤顯示 Antigravity 正在使用的模型。
+- [動態島](/zh-Hant/sessions/island)的運作和其他代理一樣。
 
 ## 在手機上回覆 {#answering-from-your-phone}
 
-shell 指令，以及檔案的寫入或編輯，會送到你的手機。讀取、搜尋和其他每一種工具都不會 — Antigravity 執行這些時不會詢問 Nomo。
+當 Antigravity 想**執行一個指令**，或**建立或變更一個檔案**時，手機會問你。讀取和搜尋檔案永遠不會送到你的手機。
 
-按住那一列，或使用動態島，你會看到：
+按住那個 session，或使用動態島，然後選擇：
 
-- 「允許」— 執行指令，或寫入檔案。
-- 「拒絕」— Antigravity 會跳過它，不靠它繼續做下去。
-- 「拒絕並附註…」— 拒絕，並把你輸入的內容當作理由傳給代理。
+- 「允許」— Antigravity 繼續做。
+- 「拒絕」— Antigravity 跳過它，繼續做下去。
+- 「拒絕並附註…」— 跳過它，並用你自己的話告訴 Antigravity 原因。
 
-Antigravity 目前還沒有「一律允許」。其餘的運作方式和[在手機上回覆](/zh-Hant/sessions/approvals)一樣。
+更多內容請看[在手機上回覆](/zh-Hant/sessions/approvals)。
 
-你自己的 Antigravity 規則仍然有效：
+小提醒：
 
-- **允許規則會跳過手機**。在 `agy` CLI 裡，已經被 `~/.gemini/antigravity-cli/settings.json` 中某條允許規則涵蓋的指令，會直接執行，不會詢問你的手機。
-- **拒絕規則永遠優先**。拒絕規則絕不會被手機上的回覆推翻。
-- **桌面應用程式什麼都會問**。它的權限預設組合 — 包括 Turbo — 外掛程式讀不到，所以在桌面應用程式裡，每一個 shell 指令和檔案寫入都會送到你的手機。
-
-卡片在你手機上的期間，Antigravity 在 Mac 上自己的請求會等你回覆。如果連不上你的手機或網路，或批准已經[暫停](/zh-Hant/sessions/approvals#pausing-it)，Antigravity 會在 Mac 上顯示它平常的請求，就和沒有 Nomo 時完全一樣。
+- **你自己的 Antigravity 規則優先**。被你的規則擋下的東西會一直擋著 — 在手機上點「允許」也絕不會推翻它。在 `agy` 裡，你的規則已經允許的指令會直接執行，不會問你的手機。
+- **在桌面應用程式裡，什麼都會問你的手機**。Nomo 看不到桌面應用程式的權限設定，所以每一個指令和檔案變更都會送到你的手機。
+- **手機不在身邊？沒關係**。如果連不上你的手機，或批准已經[暫停](/zh-Hant/sessions/approvals#pausing-it)，Antigravity 會在電腦上問你，就和沒有 Nomo 時一樣。
+- **在電腦上停止了對話？**手機上的卡片會自己消失。
 
 ## 停止這一輪 {#interrupt}
 
-[「停止」](/zh-Hant/sessions/list#interrupt-a-running-session)可以用在 `執行中` 的 Antigravity session 上，條件和 Claude Code 相同：綠色的 **⚡ 本機** 標籤，以及外掛程式 **2.3.5**。這一輪會在目前這一步 — 已經在跑的模型呼叫或工具 — 結束後停下，這一列會變成 `完成`。對話仍然開著；輸入新的提示就能繼續。
+在 `執行中` 的 Antigravity session 上點一下 **[停止](/zh-Hant/sessions/list#interrupt-a-running-session)** 就能停下它。它需要綠色的 **⚡ 本機** 標籤。Antigravity 會先做完目前這一步再停下，session 會顯示 `完成`。對話仍然開著 — 送出新的訊息就能繼續。
 
 ## 這個版本的限制 {#what-this-version-doesnt-do}
 
 - **沒有問題，也沒有計畫**。Antigravity 的問題和計畫審核不會顯示在你的手機上。
 - **沒有「在 Mac 上開啟」**。這個按鈕在 Antigravity 的 sessions 上無法使用。
-- **沒有「一律允許」**。每個指令都是一次性的「允許」或「拒絕」。
+- **沒有「一律允許」**。每一次回覆都是一次性的「允許」或「拒絕」。
+
+## 有東西不能用 {#troubleshooting}
+
+<AccordionGroup>
+  <Accordion title="我的手機什麼都沒顯示">
+    1. 重新啟動 Antigravity。
+    2. 輸入 `/nomo-status`，然後選擇 **Allow**。
+    3. 照著以 ⚠️ 或 ❌ 開頭的那一行做。
+
+    還是沒有？在 Nomo 裡點一下 **+** 按鈕（「選擇代理」），把 Antigravity 打開。
+  </Accordion>
+
+  <Accordion title="每個 session 都出現兩次">
+    Nomo 的 Claude Code 外掛程式被匯入了 Antigravity。請在終端機裡執行下面這行，然後重新啟動 Antigravity：
+
+    ```bash
+    agy plugin uninstall nomo-cc
+    ```
+  </Accordion>
+
+  <Accordion title="Nomo 指令說它找不到自己的檔案">
+    Nomo 的資料夾被搬走或刪除了。Antigravity 還是能用，但什麼都不會送到你的手機。請再執行一次安裝工具，然後重新啟動 Antigravity：
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+  </Accordion>
+
+  <Accordion title="我的手機不再問我要不要批准">
+    輸入 `/nomo-approvals on`。如果批准本來就開著，請檢查[設定](/zh-Hant/sessions/settings#remote-approvals)裡的「在 iPhone 上回答」。
+  </Accordion>
+
+  <Accordion title="session 一直卡在「執行中」">
+    等幾秒 — Nomo 會自己發現對話已經停了。還是卡住？輸入 `/nomo-reset`。
+  </Accordion>
+</AccordionGroup>
+
+更多說明請看[疑難排解](/zh-Hant/sessions/troubleshooting)。
 
 ## 更新 {#updating}
 
-再執行一次同一個指令，然後重新啟動 Antigravity：
+再執行一次安裝工具，然後重新啟動 Antigravity：
 
 ```bash
 bunx nomo-ai --antigravity
@@ -118,10 +204,55 @@ bunx nomo-ai --antigravity
 
 ## 解除安裝 {#uninstalling}
 
-```bash
-node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
-```
+<Steps>
+  <Step title="在終端機裡執行這行">
+    ```bash
+    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    ```
 
-然後重新啟動 Antigravity。解除安裝只會從 `~/.gemini/config/hooks.json` 移除 `nomo` 區塊，不會動到配對 — 配對是這台電腦上所有代理共用的。如果也要解除這台電腦的配對，請在解除安裝之前執行上面的解除配對指令。
+    你應該會看到：
 
-如果有東西沒出現，[疑難排解](/zh-Hant/sessions/troubleshooting)裡關於 Antigravity 的那幾項是該先看的地方。
+    ```
+    ✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
+    ```
+  </Step>
+
+  <Step title="重新啟動 Antigravity">
+    結束 Antigravity，再重新打開它。
+  </Step>
+</Steps>
+
+如果也要解除這台電腦和手機的配對，請在解除安裝**之前**，在 Antigravity 裡輸入 `/nomo-unpair`。
+
+## 進階 {#advanced}
+
+<AccordionGroup>
+  <Accordion title="不用斜線指令" icon="terminal">
+    同樣的指令，改在終端機裡執行，而不是在 Antigravity 的對話裡：
+
+    | | |
+    | --- | --- |
+    | 配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+    | 用打字輸入的代碼配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+    | 檢查狀態 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+    | 暫停批准 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+    | 恢復批准 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+    | 清除卡住的 sessions | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+    | 解除配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+    在安裝工具後面加上 `--verbose`，就能看到它改了什麼。
+  </Accordion>
+
+  <Accordion title="運作原理" icon="gear">
+    - **安裝工具會改什麼**。它把外掛程式 clone 到 `~/.nomo`，在 `~/.gemini/config/hooks.json` 裡加入一個名為 `nomo` 的區塊（其他每個區塊都原封不動），並把一個小型的 Antigravity 外掛程式 `nomo` — 帶著五個 `/nomo-*` 指令 — 複製到 `~/.gemini/config/plugins/nomo`。如果 `hooks.json` 不是有效的 JSON，或那裡的 `nomo` 外掛程式資料夾不是它自己的，它會拒絕執行，什麼都不改。解除安裝只會移除那個區塊和那個資料夾。
+    - **Hooks**。`SessionStart`、`PreInvocation`、`PostInvocation`、`Stop` 和 `PostToolUse` 負責回報狀態。它們會立刻回覆 `{}`，在背景做自己的事，所以 Antigravity 永遠不必等 Nomo。一列是在第一個 `PreInvocation` 時出現，而不是在 `SessionStart`。
+    - **批准**。一個 `PreToolUse` hook 只比對 shell 指令和檔案的寫入與編輯（`run_command`、`write_file`、`write_to_file`、`edit_file`、`replace_file_content`、`multi_replace_file_content`），逾時為 24 小時。「允許」回覆 `auto_approve`；「拒絕」回覆 `deny`，並以你的附註作為理由。其他所有結果都回覆 `allow`，把決定交還給 Antigravity 自己的設定和請求。`agy` 的 `~/.gemini/antigravity-cli/settings.json` 裡任何 `deny` 規則可能比對到的東西，永遠不會送到手機；被單純前綴的 `allow` 規則涵蓋、又沒有任何 `ask` 規則碰到的呼叫，會直接通過。
+    - **失效保護**。每個 hook 指令都會先確認它的 script 還在。如果 `~/.nomo` 被搬走或刪除，它會自己回覆，所以絕不會擋住任何東西。批准 hook 裡的任何錯誤，也都會退回 Antigravity 自己的請求。
+    - **停止**。你的手機會設一個一次性的旗標；下一個 `PostInvocation` 就結束這一輪。旗標設著的時候，正在等手機回覆的 shell 指令或檔案寫入會以「Stopped from phone」被拒絕。沒用到的旗標會在 10 分鐘後丟棄。Nomo 從不對 `agy` 行程送出訊號。
+    - **沒有事件就結束的一輪**。當你取消一輪，或一次執行結束時，Nomo 會看著執行 hook 的那個行程和 Antigravity 自己的對話索引，把那一列標為完成。安靜了 30 分鐘的 session 會被清除，作為最後手段。卡片還在手機上時取消，卡片會被收回。
+    - **標題**。以唯讀方式，用系統的 `sqlite3` 從 Antigravity 的 `conversation_summaries.db` 讀取。在它出現之前：先用對話記錄的第一行，再用工作區資料夾名稱。
+    - **指令**。`/nomo-*` 指令只會執行 Nomo 自己的本機指令 — 配對、狀態、批准開關、重設、解除配對 — 每一個都要先經過 Antigravity 自己的執行指令請求。它們絕不會印出配對連結或 QR code 裡的祕密值。
+
+    完整細節在外掛程式的 [README](https://github.com/KarrixLee/nomo#install--antigravity) 裡。
+  </Accordion>
+</AccordionGroup>

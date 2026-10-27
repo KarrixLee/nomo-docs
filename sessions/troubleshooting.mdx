@@ -33,9 +33,13 @@ $nomo-status
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+/nomo-status
 ```
 </CodeGroup>
+
+In Antigravity, choose **Allow** when it asks to run a Nomo command. It shows
+a short summary in plain words, and one line per problem saying what to do —
+type `/nomo-status verbose` for the full readout described below.
 
 It reports on the **computer**, not just your session: pairing, delivery, the
 direct local network link, approvals, then the agent you're in and every other
@@ -160,31 +164,37 @@ What each row means, with a healthy machine and a broken one side by side, is on
   for up to about 2 seconds before it goes through. It never blocks the prompt.
 </Accordion>
 
-<Accordion title="Antigravity in particular shows nothing" icon="rocket">
-  Four things to check, in this order:
+<Accordion title="My phone shows nothing from Antigravity" icon="rocket">
+  1. Restart Antigravity — quit it completely and open it again.
+  2. Type `/nomo-status` and choose **Allow**.
+  3. Do what the line starting with ⚠️ or ❌ says.
+  4. Send a message. A session only appears after your first message.
 
-  - **Antigravity wasn't restarted.** Antigravity only reads its hooks when it
-    starts, so after installing, quit and reopen the app — and restart any open
-    `agy` session.
-  - **The Antigravity tab is hidden.** The drawer shows up to three agent tabs.
-    Tap the **+** button (**Choose agents**) and turn Antigravity on.
-  - **The Mac isn't paired.** Antigravity has no Nomo commands, so check from a
-    terminal:
+  Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
+  Antigravity on. More in [Using Antigravity](/sessions/antigravity#troubleshooting).
+</Accordion>
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
-    ```
-  - **The plugin folder moved.** Antigravity's hooks point at `~/.nomo`. If that
-    folder was moved or deleted, run `bunx nomo-ai --antigravity` again, then
-    restart Antigravity.
+<Accordion title="Every Antigravity session shows up twice" icon="clone">
+  Nomo's Claude Code plugin is imported into Antigravity. Run this in Terminal,
+  then restart Antigravity:
 
-  A session only appears once you've sent a conversation's first prompt. The
-  full setup is in [Using Antigravity](/sessions/antigravity).
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Accordion>
+
+<Accordion title="An Antigravity command says Nomo could not find its files" icon="folder-open">
+  The Nomo folder was moved or deleted. Antigravity keeps working, but nothing
+  reaches your phone. Run the installer again, then restart Antigravity:
+
+  ```bash
+  bunx nomo-ai --antigravity
+  ```
 </Accordion>
 
 <Accordion title="A cancelled Antigravity turn still says Running" icon="hourglass-half">
-  Antigravity doesn't tell plugins when you cancel a turn, so Nomo works it out
-  from Antigravity's own records. The row goes to `Done` a few seconds later.
+  Wait a few seconds — Nomo notices on its own and the row goes to `Done`. If a
+  card was on your phone, it disappears too.
 </Accordion>
 
 <Accordion title="Rows look stale or duplicated" icon="broom">
@@ -209,7 +219,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
   ```
 
   ```bash Antigravity icon="/images/providers/antigravity.png"
-  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  /nomo-reset
   ```
   </CodeGroup>
 
@@ -481,10 +491,26 @@ that command there.
     },
     {
       "@type": "Question",
-      "name": "Antigravity in particular shows nothing",
+      "name": "My phone shows nothing from Antigravity",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Four things to check. Antigravity only reads its hooks when it starts, so after installing, quit and reopen the app and restart any open agy session. The drawer shows up to three agent tabs, so tap the + button (Choose agents) and turn Antigravity on. Check the Mac is paired by running ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity in a terminal. And if the ~/.nomo folder was moved or deleted, run bunx nomo-ai --antigravity again and restart Antigravity."
+        "text": "Restart Antigravity — quit it completely and open it again. Type /nomo-status, choose Allow, and do what the line starting with ⚠️ or ❌ says. Then send a message: a session only appears after your first message. Still nothing? In Nomo, tap the + button (Choose agents) and turn Antigravity on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Every Antigravity session shows up twice",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo's Claude Code plugin is imported into Antigravity. Run agy plugin uninstall nomo-cc in Terminal, then restart Antigravity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "An Antigravity command says Nomo could not find its files",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Nomo folder was moved or deleted. Antigravity keeps working, but nothing reaches your phone. Run bunx nomo-ai --antigravity again, then restart Antigravity."
       }
     },
     {
@@ -492,7 +518,7 @@ that command there.
       "name": "A cancelled Antigravity turn still says Running",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Antigravity doesn't tell plugins when you cancel a turn, so Nomo works it out from Antigravity's own records. The row goes to Done a few seconds later."
+        "text": "Wait a few seconds — Nomo notices on its own and the row goes to Done. If a card was on your phone, it disappears too."
       }
     },
     {
