@@ -1,11 +1,11 @@
 ---
-title: "在 iPhone 上看著並批准 Antigravity sessions"
+title: "在 iPhone 上看著、批准並回覆 Antigravity sessions"
 sidebarTitle: "搭配 Antigravity 使用"
-description: "幾個步驟就能為 Google Antigravity 設定好 Nomo、配對手機，然後在 iPhone 上跟著你的 sessions — 指令和檔案變更都能「允許」或「拒絕」。"
+description: "幾個步驟就能為 Google Antigravity 設定好 Nomo、配對手機，然後在 iPhone 上跟著你的 sessions — 指令和檔案變更都能「允許」或「拒絕」，還能停止和回覆。"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "session", "電腦", "動態島", "權限", "配對", "搭配 Antigravity 使用"]
 ---
 
-在 iPhone 的鎖定畫面和動態島上，看著你的 Google Antigravity sessions。當 Antigravity 想執行一個指令或變更一個檔案時，手機會問你要「允許」還是「拒絕」。
+在 iPhone 的鎖定畫面和動態島上，看著你的 Google Antigravity sessions。當 Antigravity 想執行一個指令或變更一個檔案時，手機會問你要「允許」還是「拒絕」。你也可以在手機上停止一個 session，或傳訊息給它。
 
 Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
 
@@ -68,6 +68,13 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
     開始一段對話，隨便送出什麼都可以。
 
     你應該會看到這個 session 出現在 Nomo 裡，在你那台電腦的 **Antigravity** 分頁底下。沒有 Antigravity 分頁？點一下 **+** 按鈕（「選擇代理」），把 Antigravity 打開。
+
+    <Frame caption="從 + 按鈕打開的「選擇代理」。Antigravity 已勾選，所以它有自己的分頁。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="「選擇代理」選單，Claude Code、Codex 和 Antigravity 已勾選，OpenCode 和 Cursor 未勾選" />
+        <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="「選擇代理」選單，Claude Code、Codex 和 Antigravity 已勾選，OpenCode 和 Cursor 未勾選" />
+      </div>
+    </Frame>
   </Step>
 </Steps>
 
@@ -119,6 +126,8 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
 
 連線和批准開關是這台電腦上所有寫程式的 App 共用的。在這裡關掉批准，Claude Code 和 Codex 的批准也會一起關掉。
 
+這些指令只會在 Antigravity 裡問你，永遠不會在手機上跳出卡片。
+
 ## 你會看到什麼 {#what-you-see}
 
 - session 會在你送出**第一則訊息**時出現，而不是在你打開對話的時候。
@@ -141,6 +150,14 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
 
 小提醒：
 
+
+<Frame caption="一個請求執行指令的 Antigravity session。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/agy-approval-card.png" alt="Antigravity session Fix token refresh race 的批准卡片，請求執行 npm test，有「拒絕」、「允許」和「拒絕並附註…」按鈕" />
+    <img className="only-dark" src="/images/agy-approval-card-dark.png" alt="Antigravity session Fix token refresh race 的批准卡片，請求執行 npm test，有「拒絕」、「允許」和「拒絕並附註…」按鈕" />
+  </div>
+</Frame>
+
 - **你自己的 Antigravity 規則優先**。被你的規則擋下的東西會一直擋著 — 在手機上點「允許」也絕不會推翻它。在 `agy` 裡，你的規則已經允許的指令會直接執行，不會問你的手機。
 - **在桌面應用程式裡，什麼都會問你的手機**。Nomo 看不到桌面應用程式的權限設定，所以每一個指令和檔案變更都會送到你的手機。
 - **手機不在身邊？沒關係**。如果連不上你的手機，或批准已經[暫停](/zh-Hant/sessions/approvals#pausing-it)，Antigravity 會在電腦上問你，就和沒有 Nomo 時一樣。
@@ -149,6 +166,79 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
 ## 停止這一輪 {#interrupt}
 
 在 `執行中` 的 Antigravity session 上點一下 **[停止](/zh-Hant/sessions/list#interrupt-a-running-session)** 就能停下它。它需要綠色的 **⚡ 本機** 標籤。Antigravity 會先做完目前這一步再停下，session 會顯示 `完成`。對話仍然開著 — 送出新的訊息就能繼續。
+
+## 從手機回覆 {#reply-from-your-phone}
+
+從 iPhone 傳一則訊息給 Antigravity session — 修正一個地方、交代下一步，或一句「繼續」。它會像你在 Mac 上打字一樣送到 Antigravity。在哪裡都能用，不需要連同一個 Wi-Fi。
+
+<Steps>
+  <Step title="打開 session">
+    在 Nomo 裡打開你的電腦，選擇 **Antigravity** 分頁。點一下 session 的名稱。
+
+    你應該會看到這個 session 展開，詳細資訊下方有一個「**回覆**」按鈕。
+
+    <Frame caption="一個執行中、已展開的 Antigravity session，詳細資訊下方是「回覆」。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-button.png" alt="已展開的 Antigravity session 列 Fix token refresh race，顯示模型、資料夾、agy CLI 和「回覆」按鈕" />
+        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="已展開的 Antigravity session 列 Fix token refresh race，顯示模型、資料夾、agy CLI 和「回覆」按鈕" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="點一下「回覆」">
+    你應該會看到一張表單滑上來，上方是 session 名稱，下方是寫著「**傳訊息給這個 session**」的輸入框。
+  </Step>
+
+  <Step title="輸入訊息並送出">
+    輸入你的訊息，然後點一下箭頭。
+
+    你應該會看到訊息變成一個泡泡，下面有一行簡短的狀態。狀態告訴你這則訊息走到哪裡了 — 請看下面的列表。
+
+    <Frame caption="兩則訊息：第一則已送到 Antigravity，第二則在等它的下一步，還可以取消。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-sheet.png" alt="Fix token refresh race 的回覆表單，一則訊息標示「已送達」，另一則標示「等待下一步」" />
+        <img className="only-dark" src="/images/agy-reply-sheet-dark.png" alt="Fix token refresh race 的回覆表單，一則訊息標示「已送達」，另一則標示「等待下一步」" />
+      </div>
+    </Frame>
+  </Step>
+</Steps>
+
+### 訊息下方狀態的意思 {#reply-statuses}
+
+| 你看到的 | 意思 |
+| --- | --- |
+| `傳送中…` | 手機正在傳送。 |
+| `等待下一步` | 你的 Mac 已經收到。Antigravity 會在下一步讀到它。在那之前，你可以點一下泡泡上的 **×** 取消。 |
+| `已送達` | Antigravity 已經讀到了。 |
+| `正在 Mac 上喚醒…` | session 已經結束，所以你的 Mac 正帶著你的訊息重新啟動它。這時已經不能取消。 |
+| `已在 Mac 上繼續` | session 帶著你的訊息又開始執行了。 |
+| `重新連線中…` | 手機暫時連不到你的 Mac。它會自己一直重試 — 不用再送一次。 |
+
+### 在哪些情況下能用 {#where-reply-works}
+
+**使用 `agy` 命令列工具時：**
+
+- **正在工作** — 訊息會在它的下一步送到。
+- **已結束，`agy` 已關閉** — 你的 Mac 會帶著你的訊息重新啟動 session。你會先看到 `正在 Mac 上喚醒…`，然後是 `已在 Mac 上繼續`。
+- **已結束，但 `agy` 還開著** — 訊息會等著。在你於 Mac 上的 `agy` 裡送出下一則訊息之前，它都顯示 `等待下一步`；送出之後，Antigravity 會把兩則一起讀到。
+
+**使用 Antigravity 桌面應用程式時：**
+
+- **正在工作** — 訊息會在它的下一步送到。
+- **已結束** — 只能在 Mac 上繼續。「**回覆**」會變成灰色，下面那一行會說明原因。
+
+<Frame caption="桌面應用程式裡一個已結束的 session：「回覆」是灰色的，下面那一行說明了原因。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/agy-reply-idle-app.png" alt="一個已展開、標示完成的 Antigravity App session，「回覆」按鈕為灰色，下方一行寫著「Antigravity App 的 session 只能在 Mac 上繼續」" />
+    <img className="only-dark" src="/images/agy-reply-idle-app-dark.png" alt="一個已展開、標示完成的 Antigravity App session，「回覆」按鈕為灰色，下方一行寫著「Antigravity App 的 session 只能在 Mac 上繼續」" />
+  </div>
+</Frame>
+
+小提醒：
+
+- **每則訊息最多 4,000 個字元**。輸入框到這裡就不再接收文字。
+- **停止永遠優先**。如果在有訊息排隊時點一下 **[停止](#interrupt)**，Antigravity 會先停下。這則訊息絕不會交給你停掉的那一輪。
+- **訊息只在 Nomo 開著時保留**。如果你完全關閉 Nomo，下次打開時表單是空的。你的 Mac 已經收到的訊息還是會送到。
 
 ## 這個版本的限制 {#what-this-version-doesnt-do}
 
@@ -165,6 +255,25 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
     3. 照著以 ⚠️ 或 ❌ 開頭的那一行做。
 
     還是沒有？在 Nomo 裡點一下 **+** 按鈕（「選擇代理」），把 Antigravity 打開。
+
+    如果 Antigravity 分頁顯示「**還沒有 Antigravity sessions**」，請先在 Antigravity 裡送出一則訊息 — session 要在你送出第一則訊息後才會出現。
+
+    <Frame caption="還沒有 session 送達時的 Antigravity 分頁。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-drawer-tab.png" alt="一台電腦的 Antigravity 分頁，顯示「還沒有 Antigravity sessions」" />
+        <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="一台電腦的 Antigravity 分頁，顯示「還沒有 Antigravity sessions」" />
+      </div>
+    </Frame>
+  </Accordion>
+
+  <Accordion title="回覆一直停在「等待下一步」">
+    你的 Mac 已經收到這則訊息。如果 Antigravity 正在工作，它會在下一步讀到 — 執行很久的指令可能要等一下。
+
+    如果 session 已經結束，而 Mac 上的 `agy` 還開著，這則訊息會等你在那裡送出下一則訊息。在 `agy` 裡隨便送點什麼，Antigravity 就會把兩則一起讀到。也可以點一下泡泡上的 **×** 取消它。
+  </Accordion>
+
+  <Accordion title="「回覆」是灰色的">
+    這個 session 來自 Antigravity 桌面應用程式，而且已經結束。只能在 Mac 上繼續。請在應用程式裡送出下一則訊息。
   </Accordion>
 
   <Accordion title="每個 session 都出現兩次">
@@ -250,6 +359,7 @@ bunx nomo-ai --antigravity
     - **失效保護**。每個 hook 指令都會先確認它的 script 還在。如果 `~/.nomo` 被搬走或刪除，它會自己回覆，所以絕不會擋住任何東西。批准 hook 裡的任何錯誤，也都會退回 Antigravity 自己的請求。
     - **停止**。你的手機會設一個一次性的旗標；下一個 `PostInvocation` 就結束這一輪。旗標設著的時候，正在等手機回覆的 shell 指令或檔案寫入會以「Stopped from phone」被拒絕。沒用到的旗標會在 10 分鐘後丟棄。Nomo 從不對 `agy` 行程送出訊號。
     - **沒有事件就結束的一輪**。當你取消一輪，或一次執行結束時，Nomo 會看著執行 hook 的那個行程和 Antigravity 自己的對話索引，把那一列標為完成。安靜了 30 分鐘的 session 會被清除，作為最後手段。卡片還在手機上時取消，卡片會被收回。
+    - **回覆**。手機把一個 `send-message` 指令（一個訊息 ID 和最多 4,000 個字元）加密封裝，同時經由本機連線和中繼伺服器送出。Mac 為每則訊息寫一個只有擁有者能讀的檔案（`<conversation>.<id>.agy-inbox`）。下一次 `PreInvocation` 會把所有排隊中的訊息當作使用者訊息交給代理；在這一輪最後一步期間送達的訊息，會讓這一輪的 `Stop` 繼續一次。回條（排隊、喚醒中、已送達、已繼續、已取消、已拒絕）隨 session 的加密更新傳回。對於已經結束、而且 `agy` 已經結束執行的 `agy` 對話，Nomo 會在那個對話的資料夾裡執行 `agy --conversation <id> --print=<message>`（訊息是單獨一個引數，從不經過 shell 解析）。已結束但仍開著的 `agy` 會把訊息留到它的下一輪 — Nomo 絕不會在同一個對話上啟動第二個 `agy`。停止旗標永遠優先：訊息絕不會交給正在被停止的那一輪。沒人取走的訊息一天後刪除。Nomo 自己的 `/nomo-*` 指令永遠不會在手機上跳出卡片。
     - **標題**。以唯讀方式，用系統的 `sqlite3` 從 Antigravity 的 `conversation_summaries.db` 讀取。在它出現之前：先用對話記錄的第一行，再用工作區資料夾名稱。
     - **指令**。`/nomo-*` 指令只會執行 Nomo 自己的本機指令 — 配對、狀態、批准開關、重設、解除配對 — 每一個都要先經過 Antigravity 自己的執行指令請求。它們絕不會印出配對連結或 QR code 裡的祕密值。
 

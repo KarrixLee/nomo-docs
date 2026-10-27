@@ -1,11 +1,11 @@
 ---
-title: "Antigravity のセッションを iPhone で見守り、承認する"
+title: "Antigravity のセッションを iPhone で見守り、承認し、返信する"
 sidebarTitle: "Antigravity での利用"
-description: "数ステップで Google Antigravity に Nomo をセットアップし、iPhone とペアリングして、セッションを iPhone から見守ります — コマンドの実行とファイルの変更には「許可」と「拒否」で回答できます。"
+description: "数ステップで Google Antigravity に Nomo をセットアップし、iPhone とペアリングして、セッションを iPhone から見守ります — コマンドの実行とファイルの変更には「許可」と「拒否」で回答でき、中断や返信もできます。"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "Antigravity での利用"]
 ---
 
-Google Antigravity のセッションを、iPhone のロック画面と Dynamic Island で確認できます。Antigravity がコマンドを実行したりファイルを変更したりしようとすると、iPhone で「許可」か「拒否」を選べます。
+Google Antigravity のセッションを、iPhone のロック画面と Dynamic Island で確認できます。Antigravity がコマンドを実行したりファイルを変更したりしようとすると、iPhone で「許可」か「拒否」を選べます。iPhone からセッションを中断したり、メッセージを送ったりもできます。
 
 Antigravity デスクトップアプリでも、`agy` コマンドラインツールでも使えます。
 
@@ -68,6 +68,13 @@ Antigravity デスクトップアプリでも、`agy` コマンドラインツ�
     チャットを始めて、何か送信します。
 
     Nomo で、そのコンピュータの **Antigravity** タブにセッションが表示されます。Antigravity タブがない場合は、**+** ボタン（「エージェントを選択」）をタップして Antigravity をオンにしてください。
+
+    <Frame caption="+ ボタンから開く「エージェントを選択」。Antigravity にチェックが付いているので、専用のタブが表示されます。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="「エージェントを選択」メニュー。Claude Code、Codex、Antigravity にチェックが付き、OpenCode と Cursor は外れている" />
+        <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="「エージェントを選択」メニュー。Claude Code、Codex、Antigravity にチェックが付き、OpenCode と Cursor は外れている" />
+      </div>
+    </Frame>
   </Step>
 </Steps>
 
@@ -119,6 +126,8 @@ Antigravity のチャットで入力します。毎回 Antigravity が先に確�
 
 ペアリングと承認のスイッチは、このコンピュータのすべてのコーディングアプリで共有されます。ここで承認をオフにすると、Claude Code と Codex でもオフになります。
 
+これらのコマンドは Antigravity の中でだけ確認されます。iPhone にカードが届くことはありません。
+
 ## 表示されるもの {#what-you-see}
 
 - セッションが現れるのは、**最初のメッセージ**を送ったときです。チャットを開いただけでは現れません。
@@ -132,6 +141,14 @@ Antigravity のチャットで入力します。毎回 Antigravity が先に確�
 Antigravity が**コマンドを実行**したり、**ファイルを作成・変更**したりしようとすると、iPhone で確認されます。ファイルの読み取りや検索が iPhone に届くことはありません。
 
 セッションをタッチして押さえたままにするか、Dynamic Island を使って、次から選びます。
+
+
+<Frame caption="コマンドの実行を求めている Antigravity のセッション。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/agy-approval-card.png" alt="Antigravity のセッション Fix token refresh race の承認カード。npm test の実行を求めていて、「拒否」「許可」「メモを付けて拒否…」のボタンがある" />
+    <img className="only-dark" src="/images/agy-approval-card-dark.png" alt="Antigravity のセッション Fix token refresh race の承認カード。npm test の実行を求めていて、「拒否」「許可」「メモを付けて拒否…」のボタンがある" />
+  </div>
+</Frame>
 
 - **「許可」** — Antigravity はそのまま進めます。
 - **「拒否」** — Antigravity はその操作を飛ばして続けます。
@@ -150,6 +167,79 @@ Antigravity が**コマンドを実行**したり、**ファイルを作成・�
 
 `実行中` の Antigravity のセッションで[「中断」](/ja/sessions/list#interrupt-a-running-session)をタップすると、止められます。緑色の**⚡ ローカル**チップが必要です。Antigravity はいまのステップを終えてから止まり、セッションは `完了` になります。チャットは開いたままなので、続けるには新しいメッセージを送ってください。
 
+## iPhone からの返信 {#reply-from-your-phone}
+
+iPhone から Antigravity のセッションにメッセージを送れます。修正の指示でも、次の作業でも、「続けて」でもかまいません。Mac で入力したのと同じように Antigravity に届きます。同じ Wi-Fi でなくても、どこからでも使えます。
+
+<Steps>
+  <Step title="セッションを開く">
+    Nomo でコンピュータを開き、**Antigravity** タブを選びます。セッションの名前をタップします。
+
+    セッションが開き、詳細の下に「**返信**」ボタンが表示されます。
+
+    <Frame caption="開いた状態の実行中の Antigravity セッション。詳細の下に「返信」があります。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-button.png" alt="開いた状態の Antigravity のセッション Fix token refresh race。モデル、フォルダ、agy CLI と「返信」ボタンが表示されている" />
+        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="開いた状態の Antigravity のセッション Fix token refresh race。モデル、フォルダ、agy CLI と「返信」ボタンが表示されている" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="「返信」をタップする">
+    上部にセッションの名前、下に「**このセッションにメッセージ**」と書かれた入力欄があるシートが表示されます。
+  </Step>
+
+  <Step title="メッセージを入力して送る">
+    メッセージを入力して、矢印をタップします。
+
+    メッセージが吹き出しで表示され、その下に短い状態の行が表示されます。状態を見ると、メッセージがいまどこにあるかがわかります。下の一覧をご覧ください。
+
+    <Frame caption="2 つのメッセージ。1 つ目は Antigravity に届き、2 つ目は次のステップを待っていて、まだ取り消せます。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-sheet.png" alt="Fix token refresh race の返信シート。メッセージの 1 つに「届きました」、もう 1 つに「次のステップを待っています」と表示されている" />
+        <img className="only-dark" src="/images/agy-reply-sheet-dark.png" alt="Fix token refresh race の返信シート。メッセージの 1 つに「届きました」、もう 1 つに「次のステップを待っています」と表示されている" />
+      </div>
+    </Frame>
+  </Step>
+</Steps>
+
+### メッセージの下に出る状態 {#reply-statuses}
+
+| 表示 | 意味 |
+| --- | --- |
+| `送信中…` | iPhone が送信しています。 |
+| `次のステップを待っています` | Mac に届いています。Antigravity は次のステップで読み込みます。それまでは、吹き出しの **×** をタップして取り消せます。 |
+| `届きました` | Antigravity が読み込みました。 |
+| `Macで再開中…` | セッションが終わっていたので、Mac があなたのメッセージでもう一度始めています。この時点では取り消せません。 |
+| `Macで再開しました` | あなたのメッセージで、セッションがふたたび動いています。 |
+| `再接続中…` | いま iPhone から Mac に接続できません。自動で再試行し続けるので、もう一度送る必要はありません。 |
+
+### 使える場面 {#where-reply-works}
+
+**`agy` コマンドラインツールの場合:**
+
+- **作業中** — 次のステップでメッセージが届きます。
+- **終わっていて、`agy` が閉じている** — Mac があなたのメッセージでセッションをもう一度始めます。`Macで再開中…` のあと、`Macで再開しました` と表示されます。
+- **終わっているが、`agy` がまだ開いている** — メッセージは待機します。Mac の `agy` で次のメッセージを送るまで `次のステップを待っています` と表示され、送ると Antigravity は両方を読み込みます。
+
+**Antigravity デスクトップアプリの場合:**
+
+- **作業中** — 次のステップでメッセージが届きます。
+- **終わっている** — 続けられるのは Mac だけです。「**返信**」はグレーになり、その下の行に理由が表示されます。
+
+<Frame caption="デスクトップアプリの終わったセッション。「返信」はグレーになり、その下の行に理由が表示されます。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/agy-reply-idle-app.png" alt="完了と表示された Antigravity アプリのセッションを開いたところ。グレーの「返信」ボタンと「AntigravityアプリのセッションはMacでのみ続けられます」という行がある" />
+    <img className="only-dark" src="/images/agy-reply-idle-app-dark.png" alt="完了と表示された Antigravity アプリのセッションを開いたところ。グレーの「返信」ボタンと「AntigravityアプリのセッションはMacでのみ続けられます」という行がある" />
+  </div>
+</Frame>
+
+知っておくと便利なこと:
+
+- **1 通あたり最大 4,000 文字**です。それ以上は入力できません。
+- **中断が常に優先されます。** メッセージがキューにある間に「**[中断](#interrupt)**」をタップすると、Antigravity が先に止まります。止めたターンにメッセージが渡されることはありません。
+- **メッセージは Nomo を開いている間だけ残ります。** Nomo を完全に終了すると、次に開いたときシートは空になります。Mac にすでに届いているメッセージは、そのまま届きます。
+
 ## このバージョンでの制限 {#what-this-version-doesnt-do}
 
 - **質問と計画は非対応。** Antigravity の質問と計画の確認は iPhone に表示されません。
@@ -165,6 +255,25 @@ Antigravity が**コマンドを実行**したり、**ファイルを作成・�
     3. ⚠️ または ❌ で始まる行の指示に従います。
 
     それでも表示されない場合は、Nomo で **+** ボタン（「エージェントを選択」）をタップして、Antigravity をオンにしてください。
+
+    Antigravity タブに「**Antigravityのセッションはまだありません**」と表示されている場合は、先に Antigravity でメッセージを送ってください。セッションは最初のメッセージを送ってから表示されます。
+
+    <Frame caption="セッションがまだ届いていないときの Antigravity タブ。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-drawer-tab.png" alt="コンピュータの Antigravity タブ。「Antigravityのセッションはまだありません」と表示されている" />
+        <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="コンピュータの Antigravity タブ。「Antigravityのセッションはまだありません」と表示されている" />
+      </div>
+    </Frame>
+  </Accordion>
+
+  <Accordion title="返信が「次のステップを待っています」のまま">
+    メッセージは Mac に届いています。Antigravity が作業中なら、次のステップで読み込まれます。長いコマンドの実行中は、しばらくかかることがあります。
+
+    セッションが終わっていて、Mac で `agy` が開いたままの場合、メッセージはそこでの次のメッセージを待ちます。`agy` で何か送ると、Antigravity は両方を読み込みます。取り消すには、吹き出しの **×** をタップします。
+  </Accordion>
+
+  <Accordion title="「返信」がグレーになっている">
+    Antigravity デスクトップアプリのセッションで、すでに終わっています。続けられるのは Mac だけです。次のメッセージはアプリから送ってください。
   </Accordion>
 
   <Accordion title="どのセッションも 2 つずつ表示される">
@@ -250,6 +359,7 @@ bunx nomo-ai --antigravity
     - **フェイルセーフ。** 各フックのコマンドは、まずスクリプトがまだ存在するかを確認します。`~/.nomo` が移動または削除されていれば自分で応答するので、何かがブロックされることはありません。承認フックでエラーが起きた場合も、Antigravity 自身の許可リクエストに戻ります。
     - **中断。** iPhone が 1 回限りのフラグを立て、次の `PostInvocation` でターンが終わります。フラグが立っている間に iPhone を待っているシェルコマンドやファイルの書き込みは、「Stopped from phone」として拒否されます。使われなかったフラグは 10 分後に破棄されます。Nomo が `agy` のプロセスにシグナルを送ることはありません。
     - **イベントなしで終わるターン。** ターンをキャンセルしたときや、実行が終了したときは、Nomo がフックを実行したプロセスと Antigravity 自身の会話インデックスを監視して、行を完了にします。30 分間動きのないセッションは、最後の手段として消去されます。カードが iPhone に表示されている間にキャンセルすると、カードは取り下げられます。
+    - **返信。** iPhone は `send-message` コマンド（メッセージ ID と最大 4,000 文字）を封印し、ローカル接続と中継サーバーの両方で送ります。Mac はメッセージごとに、所有者だけが読めるファイル（`<conversation>.<id>.agy-inbox`）を 1 つ書き込みます。次の `PreInvocation` が、キューにあるすべてのメッセージをユーザーメッセージとしてエージェントに渡します。ターンの最後のステップ中に届いたメッセージは、そのターンの `Stop` を 1 回だけ継続させます。受領の状態（キュー済み、再開中、配達済み、再開済み、取り消し、拒否）は、セッションの暗号化された更新で返ってきます。終わった `agy` の会話で `agy` がすでに終了している場合、Nomo はその会話のフォルダで `agy --conversation <id> --print=<message>` を実行します（メッセージは 1 つの引数で、シェルが解釈することはありません）。終わっていても `agy` が開いたままなら、メッセージは次のターンまで保持されます — Nomo が 1 つの会話で 2 つ目の `agy` を起動することはありません。中断のフラグが常に優先され、止めようとしているターンにメッセージが渡されることはありません。誰にも受け取られなかったメッセージは 1 日後に削除されます。Nomo 自身の `/nomo-*` コマンドが iPhone にカードを出すことはありません。
     - **タイトル。** Antigravity の `conversation_summaries.db` から、システムの `sqlite3` で読み取り専用で読み取ります。それがまだない間は、会話のトランスクリプトの最初の行、次にワークスペースのフォルダ名を使います。
     - **コマンド。** `/nomo-*` コマンドが実行するのは、Nomo 自身のローカルコマンド — ペアリング、状態確認、承認のスイッチ、リセット、ペアリング解除 — だけで、どれも Antigravity 自身のコマンド実行の確認を経由します。ペアリングのリンクや QR のシークレットを表示することはありません。
 

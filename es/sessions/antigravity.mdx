@@ -1,13 +1,13 @@
 ---
-title: "Sigue y aprueba sesiones de Antigravity desde tu iPhone"
+title: "Sigue, aprueba y responde a sesiones de Antigravity desde tu iPhone"
 sidebarTitle: "Usar Antigravity"
-description: "Configura Nomo para Google Antigravity en pocos pasos, vincula tu teléfono y sigue tus sesiones desde el iPhone, con Permitir y Denegar para comandos y cambios en archivos."
+description: "Configura Nomo para Google Antigravity en pocos pasos, vincula tu teléfono y sigue tus sesiones desde el iPhone, con Permitir y Denegar para comandos y cambios en archivos, Detener y respuestas."
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar Antigravity"]
 ---
 
 Ve tus sesiones de Google Antigravity en el iPhone: en la pantalla de bloqueo y
 en la Dynamic Island. Cuando Antigravity quiere ejecutar un comando o cambiar un
-archivo, tu teléfono te pide **Permitir** o **Denegar**.
+archivo, tu teléfono te pide **Permitir** o **Denegar**. También puedes detener una sesión, o enviarle un mensaje, desde el teléfono.
 
 Funciona con la app de escritorio de Antigravity y con la herramienta de línea
 de comandos `agy`.
@@ -79,6 +79,13 @@ de comandos `agy`.
     Deberías ver la sesión en Nomo, en la pestaña **Antigravity** de tu
     ordenador. ¿No hay pestaña Antigravity? Toca el botón **+** (**Elegir
     agentes**) y activa Antigravity.
+
+    <Frame caption="Elegir agentes, desde el botón +. Antigravity está marcado, así que tiene su propia pestaña.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="El menú Elegir agentes con Claude Code, Codex y Antigravity marcados, y OpenCode y Cursor sin marcar" />
+        <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="El menú Elegir agentes con Claude Code, Codex y Antigravity marcados, y OpenCode y Cursor sin marcar" />
+      </div>
+    </Frame>
   </Step>
 </Steps>
 
@@ -140,6 +147,8 @@ La vinculación y el interruptor de aprobaciones los comparten todas las apps de
 programación de este ordenador. Si desactivas aquí las aprobaciones, también se
 desactivan para Claude Code y Codex.
 
+Estos comandos solo preguntan en Antigravity. Nunca ponen una tarjeta en tu teléfono.
+
 ## Lo que ves {#what-you-see}
 
 - Una sesión aparece cuando envías tu **primer mensaje**, no cuando abres un
@@ -159,6 +168,14 @@ archivo**, tu teléfono te pregunta. Leer y buscar archivos nunca llega a tu
 teléfono.
 
 Mantén pulsada la sesión, o usa la Dynamic Island, y elige:
+
+
+<Frame caption="Una sesión de Antigravity que pide ejecutar un comando.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/agy-approval-card.png" alt="Una tarjeta de aprobación de la sesión de Antigravity Fix token refresh race, que pide ejecutar npm test, con los botones Denegar, Permitir y Denegar con nota" />
+    <img className="only-dark" src="/images/agy-approval-card-dark.png" alt="Una tarjeta de aprobación de la sesión de Antigravity Fix token refresh race, que pide ejecutar npm test, con los botones Denegar, Permitir y Denegar con nota" />
+  </div>
+</Frame>
 
 - **Permitir**: Antigravity sigue adelante.
 - **Denegar**: Antigravity se lo salta y continúa.
@@ -188,6 +205,92 @@ de Antigravity `En ejecución` para pararla. Necesita la etiqueta verde
 **⚡ Local**. Antigravity termina el paso en el que está, se detiene y la sesión
 pasa a `Listo`. El chat sigue abierto: envía un mensaje nuevo para continuar.
 
+## Responder desde el teléfono {#reply-from-your-phone}
+
+Envía un mensaje a una sesión de Antigravity desde el iPhone: una corrección,
+el siguiente paso o «sigue». Llega a Antigravity como si lo hubieras escrito en
+el Mac. Funciona desde cualquier sitio: no hace falta la misma red Wi-Fi.
+
+<Steps>
+  <Step title="Abre la sesión">
+    En Nomo, abre tu ordenador y elige la pestaña **Antigravity**. Toca el
+    nombre de la sesión.
+
+    Verás que la sesión se abre, con un botón **Responder** bajo sus detalles.
+
+    <Frame caption="Una sesión de Antigravity en ejecución, abierta, con Responder bajo sus detalles.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-button.png" alt="Una fila de sesión de Antigravity abierta llamada Fix token refresh race, con su modelo, su carpeta, agy CLI y un botón Responder" />
+        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="Una fila de sesión de Antigravity abierta llamada Fix token refresh race, con su modelo, su carpeta, agy CLI y un botón Responder" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="Toca Responder">
+    Verás que sube un panel con el nombre de la sesión arriba y un cuadro que
+    dice **Mensaje para esta sesión**.
+  </Step>
+
+  <Step title="Escribe tu mensaje y envíalo">
+    Escribe tu mensaje y toca la flecha.
+
+    Verás tu mensaje como una burbuja, con una línea de estado debajo. El estado
+    te dice dónde está el mensaje; consulta la lista de abajo.
+
+    <Frame caption="Dos mensajes: el primero ya ha llegado a Antigravity; el segundo espera a su siguiente paso y aún se puede cancelar.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-sheet.png" alt="El panel de respuesta de Fix token refresh race, con un mensaje marcado como Entregado y otro como En cola para el siguiente paso" />
+        <img className="only-dark" src="/images/agy-reply-sheet-dark.png" alt="El panel de respuesta de Fix token refresh race, con un mensaje marcado como Entregado y otro como En cola para el siguiente paso" />
+      </div>
+    </Frame>
+  </Step>
+</Steps>
+
+### Qué significa el estado bajo un mensaje {#reply-statuses}
+
+| Ves | Qué significa |
+| --- | --- |
+| `Enviando…` | Tu teléfono lo está enviando. |
+| `En cola para el siguiente paso` | Tu Mac ya lo tiene. Antigravity lo lee en su siguiente paso. Hasta entonces puedes tocar **×** en la burbuja para cancelarlo. |
+| `Entregado` | Antigravity ya lo ha leído. |
+| `Reanudando en tu Mac…` | La sesión había terminado, así que tu Mac la vuelve a iniciar con tu mensaje. Ya no se puede cancelar. |
+| `Reanudado en tu Mac` | La sesión vuelve a estar en marcha con tu mensaje. |
+| `Reconectando…` | Ahora mismo tu teléfono no llega a tu Mac. Lo sigue intentando solo; no hace falta que lo envíes otra vez. |
+
+### Dónde funciona {#where-reply-works}
+
+**Con la herramienta de línea de comandos `agy`:**
+
+- **Mientras trabaja**: tu mensaje llega en su siguiente paso.
+- **Terminada, con `agy` cerrado**: tu Mac vuelve a iniciar la sesión con tu
+  mensaje. Verás `Reanudando en tu Mac…` y después `Reanudado en tu Mac`.
+- **Terminada, pero con `agy` aún abierto**: tu mensaje espera. Muestra
+  `En cola para el siguiente paso` hasta que envíes tu siguiente mensaje en
+  `agy`, en el Mac; entonces Antigravity lee los dos.
+
+**Con la app de escritorio de Antigravity:**
+
+- **Mientras trabaja**: tu mensaje llega en su siguiente paso.
+- **Terminada**: solo el Mac puede continuarla. **Responder** aparece en gris, y
+  la línea de debajo lo explica.
+
+<Frame caption="Una sesión terminada de la app de escritorio: Responder aparece en gris y la línea de debajo explica por qué.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/agy-reply-idle-app.png" alt="Una sesión de la app Antigravity abierta y marcada como Listo, con el botón Responder en gris y la línea Las sesiones de la app Antigravity solo pueden continuar en tu Mac" />
+    <img className="only-dark" src="/images/agy-reply-idle-app-dark.png" alt="Una sesión de la app Antigravity abierta y marcada como Listo, con el botón Responder en gris y la línea Las sesiones de la app Antigravity solo pueden continuar en tu Mac" />
+  </div>
+</Frame>
+
+Conviene saber:
+
+- **Hasta 4000 caracteres** por mensaje. El cuadro deja de aceptar texto ahí.
+- **Detener siempre gana.** Si tocas **[Detener](#interrupt)** mientras hay un
+  mensaje en cola, Antigravity se detiene primero. El mensaje nunca se entrega
+  al turno que has detenido.
+- **Tus mensajes se quedan mientras Nomo esté abierto.** Si cierras Nomo del
+  todo, el panel empieza vacío la próxima vez. Los mensajes que tu Mac ya tiene
+  llegan igualmente.
+
 ## Lo que esta versión no hace {#what-this-version-doesnt-do}
 
 - **Sin preguntas ni planes.** Las preguntas y las revisiones de planes de
@@ -207,6 +310,31 @@ pasa a `Listo`. El chat sigue abierto: envía un mensaje nuevo para continuar.
 
     ¿Sigue sin salir nada? En Nomo, toca el botón **+** (**Elegir agentes**) y
     activa Antigravity.
+
+    Si la pestaña Antigravity dice **Aún no hay sesiones de Antigravity**, envía
+    primero un mensaje en Antigravity: una sesión solo aparece tras tu primer
+    mensaje.
+
+    <Frame caption="La pestaña Antigravity antes de que llegue ninguna sesión.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-drawer-tab.png" alt="La pestaña Antigravity de un ordenador, que dice Aún no hay sesiones de Antigravity" />
+        <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="La pestaña Antigravity de un ordenador, que dice Aún no hay sesiones de Antigravity" />
+      </div>
+    </Frame>
+  </Accordion>
+
+  <Accordion title="Mi respuesta se queda en “En cola para el siguiente paso”">
+    Tu Mac ya tiene el mensaje. Si Antigravity está trabajando, lo lee en su
+    siguiente paso; un comando largo puede tardar un rato.
+
+    Si la sesión ha terminado y `agy` sigue abierto en el Mac, el mensaje espera
+    a tu siguiente mensaje allí. Envía algo en `agy` y Antigravity leerá los dos.
+    O toca **×** en la burbuja para cancelarlo.
+  </Accordion>
+
+  <Accordion title="Responder aparece en gris">
+    La sesión es de la app de escritorio de Antigravity y ya ha terminado. Solo
+    el Mac puede continuarla. Envía tu siguiente mensaje en la app.
   </Accordion>
 
   <Accordion title="Cada sesión sale dos veces">
@@ -328,6 +456,22 @@ en Antigravity **antes** de desinstalar.
       de conversaciones de Antigravity, y marca la fila como terminada. Una
       sesión sin actividad durante 30 minutos se quita como último recurso.
       Cancelar mientras hay una tarjeta en tu teléfono retira la tarjeta.
+    - **Respuestas.** Tu teléfono sella un comando `send-message` (un id de
+      mensaje y hasta 4000 caracteres) y lo envía por el enlace local y por el
+      relé. El Mac escribe un archivo por mensaje, solo legible por su dueño
+      (`<conversation>.<id>.agy-inbox`). El siguiente `PreInvocation` entrega
+      todos los mensajes en cola al agente como mensajes del usuario; un mensaje
+      que llega durante el último paso del turno hace que el `Stop` de ese turno
+      continúe una vez. Los acuses vuelven en la actualización cifrada de la
+      sesión: en cola, reanudando, entregado, reanudado, cancelado o rechazado.
+      Para una conversación de `agy` terminada cuyo `agy` ya se cerró, Nomo
+      ejecuta `agy --conversation <id> --print=<message>` en la carpeta de esa
+      conversación (el mensaje es un único argumento, nunca lo interpreta una
+      shell). Un `agy` terminado que sigue abierto guarda el mensaje para su
+      siguiente turno: Nomo nunca abre un segundo `agy` en una conversación. Un
+      Detener siempre gana: un mensaje nunca se entrega a un turno que se está
+      deteniendo. Los mensajes que nadie recoge se borran al cabo de un día. Los
+      comandos `/nomo-*` de Nomo nunca ponen una tarjeta en el teléfono.
     - **Título.** De solo lectura, desde `conversation_summaries.db` de
       Antigravity con el `sqlite3` del sistema. Antes de que exista: la primera
       línea de la transcripción de la conversación y, si no, el nombre de la

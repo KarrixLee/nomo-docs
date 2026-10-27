@@ -1,13 +1,14 @@
 ---
-title: "Watch and approve Antigravity sessions from your iPhone"
+title: "Watch, approve and reply to Antigravity sessions from your iPhone"
 sidebarTitle: "Using Antigravity"
-description: "Set up Nomo for Google Antigravity in a few steps, pair your phone, and follow your sessions from your iPhone — with Allow and Deny for commands and file changes."
+description: "Set up Nomo for Google Antigravity in a few steps, pair your phone, and follow your sessions from your iPhone — with Allow and Deny for commands and file changes, Interrupt, and replies."
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Using Antigravity"]
 ---
 
 See your Google Antigravity sessions on your iPhone — on the Lock Screen and in
 the Dynamic Island. When Antigravity wants to run a command or change a file,
-your phone asks you to **Allow** or **Deny** it.
+your phone asks you to **Allow** or **Deny** it. You can also stop a session,
+or send it a message, from your phone.
 
 It works with the Antigravity desktop app and with the `agy` command-line tool.
 
@@ -76,6 +77,13 @@ It works with the Antigravity desktop app and with the `agy` command-line tool.
     You should see the session appear in Nomo, under the **Antigravity** tab of
     your computer. No Antigravity tab? Tap the **+** button (**Choose agents**)
     and turn Antigravity on.
+
+    <Frame caption="Choose agents, from the + button. Antigravity is ticked, so it gets its own tab.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="The Choose agents menu with Claude Code, Codex and Antigravity ticked, and OpenCode and Cursor unticked" />
+        <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="The Choose agents menu with Claude Code, Codex and Antigravity ticked, and OpenCode and Cursor unticked" />
+      </div>
+    </Frame>
   </Step>
 </Steps>
 
@@ -132,6 +140,8 @@ When everything is fine, `/nomo-status` shows one line like this:
 
 If something is wrong, it adds a line that says what to do.
 
+These commands only ask in Antigravity. They never put a card on your phone.
+
 The connection and the approvals switch are shared by every coding app on this
 computer. Turning approvals off here turns them off for Claude Code and Codex
 too.
@@ -152,6 +162,13 @@ When Antigravity wants to **run a command** or **create or change a file**, your
 phone asks you. Reading and searching files never reach your phone.
 
 Touch and hold the session, or use the island, and choose:
+
+<Frame caption="An Antigravity session asking to run a command.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/agy-approval-card.png" alt="An approval card for the Antigravity session Fix token refresh race, asking to run npm test, with Deny, Allow and Deny with note buttons" />
+    <img className="only-dark" src="/images/agy-approval-card-dark.png" alt="An approval card for the Antigravity session Fix token refresh race, asking to run npm test, with Deny, Allow and Deny with note buttons" />
+  </div>
+</Frame>
 
 - **Allow** — Antigravity goes ahead.
 - **Deny** — Antigravity skips it and carries on.
@@ -180,6 +197,92 @@ Tap **[Interrupt](/sessions/list#interrupt-a-running-session)** on a
 Antigravity finishes the step it's on, then stops, and the session shows
 **Done**. The chat stays open — send a new message to carry on.
 
+## Reply from your phone {#reply-from-your-phone}
+
+Send a message to an Antigravity session from your iPhone — a correction, a
+next step, or "carry on". It reaches Antigravity as if you'd typed it at the
+Mac. It works from anywhere: the same Wi-Fi isn't needed.
+
+<Steps>
+  <Step title="Open the session">
+    In Nomo, open your computer and choose the **Antigravity** tab. Tap the
+    session's name.
+
+    You should see the session open up, with a **Reply** button under its
+    details.
+
+    <Frame caption="A running Antigravity session, opened, with Reply under its details.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-button.png" alt="An open Antigravity session row called Fix token refresh race, showing its model, folder, agy CLI and a Reply button" />
+        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="An open Antigravity session row called Fix token refresh race, showing its model, folder, agy CLI and a Reply button" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="Tap Reply">
+    You should see a sheet slide up with the session's name at the top and a
+    box that says **Message this session**.
+  </Step>
+
+  <Step title="Type your message and send it">
+    Type your message, then tap the arrow.
+
+    You should see your message as a bubble, with a short status line under it.
+    The status tells you where the message is — see the list below.
+
+    <Frame caption="Two messages: the first has reached Antigravity, the second waits for its next step and can still be cancelled.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-sheet.png" alt="The reply sheet for Fix token refresh race, with one message marked Delivered and one marked Queued for the next step" />
+        <img className="only-dark" src="/images/agy-reply-sheet-dark.png" alt="The reply sheet for Fix token refresh race, with one message marked Delivered and one marked Queued for the next step" />
+      </div>
+    </Frame>
+  </Step>
+</Steps>
+
+### What the status under a message means {#reply-statuses}
+
+| You see | What it means |
+| --- | --- |
+| `Sending…` | Your phone is sending it. |
+| `Queued for the next step` | Your Mac has it. Antigravity reads it at its next step. Until then you can tap **×** on the bubble to cancel it. |
+| `Delivered` | Antigravity has read it. |
+| `Waking your Mac…` | The session had finished, so your Mac is starting it again with your message. It can't be cancelled now. |
+| `Resumed on your Mac` | The session is running again with your message. |
+| `Reconnecting…` | Your phone can't reach your Mac right now. It keeps trying by itself — you don't need to send it again. |
+
+### Where it works {#where-reply-works}
+
+**With the `agy` command-line tool:**
+
+- **While it's working** — your message arrives at its next step.
+- **Finished, and `agy` is closed** — your Mac starts the session again with
+  your message. You'll see `Waking your Mac…`, then `Resumed on your Mac`.
+- **Finished, but `agy` is still open** — your message waits. It shows
+  `Queued for the next step` until you send your next message in `agy` on
+  the Mac; then Antigravity reads both.
+
+**With the Antigravity desktop app:**
+
+- **While it's working** — your message arrives at its next step.
+- **Finished** — only the Mac can continue it. **Reply** is greyed out, and the
+  line under it says so.
+
+<Frame caption="A finished session from the desktop app: Reply is greyed out, and the line under it explains why.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/agy-reply-idle-app.png" alt="An open Antigravity app session marked Done, with a greyed-out Reply button and the line Antigravity app sessions can only continue on your Mac" />
+    <img className="only-dark" src="/images/agy-reply-idle-app-dark.png" alt="An open Antigravity app session marked Done, with a greyed-out Reply button and the line Antigravity app sessions can only continue on your Mac" />
+  </div>
+</Frame>
+
+Good to know:
+
+- **Up to 4,000 characters** per message. The box stops taking text there.
+- **Stop always wins.** If you tap **[Interrupt](#interrupt)** while a message is
+  queued, Antigravity stops first. The message is never handed to the turn
+  you stopped.
+- **Your messages stay while Nomo is open.** If you close Nomo completely, the
+  sheet starts empty next time. Messages your Mac already has still arrive.
+
 ## What this version doesn't do
 
 - **No questions or plans.** Antigravity's questions and plan reviews don't show
@@ -197,6 +300,30 @@ Antigravity finishes the step it's on, then stops, and the session shows
 
     Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
     Antigravity on.
+
+    If the Antigravity tab says **No Antigravity sessions yet**, send a message
+    in Antigravity first — a session appears only after your first message.
+
+    <Frame caption="The Antigravity tab before any session has arrived.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-drawer-tab.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
+        <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
+      </div>
+    </Frame>
+  </Accordion>
+
+  <Accordion title="My reply stays on “Queued for the next step”">
+    Your Mac has the message. If Antigravity is working, it reads it at its
+    next step — a long command can take a while.
+
+    If the session has finished and `agy` is still open on the Mac, the message
+    waits for your next message there. Send something in `agy`, and Antigravity
+    reads both. Or tap **×** on the bubble to cancel it.
+  </Accordion>
+
+  <Accordion title="Reply is greyed out">
+    The session is from the Antigravity desktop app, and it has finished. Only
+    the Mac can continue it. Send your next message in the app.
   </Accordion>
 
   <Accordion title="Every session shows up twice">
@@ -313,6 +440,21 @@ Antigravity **before** you uninstall.
       conversation index, and marks the row done. A session quiet for 30
       minutes is cleared as a last resort. Cancelling while a card is on your
       phone withdraws the card.
+    - **Reply.** Your phone seals a `send-message` command (a message id and up to
+      4,000 characters) and sends it over the local link and the relay. The Mac
+      writes one owner-only file per message (`<conversation>.<id>.agy-inbox`).
+      The next `PreInvocation` hands every queued message to the agent as a
+      user message; a message that arrives during the turn's last step makes
+      that turn's `Stop` continue once. Receipts come back in the session's
+      encrypted update: queued, waking, delivered, resumed, cancelled or
+      refused. For a finished `agy` conversation whose `agy` has exited, Nomo
+      runs `agy --conversation <id> --print=<message>` in that conversation's
+      folder (the message is one argument, never parsed by a shell). A finished
+      `agy` that is still open keeps the message for its next turn — Nomo never
+      starts a second `agy` on one conversation. An Interrupt flag always wins:
+      a message is never handed to a turn being stopped. Messages nobody picks
+      up are deleted after a day. Nomo's own `/nomo-*` commands never put a card
+      on the phone.
     - **Title.** Read-only, from Antigravity's `conversation_summaries.db` with
       the system `sqlite3`. Before it exists: the first line of the
       conversation's transcript, then the workspace folder name.
