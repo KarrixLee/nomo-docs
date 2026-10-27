@@ -10,7 +10,7 @@ icon: "qrcode-read"
 
 <Note>
   1 つのペアリングが対象とするのはマシンであり、エージェントではありません。同じコンピュータで
-  Claude Code、Codex、OpenCode、Cursor をどう組み合わせて使っていても、それらはペアリングを共有します — 2 回ペアリングする必要はありません。
+  Claude Code、Codex、OpenCode、Cursor、Antigravity をどう組み合わせて使っていても、それらはペアリングを共有します — 2 回ペアリングする必要はありません。
 </Note>
 
 <Tabs>
@@ -34,6 +34,11 @@ icon: "qrcode-read"
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
         ```
         </CodeGroup>
 
@@ -74,7 +79,7 @@ icon: "qrcode-read"
 
     <Steps>
       <Step title="コードを要求する">
-        引数に `code` を渡します。
+        引数に `code` を渡します（Antigravity のターミナルコマンドでは `--show-code`）。
 
         <CodeGroup>
         ```bash Claude Code icon="/images/claude-code.svg"
@@ -91,6 +96,11 @@ icon: "qrcode-read"
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair code
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
         ```
         </CodeGroup>
 

@@ -1,0 +1,127 @@
+---
+title: "搭配 Antigravity 使用"
+description: "在 Google Antigravity 上安装 Nomo 插件、完成配对，然后在手机上看着它的会话——shell 命令和文件写入可以直接允许或拒绝。"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "搭配 Antigravity 使用"]
+---
+
+Google Antigravity 的会话出现在同一个列表里、同一个灵动岛上，走同一份配对——无论来自 Antigravity 桌面应用，还是来自 `agy` CLI。Antigravity 想运行 shell 命令或写入文件时，你可以在手机上**允许**或**拒绝**。
+
+<Note>
+  会话功能属于 Nomo Pro，Antigravity 和其他每个智能体都一样。Antigravity 会话需要你手机上的 Nomo **2.3.5** 和 Mac 上的插件 **2.3.5**。
+</Note>
+
+## 配置步骤 {#set-it-up}
+
+<Steps>
+  <Step title="运行安装工具">
+    在你的 Mac 上：
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --antigravity
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --antigravity
+    ```
+    </CodeGroup>
+
+    一次安装同时覆盖桌面应用和 `agy`。它做两件事：
+
+    - 把插件克隆到 `~/.nomo`。
+    - 在 `~/.gemini/config/hooks.json` 里加入一个名为 `nomo` 的区块。这个文件里的其他区块原样不动。
+  </Step>
+
+  <Step title="重启 Antigravity——必做">
+    <Warning>
+      Antigravity 只在启动时读取 hook。退出并重新打开 Antigravity 应用，并重启你开着的每一个 `agy` 会话。在你这样做之前，插件虽已安装却什么都不做。
+    </Warning>
+  </Step>
+
+  <Step title="配对">
+    Antigravity 没有 Nomo 命令，所以要在终端里配对：
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+    ```
+
+    它会打开带二维码的配对页面——用 Nomo App 扫一下。打不开浏览器的地方，加上 `--show-code`，会改为给你一段可以手输的短码。两种方式的完整流程都在[配对](/zh-Hans/setup/pairing)里。
+
+    同一台 Mac 上的各个智能体共用配对。一台已经为 Claude Code、Codex、OpenCode 或 Cursor 配对过的电脑，不需要为 Antigravity 再配对一次——安装就够了，这一步可以跳过。
+  </Step>
+
+  <Step title="显示 Antigravity 标签页">
+    在 App 里打开那台电脑。Antigravity 的会话在它会话详情页的 **Antigravity** 标签页下面。
+
+    详情页最多显示三个智能体标签页。如果 Antigravity 不在其中，轻点 **+** 按钮（**选择智能体**），把它打开。
+  </Step>
+</Steps>
+
+## 命令 {#commands}
+
+Antigravity 没有给 Nomo 用的斜杠命令。请改在终端里运行下面这些，或者用同一台 Mac 上其他任一智能体里对应的命令——配对和这里的其他一切都是整台电脑共用的：
+
+| | |
+| --- | --- |
+| 配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| 检查健康状况 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| 清理卡住的会话 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| 解除配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+Antigravity 里没有 approvals 命令。要暂停这台电脑的远程审批，请在 Claude Code 里用 `/nomo-cc:approvals off`（或 Codex、OpenCode 里对应的命令）——这个开关是所有智能体共用的。每条命令会输出什么，见[命令](/zh-Hans/sessions/commands)。
+
+## 会显示的内容 {#what-you-see}
+
+- 会话在你发出**第一条提示**时出现——只是打开一个对话并不会出现。
+- 智能体运行时它显示为运行中，这一轮结束时显示为完成。
+- 标题是 Antigravity 自己给这个对话起的名称。Antigravity 要等第一轮结束才会起名，在那之前，这一行以你的第一条提示命名。
+- 模型徽标显示的是 Antigravity 报告的模型。
+- [灵动岛](/zh-Hans/sessions/island)和其他智能体一样可用，显示你选择放上去的那些会话。
+
+## 在手机上回答 {#answering-from-your-phone}
+
+shell 命令以及文件的写入或编辑会送到你的手机。读取、搜索和其他所有工具永远不会——Antigravity 直接运行它们，不会询问 Nomo。
+
+按住那一行会话，或者用灵动岛，你会看到：
+
+- **允许**——命令执行，或者文件被写入。
+- **拒绝**——Antigravity 跳过它，不做这一步继续往下。
+- **拒绝并附注…**——拒绝，并把你输入的内容作为理由交给智能体。
+
+Antigravity 暂时没有**始终允许**。其余部分和[在手机上回答](/zh-Hans/sessions/approvals)里一样。
+
+你自己的 Antigravity 规则依然有效：
+
+- **允许规则会跳过手机**。在 `agy` CLI 里，已被 `~/.gemini/antigravity-cli/settings.json` 中某条允许规则覆盖的命令会直接运行，不会询问你的手机。
+- **拒绝规则永远优先**。拒绝规则绝不会被手机上的操作推翻。
+- **桌面应用每样都会问**。它的权限预设——包括 Turbo——插件读不到，所以在桌面应用里，每一条 shell 命令和每一次文件写入都会送到你的手机。
+
+卡片在你手机上时，Mac 上 Antigravity 自己的请求会等你的答复。如果手机或网络连不上，或者远程审批已[暂停](/zh-Hans/sessions/approvals#pausing-it)，Antigravity 会在 Mac 上显示它平常的请求，和没有 Nomo 时完全一样。
+
+## 停止这一轮 {#interrupt}
+
+[**停止**](/zh-Hans/sessions/list#interrupt-a-running-session)可以用在 `运行中` 的 Antigravity 会话上，条件和 Claude Code 一样：绿色的 **⚡ 本地**角标，以及插件 **2.3.5**。这一轮会在当前这一步——已经在运行的模型调用或工具——结束后停下，这一行变为 `完成`。对话仍然开着；输入新的提示即可接着来。
+
+## 这个版本的限制 {#what-this-version-doesnt-do}
+
+- **没有提问和计划**。Antigravity 的提问和计划审批不会显示在你的手机上。
+- **没有“在 Mac 上打开”**。这个按钮在 Antigravity 会话上不可用。
+- **没有“始终允许”**。每条命令都是一次性的**允许**或**拒绝**。
+
+## 更新 {#updating}
+
+再运行一次同一条命令，然后重启 Antigravity：
+
+```bash
+bunx nomo-ai --antigravity
+```
+
+## 卸载 {#uninstalling}
+
+```bash
+node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+```
+
+然后重启 Antigravity。卸载只会从 `~/.gemini/config/hooks.json` 删掉 `nomo` 区块，不会动配对——配对是这台电脑上所有智能体共用的。如果还想解除这台电脑的配对，请在卸载之前运行上面的解除配对命令。
+
+如果有东西没有显示出来，先看[故障排查](/zh-Hans/sessions/troubleshooting)里关于 Antigravity 的那几条。

@@ -1,14 +1,16 @@
 ---
 title: "Comandos"
-description: "Todos los comandos de Nomo para Claude Code, Codex, OpenCode y Cursor —vinculación, estado, aprobaciones, reinicio, desvinculación y actualización— en un solo sitio."
+description: "Todos los comandos de Nomo para Claude Code, Codex, OpenCode, Cursor y Antigravity —vinculación, estado, aprobaciones, reinicio, desvinculación y actualización— en un solo sitio."
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
 ---
 
 Cinco comandos en Claude Code, Codex y OpenCode, un sexto que solo OpenCode
 necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del agente,
 en el ordenador al que quieras afectar: un comando con `/` en Claude Code y en
-OpenCode, una skill con `/` en Cursor, una skill con `$` en Codex.
+OpenCode, una skill con `/` en Cursor, una skill con `$` en Codex. Antigravity
+no tiene comandos propios: allí se ejecutan en una terminal — [Usar
+Antigravity](/es/sessions/antigravity#commands).
 
 <Tip>
   En Claude Code todo va con espacio de nombres: al escribir `/nomo-cc:` se
@@ -60,6 +62,13 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+# in a terminal — QR code, opens your browser
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+# one-time code, printed in the terminal
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+```
 </CodeGroup>
 
 Sin argumentos abre en tu navegador una página con la estética de la app y un
@@ -71,8 +80,8 @@ sesión SSH. Es la vía de segunda opción a propósito: ese código acaba en tu
 terminal y, por tanto, en la transcripción del agente.
 
 Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubre
-la máquina, no el agente: Claude Code, Codex, OpenCode y Cursor en el mismo Mac
-la comparten. El recorrido completo está en [Vinculación](/es/setup/pairing).
+la máquina, no el agente: Claude Code, Codex, OpenCode, Cursor y Antigravity en el
+mismo Mac la comparten. El recorrido completo está en [Vinculación](/es/setup/pairing).
 
 ## status {#status}
 
@@ -91,6 +100,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -156,7 +169,7 @@ cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
   OpenCode no tiene hooks, así que allí la fila se llama `Plugin`. ¿No se dispara
   nada? Reinicia Claude Code para que se carguen sus hooks; en Codex, ejecuta
   `/hooks`; en OpenCode, reinícialo para que se cargue el plugin; reinicia
-  Cursor, que solo recoge los hooks al arrancar.
+  Cursor o Antigravity, que solo recogen los hooks al arrancar.
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -241,7 +254,9 @@ Hay otro interruptor aparte, para todo el teléfono: **Responder en el iPhone**
 en [Ajustes](/es/sessions/settings#remote-approvals).
 
 Cursor no tiene comando de aprobaciones. Sus solicitudes nunca llegan a tu
-teléfono, así que no hay nada que pausar.
+teléfono, así que no hay nada que pausar. Antigravity tampoco lo tiene, pero sus
+solicitudes sí llegan a tu teléfono: páusalas con cualquiera de los comandos de
+arriba, ya que el interruptor es compartido.
 
 ## reset {#reset}
 
@@ -260,6 +275,10 @@ $nomo-reset
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
 ```
 </CodeGroup>
 
@@ -295,6 +314,10 @@ $nomo-unpair
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-unpair
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs
 ```
 </CodeGroup>
 

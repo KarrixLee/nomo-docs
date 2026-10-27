@@ -2,7 +2,7 @@
 title: "Solución de problemas"
 description: "Ejecuta primero el comando status: nombra el problema e imprime el arreglo. Después, qué fila responde a cada síntoma y las pocas cosas que status no puede ver."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
 ---
 
 El comando status hace hoy casi todo el trabajo de esta página. Lee el ordenador
@@ -29,6 +29,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -90,8 +94,11 @@ está en [Comandos](/es/sessions/commands#status).
 <Accordion title="Mi teléfono nunca me pide aprobar nada" icon="hand">
   Si la sesión es de Cursor, es lo esperado: las sesiones de Cursor son de solo
   lectura y sus solicitudes nunca llegan a tu teléfono —
-  [por qué](/es/sessions/cursor#what-this-version-doesnt-do). Para cualquier
-  otro agente:
+  [por qué](/es/sessions/cursor#what-this-version-doesnt-do). Antigravity solo
+  envía comandos de shell y escrituras de archivos, y una regla de permitir que
+  ya tengas en `agy` se salta el teléfono — [Usar
+  Antigravity](/es/sessions/antigravity#answering-from-your-phone).
+  Para cualquier otro agente:
 
   Lee **Approvals**. `PAUSED` significa que alguien ejecutó el comando de pausa
   en este ordenador — puede que hace meses, que es justo por lo que esto antes
@@ -110,7 +117,7 @@ está en [Comandos](/es/sessions/commands#status).
   **Hooks** — o **Plugin** en OpenCode, que no tiene. Si no se dispara, tu agente
   no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo
   al arrancar: reinicia Claude Code, ejecuta `/hooks` en Codex, reinicia
-  OpenCode, reinicia Cursor.
+  OpenCode, reinicia Cursor, reinicia Antigravity.
 
   Codex confía en los hooks de forma explícita y una actualización del plugin
   reabre esa revisión, así que `/hooks` después de actualizar es ahí la respuesta
@@ -163,6 +170,36 @@ está en [Comandos](/es/sessions/commands#status).
   prompt.
 </Accordion>
 
+<Accordion title="Antigravity en concreto no muestra nada" icon="rocket">
+  Cuatro cosas que comprobar, en este orden:
+
+  - **Antigravity no se reinició.** Antigravity solo lee sus hooks al arrancar,
+    así que después de instalar, cierra la app y vuelve a abrirla — y reinicia
+    cualquier sesión de `agy` abierta.
+  - **La pestaña Antigravity está oculta.** El panel muestra hasta tres
+    pestañas de agente. Toca el botón **+** (**Elegir agentes**) y activa
+    Antigravity.
+  - **El Mac no está vinculado.** Antigravity no tiene comandos de Nomo, así
+    que compruébalo desde una terminal:
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+    ```
+  - **La carpeta del plugin se movió.** Los hooks de Antigravity apuntan a
+    `~/.nomo`. Si esa carpeta se movió o se borró, vuelve a ejecutar
+    `bunx nomo-ai --antigravity` y después reinicia Antigravity.
+
+  Una sesión solo aparece cuando has enviado el primer prompt de una
+  conversación. La puesta en marcha completa está en [Usar
+  Antigravity](/es/sessions/antigravity).
+</Accordion>
+
+<Accordion title="Un turno cancelado de Antigravity sigue En ejecución" icon="hourglass-half">
+  Antigravity no avisa a los plugins cuando cancelas un turno, así que Nomo lo
+  deduce de los propios registros de Antigravity. La fila pasa a `Listo` unos
+  segundos después.
+</Accordion>
+
 <Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
   **Sessions** cuenta lo que este ordenador todavía cree vivo. Si son más de las
   que tienes, limpia las muertas sin desvincular nada:
@@ -182,6 +219,10 @@ está en [Comandos](/es/sessions/commands#status).
 
   ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
+  ```
+
+  ```bash Antigravity icon="/images/providers/antigravity.png"
+  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
   ```
   </CodeGroup>
 
@@ -204,7 +245,7 @@ está en [Comandos](/es/sessions/commands#status).
 
 <Accordion title="Detener dice Enviado pero la sesión sigue en marcha" icon="circle-stop">
   **Enviado** significa que el Mac lo recibió, no que el turno se haya detenido.
-  Hay tres cosas que lo dejan corriendo:
+  Hay cuatro cosas que lo dejan corriendo:
 
   - **Claude Code espera a la siguiente llamada a una herramienta.** Mientras
     escribe texto, o mientras corre un comando largo ya iniciado, no pasa nada
@@ -212,13 +253,16 @@ está en [Comandos](/es/sessions/commands#status).
   - **No se puede llegar a la sesión de Codex.** La orden pasa por el
     `app-server` compartido de Codex —
     [qué sesiones cubre](/es/sessions/codex#interrupt).
+  - **Antigravity termina primero el paso en curso.** El turno se detiene en
+    cuanto acaba la llamada al modelo o la herramienta que ya se está
+    ejecutando.
   - **Uno de los dos plugins es anterior a la 2.3.0.** La versión se informa por
     ordenador, así que con Claude Code y Codex en el mismo Mac hay que
     actualizar los dos. Status imprime la versión en su primera línea.
 
   ¿No hay botón **Detener**? Necesita la etiqueta verde **⚡ Local**, una sesión
-  `En ejecución`, la versión **2.3.0** del plugin, y Claude Code o Codex — nunca
-  OpenCode. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
+  `En ejecución`, la versión **2.3.0** del plugin (**2.3.5** para Antigravity), y
+  Claude Code, Codex o Antigravity — nunca OpenCode ni Cursor. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
 </Accordion>
 
 </AccordionGroup>
@@ -358,8 +402,8 @@ afectado también ayuda: la versión de su primera línea es medio diagnóstico.
 “¿Por qué no puedo hacer X desde el teléfono?” muchas veces es una pregunta justa
 y no un fallo. Una parte es un límite real de lo que un agente le entrega a un
 plugin, y está escrito: [Usar Codex](/es/sessions/codex), [Usar
-OpenCode](/es/sessions/opencode) y [Usar Cursor](/es/sessions/cursor) cubren
-esos tres agentes, y [Responder desde el
+OpenCode](/es/sessions/opencode), [Usar Cursor](/es/sessions/cursor) y [Usar
+Antigravity](/es/sessions/antigravity) cubren esos cuatro agentes, y [Responder desde el
 iPhone](/es/sessions/approvals) cubre lo que una actividad en directo puede y no
 puede albergar.
 
@@ -420,7 +464,7 @@ que ejecutes ese comando allí.
       "name": "Empecé una sesión y nunca apareció",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lee la fila Hooks — Plugin en OpenCode, que no tiene. Si no se dispara, tu agente no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo al arrancar: reinicia Claude Code, ejecuta /hooks en Codex, reinicia OpenCode."
+        "text": "Lee la fila Hooks — Plugin en OpenCode, que no tiene. Si no se dispara, tu agente no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo al arrancar: reinicia Claude Code, ejecuta /hooks en Codex, reinicia OpenCode, reinicia Cursor o Antigravity."
       }
     },
     {
@@ -461,6 +505,22 @@ que ejecutes ese comando allí.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Cuando no se puede alcanzar el relé de Nomo, enviar un prompt en Cursor puede quedarse en pausa hasta unos 2 segundos antes de salir. Nunca bloquea el prompt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Antigravity en concreto no muestra nada",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cuatro cosas que comprobar. Antigravity solo lee sus hooks al arrancar, así que después de instalar, cierra la app y vuelve a abrirla, y reinicia cualquier sesión de agy abierta. El panel muestra hasta tres pestañas de agente, así que toca el botón + (Elegir agentes) y activa Antigravity. Comprueba que el Mac está vinculado ejecutando ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity en una terminal. Y si la carpeta ~/.nomo se movió o se borró, vuelve a ejecutar bunx nomo-ai --antigravity y reinicia Antigravity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Un turno cancelado de Antigravity sigue En ejecución",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Antigravity no avisa a los plugins cuando cancelas un turno, así que Nomo lo deduce de los propios registros de Antigravity. La fila pasa a Listo unos segundos después."
       }
     },
     {

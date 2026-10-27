@@ -1,6 +1,6 @@
 ---
 title: "インストール"
-description: "Claude Code、Codex、OpenCode、Cursor のいずれかに Nomo プラグインを追加します。コマンド 1 つでも、手動でも。依存関係はありません。"
+description: "Claude Code、Codex、OpenCode、Cursor、Antigravity のいずれかに Nomo プラグインを追加します。コマンド 1 つでも、手動でも。依存関係はありません。"
 icon: "puzzle-piece"
 ---
 
@@ -219,11 +219,56 @@ icon: "puzzle-piece"
 
     そのあと Cursor を再起動します。
   </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    このインストール 1 回で、Antigravity デスクトップアプリと `agy` CLI の両方がカバーされます。シェルコマンドとファイルの書き込みには iPhone から回答できます — 詳しくは [Antigravity での利用](/ja/sessions/antigravity)にあります。
+
+    <Steps>
+      <Step title="インストーラーを実行する">
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --antigravity
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --antigravity
+        ```
+        </CodeGroup>
+
+        行うことは 2 つです。
+
+        - プラグインを `~/.nomo` にクローンします。
+        - `~/.gemini/config/hooks.json` に `nomo` という名前のブロックを 1 つ追加します。そのファイルのほかのブロックには手を付けません。
+      </Step>
+
+      <Step title="Antigravity を再起動する — 必須">
+        <Warning>
+          Antigravity がフックを読み込むのは起動時だけです。Antigravity アプリを終了して開き直し、開いている `agy` のセッションがあればそれも再起動してください。そうするまで、プラグインはインストール済みでも何もしません。
+        </Warning>
+      </Step>
+
+      <Step title="確認する">
+        Antigravity には Nomo のコマンドがないため、ターミナルから確認します。
+
+        ```bash
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+        ```
+      </Step>
+    </Steps>
+
+    あとから削除するには、次を実行します。
+
+    ```bash
+    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    ```
+
+    削除されるのは `nomo` ブロックだけです。そのあと Antigravity を再起動します。
+  </Tab>
 </Tabs>
 
 ## コマンド 1 つ {#one-command}
 
-インストーラーがこのマシン上の Claude Code、Codex、OpenCode、Cursor を検出し、選んだものに Nomo を組み込みます。
+インストーラーがこのマシン上の Claude Code、Codex、OpenCode、Cursor、Antigravity を検出し、選んだものに Nomo を組み込みます。
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -235,22 +280,22 @@ npx nomo-ai
 ```
 </CodeGroup>
 
-最初はどれも選択されていません。矢印キー（または `k` / `j`）で移動し、スペースキーで選択、Enter キーで選択したものをまとめてインストールします。そのあと、それぞれのエージェント本来のインストール手順 — 上の 4 つの流れ — が実行されます。グローバルには何もインストールせず、パッケージも残しません。
+最初はどれも選択されていません。矢印キー（または `k` / `j`）で移動し、スペースキーで選択、Enter キーで選択したものをまとめてインストールします。そのあと、それぞれのエージェント本来のインストール手順 — 上の 5 つの流れ — が実行されます。グローバルには何もインストールせず、パッケージも残しません。
 
 スクリプトや CI で使うときは、次のオプションが使えます。
 
 | オプション | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` | 指定したものだけをインストールします。いずれかを指定すると選択画面は出ません |
-| `--all` | 検出の有無にかかわらず 4 つすべて。ただし Cursor は、このマシンにない場合はスキップされます（それでも試すには `--cursor` を指定します） |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | 指定したものだけをインストールします。いずれかを指定すると選択画面は出ません |
+| `--all` | 検出の有無にかかわらず 5 つすべて。ただし Cursor と Antigravity は、このマシンにない場合はスキップされます（それでも試すには `--cursor` または `--antigravity` を指定します） |
 | `-y`、`--yes` | 選択画面を出さず、検出したものをすべてインストールします |
 | `-n`、`--dry-run` | 実行するコマンドを表示するだけで、何も実行しません |
 
-iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です。
+iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です。Antigravity にはコマンドがないため、[Antigravity での利用](/ja/sessions/antigravity#set-it-up)のとおりターミナルからペアリングします。
 
 ## 更新 {#updating}
 
-同じコマンドが更新も行います。すでに Nomo が入っているエージェントは、インストールではなく更新として表示されます。実行されるのは OpenCode と Cursor の分だけで、残る 2 つは表示されるだけです。
+同じコマンドが更新も行います。すでに Nomo が入っているエージェントは、インストールではなく更新として表示されます。実行されるのは OpenCode、Cursor、Antigravity の分だけで、残る 2 つは表示されるだけです。
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -287,6 +332,16 @@ iPhone のペアリングは行いません。そのあとは、上の手順と�
     ```
 
     そのあと Cursor を再起動し、開いている `cursor-agent` のセッションがあればそれも再起動してください。
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    インストールしたときと同じコマンドです。
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    そのあと Antigravity を再起動し、開いている `agy` のセッションがあればそれも再起動してください。
   </Tab>
 </Tabs>
 

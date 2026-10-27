@@ -12,8 +12,8 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
 
 <Note>
   One pairing covers the machine, not the agent. If you run any mix of Claude
-  Code, Codex, OpenCode and Cursor on the same computer, they share it — you
-  don't pair twice.
+  Code, Codex, OpenCode, Cursor and Antigravity on the same computer, they
+  share it — you don't pair twice.
 </Note>
 
 <Tabs>
@@ -37,6 +37,11 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
         ```
         </CodeGroup>
 
@@ -86,7 +91,8 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
 
     <Steps>
       <Step title="Ask for the code">
-        Pass `code` as the argument:
+        Pass `code` as the argument (`--show-code` for Antigravity's terminal
+        command):
 
         <CodeGroup>
         ```bash Claude Code icon="/images/claude-code.svg"
@@ -103,6 +109,11 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair code
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
         ```
         </CodeGroup>
 

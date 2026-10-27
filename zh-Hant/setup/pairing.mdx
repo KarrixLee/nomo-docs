@@ -10,7 +10,7 @@ icon: "qrcode-read"
 
 <Note>
   一次配對涵蓋的是這台電腦，而不是個別代理。如果你在同一台電腦上同時執行
-  Claude Code、Codex、OpenCode 和 Cursor 的任何組合，它們會共用同一組配對 — 不需要配對兩次。
+  Claude Code、Codex、OpenCode、Cursor 和 Antigravity 的任何組合，它們會共用同一組配對 — 不需要配對兩次。
 </Note>
 
 <Tabs>
@@ -34,6 +34,11 @@ icon: "qrcode-read"
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
         ```
         </CodeGroup>
 
@@ -74,7 +79,7 @@ icon: "qrcode-read"
 
     <Steps>
       <Step title="索取代碼">
-        把 `code` 當成參數傳入：
+        把 `code` 當成參數傳入（Antigravity 的終端機指令則用 `--show-code`）：
 
         <CodeGroup>
         ```bash Claude Code icon="/images/claude-code.svg"
@@ -91,6 +96,11 @@ icon: "qrcode-read"
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair code
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
         ```
         </CodeGroup>
 

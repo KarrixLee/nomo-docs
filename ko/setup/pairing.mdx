@@ -11,7 +11,7 @@ icon: "qrcode-read"
 
 <Note>
   페어링 하나는 에이전트가 아니라 컴퓨터에 적용됩니다. 같은 컴퓨터에서 Claude
-  Code, Codex, OpenCode, Cursor를 어떻게 섞어 쓰든 페어링을 공유하므로, 두 번 페어링하지
+  Code, Codex, OpenCode, Cursor, Antigravity를 어떻게 섞어 쓰든 페어링을 공유하므로, 두 번 페어링하지
   않습니다.
 </Note>
 
@@ -36,6 +36,11 @@ icon: "qrcode-read"
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
         ```
         </CodeGroup>
 
@@ -85,7 +90,7 @@ icon: "qrcode-read"
 
     <Steps>
       <Step title="코드 요청">
-        인자로 `code`를 전달합니다:
+        인자로 `code`를 전달합니다(Antigravity의 터미널 명령에서는 `--show-code`):
 
         <CodeGroup>
         ```bash Claude Code icon="/images/claude-code.svg"
@@ -102,6 +107,11 @@ icon: "qrcode-read"
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair code
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
         ```
         </CodeGroup>
 

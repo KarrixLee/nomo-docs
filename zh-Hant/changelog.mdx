@@ -4,6 +4,20 @@ description: "每個版本帶來什麼，以及上線的時間。"
 icon: "clock-rotate-left"
 ---
 
+<Update label="2026年10月" description="2.3.5">
+  ## Antigravity sessions
+
+  **新增**
+
+  - **Antigravity** 加入 Claude Code、Codex、OpenCode 和 Cursor 的行列 — 來自 Google Antigravity 桌面應用程式和 `agy` CLI 的 sessions，會即時出現在 Sessions 分頁和動態島上，並帶著 Antigravity 自己的對話標題和模型。用 `bunx nomo-ai --antigravity` 安裝，然後重新啟動 Antigravity
+  - 在手機上允許或拒絕 Antigravity 的 shell 指令和檔案寫入，還能用「拒絕並附註…」告訴它原因。讀取和搜尋從來不會送到你的手機，而你自己的拒絕規則永遠優先
+  - 在手機上停止 Antigravity 正在執行的一輪 — 「停止」會在目前這一步結束後停下它
+
+  **外掛程式 2.3.5**
+
+  - 新增 Antigravity 支援：在 `~/.gemini/config/hooks.json` 裡加入一個名為 `nomo` 的區塊，你的其他 hooks 原封不動。`--uninstall` 只會移除那個區塊
+</Update>
+
 <Update label="2026年10月23日" description="2.3.4">
   ## 安全性改進
 

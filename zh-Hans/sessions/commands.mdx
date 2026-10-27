@@ -1,11 +1,11 @@
 ---
 title: "命令"
-description: "Claude Code、Codex、OpenCode 和 Cursor 的全部 Nomo 命令——配对、状态、审批、重置、解除配对和更新，都在这一页。"
+description: "Claude Code、Codex、OpenCode、Cursor 和 Antigravity 的全部 Nomo 命令——配对、状态、审批、重置、解除配对和更新，都在这一页。"
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
 
-Claude Code、Codex 和 OpenCode 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor 里是 `/` skill，在 Codex 里是 `$` skill。
+Claude Code、Codex 和 OpenCode 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor 里是 `/` skill，在 Codex 里是 `$` skill。Antigravity 没有自己的命令：在那里要到终端里运行——[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#commands)。
 
 <Tip>
   Claude Code 里一切都带命名空间：输入 `/nomo-cc:` 就会列出全部。OpenCode 的命令名是扁平且全局的，所以在那里 Nomo 的命令完全不带前缀——它的 Cursor skill 也一样。
@@ -48,13 +48,20 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+# in a terminal — QR code, opens your browser
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+# one-time code, printed in the terminal
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+```
 </CodeGroup>
 
 不带参数时，它会在浏览器里打开一个配了主题的页面，上面有二维码。在 App 里扫一下，页面会自己翻成 **Paired ✓**。
 
 `code` 参数完全跳过浏览器，直接打印一段可以手输的一次性配对码，供无头机器或 SSH 会话使用。它是刻意排在第二位的：那段配对码会落进你的终端，也就落进了智能体的转录记录。
 
-配对若 **10 分钟**内未使用就会过期。一次配对覆盖的是这台机器，而不是某个智能体——同一台 Mac 上的 Claude Code、Codex、OpenCode 和 Cursor 共用它。完整流程见[配对](/zh-Hans/setup/pairing)。
+配对若 **10 分钟**内未使用就会过期。一次配对覆盖的是这台机器，而不是某个智能体——同一台 Mac 上的 Claude Code、Codex、OpenCode、Cursor 和 Antigravity 共用它。完整流程见[配对](/zh-Hans/setup/pairing)。
 
 ## status {#status}
 
@@ -73,6 +80,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -112,7 +123,7 @@ Claude Code — you are here
 </ResponseField>
 
 <ResponseField name="Hooks">
-  你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载；Cursor 也要重启，它只在启动时加载 hook。
+  你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载；Cursor 或 Antigravity 也要重启，它们只在启动时加载 hook。
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -178,7 +189,7 @@ will appear in the terminal as usual (your phone is not asked).
 
 另外还有一个覆盖整部手机的开关：[设置](/zh-Hans/sessions/settings#remote-approvals)里的**在 iPhone 上回答**。
 
-Cursor 没有 approvals 命令。它的请求永远到不了你的手机，所以没有什么可暂停的。
+Cursor 没有 approvals 命令。它的请求永远到不了你的手机，所以没有什么可暂停的。Antigravity 同样没有，但它的请求确实会到你的手机——用上面任一条命令暂停即可，因为这个开关是共用的。
 
 ## reset {#reset}
 
@@ -197,6 +208,10 @@ $nomo-reset
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
 ```
 </CodeGroup>
 
@@ -228,6 +243,10 @@ $nomo-unpair
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-unpair
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs
 ```
 </CodeGroup>
 

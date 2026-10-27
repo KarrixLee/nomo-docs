@@ -1,14 +1,15 @@
 ---
 title: "명령"
-description: "Claude Code, Codex, OpenCode, Cursor를 위한 Nomo 명령 전부 — 페어링, 상태 확인, 승인, 초기화, 페어링 해제, 업데이트를 한곳에."
+description: "Claude Code, Codex, OpenCode, Cursor, Antigravity를 위한 Nomo 명령 전부 — 페어링, 상태 확인, 승인, 초기화, 페어링 해제, 업데이트를 한곳에."
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "명령"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "명령"]
 ---
 
 Claude Code, Codex, OpenCode에서 쓰는 명령 다섯 개, OpenCode에만 필요한 여섯
 번째, 그리고 Cursor에서 쓰는 네 개가 있습니다. 적용할 컴퓨터의 에이전트 세션
 안에서 실행하며, Claude Code와 OpenCode에서는 `/` 명령, Cursor에서는 `/` Skill,
-Codex에서는 `$` Skill입니다.
+Codex에서는 `$` Skill입니다. Antigravity에는 자체 명령이 없어서 터미널에서
+실행합니다 — [Antigravity 사용하기](/ko/sessions/antigravity#commands).
 
 <Tip>
   Claude Code에서는 모든 명령에 네임스페이스가 붙습니다. `/nomo-cc:`를 입력하면
@@ -59,6 +60,13 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+# in a terminal — QR code, opens your browser
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+# one-time code, printed in the terminal
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+```
 </CodeGroup>
 
 인자 없이 실행하면 QR 코드가 담긴 테마 페이지가 브라우저에서 열립니다. 앱에서
@@ -69,7 +77,7 @@ $nomo-pair code        # one-time code, printed in the terminal
 그 코드가 터미널에, 따라서 에이전트의 트랜스크립트에 남기 때문입니다.
 
 페어링은 사용되지 않으면 **10분** 뒤에 만료됩니다. 페어링 하나는 에이전트가 아니라
-컴퓨터에 적용되므로, 같은 Mac의 Claude Code, Codex, OpenCode, Cursor가 이를 공유합니다.
+컴퓨터에 적용되므로, 같은 Mac의 Claude Code, Codex, OpenCode, Cursor, Antigravity가 이를 공유합니다.
 전체 절차는 [페어링](/ko/setup/pairing)에 있습니다.
 
 ## status {#status}
@@ -89,6 +97,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -149,8 +161,8 @@ Claude Code — you are here
   에이전트가 Nomo에 내용을 넘기고 있는지, 마지막으로 넘긴 것이 언제인지입니다.
   OpenCode에는 Hook이 없으므로 그쪽에서는 이 줄의 이름이 `Plugin`입니다. 아무것도
   동작하지 않는다면, Claude Code는 재시작해 Hook을 로드하고, Codex에서는 `/hooks`를
-  실행하고, OpenCode는 플러그인이 로드되도록 재시작하고, Cursor는 시작할 때에만
-  Hook을 읽어 들이므로 재시작하십시오.
+  실행하고, OpenCode는 플러그인이 로드되도록 재시작하고, Cursor나 Antigravity는
+  시작할 때에만 Hook을 읽어 들이므로 재시작하십시오.
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -232,7 +244,9 @@ will appear in the terminal as usual (your phone is not asked).
 [설정](/ko/sessions/settings#remote-approvals)의 **iPhone에서 답변**입니다.
 
 Cursor에는 approvals 명령이 없습니다. Cursor의 요청은 휴대폰에 도달하지 않으므로
-일시 중지할 것이 없습니다.
+일시 중지할 것이 없습니다. Antigravity에도 approvals 명령은 없지만 그 요청은
+휴대폰에 도달합니다 — 스위치는 공유되므로 위의 명령 중 어느 것으로든 일시 중지할
+수 있습니다.
 
 ## reset {#reset}
 
@@ -251,6 +265,10 @@ $nomo-reset
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
 ```
 </CodeGroup>
 
@@ -287,6 +305,10 @@ $nomo-unpair
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-unpair
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs
 ```
 </CodeGroup>
 

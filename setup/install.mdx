@@ -1,7 +1,7 @@
 ---
 title: "Install the Nomo plugin for Claude Code and Codex"
 sidebarTitle: "Installation"
-description: "Add the Nomo plugin to Claude Code, Codex, OpenCode, or Cursor. One command, or by hand — no dependencies."
+description: "Add the Nomo plugin to Claude Code, Codex, OpenCode, Cursor, or Antigravity. One command, or by hand — no dependencies."
 icon: "puzzle-piece"
 ---
 
@@ -263,11 +263,62 @@ ones.
 
     Then restart Cursor.
   </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    One install covers both the Antigravity desktop app and the `agy` CLI.
+    Shell commands and file writes can be answered from your phone —
+    [Using Antigravity](/sessions/antigravity) has the details.
+
+    <Steps>
+      <Step title="Run the installer">
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --antigravity
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --antigravity
+        ```
+        </CodeGroup>
+
+        It does two things:
+
+        - Clones the plugin to `~/.nomo`.
+        - Adds one block named `nomo` to `~/.gemini/config/hooks.json`. Every
+          other block in that file is left alone.
+      </Step>
+
+      <Step title="Restart Antigravity — required">
+        <Warning>
+          Antigravity only reads its hooks when it starts. Quit and reopen the
+          Antigravity app, and restart any `agy` session you have open. Until
+          you do, the plugin is installed and doing nothing.
+        </Warning>
+      </Step>
+
+      <Step title="Confirm">
+        Antigravity has no Nomo commands, so check from a terminal:
+
+        ```bash
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+        ```
+      </Step>
+    </Steps>
+
+    To remove it later:
+
+    ```bash
+    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    ```
+
+    It removes only the `nomo` block. Then restart Antigravity.
+  </Tab>
 </Tabs>
 
 ## One command
 
-The installer detects which of Claude Code, Codex, OpenCode and Cursor are on
+The installer detects which of Claude Code, Codex, OpenCode, Cursor and
+Antigravity are on
 this machine and sets Nomo up in the ones you pick:
 
 <CodeGroup>
@@ -282,27 +333,29 @@ npx nomo-ai
 
 Nothing is ticked at the start: arrow keys (or `k` / `j`) move, space ticks an
 agent, enter installs everything ticked. Then it runs each agent's own install —
-the same four flows above. Nothing is installed globally and no package is left
+the same five flows above. Nothing is installed globally and no package is left
 behind.
 
 For scripting and CI:
 
 | Flag | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` | install exactly these — naming any one of them skips the picker |
-| `--all` | all four, detected or not — except Cursor, which is skipped when it isn't on this machine (name `--cursor` to try anyway) |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | install exactly these — naming any one of them skips the picker |
+| `--all` | all five, detected or not — except Cursor and Antigravity, which are skipped when they aren't on this machine (name `--cursor` or `--antigravity` to try anyway) |
 | `-y`, `--yes` | no picker; install everything detected |
 | `-n`, `--dry-run` | print the commands, run nothing |
 
 It never pairs your phone. Finish exactly as the steps above describe: restart
 the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
-`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex.
+`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex. Antigravity has no
+commands — pair from a terminal, as [Using
+Antigravity](/sessions/antigravity#set-it-up) shows.
 
 ## Updating
 
 The same command updates: an agent that already has Nomo shows up as an update
-rather than an install. Only OpenCode's and Cursor's run — the other two are
-printed for you.
+rather than an install. Only OpenCode's, Cursor's and Antigravity's run — the
+other two are printed for you.
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -347,6 +400,16 @@ printed for you.
     ```
 
     Restart Cursor afterwards, and any open `cursor-agent` session.
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    The same command that installed it:
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    Restart Antigravity afterwards, and any open `agy` session.
   </Tab>
 </Tabs>
 

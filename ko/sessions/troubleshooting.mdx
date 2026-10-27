@@ -2,7 +2,7 @@
 title: "문제 해결"
 description: "먼저 status 명령을 실행하십시오. 문제를 짚어 주고 고치는 명령까지 출력해 줍니다. 그다음은 증상별로 어느 줄을 읽을지, 그리고 status가 볼 수 없는 몇 가지입니다."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "문제 해결"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "문제 해결"]
 ---
 
 이제 이 페이지가 할 일의 대부분은 status 명령이 대신해 줍니다. 컴퓨터 전체를 읽어
@@ -29,6 +29,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -85,8 +89,10 @@ $nomo-status
 <Accordion title="휴대폰이 승인을 전혀 물어보지 않음" icon="hand">
   Cursor 세션이라면 정상입니다. Cursor 세션은 읽기 전용이며 Cursor의 요청은
   휴대폰에 도달하지 않습니다 —
-  [이유](/ko/sessions/cursor#what-this-version-doesnt-do). 그 밖의 에이전트라면
-  다음을 확인하십시오.
+  [이유](/ko/sessions/cursor#what-this-version-doesnt-do). Antigravity는 셸 명령과
+  파일 쓰기만 보내며, `agy`에 이미 설정해 둔 허용 규칙은 휴대폰을 거치지 않습니다 —
+  [Antigravity 사용하기](/ko/sessions/antigravity#answering-from-your-phone).
+  그 밖의 에이전트라면 다음을 확인하십시오.
 
   **Approvals**를 읽으십시오. `PAUSED`는 이 컴퓨터에서 누군가 일시 중지 명령을
   실행했다는 뜻입니다. 몇 달 전일 수도 있고, 그래서 예전에는 이 사실을 알아차릴
@@ -104,7 +110,8 @@ $nomo-status
   **Hooks** — OpenCode에는 Hook이 없으므로 그쪽에서는 **Plugin**입니다. 동작하지
   않는다면 에이전트가 Nomo에 아무것도 넘기지 않고 있는 것이고, 어느 에이전트든 그
   연결을 시작할 때 한 번만 로드합니다. Claude Code는 재시작하고, Codex에서는
-  `/hooks`를 실행하고, OpenCode는 재시작하고, Cursor도 재시작하십시오.
+  `/hooks`를 실행하고, OpenCode는 재시작하고, Cursor도 재시작하고, Antigravity도
+  재시작하십시오.
 
   Codex는 Hook을 명시적으로 신뢰해야 하며 플러그인 업데이트는 그 검토를 다시 엽니다.
   그래서 Codex에서는 업데이트 뒤에 `/hooks`를 실행하는 것이 대개의 답입니다 —
@@ -153,6 +160,33 @@ $nomo-status
   최대 약 2초 동안 멈출 수 있습니다. 프롬프트를 막는 일은 없습니다.
 </Accordion>
 
+<Accordion title="Antigravity에서만 아무것도 보이지 않음" icon="rocket">
+  다음 네 가지를 이 순서대로 확인하십시오.
+
+  - **Antigravity를 재시작하지 않았습니다.** Antigravity는 시작할 때에만 Hook을
+    읽어 들이므로, 설치한 뒤 앱을 종료했다가 다시 여십시오 — 열려 있는 `agy`
+    세션도 재시작하십시오.
+  - **Antigravity 탭이 숨겨져 있습니다.** 드로어에는 에이전트 탭이 최대 세 개까지
+    표시됩니다. **+** 버튼(**에이전트 선택**)을 탭해 Antigravity를 켜십시오.
+  - **Mac이 페어링되어 있지 않습니다.** Antigravity에는 Nomo 명령이 없으므로
+    터미널에서 확인하십시오.
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+    ```
+  - **플러그인 폴더가 옮겨졌습니다.** Antigravity의 Hook은 `~/.nomo`를 가리킵니다.
+    그 폴더를 옮기거나 삭제했다면 `bunx nomo-ai --antigravity`를 다시 실행한 다음
+    Antigravity를 재시작하십시오.
+
+  세션은 대화의 첫 프롬프트를 보낸 뒤에야 나타납니다. 전체 설정 과정은
+  [Antigravity 사용하기](/ko/sessions/antigravity)에 있습니다.
+</Accordion>
+
+<Accordion title="취소한 Antigravity 턴이 계속 실행 중으로 표시됨" icon="hourglass-half">
+  Antigravity는 턴을 취소해도 플러그인에 알리지 않으므로, Nomo가 Antigravity 자체의
+  기록을 보고 이를 알아냅니다. 몇 초 뒤에 행이 `완료`로 바뀝니다.
+</Accordion>
+
 <Accordion title="행이 오래됐거나 중복되어 보임" icon="broom">
   **Sessions**는 이 컴퓨터가 아직 살아 있다고 믿는 세션의 수입니다. 실제보다 많다면,
   페어링을 해제하지 않고 죽은 행만 정리하십시오.
@@ -172,6 +206,10 @@ $nomo-status
 
   ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
+  ```
+
+  ```bash Antigravity icon="/images/providers/antigravity.png"
+  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
   ```
   </CodeGroup>
 
@@ -193,19 +231,21 @@ $nomo-status
 
 <Accordion title="중단이 전송됨으로 표시되는데 세션이 계속 실행됨" icon="circle-stop">
   **전송됨**은 Mac이 받았다는 뜻이지, 턴이 멈췄다는 뜻이 아닙니다. 계속 실행되는
-  이유는 세 가지입니다.
+  이유는 네 가지입니다.
 
   - **Claude Code는 다음 도구 호출을 기다립니다.** 글을 쓰는 중이거나 긴 명령이
     이미 실행 중이면 그 단계가 끝날 때까지 아무 일도 일어나지 않습니다.
   - **Codex 세션에 닿을 수 없습니다.** 중단은 Codex의 공유 `app-server`를
     거칩니다 — [대상 세션](/ko/sessions/codex#interrupt)을 참고하십시오.
+  - **Antigravity는 현재 단계를 먼저 끝냅니다.** 이미 실행 중인 모델 호출이나
+    도구가 끝나야 턴이 멈춥니다.
   - **두 플러그인 중 하나가 2.3.0보다 오래되었습니다.** 버전은 컴퓨터별로
     보고되므로, 한 Mac에서 Claude Code와 Codex를 함께 쓴다면 둘 다
     업데이트하십시오. status는 첫 줄에 버전을 출력합니다.
 
   **중단** 버튼이 아예 없다면, 초록색 **⚡ 로컬** 칩, `실행 중`인 세션, 플러그인
-  **2.3.0**이 필요하고, Claude Code 또는 Codex 세션이어야 합니다. OpenCode에는
-  나타나지 않습니다. 자세한 내용은
+  **2.3.0**(Antigravity는 **2.3.5**)이 필요하고, Claude Code, Codex 또는
+  Antigravity 세션이어야 합니다. OpenCode나 Cursor에는 나타나지 않습니다. 자세한 내용은
   [컴퓨터와 세션](/ko/sessions/list#interrupt-a-running-session) 문서를 참고하십시오.
 </Accordion>
 
@@ -342,7 +382,8 @@ $nomo-status
 에이전트가 플러그인에 넘겨주는 범위의 실제 한계이며, 그 내용은 문서로 적혀
 있습니다. Codex 쪽은 [Codex 사용하기](/ko/sessions/codex)가, OpenCode 쪽은
 [OpenCode 사용하기](/ko/sessions/opencode)가, Cursor 쪽은
-[Cursor 사용하기](/ko/sessions/cursor)가, 실시간 현황이 담을 수 있는 것과
+[Cursor 사용하기](/ko/sessions/cursor)가, Antigravity 쪽은
+[Antigravity 사용하기](/ko/sessions/antigravity)가, 실시간 현황이 담을 수 있는 것과
 없는 것은 [휴대폰에서 답변하기](/ko/sessions/approvals)가 다룹니다.
 
 나머지는 아직 만들지 않았을 뿐입니다.
@@ -401,7 +442,7 @@ $nomo-status
       "name": "세션을 시작했는데 나타나지 않음",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Hooks 줄을 읽으십시오. OpenCode에는 Hook이 없으므로 그쪽에서는 Plugin입니다. 동작하지 않는다면 에이전트가 Nomo에 아무것도 넘기지 않고 있는 것이고, 어느 에이전트든 그 연결을 시작할 때 한 번만 로드합니다. Claude Code는 재시작하고, Codex에서는 /hooks를 실행하고, OpenCode는 재시작하십시오."
+        "text": "Hooks 줄을 읽으십시오. OpenCode에는 Hook이 없으므로 그쪽에서는 Plugin입니다. 동작하지 않는다면 에이전트가 Nomo에 아무것도 넘기지 않고 있는 것이고, 어느 에이전트든 그 연결을 시작할 때 한 번만 로드합니다. Claude Code는 재시작하고, Codex에서는 /hooks를 실행하고, OpenCode는 재시작하고, Cursor나 Antigravity도 재시작하십시오."
       }
     },
     {
@@ -442,6 +483,22 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Nomo 중계 서버에 연결할 수 없으면, Cursor에서 프롬프트를 제출할 때 전송되기까지 최대 약 2초 동안 멈출 수 있습니다. 프롬프트를 막는 일은 없습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Antigravity에서만 아무것도 보이지 않음",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네 가지를 확인하십시오. Antigravity는 시작할 때에만 Hook을 읽어 들이므로, 설치한 뒤 앱을 종료했다가 다시 열고 열려 있는 agy 세션도 재시작하십시오. 드로어에는 에이전트 탭이 최대 세 개까지 표시되므로, + 버튼(에이전트 선택)을 탭해 Antigravity를 켜십시오. 터미널에서 ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity를 실행해 Mac이 페어링되어 있는지 확인하십시오. 그리고 ~/.nomo 폴더를 옮기거나 삭제했다면 bunx nomo-ai --antigravity를 다시 실행하고 Antigravity를 재시작하십시오."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "취소한 Antigravity 턴이 계속 실행 중으로 표시됨",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Antigravity는 턴을 취소해도 플러그인에 알리지 않으므로, Nomo가 Antigravity 자체의 기록을 보고 이를 알아냅니다. 몇 초 뒤에 행이 완료로 바뀝니다."
       }
     },
     {

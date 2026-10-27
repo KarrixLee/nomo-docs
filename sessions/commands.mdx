@@ -1,15 +1,17 @@
 ---
 title: "Nomo plugin commands: pair, status, reset, update"
 sidebarTitle: "Commands"
-description: "Every Nomo command for Claude Code, Codex, OpenCode and Cursor — pairing, status, approvals, reset, unpair and update — in one place."
+description: "Every Nomo command for Claude Code, Codex, OpenCode, Cursor and Antigravity — pairing, status, approvals, reset, unpair and update — in one place."
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Commands"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Commands"]
 ---
 
 Five commands on Claude Code, Codex and OpenCode, a sixth that only OpenCode
 needs, and four on Cursor. You run them from inside an agent session on the
 computer you want to affect — a `/` command in Claude Code and OpenCode, a `/`
-skill in Cursor, a `$` skill in Codex.
+skill in Cursor, a `$` skill in Codex. Antigravity has none of its own:
+there you run them in a terminal — [Using
+Antigravity](/sessions/antigravity#commands).
 
 <Tip>
   In Claude Code everything is namespaced: typing `/nomo-cc:` lists them all.
@@ -60,6 +62,13 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+# in a terminal — QR code, opens your browser
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+# one-time code, printed in the terminal
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+```
 </CodeGroup>
 
 With no argument it opens a themed page in your browser with a QR code. Scan it
@@ -71,7 +80,8 @@ purpose: that code lands in your terminal, and therefore in the agent's
 transcript.
 
 Pairings expire after **10 minutes** unused. One pairing covers the machine, not
-the agent — Claude Code, Codex, OpenCode and Cursor on the same Mac share it. Full
+the agent — Claude Code, Codex, OpenCode, Cursor and Antigravity on the same
+Mac share it. Full
 walkthrough in [Pairing](/setup/pairing).
 
 ## status
@@ -91,6 +101,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -153,7 +167,8 @@ agent you asked from. Below them comes the agent you're actually in, marked
   Whether your agent is feeding Nomo, and how long ago it last did. OpenCode has
   no hooks, so there the row is called `Plugin` instead. Nothing firing? Restart
   Claude Code so its hooks load; in Codex run `/hooks`; in OpenCode restart it so
-  the plugin loads; restart Cursor, which only picks hooks up at start.
+  the plugin loads; restart Cursor or Antigravity, which only pick hooks up at
+  start.
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -236,7 +251,8 @@ There's a separate, phone-wide switch: **Answer on iPhone** in
 [Settings](/sessions/settings#remote-approvals).
 
 Cursor has no approvals command. Its prompts never reach your phone, so there's
-nothing to pause.
+nothing to pause. Antigravity has none either, but its prompts do reach your
+phone — pause them with any of the commands above, since the switch is shared.
 
 ## reset
 
@@ -255,6 +271,10 @@ $nomo-reset
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
 ```
 </CodeGroup>
 
@@ -290,6 +310,10 @@ $nomo-unpair
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-unpair
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs
 ```
 </CodeGroup>
 

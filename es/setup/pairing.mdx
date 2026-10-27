@@ -13,8 +13,8 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
 
 <Note>
   Una vinculación cubre la máquina, no el agente. Si usas cualquier combinación
-  de Claude Code, Codex, OpenCode y Cursor en el mismo ordenador, lo comparten:
-  no lo vinculas dos veces.
+  de Claude Code, Codex, OpenCode, Cursor y Antigravity en el mismo ordenador,
+  lo comparten: no lo vinculas dos veces.
 </Note>
 
 <Tabs>
@@ -38,6 +38,11 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
         ```
         </CodeGroup>
 
@@ -90,7 +95,8 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
 
     <Steps>
       <Step title="Pide el código">
-        Pasa `code` como argumento:
+        Pasa `code` como argumento (`--show-code` en el comando de terminal de
+        Antigravity):
 
         <CodeGroup>
         ```bash Claude Code icon="/images/claude-code.svg"
@@ -107,6 +113,11 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
 
         ```bash Cursor icon="/images/providers/cursor.svg"
         /nomo-pair code
+        ```
+
+        ```bash Antigravity icon="/images/providers/antigravity.png"
+        # in a terminal
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
         ```
         </CodeGroup>
 

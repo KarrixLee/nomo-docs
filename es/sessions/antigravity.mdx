@@ -1,0 +1,183 @@
+---
+title: "Usar Antigravity"
+description: "Instala el plugin de Nomo en Google Antigravity, vincula y sigue sus sesiones desde tu teléfono, con Permitir y Denegar para comandos de shell y escrituras de archivos."
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar Antigravity"]
+---
+
+Las sesiones de Google Antigravity salen en la misma lista, en la misma Dynamic
+Island y sobre la misma vinculación, tanto las de la app de escritorio de
+Antigravity como las de la CLI `agy`. Cuando Antigravity quiere ejecutar un
+comando de shell o escribir un archivo, puedes **Permitir** o **Denegar** desde
+tu teléfono.
+
+<Note>
+  Sesiones forma parte de Nomo Pro, para Antigravity igual que para cualquier
+  otro agente. Las sesiones de Antigravity necesitan Nomo **2.3.5** en tu
+  teléfono y el plugin **2.3.5** en tu Mac.
+</Note>
+
+## Puesta en marcha {#set-it-up}
+
+<Steps>
+  <Step title="Ejecuta el instalador">
+    En tu Mac:
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --antigravity
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --antigravity
+    ```
+    </CodeGroup>
+
+    Una sola instalación cubre tanto la app de escritorio como `agy`. Hace dos
+    cosas:
+
+    - Clona el plugin en `~/.nomo`.
+    - Añade un bloque llamado `nomo` a `~/.gemini/config/hooks.json`. El resto
+      de bloques de ese archivo quedan intactos.
+  </Step>
+
+  <Step title="Reinicia Antigravity — obligatorio">
+    <Warning>
+      Antigravity solo lee sus hooks al arrancar. Cierra la app de Antigravity
+      y vuelve a abrirla, y reinicia cualquier sesión de `agy` que tengas
+      abierta. Hasta que lo hagas, el plugin está instalado sin hacer nada.
+    </Warning>
+  </Step>
+
+  <Step title="Vincula">
+    Antigravity no tiene comandos de Nomo, así que vincula desde una terminal:
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+    ```
+
+    Abre la página de vinculación con un código QR: escanéalo con la app de
+    Nomo. Donde no puedas abrir un navegador, añade `--show-code` para obtener
+    un código corto que escribir. Las dos vías están explicadas paso a paso en
+    [Vinculación](/es/setup/pairing).
+
+    La vinculación se comparte entre los agentes de un mismo Mac. Un ordenador
+    ya vinculado para Claude Code, Codex, OpenCode o Cursor no necesita
+    vincularse otra vez para Antigravity: basta con instalar, y puedes saltarte
+    este paso.
+  </Step>
+
+  <Step title="Muestra la pestaña Antigravity">
+    En la app, abre el ordenador. Las sesiones de Antigravity están bajo la
+    pestaña **Antigravity** de su panel de sesiones.
+
+    El panel muestra hasta tres pestañas de agente. Si Antigravity no es una de
+    ellas, toca el botón **+** (**Elegir agentes**) y actívalo.
+  </Step>
+</Steps>
+
+## Comandos {#commands}
+
+Antigravity no tiene comandos de barra para Nomo. Ejecuta estos en una terminal,
+o usa el comando equivalente de cualquier otro agente del mismo Mac: la
+vinculación y todo lo demás de aquí valen para todo el ordenador.
+
+| | |
+| --- | --- |
+| Vincular | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| Comprobar el estado | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| Limpiar sesiones atascadas | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| Desvincular | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+No hay comando de aprobaciones en Antigravity. Para pausar las aprobaciones en
+este ordenador, usa `/nomo-cc:approvals off` en Claude Code (o su equivalente en
+Codex u OpenCode): el interruptor lo comparten todos los agentes. Lo que muestra
+cada comando está en [Comandos](/es/sessions/commands).
+
+## Lo que ves {#what-you-see}
+
+- Una sesión aparece cuando envías tu **primer prompt**, no cuando una
+  conversación simplemente se abre.
+- Se muestra en marcha mientras el agente corre, y como terminada cuando acaba
+  el turno.
+- El título es el nombre que Antigravity le da a la conversación. Antigravity
+  solo le pone nombre cuando ha terminado el primer turno, así que hasta
+  entonces la fila lleva tu primer prompt como nombre.
+- La etiqueta del modelo muestra el modelo que indica Antigravity.
+- La [Dynamic Island](/es/sessions/island) funciona igual que con los demás
+  agentes, para las sesiones que elijas mostrar ahí.
+
+## Responder desde el teléfono {#answering-from-your-phone}
+
+Los comandos de shell y las escrituras o ediciones de archivos llegan a tu
+teléfono. Las lecturas, las búsquedas y cualquier otra herramienta nunca llegan:
+Antigravity las ejecuta sin preguntar a Nomo.
+
+Mantén pulsada la fila, o usa la Dynamic Island, y tienes:
+
+- **Permitir**: el comando se ejecuta, o el archivo se escribe.
+- **Denegar**: Antigravity se lo salta y sigue sin ello.
+- **Denegar con nota…**: deniega, y le pasa al agente lo que hayas escrito como
+  motivo.
+
+Todavía no hay **Permitir siempre** para Antigravity. Lo demás funciona como en
+[Responder desde el iPhone](/es/sessions/approvals).
+
+Tus propias reglas de Antigravity siguen contando:
+
+- **Las reglas de permitir se saltan el teléfono.** En la CLI `agy`, un comando
+  que ya cubre una regla de permitir de
+  `~/.gemini/antigravity-cli/settings.json` se ejecuta sin preguntar a tu
+  teléfono.
+- **Las reglas de denegar siempre ganan.** Una regla de denegar nunca se anula
+  desde tu teléfono.
+- **La app de escritorio lo pregunta todo.** Sus ajustes de permisos
+  predefinidos, Turbo incluido, no los puede leer un plugin, así que en la app
+  de escritorio cada comando de shell y cada escritura de archivo llega a tu
+  teléfono.
+
+Mientras una tarjeta está en tu teléfono, la propia solicitud de Antigravity en
+el Mac espera tu respuesta. Si no se puede llegar a tu teléfono o a la red, o
+las aprobaciones están [en pausa](/es/sessions/approvals#pausing-it),
+Antigravity muestra su solicitud normal en el Mac, exactamente como lo haría
+sin Nomo.
+
+## Detener {#interrupt}
+
+[**Detener**](/es/sessions/list#interrupt-a-running-session) funciona en una
+sesión de Antigravity `En ejecución`, con las mismas condiciones que en Claude
+Code: la etiqueta verde **⚡ Local** y el plugin **2.3.5**. El turno se detiene
+después del paso en curso —la llamada al modelo o la herramienta que ya se
+está ejecutando— y la fila pasa a `Listo`. La conversación sigue abierta;
+escribe un nuevo prompt para continuar.
+
+## Lo que esta versión no hace {#what-this-version-doesnt-do}
+
+- **Sin preguntas ni planes.** Las preguntas y las revisiones de planes de
+  Antigravity no se muestran en tu teléfono.
+- **Sin “Abrir en el Mac”.** El botón no está disponible en las sesiones de
+  Antigravity.
+- **Sin Permitir siempre.** Cada comando es un **Permitir** o **Denegar** de una
+  sola vez.
+
+## Actualizaciones {#updating}
+
+Vuelve a ejecutar el mismo comando y después reinicia Antigravity:
+
+```bash
+bunx nomo-ai --antigravity
+```
+
+## Desinstalación {#uninstalling}
+
+```bash
+node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+```
+
+Después reinicia Antigravity. La desinstalación quita solo el bloque `nomo` de
+`~/.gemini/config/hooks.json` y no toca la vinculación, que se comparte con los
+demás agentes de este ordenador. Para desvincular también el ordenador, ejecuta
+el comando de desvincular de arriba antes de desinstalar.
+
+Si algo no aparece, las entradas de Antigravity en
+[Solución de problemas](/es/sessions/troubleshooting) son el sitio por donde
+empezar.

@@ -1,11 +1,11 @@
 ---
 title: "コマンド"
-description: "Claude Code、Codex、OpenCode、Cursor 向けの Nomo のコマンドをすべて — ペアリング、状態確認、承認、リセット、ペアリング解除、更新 — 1 ページにまとめました。"
+description: "Claude Code、Codex、OpenCode、Cursor、Antigravity 向けの Nomo のコマンドをすべて — ペアリング、状態確認、承認、リセット、ペアリング解除、更新 — 1 ページにまとめました。"
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
 ---
 
-Claude Code、Codex、OpenCode に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor では `/` のスキル、Codex では `$` のスキルです。
+Claude Code、Codex、OpenCode に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor では `/` のスキル、Codex では `$` のスキルです。Antigravity には専用のコマンドがなく、ターミナルで実行します — [Antigravity での利用](/ja/sessions/antigravity#commands)。
 
 <Tip>
   Claude Code ではすべてが名前空間に入っています。`/nomo-cc:` と入力すると一覧が表示されます。OpenCode のコマンド名はフラットでグローバルなので、そちらでは Nomo のコマンドにも接頭辞は一切付きません — Cursor のスキルにも付きません。
@@ -48,13 +48,20 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+# in a terminal — QR code, opens your browser
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+# one-time code, printed in the terminal
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+```
 </CodeGroup>
 
 引数なしで実行すると、テーマの適用されたページがブラウザで開き、QR コードが表示されます。アプリでスキャンすると、ページは自動的に **Paired ✓** に切り替わります。
 
 `code` 引数を付けるとブラウザを完全に省き、入力できるワンタイムコードを出力します。ヘッドレスなマシンや SSH セッション向けです。これが第 2 の選択肢なのは意図的で、そのコードはターミナルに、つまりエージェントのトランスクリプトに残るからです。
 
-ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode、Cursor は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
+ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode、Cursor、Antigravity は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
 
 ## status {#status}
 
@@ -73,6 +80,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -112,7 +123,7 @@ Claude Code — you are here
 </ResponseField>
 
 <ResponseField name="Hooks">
-  エージェントが Nomo にデータを渡しているか、そして最後に渡したのがどれくらい前かを示します。OpenCode にフックはないので、そちらではこの行の名前が `Plugin` になります。何も発火していないときは、Claude Code ではフックを読み込ませるために再起動してください。Codex では `/hooks` を実行します。OpenCode ではプラグインを読み込ませるために再起動してください。Cursor も再起動してください。Cursor がフックを読み込むのは起動時だけです。
+  エージェントが Nomo にデータを渡しているか、そして最後に渡したのがどれくらい前かを示します。OpenCode にフックはないので、そちらではこの行の名前が `Plugin` になります。何も発火していないときは、Claude Code ではフックを読み込ませるために再起動してください。Codex では `/hooks` を実行します。OpenCode ではプラグインを読み込ませるために再起動してください。Cursor と Antigravity も再起動してください。どちらもフックを読み込むのは起動時だけです。
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -178,7 +189,7 @@ will appear in the terminal as usual (your phone is not asked).
 
 iPhone 全体に効く別のスイッチもあります。[設定](/ja/sessions/settings#remote-approvals)の「iPhoneで回答」です。
 
-Cursor に approvals コマンドはありません。Cursor の許可リクエストは iPhone に届かないため、一時停止するものがありません。
+Cursor に approvals コマンドはありません。Cursor の許可リクエストは iPhone に届かないため、一時停止するものがありません。Antigravity にもありませんが、こちらの許可リクエストは iPhone に届きます — スイッチは共有されているので、上のいずれかのコマンドで一時停止してください。
 
 ## reset {#reset}
 
@@ -197,6 +208,10 @@ $nomo-reset
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
 ```
 </CodeGroup>
 
@@ -228,6 +243,10 @@ $nomo-unpair
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-unpair
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs
 ```
 </CodeGroup>
 

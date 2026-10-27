@@ -1,6 +1,6 @@
 ---
 title: "安裝"
-description: "將 Nomo 外掛程式加入 Claude Code、Codex、OpenCode 或 Cursor。一鍵安裝，也可以手動安裝，零相依套件。"
+description: "將 Nomo 外掛程式加入 Claude Code、Codex、OpenCode、Cursor 或 Antigravity。一鍵安裝，也可以手動安裝，零相依套件。"
 icon: "puzzle-piece"
 ---
 
@@ -219,11 +219,56 @@ icon: "puzzle-piece"
 
     然後重新啟動 Cursor。
   </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    一次安裝同時涵蓋 Antigravity 桌面應用程式和 `agy` CLI。shell 指令和檔案寫入可以在手機上回覆 — 細節寫在[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity)裡。
+
+    <Steps>
+      <Step title="執行安裝工具">
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --antigravity
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --antigravity
+        ```
+        </CodeGroup>
+
+        它會做兩件事：
+
+        - 把外掛程式 clone 到 `~/.nomo`。
+        - 在 `~/.gemini/config/hooks.json` 裡加入一個名為 `nomo` 的區塊。那個檔案裡的其他區塊都原封不動。
+      </Step>
+
+      <Step title="重新啟動 Antigravity — 必要步驟">
+        <Warning>
+          Antigravity 只在啟動時讀取 hooks。請結束並重新開啟 Antigravity 應用程式，也重新啟動你開著的任何 `agy` session。在你這麼做之前，這個外掛程式雖然裝好了卻什麼也沒做。
+        </Warning>
+      </Step>
+
+      <Step title="確認">
+        Antigravity 沒有 Nomo 指令，所以請在終端機裡確認：
+
+        ```bash
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+        ```
+      </Step>
+    </Steps>
+
+    之後要移除它：
+
+    ```bash
+    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    ```
+
+    它只會移除 `nomo` 區塊。然後重新啟動 Antigravity。
+  </Tab>
 </Tabs>
 
 ## 一鍵安裝 {#one-command}
 
-安裝工具會找出這台電腦上有哪些 Claude Code、Codex、OpenCode 和 Cursor，再把 Nomo 裝進你挑的那幾個：
+安裝工具會找出這台電腦上有哪些 Claude Code、Codex、OpenCode、Cursor 和 Antigravity，再把 Nomo 裝進你挑的那幾個：
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -235,22 +280,22 @@ npx nomo-ai
 ```
 </CodeGroup>
 
-一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的。接著它就去跑每個代理本來的安裝流程 — 也就是上面那四套。它不會在全域裝任何東西，也不會留下套件。
+一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的。接著它就去跑每個代理本來的安裝流程 — 也就是上面那五套。它不會在全域裝任何東西，也不會留下套件。
 
 寫指令碼或在 CI 裡使用時：
 
 | 選項 | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` | 只裝這幾個 — 只要指定其中任何一個，就會略過選擇畫面 |
-| `--all` | 四個全裝，不管有沒有找到 — 只有 Cursor 例外：這台電腦上沒有它時會略過（想照裝就指定 `--cursor`） |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | 只裝這幾個 — 只要指定其中任何一個，就會略過選擇畫面 |
+| `--all` | 五個全裝，不管有沒有找到 — 只有 Cursor 和 Antigravity 例外：這台電腦上沒有它們時會略過（想照裝就指定 `--cursor` 或 `--antigravity`） |
 | `-y`、`--yes` | 不出選擇畫面，找到多少裝多少 |
 | `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
 
-它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。
+它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。Antigravity 沒有指令 — 請在終端機裡配對，做法寫在[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#set-it-up)裡。
 
 ## 更新 {#updating}
 
-同一個指令也負責更新：已經裝了 Nomo 的代理，會顯示成更新而不是安裝。真正會執行的只有 OpenCode 和 Cursor 那兩份，另外兩個只是印出來給你。
+同一個指令也負責更新：已經裝了 Nomo 的代理，會顯示成更新而不是安裝。真正會執行的只有 OpenCode、Cursor 和 Antigravity 那三份，另外兩個只是印出來給你。
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -287,6 +332,16 @@ npx nomo-ai
     ```
 
     之後重新啟動 Cursor，以及任何開著的 `cursor-agent` session。
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    和當初安裝它的是同一個指令：
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    之後重新啟動 Antigravity，以及任何開著的 `agy` session。
   </Tab>
 </Tabs>
 

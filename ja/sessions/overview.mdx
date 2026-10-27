@@ -1,13 +1,13 @@
 ---
 title: "概要"
 sidebarTitle: "概要"
-description: "Claude Code、Codex、OpenCode を iPhone から見守り、Mac に戻らなくても許可の確認に答えられます。"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "概要"]
+description: "Claude Code、Codex、OpenCode、Antigravity を iPhone から見守り、Mac に戻らなくても許可の確認に答えられます。"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "概要"]
 ---
 
 コーディングエージェントは Mac の上で動きます。その前に座り続ける必要はありません。
 
-Nomo のセッション機能は、実行中の Claude Code、Codex、OpenCode、Cursor のセッションを iPhone に映し出します — ロック画面と Dynamic Island に。エージェントが何かの許可を求めて手を止めると、スマートフォンがそれを知らせ、その場で答えられます。
+Nomo のセッション機能は、実行中の Claude Code、Codex、OpenCode、Cursor、Antigravity のセッションを iPhone に映し出します — ロック画面と Dynamic Island に。エージェントが何かの許可を求めて手を止めると、スマートフォンがそれを知らせ、その場で答えられます。
 
 キッチンへ歩いていきます。エージェントは動き続けます。承認の要るコマンドに行き当たるとスマートフォンが震え、**許可**をタップすれば、そのまま先へ進みます。机には戻らずじまいです。
 
@@ -32,9 +32,10 @@ Nomo のセッション機能は、実行中の Claude Code、Codex、OpenCode�
   <span><img src="/images/codex.svg" alt="" />Codex</span>
   <span><img src="/images/opencode.svg" alt="" />OpenCode</span>
   <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
+  <span><img src="/images/providers/antigravity.png" alt="" />Antigravity</span>
 </div>
 
-Codex と OpenCode がプラグインに渡す情報は Claude Code より少ないため、iPhone 側での見え方がいくつか異なります — 変わる点は [Codex での利用](/ja/sessions/codex)と [OpenCode での利用](/ja/sessions/opencode)にまとめてあります。Cursor はこのバージョンでは読み取り専用です。セッションは表示されますが、許可リクエストに iPhone から回答することはできません — [Cursor での利用](/ja/sessions/cursor)をご覧ください。
+Codex と OpenCode がプラグインに渡す情報は Claude Code より少ないため、iPhone 側での見え方がいくつか異なります — 変わる点は [Codex での利用](/ja/sessions/codex)と [OpenCode での利用](/ja/sessions/opencode)にまとめてあります。Cursor はこのバージョンでは読み取り専用です。セッションは表示されますが、許可リクエストに iPhone から回答することはできません — [Cursor での利用](/ja/sessions/cursor)をご覧ください。Antigravity は、シェルコマンドとファイルの書き込みを iPhone に送り、「許可」または「拒否」で回答できます — [Antigravity での利用](/ja/sessions/antigravity)をご覧ください。
 
 <Card title="できること" href="/ja/sessions/features" icon="star" horizontal>
   機能の一覧と、エージェントごとの対応状況。
@@ -42,7 +43,7 @@ Codex と OpenCode がプラグインに渡す情報は Claude Code より少な
 
 ## 必要なもの
 
-- Mac 上の Claude Code、Codex 0.142 以降、OpenCode、または Cursor
+- Mac 上の Claude Code、Codex 0.142 以降、OpenCode、Cursor、または Antigravity
 - **bun** または **node 18 以降** — すでに入っているほうで構いません
 - スマートフォンとコンピュータのペアリング — QR コードを 1 回スキャンするだけです
 
@@ -62,7 +63,7 @@ Mac はセッションの更新を、Nomo の中継サーバー経由でスマ�
 
 <CardGroup cols={2}>
   <Card title="プラグインをインストールする" href="/ja/setup/install" icon="puzzle-piece">
-    Claude Code でも Codex でも OpenCode でも Cursor でも、コマンドは 2 つです。
+    Claude Code でも Codex でも OpenCode でも Cursor でも Antigravity でも、コマンドは 2 つです。
   </Card>
   <Card title="コンピュータをペアリングする" href="/ja/setup/pairing" icon="qrcode-read">
     QR コードをスキャンするか、ワンタイムコードを入力します。

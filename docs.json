@@ -125,7 +125,8 @@
                   "sessions/commands",
                   "sessions/codex",
                   "sessions/opencode",
-                  "sessions/cursor"
+                  "sessions/cursor",
+                  "sessions/antigravity"
                 ]
               },
               {
@@ -197,7 +198,8 @@
                   "es/sessions/commands",
                   "es/sessions/codex",
                   "es/sessions/opencode",
-                  "es/sessions/cursor"
+                  "es/sessions/cursor",
+                  "es/sessions/antigravity"
                 ]
               },
               {
@@ -269,7 +271,8 @@
                   "ja/sessions/commands",
                   "ja/sessions/codex",
                   "ja/sessions/opencode",
-                  "ja/sessions/cursor"
+                  "ja/sessions/cursor",
+                  "ja/sessions/antigravity"
                 ]
               },
               {
@@ -341,7 +344,8 @@
                   "ko/sessions/commands",
                   "ko/sessions/codex",
                   "ko/sessions/opencode",
-                  "ko/sessions/cursor"
+                  "ko/sessions/cursor",
+                  "ko/sessions/antigravity"
                 ]
               },
               {
@@ -413,7 +417,8 @@
                   "zh-Hans/sessions/commands",
                   "zh-Hans/sessions/codex",
                   "zh-Hans/sessions/opencode",
-                  "zh-Hans/sessions/cursor"
+                  "zh-Hans/sessions/cursor",
+                  "zh-Hans/sessions/antigravity"
                 ]
               },
               {
@@ -485,7 +490,8 @@
                   "zh-Hant/sessions/commands",
                   "zh-Hant/sessions/codex",
                   "zh-Hant/sessions/opencode",
-                  "zh-Hant/sessions/cursor"
+                  "zh-Hant/sessions/cursor",
+                  "zh-Hant/sessions/antigravity"
                 ]
               },
               {

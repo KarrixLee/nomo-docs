@@ -2,7 +2,7 @@
 title: "故障排查"
 description: "先运行状态命令——它会直接说出问题所在，并打印出对应的修复命令。然后：哪一行回答哪个症状，以及状态命令看不到的少数几件事。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
 ---
 
 这一页的活，现在大半由状态命令替你干了。它会把整台电脑读一遍，用大白话说出哪里不对，并打印出能修好它的那条命令。先运行它。
@@ -26,6 +26,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -62,7 +66,8 @@ $nomo-status
 </Accordion>
 
 <Accordion title="手机从来不来问我要不要批准" icon="hand">
-  如果是 Cursor 的会话，那是预期之中的：Cursor 会话是只读的，它的请求永远到不了你的手机——[原因](/zh-Hans/sessions/cursor#what-this-version-doesnt-do)。其他智能体的话：
+  如果是 Cursor 的会话，那是预期之中的：Cursor 会话是只读的，它的请求永远到不了你的手机——[原因](/zh-Hans/sessions/cursor#what-this-version-doesnt-do)。Antigravity 只会发来 shell 命令和文件写入，而你已经在 `agy` 里设好的允许规则会跳过手机——[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#answering-from-your-phone)。
+  其他智能体的话：
 
   看 **Approvals**。`PAUSED` 表示有人在这台电脑上运行过暂停命令——可能是好几个月以前，而这正是过去这件事根本无从发现的原因。在那台机器上的一个会话里恢复它，请求就回来了：[approvals](/zh-Hans/sessions/commands#approvals)。
 
@@ -70,7 +75,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="我开了一个会话，它一直没出现" icon="play">
-  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode；重启 Cursor。
+  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode；重启 Cursor；重启 Antigravity。
 
   Codex 需要你明确信任 hook，而一次插件更新会重新开启那次审核，所以在那边，更新之后运行 `/hooks` 通常就是答案——[原因](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
@@ -101,6 +106,25 @@ $nomo-status
   连不上 Nomo 的中继服务器时，在 Cursor 里提交提示可能会停顿最多约 2 秒才发出去。它绝不会拦下你的提示。
 </Accordion>
 
+<Accordion title="偏偏 Antigravity 什么都不显示" icon="rocket">
+  按顺序检查四件事：
+
+  - **Antigravity 没有重启**。Antigravity 只在启动时读取 hook，所以安装之后要退出并重新打开应用——并重启所有开着的 `agy` 会话。
+  - **Antigravity 标签页被隐藏了**。详情页最多显示三个智能体标签页。轻点 **+** 按钮（**选择智能体**），把 Antigravity 打开。
+  - **这台 Mac 没有配对**。Antigravity 没有 Nomo 命令，所以要在终端里检查：
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+    ```
+  - **插件文件夹被移动了**。Antigravity 的 hook 指向 `~/.nomo`。如果那个文件夹被移动或删除，再运行一次 `bunx nomo-ai --antigravity`，然后重启 Antigravity。
+
+  会话要等你发出一个对话的第一条提示才会出现。完整的配置步骤在[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity)里。
+</Accordion>
+
+<Accordion title="取消了的 Antigravity 这一轮还显示“运行中”" icon="hourglass-half">
+  Antigravity 不会在你取消一轮时通知插件，所以 Nomo 要从 Antigravity 自己的记录里推断出来。几秒钟后，这一行就会变为 `完成`。
+</Accordion>
+
 <Accordion title="会话行看着陈旧或重复" icon="broom">
   **Sessions** 统计的是这台电脑仍然认为还活着的会话。如果比你实际有的多，不用解除配对就能清掉失效的：
 
@@ -120,6 +144,10 @@ $nomo-status
   ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
   ```
+
+  ```bash Antigravity icon="/images/providers/antigravity.png"
+  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  ```
   </CodeGroup>
 
   活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。OpenCode 的会话行属于 OpenCode 的服务器，所以要是有一行清不掉，先退出 OpenCode。
@@ -132,13 +160,14 @@ $nomo-status
 </Accordion>
 
 <Accordion title="“停止”显示“已发送”，会话却还在运行" icon="circle-stop">
-  **已发送**的意思是 Mac 收到了，不代表这一轮已经停下。有三种情况会让它继续跑：
+  **已发送**的意思是 Mac 收到了，不代表这一轮已经停下。有四种情况会让它继续跑：
 
   - **Claude Code 要等到下一次工具调用**。它还在输出文字，或者一条耗时的命令已经在跑的时候，要等那一步结束才会有反应。
   - **够不到那个 Codex 会话**。停止信号要走 Codex 的共用 app-server——见[它覆盖哪些会话](/zh-Hans/sessions/codex#interrupt)。
+  - **Antigravity 会先做完当前这一步**。已经在运行的模型调用或工具结束后，这一轮才会停下。
   - **两个插件里有一个低于 2.3.0**。版本是按电脑上报的，所以同一台 Mac 上既有 Claude Code 又有 Codex 时，两个都要更新。状态命令的第一行就写着版本。
 
-  根本没有**停止**按钮？它需要绿色的 **⚡ 本地**角标、一个 `运行中` 的会话、插件 **2.3.0**，而且必须是 Claude Code 或 Codex——OpenCode 上永远没有。详见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
+  根本没有**停止**按钮？它需要绿色的 **⚡ 本地**角标、一个 `运行中` 的会话、插件 **2.3.0**（Antigravity 要 **2.3.5**），而且必须是 Claude Code、Codex 或 Antigravity——OpenCode 和 Cursor 上永远没有。详见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
 </Accordion>
 
 </AccordionGroup>
@@ -226,7 +255,7 @@ $nomo-status
 
 ## 功能建议 {#nothings-broken--you-just-want-something}
 
-“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)、[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)和[搭配 Cursor 使用](/zh-Hans/sessions/cursor)讲这三个智能体，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
+“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)、[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)、[搭配 Cursor 使用](/zh-Hans/sessions/cursor)和[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity)讲这四个智能体，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
 
 其余的就是还没做。
 
@@ -279,7 +308,7 @@ $nomo-status
       "name": "我开了一个会话，它一直没出现",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "看 Hooks 这一行——在 OpenCode 里叫 Plugin，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 /hooks；重启 OpenCode。"
+        "text": "看 Hooks 这一行——在 OpenCode 里叫 Plugin，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 /hooks；重启 OpenCode；重启 Cursor 或 Antigravity。"
       }
     },
     {
@@ -320,6 +349,22 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "连不上 Nomo 的中继服务器时，在 Cursor 里提交提示可能会停顿最多约 2 秒才发出去。它绝不会拦下你的提示。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "偏偏 Antigravity 什么都不显示",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "检查四件事。Antigravity 只在启动时读取 hook，所以安装之后要退出并重新打开应用，并重启所有开着的 agy 会话。详情页最多显示三个智能体标签页，所以轻点 + 按钮（选择智能体），把 Antigravity 打开。在终端里运行 ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity，检查这台 Mac 是否已配对。如果 ~/.nomo 文件夹被移动或删除，再运行一次 bunx nomo-ai --antigravity，然后重启 Antigravity。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "取消了的 Antigravity 这一轮还显示“运行中”",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Antigravity 不会在你取消一轮时通知插件，所以 Nomo 要从 Antigravity 自己的记录里推断出来。几秒钟后，这一行就会变为“完成”。"
       }
     },
     {

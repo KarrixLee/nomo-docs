@@ -2,7 +2,7 @@
 title: "トラブルシューティング"
 description: "まずはステータスのコマンドを実行してください — 問題を名指しし、その対処法まで出力します。そのうえで、どの症状をどの行が説明するのか、そしてステータスには見えない数少ないものをまとめます。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "トラブルシューティング"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "トラブルシューティング"]
 ---
 
 いまは、このページの仕事のほとんどをステータスのコマンドが代わりにやってくれます。コンピュータ全体を読み取り、おかしいところを平易な言葉で名指しし、それを直すコマンドを出力します。まずはこれを実行してください。
@@ -26,6 +26,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -62,7 +66,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="iPhone が承認を求めてこない" icon="hand">
-  Cursor のセッションであれば、それは想定どおりです。Cursor のセッションは読み取り専用で、許可リクエストは iPhone に届きません — [理由](/ja/sessions/cursor#what-this-version-doesnt-do)。それ以外のエージェントでは、次のとおりです。
+  Cursor のセッションであれば、それは想定どおりです。Cursor のセッションは読み取り専用で、許可リクエストは iPhone に届きません — [理由](/ja/sessions/cursor#what-this-version-doesnt-do)。Antigravity が送るのはシェルコマンドとファイルの書き込みだけで、`agy` ですでに設定してある許可ルールに当てはまるものは iPhone を経由しません — [Antigravity での利用](/ja/sessions/antigravity#answering-from-your-phone)。それ以外のエージェントでは、次のとおりです。
 
   **Approvals** を見てください。`PAUSED` は、そのコンピュータで一時停止のコマンドが実行されたという意味です — 何か月も前かもしれません。だからこそ、これまでは気づきようがありませんでした。そのマシンのセッションから再開すれば、許可リクエストは戻ってきます — [approvals](/ja/sessions/commands#approvals)。
 
@@ -70,7 +74,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="セッションを開始したのに表示されない" icon="play">
-  **Hooks** — フックのない OpenCode では **Plugin** です。これが発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動してください。Codex では `/hooks` を実行します。OpenCode も再起動してください。Cursor も再起動してください。
+  **Hooks** — フックのない OpenCode では **Plugin** です。これが発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動してください。Codex では `/hooks` を実行します。OpenCode も再起動してください。Cursor も、Antigravity も再起動してください。
 
   Codex はフックを明示的に信頼する必要があり、プラグインの更新があるとその確認が再び開きます。更新後に `/hooks` を実行するのが、そちらでのいつもの答えです — [理由](/ja/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
@@ -101,6 +105,25 @@ $nomo-status
   Nomo の中継サーバーに接続できないときは、Cursor でプロンプトを送信してから実際に送られるまで、最大で約 2 秒待たされることがあります。プロンプトがブロックされることはありません。
 </Accordion>
 
+<Accordion title="Antigravity だけ何も表示されない" icon="rocket">
+  次の 4 つを、この順で確認してください。
+
+  - **Antigravity を再起動していない**。Antigravity がフックを読み込むのは起動時だけなので、インストールしたらアプリを終了して開き直し、開いている `agy` のセッションがあればそれも再起動してください。
+  - **Antigravity タブが非表示になっている**。ドロワーに表示されるエージェントのタブは最大 3 つです。**+** ボタン（「エージェントを選択」）をタップして、Antigravity をオンにしてください。
+  - **Mac がペアリングされていない**。Antigravity には Nomo のコマンドがないため、ターミナルから確認してください。
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+    ```
+  - **プラグインのフォルダが移動している**。Antigravity のフックは `~/.nomo` を指しています。このフォルダを移動または削除した場合は、`bunx nomo-ai --antigravity` をもう一度実行し、Antigravity を再起動してください。
+
+  セッションが現れるのは、会話の最初のプロンプトを送ったあとです。セットアップの全体は [Antigravity での利用](/ja/sessions/antigravity)にあります。
+</Accordion>
+
+<Accordion title="キャンセルした Antigravity のターンが「実行中」のまま" icon="hourglass-half">
+  Antigravity はターンのキャンセルをプラグインに知らせないため、Nomo は Antigravity 自身の記録からそれを判断します。数秒後に行は `完了` になります。
+</Accordion>
+
 <Accordion title="行が古いままか重複している" icon="broom">
   **Sessions** は、このコンピュータがまだ生きていると考えている数を数えています。実際より多いなら、ペアリングを解除せずに無効な行を消去してください。
 
@@ -120,6 +143,10 @@ $nomo-status
   ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
   ```
+
+  ```bash Antigravity icon="/images/providers/antigravity.png"
+  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  ```
   </CodeGroup>
 
   実行中のセッション、ペアリング、鍵はそのまま残ります —
@@ -134,13 +161,14 @@ $nomo-status
 </Accordion>
 
 <Accordion title="「中断」が「送信済み」になったのにセッションが動き続ける" icon="circle-stop">
-  「送信済み」は Mac が受け取ったという意味で、ターンが止まったという意味ではありません。動き続ける原因は 3 つあります。
+  「送信済み」は Mac が受け取ったという意味で、ターンが止まったという意味ではありません。動き続ける原因は 4 つあります。
 
   - **Claude Code は次のツール呼び出しを待ちます。** 文章を書いている間や、長いコマンドがすでに実行中の間は、そのステップが終わるまで何も起きません。
   - **Codex のセッションに到達できていません。** 中断は Codex の共有 app-server を通ります — [対象となるセッション](/ja/sessions/codex#interrupt)をご覧ください。
+  - **Antigravity は現在のステップを先に終えます。** すでに実行中のモデル呼び出しやツールが終わったところで、ターンが止まります。
   - **2 つのプラグインのどちらかが 2.3.0 より古い状態です。** バージョンはコンピュータごとに報告されるため、1 台の Mac で Claude Code と Codex を使っている場合は両方を更新してください。バージョンはステータスの 1 行目に出力されます。
 
-  「中断」ボタンそのものがない場合は、緑色の**⚡ ローカル**チップ、`実行中` のセッション、プラグイン **2.3.0**、そして Claude Code か Codex のセッションであること（OpenCode は対象外）が必要です。詳しくは[コンピュータとセッション](/ja/sessions/list#interrupt-a-running-session)をご覧ください。
+  「中断」ボタンそのものがない場合は、緑色の**⚡ ローカル**チップ、`実行中` のセッション、プラグイン **2.3.0**（Antigravity では **2.3.5**）、そして Claude Code、Codex、Antigravity のいずれかのセッションであること（OpenCode と Cursor は対象外）が必要です。詳しくは[コンピュータとセッション](/ja/sessions/list#interrupt-a-running-session)をご覧ください。
 </Accordion>
 
 </AccordionGroup>
@@ -228,7 +256,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
 
 ## 機能リクエスト {#nothings-broken--you-just-want-something}
 
-「なぜこれを iPhone からできないのか」は、不具合ではなく正当な疑問であることがよくあります。その一部はエージェントがプラグインに渡すものの実際の制約で、それは文書になっています。Codex 側は [Codex での利用](/ja/sessions/codex)に、OpenCode 側は [OpenCode での利用](/ja/sessions/opencode)に、Cursor 側は [Cursor での利用](/ja/sessions/cursor)に、ライブアクティビティに載せられるもの・載せられないものは [iPhone からの回答](/ja/sessions/approvals)にまとめてあります。
+「なぜこれを iPhone からできないのか」は、不具合ではなく正当な疑問であることがよくあります。その一部はエージェントがプラグインに渡すものの実際の制約で、それは文書になっています。Codex 側は [Codex での利用](/ja/sessions/codex)に、OpenCode 側は [OpenCode での利用](/ja/sessions/opencode)に、Cursor 側は [Cursor での利用](/ja/sessions/cursor)に、Antigravity 側は [Antigravity での利用](/ja/sessions/antigravity)に、ライブアクティビティに載せられるもの・載せられないものは [iPhone からの回答](/ja/sessions/approvals)にまとめてあります。
 
 残りは、単にまだ作られていないだけです。
 
@@ -281,7 +309,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
       "name": "セッションを開始したのに表示されない",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Hooks の行 — フックのない OpenCode では Plugin — を見てください。発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動、Codex では /hooks を実行、OpenCode も再起動してください。"
+        "text": "Hooks の行 — フックのない OpenCode では Plugin — を見てください。発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動、Codex では /hooks を実行、OpenCode、Cursor、Antigravity も再起動してください。"
       }
     },
     {
@@ -322,6 +350,22 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Nomo の中継サーバーに接続できないときは、Cursor でプロンプトを送信してから実際に送られるまで、最大で約 2 秒待たされることがあります。プロンプトがブロックされることはありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Antigravity だけ何も表示されない",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "確認することは 4 つです。Antigravity がフックを読み込むのは起動時だけなので、インストールしたらアプリを終了して開き直し、開いている agy のセッションがあればそれも再起動してください。ドロワーに表示されるエージェントのタブは最大 3 つなので、+ ボタン（「エージェントを選択」）をタップして Antigravity をオンにしてください。ターミナルで ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity を実行して、Mac がペアリングされているか確認してください。そして ~/.nomo フォルダを移動または削除した場合は、bunx nomo-ai --antigravity をもう一度実行して Antigravity を再起動してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "キャンセルした Antigravity のターンが「実行中」のまま",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Antigravity はターンのキャンセルをプラグインに知らせないため、Nomo は Antigravity 自身の記録からそれを判断します。数秒後に行は 完了 になります。"
       }
     },
     {

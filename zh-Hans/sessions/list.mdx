@@ -38,7 +38,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
 
 ## 电脑内部 {#inside-a-computer}
 
-轻点卡片会打开一个详情页，顶部是一个分段控件，每个智能体一段：**Claude Code**、**Codex**、**OpenCode** 和 **Cursor** 中最多三个，用 **+** 按钮（**选择智能体**）来挑。Nomo 会打开最近活跃的那个智能体。
+轻点卡片会打开一个详情页，顶部是一个分段控件，每个智能体一段：**Claude Code**、**Codex**、**OpenCode**、**Cursor** 和 **Antigravity** 中最多三个，用 **+** 按钮（**选择智能体**）来挑。Nomo 会打开最近活跃的那个智能体。
 
 <Frame caption="从详情页底部的 + 按钮打开的“选择智能体”菜单。最多勾选三个，勾选的会显示在顶部的分段控件里。">
   <div className="device-frame">
@@ -106,8 +106,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
 - **文件夹**和**会话 ID**——ID 取前八位，等宽字体。
 - **待答复的问题**，有的话就完整显示。
 - **查看计划**——打开计划。Claude Code 的可以答复，[Codex](/zh-Hans/sessions/codex) 的只能读，[OpenCode](/zh-Hans/sessions/opencode#plan-mode) 的通常是这个会话的待办清单，而不是一份文档。
-- **在 Mac 上打开**——把这个会话的终端窗口在 Mac 上调到最前。只有当 Nomo 有一条直连的[本地网络](/zh-Hans/sessions/settings#local-network)链路时才会出现，而且 [OpenCode](/zh-Hans/sessions/opencode#no-open-on-mac) 会话上永远不会出现，因为它们没有自己的窗口；[Cursor](/zh-Hans/sessions/cursor#what-this-version-doesnt-do) 会话上也不会出现。
-- **停止**——停掉正在运行的这一轮，相当于在 Mac 上按 Esc。只出现在 `运行中` 的 Claude Code 或 Codex 会话上，而且同样需要那条直连链路——见[下文](#interrupt-a-running-session)。
+- **在 Mac 上打开**——把这个会话的终端窗口在 Mac 上调到最前。只有当 Nomo 有一条直连的[本地网络](/zh-Hans/sessions/settings#local-network)链路时才会出现，而且 [OpenCode](/zh-Hans/sessions/opencode#no-open-on-mac) 会话上永远不会出现，因为它们没有自己的窗口；[Cursor](/zh-Hans/sessions/cursor#what-this-version-doesnt-do) 和 [Antigravity](/zh-Hans/sessions/antigravity#what-this-version-doesnt-do) 会话上也不会出现。
+- **停止**——停掉正在运行的这一轮，相当于在 Mac 上按 Esc。只出现在 `运行中` 的 Claude Code、Codex 或 [Antigravity](/zh-Hans/sessions/antigravity#interrupt) 会话上，而且同样需要那条直连链路——见[下文](#interrupt-a-running-session)。
 
 <Tip>
   想**答复**一条请求，请按住这一行，而不是轻点。轻点是展开；按住才会打开“允许 / 拒绝”菜单。
@@ -124,7 +124,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
 **停止**会停掉当前这一轮，和在 Mac 上按 Esc 一样。它在展开后的会话行里，紧挨着**在 Mac 上打开**，而且只有下面几条全部满足时才会出现：
 
 - 会话处于 `运行中`。正在等你的行——权限请求、问题、计划——或者已经 `完成` 的行，没有什么可停的。
-- 是 Claude Code 或 Codex 的会话。OpenCode 上永远不会出现。
+- 是 Claude Code、Codex 或 Antigravity 的会话。OpenCode 和 Cursor 上永远不会出现。
 - Nomo 和那台 Mac 之间有一条直连的[本地网络](/zh-Hans/sessions/settings#local-network)链路——也就是绿色的 **⚡ 本地**角标。停止信号绝不会走中继服务器。
 - 那台电脑上的插件是 **2.3.0** 或更新版本。
 

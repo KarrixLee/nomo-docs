@@ -52,7 +52,7 @@ pone naranja cuando llegas al tope.
 
 Al tocar una tarjeta se abre un panel con un control segmentado arriba, un
 segmento por agente: hasta tres de entre **Claude Code**, **Codex**,
-**OpenCode** y **Cursor**, elegidos con el botón **+** (**Elegir agentes**).
+**OpenCode**, **Cursor** y **Antigravity**, elegidos con el botón **+** (**Elegir agentes**).
 Nomo abre el agente que estuviera activo más recientemente.
 
 <Frame caption="Elegir agentes, abierto con el botón + al pie del panel. Marca hasta tres: cada uno pasa a ser una pestaña.">
@@ -143,8 +143,8 @@ puede seleccionar, y va etiquetado con un símbolo en lugar de con una palabra:
 - **Carpeta** e **identificador de sesión** — los ocho primeros caracteres, en monoespaciada.
 - **La pregunta pendiente**, entera, cuando la hay.
 - **Ver plan** — abre el plan. Se puede responder en Claude Code; en [Codex](/es/sessions/codex) es de solo lectura, y en [OpenCode](/es/sessions/opencode#plan-mode) suele ser la lista de tareas de la sesión en vez de un documento.
-- **Abrir en el Mac** — pone en primer plano la ventana de terminal de esa sesión en tu Mac. Solo aparece cuando Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network), y nunca en las sesiones de [OpenCode](/es/sessions/opencode#no-open-on-mac), que no tienen ventana propia, ni en las de [Cursor](/es/sessions/cursor#what-this-version-doesnt-do).
-- **Detener** — detiene el turno en curso, como pulsar Esc en el Mac. Solo en una sesión de Claude Code o Codex que esté `En ejecución`, y solo por ese mismo enlace directo — ve [más abajo](#interrupt-a-running-session).
+- **Abrir en el Mac** — pone en primer plano la ventana de terminal de esa sesión en tu Mac. Solo aparece cuando Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network), y nunca en las sesiones de [OpenCode](/es/sessions/opencode#no-open-on-mac), que no tienen ventana propia, ni en las de [Cursor](/es/sessions/cursor#what-this-version-doesnt-do) y [Antigravity](/es/sessions/antigravity#what-this-version-doesnt-do).
+- **Detener** — detiene el turno en curso, como pulsar Esc en el Mac. Solo en una sesión de Claude Code, Codex o [Antigravity](/es/sessions/antigravity#interrupt) que esté `En ejecución`, y solo por ese mismo enlace directo — ve [más abajo](#interrupt-a-running-session).
 
 <Tip>
   Para **responder** a una solicitud, mantén pulsada la fila en lugar de tocarla.
@@ -167,7 +167,8 @@ esto:
 - La sesión está `En ejecución`. En una fila que te espera —una solicitud de
   permiso, una pregunta, un plan— o que ya está en `Listo` no hay nada que
   detener.
-- Es una sesión de Claude Code o de Codex. Nunca de OpenCode.
+- Es una sesión de Claude Code, de Codex o de Antigravity. Nunca de OpenCode ni
+  de Cursor.
 - Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network)
   con ese Mac: la etiqueta verde **⚡ Local**. La orden nunca se envía a través
   del relé.

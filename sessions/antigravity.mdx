@@ -1,0 +1,170 @@
+---
+title: "Watch and approve Antigravity sessions from your iPhone"
+sidebarTitle: "Using Antigravity"
+description: "Install the Nomo plugin on Google Antigravity, pair, and follow its sessions from your phone — with Allow and Deny for shell commands and file writes."
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Using Antigravity"]
+---
+
+Google Antigravity sessions show up in the same list, on the same island, over
+the same pairing — from the Antigravity desktop app and from the `agy` CLI
+alike. When Antigravity wants to run a shell command or write a file, you can
+**Allow** or **Deny** it from your phone.
+
+<Note>
+  Sessions is part of Nomo Pro, for Antigravity as for every other agent.
+  Antigravity sessions need Nomo **2.3.5** on your phone and plugin **2.3.5** on
+  your Mac.
+</Note>
+
+## Set it up
+
+<Steps>
+  <Step title="Run the installer">
+    On your Mac:
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --antigravity
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --antigravity
+    ```
+    </CodeGroup>
+
+    One install covers both the desktop app and `agy`. It does two things:
+
+    - Clones the plugin to `~/.nomo`.
+    - Adds one block named `nomo` to `~/.gemini/config/hooks.json`. Every other
+      block in that file is left alone.
+  </Step>
+
+  <Step title="Restart Antigravity — required">
+    <Warning>
+      Antigravity only reads its hooks when it starts. Quit and reopen the
+      Antigravity app, and restart any `agy` session you have open. Until you
+      do, the plugin is installed and doing nothing.
+    </Warning>
+  </Step>
+
+  <Step title="Pair">
+    Antigravity has no Nomo commands, so pair from a terminal:
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+    ```
+
+    It opens the pairing page with a QR code — scan it with the Nomo app. Where
+    you can't open a browser, add `--show-code` to get a short code to type
+    instead. Both paths are walked through in [Pairing](/setup/pairing).
+
+    Pairing is shared across agents on one Mac. A computer already paired for
+    Claude Code, Codex, OpenCode or Cursor doesn't need pairing again for
+    Antigravity — installing is enough, and you can skip this step.
+  </Step>
+
+  <Step title="Show the Antigravity tab">
+    In the app, open the computer. Antigravity sessions sit under an
+    **Antigravity** tab in its session drawer.
+
+    The drawer shows up to three agent tabs. If Antigravity isn't one of them,
+    tap the **+** button (**Choose agents**) and turn it on.
+  </Step>
+</Steps>
+
+## Commands
+
+Antigravity has no slash commands for Nomo. Run these in a terminal instead, or
+use the matching command from any other agent on the same Mac — pairing and
+everything else here is machine-wide:
+
+| | |
+| --- | --- |
+| Pair | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| Check health | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| Clear stuck sessions | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| Unpair | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+There's no approvals command in Antigravity. To pause approvals on this
+computer, use `/nomo-cc:approvals off` in Claude Code (or its Codex or OpenCode
+twin) — the switch is shared by every agent. What each command prints is in
+[Commands](/sessions/commands).
+
+## What you see
+
+- A session appears when you send your **first prompt** — not when a
+  conversation is merely opened.
+- It shows as working while the agent runs, and as done when the turn finishes.
+- The title is Antigravity's own name for the conversation. Antigravity only
+  names it once the first turn has finished, so until then the row is named
+  after your first prompt.
+- The model badge shows the model Antigravity reports.
+- The [Dynamic Island](/sessions/island) works as it does for the other agents,
+  for the sessions you choose to show there.
+
+## Answering from your phone
+
+Shell commands and file writes or edits come to your phone. Reads, searches and
+every other tool never do — Antigravity runs those without asking Nomo.
+
+Touch and hold the row, or use the island, and you get:
+
+- **Allow** — the command runs, or the file is written.
+- **Deny** — Antigravity skips it and carries on without it.
+- **Deny with note…** — denies, and passes what you typed to the agent as the
+  reason.
+
+There's no **Always allow** for Antigravity yet. The rest works as in
+[Answering from your phone](/sessions/approvals).
+
+Your own Antigravity rules still count:
+
+- **Allow rules skip the phone.** In the `agy` CLI, a command an allow rule in
+  `~/.gemini/antigravity-cli/settings.json` already covers runs without asking
+  your phone.
+- **Deny rules always win.** A deny rule is never overridden from your phone.
+- **The desktop app asks about everything.** Its permission presets — Turbo
+  included — can't be read by a plugin, so in the desktop app every shell
+  command and file write reaches your phone.
+
+While a card is on your phone, Antigravity's own prompt on the Mac waits for
+your answer. If your phone or the network can't be reached, or approvals are
+[paused](/sessions/approvals#pausing-it), Antigravity shows its normal prompt at
+the Mac, exactly as it would without Nomo.
+
+## Interrupt
+
+[**Interrupt**](/sessions/list#interrupt-a-running-session) works on a `Running`
+Antigravity session, under the same conditions as Claude Code: the green **⚡
+Local** chip, and plugin **2.3.5**. The turn stops after the current step — the
+model call or tool that's already running — and the row goes to `Done`. The
+conversation stays open; type a new prompt to carry on.
+
+## What this version doesn't do
+
+- **No questions or plans.** Antigravity's questions and plan reviews aren't
+  shown on your phone.
+- **No "Open on Mac".** The button isn't available on Antigravity sessions.
+- **No Always allow.** Every command is a one-time **Allow** or **Deny**.
+
+## Updating
+
+Run the same command again, then restart Antigravity:
+
+```bash
+bunx nomo-ai --antigravity
+```
+
+## Uninstalling
+
+```bash
+node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+```
+
+Then restart Antigravity. Uninstalling removes only the `nomo` block from
+`~/.gemini/config/hooks.json` and leaves the pairing alone — it's shared with
+the other agents on this computer. To unpair the computer as well, run the
+unpair command above before you uninstall.
+
+If something isn't showing up, the Antigravity entries in
+[Troubleshooting](/sessions/troubleshooting) are the place to start.

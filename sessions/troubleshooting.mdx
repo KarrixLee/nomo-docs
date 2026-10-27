@@ -3,7 +3,7 @@ title: "Fix Nomo pairing, session, and approval problems"
 sidebarTitle: "Troubleshooting"
 description: "Run the status command first — it names the problem and prints the fix. Then: which row answers which symptom, and the few things status can't see."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
 ---
 
 The status command does most of this page's job for you now. It reads the whole
@@ -30,6 +30,10 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
 ```
 </CodeGroup>
 
@@ -87,7 +91,10 @@ What each row means, with a healthy machine and a broken one side by side, is on
 <Accordion title="My phone never asks me to approve anything" icon="hand">
   If the session is a Cursor one, that's expected: Cursor sessions are read-only
   and its prompts never reach your phone —
-  [why](/sessions/cursor#what-this-version-doesnt-do). For every other agent:
+  [why](/sessions/cursor#what-this-version-doesnt-do). Antigravity sends only
+  shell commands and file writes, and an allow rule you already set in `agy`
+  skips the phone — [Using Antigravity](/sessions/antigravity#answering-from-your-phone).
+  For every other agent:
 
   Read **Approvals**. `PAUSED` means someone ran the pause command on this
   computer — possibly months ago, which is exactly why this used to be
@@ -105,7 +112,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
   **Hooks** — or **Plugin** in OpenCode, which has none. If it isn't firing,
   your agent isn't handing Nomo anything, and every agent loads that wiring only
   at startup: restart Claude Code, run `/hooks` in Codex, restart OpenCode,
-  restart Cursor.
+  restart Cursor, restart Antigravity.
 
   Codex trusts hooks explicitly and a plugin update re-opens that review, so
   `/hooks` after an update is the usual answer there —
@@ -153,6 +160,33 @@ What each row means, with a healthy machine and a broken one side by side, is on
   for up to about 2 seconds before it goes through. It never blocks the prompt.
 </Accordion>
 
+<Accordion title="Antigravity in particular shows nothing" icon="rocket">
+  Four things to check, in this order:
+
+  - **Antigravity wasn't restarted.** Antigravity only reads its hooks when it
+    starts, so after installing, quit and reopen the app — and restart any open
+    `agy` session.
+  - **The Antigravity tab is hidden.** The drawer shows up to three agent tabs.
+    Tap the **+** button (**Choose agents**) and turn Antigravity on.
+  - **The Mac isn't paired.** Antigravity has no Nomo commands, so check from a
+    terminal:
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+    ```
+  - **The plugin folder moved.** Antigravity's hooks point at `~/.nomo`. If that
+    folder was moved or deleted, run `bunx nomo-ai --antigravity` again, then
+    restart Antigravity.
+
+  A session only appears once you've sent a conversation's first prompt. The
+  full setup is in [Using Antigravity](/sessions/antigravity).
+</Accordion>
+
+<Accordion title="A cancelled Antigravity turn still says Running" icon="hourglass-half">
+  Antigravity doesn't tell plugins when you cancel a turn, so Nomo works it out
+  from Antigravity's own records. The row goes to `Done` a few seconds later.
+</Accordion>
+
 <Accordion title="Rows look stale or duplicated" icon="broom">
   **Sessions** counts what this computer still believes is alive. If that's more
   than you have, clear the dead ones without unpairing:
@@ -173,6 +207,10 @@ What each row means, with a healthy machine and a broken one side by side, is on
   ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
   ```
+
+  ```bash Antigravity icon="/images/providers/antigravity.png"
+  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  ```
   </CodeGroup>
 
   Live sessions, your pairing and your keys are left alone —
@@ -192,20 +230,22 @@ What each row means, with a healthy machine and a broken one side by side, is on
 </Accordion>
 
 <Accordion title="Interrupt says Sent but the session keeps running" icon="circle-stop">
-  **Sent** means the Mac received it, not that the turn has stopped. Three
+  **Sent** means the Mac received it, not that the turn has stopped. Four
   things leave it running:
 
   - **Claude Code waits for the next tool call.** While it's writing text, or a
     long command is already running, nothing happens until that step finishes.
   - **The Codex session isn't reachable.** Interrupt goes through Codex's shared
     app-server — [which sessions that covers](/sessions/codex#interrupt).
+  - **Antigravity finishes the current step first.** The turn stops once the
+    model call or tool that's already running is done.
   - **One of the two plugins is older than 2.3.0.** The version is reported per
     computer, so with Claude Code and Codex on one Mac, update both. Status
     prints the version on its first line.
 
   No **Interrupt** button at all? It needs the green **⚡ Local** chip, a
-  `Running` session, plugin **2.3.0**, and Claude Code or Codex — never
-  OpenCode. More in [Computers and sessions](/sessions/list#interrupt-a-running-session).
+  `Running` session, plugin **2.3.0** (**2.3.5** for Antigravity), and Claude
+  Code, Codex or Antigravity — never OpenCode or Cursor. More in [Computers and sessions](/sessions/list#interrupt-a-running-session).
 </Accordion>
 
 </AccordionGroup>
@@ -337,8 +377,8 @@ computer helps too — the version on its first line is half the diagnosis.
 "Why can't I do X from my phone?" is often a fair question rather than a bug.
 Some of it is a real limit of what an agent hands to a plugin, and that's
 written down: [Using Codex](/sessions/codex), [Using
-OpenCode](/sessions/opencode) and [Using Cursor](/sessions/cursor) cover those
-three agents, and [Answering from your
+OpenCode](/sessions/opencode), [Using Cursor](/sessions/cursor) and [Using
+Antigravity](/sessions/antigravity) cover those four agents, and [Answering from your
 phone](/sessions/approvals) covers what a Live Activity can and can't host.
 
 The rest is just not built yet.
@@ -396,7 +436,7 @@ that command there.
       "name": "I started a session and it never appeared",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Read the Hooks row — Plugin in OpenCode, which has none. If it isn't firing, your agent isn't handing Nomo anything, and every agent loads that wiring only at startup: restart Claude Code, run /hooks in Codex, restart OpenCode."
+        "text": "Read the Hooks row — Plugin in OpenCode, which has none. If it isn't firing, your agent isn't handing Nomo anything, and every agent loads that wiring only at startup: restart Claude Code, run /hooks in Codex, restart OpenCode, restart Cursor or Antigravity."
       }
     },
     {
@@ -437,6 +477,22 @@ that command there.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "When the Nomo relay can't be reached, submitting a prompt in Cursor can pause for up to about 2 seconds before it goes through. It never blocks the prompt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Antigravity in particular shows nothing",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Four things to check. Antigravity only reads its hooks when it starts, so after installing, quit and reopen the app and restart any open agy session. The drawer shows up to three agent tabs, so tap the + button (Choose agents) and turn Antigravity on. Check the Mac is paired by running ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity in a terminal. And if the ~/.nomo folder was moved or deleted, run bunx nomo-ai --antigravity again and restart Antigravity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A cancelled Antigravity turn still says Running",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Antigravity doesn't tell plugins when you cancel a turn, so Nomo works it out from Antigravity's own records. The row goes to Done a few seconds later."
       }
     },
     {

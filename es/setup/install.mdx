@@ -1,6 +1,6 @@
 ---
 title: "Instalación"
-description: "Añade el plugin de Nomo a Claude Code, Codex, OpenCode o Cursor. Un solo comando, o a mano; sin dependencias."
+description: "Añade el plugin de Nomo a Claude Code, Codex, OpenCode, Cursor o Antigravity. Un solo comando, o a mano; sin dependencias."
 icon: "puzzle-piece"
 ---
 
@@ -258,12 +258,65 @@ comando status te avisa si son más antiguos.
 
     Después reinicia Cursor.
   </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    Una sola instalación cubre tanto la app de escritorio de Antigravity como la
+    CLI `agy`. Los comandos de shell y las escrituras de archivos se pueden
+    responder desde tu teléfono: [Usar Antigravity](/es/sessions/antigravity)
+    tiene los detalles.
+
+    <Steps>
+      <Step title="Ejecuta el instalador">
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --antigravity
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --antigravity
+        ```
+        </CodeGroup>
+
+        Hace dos cosas:
+
+        - Clona el plugin en `~/.nomo`.
+        - Añade un bloque llamado `nomo` a `~/.gemini/config/hooks.json`. El
+          resto de bloques de ese archivo quedan intactos.
+      </Step>
+
+      <Step title="Reinicia Antigravity — obligatorio">
+        <Warning>
+          Antigravity solo lee sus hooks al arrancar. Cierra la app de
+          Antigravity y vuelve a abrirla, y reinicia cualquier sesión de `agy`
+          que tengas abierta. Hasta que lo hagas, el plugin está instalado sin
+          hacer nada.
+        </Warning>
+      </Step>
+
+      <Step title="Comprueba">
+        Antigravity no tiene comandos de Nomo, así que compruébalo desde una
+        terminal:
+
+        ```bash
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity
+        ```
+      </Step>
+    </Steps>
+
+    Para quitarlo más adelante:
+
+    ```bash
+    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    ```
+
+    Solo quita el bloque `nomo`. Después reinicia Antigravity.
+  </Tab>
 </Tabs>
 
 ## Un solo comando {#one-command}
 
-El instalador detecta cuáles de Claude Code, Codex, OpenCode y Cursor hay en
-esta máquina y deja Nomo puesto en los que elijas:
+El instalador detecta cuáles de Claude Code, Codex, OpenCode, Cursor y
+Antigravity hay en esta máquina y deja Nomo puesto en los que elijas:
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -277,27 +330,29 @@ npx nomo-ai
 
 Al principio no hay nada marcado: las teclas de flecha (o `k` y `j`) mueven, el
 espacio marca un agente y enter instala todos los marcados. Luego ejecuta la
-instalación propia de cada uno: los mismos cuatro caminos de arriba. No instala
+instalación propia de cada uno: los mismos cinco caminos de arriba. No instala
 nada globalmente y no deja ningún paquete detrás.
 
 Para scripts y CI:
 
 | Opción | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
-| `--all` | los cuatro, los haya encontrado o no; salvo Cursor, que se omite si no está en este ordenador (nombra `--cursor` para intentarlo igualmente) |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
+| `--all` | los cinco, los haya encontrado o no; salvo Cursor y Antigravity, que se omiten si no están en este ordenador (nombra `--cursor` o `--antigravity` para intentarlo igualmente) |
 | `-y`, `--yes` | sin selector; instala todo lo que encuentre |
 | `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
 
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
 agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
-`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex.
+`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex. Antigravity no tiene
+comandos: vincula desde una terminal, como muestra [Usar
+Antigravity](/es/sessions/antigravity#set-it-up).
 
 ## Actualizaciones {#updating}
 
 El mismo comando actualiza: un agente que ya tiene Nomo aparece como
-actualización en lugar de como instalación. Solo se ejecutan las de OpenCode y Cursor; las
-otras dos se imprimen para que las ejecutes tú.
+actualización en lugar de como instalación. Solo se ejecutan las de OpenCode, Cursor y
+Antigravity; las otras dos se imprimen para que las ejecutes tú.
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -343,6 +398,16 @@ otras dos se imprimen para que las ejecutes tú.
     ```
 
     Reinicia Cursor después, y cualquier sesión de `cursor-agent` abierta.
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    El mismo comando con el que lo instalaste:
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    Reinicia Antigravity después, y cualquier sesión de `agy` abierta.
   </Tab>
 </Tabs>
 
