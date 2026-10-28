@@ -2,7 +2,7 @@
 title: "Solución de problemas"
 description: "Ejecuta primero el comando status: nombra el problema e imprime el arreglo. Después, qué fila responde a cada síntoma y las pocas cosas que status no puede ver."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
 ---
 
 El comando status hace hoy casi todo el trabajo de esta página. Lee el ordenador
@@ -30,7 +30,16 @@ $nomo-status
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-status
+```
 </CodeGroup>
+
+En Antigravity, elige **Allow** (permitir) cuando pregunte si ejecuta un comando
+de Nomo. Muestra un resumen corto en palabras sencillas, y una línea por cada
+problema que dice qué hacer; escribe `/nomo-status verbose` para ver el informe
+completo que se describe abajo.
 
 Informa sobre el **ordenador**, no solo sobre tu sesión: vinculación, entrega,
 el enlace directo por red local, aprobaciones, y después el agente en el que
@@ -90,8 +99,11 @@ está en [Comandos](/es/sessions/commands#status).
 <Accordion title="Mi teléfono nunca me pide aprobar nada" icon="hand">
   Si la sesión es de Cursor, es lo esperado: las sesiones de Cursor son de solo
   lectura y sus solicitudes nunca llegan a tu teléfono —
-  [por qué](/es/sessions/cursor#what-this-version-doesnt-do). Para cualquier
-  otro agente:
+  [por qué](/es/sessions/cursor#what-this-version-doesnt-do). Antigravity solo
+  envía comandos de shell y escrituras de archivos, y una regla de permitir que
+  ya tengas en `agy` se salta el teléfono — [Usar
+  Antigravity](/es/sessions/antigravity#answering-from-your-phone).
+  Para cualquier otro agente:
 
   Lee **Approvals**. `PAUSED` significa que alguien ejecutó el comando de pausa
   en este ordenador — puede que hace meses, que es justo por lo que esto antes
@@ -110,7 +122,7 @@ está en [Comandos](/es/sessions/commands#status).
   **Hooks** — o **Plugin** en OpenCode, que no tiene. Si no se dispara, tu agente
   no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo
   al arrancar: reinicia Claude Code, ejecuta `/hooks` en Codex, reinicia
-  OpenCode, reinicia Cursor.
+  OpenCode, reinicia Cursor, reinicia Antigravity.
 
   Codex confía en los hooks de forma explícita y una actualización del plugin
   reabre esa revisión, así que `/hooks` después de actualizar es ahí la respuesta
@@ -163,6 +175,40 @@ está en [Comandos](/es/sessions/commands#status).
   prompt.
 </Accordion>
 
+<Accordion title="Mi teléfono no muestra nada de Antigravity" icon="rocket">
+  1. Reinicia Antigravity: ciérralo del todo y vuelve a abrirlo.
+  2. Escribe `/nomo-status` y elige **Allow**.
+  3. Haz lo que dice la línea que empieza por ⚠️ o ❌.
+  4. Envía un mensaje. Una sesión solo aparece después de tu primer mensaje.
+
+  ¿Sigue sin salir nada? En Nomo, toca el botón **+** (**Elegir agentes**) y
+  activa Antigravity. Más en [Usar Antigravity](/es/sessions/antigravity#troubleshooting).
+</Accordion>
+
+<Accordion title="Cada sesión de Antigravity sale dos veces" icon="clone">
+  El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta esto
+  en Terminal y después reinicia Antigravity:
+
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Accordion>
+
+<Accordion title="Un comando de Antigravity dice que Nomo no encuentra sus archivos" icon="folder-open">
+  La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero
+  nada llega a tu teléfono. Vuelve a ejecutar el instalador y después reinicia
+  Antigravity:
+
+  ```bash
+  bunx nomo-ai --antigravity
+  ```
+</Accordion>
+
+<Accordion title="Un turno cancelado de Antigravity sigue En ejecución" icon="hourglass-half">
+  Espera unos segundos: Nomo se da cuenta solo y la fila pasa a `Listo`. Si
+  había una tarjeta en tu teléfono, también desaparece.
+</Accordion>
+
 <Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
   **Sessions** cuenta lo que este ordenador todavía cree vivo. Si son más de las
   que tienes, limpia las muertas sin desvincular nada:
@@ -181,6 +227,10 @@ está en [Comandos](/es/sessions/commands#status).
   ```
 
   ```bash Cursor icon="/images/providers/cursor.svg"
+  /nomo-reset
+  ```
+
+  ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
   </CodeGroup>
@@ -204,7 +254,7 @@ está en [Comandos](/es/sessions/commands#status).
 
 <Accordion title="Detener dice Enviado pero la sesión sigue en marcha" icon="circle-stop">
   **Enviado** significa que el Mac lo recibió, no que el turno se haya detenido.
-  Hay tres cosas que lo dejan corriendo:
+  Hay cuatro cosas que lo dejan corriendo:
 
   - **Claude Code espera a la siguiente llamada a una herramienta.** Mientras
     escribe texto, o mientras corre un comando largo ya iniciado, no pasa nada
@@ -212,13 +262,16 @@ está en [Comandos](/es/sessions/commands#status).
   - **No se puede llegar a la sesión de Codex.** La orden pasa por el
     `app-server` compartido de Codex —
     [qué sesiones cubre](/es/sessions/codex#interrupt).
+  - **Antigravity termina primero el paso en curso.** El turno se detiene en
+    cuanto acaba la llamada al modelo o la herramienta que ya se está
+    ejecutando.
   - **Uno de los dos plugins es anterior a la 2.3.0.** La versión se informa por
     ordenador, así que con Claude Code y Codex en el mismo Mac hay que
     actualizar los dos. Status imprime la versión en su primera línea.
 
   ¿No hay botón **Detener**? Necesita la etiqueta verde **⚡ Local**, una sesión
-  `En ejecución`, la versión **2.3.0** del plugin, y Claude Code o Codex — nunca
-  OpenCode. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
+  `En ejecución`, la versión **2.3.0** del plugin (**2.3.5** para Antigravity), y
+  Claude Code, Codex o Antigravity — nunca OpenCode ni Cursor. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
 </Accordion>
 
 </AccordionGroup>
@@ -358,8 +411,8 @@ afectado también ayuda: la versión de su primera línea es medio diagnóstico.
 “¿Por qué no puedo hacer X desde el teléfono?” muchas veces es una pregunta justa
 y no un fallo. Una parte es un límite real de lo que un agente le entrega a un
 plugin, y está escrito: [Usar Codex](/es/sessions/codex), [Usar
-OpenCode](/es/sessions/opencode) y [Usar Cursor](/es/sessions/cursor) cubren
-esos tres agentes, y [Responder desde el
+OpenCode](/es/sessions/opencode), [Usar Cursor](/es/sessions/cursor) y [Usar
+Antigravity](/es/sessions/antigravity) cubren esos cuatro agentes, y [Responder desde el
 iPhone](/es/sessions/approvals) cubre lo que una actividad en directo puede y no
 puede albergar.
 
@@ -420,7 +473,7 @@ que ejecutes ese comando allí.
       "name": "Empecé una sesión y nunca apareció",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lee la fila Hooks — Plugin en OpenCode, que no tiene. Si no se dispara, tu agente no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo al arrancar: reinicia Claude Code, ejecuta /hooks en Codex, reinicia OpenCode."
+        "text": "Lee la fila Hooks — Plugin en OpenCode, que no tiene. Si no se dispara, tu agente no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo al arrancar: reinicia Claude Code, ejecuta /hooks en Codex, reinicia OpenCode, reinicia Cursor o Antigravity."
       }
     },
     {
@@ -461,6 +514,38 @@ que ejecutes ese comando allí.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Cuando no se puede alcanzar el relé de Nomo, enviar un prompt en Cursor puede quedarse en pausa hasta unos 2 segundos antes de salir. Nunca bloquea el prompt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mi teléfono no muestra nada de Antigravity",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reinicia Antigravity: ciérralo del todo y vuelve a abrirlo. Escribe /nomo-status, elige Allow y haz lo que dice la línea que empieza por ⚠️ o ❌. Después envía un mensaje: una sesión solo aparece después de tu primer mensaje. ¿Sigue sin salir nada? En Nomo, toca el botón + (Elegir agentes) y activa Antigravity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cada sesión de Antigravity sale dos veces",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta agy plugin uninstall nomo-cc en Terminal y después reinicia Antigravity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Un comando de Antigravity dice que Nomo no encuentra sus archivos",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero nada llega a tu teléfono. Vuelve a ejecutar bunx nomo-ai --antigravity y después reinicia Antigravity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Un turno cancelado de Antigravity sigue En ejecución",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Espera unos segundos: Nomo se da cuenta solo y la fila pasa a Listo. Si había una tarjeta en tu teléfono, también desaparece."
       }
     },
     {

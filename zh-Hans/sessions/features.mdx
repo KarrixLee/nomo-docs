@@ -2,22 +2,23 @@
 title: "功能一览"
 description: "会话功能能让你在 iPhone 上做的事，以及每个智能体支持哪些。"
 icon: "star"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "功能一览"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "功能一览"]
 ---
 
 <div className="feature-table">
 
-| | <img className="agent-mark" src="/images/claude-code.svg" alt="" />Claude Code | <img className="agent-mark" src="/images/codex.svg" alt="" />Codex | <img className="agent-mark" src="/images/opencode.svg" alt="" />OpenCode | <img className="agent-mark invert-dark" src="/images/providers/cursor.svg" alt="" />Cursor |
-| --- | :---: | :---: | :---: | :---: |
-| [会话列表](/zh-Hans/sessions/list)<span className="feature-note">每台已配对的电脑，会话按智能体分开、按文件夹分组。</span> | ✓ | ✓ | ✓ | ✓ |
-| [灵动岛实时显示](/zh-Hans/sessions/island)<span className="feature-note">你选中的那个会话，实时显示在锁定屏幕和屏幕顶部。</span> | ✓ | ✓ | ✓ | ✓ |
-| [权限审批](/zh-Hans/sessions/approvals)<span className="feature-note">在灵动岛或 App 里答复权限请求。</span> | ✓ | ✓ | ✓ | — |
-| [**始终允许**](/zh-Hans/sessions/approvals#everything-you-can-answer) | ✓ | — | ✓ | — |
-| [**拒绝并附注…**](/zh-Hans/sessions/approvals#everything-you-can-answer) | ✓ | ✓ | — | — |
-| [回答问题](/zh-Hans/sessions/approvals#answering-a-question)<span className="feature-note">从智能体给出的选项里挑一个，或者输入你自己的回答。</span> | ✓ | [需要共用的 app-server](/zh-Hans/sessions/codex#questions-in-the-cli-and-the-desktop-app) | ✓ | — |
-| [查看计划](/zh-Hans/sessions/approvals#reviewing-a-plan)<span className="feature-note">读完整份计划，然后批准，或者让它继续规划。</span> | ✓ | [只读](/zh-Hans/sessions/codex#plans-are-read-only) | [待办清单](/zh-Hans/sessions/opencode#plan-mode) | — |
-| [停止这一轮](/zh-Hans/sessions/list#interrupt-a-running-session)<span className="feature-note">停掉当前这一轮，和在 Mac 上按 Esc 一样。</span> | ✓ | [需要共用的 app-server](/zh-Hans/sessions/codex#interrupt) | — | — |
-| [在 Mac 上打开](/zh-Hans/sessions/list#tap-a-row-for-detail)<span className="feature-note">把那个会话的终端窗口在 Mac 上调到最前。</span> | ✓ | ✓ | — | — |
-| [暂停审批](/zh-Hans/sessions/approvals#pausing-it)<span className="feature-note">把请求交还给终端，可以在手机上暂停，也可以只暂停某一台电脑。</span> | ✓ | ✓ | ✓ | — |
+| | <img className="agent-mark" src="/images/claude-code.svg" alt="" />Claude Code | <img className="agent-mark" src="/images/codex.svg" alt="" />Codex | <img className="agent-mark" src="/images/opencode.svg" alt="" />OpenCode | <img className="agent-mark invert-dark" src="/images/providers/cursor.svg" alt="" />Cursor | <img className="agent-mark" src="/images/providers/antigravity.png" alt="" />Antigravity |
+| --- | :---: | :---: | :---: | :---: | :---: |
+| [会话列表](/zh-Hans/sessions/list)<span className="feature-note">每台已配对的电脑，会话按智能体分开、按文件夹分组。</span> | ✓ | ✓ | ✓ | ✓ | ✓ |
+| [灵动岛实时显示](/zh-Hans/sessions/island)<span className="feature-note">你选中的那个会话，实时显示在锁定屏幕和屏幕顶部。</span> | ✓ | ✓ | ✓ | ✓ | ✓ |
+| [权限审批](/zh-Hans/sessions/approvals)<span className="feature-note">在灵动岛或 App 里答复权限请求。</span> | ✓ | ✓ | ✓ | — | [命令和文件写入](/zh-Hans/sessions/antigravity#answering-from-your-phone) |
+| [**始终允许**](/zh-Hans/sessions/approvals#everything-you-can-answer) | ✓ | — | ✓ | — | — |
+| [**拒绝并附注…**](/zh-Hans/sessions/approvals#everything-you-can-answer) | ✓ | ✓ | — | — | ✓ |
+| [回答问题](/zh-Hans/sessions/approvals#answering-a-question)<span className="feature-note">从智能体给出的选项里挑一个，或者输入你自己的回答。</span> | ✓ | [需要共用的 app-server](/zh-Hans/sessions/codex#questions-in-the-cli-and-the-desktop-app) | ✓ | — | — |
+| [查看计划](/zh-Hans/sessions/approvals#reviewing-a-plan)<span className="feature-note">读完整份计划，然后批准，或者让它继续规划。</span> | ✓ | [只读](/zh-Hans/sessions/codex#plans-are-read-only) | [待办清单](/zh-Hans/sessions/opencode#plan-mode) | — | — |
+| [停止这一轮](/zh-Hans/sessions/list#interrupt-a-running-session)<span className="feature-note">停掉当前这一轮，和在 Mac 上按 Esc 一样。</span> | ✓ | [需要共用的 app-server](/zh-Hans/sessions/codex#interrupt) | — | — | ✓ |
+| [在手机上回复](/zh-Hans/sessions/antigravity#reply-from-your-phone)<span className="feature-note">给会话发一条消息，它会在下一步读到。</span> | — | — | — | — | ✓ |
+| [在 Mac 上打开](/zh-Hans/sessions/list#tap-a-row-for-detail)<span className="feature-note">把那个会话的终端窗口在 Mac 上调到最前。</span> | ✓ | ✓ | — | — | — |
+| [暂停审批](/zh-Hans/sessions/approvals#pausing-it)<span className="feature-note">把请求交还给终端，可以在手机上暂停，也可以只暂停某一台电脑。</span> | ✓ | ✓ | ✓ | — | ✓ |
 
 </div>

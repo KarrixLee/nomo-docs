@@ -4,6 +4,21 @@ description: "Qué salió, y cuándo."
 icon: "clock-rotate-left"
 ---
 
+<Update label="octubre de 2026" description="2.3.5">
+  ## Sesiones de Antigravity
+
+  **Nuevo**
+
+  - **Antigravity** se suma a Claude Code, Codex, OpenCode y Cursor: las sesiones de la app de escritorio de Google Antigravity y de la CLI `agy` se ven en directo en la pestaña Sesiones y en la Dynamic Island, con el título de la conversación y el modelo que les da el propio Antigravity. Instálalo con `bunx nomo-ai --antigravity`, reinicia Antigravity y después escribe `/nomo-pair`
+  - Permite o deniega desde tu teléfono los comandos de shell y las escrituras de archivos de Antigravity, con **Denegar con nota…** para decirle por qué. Las lecturas y las búsquedas nunca llegan a tu teléfono, y tus propias reglas de denegar siempre ganan
+  - Detén desde tu teléfono un turno de Antigravity en ejecución: **Detener** lo para después del paso en curso
+  - [Responde](/es/sessions/antigravity#reply-from-your-phone) a una sesión de Antigravity desde tu teléfono: hasta 4000 caracteres, que lee en su siguiente paso. El panel de respuesta es un chat: las solicitudes de Antigravity aparecen en él con **Denegar** y **Permitir**, y [**Denegar y enviar**](/es/sessions/antigravity#deny-and-send) deniega un comando y le dice a Antigravity por qué con un solo toque. Una sesión de `agy` terminada se reanuda en tu Mac; una de la app de escritorio terminada solo continúa en el Mac. Por ahora, las respuestas necesitan el iPhone y el Mac en la misma red Wi-Fi
+
+  **Plugin 2.3.5**
+
+  - Añade compatibilidad con Antigravity: un solo bloque llamado `nomo` en `~/.gemini/config/hooks.json`, sin tocar tus otros hooks, más un pequeño plugin de Antigravity, `nomo`, con `/nomo-pair`, `/nomo-status`, `/nomo-approvals`, `/nomo-reset` y `/nomo-unpair`. `--uninstall` quita solo esas dos cosas
+</Update>
+
 <Update label="23 de octubre de 2026" description="2.3.4">
   ## Mejoras de seguridad
 

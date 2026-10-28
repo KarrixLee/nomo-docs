@@ -1,28 +1,32 @@
 ---
 title: "命令"
-description: "Claude Code、Codex、OpenCode 和 Cursor 的全部 Nomo 命令——配对、状态、审批、重置、解除配对和更新，都在这一页。"
+description: "Claude Code、Codex、OpenCode、Cursor 和 Antigravity 的全部 Nomo 命令——配对、状态、审批、重置、解除配对和更新，都在这一页。"
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
 
-Claude Code、Codex 和 OpenCode 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor 里是 `/` skill，在 Codex 里是 `$` skill。
+Claude Code、Codex、OpenCode 和 Antigravity 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor 和 Antigravity 里是 `/` skill，在 Codex 里是 `$` skill。
+
+<Note>
+  在 Antigravity 里，每条 Nomo 命令都会先问你。选择 **Allow**（允许）——Antigravity 在你的电脑上运行任何命令前都会先问。详见[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#commands)。
+</Note>
 
 <Tip>
-  Claude Code 里一切都带命名空间：输入 `/nomo-cc:` 就会列出全部。OpenCode 的命令名是扁平且全局的，所以在那里 Nomo 的命令完全不带前缀——它的 Cursor skill 也一样。
+  Claude Code 里一切都带命名空间：输入 `/nomo-cc:` 就会列出全部。OpenCode 的命令名是扁平且全局的，所以在那里 Nomo 的命令完全不带前缀——它的 Cursor 和 Antigravity skill 也一样。
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor |
-| --- | --- | --- | --- | --- |
-| <a href="#pair">配对这台电脑</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">检查健康状况</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">暂停或恢复审批</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — |
-| <a href="#reset">清理卡住的会话</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">断开这台电脑</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">更新插件</a> | — | — | `/nomo-update` | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
+| --- | --- | --- | --- | --- | --- |
+| <a href="#pair">配对这台电脑</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">检查健康状况</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">暂停或恢复审批</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
+| <a href="#reset">清理卡住的会话</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">断开这台电脑</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">更新插件</a> | — | — | `/nomo-update` | — | — |
 
 它们都不会大声报错。即使无事可做也会干净地退出——`Not paired` 是成功，不是错误。
 
-最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令，而 Cursor 靠再运行一次它的安装工具来更新。它们各自需要什么——Codex 通常什么都不需要——都写在[安装](/zh-Hans/setup/install#updating)里。
+最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令，而 Cursor 靠再运行一次它的安装工具来更新，Antigravity 也一样。它们各自需要什么——Codex 通常什么都不需要——都写在[安装](/zh-Hans/setup/install#updating)里。
 
 审批那一行上 Cursor 的空格同样不是漏写：Cursor 会话是只读的，所以没有远程审批可以暂停——[搭配 Cursor 使用](/zh-Hans/sessions/cursor)。
 
@@ -48,13 +52,18 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
+```
 </CodeGroup>
 
 不带参数时，它会在浏览器里打开一个配了主题的页面，上面有二维码。在 App 里扫一下，页面会自己翻成 **Paired ✓**。
 
 `code` 参数完全跳过浏览器，直接打印一段可以手输的一次性配对码，供无头机器或 SSH 会话使用。它是刻意排在第二位的：那段配对码会落进你的终端，也就落进了智能体的转录记录。
 
-配对若 **10 分钟**内未使用就会过期。一次配对覆盖的是这台机器，而不是某个智能体——同一台 Mac 上的 Claude Code、Codex、OpenCode 和 Cursor 共用它。完整流程见[配对](/zh-Hans/setup/pairing)。
+配对若 **10 分钟**内未使用就会过期。一次配对覆盖的是这台机器，而不是某个智能体——同一台 Mac 上的 Claude Code、Codex、OpenCode、Cursor 和 Antigravity 共用它。完整流程见[配对](/zh-Hans/setup/pairing)。
 
 ## status {#status}
 
@@ -73,6 +82,11 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-status           # a short summary in plain words
+/nomo-status verbose   # the full readout below
 ```
 </CodeGroup>
 
@@ -112,7 +126,7 @@ Claude Code — you are here
 </ResponseField>
 
 <ResponseField name="Hooks">
-  你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载；Cursor 也要重启，它只在启动时加载 hook。
+  你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载；Cursor 或 Antigravity 也要重启，它们只在启动时加载 hook。
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -165,6 +179,12 @@ $nomo-approvals status      # which way is it set
 /nomo-approvals on          # resume
 /nomo-approvals status      # which way is it set
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
 
 暂停**这台电脑**的远程审批，让权限请求直接进终端，而不是等你的手机。这是手机没电或不在手边时的应急出口。
@@ -198,6 +218,10 @@ $nomo-reset
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-reset
+```
 </CodeGroup>
 
 停掉看门狗，清理掉失效或残留的会话行，然后通知你的手机把它们丢掉。
@@ -227,6 +251,10 @@ $nomo-unpair
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
+/nomo-unpair
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
 </CodeGroup>

@@ -4,6 +4,21 @@ description: "发布了什么，什么时候发布的。"
 icon: "clock-rotate-left"
 ---
 
+<Update label="2026年10月" description="2.3.5">
+  ## Antigravity 会话
+
+  **新增**
+
+  - **Antigravity** 加入 Claude Code、Codex、OpenCode 和 Cursor 的行列——来自 Google Antigravity 桌面应用和 `agy` CLI 的会话会实时显示在“会话”标签页和灵动岛上，带着 Antigravity 自己的对话标题和模型。用 `bunx nomo-ai --antigravity` 安装，重启 Antigravity，然后输入 `/nomo-pair`
+  - 在手机上允许或拒绝 Antigravity 的 shell 命令和文件写入，还能用**拒绝并附注…**告诉它原因。读取和搜索永远不会送到你的手机，而你自己的拒绝规则永远优先
+  - 在手机上停掉正在运行的 Antigravity 这一轮——**停止**会在当前这一步结束后让它停下
+  - 在手机上[回复](/zh-Hans/sessions/antigravity#reply-from-your-phone) Antigravity 会话——最多 4000 个字符，会在它的下一步读到。回复表单是一个聊天：Antigravity 的请求会带着**拒绝**和**允许**出现在里面，[**拒绝并发送**](/zh-Hans/sessions/antigravity#deny-and-send)一下就能拒绝一条命令并告诉 Antigravity 原因。已结束的 `agy` 会话会在 Mac 上重新启动；已结束的桌面应用会话只能在 Mac 上继续。目前，回复需要 iPhone 和 Mac 连着同一个 Wi-Fi
+
+  **插件 2.3.5**
+
+  - 新增 Antigravity 支持：在 `~/.gemini/config/hooks.json` 里加入一个名为 `nomo` 的区块，你的其他 hook 原样不动；另外还有一个小小的 Antigravity 插件 `nomo`，带 `/nomo-pair`、`/nomo-status`、`/nomo-approvals`、`/nomo-reset` 和 `/nomo-unpair`。`--uninstall` 只会删掉这两样
+</Update>
+
 <Update label="2026年10月23日" description="2.3.4">
   ## 安全性改进
 

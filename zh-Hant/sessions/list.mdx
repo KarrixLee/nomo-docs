@@ -38,7 +38,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電
 
 ## 電腦內部 {#inside-a-computer}
 
-點一下卡片會打開一個面板，頂端有一個分段控制項，每個代理一段 — **Claude Code**、**Codex**、**OpenCode** 和 **Cursor** 當中最多三個，用 **+** 按鈕（「選擇代理」）挑選。Nomo 會開在最近活躍的那個代理。
+點一下卡片會打開一個面板，頂端有一個分段控制項，每個代理一段 — **Claude Code**、**Codex**、**OpenCode**、**Cursor** 和 **Antigravity** 當中最多三個，用 **+** 按鈕（「選擇代理」）挑選。Nomo 會開在最近活躍的那個代理。
 
 <Frame caption="從面板底部的 + 按鈕打開的「選擇代理」選單。最多勾選三個，每個都會成為一個分頁。">
   <div className="device-frame">
@@ -106,8 +106,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電
 - **資料夾**與 **session ID** — 前八個字元，等寬字體。
 - **待回覆的問題**全文，如果有的話。
 - **查看計畫** — 打開計畫。Claude Code 可以直接回覆，[Codex](/zh-Hant/sessions/codex) 則是唯讀，而 [OpenCode](/zh-Hant/sessions/opencode#plan-mode) 通常是這個 session 的待辦清單，而不是一份文件。
-- **在 Mac 上開啟** — 把那個 session 的終端機視窗切到你 Mac 的最前面。只有在 Nomo 有直接的[區域網路](/zh-Hant/sessions/settings#local-network)連線時才會出現，而且不會出現在沒有自己視窗的 [OpenCode](/zh-Hant/sessions/opencode#no-open-on-mac) sessions 上，也不會出現在 [Cursor](/zh-Hant/sessions/cursor#what-this-version-doesnt-do) 的 sessions 上。
-- **停止** — 停下正在執行的這一輪，就像在 Mac 上按 Esc。只會出現在 `執行中` 的 Claude Code 或 Codex session 上，而且同樣需要那條直接連線 — 請看[下方](#interrupt-a-running-session)。
+- **在 Mac 上開啟** — 把那個 session 的終端機視窗切到你 Mac 的最前面。只有在 Nomo 有直接的[區域網路](/zh-Hant/sessions/settings#local-network)連線時才會出現，而且不會出現在沒有自己視窗的 [OpenCode](/zh-Hant/sessions/opencode#no-open-on-mac) sessions 上，也不會出現在 [Cursor](/zh-Hant/sessions/cursor#what-this-version-doesnt-do) 和 [Antigravity](/zh-Hant/sessions/antigravity#what-this-version-doesnt-do) 的 sessions 上。
+- **停止** — 停下正在執行的這一輪，就像在 Mac 上按 Esc。只會出現在 `執行中` 的 Claude Code、Codex 或 [Antigravity](/zh-Hant/sessions/antigravity#interrupt) session 上，而且同樣需要那條直接連線 — 請看[下方](#interrupt-a-running-session)。
 
 <Tip>
   要**回覆**一個請求，請按住那一列，而不是點一下。點一下是展開；按住才會打開「允許」／「拒絕」選單。
@@ -117,14 +117,15 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電
 
 <Frame caption="展開後的執行中 session，詳細資訊最下方是「停止」。">
   <div className="device-frame">
-    <img src="/images/interrupt-button.png" alt="展開的 session 列，顯示「停止」按鈕" />
+    <img className="only-light" src="/images/interrupt-button.png" alt="展開的 session 列，顯示「停止」按鈕" />
+    <img className="only-dark" src="/images/interrupt-button-dark.png" alt="展開的 session 列，顯示「停止」按鈕" />
   </div>
 </Frame>
 
 「停止」會停下目前這一輪，就像在 Mac 上按 Esc 一樣。它在展開後的那一列裡，就在「在 Mac 上開啟」旁邊，而且只有以下條件全部成立時才會出現：
 
 - 這個 session 是 `執行中`。正在等你的列 — 權限請求、問題、計畫 — 或已經 `完成` 的列，沒有東西可以停。
-- 是 Claude Code 或 Codex 的 session。OpenCode 上不會出現。
+- 是 Claude Code、Codex 或 Antigravity 的 session。OpenCode 和 Cursor 上不會出現。
 - Nomo 和那台 Mac 之間有直接的[區域網路](/zh-Hant/sessions/settings#local-network)連線 — 也就是綠色的 **⚡ 本機** 標籤。停止訊號絕不會經由中繼伺服器傳送。
 - 那台電腦上的外掛程式是 **2.3.0** 或更新版本。
 

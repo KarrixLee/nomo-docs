@@ -1,8 +1,8 @@
 ---
 title: "iPhone からの回答"
-description: "Claude Code、Codex、OpenCode の許可リクエストに iPhone から回答します — Dynamic Island からの承認・拒否と、アプリでのすべての選択肢。"
+description: "Claude Code、Codex、OpenCode、Antigravity の許可リクエストに iPhone から回答します — Dynamic Island からの承認・拒否と、アプリでのすべての選択肢。"
 icon: "hand"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "iPhone からの回答"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "iPhone からの回答"]
 ---
 
 エージェントは、あらかじめ許可されていないものを実行しようとすると、そこで止まって確認を求めます。本来なら Mac で答えるところですが、Nomo があれば iPhone から答えられ、エージェントはすぐに続きを再開します。
@@ -68,7 +68,7 @@ Dynamic Island は**知らせる**ため、アプリは**答える**ためのも
 | **「Macで開く」** | アプリのみ | 何も回答しません — Mac 上でそのセッションのターミナルウィンドウを前面に出します。[ローカルネットワーク](/ja/sessions/settings#local-network)での接続が必要です。 |
 
 <Note>
-  すべてのエージェントがすべての選択肢に対応しているわけではありません。「承認して…」の選択肢は Claude Code だけのものです。Codex には「常に許可」がなく、OpenCode には「メモを付けて拒否…」がありません。OpenCode ではさらに、「拒否」が 1 つのツールではなくターン全体への回答になり、「Macで開く」は表示されません。それぞれ [Codex での利用](/ja/sessions/codex)と [OpenCode での利用](/ja/sessions/opencode)で説明しています。Cursor はそのどれにも対応していません。セッションは読み取り専用で、許可リクエストは iPhone に届きません — [Cursor での利用](/ja/sessions/cursor#what-this-version-doesnt-do)。
+  すべてのエージェントがすべての選択肢に対応しているわけではありません。「承認して…」の選択肢は Claude Code だけのものです。Codex には「常に許可」がなく、OpenCode には「メモを付けて拒否…」がありません。OpenCode ではさらに、「拒否」が 1 つのツールではなくターン全体への回答になり、「Macで開く」は表示されません。それぞれ [Codex での利用](/ja/sessions/codex)と [OpenCode での利用](/ja/sessions/opencode)で説明しています。Cursor はそのどれにも対応していません。セッションは読み取り専用で、許可リクエストは iPhone に届きません — [Cursor での利用](/ja/sessions/cursor#what-this-version-doesnt-do)。Antigravity が対応しているのは「許可」「拒否」「メモを付けて拒否…」で、対象はシェルコマンドとファイルの書き込みだけです — [Antigravity での利用](/ja/sessions/antigravity#answering-from-your-phone)。
 </Note>
 
 「Bashを常に許可（このセッション）」と「メモを付けて拒否…」はメニューの「その他の操作…」の中にあり、「回答…」はメニューに直接表示されます。3 つともプラグイン **2.0.0** が必要です。1.0.0 では「許可」と「拒否」だけが表示されます — Nomo は Mac が実行を保証できないボタンを出しません。「承認して…」の選択肢も同じ「その他の操作…」の中にあり、こちらはプラグイン **2.2.2** が必要です。更新がある場合はドロワーが知らせます。
@@ -81,7 +81,8 @@ Dynamic Island は**知らせる**ため、アプリは**答える**ためのも
 
 <Frame caption="1 つの質問、4 つの選択肢、そしてそれぞれに付いたエージェント自身のメモ。選ぶことは答えることではありません — 答えるのは「送信」です。">
   <div className="device-frame">
-    <img src="/images/answer-options-drawer.png" alt="回答用のシート。キャッシュに使うデータストアを尋ねる質問、説明付きの 4 つの選択肢、「拒否」と「送信」のボタンが表示されている" />
+    <img className="only-light" src="/images/answer-options-drawer.png" alt="回答用のシート。キャッシュに使うデータストアを尋ねる質問、説明付きの 4 つの選択肢、「拒否」と「送信」のボタンが表示されている" />
+    <img className="only-dark" src="/images/answer-options-drawer-dark.png" alt="回答用のシート。キャッシュに使うデータストアを尋ねる質問、説明付きの 4 つの選択肢、「拒否」と「送信」のボタンが表示されている" />
   </div>
 </Frame>
 
