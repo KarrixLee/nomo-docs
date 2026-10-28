@@ -9,10 +9,21 @@ icon: "clock-rotate-left"
 
   **新增**
 
-  - **Antigravity** 加入 Claude Code、Codex、OpenCode 和 Cursor 的行列——来自 Google Antigravity 桌面应用和 `agy` CLI 的会话会实时显示在“会话”标签页和灵动岛上，带着 Antigravity 自己的对话标题和模型。用 `bunx nomo-ai --antigravity` 安装，重启 Antigravity，然后输入 `/nomo-pair`
+  - **Antigravity** 加入 Claude Code、Codex、OpenCode 和 Cursor 的行列——来自 Google Antigravity 桌面应用和 `agy` CLI 的会话会实时显示在“会话”标签页和灵动岛上，带着 Antigravity 自己的对话标题和模型。用 `bunx nomo-ai --antigravity` 安装插件 2.3.5，重启 Antigravity，然后输入 `/nomo-pair`
   - 在手机上允许或拒绝 Antigravity 的 shell 命令和文件写入，还能用**拒绝并附注…**告诉它原因。读取和搜索永远不会送到你的手机，而你自己的拒绝规则永远优先
   - 在手机上停掉正在运行的 Antigravity 这一轮——**停止**会在当前这一步结束后让它停下
   - 在手机上[回复](/zh-Hans/sessions/antigravity#reply-from-your-phone) Antigravity 会话——最多 4000 个字符，会在它的下一步读到。回复表单是一个聊天：Antigravity 的请求会带着**拒绝**和**允许**出现在里面，[**拒绝并发送**](/zh-Hans/sessions/antigravity#deny-and-send)一下就能拒绝一条命令并告诉 Antigravity 原因。已结束的 `agy` 会话会在 Mac 上重新启动；已结束的桌面应用会话只能在 Mac 上继续。目前，回复需要 iPhone 和 Mac 连着同一个 Wi-Fi
+  - Cursor 的状态新增 **BugBot**、**Cursor IDE (iOS)** 和 **Enterprise Dashboard**，各有自己的状态提醒。如果你关掉了 Cursor 的全部提醒，新增的这几项一开始也是关着的
+
+  **改进**
+
+  - “会话”里的按钮换了新样子：**查看计划**、**在 Mac 上打开**、**停止**和**回复**用同一种样式，各有自己的颜色。问题卡片上的**拒绝**也和审批卡片一样，不再是红色
+  - 远程审批暂停时，“会话”里的提示会按智能体列出重新打开审批的命令。按住命令即可拷贝
+  - 回复框会原样发送你输入的内容：`--` 不再被换成破折号，引号也保持直引号，命令能完整送达
+
+  **修复**
+
+  - Cursor 迁移状态页面后，Cursor 的状态历史和正常运行时间一直是空的。现在恢复显示，正常运行时间也会像 Cursor 自己的状态页面那样计算部分中断
 
   **插件 2.3.5**
 

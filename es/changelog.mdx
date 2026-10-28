@@ -9,10 +9,21 @@ icon: "clock-rotate-left"
 
   **Nuevo**
 
-  - **Antigravity** se suma a Claude Code, Codex, OpenCode y Cursor: las sesiones de la app de escritorio de Google Antigravity y de la CLI `agy` se ven en directo en la pestaña Sesiones y en la Dynamic Island, con el título de la conversación y el modelo que les da el propio Antigravity. Instálalo con `bunx nomo-ai --antigravity`, reinicia Antigravity y después escribe `/nomo-pair`
+  - **Antigravity** se suma a Claude Code, Codex, OpenCode y Cursor: las sesiones de la app de escritorio de Google Antigravity y de la CLI `agy` se ven en directo en la pestaña Sesiones y en la Dynamic Island, con el título de la conversación y el modelo que les da el propio Antigravity. Instala el plugin 2.3.5 con `bunx nomo-ai --antigravity`, reinicia Antigravity y después escribe `/nomo-pair`
   - Permite o deniega desde tu teléfono los comandos de shell y las escrituras de archivos de Antigravity, con **Denegar con nota…** para decirle por qué. Las lecturas y las búsquedas nunca llegan a tu teléfono, y tus propias reglas de denegar siempre ganan
   - Detén desde tu teléfono un turno de Antigravity en ejecución: **Detener** lo para después del paso en curso
   - [Responde](/es/sessions/antigravity#reply-from-your-phone) a una sesión de Antigravity desde tu teléfono: hasta 4000 caracteres, que lee en su siguiente paso. El panel de respuesta es un chat: las solicitudes de Antigravity aparecen en él con **Denegar** y **Permitir**, y [**Denegar y enviar**](/es/sessions/antigravity#deny-and-send) deniega un comando y le dice a Antigravity por qué con un solo toque. Una sesión de `agy` terminada se reanuda en tu Mac; una de la app de escritorio terminada solo continúa en el Mac. Por ahora, las respuestas necesitan el iPhone y el Mac en la misma red Wi-Fi
+  - El estado de Cursor ahora incluye **BugBot**, **Cursor IDE (iOS)** y **Enterprise Dashboard**, cada uno con su propia alerta de estado. Si tenías apagadas todas las alertas de Cursor, las nuevas también empiezan apagadas
+
+  **Mejorado**
+
+  - Botones nuevos en Sesiones: **Ver plan**, **Abrir en el Mac**, **Detener** y **Responder** comparten un mismo estilo, cada uno con su propio color. En las tarjetas de preguntas, **Denegar** ya no es rojo, igual que en las tarjetas de aprobación
+  - Cuando las aprobaciones remotas están en pausa, el aviso de Sesiones muestra cada agente con el comando que las vuelve a activar. Mantén pulsado un comando para copiarlo
+  - El cuadro de respuesta envía lo que escribes tal cual: `--` ya no se convierte en una raya y las comillas se quedan rectas, así que los comandos llegan intactos
+
+  **Corregido**
+
+  - El historial de estado y el tiempo de actividad de Cursor aparecían vacíos desde que Cursor cambió de página de estado. Ya vuelven a verse, y el tiempo de actividad cuenta ahora una interrupción parcial como lo hace la propia página de estado de Cursor
 
   **Plugin 2.3.5**
 
