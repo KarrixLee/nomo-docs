@@ -2,7 +2,7 @@
 title: "疑難排解"
 description: "先執行 status 指令 — 它會指出問題，並印出解法。接著是：哪一列回答哪個症狀，以及 status 看不到的那幾件事。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
 ---
 
 status 指令現在已經替這一頁做掉大部分的工作。它會讀過整台電腦，用白話指出任何不對勁的地方，並印出可以修好它的指令。請先執行它。
@@ -27,7 +27,13 @@ $nomo-status
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-status
+```
 </CodeGroup>
+
+在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。它會用簡單的話顯示一段簡短摘要，每個問題各一行，告訴你該怎麼做 — 輸入 `/nomo-status verbose` 就能看到下面說明的完整報告。
 
 它回報的是整台**電腦**，不只是你的 session：配對、傳送、區域網路直連、批准，接著是你所在的那個代理，以及它找到的其他每一個代理。`!` 表示真的有問題，底下的 `→` 就是該怎麼處理，並以你發問時所在代理的指令寫法寫出來。大多數人看到這裡就結束了。
 
@@ -62,7 +68,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="我的手機從來不問我要不要批准" icon="hand">
-  如果那是一個 Cursor 的 session，這是預期中的行為：Cursor 的 sessions 是唯讀的，它的請求從來不會送到你的手機 — [為什麼](/zh-Hant/sessions/cursor#what-this-version-doesnt-do)。其他每個代理則是：
+  如果那是一個 Cursor 的 session，這是預期中的行為：Cursor 的 sessions 是唯讀的，它的請求從來不會送到你的手機 — [為什麼](/zh-Hant/sessions/cursor#what-this-version-doesnt-do)。Antigravity 只會送出 shell 指令和檔案寫入，而你在 `agy` 裡已經設好的允許規則會跳過手機 — [搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#answering-from-your-phone)。其他每個代理則是：
 
   看 **Approvals**。`PAUSED` 表示有人在這台電腦上執行過暫停指令 — 可能是好幾個月前的事，而這正是它以前根本沒人找得到的原因。在那台機器上的 session 裡恢復它，請求就會回來：[approvals](/zh-Hant/sessions/commands#approvals)。
 
@@ -70,7 +76,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="我開了一個 session，它卻從來沒出現" icon="play">
-  看 **Hooks** — 在 OpenCode 裡則是 **Plugin**，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 `/hooks`、重新啟動 OpenCode、重新啟動 Cursor。
+  看 **Hooks** — 在 OpenCode 裡則是 **Plugin**，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 `/hooks`、重新啟動 OpenCode、重新啟動 Cursor、重新啟動 Antigravity。
 
   Codex 的 hooks 必須被明確信任，而一次外掛程式更新會重新開啟那道審核，所以在 Codex 那邊，更新後執行 `/hooks` 通常就是答案 — [為什麼](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
@@ -101,6 +107,35 @@ $nomo-status
   連不上 Nomo 的中繼伺服器時，在 Cursor 送出提示可能會停頓最多約 2 秒才送出去。它絕不會擋下你的提示。
 </Accordion>
 
+<Accordion title="我的手機沒有顯示 Antigravity 的任何東西" icon="rocket">
+  1. 重新啟動 Antigravity — 完全結束它，再重新打開。
+  2. 輸入 `/nomo-status`，然後選擇 **Allow**（允許）。
+  3. 照著以 ⚠️ 或 ❌ 開頭的那一行做。
+  4. 送出一則訊息。session 要等你送出第一則訊息後才會出現。
+
+  還是沒有？在 Nomo 裡點一下 **+** 按鈕（「選擇代理」），把 Antigravity 打開。更多內容請看[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#troubleshooting)。
+</Accordion>
+
+<Accordion title="每個 Antigravity session 都出現兩次" icon="clone">
+  Nomo 的 Claude Code 外掛程式被匯入了 Antigravity。請在終端機裡執行下面這行，然後重新啟動 Antigravity：
+
+  ```bash
+  agy plugin uninstall nomo-cc
+  ```
+</Accordion>
+
+<Accordion title="Antigravity 的指令說 Nomo 找不到自己的檔案" icon="folder-open">
+  Nomo 的資料夾被搬走或刪除了。Antigravity 還是能用，但什麼都不會送到你的手機。請再執行一次安裝工具，然後重新啟動 Antigravity：
+
+  ```bash
+  bunx nomo-ai --antigravity
+  ```
+</Accordion>
+
+<Accordion title="取消了的 Antigravity 一輪還顯示「執行中」" icon="hourglass-half">
+  等幾秒 — Nomo 會自己發現，這一列就會變成 `完成`。如果手機上有卡片，它也會一起消失。
+</Accordion>
+
 <Accordion title="各列看起來過時或重複" icon="broom">
   **Sessions** 算的是這台電腦仍然認為還活著的數量。如果那比你實際有的還多，清掉失效的那些，而不解除配對：
 
@@ -120,6 +155,10 @@ $nomo-status
   ```bash Cursor icon="/images/providers/cursor.svg"
   /nomo-reset
   ```
+
+  ```bash Antigravity icon="/images/providers/antigravity.png"
+  /nomo-reset
+  ```
   </CodeGroup>
 
   進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。OpenCode 的列屬於 OpenCode 的伺服器，所以有一列清不掉時，請先結束 OpenCode。
@@ -132,13 +171,14 @@ $nomo-status
 </Accordion>
 
 <Accordion title="「停止」顯示「已傳送」，session 卻還在執行" icon="circle-stop">
-  「已傳送」表示 Mac 收到了，不代表這一輪已經停下。有三種情況會讓它繼續跑：
+  「已傳送」表示 Mac 收到了，不代表這一輪已經停下。有四種情況會讓它繼續跑：
 
   - **Claude Code 要等到下一次工具呼叫**。它還在輸出文字，或一個耗時的指令已經在跑的時候，要等那一步結束才會有反應。
   - **連不上那個 Codex session**。停止訊號要經過 Codex 的共用 app-server — 請看[它涵蓋哪些 sessions](/zh-Hant/sessions/codex#interrupt)。
+  - **Antigravity 會先做完目前這一步**。已經在跑的模型呼叫或工具結束後，這一輪才會停下。
   - **兩個外掛程式裡有一個比 2.3.0 舊**。版本是依電腦回報的，所以同一台 Mac 上同時有 Claude Code 和 Codex 時，兩個都要更新。status 會在第一行印出版本。
 
-  完全沒有「停止」按鈕？它需要綠色的 **⚡ 本機** 標籤、一個 `執行中` 的 session、外掛程式 **2.3.0**，而且必須是 Claude Code 或 Codex — OpenCode 上不會有。詳情請看[電腦與 sessions](/zh-Hant/sessions/list#interrupt-a-running-session)。
+  完全沒有「停止」按鈕？它需要綠色的 **⚡ 本機** 標籤、一個 `執行中` 的 session、外掛程式 **2.3.0**（Antigravity 需要 **2.3.5**），而且必須是 Claude Code、Codex 或 Antigravity — OpenCode 和 Cursor 上不會有。詳情請看[電腦與 sessions](/zh-Hant/sessions/list#interrupt-a-running-session)。
 </Accordion>
 
 </AccordionGroup>
@@ -226,7 +266,7 @@ $nomo-status
 
 ## 功能建議 {#nothings-broken--you-just-want-something}
 
-「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)、[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)和[搭配 Cursor 使用](/zh-Hant/sessions/cursor)講這三個代理，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
+「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)、[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)、[搭配 Cursor 使用](/zh-Hant/sessions/cursor)和[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity)講這四個代理，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
 
 其餘的就只是還沒做而已。
 
@@ -279,7 +319,7 @@ $nomo-status
       "name": "我開了一個 session，它卻從來沒出現",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "看 Hooks 那一列 — 在 OpenCode 裡則是 Plugin，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 /hooks、重新啟動 OpenCode。"
+        "text": "看 Hooks 那一列 — 在 OpenCode 裡則是 Plugin，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 /hooks、重新啟動 OpenCode、重新啟動 Cursor 或 Antigravity。"
       }
     },
     {
@@ -320,6 +360,38 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "連不上 Nomo 的中繼伺服器時，在 Cursor 送出提示可能會停頓最多約 2 秒才送出去。它絕不會擋下你的提示。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我的手機沒有顯示 Antigravity 的任何東西",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "重新啟動 Antigravity — 完全結束它，再重新打開。輸入 /nomo-status，選擇 Allow（允許），然後照著以 ⚠️ 或 ❌ 開頭的那一行做。接著送出一則訊息：session 要等你送出第一則訊息後才會出現。還是沒有？在 Nomo 裡點一下 + 按鈕（「選擇代理」），把 Antigravity 打開。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "每個 Antigravity session 都出現兩次",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo 的 Claude Code 外掛程式被匯入了 Antigravity。請在終端機裡執行 agy plugin uninstall nomo-cc，然後重新啟動 Antigravity。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Antigravity 的指令說 Nomo 找不到自己的檔案",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nomo 的資料夾被搬走或刪除了。Antigravity 還是能用，但什麼都不會送到你的手機。請再執行一次 bunx nomo-ai --antigravity，然後重新啟動 Antigravity。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "取消了的 Antigravity 一輪還顯示「執行中」",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "等幾秒 — Nomo 會自己發現，這一列就會變成「完成」。如果手機上有卡片，它也會一起消失。"
       }
     },
     {

@@ -2,22 +2,23 @@
 title: "できること"
 description: "セッション機能で iPhone からできることと、エージェントごとの対応状況。"
 icon: "star"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "できること"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "できること"]
 ---
 
 <div className="feature-table">
 
-| | <img className="agent-mark" src="/images/claude-code.svg" alt="" />Claude Code | <img className="agent-mark" src="/images/codex.svg" alt="" />Codex | <img className="agent-mark" src="/images/opencode.svg" alt="" />OpenCode | <img className="agent-mark invert-dark" src="/images/providers/cursor.svg" alt="" />Cursor |
-| --- | :---: | :---: | :---: | :---: |
-| [すべてのセッションの一覧](/ja/sessions/list)<span className="feature-note">ペアリングした各コンピュータのセッションを、エージェント別・フォルダ別にまとめて表示します。</span> | ✓ | ✓ | ✓ | ✓ |
-| [Dynamic Island でのライブ表示](/ja/sessions/island)<span className="feature-note">選んだセッションを、ロック画面と画面の上端にライブで表示します。</span> | ✓ | ✓ | ✓ | ✓ |
-| [許可リクエストへの回答](/ja/sessions/approvals)<span className="feature-note">Dynamic Island またはアプリから、許可リクエストに「許可」か「拒否」で答えます。</span> | ✓ | ✓ | ✓ | — |
-| [「常に許可」](/ja/sessions/approvals#everything-you-can-answer) | ✓ | — | ✓ | — |
-| [「メモを付けて拒否…」](/ja/sessions/approvals#everything-you-can-answer) | ✓ | ✓ | — | — |
-| [質問への回答](/ja/sessions/approvals#answering-a-question)<span className="feature-note">エージェントが示した選択肢から選ぶか、自分で回答を入力します。</span> | ✓ | [共有の app-server が必要](/ja/sessions/codex#questions-in-the-cli-and-the-desktop-app) | ✓ | — |
-| [計画の確認](/ja/sessions/approvals#reviewing-a-plan)<span className="feature-note">計画全体を読んでから、承認するか差し戻します。</span> | ✓ | [読み取り専用](/ja/sessions/codex#plans-are-read-only) | [ToDo リスト](/ja/sessions/opencode#plan-mode) | — |
-| [実行中のターンの中断](/ja/sessions/list#interrupt-a-running-session)<span className="feature-note">Mac で Esc を押すのと同じように、ターンを止めます。</span> | ✓ | [共有の app-server が必要](/ja/sessions/codex#interrupt) | — | — |
-| [Macで開く](/ja/sessions/list#tap-a-row-for-detail)<span className="feature-note">Mac 上でそのセッションのターミナルウィンドウを前面に出します。</span> | ✓ | ✓ | — | — |
-| [リモート承認の一時停止](/ja/sessions/approvals#pausing-it)<span className="feature-note">iPhone から、または特定のコンピュータから、許可リクエストをターミナルに戻します。</span> | ✓ | ✓ | ✓ | — |
+| | <img className="agent-mark" src="/images/claude-code.svg" alt="" />Claude Code | <img className="agent-mark" src="/images/codex.svg" alt="" />Codex | <img className="agent-mark" src="/images/opencode.svg" alt="" />OpenCode | <img className="agent-mark invert-dark" src="/images/providers/cursor.svg" alt="" />Cursor | <img className="agent-mark" src="/images/providers/antigravity.png" alt="" />Antigravity |
+| --- | :---: | :---: | :---: | :---: | :---: |
+| [すべてのセッションの一覧](/ja/sessions/list)<span className="feature-note">ペアリングした各コンピュータのセッションを、エージェント別・フォルダ別にまとめて表示します。</span> | ✓ | ✓ | ✓ | ✓ | ✓ |
+| [Dynamic Island でのライブ表示](/ja/sessions/island)<span className="feature-note">選んだセッションを、ロック画面と画面の上端にライブで表示します。</span> | ✓ | ✓ | ✓ | ✓ | ✓ |
+| [許可リクエストへの回答](/ja/sessions/approvals)<span className="feature-note">Dynamic Island またはアプリから、許可リクエストに「許可」か「拒否」で答えます。</span> | ✓ | ✓ | ✓ | — | [コマンドとファイルの書き込み](/ja/sessions/antigravity#answering-from-your-phone) |
+| [「常に許可」](/ja/sessions/approvals#everything-you-can-answer) | ✓ | — | ✓ | — | — |
+| [「メモを付けて拒否…」](/ja/sessions/approvals#everything-you-can-answer) | ✓ | ✓ | — | — | ✓ |
+| [質問への回答](/ja/sessions/approvals#answering-a-question)<span className="feature-note">エージェントが示した選択肢から選ぶか、自分で回答を入力します。</span> | ✓ | [共有の app-server が必要](/ja/sessions/codex#questions-in-the-cli-and-the-desktop-app) | ✓ | — | — |
+| [計画の確認](/ja/sessions/approvals#reviewing-a-plan)<span className="feature-note">計画全体を読んでから、承認するか差し戻します。</span> | ✓ | [読み取り専用](/ja/sessions/codex#plans-are-read-only) | [ToDo リスト](/ja/sessions/opencode#plan-mode) | — | — |
+| [実行中のターンの中断](/ja/sessions/list#interrupt-a-running-session)<span className="feature-note">Mac で Esc を押すのと同じように、ターンを止めます。</span> | ✓ | [共有の app-server が必要](/ja/sessions/codex#interrupt) | — | — | ✓ |
+| [iPhone からの返信](/ja/sessions/antigravity#reply-from-your-phone)<span className="feature-note">セッションにメッセージを送ります。次のステップで読み込まれます。</span> | — | — | — | — | ✓ |
+| [Macで開く](/ja/sessions/list#tap-a-row-for-detail)<span className="feature-note">Mac 上でそのセッションのターミナルウィンドウを前面に出します。</span> | ✓ | ✓ | — | — | — |
+| [リモート承認の一時停止](/ja/sessions/approvals#pausing-it)<span className="feature-note">iPhone から、または特定のコンピュータから、許可リクエストをターミナルに戻します。</span> | ✓ | ✓ | ✓ | — | ✓ |
 
 </div>

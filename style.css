@@ -197,6 +197,11 @@ a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
   border-radius: 2.2rem;
 }
 
+/* Light/dark screenshot pairs: the page shows the one matching its theme. */
+.device-frame img.only-dark,
+.dark .device-frame img.only-light { display: none; }
+.dark .device-frame img.only-dark { display: block; }
+
 /* The two widget walkthrough clips. Square (they're lifted from the app's own
    onboarding), so a full-column width would be a 700px-tall block — capped at
    something closer to the phone they're showing, and centred because <Frame>

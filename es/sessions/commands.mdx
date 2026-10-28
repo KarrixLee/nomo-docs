@@ -1,36 +1,45 @@
 ---
 title: "Comandos"
-description: "Todos los comandos de Nomo para Claude Code, Codex, OpenCode y Cursor —vinculación, estado, aprobaciones, reinicio, desvinculación y actualización— en un solo sitio."
+description: "Todos los comandos de Nomo para Claude Code, Codex, OpenCode, Cursor y Antigravity —vinculación, estado, aprobaciones, reinicio, desvinculación y actualización— en un solo sitio."
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
 ---
 
-Cinco comandos en Claude Code, Codex y OpenCode, un sexto que solo OpenCode
-necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del agente,
-en el ordenador al que quieras afectar: un comando con `/` en Claude Code y en
-OpenCode, una skill con `/` en Cursor, una skill con `$` en Codex.
+Cinco comandos en Claude Code, Codex, OpenCode y Antigravity, un sexto que solo
+OpenCode necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del
+agente, en el ordenador al que quieras afectar: un comando con `/` en Claude Code
+y en OpenCode, una skill con `/` en Cursor y en Antigravity, una skill con `$` en
+Codex.
+
+<Note>
+  En Antigravity, cada comando de Nomo pregunta antes. Elige **Allow**
+  (permitir): Antigravity pregunta antes de ejecutar cualquier comando en tu
+  ordenador. Más en [Usar Antigravity](/es/sessions/antigravity#commands).
+</Note>
 
 <Tip>
   En Claude Code todo va con espacio de nombres: al escribir `/nomo-cc:` se
   listan todos. Los nombres de comando de OpenCode son planos y globales, así que
-  allí los de Nomo no llevan ningún prefijo, y sus skills de Cursor tampoco.
+  allí los de Nomo no llevan ningún prefijo, y sus skills de Cursor y
+  Antigravity tampoco.
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor |
-| --- | --- | --- | --- | --- |
-| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — |
-| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">Actualizar el plugin</a> | — | — | `/nomo-update` | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
+| --- | --- | --- | --- | --- | --- |
+| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
+| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">Actualizar el plugin</a> | — | — | `/nomo-update` | — | — |
 
 Ninguno puede fallar a gritos. Todos terminan limpiamente incluso cuando no hay
 nada que hacer: `Not paired` es un éxito, no un error.
 
 Las casillas vacías de la última fila no son un olvido: Claude Code y Codex se
 actualizan a través de sus propios anfitriones, así que Nomo no añade ningún
-comando ahí, y Cursor se actualiza volviendo a ejecutar su instalador. Lo que
+comando ahí, y Cursor se actualiza volviendo a ejecutar su instalador, igual que
+Antigravity. Lo que
 necesita cada uno —que en el caso de Codex suele ser nada— está en
 [Instalación](/es/setup/install#updating).
 
@@ -60,6 +69,11 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, printed in the terminal
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
+```
 </CodeGroup>
 
 Sin argumentos abre en tu navegador una página con la estética de la app y un
@@ -71,8 +85,8 @@ sesión SSH. Es la vía de segunda opción a propósito: ese código acaba en tu
 terminal y, por tanto, en la transcripción del agente.
 
 Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubre
-la máquina, no el agente: Claude Code, Codex, OpenCode y Cursor en el mismo Mac
-la comparten. El recorrido completo está en [Vinculación](/es/setup/pairing).
+la máquina, no el agente: Claude Code, Codex, OpenCode, Cursor y Antigravity en el
+mismo Mac la comparten. El recorrido completo está en [Vinculación](/es/setup/pairing).
 
 ## status {#status}
 
@@ -91,6 +105,11 @@ $nomo-status
 
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-status
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-status           # a short summary in plain words
+/nomo-status verbose   # the full readout below
 ```
 </CodeGroup>
 
@@ -156,7 +175,7 @@ cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
   OpenCode no tiene hooks, así que allí la fila se llama `Plugin`. ¿No se dispara
   nada? Reinicia Claude Code para que se carguen sus hooks; en Codex, ejecuta
   `/hooks`; en OpenCode, reinícialo para que se cargue el plugin; reinicia
-  Cursor, que solo recoge los hooks al arrancar.
+  Cursor o Antigravity, que solo recogen los hooks al arrancar.
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -222,6 +241,12 @@ $nomo-approvals status      # which way is it set
 /nomo-approvals on          # resume
 /nomo-approvals status      # which way is it set
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
 
 Pausa las aprobaciones remotas en **este ordenador**, de modo que las solicitudes
@@ -261,6 +286,10 @@ $nomo-reset
 ```bash Cursor icon="/images/providers/cursor.svg"
 /nomo-reset
 ```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+/nomo-reset
+```
 </CodeGroup>
 
 Detiene el proceso supervisor y limpia las filas de sesión muertas o fantasma, y
@@ -294,6 +323,10 @@ $nomo-unpair
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
+/nomo-unpair
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
 </CodeGroup>

@@ -48,7 +48,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴�
 ## 컴퓨터 상세 화면 {#inside-a-computer}
 
 카드를 탭하면 위쪽에 에이전트마다 하나씩 분할 컨트롤이 있는 드로어가 열립니다.
-**Claude Code**, **Codex**, **OpenCode**, **Cursor** 가운데 최대 세 개이며,
+**Claude Code**, **Codex**, **OpenCode**, **Cursor**, **Antigravity** 가운데 최대 세 개이며,
 **+** 버튼(**에이전트 선택**)으로 고릅니다. Nomo는 가장 최근에 활동한
 에이전트를 먼저 엽니다.
 
@@ -137,8 +137,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴�
 - **폴더**와 **세션 ID** — 앞 여덟 글자를 고정폭으로 표시합니다.
 - 대기 중인 **질문**이 있으면 그 전문.
 - **계획 보기** — 계획을 엽니다. Claude Code에서는 답변할 수 있고, [Codex](/ko/sessions/codex)에서는 읽기 전용이며, [OpenCode](/ko/sessions/opencode#plan-mode)에서는 문서가 아니라 세션의 할 일 목록이 표시되는 것이 보통입니다.
-- **Mac에서 열기** — Mac에서 해당 세션의 터미널 창을 앞으로 가져옵니다. Nomo가 [로컬 네트워크](/ko/sessions/settings#local-network)로 직접 연결되어 있을 때만 표시되며, 자체 창이 없는 [OpenCode](/ko/sessions/opencode#no-open-on-mac) 세션에는 나타나지 않으며, [Cursor](/ko/sessions/cursor#what-this-version-doesnt-do) 세션에도 나타나지 않습니다.
-- **중단** — 실행 중인 턴을 멈춥니다. Mac에서 Esc를 누르는 것과 같습니다. `실행 중`인 Claude Code 또는 Codex 세션에서, 같은 직접 연결이 있을 때만 표시됩니다 — [아래](#interrupt-a-running-session)를 참고하십시오.
+- **Mac에서 열기** — Mac에서 해당 세션의 터미널 창을 앞으로 가져옵니다. Nomo가 [로컬 네트워크](/ko/sessions/settings#local-network)로 직접 연결되어 있을 때만 표시되며, 자체 창이 없는 [OpenCode](/ko/sessions/opencode#no-open-on-mac) 세션에는 나타나지 않으며, [Cursor](/ko/sessions/cursor#what-this-version-doesnt-do)와 [Antigravity](/ko/sessions/antigravity#what-this-version-doesnt-do) 세션에도 나타나지 않습니다.
+- **중단** — 실행 중인 턴을 멈춥니다. Mac에서 Esc를 누르는 것과 같습니다. `실행 중`인 Claude Code, Codex 또는 [Antigravity](/ko/sessions/antigravity#interrupt) 세션에서, 같은 직접 연결이 있을 때만 표시됩니다 — [아래](#interrupt-a-running-session)를 참고하십시오.
 
 <Tip>
   요청에 **답변**하려면 행을 탭하지 말고 길게 터치하십시오. 탭하면 펼쳐지고,
@@ -149,7 +149,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴�
 
 <Frame caption="펼친 실행 중인 세션. 세부 정보 맨 아래에 중단이 있습니다.">
   <div className="device-frame">
-    <img src="/images/interrupt-button.png" alt="중단 버튼이 보이는 펼친 세션 행" />
+    <img className="only-light" src="/images/interrupt-button.png" alt="중단 버튼이 보이는 펼친 세션 행" />
+    <img className="only-dark" src="/images/interrupt-button-dark.png" alt="중단 버튼이 보이는 펼친 세션 행" />
   </div>
 </Frame>
 
@@ -158,7 +159,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴�
 
 - 세션이 `실행 중`입니다. 사용자를 기다리는 행 — 권한 요청, 질문, 계획 — 이나 이미
   `완료`인 행에는 중단할 것이 없습니다.
-- Claude Code 또는 Codex 세션입니다. OpenCode에는 나타나지 않습니다.
+- Claude Code, Codex 또는 Antigravity 세션입니다. OpenCode나 Cursor에는 나타나지 않습니다.
 - Nomo가 그 Mac에 [로컬 네트워크](/ko/sessions/settings#local-network)로 직접
   연결되어 있습니다 — 초록색 **⚡ 로컬** 칩이 그 표시입니다. 중단은 중계 서버를
   거쳐 전송되지 않습니다.

@@ -50,8 +50,8 @@ if you hit the cap.
 ## Inside a computer
 
 Tapping a card opens a drawer with a segmented control at the top, one segment
-per agent — up to three of **Claude Code**, **Codex**, **OpenCode** and
-**Cursor**, chosen with the **+** button (**Choose agents**). Nomo opens
+per agent — up to three of **Claude Code**, **Codex**, **OpenCode**,
+**Cursor** and **Antigravity**, chosen with the **+** button (**Choose agents**). Nomo opens
 whichever agent was active most recently.
 
 <Frame caption="Choose agents, opened from the + button at the bottom of the drawer. Tick up to three — each becomes a tab.">
@@ -140,8 +140,8 @@ labelled with a symbol rather than a word:
 - **Folder** and **session ID** — the first eight characters, monospaced.
 - **The pending question**, in full, when there is one.
 - **View plan** — opens the plan. Answerable for Claude Code, read-only for [Codex](/sessions/codex), and for [OpenCode](/sessions/opencode#plan-mode) usually the session's todo list rather than a document.
-- **Open on Mac** — focuses that session's terminal window on your Mac. Only appears when Nomo has a direct [local network](/sessions/settings#local-network) link, and never on [OpenCode](/sessions/opencode#no-open-on-mac) sessions, which have no window of their own, or on [Cursor](/sessions/cursor#what-this-version-doesnt-do) sessions.
-- **Interrupt** — stops the turn that's running, like pressing Esc at the Mac. Only on a `Running` Claude Code or Codex session, and only over that same direct link — see [below](#interrupt-a-running-session).
+- **Open on Mac** — focuses that session's terminal window on your Mac. Only appears when Nomo has a direct [local network](/sessions/settings#local-network) link, and never on [OpenCode](/sessions/opencode#no-open-on-mac) sessions, which have no window of their own, or on [Cursor](/sessions/cursor#what-this-version-doesnt-do) and [Antigravity](/sessions/antigravity#what-this-version-doesnt-do) sessions.
+- **Interrupt** — stops the turn that's running, like pressing Esc at the Mac. Only on a `Running` Claude Code, Codex or [Antigravity](/sessions/antigravity#interrupt) session, and only over that same direct link — see [below](#interrupt-a-running-session).
 
 <Tip>
   To **answer** a prompt, touch and hold the row rather than tapping it. Tapping
@@ -152,7 +152,8 @@ labelled with a symbol rather than a word:
 
 <Frame caption="A running session, expanded, with Interrupt at the bottom of its detail.">
   <div className="device-frame">
-    <img src="/images/interrupt-button.png" alt="An expanded session row showing the Interrupt button" />
+    <img className="only-light" src="/images/interrupt-button.png" alt="An expanded session row showing the Interrupt button" />
+    <img className="only-dark" src="/images/interrupt-button-dark.png" alt="An expanded session row showing the Interrupt button" />
   </div>
 </Frame>
 
@@ -162,7 +163,7 @@ is true:
 
 - The session is `Running`. A row that's waiting on you — a permission prompt,
   a question, a plan — or one that's already `Done` has nothing to interrupt.
-- It's a Claude Code or Codex session. Never OpenCode.
+- It's a Claude Code, Codex or Antigravity session. Never OpenCode or Cursor.
 - Nomo has a direct [local network](/sessions/settings#local-network) link to
   that Mac — the green **⚡ Local** chip. An interrupt is never sent through the
   relay.

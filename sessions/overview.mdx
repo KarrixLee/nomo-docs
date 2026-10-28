@@ -1,14 +1,14 @@
 ---
 title: "Nomo Sessions: watch coding agents from your iPhone"
 sidebarTitle: "Overview"
-description: "Watch Claude Code, Codex and OpenCode from your iPhone, and answer their permission prompts without going back to your Mac."
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Overview"]
+description: "Watch Claude Code, Codex, OpenCode and Antigravity from your iPhone, and answer their permission prompts without going back to your Mac."
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Overview"]
 ---
 
 Your coding agent runs on your Mac. You don't have to sit in front of it.
 
-Nomo Sessions puts your running Claude Code, Codex, OpenCode and Cursor
-sessions on your iPhone — on the Lock Screen and in the Dynamic Island. When the agent stops
+Nomo Sessions puts your running Claude Code, Codex, OpenCode, Cursor and
+Antigravity sessions on your iPhone — on the Lock Screen and in the Dynamic Island. When the agent stops
 to ask permission for something, your phone tells you, and you can answer it
 from there.
 
@@ -42,13 +42,16 @@ so the list is shorter than [Status and Usage](/status-usage).
   <span><img src="/images/codex.svg" alt="" />Codex</span>
   <span><img src="/images/opencode.svg" alt="" />OpenCode</span>
   <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
+  <span><img src="/images/providers/antigravity.png" alt="" />Antigravity</span>
 </div>
 
 Codex and OpenCode hand a plugin less than Claude Code does, so a few things
 land differently on your phone — [Using Codex](/sessions/codex) and [Using
 OpenCode](/sessions/opencode) are the short lists of what changes. Cursor is
 read-only in this version: its sessions show up, but its prompts can't be
-answered from your phone — see [Using Cursor](/sessions/cursor).
+answered from your phone — see [Using Cursor](/sessions/cursor). Antigravity
+sends shell commands and file writes to your phone for **Allow** or **Deny** —
+see [Using Antigravity](/sessions/antigravity).
 
 <Card title="What you can do" href="/sessions/features" icon="star" horizontal>
   The full list, and which agent supports each feature.
@@ -56,7 +59,7 @@ answered from your phone — see [Using Cursor](/sessions/cursor).
 
 ## What you need
 
-- Claude Code, Codex 0.142+, OpenCode, or Cursor, on a Mac
+- Claude Code, Codex 0.142+, OpenCode, Cursor, or Antigravity, on a Mac
 - Either **bun** or **node 18+** — whichever you already have
 - Your phone and your computer paired — one QR scan
 
@@ -82,7 +85,7 @@ implements it:
 
 <CardGroup cols={2}>
   <Card title="Install the plugin" href="/setup/install" icon="puzzle-piece">
-    Two commands, for Claude Code, Codex, OpenCode or Cursor.
+    Two commands, for Claude Code, Codex, OpenCode, Cursor or Antigravity.
   </Card>
   <Card title="Pair your computer" href="/setup/pairing" icon="qrcode-read">
     Scan a QR code, or type a one-time code.
