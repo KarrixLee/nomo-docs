@@ -63,6 +63,10 @@ de comandos `agy`.
     (permitir).
 
     Deberías ver que se abre en tu navegador una página con un código QR.
+
+    En la app de escritorio de Antigravity, el primer comando de Nomo puede
+    mostrar una línea que dice `operation not permitted`. Es normal: Antigravity
+    lo vuelve a intentar fuera de su sandbox por sí solo. Solo espera.
   </Step>
 
   <Step title="Escanea el código QR">
@@ -197,6 +201,11 @@ Conviene saber:
   pregunta en el ordenador, igual que sin Nomo.
 - **¿Paraste el chat en el ordenador?** La tarjeta desaparece sola de tu
   teléfono.
+- **La terminal no muestra nada mientras espera.** Mientras una solicitud
+  espera a tu teléfono, no aparece nada en la terminal. Es lo
+  esperado: la solicitud está en tu teléfono.
+- **¿Tienes abierto el panel de respuesta?** La solicitud también aparece en el
+  chat y puedes responderla ahí; consulta [Aprobar desde el chat](#approve-in-chat).
 
 ## Detener {#interrupt}
 
@@ -209,19 +218,28 @@ pasa a `Listo`. El chat sigue abierto: envía un mensaje nuevo para continuar.
 
 Envía un mensaje a una sesión de Antigravity desde el iPhone: una corrección,
 el siguiente paso o «sigue». Llega a Antigravity como si lo hubieras escrito en
-el Mac. Funciona desde cualquier sitio: no hace falta la misma red Wi-Fi.
+el Mac. La pantalla de respuesta es un chat: tus mensajes van a la derecha y las
+solicitudes de Antigravity aparecen a la izquierda.
+
+<Note>
+  **Por ahora, el iPhone y el Mac tienen que estar en la misma red Wi-Fi**, con
+  **[Red local](/es/sessions/settings#local-network)** activada en Nomo. Esto
+  cambiará con una próxima actualización del servidor; después, las respuestas
+  funcionarán desde cualquier sitio.
+</Note>
 
 <Steps>
   <Step title="Abre la sesión">
     En Nomo, abre tu ordenador y elige la pestaña **Antigravity**. Toca el
     nombre de la sesión.
 
-    Verás que la sesión se abre, con un botón **Responder** bajo sus detalles.
+    Verás que la sesión se abre, con un botón azul **Responder** bajo sus
+    detalles. Una sesión en ejecución también tiene un botón rojo **Detener**.
 
-    <Frame caption="Una sesión de Antigravity en ejecución, abierta, con Responder bajo sus detalles.">
+    <Frame caption="Una sesión de Antigravity en ejecución, abierta, con Detener y Responder bajo sus detalles.">
       <div className="device-frame">
-        <img className="only-light" src="/images/agy-reply-button.png" alt="Una fila de sesión de Antigravity abierta llamada Fix token refresh race, con su modelo, su carpeta, agy CLI y un botón Responder" />
-        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="Una fila de sesión de Antigravity abierta llamada Fix token refresh race, con su modelo, su carpeta, agy CLI y un botón Responder" />
+        <img className="only-light" src="/images/agy-reply-button.png" alt="Una fila de sesión de Antigravity abierta llamada Fix token refresh race, con su modelo, su carpeta, agy CLI y dos botones: Detener y Responder" />
+        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="Una fila de sesión de Antigravity abierta llamada Fix token refresh race, con su modelo, su carpeta, agy CLI y dos botones: Detener y Responder" />
       </div>
     </Frame>
   </Step>
@@ -229,13 +247,15 @@ el Mac. Funciona desde cualquier sitio: no hace falta la misma red Wi-Fi.
   <Step title="Toca Responder">
     Verás que sube un panel con el nombre de la sesión arriba y un cuadro que
     dice **Mensaje para esta sesión**.
+
+    Para cerrar el panel en cualquier momento, toca **✕** arriba a la derecha.
   </Step>
 
   <Step title="Escribe tu mensaje y envíalo">
     Escribe tu mensaje y toca la flecha.
 
-    Verás tu mensaje como una burbuja, con una línea de estado debajo. El estado
-    te dice dónde está el mensaje; consulta la lista de abajo.
+    Verás tu mensaje como una burbuja a la derecha, con una línea de estado
+    debajo. El estado te dice dónde está el mensaje; consulta la lista de abajo.
 
     <Frame caption="Dos mensajes: el primero ya ha llegado a Antigravity; el segundo espera a su siguiente paso y aún se puede cancelar.">
       <div className="device-frame">
@@ -246,18 +266,96 @@ el Mac. Funciona desde cualquier sitio: no hace falta la misma red Wi-Fi.
   </Step>
 </Steps>
 
+### Aprobar desde el chat {#approve-in-chat}
+
+Si Antigravity pide ejecutar un comando mientras el panel de respuesta está
+abierto, puedes responder ahí mismo, en el chat.
+
+<Steps>
+  <Step title="Busca la solicitud">
+    Busca una burbuja a la izquierda, de Antigravity. Dice **Quiere ejecutar:**,
+    luego el comando y después dos botones: **Denegar** y **Permitir**.
+
+    <Frame caption="Antigravity pide ejecutar un comando dentro del chat de respuesta.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-approval.png" alt="El panel de respuesta de Fix token refresh race con Esperando tu aprobación y una burbuja de Antigravity: Quiere ejecutar: npm test -- auth/refresh.test.ts, con los botones Denegar y Permitir" />
+        <img className="only-dark" src="/images/agy-reply-approval-dark.png" alt="El panel de respuesta de Fix token refresh race con Esperando tu aprobación y una burbuja de Antigravity: Quiere ejecutar: npm test -- auth/refresh.test.ts, con los botones Denegar y Permitir" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="Toca Permitir o Denegar">
+    Toca **Permitir** para que Antigravity lo ejecute. Toca **Denegar** para
+    que se lo salte.
+
+    Verás que la burbuja se reduce a una línea que dice qué ha pasado; consulta
+    [Cómo se ve una solicitud respondida](#answered-requests).
+  </Step>
+</Steps>
+
+Los botones **Denegar** y **Permitir** de la burbuja nunca envían lo que has
+escrito en el cuadro. Tu texto se queda en el cuadro.
+
+### Denegar y enviar {#deny-and-send}
+
+¿Quieres decir que no y decirle a Antigravity qué hacer en su lugar? Haz las
+dos cosas con un solo botón.
+
+<Steps>
+  <Step title="Escribe el motivo">
+    Mientras la solicitud espera, escribe en el cuadro qué debería hacer
+    Antigravity en su lugar; por ejemplo, «Usa bun, no npm».
+
+    Verás que la flecha de enviar se convierte en un botón rojo
+    **Denegar y enviar**, y la línea **Se envía como motivo para denegar**
+    encima del cuadro.
+
+    <Frame caption="Texto escrito mientras espera una solicitud: el botón de enviar pasa a ser Denegar y enviar.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-deny-send.png" alt="El panel de respuesta con una solicitud pendiente para ejecutar npm test, un texto escrito en el cuadro, un botón rojo Denegar y enviar y la línea Se envía como motivo para denegar" />
+        <img className="only-dark" src="/images/agy-reply-deny-send-dark.png" alt="El panel de respuesta con una solicitud pendiente para ejecutar npm test, un texto escrito en el cuadro, un botón rojo Denegar y enviar y la línea Se envía como motivo para denegar" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="Toca Denegar y enviar">
+    Antigravity se salta el comando y lee tu texto como el motivo.
+
+    Verás que la solicitud cambia a **✕ Denegado**, con tu motivo citado
+    debajo.
+  </Step>
+</Steps>
+
+<Tip>
+  Un motivo puede tener hasta 500 caracteres. Si escribes más, el botón sigue
+  siendo la flecha normal de enviar. Tu mensaje espera y entra justo después de
+  que respondas a la solicitud.
+</Tip>
+
+### Cómo se ve una solicitud respondida {#answered-requests}
+
+| Ves | Qué significa |
+| --- | --- |
+| `✓ Permitido · <comando>` | La has permitido. |
+| `✕ Denegado · <comando>` | La has denegado. Si usaste **Denegar y enviar**, tu motivo aparece citado debajo. |
+| `Respondido en tu ordenador` | Se respondió en el Mac. |
+| `Tiempo agotado — continúa en tu Mac` | Esperó demasiado a tu teléfono. Antigravity pregunta en el Mac. |
+
 ### Qué significa el estado bajo un mensaje {#reply-statuses}
 
 | Ves | Qué significa |
 | --- | --- |
 | `Enviando…` | Tu teléfono lo está enviando. |
+| `Esperando tu aprobación` | Antigravity espera a que respondas una solicitud en el chat. Tu mensaje entra justo después de que respondas. |
 | `En cola para el siguiente paso` | Tu Mac ya lo tiene. Antigravity lo lee en su siguiente paso. Hasta entonces puedes tocar **×** en la burbuja para cancelarlo. |
 | `Entregado` | Antigravity ya lo ha leído. |
-| `Reanudando en tu Mac…` | La sesión había terminado, así que tu Mac la vuelve a iniciar con tu mensaje. Ya no se puede cancelar. |
+| `Reanudando en tu Mac…` | La sesión había terminado y tu Mac la está volviendo a iniciar con tu mensaje. Solo lo ves cuando tu Mac de verdad ha empezado. Ya no se puede cancelar. |
 | `Reanudado en tu Mac` | La sesión vuelve a estar en marcha con tu mensaje. |
 | `Reconectando…` | Ahora mismo tu teléfono no llega a tu Mac. Lo sigue intentando solo; no hace falta que lo envíes otra vez. |
 
 ### Dónde funciona {#where-reply-works}
+
+Depende de dónde uses Antigravity.
 
 **Con la herramienta de línea de comandos `agy`:**
 
@@ -272,7 +370,8 @@ el Mac. Funciona desde cualquier sitio: no hace falta la misma red Wi-Fi.
 
 - **Mientras trabaja**: tu mensaje llega en su siguiente paso.
 - **Terminada**: solo el Mac puede continuarla. **Responder** aparece en gris, y
-  la línea de debajo lo explica.
+  la línea de debajo dice **Las sesiones de la app Antigravity solo pueden
+  continuar en tu Mac**.
 
 <Frame caption="Una sesión terminada de la app de escritorio: Responder aparece en gris y la línea de debajo explica por qué.">
   <div className="device-frame">
@@ -330,6 +429,12 @@ Conviene saber:
     Si la sesión ha terminado y `agy` sigue abierto en el Mac, el mensaje espera
     a tu siguiente mensaje allí. Envía algo en `agy` y Antigravity leerá los dos.
     O toca **×** en la burbuja para cancelarlo.
+  </Accordion>
+
+  <Accordion title="Un comando de Nomo muestra “operation not permitted”">
+    Puede pasar la primera vez que usas un comando de Nomo en la app de
+    escritorio de Antigravity. Es normal: Antigravity lo vuelve a intentar fuera
+    de su sandbox por sí solo. Espera a que termine; no tienes que hacer nada.
   </Accordion>
 
   <Accordion title="Responder aparece en gris">

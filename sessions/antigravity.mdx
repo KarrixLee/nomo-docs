@@ -61,6 +61,10 @@ It works with the Antigravity desktop app and with the `agy` command-line tool.
     Antigravity asks before it runs a Nomo command. Choose **Allow**.
 
     You should see a page with a QR code open in your browser.
+
+    In the Antigravity desktop app, the first Nomo command may show one line
+    that says `operation not permitted`. That's normal — Antigravity tries
+    again outside its sandbox by itself. Just wait.
   </Step>
 
   <Step title="Scan the QR code">
@@ -189,6 +193,11 @@ Good to know:
   just as it would without Nomo.
 - **Stopped the chat on the computer?** The card disappears from your phone by
   itself.
+- **The terminal stays quiet while it waits.** While a request waits for your
+  phone, the terminal shows nothing. That's expected — the
+  request is on your phone.
+- **Reply sheet open?** The request also shows up in the chat, and you can
+  answer it there — see [Approving from the chat](#approve-in-chat).
 
 ## Interrupt
 
@@ -201,20 +210,28 @@ Antigravity finishes the step it's on, then stops, and the session shows
 
 Send a message to an Antigravity session from your iPhone — a correction, a
 next step, or "carry on". It reaches Antigravity as if you'd typed it at the
-Mac. It works from anywhere: the same Wi-Fi isn't needed.
+Mac. The reply screen is a chat: your messages are on the right, and
+Antigravity's requests appear on the left.
+
+<Note>
+  **For now, your iPhone and your Mac must be on the same Wi-Fi**, with
+  **[Local network](/sessions/settings#local-network)** turned on in Nomo. This
+  changes with an upcoming server update, after which replies work from
+  anywhere.
+</Note>
 
 <Steps>
   <Step title="Open the session">
     In Nomo, open your computer and choose the **Antigravity** tab. Tap the
     session's name.
 
-    You should see the session open up, with a **Reply** button under its
-    details.
+    You should see the session open up, with a blue **Reply** button under its
+    details. A running session also has a red **Interrupt** button.
 
-    <Frame caption="A running Antigravity session, opened, with Reply under its details.">
+    <Frame caption="A running Antigravity session, opened, with Interrupt and Reply under its details.">
       <div className="device-frame">
-        <img className="only-light" src="/images/agy-reply-button.png" alt="An open Antigravity session row called Fix token refresh race, showing its model, folder, agy CLI and a Reply button" />
-        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="An open Antigravity session row called Fix token refresh race, showing its model, folder, agy CLI and a Reply button" />
+        <img className="only-light" src="/images/agy-reply-button.png" alt="An open Antigravity session row called Fix token refresh race, showing its model, folder, agy CLI, and two buttons: Interrupt and Reply" />
+        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="An open Antigravity session row called Fix token refresh race, showing its model, folder, agy CLI, and two buttons: Interrupt and Reply" />
       </div>
     </Frame>
   </Step>
@@ -222,13 +239,16 @@ Mac. It works from anywhere: the same Wi-Fi isn't needed.
   <Step title="Tap Reply">
     You should see a sheet slide up with the session's name at the top and a
     box that says **Message this session**.
+
+    To close the sheet at any time, tap **✕** at the top right.
   </Step>
 
   <Step title="Type your message and send it">
     Type your message, then tap the arrow.
 
-    You should see your message as a bubble, with a short status line under it.
-    The status tells you where the message is — see the list below.
+    You should see your message as a bubble on the right, with a short status
+    line under it. The status tells you where the message is — see the list
+    below.
 
     <Frame caption="Two messages: the first has reached Antigravity, the second waits for its next step and can still be cancelled.">
       <div className="device-frame">
@@ -239,18 +259,94 @@ Mac. It works from anywhere: the same Wi-Fi isn't needed.
   </Step>
 </Steps>
 
+### Approving from the chat {#approve-in-chat}
+
+When Antigravity asks to run a command while the reply sheet is open, you can
+answer right there in the chat.
+
+<Steps>
+  <Step title="Find the request">
+    Look for a bubble on the left, from Antigravity. It says **Wants to run:**,
+    then the command, then two buttons: **Deny** and **Allow**.
+
+    <Frame caption="Antigravity asks to run a command, inside the reply chat.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-approval.png" alt="The reply sheet for Fix token refresh race showing Waiting for your approval, with a bubble from Antigravity: Wants to run: npm test -- auth/refresh.test.ts, with Deny and Allow buttons" />
+        <img className="only-dark" src="/images/agy-reply-approval-dark.png" alt="The reply sheet for Fix token refresh race showing Waiting for your approval, with a bubble from Antigravity: Wants to run: npm test -- auth/refresh.test.ts, with Deny and Allow buttons" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="Tap Allow or Deny">
+    Tap **Allow** to let Antigravity run it. Tap **Deny** to skip it.
+
+    You should see the bubble shrink to one line that says what happened —
+    see [What an answered request looks like](#answered-requests).
+  </Step>
+</Steps>
+
+The **Deny** and **Allow** buttons in the bubble never send what you typed in
+the box. Your typed text stays in the box.
+
+### Deny & send {#deny-and-send}
+
+Want to say no and tell Antigravity what to do instead? Do both with one
+button.
+
+<Steps>
+  <Step title="Type your reason">
+    While the request is waiting, type in the box what Antigravity should do
+    instead — for example, "Use bun, not npm".
+
+    You should see the send arrow turn into a red **Deny & send** button, and
+    the line **Sends as the reason for Deny** above the box.
+
+    <Frame caption="Text typed while a request waits: the send button becomes Deny & send.">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-deny-send.png" alt="The reply sheet with a pending request to run npm test, the text Use bun, not npm, and only run the refresh tests. typed in the box, a red Deny & send button, and the line Sends as the reason for Deny" />
+        <img className="only-dark" src="/images/agy-reply-deny-send-dark.png" alt="The reply sheet with a pending request to run npm test, the text Use bun, not npm, and only run the refresh tests. typed in the box, a red Deny & send button, and the line Sends as the reason for Deny" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="Tap Deny & send">
+    Antigravity skips the command and reads your text as the reason.
+
+    You should see the request change to **✕ Denied**, with your reason quoted
+    under it.
+  </Step>
+</Steps>
+
+<Tip>
+  A reason can be up to 500 characters. If you type more, the button stays a
+  normal send arrow. Your message waits, and goes in right after you answer the
+  request.
+</Tip>
+
+### What an answered request looks like {#answered-requests}
+
+| You see | What it means |
+| --- | --- |
+| `✓ Allowed · <command>` | You allowed it. |
+| `✕ Denied · <command>` | You denied it. If you used **Deny & send**, your reason is quoted under it. |
+| `Answered on your computer` | It was answered on the Mac. |
+| `Timed out — continuing on your Mac` | It waited too long for your phone. Antigravity asks on the Mac instead. |
+
 ### What the status under a message means {#reply-statuses}
 
 | You see | What it means |
 | --- | --- |
 | `Sending…` | Your phone is sending it. |
+| `Waiting for your approval` | Antigravity is waiting for you to answer a request in the chat. Your message goes in right after you answer. |
 | `Queued for the next step` | Your Mac has it. Antigravity reads it at its next step. Until then you can tap **×** on the bubble to cancel it. |
 | `Delivered` | Antigravity has read it. |
-| `Waking your Mac…` | The session had finished, so your Mac is starting it again with your message. It can't be cancelled now. |
+| `Waking your Mac…` | The session had finished, and your Mac is now starting it again with your message. You only see this once your Mac has really started. It can't be cancelled now. |
 | `Resumed on your Mac` | The session is running again with your message. |
 | `Reconnecting…` | Your phone can't reach your Mac right now. It keeps trying by itself — you don't need to send it again. |
 
 ### Where it works {#where-reply-works}
+
+It depends on where you run Antigravity.
 
 **With the `agy` command-line tool:**
 
@@ -265,7 +361,8 @@ Mac. It works from anywhere: the same Wi-Fi isn't needed.
 
 - **While it's working** — your message arrives at its next step.
 - **Finished** — only the Mac can continue it. **Reply** is greyed out, and the
-  line under it says so.
+  line under it says **Antigravity app sessions can only continue on your
+  Mac**.
 
 <Frame caption="A finished session from the desktop app: Reply is greyed out, and the line under it explains why.">
   <div className="device-frame">
@@ -319,6 +416,12 @@ Good to know:
     If the session has finished and `agy` is still open on the Mac, the message
     waits for your next message there. Send something in `agy`, and Antigravity
     reads both. Or tap **×** on the bubble to cancel it.
+  </Accordion>
+
+  <Accordion title="A Nomo command shows “operation not permitted”">
+    This can happen the first time you use a Nomo command in the Antigravity
+    desktop app. It's normal: Antigravity tries again outside its sandbox by
+    itself. Wait for it to finish — you don't need to do anything.
   </Accordion>
 
   <Accordion title="Reply is greyed out">

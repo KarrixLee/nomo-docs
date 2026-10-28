@@ -56,6 +56,8 @@ Antigravity デスクトップアプリでも、`agy` コマンドラインツ�
     Antigravity は Nomo のコマンドを実行する前に確認してきます。「Allow」を選んでください。
 
     ブラウザで QR コードのページが開きます。
+
+    Antigravity デスクトップアプリでは、最初の Nomo コマンドで `operation not permitted` という行が 1 行表示されることがあります。これは正常です。Antigravity がサンドボックスの外で自動的にやり直すので、そのまま待ってください。
   </Step>
 
   <Step title="QR コードをスキャンする">
@@ -162,6 +164,8 @@ Antigravity が**コマンドを実行**したり、**ファイルを作成・�
 - **デスクトップアプリでは、すべてが iPhone に届きます。** Nomo はデスクトップアプリの権限設定を読み取れないため、すべてのコマンドとファイルの変更が iPhone に届きます。
 - **iPhone がなくても大丈夫です。** iPhone に接続できないときや、承認を[一時停止中](/ja/sessions/approvals#pausing-it)のときは、Nomo がないときと同じように、Antigravity がコンピュータ上で確認します。
 - **コンピュータでチャットを止めた場合は、** iPhone のカードは自動で消えます。
+- **待っている間、ターミナルには何も表示されません。** リクエストが iPhone からの回答を待っている間、ターミナルには何も表示されません。これは想定どおりで、リクエストは iPhone に届いています。
+- **返信シートを開いている場合は、** リクエストがチャットにも表示され、そこで回答できます。[チャットからの承認](#approve-in-chat)をご覧ください。
 
 ## 中断 {#interrupt}
 
@@ -169,30 +173,36 @@ Antigravity が**コマンドを実行**したり、**ファイルを作成・�
 
 ## iPhone からの返信 {#reply-from-your-phone}
 
-iPhone から Antigravity のセッションにメッセージを送れます。修正の指示でも、次の作業でも、「続けて」でもかまいません。Mac で入力したのと同じように Antigravity に届きます。同じ Wi-Fi でなくても、どこからでも使えます。
+iPhone から Antigravity のセッションにメッセージを送れます。修正の指示でも、次の作業でも、「続けて」でもかまいません。Mac で入力したのと同じように Antigravity に届きます。返信画面はチャットの形になっていて、あなたのメッセージは右側に、Antigravity からのリクエストは左側に表示されます。
+
+<Note>
+  **現在は、iPhone と Mac が同じ Wi-Fi につながっていて**、Nomo の「**[ローカルネットワーク](/ja/sessions/settings#local-network)**」がオンになっている必要があります。今後のサーバーのアップデートで、どこからでも返信できるようになります。
+</Note>
 
 <Steps>
   <Step title="セッションを開く">
     Nomo でコンピュータを開き、**Antigravity** タブを選びます。セッションの名前をタップします。
 
-    セッションが開き、詳細の下に「**返信**」ボタンが表示されます。
+    セッションが開き、詳細の下に青い「**返信**」ボタンが表示されます。実行中のセッションには、赤い「**中断**」ボタンも表示されます。
 
-    <Frame caption="開いた状態の実行中の Antigravity セッション。詳細の下に「返信」があります。">
+    <Frame caption="開いた状態の実行中の Antigravity セッション。詳細の下に「中断」と「返信」があります。">
       <div className="device-frame">
-        <img className="only-light" src="/images/agy-reply-button.png" alt="開いた状態の Antigravity のセッション Fix token refresh race。モデル、フォルダ、agy CLI と「返信」ボタンが表示されている" />
-        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="開いた状態の Antigravity のセッション Fix token refresh race。モデル、フォルダ、agy CLI と「返信」ボタンが表示されている" />
+        <img className="only-light" src="/images/agy-reply-button.png" alt="開いた状態の Antigravity のセッション Fix token refresh race。モデル、フォルダ、agy CLI と、「中断」「返信」の 2 つのボタンが表示されている" />
+        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="開いた状態の Antigravity のセッション Fix token refresh race。モデル、フォルダ、agy CLI と、「中断」「返信」の 2 つのボタンが表示されている" />
       </div>
     </Frame>
   </Step>
 
   <Step title="「返信」をタップする">
     上部にセッションの名前、下に「**このセッションにメッセージ**」と書かれた入力欄があるシートが表示されます。
+
+    シートを閉じるときは、右上の **✕** をタップします。
   </Step>
 
   <Step title="メッセージを入力して送る">
     メッセージを入力して、矢印をタップします。
 
-    メッセージが吹き出しで表示され、その下に短い状態の行が表示されます。状態を見ると、メッセージがいまどこにあるかがわかります。下の一覧をご覧ください。
+    メッセージが右側に吹き出しで表示され、その下に短い状態の行が表示されます。状態を見ると、メッセージがいまどこにあるかがわかります。下の一覧をご覧ください。
 
     <Frame caption="2 つのメッセージ。1 つ目は Antigravity に届き、2 つ目は次のステップを待っていて、まだ取り消せます。">
       <div className="device-frame">
@@ -203,18 +213,84 @@ iPhone から Antigravity のセッションにメッセージを送れます。
   </Step>
 </Steps>
 
+### チャットからの承認 {#approve-in-chat}
+
+返信シートを開いているときに Antigravity がコマンドの実行を求めると、そのままチャットの中で回答できます。
+
+<Steps>
+  <Step title="リクエストを見つける">
+    左側にある Antigravity からの吹き出しを探します。「**実行の許可を求めています：**」、コマンド、そして「**拒否**」と「**許可**」の 2 つのボタンが表示されています。
+
+    <Frame caption="返信チャットの中で、Antigravity がコマンドの実行を求めています。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-approval.png" alt="「承認待ち」と表示された Fix token refresh race の返信シート。Antigravity からの吹き出しに「実行の許可を求めています：」npm test -- auth/refresh.test.ts と、「拒否」「許可」ボタンがある" />
+        <img className="only-dark" src="/images/agy-reply-approval-dark.png" alt="「承認待ち」と表示された Fix token refresh race の返信シート。Antigravity からの吹き出しに「実行の許可を求めています：」npm test -- auth/refresh.test.ts と、「拒否」「許可」ボタンがある" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="「許可」か「拒否」をタップする">
+    実行させるときは「**許可**」を、飛ばさせるときは「**拒否**」をタップします。
+
+    吹き出しが、結果を示す 1 行に縮まります。[回答済みのリクエストの表示](#answered-requests)をご覧ください。
+  </Step>
+</Steps>
+
+吹き出しの「**拒否**」と「**許可**」ボタンが、入力欄に書いた内容を送ることはありません。入力した文字は入力欄に残ります。
+
+### 拒否して送信 {#deny-and-send}
+
+断ったうえで、代わりに何をしてほしいかを Antigravity に伝えたいときは、1 つのボタンで両方できます。
+
+<Steps>
+  <Step title="理由を入力する">
+    リクエストが待っている間に、Antigravity に代わりにしてほしいことを入力欄に書きます。たとえば「npm ではなく bun を使って」などです。
+
+    送信の矢印が赤い「**拒否して送信**」ボタンに変わり、入力欄の上に「**拒否の理由として送信されます**」と表示されます。
+
+    <Frame caption="リクエストが待っている間に入力すると、送信ボタンが「拒否して送信」になります。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-deny-send.png" alt="npm test の実行を待っているリクエストがある返信シート。入力欄に文章があり、赤い「拒否して送信」ボタンと「拒否の理由として送信されます」という行がある" />
+        <img className="only-dark" src="/images/agy-reply-deny-send-dark.png" alt="npm test の実行を待っているリクエストがある返信シート。入力欄に文章があり、赤い「拒否して送信」ボタンと「拒否の理由として送信されます」という行がある" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="「拒否して送信」をタップする">
+    Antigravity はそのコマンドを飛ばし、あなたの文章を理由として読み込みます。
+
+    リクエストが **✕ 拒否済み** に変わり、その下にあなたの理由が引用されます。
+  </Step>
+</Steps>
+
+<Tip>
+  理由は 500 文字まで書けます。それより長いと、ボタンは通常の送信の矢印のままです。メッセージは待機し、リクエストに回答するとすぐに届きます。
+</Tip>
+
+### 回答済みのリクエストの表示 {#answered-requests}
+
+| 表示 | 意味 |
+| --- | --- |
+| `✓ 許可済み · <コマンド>` | 許可しました。 |
+| `✕ 拒否済み · <コマンド>` | 拒否しました。「**拒否して送信**」を使った場合は、その下に理由が引用されます。 |
+| `コンピュータで回答済み` | Mac で回答されました。 |
+| `タイムアウト — Mac で続行します` | iPhone からの回答を待ちきれませんでした。Antigravity が Mac で確認します。 |
+
 ### メッセージの下に出る状態 {#reply-statuses}
 
 | 表示 | 意味 |
 | --- | --- |
 | `送信中…` | iPhone が送信しています。 |
+| `承認待ち` | Antigravity が、チャット内のリクエストへの回答を待っています。回答するとすぐにメッセージが届きます。 |
 | `次のステップを待っています` | Mac に届いています。Antigravity は次のステップで読み込みます。それまでは、吹き出しの **×** をタップして取り消せます。 |
 | `届きました` | Antigravity が読み込みました。 |
-| `Macで再開中…` | セッションが終わっていたので、Mac があなたのメッセージでもう一度始めています。この時点では取り消せません。 |
+| `Macで再開中…` | セッションが終わっていたので、Mac があなたのメッセージでもう一度始めています。Mac が実際に再開を始めたときにだけ表示されます。この時点では取り消せません。 |
 | `Macで再開しました` | あなたのメッセージで、セッションがふたたび動いています。 |
 | `再接続中…` | いま iPhone から Mac に接続できません。自動で再試行し続けるので、もう一度送る必要はありません。 |
 
 ### 使える場面 {#where-reply-works}
+
+Antigravity をどこで使っているかによって変わります。
 
 **`agy` コマンドラインツールの場合:**
 
@@ -225,7 +301,7 @@ iPhone から Antigravity のセッションにメッセージを送れます。
 **Antigravity デスクトップアプリの場合:**
 
 - **作業中** — 次のステップでメッセージが届きます。
-- **終わっている** — 続けられるのは Mac だけです。「**返信**」はグレーになり、その下の行に理由が表示されます。
+- **終わっている** — 続けられるのは Mac だけです。「**返信**」はグレーになり、その下に「**AntigravityアプリのセッションはMacでのみ続けられます**」と表示されます。
 
 <Frame caption="デスクトップアプリの終わったセッション。「返信」はグレーになり、その下の行に理由が表示されます。">
   <div className="device-frame">
@@ -270,6 +346,10 @@ iPhone から Antigravity のセッションにメッセージを送れます。
     メッセージは Mac に届いています。Antigravity が作業中なら、次のステップで読み込まれます。長いコマンドの実行中は、しばらくかかることがあります。
 
     セッションが終わっていて、Mac で `agy` が開いたままの場合、メッセージはそこでの次のメッセージを待ちます。`agy` で何か送ると、Antigravity は両方を読み込みます。取り消すには、吹き出しの **×** をタップします。
+  </Accordion>
+
+  <Accordion title="Nomo のコマンドで「operation not permitted」と表示される">
+    Antigravity デスクトップアプリで Nomo のコマンドを初めて使うときに表示されることがあります。これは正常です。Antigravity がサンドボックスの外で自動的にやり直します。終わるまで待ってください。何もする必要はありません。
   </Accordion>
 
   <Accordion title="「返信」がグレーになっている">

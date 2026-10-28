@@ -56,6 +56,8 @@ Antigravity 桌面应用和 `agy` 命令行工具都支持。
     Antigravity 运行 Nomo 命令前会先问你。选择 **Allow**（允许）。
 
     你应该会看到浏览器里打开一个带二维码的页面。
+
+    在 Antigravity 桌面应用里，第一条 Nomo 命令可能会显示一行 `operation not permitted`。这是正常的——Antigravity 会自己在沙箱外重试。等着就好。
   </Step>
 
   <Step title="扫描二维码">
@@ -162,6 +164,8 @@ Antigravity 想**运行命令**或**创建、改动文件**时，手机会问你
 - **桌面应用里，每样都会问手机。**Nomo 读不到桌面应用的权限设置，所以每条命令、每次文件改动都会送到你的手机。
 - **手机不在身边也没关系。**如果手机连不上，或者远程审批已[暂停](/zh-Hans/sessions/approvals#pausing-it)，Antigravity 会在电脑上问你，和没有 Nomo 时一样。
 - **在电脑上停掉了对话？**手机上的卡片会自己消失。
+- **等待期间，终端里什么都不显示。**请求在等你的手机时，终端里不会出现任何内容。这是正常的——请求在你的手机上。
+- **回复表单开着？**请求也会出现在聊天里，你可以在那里回答——见[在聊天里审批](#approve-in-chat)。
 
 ## 停止这一轮 {#interrupt}
 
@@ -169,32 +173,38 @@ Antigravity 想**运行命令**或**创建、改动文件**时，手机会问你
 
 ## 在手机上回复 {#reply-from-your-phone}
 
-在 iPhone 上给 Antigravity 会话发一条消息——纠正一处、交代下一步，或者一句“继续”。它会像你在 Mac 上输入的一样送到 Antigravity。在哪里都能用，不需要连同一个 Wi-Fi。
+在 iPhone 上给 Antigravity 会话发一条消息——纠正一处、交代下一步，或者一句“继续”。它会像你在 Mac 上输入的一样送到 Antigravity。回复界面是一个聊天：你的消息在右边，Antigravity 的请求出现在左边。
+
+<Note>
+  **目前，你的 iPhone 和 Mac 必须连着同一个 Wi-Fi**，并且在 Nomo 里打开**[本地网络](/zh-Hans/sessions/settings#local-network)**。即将到来的服务器更新之后，在哪里都能回复。
+</Note>
 
 <Steps>
   <Step title="打开会话">
     在 Nomo 里打开你的电脑，选择 **Antigravity** 标签页。轻点会话的名称。
 
-    你应该会看到这个会话展开，详细信息下方有一个**回复**按钮。
+    你应该会看到这个会话展开，详细信息下方有一个蓝色的**回复**按钮。正在运行的会话还有一个红色的**停止**按钮。
 
-    <Frame caption="一个运行中、已展开的 Antigravity 会话，详细信息下方是“回复”。">
+    <Frame caption="一个正在运行、已展开的 Antigravity 会话，详细信息下方有“停止”和“回复”。">
       <div className="device-frame">
-        <img className="only-light" src="/images/agy-reply-button.png" alt="已展开的 Antigravity 会话行 Fix token refresh race，显示模型、文件夹、agy CLI 和“回复”按钮" />
-        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="已展开的 Antigravity 会话行 Fix token refresh race，显示模型、文件夹、agy CLI 和“回复”按钮" />
+        <img className="only-light" src="/images/agy-reply-button.png" alt="已展开的 Antigravity 会话行 Fix token refresh race，显示模型、文件夹、agy CLI，以及“停止”和“回复”两个按钮" />
+        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="已展开的 Antigravity 会话行 Fix token refresh race，显示模型、文件夹、agy CLI，以及“停止”和“回复”两个按钮" />
       </div>
     </Frame>
   </Step>
 
   <Step title="轻点“回复”">
     你应该会看到一张表单滑上来，顶部是会话名称，下方是写着**给此会话发消息**的输入框。
+
+    随时要关闭表单，轻点右上角的 **✕**。
   </Step>
 
   <Step title="输入消息并发送">
     输入你的消息，然后轻点箭头。
 
-    你应该会看到消息变成一个气泡，下面有一行简短的状态。状态告诉你这条消息走到了哪里——见下面的列表。
+    你应该会看到消息变成右边的一个气泡，下面有一行简短的状态。状态告诉你这条消息走到了哪里——见下面的列表。
 
-    <Frame caption="两条消息：第一条已送到 Antigravity，第二条在等它的下一步，还可以取消。">
+    <Frame caption="两条消息：第一条已经送到 Antigravity，第二条在等它的下一步，还可以取消。">
       <div className="device-frame">
         <img className="only-light" src="/images/agy-reply-sheet.png" alt="Fix token refresh race 的回复表单，一条消息标着“已送达”，另一条标着“等待下一步”" />
         <img className="only-dark" src="/images/agy-reply-sheet-dark.png" alt="Fix token refresh race 的回复表单，一条消息标着“已送达”，另一条标着“等待下一步”" />
@@ -203,18 +213,84 @@ Antigravity 想**运行命令**或**创建、改动文件**时，手机会问你
   </Step>
 </Steps>
 
+### 在聊天里审批 {#approve-in-chat}
+
+回复表单开着时，如果 Antigravity 请求运行命令，你可以直接在聊天里回答。
+
+<Steps>
+  <Step title="找到请求">
+    在左边找到来自 Antigravity 的气泡。上面写着**想要运行：**，接着是命令，然后是**拒绝**和**允许**两个按钮。
+
+    <Frame caption="Antigravity 在回复聊天里请求运行一条命令。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-approval.png" alt="显示“等待你批准”的 Fix token refresh race 回复表单，Antigravity 的气泡里写着“想要运行：”npm test -- auth/refresh.test.ts，带有“拒绝”和“允许”按钮" />
+        <img className="only-dark" src="/images/agy-reply-approval-dark.png" alt="显示“等待你批准”的 Fix token refresh race 回复表单，Antigravity 的气泡里写着“想要运行：”npm test -- auth/refresh.test.ts，带有“拒绝”和“允许”按钮" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="轻点“允许”或“拒绝”">
+    轻点**允许**让 Antigravity 运行它。轻点**拒绝**让它跳过。
+
+    你应该会看到气泡缩成一行，说明发生了什么——见[已回答的请求](#answered-requests)。
+  </Step>
+</Steps>
+
+气泡里的**拒绝**和**允许**按钮永远不会发送你在输入框里写的内容。你输入的文字会留在输入框里。
+
+### 拒绝并发送 {#deny-and-send}
+
+想说不，同时告诉 Antigravity 改做什么？一个按钮就能同时做到。
+
+<Steps>
+  <Step title="写下理由">
+    请求还在等待时，在输入框里写下 Antigravity 应该改做什么——比如“用 bun，不要用 npm”。
+
+    你应该会看到发送箭头变成红色的**拒绝并发送**按钮，输入框上方出现一行**将作为拒绝的理由发送**。
+
+    <Frame caption="请求等待时输入文字：发送按钮变成“拒绝并发送”。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-deny-send.png" alt="回复表单里有一个等待中的 npm test 运行请求，输入框里有文字，还有红色的“拒绝并发送”按钮和“将作为拒绝的理由发送”这一行" />
+        <img className="only-dark" src="/images/agy-reply-deny-send-dark.png" alt="回复表单里有一个等待中的 npm test 运行请求，输入框里有文字，还有红色的“拒绝并发送”按钮和“将作为拒绝的理由发送”这一行" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="轻点“拒绝并发送”">
+    Antigravity 会跳过这条命令，并把你的文字当作理由读到。
+
+    你应该会看到请求变成 **✕ 已拒绝**，下面引用着你的理由。
+  </Step>
+</Steps>
+
+<Tip>
+  理由最多 500 个字符。超过的话，按钮会保持普通的发送箭头。你的消息会等着，你回应请求后立即送达。
+</Tip>
+
+### 已回答的请求 {#answered-requests}
+
+| 你看到 | 含义 |
+| --- | --- |
+| `✓ 已允许 · <命令>` | 你允许了它。 |
+| `✕ 已拒绝 · <命令>` | 你拒绝了它。如果用了**拒绝并发送**，下面会引用你的理由。 |
+| `已在电脑上回答` | 在 Mac 上回答了。 |
+| `已超时 — 在 Mac 上继续` | 等你的手机等得太久了。Antigravity 改在 Mac 上询问。 |
+
 ### 消息下方状态的含义 {#reply-statuses}
 
-| 你看到的 | 含义 |
+| 你看到 | 含义 |
 | --- | --- |
-| `发送中…` | 手机正在发送。 |
-| `等待下一步` | 你的 Mac 已经收到。Antigravity 会在下一步读到它。在那之前，你可以轻点气泡上的 **×** 取消。 |
+| `发送中…` | 你的手机正在发送。 |
+| `等待你批准` | Antigravity 在等你回答聊天里的请求。你回应后，消息会立即送达。 |
+| `等待下一步` | 你的 Mac 已经收到。Antigravity 会在它的下一步读到。在那之前，你可以轻点气泡上的 **×** 取消它。 |
 | `已送达` | Antigravity 已经读到了。 |
-| `正在 Mac 上唤醒…` | 会话已经结束，所以你的 Mac 正带着你的消息重新启动它。这时已经不能取消。 |
+| `正在 Mac 上唤醒…` | 会话已经结束，你的 Mac 正在带着你的消息重新启动它。只有 Mac 真的开始重新启动时才会显示。这时已经不能取消。 |
 | `已在 Mac 上继续` | 会话带着你的消息又跑起来了。 |
-| `重新连接中…` | 手机暂时连不上你的 Mac。它会自己一直重试——不用再发一次。 |
+| `重新连接中…` | 你的手机现在连不上你的 Mac。它会自己一直重试——你不需要再发一次。 |
 
 ### 在哪些情况下能用 {#where-reply-works}
+
+取决于你在哪里使用 Antigravity。
 
 **使用 `agy` 命令行工具时：**
 
@@ -225,12 +301,12 @@ Antigravity 想**运行命令**或**创建、改动文件**时，手机会问你
 **使用 Antigravity 桌面应用时：**
 
 - **正在工作**——消息会在它的下一步送到。
-- **已结束**——只能在 Mac 上继续。**回复**会变灰，下面那一行会说明原因。
+- **已结束**——只能在 Mac 上继续。**回复**会变灰，下面那一行写着**Antigravity 应用的会话只能在 Mac 上继续**。
 
-<Frame caption="桌面应用里一个已结束的会话：“回复”是灰色的，下面那一行说明了原因。">
+<Frame caption="桌面应用里已结束的会话：“回复”变灰，下面那一行说明原因。">
   <div className="device-frame">
-    <img className="only-light" src="/images/agy-reply-idle-app.png" alt="一个已展开、标着完成的 Antigravity 应用会话，“回复”按钮为灰色，下方一行写着“Antigravity 应用的会话只能在 Mac 上继续”" />
-    <img className="only-dark" src="/images/agy-reply-idle-app-dark.png" alt="一个已展开、标着完成的 Antigravity 应用会话，“回复”按钮为灰色，下方一行写着“Antigravity 应用的会话只能在 Mac 上继续”" />
+    <img className="only-light" src="/images/agy-reply-idle-app.png" alt="已展开、标着“完成”的 Antigravity 应用会话，“回复”按钮变灰，下面一行写着“Antigravity 应用的会话只能在 Mac 上继续”" />
+    <img className="only-dark" src="/images/agy-reply-idle-app-dark.png" alt="已展开、标着“完成”的 Antigravity 应用会话，“回复”按钮变灰，下面一行写着“Antigravity 应用的会话只能在 Mac 上继续”" />
   </div>
 </Frame>
 
@@ -270,6 +346,10 @@ Antigravity 想**运行命令**或**创建、改动文件**时，手机会问你
     你的 Mac 已经收到了这条消息。如果 Antigravity 正在工作，它会在下一步读到——长时间运行的命令可能要等一会儿。
 
     如果会话已经结束，而 Mac 上的 `agy` 还开着，这条消息会等你在那里发出下一条消息。在 `agy` 里随便发点什么，Antigravity 就会把两条一起读到。也可以轻点气泡上的 **×** 取消它。
+  </Accordion>
+
+  <Accordion title="Nomo 命令显示“operation not permitted”">
+    第一次在 Antigravity 桌面应用里用 Nomo 命令时可能会出现。这是正常的：Antigravity 会自己在沙箱外重试。等它完成就好，你什么都不用做。
   </Accordion>
 
   <Accordion title="“回复”是灰色的">

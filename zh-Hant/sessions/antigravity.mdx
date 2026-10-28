@@ -56,6 +56,8 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
     Antigravity 在執行 Nomo 的指令之前會先問你。請選擇 **Allow**（允許）。
 
     你應該會看到瀏覽器打開一個有 QR code 的頁面。
+
+    在 Antigravity 桌面應用程式裡，第一個 Nomo 指令可能會顯示一行 `operation not permitted`。這是正常的 — Antigravity 會自己在沙箱外重試。等著就好。
   </Step>
 
   <Step title="掃描 QR code">
@@ -162,6 +164,8 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
 - **在桌面應用程式裡，什麼都會問你的手機**。Nomo 看不到桌面應用程式的權限設定，所以每一個指令和檔案變更都會送到你的手機。
 - **手機不在身邊？沒關係**。如果連不上你的手機，或批准已經[暫停](/zh-Hant/sessions/approvals#pausing-it)，Antigravity 會在電腦上問你，就和沒有 Nomo 時一樣。
 - **在電腦上停止了對話？**手機上的卡片會自己消失。
+- **等待期間，終端機裡什麼都不顯示**。請求在等你的手機時，終端機裡不會出現任何內容。這是正常的 — 請求在你的手機上。
+- **回覆表單開著？**請求也會出現在聊天裡，你可以在那裡回答 — 請看[在聊天裡批准](#approve-in-chat)。
 
 ## 停止這一輪 {#interrupt}
 
@@ -169,52 +173,124 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
 
 ## 從手機回覆 {#reply-from-your-phone}
 
-從 iPhone 傳一則訊息給 Antigravity session — 修正一個地方、交代下一步，或一句「繼續」。它會像你在 Mac 上打字一樣送到 Antigravity。在哪裡都能用，不需要連同一個 Wi-Fi。
+從 iPhone 傳一則訊息給 Antigravity session — 修正一個地方、交代下一步，或一句「繼續」。它會像你在 Mac 上打字一樣送到 Antigravity。回覆畫面是一個聊天：你的訊息在右邊，Antigravity 的請求出現在左邊。
+
+<Note>
+  **目前，你的 iPhone 和 Mac 必須連著同一個 Wi-Fi**，並且在 Nomo 裡打開「**[區域網路](/zh-Hant/sessions/settings#local-network)**」。即將推出的伺服器更新之後，在哪裡都能回覆。
+</Note>
 
 <Steps>
   <Step title="打開 session">
     在 Nomo 裡打開你的電腦，選擇 **Antigravity** 分頁。點一下 session 的名稱。
 
-    你應該會看到這個 session 展開，詳細資訊下方有一個「**回覆**」按鈕。
+    你應該會看到這個 session 展開，詳細資訊下方有一個藍色的「**回覆**」按鈕。正在執行的 session 還有一個紅色的「**停止**」按鈕。
 
-    <Frame caption="一個執行中、已展開的 Antigravity session，詳細資訊下方是「回覆」。">
+    <Frame caption="一個正在執行、已展開的 Antigravity session，詳細資訊下方有「停止」和「回覆」。">
       <div className="device-frame">
-        <img className="only-light" src="/images/agy-reply-button.png" alt="已展開的 Antigravity session 列 Fix token refresh race，顯示模型、資料夾、agy CLI 和「回覆」按鈕" />
-        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="已展開的 Antigravity session 列 Fix token refresh race，顯示模型、資料夾、agy CLI 和「回覆」按鈕" />
+        <img className="only-light" src="/images/agy-reply-button.png" alt="已展開的 Antigravity session 列 Fix token refresh race，顯示模型、資料夾、agy CLI，以及「停止」和「回覆」兩個按鈕" />
+        <img className="only-dark" src="/images/agy-reply-button-dark.png" alt="已展開的 Antigravity session 列 Fix token refresh race，顯示模型、資料夾、agy CLI，以及「停止」和「回覆」兩個按鈕" />
       </div>
     </Frame>
   </Step>
 
   <Step title="點一下「回覆」">
     你應該會看到一張表單滑上來，上方是 session 名稱，下方是寫著「**傳訊息給這個 session**」的輸入框。
+
+    隨時要關閉表單，點一下右上角的 **✕**。
   </Step>
 
   <Step title="輸入訊息並送出">
     輸入你的訊息，然後點一下箭頭。
 
-    你應該會看到訊息變成一個泡泡，下面有一行簡短的狀態。狀態告訴你這則訊息走到哪裡了 — 請看下面的列表。
+    你應該會看到訊息變成右邊的一個泡泡，下面有一行簡短的狀態。狀態告訴你這則訊息走到哪裡了 — 請看下面的列表。
 
-    <Frame caption="兩則訊息：第一則已送到 Antigravity，第二則在等它的下一步，還可以取消。">
+    <Frame caption="兩則訊息：第一則已經送到 Antigravity，第二則在等它的下一步，還可以取消。">
       <div className="device-frame">
-        <img className="only-light" src="/images/agy-reply-sheet.png" alt="Fix token refresh race 的回覆表單，一則訊息標示「已送達」，另一則標示「等待下一步」" />
-        <img className="only-dark" src="/images/agy-reply-sheet-dark.png" alt="Fix token refresh race 的回覆表單，一則訊息標示「已送達」，另一則標示「等待下一步」" />
+        <img className="only-light" src="/images/agy-reply-sheet.png" alt="Fix token refresh race 的回覆表單，一則訊息標著「已送達」，另一則標著「等待下一步」" />
+        <img className="only-dark" src="/images/agy-reply-sheet-dark.png" alt="Fix token refresh race 的回覆表單，一則訊息標著「已送達」，另一則標著「等待下一步」" />
       </div>
     </Frame>
   </Step>
 </Steps>
 
+### 在聊天裡批准 {#approve-in-chat}
+
+回覆表單開著時，如果 Antigravity 請求執行指令，你可以直接在聊天裡回答。
+
+<Steps>
+  <Step title="找到請求">
+    在左邊找到來自 Antigravity 的泡泡。上面寫著「**想要執行：**」，接著是指令，然後是「**拒絕**」和「**允許**」兩個按鈕。
+
+    <Frame caption="Antigravity 在回覆聊天裡請求執行一個指令。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-approval.png" alt="顯示「等待你批准」的 Fix token refresh race 回覆表單，Antigravity 的泡泡裡寫著「想要執行：」npm test -- auth/refresh.test.ts，有「拒絕」和「允許」按鈕" />
+        <img className="only-dark" src="/images/agy-reply-approval-dark.png" alt="顯示「等待你批准」的 Fix token refresh race 回覆表單，Antigravity 的泡泡裡寫著「想要執行：」npm test -- auth/refresh.test.ts，有「拒絕」和「允許」按鈕" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="點一下「允許」或「拒絕」">
+    點一下「**允許**」讓 Antigravity 執行它。點一下「**拒絕**」讓它跳過。
+
+    你應該會看到泡泡縮成一行，說明發生了什麼 — 請看[已回答的請求](#answered-requests)。
+  </Step>
+</Steps>
+
+泡泡裡的「**拒絕**」和「**允許**」按鈕永遠不會送出你在輸入框裡寫的內容。你輸入的文字會留在輸入框裡。
+
+### 拒絕並傳送 {#deny-and-send}
+
+想說不，同時告訴 Antigravity 改做什麼？一個按鈕就能同時做到。
+
+<Steps>
+  <Step title="寫下理由">
+    請求還在等待時，在輸入框裡寫下 Antigravity 應該改做什麼 — 例如「用 bun，不要用 npm」。
+
+    你應該會看到送出箭頭變成紅色的「**拒絕並傳送**」按鈕，輸入框上方出現一行「**將作為拒絕的理由傳送**」。
+
+    <Frame caption="請求等待時輸入文字：送出按鈕變成「拒絕並傳送」。">
+      <div className="device-frame">
+        <img className="only-light" src="/images/agy-reply-deny-send.png" alt="回覆表單裡有一個等待中的 npm test 執行請求，輸入框裡有文字，還有紅色的「拒絕並傳送」按鈕和「將作為拒絕的理由傳送」這一行" />
+        <img className="only-dark" src="/images/agy-reply-deny-send-dark.png" alt="回覆表單裡有一個等待中的 npm test 執行請求，輸入框裡有文字，還有紅色的「拒絕並傳送」按鈕和「將作為拒絕的理由傳送」這一行" />
+      </div>
+    </Frame>
+  </Step>
+
+  <Step title="點一下「拒絕並傳送」">
+    Antigravity 會跳過這個指令，並把你的文字當作理由讀到。
+
+    你應該會看到請求變成 **✕ 已拒絕**，下面引用著你的理由。
+  </Step>
+</Steps>
+
+<Tip>
+  理由最多 500 個字元。超過的話，按鈕會保持一般的送出箭頭。你的訊息會等著，你回應請求後立即送達。
+</Tip>
+
+### 已回答的請求 {#answered-requests}
+
+| 你看到 | 意思 |
+| --- | --- |
+| `✓ 已允許 · <指令>` | 你允許了它。 |
+| `✕ 已拒絕 · <指令>` | 你拒絕了它。如果用了「**拒絕並傳送**」，下面會引用你的理由。 |
+| `已在電腦上回答` | 在 Mac 上回答了。 |
+| `已逾時 — 在 Mac 上繼續` | 等你的手機等太久了。Antigravity 改在 Mac 上詢問。 |
+
 ### 訊息下方狀態的意思 {#reply-statuses}
 
-| 你看到的 | 意思 |
+| 你看到 | 意思 |
 | --- | --- |
-| `傳送中…` | 手機正在傳送。 |
-| `等待下一步` | 你的 Mac 已經收到。Antigravity 會在下一步讀到它。在那之前，你可以點一下泡泡上的 **×** 取消。 |
+| `傳送中…` | 你的手機正在傳送。 |
+| `等待你批准` | Antigravity 在等你回答聊天裡的請求。你回應後，訊息會立即送達。 |
+| `等待下一步` | 你的 Mac 已經收到。Antigravity 會在它的下一步讀到。在那之前，你可以點一下泡泡上的 **×** 取消它。 |
 | `已送達` | Antigravity 已經讀到了。 |
-| `正在 Mac 上喚醒…` | session 已經結束，所以你的 Mac 正帶著你的訊息重新啟動它。這時已經不能取消。 |
-| `已在 Mac 上繼續` | session 帶著你的訊息又開始執行了。 |
-| `重新連線中…` | 手機暫時連不到你的 Mac。它會自己一直重試 — 不用再送一次。 |
+| `正在 Mac 上喚醒…` | session 已經結束，你的 Mac 正在帶著你的訊息重新啟動它。只有 Mac 真的開始重新啟動時才會顯示。這時已經不能取消。 |
+| `已在 Mac 上繼續` | session 帶著你的訊息又跑起來了。 |
+| `重新連線中…` | 你的手機現在連不到你的 Mac。它會自己一直重試 — 你不需要再傳一次。 |
 
 ### 在哪些情況下能用 {#where-reply-works}
+
+取決於你在哪裡使用 Antigravity。
 
 **使用 `agy` 命令列工具時：**
 
@@ -225,12 +301,12 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
 **使用 Antigravity 桌面應用程式時：**
 
 - **正在工作** — 訊息會在它的下一步送到。
-- **已結束** — 只能在 Mac 上繼續。「**回覆**」會變成灰色，下面那一行會說明原因。
+- **已結束** — 只能在 Mac 上繼續。「**回覆**」會變成灰色，下面那一行寫著「**Antigravity App 的 session 只能在 Mac 上繼續**」。
 
-<Frame caption="桌面應用程式裡一個已結束的 session：「回覆」是灰色的，下面那一行說明了原因。">
+<Frame caption="桌面應用程式裡已結束的 session：「回覆」變成灰色，下面那一行說明原因。">
   <div className="device-frame">
-    <img className="only-light" src="/images/agy-reply-idle-app.png" alt="一個已展開、標示完成的 Antigravity App session，「回覆」按鈕為灰色，下方一行寫著「Antigravity App 的 session 只能在 Mac 上繼續」" />
-    <img className="only-dark" src="/images/agy-reply-idle-app-dark.png" alt="一個已展開、標示完成的 Antigravity App session，「回覆」按鈕為灰色，下方一行寫著「Antigravity App 的 session 只能在 Mac 上繼續」" />
+    <img className="only-light" src="/images/agy-reply-idle-app.png" alt="已展開、標著「完成」的 Antigravity App session，「回覆」按鈕變成灰色，下面一行寫著「Antigravity App 的 session 只能在 Mac 上繼續」" />
+    <img className="only-dark" src="/images/agy-reply-idle-app-dark.png" alt="已展開、標著「完成」的 Antigravity App session，「回覆」按鈕變成灰色，下面一行寫著「Antigravity App 的 session 只能在 Mac 上繼續」" />
   </div>
 </Frame>
 
@@ -270,6 +346,10 @@ Antigravity 桌面應用程式和 `agy` 命令列工具都能用。
     你的 Mac 已經收到這則訊息。如果 Antigravity 正在工作，它會在下一步讀到 — 執行很久的指令可能要等一下。
 
     如果 session 已經結束，而 Mac 上的 `agy` 還開著，這則訊息會等你在那裡送出下一則訊息。在 `agy` 裡隨便送點什麼，Antigravity 就會把兩則一起讀到。也可以點一下泡泡上的 **×** 取消它。
+  </Accordion>
+
+  <Accordion title="Nomo 指令顯示「operation not permitted」">
+    第一次在 Antigravity 桌面應用程式裡用 Nomo 指令時可能會出現。這是正常的：Antigravity 會自己在沙箱外重試。等它完成就好，你什麼都不用做。
   </Accordion>
 
   <Accordion title="「回覆」是灰色的">
