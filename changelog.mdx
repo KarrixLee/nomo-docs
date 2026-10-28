@@ -8,12 +8,27 @@ icon: "clock-rotate-left"
 <Update label="October 2026" description="2.3.5">
   ## Antigravity sessions
 
+  <Frame>
+    <img src="/images/changelog-2-3-5-antigravity.png" alt="The Nomo and Antigravity icons beside the headline “It asks. You answer.”, and an Antigravity approval card lifting off an iPhone with Deny and Allow buttons" />
+  </Frame>
+
   **New**
 
-  - **Antigravity** joins Claude Code, Codex, OpenCode and Cursor — sessions from the Google Antigravity desktop app and the `agy` CLI run live in the Sessions tab and on the Dynamic Island, with Antigravity's own conversation title and model. Install with `bunx nomo-ai --antigravity`, restart Antigravity, then type `/nomo-pair`
+  - **Antigravity** joins Claude Code, Codex, OpenCode and Cursor — sessions from the Google Antigravity desktop app and the `agy` CLI run live in the Sessions tab and on the Dynamic Island, with Antigravity's own conversation title and model. Install plugin 2.3.5 with `bunx nomo-ai --antigravity`, restart Antigravity, then type `/nomo-pair`
   - Allow or deny Antigravity's shell commands and file writes from your phone, with **Deny with note…** to tell it why. Reads and searches never reach your phone, and your own deny rules always win
   - Stop a running Antigravity turn from your phone — **Interrupt** stops it after the current step
   - [Reply](/sessions/antigravity#reply-from-your-phone) to an Antigravity session from your phone — up to 4,000 characters, read at its next step. The reply sheet is a chat: Antigravity's requests appear in it with **Deny** and **Allow**, and [**Deny & send**](/sessions/antigravity#deny-and-send) denies a command and tells Antigravity why in one tap. A finished `agy` session starts again on your Mac; a finished desktop-app session continues only on the Mac. For now, replies need your iPhone and Mac on the same Wi-Fi
+  - Cursor's status now covers **BugBot**, **Cursor IDE (iOS)** and **Enterprise Dashboard**, each with its own status alert. If you'd turned off all of Cursor's alerts, the new ones start off too
+
+  **Improved**
+
+  - New buttons across Sessions: **View plan**, **Open on Mac**, **Interrupt** and **Reply** share one look, each in its own color. On question cards, **Deny** is no longer red, matching approval cards
+  - When remote approvals are paused, the banner in Sessions lists each agent with the command that turns them back on. Touch and hold a command to copy it
+  - The reply box sends what you type exactly as typed: `--` no longer turns into a dash, and quotes stay straight, so commands arrive intact
+
+  **Fixed**
+
+  - Cursor's status history and uptime were empty after Cursor moved its status page. They're back, and uptime now counts a partial outage the way Cursor's own status page does
 
   **Plugin 2.3.5**
 

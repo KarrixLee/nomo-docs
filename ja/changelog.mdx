@@ -7,12 +7,27 @@ icon: "clock-rotate-left"
 <Update label="2026年10月" description="2.3.5">
   ## Antigravity のセッション
 
+  <Frame>
+    <img src="/images/changelog-2-3-5-antigravity.png" alt="Nomo と Antigravity のアイコンと「It asks. You answer.」の見出し。iPhone から浮かび上がる Antigravity の許可リクエストカードに、「拒否」と「許可」のボタンが並んでいます" />
+  </Frame>
+
   **新機能**
 
-  - **Antigravity** が Claude Code、Codex、OpenCode、Cursor に加わりました — Google Antigravity デスクトップアプリと `agy` CLI のセッションが、セッションタブと Dynamic Island にリアルタイムで表示され、Antigravity 自身の会話のタイトルとモデルも付きます。インストールは `bunx nomo-ai --antigravity` で、そのあと Antigravity を再起動して `/nomo-pair` と入力してください
+  - **Antigravity** が Claude Code、Codex、OpenCode、Cursor に加わりました — Google Antigravity デスクトップアプリと `agy` CLI のセッションが、セッションタブと Dynamic Island にリアルタイムで表示され、Antigravity 自身の会話のタイトルとモデルも付きます。プラグイン 2.3.5 のインストールは `bunx nomo-ai --antigravity` で、そのあと Antigravity を再起動して `/nomo-pair` と入力してください
   - Antigravity のシェルコマンドとファイルの書き込みを、iPhone から許可または拒否できるようになりました。「メモを付けて拒否…」で理由も伝えられます。読み取りと検索が iPhone に届くことはなく、あなた自身の拒否ルールが常に優先されます
   - 実行中の Antigravity のターンを iPhone から止められるようになりました — 「中断」で、現在のステップが終わったところで止まります
   - iPhone から Antigravity のセッションに[返信](/ja/sessions/antigravity#reply-from-your-phone)できるようになりました — 最大 4,000 文字で、次のステップで読み込まれます。返信シートはチャットの形になっていて、Antigravity からのリクエストが「**拒否**」「**許可**」付きで表示されます。[「**拒否して送信**」](/ja/sessions/antigravity#deny-and-send)を使うと、1 回のタップでコマンドを拒否し、その理由を Antigravity に伝えられます。終わった `agy` のセッションは Mac で再開し、終わったデスクトップアプリのセッションは Mac でのみ続けられます。現在、返信には iPhone と Mac が同じ Wi-Fi につながっている必要があります
+  - Cursor のステータスに **BugBot**、**Cursor IDE (iOS)**、**Enterprise Dashboard** が加わり、それぞれにステータスアラートが付きました。Cursor のアラートをすべてオフにしていた場合は、新しい項目も最初からオフになります
+
+  **改善**
+
+  - セッションのボタンを一新しました。「計画を表示」「Macで開く」「中断」「返信」が同じデザインになり、それぞれ専用の色が付きます。質問カードの「拒否」も、承認カードと同じく赤ではなくなりました
+  - リモート承認が一時停止中のとき、セッションのお知らせに、エージェントごとに承認をオンに戻すコマンドが表示されるようになりました。コマンドをタッチして押さえたままにするとコピーできます
+  - 返信欄に入力した文字がそのまま送られるようになりました。`--` がダッシュに変わったり、引用符が曲がった形に変わったりしないので、コマンドが崩れずに届きます
+
+  **修正**
+
+  - Cursor がステータスページを移転してから、Cursor のステータス履歴と稼働状況が空になっていました。再び表示されるようになり、稼働状況は Cursor 自身のステータスページと同じ方法で一部障害を数えるようになりました
 
   **プラグイン 2.3.5**
 

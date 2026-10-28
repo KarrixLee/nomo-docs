@@ -7,12 +7,27 @@ icon: "clock-rotate-left"
 <Update label="2026年10月" description="2.3.5">
   ## Antigravity sessions
 
+  <Frame>
+    <img src="/images/changelog-2-3-5-antigravity.png" alt="Nomo 與 Antigravity 圖示旁寫著「It asks. You answer.」，一張 Antigravity 權限請求卡片從 iPhone 上浮起，附有「拒絕」與「允許」按鈕" />
+  </Frame>
+
   **新增**
 
-  - **Antigravity** 加入 Claude Code、Codex、OpenCode 和 Cursor 的行列 — 來自 Google Antigravity 桌面應用程式和 `agy` CLI 的 sessions，會即時出現在 Sessions 分頁和動態島上，並帶著 Antigravity 自己的對話標題和模型。用 `bunx nomo-ai --antigravity` 安裝，重新啟動 Antigravity，然後輸入 `/nomo-pair`
+  - **Antigravity** 加入 Claude Code、Codex、OpenCode 和 Cursor 的行列 — 來自 Google Antigravity 桌面應用程式和 `agy` CLI 的 sessions，會即時出現在 Sessions 分頁和動態島上，並帶著 Antigravity 自己的對話標題和模型。用 `bunx nomo-ai --antigravity` 安裝外掛程式 2.3.5，重新啟動 Antigravity，然後輸入 `/nomo-pair`
   - 在手機上允許或拒絕 Antigravity 的 shell 指令和檔案寫入，還能用「拒絕並附註…」告訴它原因。讀取和搜尋從來不會送到你的手機，而你自己的拒絕規則永遠優先
   - 在手機上停止 Antigravity 正在執行的一輪 — 「停止」會在目前這一步結束後停下它
   - 在手機上[回覆](/zh-Hant/sessions/antigravity#reply-from-your-phone) Antigravity session — 最多 4,000 個字元，會在它的下一步讀到。回覆表單是一個聊天：Antigravity 的請求會帶著「**拒絕**」和「**允許**」出現在裡面，[「**拒絕並傳送**」](/zh-Hant/sessions/antigravity#deny-and-send)點一下就能拒絕一個指令並告訴 Antigravity 原因。已結束的 `agy` session 會在 Mac 上重新啟動；已結束的桌面應用程式 session 只能在 Mac 上繼續。目前，回覆需要 iPhone 和 Mac 連著同一個 Wi-Fi
+  - Cursor 的狀態新增 **BugBot**、**Cursor IDE (iOS)** 和 **Enterprise Dashboard**，各有自己的狀態提醒。如果你關掉了 Cursor 的所有提醒，新增的這幾項一開始也是關著的
+
+  **改進**
+
+  - Sessions 裡的按鈕換了新樣子：「查看計畫」、「在 Mac 上開啟」、「停止」和「回覆」用同一種樣式，各有自己的顏色。問題卡片上的「拒絕」也和批准卡片一樣，不再是紅色
+  - 遠端批准暫停時，Sessions 裡的提示會依代理列出重新開啟批准的指令。按住指令即可拷貝
+  - 回覆框會原樣傳送你輸入的內容：`--` 不再被換成破折號，引號也保持直引號，指令能完整送達
+
+  **修正**
+
+  - Cursor 搬遷狀態頁面後，Cursor 的狀態紀錄和正常運作時間一直是空的。現在恢復顯示，正常運作時間也會像 Cursor 自己的狀態頁面那樣計算部分中斷
 
   **外掛程式 2.3.5**
 
