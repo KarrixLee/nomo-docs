@@ -227,6 +227,27 @@ encontrarte con que algo se ejecutó porque lo tocaste hace veinte minutos.
   movimiento, ese toque se descarta a propósito: nunca fue una decisión.
 </Tip>
 
+## Solicitudes de Computer Use {#computer-use-requests}
+
+Claude Code puede controlar apps de tu Mac con Computer Use. Antes de hacerlo,
+te pregunta en un diálogo en tu Mac qué apps puede usar.
+
+Nomo te avisa en cuanto pregunta. La fila, la Dynamic Island expandida y la
+pantalla de bloqueo muestran la mano amarilla, `Necesita ayuda`, con las apps
+que quiere: `Use iPhone Mirroring`. Si son varias, pone `Use System Settings,
+Finder`. La Dynamic Island compacta muestra solo la mano.
+
+<Note>
+  **Esta solo se puede responder en tu Mac.** Claude Code muestra ese diálogo
+  por su cuenta y no le da a Nomo ninguna forma de responderlo desde fuera. Por
+  eso tu teléfono no ofrece **Permitir** ni **Denegar** aquí, a diferencia de la
+  mano violeta. Cuando permites las apps para la sesión, Claude Code ya no
+  vuelve a preguntar por ellas.
+</Note>
+
+Necesita la versión **2.3.53** del plugin. Con un plugin anterior, ves un
+`Necesita ayuda` normal unos segundos después.
+
 ## Vuelta automática a la terminal {#nothing-hangs-forever}
 
 Si tu teléfono no responde nunca, la solicitud acaba volviendo sola a la terminal.

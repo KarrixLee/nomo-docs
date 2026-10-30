@@ -214,6 +214,26 @@ Nomo는 그 뒤에 확인도 합니다. 중계 서버가 보낸 "OK"만으로는
   결정이 아니었기 때문입니다.
 </Tip>
 
+## Computer Use 요청 {#computer-use-requests}
+
+Claude Code는 Computer Use로 Mac의 앱을 제어할 수 있습니다. 제어하기 전에 Mac의
+대화 상자에서 어떤 앱을 써도 되는지 묻습니다.
+
+Nomo는 묻는 즉시 알려 줍니다. 세션 행, 확장된 Dynamic Island, 잠금 화면에 노란
+손과 `도움 필요`가 표시되고, `Use iPhone Mirroring`처럼 원하는 앱이 함께
+나옵니다. 앱이 여러 개면 `Use System Settings, Finder`처럼 표시됩니다. 컴팩트
+Dynamic Island에는 손만 표시됩니다.
+
+<Note>
+  **이 요청은 Mac에서만 답할 수 있습니다.** 이 대화 상자는 Claude Code가 직접
+  띄우며, 외부에서 답할 방법을 Nomo에 제공하지 않습니다. 그래서 보라색 손과
+  달리 휴대폰에 **허용**이나 **거부**가 없습니다. 세션에서 앱을 한 번 허용하면
+  Claude Code는 그 앱에 대해 다시 묻지 않습니다.
+</Note>
+
+플러그인 **2.3.53**이 필요합니다. 이전 플러그인에서는 몇 초 뒤에 일반
+`도움 필요`가 표시됩니다.
+
 ## 터미널로 되돌아가는 경우 {#nothing-hangs-forever}
 
 휴대폰이 끝내 답하지 않으면 요청은 스스로 터미널로 되돌아갑니다. Nomo가 휴대폰에
