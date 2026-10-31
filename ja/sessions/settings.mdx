@@ -43,6 +43,10 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッショ�
 
 対象になるのは、オンにしたあとに Nomo が**初めて**見つけたセッションだけです。後からオンにしても、それまでのセッションが Dynamic Island に押し寄せることはありませんし、明示的にオフにしたセッションが再び追加されることもありません。
 
+<Note>
+  許可リクエストは、この設定がオフでも、そのセッションのスイッチがオフでも Dynamic Island に表示されます。エージェントが「許可」か「拒否」を待っている間、ロックされた iPhone でも気づけるように Nomo がそのセッションを表示し、回答すればスイッチを変えずに取り下げます。止めたい場合は、[「iPhoneで回答」](#remote-approvals)をオフにしてください。
+</Note>
+
 <Info>
   **これがベータ版である理由** 
   
@@ -50,10 +54,6 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッショ�
 
   そうなっているときは、下の「より頻繁な更新」をオンにするか、本当に待っている 1〜2 個のセッションだけを登録する運用に戻してください。
 </Info>
-
-<Tip>
-  **許可を求めている**セッションは、この 2 つの設定にかかわらず Dynamic Island に表示されます — それがこの機能の要点です。[セッションの表示はオプトイン](/ja/sessions/island#nothing-appears-until-you-say-so)をご覧ください。
-</Tip>
 
 ## リモート承認 {#remote-approvals}
 

@@ -4,6 +4,38 @@ description: "Qué salió, y cuándo."
 icon: "clock-rotate-left"
 ---
 
+<Update label="noviembre de 2026" description="2.3.6">
+  ## Aviso de actualización, tus planes y los límites más recientes
+
+  **Nuevo**
+
+  - Aviso de actualización: cuando hay una versión nueva de Nomo en la App Store, aparece una pequeña barra, encima de la barra de pestañas en iOS 26.1 y posteriores, o como tarjeta arriba del todo en **Inicio** en versiones anteriores de iOS. **Actualizar** te lleva directo a la App Store. Toca cualquier otra parte de la barra para abrir **Novedades**, con las notas de la versión, **Actualizar** y **Ahora no**. Si cierras la barra (×), no vuelve a aparecer hasta la siguiente versión. Solo aparece cuando has terminado la guía de bienvenida
+
+  **Mejorado**
+
+  - Todas las tarjetas de uso muestran tu plan:
+    - **Claude**: **Claude Pro**, **Claude Max** o **Claude Ultra**. Max 20x aparece como Claude Ultra, el nombre que Anthropic le dio el 30 de octubre de 2026
+    - **Codex**: tu plan de ChatGPT, como **ChatGPT Plus** o **ChatGPT Pro 200**; también Go, Pro 100, Pro 500, Business, Enterprise y Edu
+    - **Cursor**: el plan que aparece en tu panel de Cursor, como **Cursor Premium** o **Cursor Pro+**
+    - **xAI**: **X Ultra** con The X Subscription, **SuperGrok Heavy** o **SuperGrok**
+    - **Antigravity**: **Google AI Pro**, **Google AI Ultra** o **Google AI Ultra Lite**
+    - **Kimi**: tu plan de Kimi Code, como **Kimi Allegretto**. Sin un plan de Kimi Code, no se muestra ningún plan
+  - Sin límite de 5 horas, el widget de uso mediano muestra **Semanal** y el límite semanal de tu modelo principal, como Fable, igual que ya hace con Antigravity
+  - **Codex**: la tarjeta muestra tu saldo de **Créditos** y tus **restablecimientos guardados** cuando los tienes. Las cuentas Pro con Spark tienen una fila de Spark
+  - **Claude**: con el uso adicional activado, una línea de **Uso adicional** muestra cuánto has gastado
+  - **Antigravity**: nueva fila de 5 horas de **Claude & GPT**. Si uno de los servidores de Google devuelve datos de cuota incompletos, Nomo consulta el otro
+  - **Cursor**: los planes antiguos mantienen dos filas, ahora llamadas **Modelos de Cursor** y **Otros modelos**, como las llama Cursor hoy
+  - **Kimi**: en los planes antiguos con un total mensual, la tarjeta muestra el límite mensual cuando está más lleno que el semanal; si agotas el total mensual, Kimi Code se bloquea
+
+  **Corregido**
+
+  - Con el widget de uso pequeño en **Sesión**, un plan sin límite de 5 horas mostraba un número vacío; por ejemplo, Claude Ultra, desde que Anthropic le quitó el límite de 5 horas. Ahora muestra una marca de verificación y **Sin límite de sesión**, como ya hacía la app
+  - **Cursor**: con The X Subscription, la tarjeta mostraba dos filas, una de ellas de API y vacía. Ahora muestra una sola fila **Semanal** (la bolsa que Cursor comparte con Grok Bot), igual que el panel de Cursor
+  - **Antigravity**: Gemini 4 Argon se contaba en las barras de Gemini y podía hacer que marcaran un 100 % de uso. Ahora tiene su propia fila en la app
+  - **Codex**: el límite de 30 días del plan Free se llama **Mensual**, no Semanal
+  - **Claude**: las cuentas Free muestran filas vacías en lugar de un error de carga. Los límites de productos de Claude como Design, Cowork y Routines nunca aparecen como límite de un modelo
+</Update>
+
 <Update label="octubre de 2026" description="2.3.5">
   ## Sesiones de Antigravity
 
