@@ -5,7 +5,7 @@ icon: "clock-rotate-left"
 ---
 
 <Update label="2026年11月" description="2.3.6">
-  ## アップデートのお知らせと AI のプラン
+  ## アップデートのお知らせ、プラン、最新の上限
 
   **新機能**
 
@@ -13,12 +13,27 @@ icon: "clock-rotate-left"
 
   **改善**
 
-  - Claude の使用量カードに、ご利用のプラン（**Claude Pro**、**Claude Max**、**Claude Ultra**）が表示されるようになりました。xAI と Antigravity ですでに表示されているのと同じプランの行です。Anthropic が 2026年10月30日にプラン名を変更したため、Max 20x は Claude Ultra と表示されます。Codex のカードにも、**ChatGPT Plus** や **ChatGPT Pro** などの ChatGPT のプランが表示されます
+  - すべての使用量カードに、ご利用のプランが表示されるようになりました:
+    - **Claude**: **Claude Pro**、**Claude Max**、**Claude Ultra**。Anthropic が 2026年10月30日にプラン名を変更したため、Max 20x は Claude Ultra と表示されます
+    - **Codex**: **ChatGPT Plus** や **ChatGPT Pro 200** などの ChatGPT のプラン。Go、Pro 100、Pro 500、Business、Enterprise、Edu にも対応しています
+    - **Cursor**: Cursor のダッシュボードに表示されるプラン（**Cursor Premium**、**Cursor Pro+** など）
+    - **xAI**: The X Subscription では **X Ultra**、ほかに **SuperGrok Heavy**、**SuperGrok**
+    - **Antigravity**: **Google AI Pro**、**Google AI Ultra**、**Google AI Ultra Lite**
+    - **Kimi**: **Kimi Allegretto** などの Kimi Code のプラン。Kimi Code のプランがない場合、プランは表示されません
   - 5 時間の上限がない場合、中サイズの使用量ウィジェットには「週間」と、Fable などの最上位モデルの週間上限が表示されます。Antigravity ですでに表示されているのと同じレイアウトです
+  - **Codex**: 「クレジット」の残高や「保存済みのリセット」がある場合は、カードに表示されます。Spark を利用できる Pro アカウントには Spark の行が表示されます
+  - **Claude**: 追加の使用量をオンにしていると、「追加の使用量」の行に使った金額が表示されます
+  - **Antigravity**: **Claude & GPT** の 5 時間の行が加わりました。Google のサーバーの一方から不完全な割り当てデータが返ってきた場合、Nomo はもう一方のサーバーに問い合わせます
+  - **Cursor**: 以前のプランでは引き続き 2 行が表示され、名前が Cursor の現在の呼び方に合わせて「Cursorモデル」と「その他のモデル」になりました
+  - **Kimi**: 月間の合計がある以前のプランでは、月間の上限のほうが週間の上限より多く使われている場合に、月間の上限を表示します。月間の合計を使い切ると Kimi Code は使えなくなります
 
   **修正**
 
   - 小サイズの使用量ウィジェットを「セッション」にしていると、5 時間の上限がないプランでは数字が空欄になっていました（たとえば、Anthropic が 5 時間の上限をなくした Claude Ultra）。チェックマークと「セッション上限なし」が表示されるようになりました。アプリでは、すでにこの表示になっていました
+  - **Cursor**: The X Subscription では、カードに 2 行が表示され、そのうち API の行は空でした。Grok Bot と共有している枠を 1 行の「週間」として表示するようになり、Cursor のダッシュボードと一致します
+  - **Antigravity**: Gemini 4 Argon が Gemini のバーに含まれてしまい、100% 使用済みと表示されることがありました。アプリでは Gemini 4 Argon 専用の行が表示されるようになりました
+  - **Codex**: Free プランの 30 日間の上限が、「週間」ではなく「月間」と表示されるようになりました
+  - **Claude**: Free アカウントでは、読み込みエラーの代わりに空の行が表示されるようになりました。Design、Cowork、Routines などの Claude の製品の上限が、モデルの上限として表示されることはありません
 </Update>
 
 <Update label="2026年10月" description="2.3.5">

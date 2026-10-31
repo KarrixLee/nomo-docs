@@ -5,7 +5,7 @@ icon: "clock-rotate-left"
 ---
 
 <Update label="2026年11月" description="2.3.6">
-  ## 更新提示與你的 AI 方案
+  ## 更新提示、你的方案和最新限額
 
   **新增**
 
@@ -13,12 +13,27 @@ icon: "clock-rotate-left"
 
   **改進**
 
-  - Claude 用量卡片會顯示你的方案：**Claude Pro**、**Claude Max** 或 **Claude Ultra**，和 xAI、Antigravity 已經顯示的方案那一行相同。Anthropic 在 2026年10月30日為方案改名，所以 Max 20x 會顯示為 Claude Ultra。Codex 卡片也會顯示你的 ChatGPT 方案，例如 **ChatGPT Plus** 或 **ChatGPT Pro**
+  - 每張用量卡片都會顯示你的方案：
+    - **Claude**：**Claude Pro**、**Claude Max** 或 **Claude Ultra**。Anthropic 在 2026年10月30日為方案改名，所以 Max 20x 會顯示為 Claude Ultra
+    - **Codex**：你的 ChatGPT 方案，例如 **ChatGPT Plus** 或 **ChatGPT Pro 200**，Go、Pro 100、Pro 500、Business、Enterprise 和 Edu 也都支援
+    - **Cursor**：Cursor 主控台上顯示的方案，例如 **Cursor Premium** 或 **Cursor Pro+**
+    - **xAI**：The X Subscription 顯示為 **X Ultra**，另有 **SuperGrok Heavy** 和 **SuperGrok**
+    - **Antigravity**：**Google AI Pro**、**Google AI Ultra** 或 **Google AI Ultra Lite**
+    - **Kimi**：你的 Kimi Code 方案，例如 **Kimi Allegretto**。沒有 Kimi Code 方案時不會顯示方案
   - 沒有 5 小時限額時，中型用量小工具會顯示「每週」和你的頂級模型（例如 Fable）的每週限額，和 Antigravity 已經顯示的方式相同
+  - **Codex**：有「點數」餘額或已存的重設次數時，卡片會顯示出來。可以使用 Spark 的 Pro 帳戶會多一行 Spark
+  - **Claude**：開啟額外用量後，「額外用量」那一行會顯示你已花費的金額
+  - **Antigravity**：新增 **Claude & GPT** 的 5 小時一行。Google 的其中一台伺服器傳回的配額資料不完整時，Nomo 會改問另一台
+  - **Cursor**：舊方案仍顯示兩行，名稱改成 Cursor 現在的叫法：「Cursor 模型」和「其他模型」
+  - **Kimi**：在有每月總額的舊方案上，每月限額比每週限額用得更多時，卡片會顯示每月限額 — 每月總額用完後，就無法使用 Kimi Code
 
   **修正**
 
   - 小型用量小工具設為「session」時，沒有 5 小時限額的方案只會顯示空白的數字 — 例如 Anthropic 取消了 5 小時限額的 Claude Ultra。現在會顯示一個勾號和「無 session 限額」，和 App 早已顯示的一樣
+  - **Cursor**：使用 The X Subscription 時，卡片會顯示兩行，其中 API 那一行是空的。現在只顯示一行「每週」 — 也就是 Cursor 與 Grok Bot 共用的額度 — 和 Cursor 主控台一致
+  - **Antigravity**：Gemini 4 Argon 被算進 Gemini 的進度條，可能讓它們顯示已用 100%。現在它在 App 裡有自己的一行
+  - **Codex**：Free 方案的 30 天限額現在標示為「每月」，而不是「每週」
+  - **Claude**：Free 帳戶現在會顯示空白的列，而不是載入錯誤。Design、Cowork、Routines 等 Claude 產品的限額不會再顯示成模型限額
 </Update>
 
 <Update label="2026年10月" description="2.3.5">

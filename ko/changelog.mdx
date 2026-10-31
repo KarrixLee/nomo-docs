@@ -5,7 +5,7 @@ icon: "clock-rotate-left"
 ---
 
 <Update label="2026년 11월" description="2.3.6">
-  ## 업데이트 안내와 AI 요금제
+  ## 업데이트 안내, 요금제, 최신 한도
 
   **새로운 기능**
 
@@ -13,12 +13,27 @@ icon: "clock-rotate-left"
 
   **개선**
 
-  - Claude 사용량 카드에 사용 중인 요금제(**Claude Pro**, **Claude Max**, **Claude Ultra**)가 표시됩니다. xAI와 Antigravity에서 이미 보이던 것과 같은 요금제 줄입니다. Anthropic이 2026년 10월 30일에 요금제 이름을 바꾸면서 Max 20x는 Claude Ultra로 표시됩니다. Codex 카드에도 **ChatGPT Plus**, **ChatGPT Pro** 같은 ChatGPT 요금제가 표시됩니다
+  - 모든 사용량 카드에 사용 중인 요금제가 표시됩니다:
+    - **Claude**: **Claude Pro**, **Claude Max**, **Claude Ultra**. Anthropic이 2026년 10월 30일에 요금제 이름을 바꾸면서 Max 20x는 Claude Ultra로 표시됩니다
+    - **Codex**: **ChatGPT Plus**, **ChatGPT Pro 200** 같은 ChatGPT 요금제. Go, Pro 100, Pro 500, Business, Enterprise, Edu도 표시됩니다
+    - **Cursor**: Cursor 대시보드에 나오는 요금제(예: **Cursor Premium**, **Cursor Pro+**)
+    - **xAI**: The X Subscription은 **X Ultra**, 그 밖에 **SuperGrok Heavy**, **SuperGrok**
+    - **Antigravity**: **Google AI Pro**, **Google AI Ultra**, **Google AI Ultra Lite**
+    - **Kimi**: **Kimi Allegretto** 같은 Kimi Code 요금제. Kimi Code 요금제가 없으면 요금제가 표시되지 않습니다
   - 5시간 한도가 없으면 중간 크기 사용량 위젯에 **주간**과 Fable 같은 최상위 모델의 주간 한도가 표시됩니다. Antigravity에서 이미 보이던 것과 같은 방식입니다
+  - **Codex**: **크레딧** 잔액과 **저장된 재설정**이 있으면 카드에 표시됩니다. Spark를 쓸 수 있는 Pro 계정에는 Spark 줄이 표시됩니다
+  - **Claude**: 추가 사용량을 켜 두면 **추가 사용량** 줄에 사용한 금액이 표시됩니다
+  - **Antigravity**: **Claude & GPT** 5시간 줄이 새로 추가되었습니다. Google 서버 한쪽이 불완전한 할당량 데이터를 보내면 Nomo가 다른 서버에 다시 요청합니다
+  - **Cursor**: 이전 요금제는 계속 두 줄로 표시되며, 이름이 Cursor의 현재 이름인 **Cursor 모델**과 **기타 모델**로 바뀌었습니다
+  - **Kimi**: 월간 총량이 있는 이전 요금제에서는 월간 한도가 주간 한도보다 더 많이 찼을 때 월간 한도를 표시합니다. 월간 총량을 다 쓰면 Kimi Code를 쓸 수 없습니다
 
   **수정**
 
   - 작은 사용량 위젯을 **세션**으로 설정하면 5시간 한도가 없는 요금제에서는 숫자가 비어 있었습니다. Anthropic이 5시간 한도를 없앤 Claude Ultra가 그런 경우입니다. 이제 체크 표시와 **세션 한도 없음**이 표시되며, 앱은 이미 이렇게 표시하고 있었습니다
+  - **Cursor**: The X Subscription에서는 카드에 두 줄이 표시되었고, 그중 API 줄은 비어 있었습니다. 이제 Grok Bot과 함께 쓰는 한도를 **주간** 한 줄로 표시하며, Cursor 대시보드와 같습니다
+  - **Antigravity**: Gemini 4 Argon이 Gemini 막대에 함께 계산되어 100% 사용으로 표시될 수 있었습니다. 이제 앱에서 별도의 줄로 표시됩니다
+  - **Codex**: Free 요금제의 30일 한도가 주간이 아닌 **월간**으로 표시됩니다
+  - **Claude**: Free 계정에 불러오기 오류 대신 빈 줄이 표시됩니다. Design, Cowork, Routines 같은 Claude 제품의 한도는 모델 한도로 표시되지 않습니다
 </Update>
 
 <Update label="2026년 10월" description="2.3.5">
