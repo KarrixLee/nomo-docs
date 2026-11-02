@@ -296,6 +296,21 @@ teléfono.
   una sesión que lleva esperándote está por encima de una que está trabajando.
 </Accordion>
 
+<Accordion title="Aparece una solicitud en la Dynamic Island de una sesión que no añadí" icon="hand">
+  Es un agente pidiendo permiso; por ejemplo, Codex pidiendo ejecutar un
+  comando fuera de su sandbox. Cuando un agente espera un **Permitir** o un
+  **Denegar** y **Responder en el iPhone** está activado, Nomo pone esa sesión en
+  la Dynamic Island, aunque **Añadir sesiones automáticamente** esté desactivado
+  y el interruptor de la sesión también. Si no, el teléfono bloqueado no
+  mostraría nada y el agente se quedaría parado sin que supieras que te espera.
+  En cuanto respondes, o la solicitud caduca, la sesión sale de la Dynamic Island
+  y tus ajustes quedan como los dejaste.
+
+  Para evitarlas, desactiva **Responder en el iPhone** en Ajustes → Sesiones →
+  **Aprobaciones remotas**, o pausa un solo ordenador con
+  [`/nomo-cc:approvals off`](/es/sessions/commands#approvals).
+</Accordion>
+
 <Accordion title="El interruptor de una sesión está activado, en gris y no se deja desactivar" icon="toggle-off">
   Esa sesión está pidiendo permiso. Una solicitud llega a tu Dynamic Island esté
   como esté su interruptor — porque si no, una solicitud que llegara con el
@@ -574,6 +589,14 @@ que ejecutes ese comando allí.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Casi siempre es el comportamiento previsto: las sesiones se activan una a una. Abre el ordenador, busca la sesión y activa su interruptor — o activa Añadir sesiones automáticamente en Ajustes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Aparece una solicitud en la Dynamic Island de una sesión que no añadí",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es un agente pidiendo permiso; por ejemplo, Codex pidiendo ejecutar un comando fuera de su sandbox. Cuando un agente espera un Permitir o un Denegar y Responder en el iPhone está activado, Nomo pone esa sesión en la Dynamic Island, aunque Añadir sesiones automáticamente esté desactivado y el interruptor de la sesión también. Si no, el teléfono bloqueado no mostraría nada y el agente se quedaría parado sin que supieras que te espera. En cuanto respondes, o la solicitud caduca, la sesión sale de la Dynamic Island y tus ajustes quedan como los dejaste. Para evitarlas, desactiva Responder en el iPhone en Ajustes → Sesiones → Aprobaciones remotas, o pausa un solo ordenador con /nomo-cc:approvals off."
       }
     },
     {

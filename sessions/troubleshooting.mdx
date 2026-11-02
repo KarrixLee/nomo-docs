@@ -278,6 +278,20 @@ Your Mac is doing its job for all of these. The answer is on the phone.
   waiting on you outranks one that's working.
 </Accordion>
 
+<Accordion title="An approval popped up on the island for a session I never added" icon="hand">
+  That's an agent asking permission — for example, Codex asking to run a
+  command outside its sandbox. When an agent waits for **Allow** or **Deny** and
+  **Answer on iPhone** is on, Nomo puts that session on the island — even with
+  **Auto add new sessions** off and the session's own switch off. Otherwise a
+  locked phone would show nothing, and the agent would sit stuck with no sign
+  it's waiting. Once you answer, or the request expires, the session leaves the
+  island and your settings stay as you left them.
+
+  To stop these, turn off **Answer on iPhone** in Settings → Sessions →
+  **Remote approvals**, or pause one computer with
+  [`/nomo-cc:approvals off`](/sessions/commands#approvals).
+</Accordion>
+
 <Accordion title="A session's island switch is on, greyed out, and won't turn off" icon="toggle-off">
   That session is asking permission. A prompt reaches your island whichever way
   its switch is set — otherwise a prompt that arrived while your phone was in
@@ -547,6 +561,14 @@ that command there.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Almost always the intended behaviour: sessions are opt-in. Open the computer, find the session, flip its switch — or turn on Auto add new sessions in Settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "An approval popped up on the island for a session I never added",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "That's an agent asking permission — for example, Codex asking to run a command outside its sandbox. When an agent waits for Allow or Deny and Answer on iPhone is on, Nomo puts that session on the island — even with Auto add new sessions off and the session's own switch off. Otherwise a locked phone would show nothing, and the agent would sit stuck with no sign it's waiting. Once you answer, or the request expires, the session leaves the island and your settings stay as you left them. To stop these, turn off Answer on iPhone in Settings → Sessions → Remote approvals, or pause one computer with /nomo-cc:approvals off."
       }
     },
     {
