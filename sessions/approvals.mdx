@@ -222,6 +222,26 @@ back to find something ran because you tapped it twenty minutes ago.
   dropped on purpose — it was never a decision.
 </Tip>
 
+## Computer Use requests
+
+Claude Code can control apps on your Mac through Computer Use. Before it does,
+it asks in a dialog on your Mac which apps it may use.
+
+Nomo tells you as soon as it asks. The row, the expanded island and the Lock
+Screen show the yellow hand, `Need help`, with the apps it wants:
+`Use iPhone Mirroring`. More than one app reads `Use System Settings, Finder`.
+The compact island shows just the hand.
+
+<Note>
+  **Only your Mac can answer this one.** Claude Code shows that dialog itself
+  and gives Nomo no way to answer it from outside. So your phone has no
+  **Allow** or **Deny** here, unlike the violet hand. Once you allow the apps
+  for the session, Claude Code doesn't ask about them again.
+</Note>
+
+Needs plugin **2.3.53**. On an older plugin you get a plain `Need help` a few
+seconds later.
+
 ## Nothing hangs forever
 
 If your phone never answers, the prompt eventually falls back to the terminal on

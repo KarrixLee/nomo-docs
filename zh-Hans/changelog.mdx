@@ -4,6 +4,38 @@ description: "发布了什么，什么时候发布的。"
 icon: "clock-rotate-left"
 ---
 
+<Update label="2026年11月" description="2.3.6">
+  ## 更新提示、你的套餐和最新限额
+
+  **新增**
+
+  - 更新提示：App Store 上有新版 Nomo 时，会出现一条小横条——在 iOS 26.1 及更高版本上位于标签栏上方，在更早的 iOS 上则是**首页**顶部的一张卡片。点**更新**直接前往 App Store。点横条的其他地方会打开**新功能**，里面有版本说明、**更新**和**以后**。关掉横条（×）后，要到下一个版本才会再出现。只有完成欢迎引导后才会显示
+
+  **改进**
+
+  - 每张用量卡片都会显示你的套餐：
+    - **Claude**：**Claude Pro**、**Claude Max** 或 **Claude Ultra**。Anthropic 在 2026年10月30日给套餐改了名，所以 Max 20x 显示为 Claude Ultra
+    - **Codex**：你的 ChatGPT 套餐，比如 **ChatGPT Plus** 或 **ChatGPT Pro 200**，Go、Pro 100、Pro 500、Business、Enterprise 和 Edu 也都支持
+    - **Cursor**：Cursor 控制台上显示的套餐，比如 **Cursor Premium** 或 **Cursor Pro+**
+    - **xAI**：The X Subscription 显示为 **X Ultra**，另有 **SuperGrok Heavy** 和 **SuperGrok**
+    - **Antigravity**：**Google AI Pro**、**Google AI Ultra** 或 **Google AI Ultra Lite**
+    - **Kimi**：你的 Kimi Code 套餐，比如 **Kimi Allegretto**。没有 Kimi Code 套餐时不显示套餐
+  - 没有 5 小时限额时，中号用量小组件会显示**每周**和你的顶级模型（如 Fable）的每周限额，和 Antigravity 已有的显示方式一样
+  - **Codex**：有**积分**余额或已存的重置次数时，卡片会显示出来。可以用 Spark 的 Pro 账户会多一行 Spark
+  - **Claude**：开启额外用量后，**额外用量**一行会显示你已花费的金额
+  - **Antigravity**：新增 **Claude & GPT** 的 5 小时一行。Google 的一台服务器返回的配额数据不完整时，Nomo 会改问另一台
+  - **Cursor**：旧套餐仍显示两行，名称改成了 Cursor 现在的叫法：**Cursor 模型**和**其他模型**
+  - **Kimi**：在有月度总额的旧套餐上，月度限额比每周限额用得更多时，卡片会显示月度限额——月度总额用完后，Kimi Code 就用不了了
+
+  **修复**
+
+  - 小号用量小组件设为**会话**时，没有 5 小时限额的套餐只会显示一个空的数字——比如 Anthropic 取消了 5 小时限额的 Claude Ultra。现在会显示一个勾号和**无会话限额**，和应用早已做到的一样
+  - **Cursor**：使用 The X Subscription 时，卡片会显示两行，其中 API 那一行是空的。现在只显示一行**每周**——也就是 Cursor 和 Grok Bot 共用的额度——和 Cursor 控制台一致
+  - **Antigravity**：Gemini 4 Argon 被算进了 Gemini 的进度条，可能让它们显示已用 100%。现在它在应用里有自己的一行
+  - **Codex**：Free 套餐的 30 天限额现在标为**每月**，而不是每周
+  - **Claude**：Free 账户现在显示空行，而不是加载错误。Design、Cowork、Routines 等 Claude 产品的限额不会再显示成模型限额
+</Update>
+
 <Update label="2026年10月" description="2.3.5">
   ## Antigravity 会话
 
