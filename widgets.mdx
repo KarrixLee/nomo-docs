@@ -101,7 +101,7 @@ then, the widget shows `Not connected`.
 1. Add the widget. See [Widget](/widget).
 2. Touch and hold the widget.
 3. Tap **Edit Widget**.
-4. Tap **Provider** and pick one. For Codex, pick **OpenAI**.
+4. Tap **Provider** and pick one, such as **Codex**.
 5. Tap **Account** and pick one. **Default** follows your Default account in the
    app.
 6. Tap **Small widget style** and pick one. **Big percentage** shows the number
@@ -127,10 +127,10 @@ otherwise open the app for.
 - **Live Agents**: what are my agents doing right now?
 - **Nomo Tokens**: how many tokens did I use, and on which models?
 
-<Frame caption="Four of the Pro widgets on a Home Screen: Nomo Pace, Live Agents, Nomo Activity and Nomo Accounts.">
+<Frame caption="All five Pro widgets on a Home Screen: Nomo Pace, Live Agents, Nomo Activity, Nomo Tokens and Nomo Accounts.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Four Nomo widgets on a light Home Screen: Pace counting down two hours to a Claude reset, Live Agents with two running and one needing an answer, a 13-day Activity streak with a coding heatmap, and an Accounts board of six accounts sorted by what's left" />
-    <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="The same four Nomo widgets on a dark Home Screen: Pace, Live Agents, Activity and Accounts" />
+    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Five Nomo widgets on a light Home Screen: Pace counting down two hours to a Claude reset, Live Agents with two running and one needing an answer, a 13-day Activity streak with a coding heatmap, Tokens with 20.3M tokens in 14 days stacked by model, and an Accounts board of six accounts sorted by what's left" />
+    <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="The same five Nomo widgets on a dark Home Screen: Pace, Live Agents, Activity, Tokens and Accounts" />
   </div>
 </Frame>
 
@@ -202,14 +202,15 @@ Tap the widget to open that provider's **Usage** page in Nomo.
 
 <Frame caption="Nomo Activity in Small, Medium and Large, and on the Lock Screen.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Nomo Activity: a small widget with a 13-day streak and the last seven days, a medium widget with 16 weeks of coding days, a large widget with 26 weeks plus a Claude Code and Codex split and totals, and a Lock Screen widget reading 13-day streak" />
+    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Nomo Activity: a small widget with a 13-day streak and the last seven days, a medium widget with 16 weeks of coding days and 153h, 79 days and 9.7h/wk under the map, a large widget with 26 weeks plus a Claude Code and Codex split, 455 sessions and 187M tokens, and a Lock Screen widget reading 13-day streak" />
     <img className="only-dark" src="/images/pro-widgets-activity-dark.webp" alt="Nomo Activity in dark mode: small, medium, large and a Lock Screen widget" />
   </div>
 </Frame>
 
 **What it shows:** a map of the days you coded with AI agents, like the one on
 a GitHub profile, plus your streak. A streak is how many days in a row you've
-coded. It counts every paired computer together.
+coded. It counts every paired computer together. See
+[More than one computer](#more-than-one-computer).
 
 A stronger color means more coding that day. Your streak doesn't reset in the
 morning: until your first session of the day, it counts up to yesterday.
@@ -217,9 +218,20 @@ morning: until your first session of the day, it counts up to yesterday.
 | Size | What's on it |
 | --- | --- |
 | Small | Your streak and the last 7 days. |
-| Medium | Your streak and the last 16 weeks. |
-| Large | The last 26 weeks, how your time splits between agents, and totals: sessions, active hours, your busiest day and your longest streak. |
+| Medium | Your streak, the last 16 weeks, and three stats under the map. |
+| Large | The last 26 weeks with the same three stats, how your time splits between agents, and totals: sessions, tokens, your busiest day and your longest streak. |
 | Lock Screen, rectangle | Your streak and the last 7 days. |
+
+The three stats under the map cover the weeks the map shows:
+
+- A clock: your active hours, such as `153h`.
+- A calendar: how many days you were active, such as `79 days`.
+- A bar chart: your average per week, such as `9.7h/wk`.
+
+If Medium is short on room, it shows only the first two.
+
+On Large, **Tokens** is your total for the 26 weeks. If no token data comes in
+from your computers, that tile shows **Active hours** instead.
 
 **What you need first:**
 
@@ -409,22 +421,55 @@ To open it:
 
 1. Open Nomo.
 2. Tap the **Sessions** tab.
-3. Tap the **Activity** card at the very top. It shows your streak, this
-   week's tokens and the last 7 days.
+3. Tap the [streak bar](#streak-bar) just above the tab bar. On iOS 26.0 or
+   earlier, tap the **Activity** card at the top of the list instead.
 
-You can also tap the Nomo Activity or Nomo Tokens widget.
+You can also tap the Nomo Activity or Nomo Tokens widget. This works even when
+Nomo is closed. Nomo waits until it knows you have Nomo Pro, so a subscriber
+never lands on the Nomo Pro screen by mistake.
 
-Without Nomo Pro, the card shows a crown, **Activity** and **Streak, daily
-tokens and Wrapped with Nomo Pro.** Tap it to open Nomo Pro.
+On iOS 26.0 or earlier without Nomo Pro, the card shows a crown, **Activity**
+and **Streak, daily tokens and Wrapped with Nomo Pro.** Tap it to open Nomo
+Pro.
 
 The screen shows:
 
-- **Streak**: your streak and a map of the last 26 weeks.
-- A switch for **7 days**, **14 days** or **30 days**.
+- **Streak**: your streak and a map of the last 26 weeks, with the same three
+  stats as the [widget](#nomo-activity).
+- A switch for **7 days**, **14 days** or **30 days**. The chart moves from one
+  range to the next when you switch.
 - **Tokens**: a chart of your daily tokens, stacked by model, with **Today**,
   **Daily average**, **Active hours** and the change from the previous period.
 - **By model**: a table with **Input**, **Output**, **Cache** and **Total**
   for each model.
+
+When you open the screen, it animates in for about a second. If Reduce Motion
+is on, everything just appears.
+
+### The streak bar <span className="pro-pill" /> {#streak-bar}
+
+On iOS 26.1 or later, the **Sessions** tab has a small bar that floats just
+above the tab bar. It shows your streak, this week's tokens and the last 7
+days as mini bars.
+
+- When you scroll, it shrinks and sits next to the tab bar.
+- Tap it to open the Activity screen.
+
+Sometimes it shows something else:
+
+| What it says | What it means | What a tap does |
+| --- | --- | --- |
+| **Start your streak** | No computer is paired yet. | Opens the same pairing steps as **Pair a Computer**. |
+| **No sessions yet** | A computer is paired, but no sessions have come in yet. | Opens the Activity screen. |
+| **Update the Nomo plugin** | Every paired computer has a Nomo plugin older than 2.3.6. | Opens the steps to update it. |
+
+When the bar is shrunk, these say **Pair a computer**, **No sessions yet** and
+**Update plugin**.
+
+The bar needs Nomo Pro. Without it, you won't see the bar.
+
+On iOS 26.0 or earlier, there's no bar. The streak card sits at the top of the
+Sessions list instead.
 
 ### Wrapped {#wrapped}
 
@@ -446,6 +491,31 @@ The card shows your tokens, a chart, your active hours, your busiest day, your
 longest streak, your favorite model and agent, and how many sessions you ran.
 **Share** sends it as a 1080 × 1350 image. It never includes your prompts,
 project names or file paths.
+
+## More than one computer {#more-than-one-computer}
+
+Nomo Activity, Nomo Tokens, the Activity screen, Wrapped and the streak bar
+add up every paired computer.
+
+- Active time counts once. If you code on two Macs at the same time, that time
+  isn't counted twice.
+- Tokens and sessions add up.
+- A Mac that was paired twice is counted once.
+- When you remove a computer, its activity leaves the totals.
+
+### When a computer isn't counted {#not-counted}
+
+A computer with a Nomo plugin older than 2.3.6 isn't counted. You'll see:
+
+- On the Activity screen, under your streak: `MacBook Air isn't counted ·
+  update its plugin`, with that computer's name. If there's more than one, it
+  says how many, such as `2 computers aren't counted · update their plugin`.
+  Tap it to see how to update.
+- On the Large Nomo Activity widget: `1 computer not counted`. On the smallest
+  iPhones, there's no room for it.
+
+To fix it, update the Nomo plugin on that computer. See
+[Updating](/setup/install#updating).
 
 ## More than one account <span className="pro-pill" /> {#more-than-one-account}
 
@@ -493,7 +563,14 @@ To go back to your real data, turn **Show sample data** off.
   paths.
 - It's end-to-end encrypted (AES-256-GCM, with your pairing key) before it's
   uploaded. Nomo's relay can't read it, and deletes it after **35 days**.
-- It uploads at most every 6 hours, and only when something changed.
+- It also holds a random computer id. The plugin makes it once on your
+  computer and keeps it in `~/.config/cc-status/machine-id`. It never comes
+  from your hardware, such as the serial number, MAC address, computer name or
+  user name. It's end-to-end encrypted with the rest. Nomo uses it only so
+  your phone doesn't count the same computer twice. To get a new one, delete
+  that file.
+- It uploads at most every 6 hours, and only when something changed. Right
+  after you pair a new phone, it uploads once within about a minute.
 - On your computer, it's kept in `~/.config/cc-status/activity-days.json`. Only
   your user account can read it. It keeps 400 days at most.
 
