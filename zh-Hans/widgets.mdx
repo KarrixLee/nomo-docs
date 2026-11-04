@@ -213,7 +213,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 1. 添加小组件。见[小组件](/zh-Hans/widget)。
 2. 按住小组件。
 3. 轻点“编辑小组件”。
-4. 轻点“角色”，从“自动”、**Clawd**、**Codex**、**Grok Bot** 中选一个。
+4. 轻点“角色”，从“自动”、**Clawd**、**Codex**、**Grok Bot**、**Antigravity**、**Kimi**、**DeepSeek**、**Cursor**、**OpenCode** 中选一个。
 5. 轻点小组件外面，完成设置。
 
 “自动”会显示你最近 7 天用得最多的智能体。选其他角色时，小组件会显示那个角色，地图、今天的方格、连续记录的火焰和徽章都会换成它的颜色：Clawd 是珊瑚色，Codex 是蓝色，Grok Bot 是金色。大号尺寸里按智能体划分时间的条形图，仍保留各智能体自己的颜色。已经在主屏幕上的小组件会从“自动”开始。
@@ -222,6 +222,15 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
   <div className="widget-shot">
     <img className="only-light" src="/images/widgets-character.webp" alt="三个显示 13 天连续记录的小号 Nomo 活动小组件：珊瑚色的 Clawd、蓝色的 Codex 和金色的 Grok Bot" />
     <img className="only-dark" src="/images/widgets-character-dark.webp" alt="深色模式下同样的三个 Nomo 活动小组件：Clawd、Codex 和 Grok Bot" />
+  </div>
+</Frame>
+
+只有 Clawd、Codex 和 Grok Bot 是会动的角色。Antigravity、Kimi、DeepSeek、Cursor 和 OpenCode 会在品牌色的方块上显示自己的标志，地图、火焰、今天的方格和光晕也会换成这个颜色。
+
+<Frame caption="Antigravity、DeepSeek 和 Kimi 的 Nomo 活动。">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character-providers.webp" alt="三个显示 13 天连续记录的小号 Nomo 活动小组件，各自在着色的方块上显示服务商标志：紫色的 Antigravity、蓝色的 DeepSeek 和黑色的 Kimi" />
+    <img className="only-dark" src="/images/widgets-character-providers-dark.webp" alt="深色模式下同样的三个 Nomo 活动小组件：Antigravity、DeepSeek 和 Kimi" />
   </div>
 </Frame>
 
@@ -258,10 +267,10 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 1. 添加小组件。见[小组件](/zh-Hans/widget)。
 2. 按住小组件。
 3. 轻点“编辑小组件”。
-4. 轻点“角色”，从“自动”、**Clawd**、**Codex**、**Grok Bot** 中选一个。
+4. 轻点“角色”，选一个。选项和 [Nomo 活动](#nomo-activity)相同。
 5. 轻点小组件外面，完成设置。
 
-“自动”会跟随你用得最多的模型：GPT 对应 Codex，Grok 对应 Grok Bot，其他都是 Clawd。你选的角色只会改变背景光晕和今天的条形。模型颜色永远不变。
+“自动”会跟随你用得最多的模型的服务商：Claude 对应 Clawd，GPT 对应 Codex，Grok 对应 Grok Bot，Gemini 对应 Antigravity，Kimi、DeepSeek 和 Cursor 的模型显示各自的标志。其他模型都是 Clawd。你选的角色只会改变角色本身、背景光晕和今天的条形。模型颜色永远不变。
 
 轻点小组件，会在 Nomo 中打开[活动页面](#activity-screen)。没有 Nomo Pro 时，轻点会打开 Nomo Pro。
 
@@ -329,10 +338,10 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 1. 添加小组件。见[小组件](/zh-Hans/widget)。
 2. 按住小组件。
 3. 轻点“编辑小组件”。
-4. 轻点“角色”，从“自动”、**Clawd**、**Codex**、**Grok Bot** 中选一个。
+4. 轻点“角色”，选一个。选项和 [Nomo 活动](#nomo-activity)相同。
 5. 轻点小组件外面，完成设置。
 
-“自动”会跟随列表最上面的会话。选其他角色时，小组件会显示那个角色，背景也会带上淡淡的同色调。状态颜色不会变：紫色仍然表示有会话需要你回答。已经在主屏幕上的小组件会从“自动”开始。
+“自动”会跟随列表最上面的会话。如果是 Antigravity、Cursor 或 OpenCode 的会话，就显示它的标志。选其他角色时，小组件会显示那个角色，背景也会带上淡淡的同色调。状态颜色不会变：紫色仍然表示有会话需要你回答。已经在主屏幕上的小组件会从“自动”开始。
 
 ## 活动页面和回顾 <span className="pro-pill" /> {#activity-screen}
 
@@ -363,6 +372,8 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 - “按模型”：每个模型的“输入”“输出”“缓存”“总计”表格。
 
 打开页面时，它会用大约一秒的动画出现。如果打开了“减弱动态效果”，所有内容会直接显示出来。
+
+页面的角色和颜色会跟随你用得最多的模型的服务商，和设为“自动”的 [Nomo Token](#nomo-tokens) 一样。连续记录栏也是如此。
 
 ### 连续记录栏 <span className="pro-pill" /> {#streak-bar}
 
@@ -400,7 +411,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
   </div>
 </Frame>
 
-卡片上显示你的 Token、图表、活跃时长、最忙的一天、最长连续记录、最常用的模型和智能体，以及会话数。“分享”会把它作为一张 1080 × 1350 的图片发出去。它绝不包括你的提示、项目名称或文件路径。
+卡片上显示你的 Token、图表、活跃时长、最忙的一天、最长连续记录、最常用的模型和智能体，以及会话数。角色会跟随你最常用的模型的服务商，或你最常用的智能体。“分享”会把它作为一张 1080 × 1350 的图片发出去。它绝不包括你的提示、项目名称或文件路径。
 
 ## 多台电脑 {#more-than-one-computer}
 
@@ -425,6 +436,10 @@ Nomo 插件早于 2.3.6 的电脑不会被计入。你会看到：
 有了 Nomo Pro，每个服务商最多可以添加 5 个账户。例如，一个工作用的 Claude 账户和一个个人账户。Nomo 用量速度、Nomo 用量和 Nomo 账户都可以使用它们。
 
 除非你选了别的账户，否则小组件显示的是“默认”账户。要选择账户，按住小组件，轻点“编辑小组件”，然后轻点“账户”。Nomo 账户会把每个账户分别显示出来。
+
+如果你移除了一个账户，原本显示它的小组件会显示“账户已移除”。它们不会改为显示默认账户。请编辑小组件，选择其他账户。
+
+如果你的 Nomo Pro 到期，额外的账户会被暂停。不会移除任何内容，默认账户也会继续更新。设为额外账户的 Nomo 用量小组件会显示“已暂停 · Nomo Pro”和 `你的 Nomo Pro 已结束。在 Nomo 中重新订阅即可查看此账户。`。轻点它会打开 Nomo Pro。显示默认账户的小组件永远不会被暂停。
 
 要添加、重命名或移除账户，见用量页面的[多个账户](/zh-Hans/usage#more-than-one-account)。
 

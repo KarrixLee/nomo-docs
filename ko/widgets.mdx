@@ -247,8 +247,9 @@ Claude Code, Codex, OpenCode를 셉니다. 플러그인이 컴퓨터에 이미 �
 1. 위젯을 추가합니다. [위젯](/ko/widget)을 참고하십시오.
 2. 위젯을 길게 터치합니다.
 3. **위젯 편집**을 탭합니다.
-4. **캐릭터**를 탭하고 **자동**, **Clawd**, **Codex**, **Grok Bot** 중 하나를
-   고릅니다.
+4. **캐릭터**를 탭하고 **자동**, **Clawd**, **Codex**, **Grok Bot**,
+   **Antigravity**, **Kimi**, **DeepSeek**, **Cursor**, **OpenCode** 중
+   하나를 고릅니다.
 5. 위젯 바깥을 탭해 마칩니다.
 
 **자동**은 최근 7일 동안 가장 많이 쓴 에이전트를 보여줍니다. 다른 것을
@@ -261,6 +262,17 @@ Claude Code, Codex, OpenCode를 셉니다. 플러그인이 컴퓨터에 이미 �
   <div className="widget-shot">
     <img className="only-light" src="/images/widgets-character.webp" alt="13일 연속 기록을 보여주는 소형 Nomo 활동 위젯 3개: 코럴색 Clawd, 파란색 Codex, 금색 Grok Bot" />
     <img className="only-dark" src="/images/widgets-character-dark.webp" alt="다크 모드의 같은 Nomo 활동 위젯 3개: Clawd, Codex, Grok Bot" />
+  </div>
+</Frame>
+
+움직이는 캐릭터는 Clawd, Codex, Grok Bot뿐입니다. Antigravity, Kimi,
+DeepSeek, Cursor, OpenCode는 브랜드 색 타일 위에 로고를 보여주고, 지도와
+불꽃, 오늘 칸, 빛도 그 색으로 바뀝니다.
+
+<Frame caption="Antigravity, DeepSeek, Kimi로 설정한 Nomo 활동.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character-providers.webp" alt="13일 연속 기록을 보여주는 소형 Nomo 활동 위젯 3개. 각각 색이 입혀진 타일 위에 제공업체 로고가 있음: 보라색 Antigravity, 파란색 DeepSeek, 검은색 Kimi" />
+    <img className="only-dark" src="/images/widgets-character-providers-dark.webp" alt="다크 모드의 같은 Nomo 활동 위젯 3개: Antigravity, DeepSeek, Kimi" />
   </div>
 </Frame>
 
@@ -304,12 +316,14 @@ Grok은 금색, Gemini는 보라색, 그 밖의 모델은 회색입니다.
 1. 위젯을 추가합니다. [위젯](/ko/widget)을 참고하십시오.
 2. 위젯을 길게 터치합니다.
 3. **위젯 편집**을 탭합니다.
-4. **캐릭터**를 탭하고 **자동**, **Clawd**, **Codex**, **Grok Bot** 중 하나를
-   고릅니다.
+4. **캐릭터**를 탭하고 하나를 고릅니다. 선택지는
+   [Nomo 활동](#nomo-activity)과 같습니다.
 5. 위젯 바깥을 탭해 마칩니다.
 
-**자동**은 가장 많이 쓴 모델을 따릅니다. GPT면 Codex, Grok이면 Grok Bot,
-그 밖에는 Clawd입니다. 고른 캐릭터는 배경의 빛과 오늘 막대만 바꿉니다.
+**자동**은 가장 많이 쓴 모델의 제공업체를 따릅니다. Claude면 Clawd, GPT면
+Codex, Grok이면 Grok Bot, Gemini면 Antigravity, Kimi, DeepSeek, Cursor
+모델이면 각각의 로고입니다. 그 밖의 모델은 Clawd입니다. 고른 캐릭터는
+캐릭터, 배경의 빛, 오늘 막대만 바꿉니다.
 모델 색은 바뀌지 않습니다.
 
 위젯을 탭하면 Nomo의 [활동 화면](#activity-screen)이 열립니다. Nomo Pro가
@@ -395,11 +409,12 @@ Nomo 활동과 같은 요약을 사용합니다. 컴퓨터에서 나가는 정�
 1. 위젯을 추가합니다. [위젯](/ko/widget)을 참고하십시오.
 2. 위젯을 길게 터치합니다.
 3. **위젯 편집**을 탭합니다.
-4. **캐릭터**를 탭하고 **자동**, **Clawd**, **Codex**, **Grok Bot** 중 하나를
-   고릅니다.
+4. **캐릭터**를 탭하고 하나를 고릅니다. 선택지는
+   [Nomo 활동](#nomo-activity)과 같습니다.
 5. 위젯 바깥을 탭해 마칩니다.
 
-**자동**은 목록 맨 위 세션을 따릅니다. 다른 것을 고르면 그 캐릭터가
+**자동**은 목록 맨 위 세션을 따릅니다. Antigravity, Cursor, OpenCode
+세션이면 그 로고가 표시됩니다. 다른 것을 고르면 그 캐릭터가
 표시되고 배경에 그 색이 옅게 깔립니다. 상태 색은 바뀌지 않습니다. 보라색은
 여전히 답이 필요한 세션이 있다는 뜻입니다. 이미 홈 화면에 있던 위젯은
 **자동**으로 시작합니다.
@@ -443,6 +458,9 @@ iOS 26.0 이하에서 Nomo Pro가 없으면 카드에 왕관, **활동**, **연�
 화면을 열면 1초 정도 애니메이션과 함께 나타납니다. **동작 줄이기**를 켜 두었다면
 모든 내용이 바로 표시됩니다.
 
+화면의 캐릭터와 색은 **자동**으로 설정한 [Nomo 토큰](#nomo-tokens)처럼 가장
+많이 쓴 모델의 제공업체를 따릅니다. 연속 기록 바도 마찬가지입니다.
+
 ### 연속 기록 바 <span className="pro-pill" /> {#streak-bar}
 
 iOS 26.1 이상에서는 **세션** 탭의 탭 막대 바로 위에 작은 바가 떠 있습니다. 연속
@@ -483,7 +501,8 @@ iOS 26.0 이하에서는 바가 없습니다. 대신 연속 기록 카드가 세
 </Frame>
 
 카드에는 토큰, 차트, 활동 시간, 가장 많이 쓴 날, 최장 연속 기록, 즐겨 쓰는
-모델과 에이전트, 세션 수가 표시됩니다. **공유**를 누르면 1080 × 1350
+모델과 에이전트, 세션 수가 표시됩니다. 캐릭터는 즐겨 쓰는 모델의 제공업체나
+즐겨 쓰는 에이전트를 따릅니다. **공유**를 누르면 1080 × 1350
 이미지로 보냅니다. 프롬프트, 프로젝트 이름, 파일 경로는 절대 들어가지
 않습니다.
 
@@ -522,6 +541,15 @@ Nomo 계정 모두 이 계정들을 사용할 수 있습니다.
 다른 계정을 고르지 않으면 위젯은 **기본** 계정을 보여줍니다. 계정을 고르려면
 위젯을 길게 터치하고 **위젯 편집**을 탭한 다음 **계정**을 탭합니다.
 Nomo 계정은 모든 계정을 각각 따로 보여줍니다.
+
+계정을 제거하면 그 계정을 보여주던 위젯에 **제거된 계정**이 표시됩니다. 기본
+계정으로 바뀌지는 않습니다. 위젯을 편집해 다른 계정을 고르십시오.
+
+Nomo Pro가 끝나면 추가 계정은 일시 중지됩니다. 제거되는 것은 없고, 기본
+계정은 계속 업데이트됩니다. 추가 계정으로 설정한 Nomo 사용량 위젯에는
+**일시 중지됨 · Nomo Pro**와 `Nomo Pro가 종료되었습니다. Nomo에서 다시
+구독하면 이 계정을 볼 수 있습니다.`가 표시됩니다. 탭하면 Nomo Pro가
+열립니다. 기본 계정을 보여주는 위젯은 일시 중지되지 않습니다.
 
 계정을 추가하거나 이름을 바꾸거나 제거하려면 사용량 페이지의
 [여러 계정](/ko/usage#more-than-one-account)을 참고하십시오.

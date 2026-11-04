@@ -213,7 +213,7 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 1. 加入小工具。請看[小工具](/zh-Hant/widget)。
 2. 按住小工具。
 3. 點一下「編輯小工具」。
-4. 點一下「角色」，從「自動」、**Clawd**、**Codex**、**Grok Bot** 中選一個。
+4. 點一下「角色」，從「自動」、**Clawd**、**Codex**、**Grok Bot**、**Antigravity**、**Kimi**、**DeepSeek**、**Cursor**、**OpenCode** 中選一個。
 5. 點一下小工具外面就完成了。
 
 「自動」會顯示你最近 7 天最常用的代理。選其他角色時，小工具會顯示那個角色，地圖、今天的方格、連續紀錄的火焰和徽章都會換成它的顏色：Clawd 是珊瑚色，Codex 是藍色，Grok Bot 是金色。大型尺寸裡依代理分配時間的長條，仍保留各代理自己的顏色。已經在主畫面上的小工具會從「自動」開始。
@@ -222,6 +222,15 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
   <div className="widget-shot">
     <img className="only-light" src="/images/widgets-character.webp" alt="三個顯示 13 天連續紀錄的小型 Nomo 活動小工具：珊瑚色的 Clawd、藍色的 Codex 和金色的 Grok Bot" />
     <img className="only-dark" src="/images/widgets-character-dark.webp" alt="深色模式下同樣的三個 Nomo 活動小工具：Clawd、Codex 和 Grok Bot" />
+  </div>
+</Frame>
+
+只有 Clawd、Codex 和 Grok Bot 是會動的角色。Antigravity、Kimi、DeepSeek、Cursor 和 OpenCode 會在品牌色的方塊上顯示自己的標誌，地圖、火焰、今天的方格和光暈也會換成這個顏色。
+
+<Frame caption="Antigravity、DeepSeek 和 Kimi 的 Nomo 活動。">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character-providers.webp" alt="三個顯示 13 天連續紀錄的小型 Nomo 活動小工具，各自在著色的方塊上顯示供應商標誌：紫色的 Antigravity、藍色的 DeepSeek 和黑色的 Kimi" />
+    <img className="only-dark" src="/images/widgets-character-providers-dark.webp" alt="深色模式下同樣的三個 Nomo 活動小工具：Antigravity、DeepSeek 和 Kimi" />
   </div>
 </Frame>
 
@@ -258,10 +267,10 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 1. 加入小工具。請看[小工具](/zh-Hant/widget)。
 2. 按住小工具。
 3. 點一下「編輯小工具」。
-4. 點一下「角色」，從「自動」、**Clawd**、**Codex**、**Grok Bot** 中選一個。
+4. 點一下「角色」，選一個。選項和 [Nomo 活動](#nomo-activity)相同。
 5. 點一下小工具外面就完成了。
 
-「自動」會跟著你用得最多的模型：GPT 對應 Codex，Grok 對應 Grok Bot，其他都是 Clawd。你選的角色只會改變背景光暈和今天的長條。模型顏色永遠不變。
+「自動」會跟著你用得最多的模型的供應商：Claude 對應 Clawd，GPT 對應 Codex，Grok 對應 Grok Bot，Gemini 對應 Antigravity，Kimi、DeepSeek 和 Cursor 的模型顯示各自的標誌。其他模型都是 Clawd。你選的角色只會改變角色本身、背景光暈和今天的長條。模型顏色永遠不變。
 
 點一下小工具，會在 Nomo 中打開[活動頁面](#activity-screen)。沒有 Nomo Pro 時，點一下會打開 Nomo Pro。
 
@@ -329,10 +338,10 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 1. 加入小工具。請看[小工具](/zh-Hant/widget)。
 2. 按住小工具。
 3. 點一下「編輯小工具」。
-4. 點一下「角色」，從「自動」、**Clawd**、**Codex**、**Grok Bot** 中選一個。
+4. 點一下「角色」，選一個。選項和 [Nomo 活動](#nomo-activity)相同。
 5. 點一下小工具外面就完成了。
 
-「自動」會跟著清單最上面的 session。選其他角色時，小工具會顯示那個角色，背景也會帶上淡淡的同色調。狀態顏色不會變：紫色仍然表示有 session 需要你回答。已經在主畫面上的小工具會從「自動」開始。
+「自動」會跟著清單最上面的 session。如果是 Antigravity、Cursor 或 OpenCode 的 session，就顯示它的標誌。選其他角色時，小工具會顯示那個角色，背景也會帶上淡淡的同色調。狀態顏色不會變：紫色仍然表示有 session 需要你回答。已經在主畫面上的小工具會從「自動」開始。
 
 ## 活動頁面和回顧 <span className="pro-pill" /> {#activity-screen}
 
@@ -363,6 +372,8 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 - 「依模型」：每個模型的「輸入」「輸出」「快取」「總計」表格。
 
 打開頁面時，它會用大約一秒的動畫出現。如果打開了「減少動態效果」，所有內容會直接顯示出來。
+
+頁面的角色和顏色會跟著你用得最多的模型的供應商，和設為「自動」的 [Nomo Token](#nomo-tokens) 一樣。連續紀錄列也是如此。
 
 ### 連續紀錄列 <span className="pro-pill" /> {#streak-bar}
 
@@ -400,7 +411,7 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
   </div>
 </Frame>
 
-卡片上會顯示你的 Token、圖表、活躍時數、最忙的一天、最長連續紀錄、最常用的模型和代理，以及 sessions 數。「分享」會把它當成一張 1080 × 1350 的圖片傳出去。它絕不包含你的提示、專案名稱或檔案路徑。
+卡片上會顯示你的 Token、圖表、活躍時數、最忙的一天、最長連續紀錄、最常用的模型和代理，以及 sessions 數。角色會跟著你最常用的模型的供應商，或你最常用的代理。「分享」會把它當成一張 1080 × 1350 的圖片傳出去。它絕不包含你的提示、專案名稱或檔案路徑。
 
 ## 多台電腦 {#more-than-one-computer}
 
@@ -425,6 +436,10 @@ Nomo 外掛程式早於 2.3.6 的電腦不會被計入。你會看到：
 有了 Nomo Pro，每家供應商最多可以新增 5 個帳戶。例如，一個工作用的 Claude 帳戶和一個個人帳戶。Nomo 用量速度、Nomo 用量和 Nomo 帳戶都能使用它們。
 
 除非你選了別的帳戶，否則小工具會顯示「預設」帳戶。要選擇帳戶，按住小工具，點一下「編輯小工具」，然後點一下「帳戶」。Nomo 帳戶會把每個帳戶分開顯示。
+
+如果你移除了一個帳戶，原本顯示它的小工具會顯示「帳戶已移除」。它們不會改成顯示預設帳戶。請編輯小工具，選擇其他帳戶。
+
+如果你的 Nomo Pro 到期，額外的帳戶會被暫停。不會移除任何內容，預設帳戶也會繼續更新。設為額外帳戶的 Nomo 用量小工具會顯示「已暫停 · Nomo Pro」和 `你的 Nomo Pro 已結束。在 Nomo 中重新訂閱即可查看此帳戶。`。點一下它會打開 Nomo Pro。顯示預設帳戶的小工具永遠不會被暫停。
 
 要新增、重新命名或移除帳戶，請看用量頁面的[多個帳戶](/zh-Hant/usage#more-than-one-account)。
 

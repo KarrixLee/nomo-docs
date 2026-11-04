@@ -257,8 +257,9 @@ el plugin lee el historial que ya está en tu ordenador.
 1. Añade el widget. Consulta [Widget](/es/widget).
 2. Mantén pulsado el widget.
 3. Toca **“Editar widget”**.
-4. Toca **Personaje** y elige uno: **Automático**, **Clawd**, **Codex** o
-   **Grok Bot**.
+4. Toca **Personaje** y elige uno: **Automático**, **Clawd**, **Codex**,
+   **Grok Bot**, **Antigravity**, **Kimi**, **DeepSeek**, **Cursor** u
+   **OpenCode**.
 5. Toca fuera del widget para terminar.
 
 **Automático** muestra el agente que más has usado en los últimos 7 días. Con
@@ -272,6 +273,17 @@ de inicio empieza en **Automático**.
   <div className="widget-shot">
     <img className="only-light" src="/images/widgets-character.webp" alt="Tres widgets pequeños de Actividad de Nomo con una racha de 13 días: Clawd en coral, Codex en azul y Grok Bot en dorado" />
     <img className="only-dark" src="/images/widgets-character-dark.webp" alt="Los mismos tres widgets de Actividad de Nomo en modo oscuro: Clawd, Codex y Grok Bot" />
+  </div>
+</Frame>
+
+Solo Clawd, Codex y Grok Bot son personajes animados. Antigravity, Kimi,
+DeepSeek, Cursor y OpenCode muestran su logotipo en un recuadro del color de su
+marca, y ese color pasa al mapa, la llama, el cuadro de hoy y el brillo.
+
+<Frame caption="Actividad de Nomo con Antigravity, DeepSeek y Kimi.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character-providers.webp" alt="Tres widgets pequeños de Actividad de Nomo con una racha de 13 días, cada uno con el logotipo de un proveedor en un recuadro de color: Antigravity en morado, DeepSeek en azul y Kimi en negro" />
+    <img className="only-dark" src="/images/widgets-character-providers-dark.webp" alt="Los mismos tres widgets de Actividad de Nomo en modo oscuro: Antigravity, DeepSeek y Kimi" />
   </div>
 </Frame>
 
@@ -316,13 +328,14 @@ Nomo en un ordenador vinculado. Consulta [Actividad de Nomo](#nomo-activity).
 1. Añade el widget. Consulta [Widget](/es/widget).
 2. Mantén pulsado el widget.
 3. Toca **“Editar widget”**.
-4. Toca **Personaje** y elige uno: **Automático**, **Clawd**, **Codex** o
-   **Grok Bot**.
+4. Toca **Personaje** y elige uno. Las opciones son las mismas que en
+   [Actividad de Nomo](#nomo-activity).
 5. Toca fuera del widget para terminar.
 
-**Automático** sigue a tu modelo principal: Codex para GPT, Grok Bot para Grok
-y Clawd para todo lo demás. Tu elección solo cambia el brillo del fondo y la
-barra de hoy. Los colores de los modelos no cambian nunca.
+**Automático** sigue al proveedor de tu modelo principal: Clawd para Claude,
+Codex para GPT, Grok Bot para Grok, Antigravity para Gemini y el logotipo de
+Kimi, DeepSeek o Cursor para sus modelos. Cualquier otro modelo usa Clawd. Tu
+elección solo cambia el personaje, el brillo del fondo y la barra de hoy. Los colores de los modelos no cambian nunca.
 
 Toca el widget para abrir la [pantalla Actividad](#activity-screen) en Nomo.
 Sin Nomo Pro, al tocarlo se abre Nomo Pro.
@@ -410,11 +423,12 @@ para actualizarlo.
 1. Añade el widget. Consulta [Widget](/es/widget).
 2. Mantén pulsado el widget.
 3. Toca **“Editar widget”**.
-4. Toca **Personaje** y elige uno: **Automático**, **Clawd**, **Codex** o
-   **Grok Bot**.
+4. Toca **Personaje** y elige uno. Las opciones son las mismas que en
+   [Actividad de Nomo](#nomo-activity).
 5. Toca fuera del widget para terminar.
 
-**Automático** sigue a la sesión que está arriba de la lista. Con cualquier otra
+**Automático** sigue a la sesión que está arriba de la lista. Si es una sesión
+de Antigravity, Cursor u OpenCode, muestra su logotipo. Con cualquier otra
 opción, el widget muestra ese personaje y tiñe el fondo con un toque de su color.
 Los colores de estado no cambian nunca: el violeta sigue indicando que una sesión
 necesita tu respuesta. Un widget que ya estaba en la pantalla de inicio empieza
@@ -463,6 +477,10 @@ La pantalla muestra:
 Al abrir la pantalla, aparece con una animación de un segundo, más o menos. Si
 tienes activado **“Reducir movimiento”**, todo aparece directamente.
 
+El personaje y el color de la pantalla siguen al proveedor de tu modelo
+principal, como [Tokens de Nomo](#nomo-tokens) en **Automático**. La barra de
+racha hace lo mismo.
+
 ### La barra de racha <span className="pro-pill" /> {#streak-bar}
 
 En iOS 26.1 o posterior, la pestaña **Sesiones** tiene una pequeña barra que
@@ -506,7 +524,8 @@ Wrapped convierte tu semana, tu mes o tu año en una imagen que puedes compartir
 
 La tarjeta muestra tus tokens, un gráfico, tus horas activas, tu día con más
 actividad, tu racha más larga, tu modelo y tu agente favoritos, y cuántas
-sesiones hiciste. **Compartir** la envía como una imagen de 1080 × 1350. Nunca
+sesiones hiciste. Su personaje sigue al proveedor de tu modelo favorito o a tu
+agente favorito. **Compartir** la envía como una imagen de 1080 × 1350. Nunca
 incluye tus prompts, nombres de proyectos ni rutas de archivos.
 
 ## Más de un ordenador {#more-than-one-computer}
@@ -543,6 +562,17 @@ Cuentas de Nomo pueden usarlas todas.
 Tus widgets muestran la cuenta **Predeterminada** salvo que elijas otra. Para
 elegir una, mantén pulsado el widget, toca **“Editar widget”** y, luego, toca
 **Cuenta**. Cuentas de Nomo muestra cada cuenta por separado.
+
+Si eliminas una cuenta, los widgets que la mostraban muestran
+**“Cuenta eliminada”**. No pasan a tu cuenta predeterminada. Edita el widget y
+elige otra cuenta.
+
+Si tu Nomo Pro termina, tus cuentas adicionales quedan en pausa. No se elimina
+nada, y tu cuenta predeterminada se sigue actualizando. Un widget Uso de Nomo
+con una cuenta adicional muestra **En pausa · Nomo Pro** y `Tu Nomo Pro ha
+finalizado. Vuelve a suscribirte en Nomo para ver esta cuenta.` Tócalo para
+abrir Nomo Pro. Un widget que muestra tu cuenta predeterminada nunca se pone en
+pausa.
 
 Para añadir, cambiar el nombre o eliminar una cuenta, consulta
 [Más de una cuenta](/es/usage#more-than-one-account) en la página Uso.

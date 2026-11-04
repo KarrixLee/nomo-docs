@@ -247,8 +247,9 @@ plugin reads the history that's already on your computer.
 1. Add the widget. See [Widget](/widget).
 2. Touch and hold the widget.
 3. Tap **Edit Widget**.
-4. Tap **Character** and pick one: **Automatic**, **Clawd**, **Codex** or
-   **Grok Bot**.
+4. Tap **Character** and pick one: **Automatic**, **Clawd**, **Codex**,
+   **Grok Bot**, **Antigravity**, **Kimi**, **DeepSeek**, **Cursor** or
+   **OpenCode**.
 5. Tap outside the widget to finish.
 
 **Automatic** shows the agent you used most in the last 7 days. Any other pick
@@ -261,6 +262,17 @@ color. A widget that was already on your Home Screen starts on **Automatic**.
   <div className="widget-shot">
     <img className="only-light" src="/images/widgets-character.webp" alt="Three small Nomo Activity widgets with a 13-day streak: Clawd in coral, Codex in blue and Grok Bot in gold" />
     <img className="only-dark" src="/images/widgets-character-dark.webp" alt="The same three Nomo Activity widgets in dark mode: Clawd, Codex and Grok Bot" />
+  </div>
+</Frame>
+
+Only Clawd, Codex and Grok Bot are animated characters. Antigravity, Kimi,
+DeepSeek, Cursor and OpenCode show their logo on a tile in their brand color,
+and that color takes over the map, the flame, today's square and the glow.
+
+<Frame caption="Nomo Activity with Antigravity, DeepSeek and Kimi.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character-providers.webp" alt="Three small Nomo Activity widgets with a 13-day streak, each with a provider logo on a tinted tile: Antigravity in purple, DeepSeek in blue and Kimi in black" />
+    <img className="only-dark" src="/images/widgets-character-providers-dark.webp" alt="The same three Nomo Activity widgets in dark mode: Antigravity, DeepSeek and Kimi" />
   </div>
 </Frame>
 
@@ -304,13 +316,15 @@ paired computer. See [Nomo Activity](#nomo-activity).
 1. Add the widget. See [Widget](/widget).
 2. Touch and hold the widget.
 3. Tap **Edit Widget**.
-4. Tap **Character** and pick one: **Automatic**, **Clawd**, **Codex** or
-   **Grok Bot**.
+4. Tap **Character** and pick one, the same choices as
+   [Nomo Activity](#nomo-activity).
 5. Tap outside the widget to finish.
 
-**Automatic** follows your top model: Codex for GPT, Grok Bot for Grok, and
-Clawd for everything else. Your pick changes only the background glow and
-today's bar. Model colors never change.
+**Automatic** follows your top model's provider: Clawd for Claude, Codex for
+GPT, Grok Bot for Grok, Antigravity for Gemini, and the Kimi, DeepSeek or
+Cursor logo for their models. Any other model gets Clawd. Your pick changes
+only the character, the background glow and today's bar. Model colors never
+change.
 
 Tap the widget to open the [Activity screen](#activity-screen) in Nomo. Without
 Nomo Pro, a tap opens Nomo Pro.
@@ -396,11 +410,12 @@ Open Nomo to refresh it.
 1. Add the widget. See [Widget](/widget).
 2. Touch and hold the widget.
 3. Tap **Edit Widget**.
-4. Tap **Character** and pick one: **Automatic**, **Clawd**, **Codex** or
-   **Grok Bot**.
+4. Tap **Character** and pick one, the same choices as
+   [Nomo Activity](#nomo-activity).
 5. Tap outside the widget to finish.
 
-**Automatic** follows the session at the top of the list. Any other pick shows
+**Automatic** follows the session at the top of the list. For an Antigravity,
+Cursor or OpenCode session, that's its logo. Any other pick shows
 that character and gives the background a light tint of its color. The status
 colors never change: violet still means a session needs your answer. A widget
 that was already on your Home Screen starts on **Automatic**.
@@ -446,6 +461,9 @@ The screen shows:
 When you open the screen, it animates in for about a second. If Reduce Motion
 is on, everything just appears.
 
+The screen's character and color follow your top model's provider, like
+[Nomo Tokens](#nomo-tokens) on **Automatic**. The streak bar does the same.
+
 ### The streak bar <span className="pro-pill" /> {#streak-bar}
 
 On iOS 26.1 or later, the **Sessions** tab has a small bar that floats just
@@ -489,6 +507,7 @@ Wrapped turns your week, month or year into one image you can share.
 
 The card shows your tokens, a chart, your active hours, your busiest day, your
 longest streak, your favorite model and agent, and how many sessions you ran.
+Its character follows your favorite model's provider or your favorite agent.
 **Share** sends it as a 1080 × 1350 image. It never includes your prompts,
 project names or file paths.
 
@@ -526,6 +545,16 @@ Accounts can all use them.
 Your widgets show the **Default** account unless you pick another one. To pick
 one, touch and hold the widget, tap **Edit Widget**, then tap **Account**.
 Nomo Accounts shows every account on its own.
+
+If you remove an account, widgets that showed it show **Account removed**.
+They don't switch to your Default account. Edit the widget and pick another
+account.
+
+If your Nomo Pro ends, your extra accounts are paused. Nothing is removed, and
+your Default account keeps updating. A Nomo Usage widget set to an extra
+account shows **Paused · Nomo Pro** and `Your Nomo Pro ended. Resubscribe in
+Nomo to see this account.` Tap it to open Nomo Pro. A widget that shows your
+Default account is never paused.
 
 To add, rename or remove an account, see
 [More than one account](/usage#more-than-one-account) on the Usage page.
