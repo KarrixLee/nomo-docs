@@ -42,6 +42,87 @@ Nomo 看不到那边提供些什么，自己也不卖任何东西。它只是一
 
 这条提示对 Claude、Codex、Cursor 和 xAI 显示，且仅限美国、欧盟和日本的 App Store 账号。
 
+## 多个账户 <span className="pro-pill" /> {#more-than-one-account}
+
+有了 Nomo Pro，每个服务商最多可以添加 5 个账户。例如，一个工作用的 Claude 账户和一个个人账户。每个账户单独一行，显示各自的用量。
+
+<Frame caption="两个 Claude 账户。Work 是默认账户。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-accounts-light.webp" alt="Nomo 的 Claude 页面里有两个账户：默认账户 Work 已用 42%，Personal 已用 12%，各带用量条，下方是 Add another account 按钮" />
+    <img className="only-dark" src="/images/usage-accounts-dark.webp" alt="Nomo 的 Claude 页面里有两个账户：默认账户 Work 已用 42%，Personal 已用 12%，各带用量条，下方是 Add another account 按钮" />
+  </div>
+</Frame>
+
+### 添加其他账户 {#add-another-account}
+
+1. 打开 Nomo。
+2. 轻点“服务商”标签页。
+3. 轻点服务商，例如 **Claude**。
+4. 轻点顶部的“用量”。
+5. 确认你已经登录了第一个账户。
+6. 在你的账户下方，轻点“添加其他账户”。
+7. 轻点“继续”。
+8. 用另一个账户登录。请使用与第一个账户不同的邮箱。
+
+<Frame caption="轻点“继续”会打开登录页面。轻点 X 会关闭它，不会添加任何账户。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-light.webp" alt="Add Account 面板：Sign in to another Claude account、提示使用不同的邮箱、Continue 按钮，以及用来关闭的 X" />
+    <img className="only-dark" src="/images/usage-add-account-dark.webp" alt="Add Account 面板：Sign in to another Claude account、提示使用不同的邮箱、Continue 按钮，以及用来关闭的 X" />
+  </div>
+</Frame>
+
+Nomo 会打开一个全新的私密登录页面，所以不会沿用你已经登录的账户。已经添加的账户会保持登录。
+
+如果是 Claude，登录后 Claude 会显示一个代码：
+
+1. 复制代码。
+2. 回到 Nomo。Nomo 会自动粘贴代码并连接。
+3. 如果没有反应，轻点“粘贴”，再轻点“连接”。
+
+<Frame caption="Claude：粘贴登录后 Claude 显示的代码。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-code-light.webp" alt="Claude 的代码步骤：带 Paste 按钮的 Paste authorization code 输入框、Connect 按钮和 Reopen sign-in" />
+    <img className="only-dark" src="/images/usage-add-account-code-dark.webp" alt="Claude 的代码步骤：带 Paste 按钮的 Paste authorization code 输入框、Connect 按钮和 Reopen sign-in" />
+  </div>
+</Frame>
+
+如果服务商提供邮箱，新账户会以邮箱地址命名。如果你登录的账户已经在 Nomo 里，会显示“此账户已添加”，什么都不会改变。
+
+一个服务商有 5 个账户后，“添加其他账户”会变成灰色。
+
+### 管理账户 {#manage-accounts}
+
+轻点账户旁边的 **···**，然后轻点以下其中一项：
+
+- “重命名”：给账户起个短名字，例如 `工作` 或 `个人`。
+- “设为默认”：把它设为默认账户。默认账户带有“默认”标签。
+- “移除”：在 Nomo 中退出这个账户。其他账户会保持登录。原本显示它的小组件会改为显示默认账户。
+
+<Frame caption="非默认账户的 ··· 菜单。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-account-menu-light.webp" alt="Personal 账户旁边的 ··· 菜单，有 Rename、Make Default 和 Remove" />
+    <img className="only-dark" src="/images/usage-account-menu-dark.webp" alt="Personal 账户旁边的 ··· 菜单，有 Rename、Make Default 和 Remove" />
+  </div>
+</Frame>
+
+顶部的“你的用量”卡片显示的是默认账户。要在这里查看其他账户，轻点卡片角落里的账户名称并选一个。
+
+### 小组件中的账户 {#accounts-in-widgets}
+
+除非你另选一个，小组件会显示默认账户：
+
+1. 按住小组件。
+2. 轻点“编辑小组件”。
+3. 轻点“账户”，选一个。
+
+[Nomo 用量](/zh-Hans/widgets#nomo-usage)和 [Nomo 用量速度](/zh-Hans/widgets#nomo-pace)都有“账户”选项。[Nomo 账户](/zh-Hans/widgets#nomo-accounts)会一次显示所有账户。
+
+### 没有 Nomo Pro 时 {#without-nomo-pro}
+
+没有 Nomo Pro 时，每个服务商只能有一个账户。“添加其他账户”旁会显示 **PRO** 标签。轻点它会打开 Nomo Pro。订阅后，Nomo 会直接继续添加账户。演示模式不会解锁额外的账户。
+
+如果你的 Nomo Pro 到期，额外的账户会被暂停，不会被移除。它们会显示“已暂停 · PRO”，只有默认账户会继续更新。要接着使用，轻点“重新订阅”。
+
 ## 小组件
 
 <Card title="小组件" href="/zh-Hans/widget" icon="puzzle-piece" horizontal>
