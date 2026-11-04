@@ -91,7 +91,7 @@
                     "icon": "puzzle-piece",
                     "root": "widget",
                     "pages": [
-                      "pro-widgets"
+                      "widgets"
                     ]
                   },
                   "notifications"
@@ -171,7 +171,7 @@
                     "icon": "puzzle-piece",
                     "root": "es/widget",
                     "pages": [
-                      "es/pro-widgets"
+                      "es/widgets"
                     ]
                   },
                   "es/notifications"
@@ -251,7 +251,7 @@
                     "icon": "puzzle-piece",
                     "root": "ja/widget",
                     "pages": [
-                      "ja/pro-widgets"
+                      "ja/widgets"
                     ]
                   },
                   "ja/notifications"
@@ -331,7 +331,7 @@
                     "icon": "puzzle-piece",
                     "root": "ko/widget",
                     "pages": [
-                      "ko/pro-widgets"
+                      "ko/widgets"
                     ]
                   },
                   "ko/notifications"
@@ -411,7 +411,7 @@
                     "icon": "puzzle-piece",
                     "root": "zh-Hans/widget",
                     "pages": [
-                      "zh-Hans/pro-widgets"
+                      "zh-Hans/widgets"
                     ]
                   },
                   "zh-Hans/notifications"
@@ -491,7 +491,7 @@
                     "icon": "puzzle-piece",
                     "root": "zh-Hant/widget",
                     "pages": [
-                      "zh-Hant/pro-widgets"
+                      "zh-Hant/widgets"
                     ]
                   },
                   "zh-Hant/notifications"

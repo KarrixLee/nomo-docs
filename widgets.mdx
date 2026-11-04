@@ -1,11 +1,122 @@
 ---
-title: "Nomo Pro widgets: pace, streak, accounts and live agents"
-sidebarTitle: "Pro widgets"
-description: "Four extra Home Screen and Lock Screen widgets with Nomo Pro: whether your usage lasts until reset, your coding streak, every account on one board, and your agents right now."
-icon: "star"
-tag: "PRO"
-keywords: ["Nomo", "Nomo Pro", "widget", "Pace", "Activity", "Accounts", "Live Agents", "Claude", "Codex", "usage", "streak", "heatmap", "Lock Screen", "iPhone"]
+title: "Nomo widgets: free and Pro"
+sidebarTitle: "All widgets"
+description: "Every Nomo widget for your iPhone Home Screen and Lock Screen: what each one shows, what it needs first, and how to set it up."
+icon: "clone"
+keywords: ["Nomo", "Nomo Pro", "status", "Nomo Usage", "widget", "Pace", "Activity", "Accounts", "Live Agents", "Claude", "Codex", "usage", "streak", "heatmap", "Lock Screen", "iPhone"]
 ---
+
+Nomo has six widgets for your iPhone. Two are free: **Nomo**, for status,
+and **Nomo Usage**. Four more come with Nomo Pro.
+
+This page covers what each widget shows and how to set it up. To put a widget
+on your Home Screen, see [Widget](/widget).
+
+## Free and Pro
+
+| | Free | Nomo Pro <span className="pro-pill" /> |
+| --- | --- | --- |
+| **Nomo** status widget | ✓ | ✓ |
+| **Nomo Usage** widget | ✓ | ✓ |
+| **Nomo Pace**, **Nomo Activity**, **Nomo Accounts**, **Live Agents** | | ✓ |
+| More than one account per provider | | ✓ |
+
+In the widget gallery, a Pro widget's description starts with **👑 Nomo Pro**.
+
+Without Nomo Pro, you can still add a Pro widget. It shows a faded preview with
+**Nomo Pro** and **Unlock** on top. Tap it to open Nomo Pro in the app.
+
+## Free widgets
+
+### Nomo status
+
+<Frame caption="Nomo status in Small and Medium.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-status.webp" alt="Nomo status: a small widget showing Claude Code as Operational, and a medium widget showing Codex as Operational with a 30-day history bar at 99.87%" />
+    <img className="only-dark" src="/images/widgets-status-dark.webp" alt="Nomo status in dark mode, small and medium" />
+  </div>
+</Frame>
+
+In the widget gallery, this widget is called **Nomo**.
+
+**What it shows:** whether one service is up right now, such as Claude Code or
+Codex. You'll see one of these:
+
+- `Operational`
+- `Degraded`
+- `Partial outage`
+- `Major outage`
+- `Maintenance`
+
+If Nomo can't get the status, it shows `Unavailable`.
+
+| Size | What's on it |
+| --- | --- |
+| Small | The service, its status, and when it last updated. |
+| Medium | The same, plus the last 30 days as a bar and the uptime percent. |
+
+**What you need first:** nothing. No account and no sign-in.
+
+**Set it up:**
+
+1. Add the widget. See [Widget](/widget).
+2. Touch and hold the widget.
+3. Tap **Edit Widget**.
+4. Tap **Provider** and pick one: Claude, OpenAI, Cursor, xAI, Antigravity,
+   Kimi or DeepSeek.
+5. Tap **Service** and pick one, such as **Claude Code**.
+6. Tap outside the widget to finish.
+
+To update it now, tap the refresh button in its corner. Tap anywhere else to
+open that provider's **Status** page in Nomo.
+
+For more, see [Status](/status).
+
+### Nomo Usage
+
+<Frame caption="Nomo Usage in Small and Medium.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-usage.webp" alt="Nomo Usage: a small widget showing Claude at 45% with a bar and resets 2h, and a medium widget showing Codex with Session at 30% and Weekly at 41%, each with a bar and when it resets" />
+    <img className="only-dark" src="/images/widgets-usage-dark.webp" alt="Nomo Usage in dark mode, small and medium" />
+  </div>
+</Frame>
+
+**What it shows:** how much of your plan's limit you've used, for one account,
+and when it resets.
+
+| Size | What's on it |
+| --- | --- |
+| Small | One window: a big percent, a bar, and when it resets. |
+| Medium | Two windows, usually **Session** (5 hours) and **Weekly**, each with a bar and when it resets. |
+
+The bars turn amber at 70% and red at 90%. If your plan has no 5-hour limit,
+the widget shows `No session limit` instead.
+
+**What you need first:** a connected account, such as Claude or Codex. Open the
+**Providers** tab, tap the provider, and connect it. See [Usage](/usage). Until
+then, the widget shows `Not connected`.
+
+**Set it up:**
+
+1. Add the widget. See [Widget](/widget).
+2. Touch and hold the widget.
+3. Tap **Edit Widget**.
+4. Tap **Provider** and pick one. For Codex, pick **OpenAI**.
+5. Tap **Account** and pick one. **Default** follows your Default account in the
+   app.
+6. Tap **Small widget style** and pick one. **Big percentage** shows the number
+   large. **Big animation** shows the animated icon large.
+7. Tap **Small widget focus** and pick the window the Small size shows.
+   **Automatic** picks it for you. The choices depend on the provider.
+8. Tap outside the widget to finish.
+
+For Cursor, there's one more option: **Cursor icon**. Pick **Grok Bot** or
+**Cursor logo**.
+
+To update it now, tap the refresh button in its corner. Tap anywhere else to
+open that provider's **Usage** page in Nomo.
+
+## Pro widgets <span className="pro-pill" /> {#pro-widgets}
 
 Nomo Pro adds four widgets to the free ones. Each one answers a question you'd
 otherwise open the app for.
@@ -22,54 +133,9 @@ otherwise open the app for.
   </div>
 </Frame>
 
-## Free and Pro
+Nomo Pace and Nomo Activity also come in Lock Screen sizes.
 
-| | Free | Nomo Pro |
-| --- | --- | --- |
-| **Nomo** status widget | ✓ | ✓ |
-| **Nomo Usage** widget | ✓ | ✓ |
-| Status and usage [notifications](/notifications) | ✓ | ✓ |
-| **Nomo Pace**, **Nomo Activity**, **Nomo Accounts**, **Live Agents** | | ✓ |
-| More than one account per provider | | ✓ |
-| [Sessions](/sessions/overview): the Dynamic Island and answering from your phone | | ✓ |
-
-In the widget gallery, a Pro widget's description starts with **👑 Nomo Pro**.
-
-Without Nomo Pro, you can still add a Pro widget. It shows a faded preview with
-**Nomo Pro** and **Unlock** on top. Tap it to open Nomo Pro in the app.
-
-## Add a Pro widget
-
-The steps are the same for all four widgets.
-
-<Steps>
-  <Step title="Open the widget gallery">
-    Touch and hold an empty spot on your Home Screen until the apps jiggle.
-    Tap **Edit** in the top corner, then tap **Add Widget**.
-  </Step>
-  <Step title="Find Nomo">
-    Type `Nomo` in the search field. Tap **Nomo** in the results.
-  </Step>
-  <Step title="Pick the widget and size">
-    Swipe left or right until you see the widget and size you want. A Pro
-    widget's description starts with **👑 Nomo Pro**.
-  </Step>
-  <Step title="Add it">
-    Tap **Add Widget**, then tap **Done**.
-  </Step>
-</Steps>
-
-Nomo Pace and Nomo Activity also come in Lock Screen sizes. To add one there:
-
-1. Touch and hold your Lock Screen.
-2. Tap **Customize**, then tap **Lock Screen**.
-3. Tap the space under the clock.
-4. Find **Nomo** in the list and tap the widget you want.
-5. Tap **Done**.
-
-There's a short video of the Home Screen steps on the [Widget](/widget) page.
-
-## Nomo Pace
+### Nomo Pace <span className="pro-pill" /> {#nomo-pace}
 
 <Frame caption="Nomo Pace in Small and Medium, and on the Lock Screen.">
   <div className="widget-shot">
@@ -118,7 +184,7 @@ be if you used it evenly. If the fill is behind the tick, you're fine.
 
 **Set it up:**
 
-1. Add the widget. See [Add a Pro widget](#add-a-pro-widget).
+1. Add the widget. See [Widget](/widget).
 2. Touch and hold the widget.
 3. Tap **Edit Widget**.
 4. Tap **Provider** and pick one, such as **Claude**.
@@ -131,7 +197,7 @@ be if you used it evenly. If the fill is behind the tick, you're fine.
 
 Tap the widget to open that provider's **Usage** page in Nomo.
 
-## Nomo Activity
+### Nomo Activity <span className="pro-pill" /> {#nomo-activity}
 
 <Frame caption="Nomo Activity in Small, Medium and Large, and on the Lock Screen.">
   <div className="widget-shot">
@@ -163,7 +229,7 @@ morning: until your first session of the day, it counts up to yesterday.
 It counts Claude Code, Codex and OpenCode. Past days show up too, because the
 plugin reads the history that's already on your computer.
 
-**Set it up:** add the widget. See [Add a Pro widget](#add-a-pro-widget). There's
+**Set it up:** add the widget. See [Widget](/widget). There's
 nothing to pick in **Edit Widget**.
 
 The plugin sends a new summary at most every 6 hours. Nomo fetches it when you
@@ -172,7 +238,7 @@ open the app. So the map can be a few hours behind.
 What leaves your computer for this map is listed under
 [Privacy](#privacy). It's counts only, never your prompts or code.
 
-## Nomo Accounts
+### Nomo Accounts <span className="pro-pill" /> {#nomo-accounts}
 
 <Frame caption="Nomo Accounts in Medium and Large.">
   <div className="widget-shot narrow">
@@ -196,14 +262,14 @@ much is left, and when it resets.
 **What you need first:** at least one connected account. To track two accounts
 of the same provider, see [More than one account](#more-than-one-account).
 
-**Set it up:** add the widget. See [Add a Pro widget](#add-a-pro-widget). There's
+**Set it up:** add the widget. See [Widget](/widget). There's
 nothing to pick in **Edit Widget**.
 
 The board shows the last numbers Nomo fetched. To update every account, tap the
 refresh button in its corner. Tap anywhere else to open the **Providers** tab
 in Nomo.
 
-## Live Agents
+### Live Agents <span className="pro-pill" /> {#live-agents}
 
 <Frame caption="Live Agents in Small and Medium. The violet row needs your answer.">
   <div className="widget-shot">
@@ -241,10 +307,10 @@ Open Nomo to refresh it.
 **What you need first:** a paired computer with the Nomo plugin. See
 [Install](/setup/install) and [Pairing](/setup/pairing).
 
-**Set it up:** add the widget. See [Add a Pro widget](#add-a-pro-widget). There's
+**Set it up:** add the widget. See [Widget](/widget). There's
 nothing to pick in **Edit Widget**.
 
-## More than one account
+## More than one account <span className="pro-pill" /> {#more-than-one-account}
 
 With Nomo Pro, you can add up to 5 accounts for each provider. For example,
 a work Claude account and a personal one. Nomo Pace, Nomo Usage and Nomo
