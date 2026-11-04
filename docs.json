@@ -87,6 +87,7 @@
                   "status",
                   "usage",
                   "widget",
+                  "pro-widgets",
                   "notifications"
                 ]
               },
@@ -160,6 +161,7 @@
                   "es/status",
                   "es/usage",
                   "es/widget",
+                  "es/pro-widgets",
                   "es/notifications"
                 ]
               },
@@ -233,6 +235,7 @@
                   "ja/status",
                   "ja/usage",
                   "ja/widget",
+                  "ja/pro-widgets",
                   "ja/notifications"
                 ]
               },
@@ -306,6 +309,7 @@
                   "ko/status",
                   "ko/usage",
                   "ko/widget",
+                  "ko/pro-widgets",
                   "ko/notifications"
                 ]
               },
@@ -379,6 +383,7 @@
                   "zh-Hans/status",
                   "zh-Hans/usage",
                   "zh-Hans/widget",
+                  "zh-Hans/pro-widgets",
                   "zh-Hans/notifications"
                 ]
               },
@@ -452,6 +457,7 @@
                   "zh-Hant/status",
                   "zh-Hant/usage",
                   "zh-Hant/widget",
+                  "zh-Hant/pro-widgets",
                   "zh-Hant/notifications"
                 ]
               },
