@@ -1,9 +1,9 @@
 ---
-title: "Nomo 위젯: 무료와 Pro"
+title: "iPhone용 Claude·Codex 사용량 위젯: 한도와 연속 기록"
 sidebarTitle: "모든 위젯"
-description: "iPhone 홈 화면과 잠금 화면에서 쓰는 Nomo 위젯 전체. 각 위젯이 보여주는 내용, 먼저 필요한 것, 설정 방법을 설명합니다."
+description: "Claude와 Codex 사용량을 iPhone 홈 화면과 잠금 화면에서 봅니다. 5시간·주간 한도가 재설정 전에 바닥날지, 코딩 연속 기록과 지금 에이전트 상태까지 보여줍니다."
 icon: "clone"
-keywords: ["Nomo", "Nomo Pro", "상태", "Nomo 사용량", "위젯", "사용 속도", "활동", "계정", "실시간 에이전트", "Claude", "Codex", "사용량", "연속 기록", "히트맵", "잠금 화면", "iPhone"]
+keywords: ["Nomo", "Nomo Pro", "상태", "Nomo 사용량", "위젯", "사용 속도", "활동", "계정", "실시간 에이전트", "Claude", "Codex", "사용량", "연속 기록", "히트맵", "잠금 화면", "iPhone", "Claude 사용량 위젯", "5시간 한도", "주간 한도", "Codex 사용량 한도", "여러 Claude 계정", "잠금 화면 위젯"]
 ---
 
 Nomo에는 iPhone용 위젯이 6개 있습니다. 2개는 무료로, 상태를 보여주는
@@ -34,7 +34,7 @@ Nomo Pro가 열립니다.
 <Frame caption="소형과 중형의 Nomo 상태.">
   <div className="widget-shot">
     <img className="only-light" src="/images/widgets-status.webp" alt="Nomo 상태: Claude Code가 Operational임을 보여주는 소형 위젯과, Codex가 Operational이며 30일 기록 막대와 99.87%를 보여주는 중형 위젯" />
-    <img className="only-dark" src="/images/widgets-status-dark.webp" alt="어두운 모드의 Nomo 상태, 소형과 중형" />
+    <img className="only-dark" src="/images/widgets-status-dark.webp" alt="다크 모드의 Nomo 상태, 소형과 중형" />
   </div>
 </Frame>
 
@@ -78,7 +78,7 @@ Nomo에서 해당 제공업체의 **상태** 페이지가 열립니다.
 <Frame caption="소형과 중형의 Nomo 사용량.">
   <div className="widget-shot">
     <img className="only-light" src="/images/widgets-usage.webp" alt="Nomo 사용량: Claude 45%와 막대, resets 2h를 보여주는 소형 위젯과, Codex의 Session 30%와 Weekly 41%를 각각의 막대와 재설정 시간과 함께 보여주는 중형 위젯" />
-    <img className="only-dark" src="/images/widgets-usage-dark.webp" alt="어두운 모드의 Nomo 사용량, 소형과 중형" />
+    <img className="only-dark" src="/images/widgets-usage-dark.webp" alt="다크 모드의 Nomo 사용량, 소형과 중형" />
   </div>
 </Frame>
 
@@ -230,8 +230,27 @@ Nomo 사용 속도와 Nomo 활동은 잠금 화면 크기로도 제공됩니다.
 Claude Code, Codex, OpenCode를 셉니다. 플러그인이 컴퓨터에 이미 있는 기록을
 읽기 때문에 지난 날짜도 표시됩니다.
 
-**설정하기:** 위젯을 추가합니다. [위젯](/ko/widget)을
-참고하십시오. **위젯 편집**에서 고를 것은 없습니다.
+**설정하기:**
+
+1. 위젯을 추가합니다. [위젯](/ko/widget)을 참고하십시오.
+2. 위젯을 길게 터치합니다.
+3. **위젯 편집**을 탭합니다.
+4. **캐릭터**를 탭하고 **자동**, **Clawd**, **Codex**, **Grok Bot** 중 하나를
+   고릅니다.
+5. 위젯 바깥을 탭해 마칩니다.
+
+**자동**은 최근 7일 동안 가장 많이 쓴 에이전트를 보여줍니다. 다른 것을
+고르면 그 캐릭터가 표시되고, 지도와 오늘 칸, 연속 기록의 불꽃과 배지가 그
+캐릭터의 색으로 바뀝니다(Clawd는 코럴, Codex는 파란색, Grok Bot은 금색).
+대형에서 에이전트별 시간 비율을 보여주는 막대는 각 에이전트의 색을
+유지합니다. 이미 홈 화면에 있던 위젯은 **자동**으로 시작합니다.
+
+<Frame caption="Clawd, Codex, Grok Bot으로 설정한 Nomo 활동.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character.webp" alt="13일 연속 기록을 보여주는 소형 Nomo 활동 위젯 3개: 코럴색 Clawd, 파란색 Codex, 금색 Grok Bot" />
+    <img className="only-dark" src="/images/widgets-character-dark.webp" alt="다크 모드의 같은 Nomo 활동 위젯 3개: Clawd, Codex, Grok Bot" />
+  </div>
+</Frame>
 
 플러그인은 새 요약을 최대 6시간에 한 번 보냅니다. Nomo는 앱을 열 때 이를
 가져옵니다. 그래서 지도가 몇 시간 늦을 수 있습니다.
@@ -307,8 +326,19 @@ Claude Code, Codex, OpenCode를 셉니다. 플러그인이 컴퓨터에 이미 �
 **먼저 필요한 것:** Nomo 플러그인을 설치하고 페어링한 컴퓨터.
 [설치](/ko/setup/install)와 [페어링](/ko/setup/pairing)을 참고하십시오.
 
-**설정하기:** 위젯을 추가합니다. [위젯](/ko/widget)을
-참고하십시오. **위젯 편집**에서 고를 것은 없습니다.
+**설정하기:**
+
+1. 위젯을 추가합니다. [위젯](/ko/widget)을 참고하십시오.
+2. 위젯을 길게 터치합니다.
+3. **위젯 편집**을 탭합니다.
+4. **캐릭터**를 탭하고 **자동**, **Clawd**, **Codex**, **Grok Bot** 중 하나를
+   고릅니다.
+5. 위젯 바깥을 탭해 마칩니다.
+
+**자동**은 목록 맨 위 세션을 따릅니다. 다른 것을 고르면 그 캐릭터가
+표시되고 배경에 그 색이 옅게 깔립니다. 상태 색은 바뀌지 않습니다. 보라색은
+여전히 답이 필요한 세션이 있다는 뜻입니다. 이미 홈 화면에 있던 위젯은
+**자동**으로 시작합니다.
 
 ## 여러 계정 <span className="pro-pill" /> {#more-than-one-account}
 
