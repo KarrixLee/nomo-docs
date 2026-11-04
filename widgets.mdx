@@ -3,11 +3,11 @@ title: "Claude & Codex usage widgets for iPhone: limits and streaks"
 sidebarTitle: "All widgets"
 description: "See your Claude and Codex limits on your iPhone Home Screen and Lock Screen: will you run out before the 5-hour or weekly reset? Plus streaks and live agents."
 icon: "clone"
-keywords: ["Nomo", "Nomo Pro", "status", "Nomo Usage", "widget", "Pace", "Activity", "Accounts", "Live Agents", "Claude", "Codex", "usage", "streak", "heatmap", "Lock Screen", "iPhone", "Claude usage widget", "5-hour limit", "weekly limit", "reset", "Codex usage limit", "multiple Claude accounts", "Claude Code usage heatmap", "Lock Screen widget"]
+keywords: ["Nomo", "Nomo Pro", "status", "Nomo Usage", "widget", "Pace", "Activity", "Accounts", "Live Agents", "Claude", "Codex", "usage", "streak", "heatmap", "Lock Screen", "iPhone", "Claude usage widget", "5-hour limit", "weekly limit", "reset", "Codex usage limit", "multiple Claude accounts", "Claude Code usage heatmap", "Lock Screen widget", "Claude Code token usage", "tokens per model", "Wrapped"]
 ---
 
-Nomo has six widgets for your iPhone. Two are free: **Nomo**, for status,
-and **Nomo Usage**. Four more come with Nomo Pro.
+Nomo has seven widgets for your iPhone. Two are free: **Nomo**, for status,
+and **Nomo Usage**. Five more come with Nomo Pro.
 
 This page covers what each widget shows and how to set it up. To put a widget
 on your Home Screen, see [Widget](/widget).
@@ -18,7 +18,7 @@ on your Home Screen, see [Widget](/widget).
 | --- | --- | --- |
 | **Nomo** status widget | ✓ | ✓ |
 | **Nomo Usage** widget | ✓ | ✓ |
-| **Nomo Pace**, **Nomo Activity**, **Nomo Accounts**, **Live Agents** | | ✓ |
+| **Nomo Pace**, **Nomo Activity**, **Nomo Accounts**, **Live Agents**, **Nomo Tokens** | | ✓ |
 | More than one account per provider | | ✓ |
 
 In the widget gallery, a Pro widget's description starts with **👑 Nomo Pro**.
@@ -118,15 +118,16 @@ open that provider's **Usage** page in Nomo.
 
 ## Pro widgets <span className="pro-pill" /> {#pro-widgets}
 
-Nomo Pro adds four widgets to the free ones. Each one answers a question you'd
+Nomo Pro adds five widgets to the free ones. Each one answers a question you'd
 otherwise open the app for.
 
 - **Nomo Pace**: will my usage last until it resets?
 - **Nomo Activity**: how many days in a row have I coded with an agent?
 - **Nomo Accounts**: which of my accounts has the least left?
 - **Live Agents**: what are my agents doing right now?
+- **Nomo Tokens**: how many tokens did I use, and on which models?
 
-<Frame caption="The four Pro widgets on a Home Screen: Nomo Pace, Live Agents, Nomo Activity and Nomo Accounts.">
+<Frame caption="Four of the Pro widgets on a Home Screen: Nomo Pace, Live Agents, Nomo Activity and Nomo Accounts.">
   <div className="widget-shot">
     <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Four Nomo widgets on a light Home Screen: Pace counting down two hours to a Claude reset, Live Agents with two running and one needing an answer, a 13-day Activity streak with a coding heatmap, and an Accounts board of six accounts sorted by what's left" />
     <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="The same four Nomo widgets on a dark Home Screen: Pace, Live Agents, Activity and Accounts" />
@@ -254,8 +255,56 @@ color. A widget that was already on your Home Screen starts on **Automatic**.
 The plugin sends a new summary at most every 6 hours. Nomo fetches it when you
 open the app. So the map can be a few hours behind.
 
+Tap the widget to open the [Activity screen](#activity-screen) in Nomo.
+
 What leaves your computer for this map is listed under
 [Privacy](#privacy). It's counts only, never your prompts or code.
+
+### Nomo Tokens <span className="pro-pill" /> {#nomo-tokens}
+
+<Frame caption="Nomo Tokens in Medium and Large.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-tokens.webp" alt="Nomo Tokens: a medium widget with 20.3M tokens in 14 days, 1.29M today and Fable at 78%, and a large widget that adds 41% more than last week and a legend of Fable, GPT-5.5 and Haiku 4.5, with each day's bar stacked by model" />
+    <img className="only-dark" src="/images/widgets-tokens-dark.webp" alt="Nomo Tokens in dark mode, medium and large" />
+  </div>
+</Frame>
+
+**What it shows:** how many tokens your agents used each day for the last 14
+days, across every paired computer. Each day's bar is split by model.
+
+Tokens here means input + output + reasoning. Cache isn't counted: it re-reads
+the same context, so it would swamp every other number. The
+[Activity screen](#activity-screen) lists cache on its own.
+
+| Size | What's on it |
+| --- | --- |
+| Medium | The 14-day total, today's tokens, and your top model with its share. |
+| Large | The same, plus the change from last week and your top 4 models. The rest are added up in one row, such as `6 more models`. |
+
+Each model keeps one color everywhere: Claude models are coral, GPT blue, Grok
+gold, Gemini purple, and other models grey.
+
+**What you need first:** the same as Nomo Activity: the Nomo plugin on a
+paired computer. See [Nomo Activity](#nomo-activity).
+
+**Set it up:**
+
+1. Add the widget. See [Widget](/widget).
+2. Touch and hold the widget.
+3. Tap **Edit Widget**.
+4. Tap **Character** and pick one: **Automatic**, **Clawd**, **Codex** or
+   **Grok Bot**.
+5. Tap outside the widget to finish.
+
+**Automatic** follows your top model: Codex for GPT, Grok Bot for Grok, and
+Clawd for everything else. Your pick changes only the background glow and
+today's bar. Model colors never change.
+
+Tap the widget to open the [Activity screen](#activity-screen) in Nomo. Without
+Nomo Pro, a tap opens Nomo Pro.
+
+It uses the same summary as Nomo Activity. What leaves your computer is listed
+under [Privacy](#privacy).
 
 ### Nomo Accounts <span className="pro-pill" /> {#nomo-accounts}
 
@@ -344,6 +393,60 @@ that character and gives the background a light tint of its color. The status
 colors never change: violet still means a session needs your answer. A widget
 that was already on your Home Screen starts on **Automatic**.
 
+## Activity screen and Wrapped <span className="pro-pill" /> {#activity-screen}
+
+The Activity screen shows your streak and your tokens in full. It also makes a
+Wrapped card you can share.
+
+<Frame caption="The top of the Activity screen: your streak, the 7 / 14 / 30 days switch and the tokens chart.">
+  <div className="device-frame crop-top">
+    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="The Activity screen: a 13-day streak with a 26-week map, the 7, 14 and 30 days switch set to 14 days, and 20.3M tokens in the last 14 days with Today, Daily average and Active hours above a chart stacked by model" />
+    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="The Activity screen: a 13-day streak with a 26-week map, the 7, 14 and 30 days switch set to 14 days, and 20.3M tokens in the last 14 days with Today, Daily average and Active hours above a chart stacked by model" />
+  </div>
+</Frame>
+
+To open it:
+
+1. Open Nomo.
+2. Tap the **Sessions** tab.
+3. Tap the **Activity** card at the very top. It shows your streak, this
+   week's tokens and the last 7 days.
+
+You can also tap the Nomo Activity or Nomo Tokens widget.
+
+Without Nomo Pro, the card shows a crown, **Activity** and **Streak, daily
+tokens and Wrapped with Nomo Pro.** Tap it to open Nomo Pro.
+
+The screen shows:
+
+- **Streak**: your streak and a map of the last 26 weeks.
+- A switch for **7 days**, **14 days** or **30 days**.
+- **Tokens**: a chart of your daily tokens, stacked by model, with **Today**,
+  **Daily average**, **Active hours** and the change from the previous period.
+- **By model**: a table with **Input**, **Output**, **Cache** and **Total**
+  for each model.
+
+### Wrapped {#wrapped}
+
+Wrapped turns your week, month or year into one image you can share.
+
+1. On the Activity screen, scroll to the bottom.
+2. Tap **Your Wrapped**.
+3. Tap **Week** (the last 7 days), **Month** (the last 30 days) or **Year**
+   (this calendar year).
+4. Tap **Share**, then pick where to send it.
+
+<Frame caption="A week's Wrapped card. It's always dark, whatever your iPhone's appearance.">
+  <div className="widget-shot narrow">
+    <img src="/images/widgets-wrapped.webp" alt="A Wrapped card titled My week in code: 11.9M tokens, a daily chart, 16h active hours, Nov 1 as the busiest day, a 7-day longest streak, Fable as the favorite model, Claude Code as the favorite agent and 27 sessions" style={{ borderRadius: "1.5rem" }} />
+  </div>
+</Frame>
+
+The card shows your tokens, a chart, your active hours, your busiest day, your
+longest streak, your favorite model and agent, and how many sessions you ran.
+**Share** sends it as a 1080 × 1350 image. It never includes your prompts,
+project names or file paths.
+
 ## More than one account <span className="pro-pill" /> {#more-than-one-account}
 
 With Nomo Pro, you can add up to 5 accounts for each provider. For example,
@@ -367,7 +470,8 @@ connect anything.
 3. Scroll to **Demo mode**.
 4. Turn on **Show sample data**.
 
-Nomo Pace, Nomo Activity and Live Agents then show sample data, not your own.
+Nomo Pace, Nomo Activity, Nomo Tokens and Live Agents then show sample data,
+not your own.
 Demo mode always shows sample data. The one exception: once a computer is
 paired, Live Agents shows your real sessions.
 Nomo Accounts only lists accounts you've really added, so it stays empty until
@@ -392,6 +496,15 @@ To go back to your real data, turn **Show sample data** off.
 - It uploads at most every 6 hours, and only when something changed.
 - On your computer, it's kept in `~/.config/cc-status/activity-days.json`. Only
   your user account can read it. It keeps 400 days at most.
+
+**Nomo Tokens and the Activity screen**
+
+- They use the same activity summary as Nomo Activity, so everything above
+  applies to them too.
+
+**Wrapped**
+
+- Sharing sends only the image you see on the card.
 
 **Live Agents**
 

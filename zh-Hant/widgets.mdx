@@ -3,10 +3,10 @@ title: "Claude 與 Codex 用量小工具：iPhone 主畫面與鎖定畫面"
 sidebarTitle: "所有小工具"
 description: "在 iPhone 主畫面和鎖定畫面查看 Claude 與 Codex 用量：5 小時與每週額度會不會在重設前用完，還有寫程式連續紀錄和代理即時狀態。"
 icon: "clone"
-keywords: ["Nomo", "Nomo Pro", "狀態", "Nomo 用量", "小工具", "用量速度", "活動", "帳戶", "代理即時狀態", "Claude", "Codex", "用量", "連續紀錄", "熱度圖", "鎖定畫面", "iPhone", "Claude 用量小工具", "5 小時與每週額度", "Codex 用量額度", "多個 Claude 帳戶", "鎖定畫面 小工具"]
+keywords: ["Nomo", "Nomo Pro", "狀態", "Nomo 用量", "小工具", "用量速度", "活動", "帳戶", "代理即時狀態", "Claude", "Codex", "用量", "連續紀錄", "熱度圖", "鎖定畫面", "iPhone", "Claude 用量小工具", "5 小時與每週額度", "Codex 用量額度", "多個 Claude 帳戶", "鎖定畫面 小工具", "Claude Code Token 用量", "依模型 Token", "回顧"]
 ---
 
-Nomo 有六個 iPhone 小工具。其中兩個免費：顯示狀態的 **Nomo** 和 **Nomo 用量**。另外四個需要 Nomo Pro。
+Nomo 有七個 iPhone 小工具。其中兩個免費：顯示狀態的 **Nomo** 和 **Nomo 用量**。另外五個需要 Nomo Pro。
 
 這一頁說明每個小工具顯示什麼，以及怎麼設定。要把小工具放到主畫面上，請看[小工具](/zh-Hant/widget)。
 
@@ -16,7 +16,7 @@ Nomo 有六個 iPhone 小工具。其中兩個免費：顯示狀態的 **Nomo** 
 | --- | --- | --- |
 | **Nomo** 狀態小工具 | ✓ | ✓ |
 | **Nomo 用量**小工具 | ✓ | ✓ |
-| **Nomo 用量速度**、**Nomo 活動**、**Nomo 帳戶**、**代理即時狀態** | | ✓ |
+| **Nomo 用量速度**、**Nomo 活動**、**Nomo 帳戶**、**代理即時狀態**、**Nomo Token** | | ✓ |
 | 每個供應商多個帳戶 | | ✓ |
 
 在小工具資料庫裡，Pro 小工具的說明會以 **👑 Nomo Pro** 開頭。
@@ -103,14 +103,15 @@ Nomo 有六個 iPhone 小工具。其中兩個免費：顯示狀態的 **Nomo** 
 
 ## Pro 小工具 <span className="pro-pill" /> {#pro-widgets}
 
-Nomo Pro 在免費小工具之外再加上四個小工具。每一個都回答一個你原本得打開 App 才能知道的問題。
+Nomo Pro 在免費小工具之外再加上五個小工具。每一個都回答一個你原本得打開 App 才能知道的問題。
 
 - **Nomo 用量速度**：我的用量撐得到重設嗎？
 - **Nomo 活動**：我已經連續幾天用代理寫程式了？
 - **Nomo 帳戶**：我哪個帳戶剩得最少？
 - **代理即時狀態**：我的代理現在在做什麼？
+- **Nomo Token**：我用了多少 Token，用在哪些模型上？
 
-<Frame caption="主畫面上的四個 Pro 小工具：Nomo 用量速度、代理即時狀態、Nomo 活動和 Nomo 帳戶。">
+<Frame caption="主畫面上的其中四個 Pro 小工具：Nomo 用量速度、代理即時狀態、Nomo 活動和 Nomo 帳戶。">
   <div className="widget-shot">
     <img className="only-light" src="/images/pro-widgets-hero.webp" alt="淺色主畫面上的四個 Nomo 小工具：用量速度顯示距離 Claude 重設還有兩小時的倒數，代理即時狀態顯示兩個執行中、一個需要回答，活動顯示 13 天連續紀錄和寫程式的熱度圖，帳戶看板依剩餘量排列六個帳戶" />
     <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="深色主畫面上同樣的四個 Nomo 小工具：用量速度、代理即時狀態、活動和帳戶" />
@@ -216,7 +217,45 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 外掛程式最多每 6 小時傳送一次新的摘要。Nomo 會在你打開 App 時取得它。所以地圖可能會落後幾個小時。
 
+點一下小工具，會在 Nomo 中打開[活動頁面](#activity-screen)。
+
 為了這張地圖而離開你電腦的內容，列在[隱私](#privacy)底下。只有計數，絕不包括你的提示或程式碼。
+
+### Nomo Token <span className="pro-pill" /> {#nomo-tokens}
+
+<Frame caption="中型和大型的 Nomo Token。">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-tokens.webp" alt="Nomo Token：中型小工具顯示 14 天共 2030 萬 Token、今天 129 萬、Fable 佔 78%，大型小工具再加上較上週成長 41%，以及 Fable、GPT-5.5 和 Haiku 4.5 的圖例，每天的長條依模型堆疊" />
+    <img className="only-dark" src="/images/widgets-tokens-dark.webp" alt="深色模式的 Nomo Token，中型和大型" />
+  </div>
+</Frame>
+
+**它顯示什麼**：所有配對過的電腦上，你的代理最近 14 天每天用了多少 Token。每天的長條依模型分段。
+
+這裡的 Token 指輸入 + 輸出 + 推理。快取不計入：它是重複讀取同樣的上下文，會把其他數字全部蓋過去。[活動頁面](#activity-screen)會另外列出快取。
+
+| 尺寸 | 顯示內容 |
+| --- | --- |
+| 中型 | 14 天總計、今天的 Token，以及用得最多的模型和它的占比。 |
+| 大型 | 同樣的內容，再加上較上週的變化和前 4 個模型。其餘的合併成一列，例如 `其他 6 個模型`。 |
+
+每個模型在任何地方都維持同一種顏色：Claude 模型是珊瑚色，GPT 是藍色，Grok 是金色，Gemini 是紫色，其他模型是灰色。
+
+**事前需要**：和 Nomo 活動一樣，需要一台裝了 Nomo 外掛程式並已配對的電腦。請看 [Nomo 活動](#nomo-activity)。
+
+**設定方式**：
+
+1. 加入小工具。請看[小工具](/zh-Hant/widget)。
+2. 按住小工具。
+3. 點一下「編輯小工具」。
+4. 點一下「角色」，從「自動」、**Clawd**、**Codex**、**Grok Bot** 中選一個。
+5. 點一下小工具外面就完成了。
+
+「自動」會跟著你用得最多的模型：GPT 對應 Codex，Grok 對應 Grok Bot，其他都是 Clawd。你選的角色只會改變背景光暈和今天的長條。模型顏色永遠不變。
+
+點一下小工具，會在 Nomo 中打開[活動頁面](#activity-screen)。沒有 Nomo Pro 時，點一下會打開 Nomo Pro。
+
+它和 Nomo 活動使用同一份摘要。離開你電腦的內容列在[隱私](#privacy)底下。
 
 ### Nomo 帳戶 <span className="pro-pill" /> {#nomo-accounts}
 
@@ -285,6 +324,51 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 「自動」會跟著清單最上面的 session。選其他角色時，小工具會顯示那個角色，背景也會帶上淡淡的同色調。狀態顏色不會變：紫色仍然表示有 session 需要你回答。已經在主畫面上的小工具會從「自動」開始。
 
+## 活動頁面和回顧 <span className="pro-pill" /> {#activity-screen}
+
+活動頁面會完整顯示你的連續紀錄和 Token，還能產生一張可以分享的回顧卡片。
+
+<Frame caption="活動頁面的上半部：連續紀錄、7 / 14 / 30 天切換，以及 Token 圖表。">
+  <div className="device-frame crop-top">
+    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="活動頁面：13 天連續紀錄和 26 週地圖，7、14、30 天切換選在 14 天，以及最近 14 天的 2030 萬 Token，Today、Daily average 和 Active hours 下方是依模型堆疊的圖表" />
+    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="活動頁面：13 天連續紀錄和 26 週地圖，7、14、30 天切換選在 14 天，以及最近 14 天的 2030 萬 Token，Today、Daily average 和 Active hours 下方是依模型堆疊的圖表" />
+  </div>
+</Frame>
+
+打開方式：
+
+1. 打開 Nomo。
+2. 點一下「Sessions」分頁。
+3. 點一下最上面的「活動」卡片。卡片上會顯示你的連續紀錄、本週的 Token 和最近 7 天。
+
+也可以點一下 Nomo 活動或 Nomo Token 小工具打開。
+
+沒有 Nomo Pro 時，卡片上會顯示一個皇冠、「活動」和「連續紀錄、每日 Token 與回顧，盡在 Nomo Pro。」。點一下它會打開 Nomo Pro。
+
+頁面上有：
+
+- 「連續紀錄」：你的連續紀錄和最近 26 週的地圖。
+- 「7 天」「14 天」「30 天」切換。
+- 「Token」：依模型堆疊的每日 Token 圖表，以及「今天」「日均」「活躍時數」和較上一段期間的變化。
+- 「依模型」：每個模型的「輸入」「輸出」「快取」「總計」表格。
+
+### 回顧 {#wrapped}
+
+回顧會把你的一週、一個月或一年變成一張可以分享的圖片。
+
+1. 在活動頁面捲動到最下面。
+2. 點一下「你的回顧」。
+3. 點一下「週」（最近 7 天）、「月」（最近 30 天）或「年」（今年）。
+4. 點一下「分享」，再選擇要傳到哪裡。
+
+<Frame caption="一週的回顧卡片。不論 iPhone 是淺色還是深色外觀，它永遠是深色的。">
+  <div className="widget-shot narrow">
+    <img src="/images/widgets-wrapped.webp" alt="標題為 My week in code 的回顧卡片：1190 萬 Token、每日圖表、活躍 16 小時、最忙的一天是 11 月 1 日、最長連續紀錄 7 天、最常用的模型 Fable、最常用的代理 Claude Code，以及 27 個 sessions" style={{ borderRadius: "1.5rem" }} />
+  </div>
+</Frame>
+
+卡片上會顯示你的 Token、圖表、活躍時數、最忙的一天、最長連續紀錄、最常用的模型和代理，以及 sessions 數。「分享」會把它當成一張 1080 × 1350 的圖片傳出去。它絕不包含你的提示、專案名稱或檔案路徑。
+
 ## 多個帳戶 <span className="pro-pill" /> {#more-than-one-account}
 
 有了 Nomo Pro，每家供應商最多可以新增 5 個帳戶。例如，一個工作用的 Claude 帳戶和一個個人帳戶。Nomo 用量速度、Nomo 用量和 Nomo 帳戶都能使用它們。
@@ -302,7 +386,7 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 3. 捲動到「示範模式」。
 4. 打開「顯示範例資料」。
 
-之後 Nomo 用量速度、Nomo 活動和代理即時狀態就會顯示範例資料，而不是你自己的資料。示範模式永遠顯示範例資料。唯一的例外：一旦有電腦配對，代理即時狀態就會顯示你真實的 sessions。
+之後 Nomo 用量速度、Nomo 活動、Nomo Token 和代理即時狀態就會顯示範例資料，而不是你自己的資料。示範模式永遠顯示範例資料。唯一的例外：一旦有電腦配對，代理即時狀態就會顯示你真實的 sessions。
 Nomo 帳戶只會列出你真正新增過的帳戶，所以在你新增帳戶之前，它會一直是空的。
 
 如果你沒有 Nomo Pro，示範模式也會解鎖 Pro 小工具，但只限於沒有任何電腦配對的時候。
@@ -318,6 +402,14 @@ Nomo 帳戶只會列出你真正新增過的帳戶，所以在你新增帳戶之
 - 上傳前會先端對端加密（AES-256-GCM，使用你的配對金鑰）。Nomo 的中繼伺服器無法讀取，並會在 **35 天**後刪除。
 - 最多每 6 小時上傳一次，而且只在有變化時上傳。
 - 在你的電腦上，它存放在 `~/.config/cc-status/activity-days.json`。只有你的使用者帳號能讀取。最多保留 400 天。
+
+**Nomo Token 和活動頁面**
+
+- 它們使用和 Nomo 活動同一份活動摘要，所以上面的內容同樣適用。
+
+**回顧**
+
+- 分享時只會傳出你在卡片上看到的那張圖片。
 
 **代理即時狀態**
 
