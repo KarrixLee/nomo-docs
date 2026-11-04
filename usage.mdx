@@ -48,6 +48,42 @@ already pay for. Nomo reads the same numbers that account can see about itself
 
 Nomo is unofficial and not affiliated with any provider it reads.
 
+## The Pace line <span className="pro-pill" /> {#pace}
+
+With Nomo Pro, each limit on the **Usage** page has one more line. It tells you
+if your usage will last until the limit resets.
+
+<Frame caption="Both limits are being used faster than time is passing, so both lines are amber.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-pace-light.webp" alt="Claude's Your usage card: Session at 82% with the line 82% used · 60% time · Runs out in ~39m, and Weekly at 68% with 68% used · 39% time · Runs out in ~1d 7h, both in amber" />
+    <img className="only-dark" src="/images/usage-pace-dark.webp" alt="Claude's Your usage card: Session at 82% with the line 82% used · 60% time · Runs out in ~39m, and Weekly at 68% with 68% used · 39% time · Runs out in ~1d 7h, both in amber" />
+  </div>
+</Frame>
+
+The line starts with two numbers, such as `45% used · 60% time`:
+
+- **used**: how much of the limit you've used.
+- **time**: how much of the time window has gone by.
+
+If used is lower than time, you're fine. After the numbers, you'll see one of
+these:
+
+- `Lasts until reset`: you're fine.
+- `Runs out in`, then a time, such as `Runs out in ~2d 6h`. It's amber. At your
+  current speed, you'd run out before the reset. The `~` means it's an
+  estimate.
+- `Too early to tell`: the window has only just started.
+- `Maxed out`: you've used the whole limit.
+
+Some plans have no pace, such as some Cursor plans and the free Grok plan.
+Their limits show no line.
+
+The [Nomo Pace](/widgets#nomo-pace) widget shows the same thing on your Home
+Screen.
+
+**Without Nomo Pro**, the first limit shows one row instead: **See if you'll
+run out before reset**, with a **PRO** tag. Tap it to open Nomo Pro.
+
 ## When you hit a limit
 
 Once any window reaches 100%, a **Limit reached** callout appears under the

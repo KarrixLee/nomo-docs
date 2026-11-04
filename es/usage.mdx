@@ -50,6 +50,42 @@ misma: no es una clave de API y no hay nada que pegar.
 Nomo es una app no oficial y no está afiliada a ninguno de los proveedores que
 consulta.
 
+## Ritmo <span className="pro-pill" /> {#pace}
+
+Con Nomo Pro, cada límite de la página **Uso** tiene una línea más. Te dice si
+tu uso durará hasta que el límite se restablezca.
+
+<Frame caption="Los dos límites se están usando más rápido de lo que pasa el tiempo, así que las dos líneas están en ámbar.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-pace-light.webp" alt="La tarjeta Tu uso de Claude: Sesión al 82 % con la línea 82% used · 60% time · Runs out in ~39m, y Semanal al 68 % con 68% used · 39% time · Runs out in ~1d 7h, las dos en ámbar" />
+    <img className="only-dark" src="/images/usage-pace-dark.webp" alt="La tarjeta Tu uso de Claude: Sesión al 82 % con la línea 82% used · 60% time · Runs out in ~39m, y Semanal al 68 % con 68% used · 39% time · Runs out in ~1d 7h, las dos en ámbar" />
+  </div>
+</Frame>
+
+La línea empieza con dos números, como `Uso 45 % · plazo 60 %`:
+
+- **Uso**: cuánto del límite has usado.
+- **plazo**: cuánto de la ventana de tiempo ha pasado.
+
+Si el uso es menor que el plazo, vas bien. Después de los números, verás uno
+de estos:
+
+- **“No se agota”**: vas bien.
+- **“Se agota en”** y un tiempo, en ámbar. Al ritmo actual, te quedarías sin
+  uso antes del restablecimiento. El `~` indica que es una estimación.
+- **“Aún es pronto para saberlo”**: la ventana acaba de empezar.
+- **“Al límite”**: has usado todo el límite.
+
+Algunos planes no tienen ritmo, como algunos planes de Cursor y el plan
+gratuito de Grok. Sus límites no muestran la línea.
+
+El widget [Ritmo de Nomo](/es/widgets#nomo-pace) muestra lo mismo en tu pantalla de
+inicio.
+
+**Sin Nomo Pro**, el primer límite muestra una sola fila en su lugar:
+**“Mira si se agota antes de restablecerse”**, con una etiqueta **PRO**.
+Tócala para abrir Nomo Pro.
+
 ## Al alcanzar un límite
 
 En cuanto alguna ventana llega al 100 %, aparece un aviso de **Límite

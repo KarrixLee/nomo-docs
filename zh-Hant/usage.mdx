@@ -34,6 +34,35 @@ icon: "gauge"
 
 Nomo 並非官方產品，與它所讀取的任何供應商都沒有關聯。
 
+## 用量速度 <span className="pro-pill" /> {#pace}
+
+有了 Nomo Pro，「用量」頁面的每個限額下面會多一行，告訴你用量能不能撐到限額重設。
+
+<Frame caption="兩個限額都用得比時間過得快，所以兩行都是琥珀色。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-pace-light.webp" alt="Claude 的「你的用量」卡片：Session 為 82%，下面一行是 82% used · 60% time · Runs out in ~39m；每週為 68%，下面一行是 68% used · 39% time · Runs out in ~1d 7h，兩行都是琥珀色" />
+    <img className="only-dark" src="/images/usage-pace-dark.webp" alt="Claude 的「你的用量」卡片：Session 為 82%，下面一行是 82% used · 60% time · Runs out in ~39m；每週為 68%，下面一行是 68% used · 39% time · Runs out in ~1d 7h，兩行都是琥珀色" />
+  </div>
+</Frame>
+
+這一行開頭是兩個數字，例如 `已用 45%・時間 60%`：
+
+- **已用**：限額已經用了多少。
+- **時間**：這個時段已經過了多少。
+
+已用比時間低，就沒問題。數字後面會顯示下面其中一種：
+
+- 「可用到重設」：沒問題。
+- 「用完倒數」和剩下的時間：顯示為琥珀色。照目前的速度，你會在重設前用完。前面有 `~` 表示這是估計值。
+- 「現在還看不出來」：時段才剛開始。
+- 「已達限額」：整個限額已經用完。
+
+有些方案沒有用量速度，例如部分 Cursor 方案和 Grok 的免費方案。這些限額下面不會顯示這一行。
+
+在主畫面上，[Nomo 用量速度](/zh-Hant/widgets#nomo-pace)小工具會顯示同樣的內容。
+
+**沒有 Nomo Pro 時**，第一個限額下面只會顯示一行「看看會不會在重設前用完」，旁邊有 **PRO** 標籤。點一下它會打開 Nomo Pro。
+
 ## 達到限額時 {#when-you-hit-a-limit}
 
 任何一個視窗達到 100% 時，用量卡片下方會出現一則「已達限額」提示，上面只有一個按鈕 — 「在 Claude 管理用量」，或是你正在看的那一家供應商。它會在瀏覽器裡打開那家供應商自己的用量設定，你的方案在那裡可能提供額外用量。
