@@ -245,7 +245,7 @@ en su lugar.
 
 **Qué necesitas antes:**
 
-- El plugin de Nomo en tu ordenador, versión **2.3.6** o posterior. Consulta
+- El plugin de Nomo en tu ordenador, versión **2.4.0** o posterior. Consulta
   [Instalación](/es/setup/install) y [Actualizaciones](/es/setup/install#updating).
 - Ese ordenador vinculado con Nomo. Consulta [Vinculación](/es/setup/pairing).
 
@@ -496,12 +496,16 @@ A veces muestra otra cosa:
 | --- | --- | --- |
 | **“Empieza tu racha”** | Todavía no hay ningún ordenador vinculado. | Abre los mismos pasos de vinculación que **“Vincular un ordenador”**. |
 | **“Aún no hay sesiones”** | Hay un ordenador vinculado, pero aún no ha llegado ninguna sesión. | Abre la pantalla Actividad. |
-| **“Actualiza el plugin de Nomo”** | Todos los ordenadores vinculados tienen un plugin de Nomo anterior a la 2.3.6. | Abre los pasos para actualizarlo. |
+| **“Actualiza el plugin de Nomo”** | Todos los ordenadores vinculados tienen un plugin de Nomo anterior a la 2.4.0. | Abre los pasos para actualizarlo. |
 
 Cuando la barra está encogida, dicen **“Vincular un ordenador”**, **“Aún no hay
 sesiones”** y **“Actualizar plugin”**.
 
 La barra necesita Nomo Pro. Sin Nomo Pro, no verás la barra.
+
+Cuando sale una versión nueva de Nomo, la barra de actualización ocupa este
+lugar. Actualiza Nomo, o toca **×** en la barra de actualización, para que
+vuelva la barra de racha.
 
 En iOS 26.0 o anterior, no hay barra. La tarjeta de racha aparece arriba del
 todo de la lista de sesiones.
@@ -541,7 +545,7 @@ racha suman todos los ordenadores vinculados.
 
 ### Cuando un ordenador no se cuenta {#not-counted}
 
-Un ordenador con un plugin de Nomo anterior a la 2.3.6 no se cuenta. Verás:
+Un ordenador con un plugin de Nomo anterior a la 2.4.0 no se cuenta. Verás:
 
 - En la pantalla Actividad, bajo tu racha: **“MacBook Air no se cuenta ·
   actualiza su plugin”**, con el nombre de ese ordenador. Si hay más de uno,
@@ -617,7 +621,9 @@ Para volver a tus datos reales, desactiva **“Mostrar datos de ejemplo”**.
   ordenador o tu nombre de usuario. Se cifra de extremo a extremo con todo lo
   demás. Nomo solo lo usa para que tu iPhone no cuente el mismo ordenador dos
   veces. Para obtener uno nuevo, borra ese archivo.
-- Se sube como mucho cada 6 horas, y solo cuando algo ha cambiado. Justo
+- Se sube como mucho cada 6 horas, y solo cuando algo ha cambiado. Si no ha
+  cambiado nada, vuelve a enviar el mismo resumen una vez a la semana para que
+  el relé no lo borre. Justo
   después de vincular un iPhone nuevo, se sube una vez en un minuto, más o
   menos.
 - En tu ordenador, se guarda en `~/.config/cc-status/activity-days.json`. Solo tu

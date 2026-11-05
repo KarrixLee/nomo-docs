@@ -235,7 +235,7 @@ from your computers, that tile shows **Active hours** instead.
 
 **What you need first:**
 
-- The Nomo plugin on your computer, version **2.3.6** or later. See
+- The Nomo plugin on your computer, version **2.4.0** or later. See
   [Install](/setup/install) and [Updating](/setup/install#updating).
 - That computer paired with Nomo. See [Pairing](/setup/pairing).
 
@@ -479,12 +479,15 @@ Sometimes it shows something else:
 | --- | --- | --- |
 | **Start your streak** | No computer is paired yet. | Opens the same pairing steps as **Pair a Computer**. |
 | **No sessions yet** | A computer is paired, but no sessions have come in yet. | Opens the Activity screen. |
-| **Update the Nomo plugin** | Every paired computer has a Nomo plugin older than 2.3.6. | Opens the steps to update it. |
+| **Update the Nomo plugin** | Every paired computer has a Nomo plugin older than 2.4.0. | Opens the steps to update it. |
 
 When the bar is shrunk, these say **Pair a computer**, **No sessions yet** and
 **Update plugin**.
 
 The bar needs Nomo Pro. Without it, you won't see the bar.
+
+When a new version of Nomo is out, the update bar takes this spot instead.
+Update Nomo, or tap **×** on the update bar, to get the streak bar back.
 
 On iOS 26.0 or earlier, there's no bar. The streak card sits at the top of the
 Sessions list instead.
@@ -524,7 +527,7 @@ add up every paired computer.
 
 ### When a computer isn't counted {#not-counted}
 
-A computer with a Nomo plugin older than 2.3.6 isn't counted. You'll see:
+A computer with a Nomo plugin older than 2.4.0 isn't counted. You'll see:
 
 - On the Activity screen, under your streak: `MacBook Air isn't counted ·
   update its plugin`, with that computer's name. If there's more than one, it
@@ -598,8 +601,10 @@ To go back to your real data, turn **Show sample data** off.
   user name. It's end-to-end encrypted with the rest. Nomo uses it only so
   your phone doesn't count the same computer twice. To get a new one, delete
   that file.
-- It uploads at most every 6 hours, and only when something changed. Right
-  after you pair a new phone, it uploads once within about a minute.
+- It uploads at most every 6 hours, and only when something changed. If
+  nothing changed, it sends the same summary again once a week, so the relay
+  doesn't delete it. Right after you pair a new phone, it uploads once within
+  about a minute.
 - On your computer, it's kept in `~/.config/cc-status/activity-days.json`. Only
   your user account can read it. It keeps 400 days at most.
 
