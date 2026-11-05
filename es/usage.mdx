@@ -50,6 +50,42 @@ misma: no es una clave de API y no hay nada que pegar.
 Nomo es una app no oficial y no está afiliada a ninguno de los proveedores que
 consulta.
 
+## Ritmo <span className="pro-pill" /> {#pace}
+
+Con Nomo Pro, cada límite de la página **Uso** tiene una línea más. Te dice si
+tu uso durará hasta que el límite se restablezca.
+
+<Frame caption="Los dos límites se están usando más rápido de lo que pasa el tiempo, así que las dos líneas están en ámbar.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-pace-light.webp" alt="La tarjeta Tu uso de Claude: Sesión al 82 % con la línea 82% used · 60% time · Runs out in ~39m, y Semanal al 68 % con 68% used · 39% time · Runs out in ~1d 7h, las dos en ámbar" />
+    <img className="only-dark" src="/images/usage-pace-dark.webp" alt="La tarjeta Tu uso de Claude: Sesión al 82 % con la línea 82% used · 60% time · Runs out in ~39m, y Semanal al 68 % con 68% used · 39% time · Runs out in ~1d 7h, las dos en ámbar" />
+  </div>
+</Frame>
+
+La línea empieza con dos números, como `Uso 45 % · plazo 60 %`:
+
+- **Uso**: cuánto del límite has usado.
+- **plazo**: cuánto de la ventana de tiempo ha pasado.
+
+Si el uso es menor que el plazo, vas bien. Después de los números, verás uno
+de estos:
+
+- **“No se agota”**: vas bien.
+- **“Se agota en”** y un tiempo, en ámbar. Al ritmo actual, te quedarías sin
+  uso antes del restablecimiento. El `~` indica que es una estimación.
+- **“Aún es pronto para saberlo”**: la ventana acaba de empezar.
+- **“Al límite”**: has usado todo el límite.
+
+Algunos planes no tienen ritmo, como algunos planes de Cursor y el plan
+gratuito de Grok. Sus límites no muestran la línea.
+
+El widget [Ritmo de Nomo](/es/widgets#nomo-pace) muestra lo mismo en tu pantalla de
+inicio.
+
+**Sin Nomo Pro**, el primer límite muestra una sola fila en su lugar:
+**“Mira si se agota antes de restablecerse”**, con una etiqueta **PRO**.
+Tócala para abrir Nomo Pro.
+
 ## Al alcanzar un límite
 
 En cuanto alguna ventana llega al 100 %, aparece un aviso de **Límite
@@ -63,6 +99,113 @@ una página que de otro modo tendrías que ir a buscar.
 
 El aviso se muestra para Claude, Codex, Cursor y xAI, en cuentas del App Store
 de Estados Unidos, la Unión Europea y Japón.
+
+## Más de una cuenta <span className="pro-pill" /> {#more-than-one-account}
+
+Con Nomo Pro, puedes añadir hasta 5 cuentas por cada proveedor. Por ejemplo, una
+cuenta de Claude del trabajo y otra personal. Cada cuenta tiene su propia fila,
+con su propio uso.
+
+<Frame caption="Dos cuentas de Claude. Work es la predeterminada.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-accounts-light.webp" alt="La página de Claude en Nomo con dos cuentas: Work, la predeterminada, al 42 %, y Personal, al 12 %, cada una con su barra de uso, y debajo el botón Add another account" />
+    <img className="only-dark" src="/images/usage-accounts-dark.webp" alt="La página de Claude en Nomo con dos cuentas: Work, la predeterminada, al 42 %, y Personal, al 12 %, cada una con su barra de uso, y debajo el botón Add another account" />
+  </div>
+</Frame>
+
+### Añadir otra cuenta {#add-another-account}
+
+1. Abre Nomo.
+2. Toca la pestaña **Proveedores**.
+3. Toca el proveedor, como **Claude**.
+4. Toca **Uso** arriba.
+5. Comprueba que has iniciado sesión en tu primera cuenta.
+6. Debajo de tu cuenta, toca **“Añadir otra cuenta”**.
+7. Toca **Continuar**.
+8. Inicia sesión con la otra cuenta. Usa un correo electrónico distinto al de
+   tu primera cuenta.
+
+<Frame caption="Toca Continuar para abrir la página de inicio de sesión. La X la cierra sin añadir nada.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-light.webp" alt="La hoja Add Account: Sign in to another Claude account, un consejo para usar otro correo, un botón Continue y una X para cerrar" />
+    <img className="only-dark" src="/images/usage-add-account-dark.webp" alt="La hoja Add Account: Sign in to another Claude account, un consejo para usar otro correo, un botón Continue y una X para cerrar" />
+  </div>
+</Frame>
+
+Nomo abre una página de inicio de sesión nueva y privada, así que no reutiliza
+la cuenta con la que ya has iniciado sesión. Las cuentas que ya has añadido
+siguen con la sesión iniciada.
+
+Con Claude, Claude te muestra un código después de iniciar sesión:
+
+1. Copia el código.
+2. Vuelve a Nomo. Nomo pega el código y conecta la cuenta.
+3. Si no pasa nada, toca **Pegar** y, luego, toca **Conectar**.
+
+<Frame caption="Con Claude: pega el código que te muestra Claude después de iniciar sesión.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-code-light.webp" alt="El paso del código de Claude: un campo Paste authorization code con un botón Paste, un botón Connect y Reopen sign-in" />
+    <img className="only-dark" src="/images/usage-add-account-code-dark.webp" alt="El paso del código de Claude: un campo Paste authorization code con un botón Paste, un botón Connect y Reopen sign-in" />
+  </div>
+</Frame>
+
+Una cuenta nueva recibe el nombre de su correo electrónico, si el proveedor lo
+comparte. Si inicias sesión en una cuenta que ya está en Nomo, verás
+**“Esta cuenta ya está añadida”** y no cambia nada.
+
+Cuando un proveedor tiene 5 cuentas, **“Añadir otra cuenta”** aparece atenuado.
+
+### Gestionar tus cuentas {#manage-accounts}
+
+Toca **···** junto a una cuenta y, luego, toca una de estas opciones:
+
+- **“Cambiar nombre”**: pon a la cuenta un nombre corto, como `Trabajo` o
+  `Personal`.
+- **“Establecer como predeterminada”**: conviértela en tu cuenta
+  predeterminada. La cuenta predeterminada lleva la etiqueta **Predeterminada**.
+- **Eliminar**: cierra la sesión de esta cuenta en Nomo. Tus otras cuentas
+  siguen con la sesión iniciada. Los widgets que la mostraban muestran
+  **“Cuenta eliminada”** y te piden que elijas otra cuenta. No pasan a tu
+  cuenta predeterminada.
+
+<Frame caption="El menú ··· de una cuenta que no es la predeterminada.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-account-menu-light.webp" alt="El menú ··· junto a la cuenta Personal, con Rename, Make Default y Remove" />
+    <img className="only-dark" src="/images/usage-account-menu-dark.webp" alt="El menú ··· junto a la cuenta Personal, con Rename, Make Default y Remove" />
+  </div>
+</Frame>
+
+La tarjeta **“Tu uso”** de arriba muestra tu cuenta predeterminada. Para ver
+otra cuenta ahí, toca el nombre de la cuenta en la esquina de la tarjeta y elige
+una.
+
+### Cuentas en los widgets {#accounts-in-widgets}
+
+Los widgets muestran tu cuenta predeterminada, salvo que elijas otra:
+
+1. Mantén pulsado el widget.
+2. Toca **“Editar widget”**.
+3. Toca **Cuenta** y elige una.
+
+**Cuenta** está en [Uso de Nomo](/es/widgets#nomo-usage) y en
+[Ritmo de Nomo](/es/widgets#nomo-pace). [Cuentas de Nomo](/es/widgets#nomo-accounts)
+muestra todas las cuentas a la vez.
+
+### Sin Nomo Pro {#without-nomo-pro}
+
+Sin Nomo Pro, tienes una cuenta por proveedor. **“Añadir otra cuenta”** muestra
+una etiqueta **PRO**. Tócala para abrir Nomo Pro. En cuanto te suscribas, Nomo
+pasa directamente a añadir la cuenta. El modo de demostración no desbloquea
+cuentas adicionales.
+
+Si tu Nomo Pro termina, tus cuentas adicionales quedan en pausa, no se eliminan.
+Muestran **En pausa · PRO**, y solo tu cuenta predeterminada se sigue
+actualizando. Tu cuenta predeterminada nunca se pone en pausa. Para retomarlo
+donde lo dejaste, toca **“Volver a suscribirse”**.
+
+Un widget Uso de Nomo con una cuenta en pausa muestra **En pausa · Nomo Pro** y
+`Tu Nomo Pro ha finalizado. Vuelve a suscribirte en Nomo para ver esta cuenta.`
+Tócalo para abrir Nomo Pro.
 
 ## Widget
 

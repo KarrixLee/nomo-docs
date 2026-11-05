@@ -86,7 +86,14 @@
                   "status-usage",
                   "status",
                   "usage",
-                  "widget",
+                  {
+                    "group": "Widget",
+                    "icon": "puzzle-piece",
+                    "root": "widget",
+                    "pages": [
+                      "widgets"
+                    ]
+                  },
                   "notifications"
                 ]
               },
@@ -159,7 +166,14 @@
                   "es/status-usage",
                   "es/status",
                   "es/usage",
-                  "es/widget",
+                  {
+                    "group": "Widget",
+                    "icon": "puzzle-piece",
+                    "root": "es/widget",
+                    "pages": [
+                      "es/widgets"
+                    ]
+                  },
                   "es/notifications"
                 ]
               },
@@ -232,7 +246,14 @@
                   "ja/status-usage",
                   "ja/status",
                   "ja/usage",
-                  "ja/widget",
+                  {
+                    "group": "ウィジェット",
+                    "icon": "puzzle-piece",
+                    "root": "ja/widget",
+                    "pages": [
+                      "ja/widgets"
+                    ]
+                  },
                   "ja/notifications"
                 ]
               },
@@ -305,7 +326,14 @@
                   "ko/status-usage",
                   "ko/status",
                   "ko/usage",
-                  "ko/widget",
+                  {
+                    "group": "위젯",
+                    "icon": "puzzle-piece",
+                    "root": "ko/widget",
+                    "pages": [
+                      "ko/widgets"
+                    ]
+                  },
                   "ko/notifications"
                 ]
               },
@@ -378,7 +406,14 @@
                   "zh-Hans/status-usage",
                   "zh-Hans/status",
                   "zh-Hans/usage",
-                  "zh-Hans/widget",
+                  {
+                    "group": "小组件",
+                    "icon": "puzzle-piece",
+                    "root": "zh-Hans/widget",
+                    "pages": [
+                      "zh-Hans/widgets"
+                    ]
+                  },
                   "zh-Hans/notifications"
                 ]
               },
@@ -451,7 +486,14 @@
                   "zh-Hant/status-usage",
                   "zh-Hant/status",
                   "zh-Hant/usage",
-                  "zh-Hant/widget",
+                  {
+                    "group": "小工具",
+                    "icon": "puzzle-piece",
+                    "root": "zh-Hant/widget",
+                    "pages": [
+                      "zh-Hant/widgets"
+                    ]
+                  },
                   "zh-Hant/notifications"
                 ]
               },

@@ -34,6 +34,35 @@ icon: "gauge"
 
 Nomo は非公式のアプリであり、読み取り対象のどのプロバイダーとも関係はありません。
 
+## 消費ペース <span className="pro-pill" /> {#pace}
+
+Nomo Pro では、「使用量」ページの各上限の下に 1 行追加されます。上限がリセットされるまで使用量が持つかどうかがわかります。
+
+<Frame caption="どちらの上限も時間の経過より速く使われているので、両方の行がアンバーになっています。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-pace-light.webp" alt="Claude の「使用量」カード。82% の「セッション」に 82% used · 60% time · Runs out in ~39m の行、68% の「週間」に 68% used · 39% time · Runs out in ~1d 7h の行があり、どちらもアンバー" />
+    <img className="only-dark" src="/images/usage-pace-dark.webp" alt="Claude の「使用量」カード。82% の「セッション」に 82% used · 60% time · Runs out in ~39m の行、68% の「週間」に 68% used · 39% time · Runs out in ~1d 7h の行があり、どちらもアンバー" />
+  </div>
+</Frame>
+
+行の最初には、`使用45%・経過60%` のような 2 つの値が表示されます。
+
+- **使用**: 上限のうち、どれだけ使ったか。
+- **経過**: 期間のうち、どれだけの時間が過ぎたか。
+
+使用が経過より少なければ問題ありません。値のあとには、次のどれかが表示されます。
+
+- 「リセットまで持つ」: 問題ありません。
+- 「使い切りまで」と残り時間: アンバーで表示されます。今のスピードのままだと、リセット前に使い切ります。前に `~` が付いているのは推定値という意味です。
+- 「まだ判断できません」: 期間が始まったばかりです。
+- 「上限に到達」: 上限をすべて使い切りました。
+
+一部の Cursor のプランや Grok の無料プランなど、消費ペースがないプランもあります。その上限には行が表示されません。
+
+ホーム画面では、[Nomo消費ペース](/ja/widgets#nomo-pace)ウィジェットで同じ内容を確認できます。
+
+**Nomo Pro がない場合**は、最初の上限の下に「リセット前に使い切るかがわかります」という行が **PRO** のラベル付きで 1 つだけ表示されます。タップすると Nomo Pro の画面が開きます。
+
 ## 上限に達したとき {#when-you-hit-a-limit}
 
 いずれかの枠が 100% に達すると、使用量カードの下に「上限に到達」という案内が表示され、ボタンが 1 つ付きます — 「Claudeの使用量を管理」、または表示中のプロバイダーの名前が入ったものです。タップすると、そのプロバイダー自身の使用量設定がブラウザで開きます。プランによっては、そこで追加の使用量を利用できる場合があります。
@@ -41,6 +70,89 @@ Nomo は非公式のアプリであり、読み取り対象のどのプロバイ
 そこで何が提供されているかは Nomo にはわかりませんし、Nomo 自身が何かを販売することもありません。自分で探すことになるはずのページへの近道です。
 
 この案内が表示されるのは Claude、Codex、Cursor、xAI で、米国、欧州連合、日本の App Store アカウントが対象です。
+
+## 複数のアカウント <span className="pro-pill" /> {#more-than-one-account}
+
+Nomo Pro では、プロバイダーごとに最大 5 つのアカウントを追加できます。例えば、仕事用の Claude アカウントと個人用のアカウントです。アカウントごとに行が分かれ、それぞれの使用量が表示されます。
+
+<Frame caption="2 つの Claude アカウント。Work がデフォルトです。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-accounts-light.webp" alt="Nomo の Claude のページにある 2 つのアカウント。デフォルトの Work は 42%、Personal は 12% で、それぞれに使用量のバーがあり、その下に Add another account ボタンがある" />
+    <img className="only-dark" src="/images/usage-accounts-dark.webp" alt="Nomo の Claude のページにある 2 つのアカウント。デフォルトの Work は 42%、Personal は 12% で、それぞれに使用量のバーがあり、その下に Add another account ボタンがある" />
+  </div>
+</Frame>
+
+### 別のアカウントを追加 {#add-another-account}
+
+1. Nomo を開きます。
+2. 「プロバイダー」タブをタップします。
+3. **Claude** などのプロバイダーをタップします。
+4. 上部の「使用量」をタップします。
+5. 1 つ目のアカウントにサインインしていることを確認します。
+6. アカウントの下にある「別のアカウントを追加」をタップします。
+7. 「続ける」をタップします。
+8. もう 1 つのアカウントでサインインします。1 つ目とは別のメールアドレスを使ってください。
+
+<Frame caption="「続ける」をタップするとサインインページが開きます。X をタップすると、何も追加せずに閉じます。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-light.webp" alt="Add Account シート。Sign in to another Claude account、別のメールアドレスを使うためのヒント、Continue ボタン、閉じるための X" />
+    <img className="only-dark" src="/images/usage-add-account-dark.webp" alt="Add Account シート。Sign in to another Claude account、別のメールアドレスを使うためのヒント、Continue ボタン、閉じるための X" />
+  </div>
+</Frame>
+
+Nomo は新しいプライベートなサインインページを開くので、すでにサインインしているアカウントは使われません。追加済みのアカウントはサインインしたままです。
+
+Claude の場合は、サインイン後に Claude がコードを表示します。
+
+1. コードをコピーします。
+2. Nomo に戻ります。Nomo がコードを貼り付けて接続します。
+3. 何も起きない場合は、「貼り付け」をタップし、「接続」をタップします。
+
+<Frame caption="Claude の場合: サインイン後に Claude が表示するコードを貼り付けます。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-code-light.webp" alt="Claude のコード入力画面。Paste ボタン付きの Paste authorization code 欄、Connect ボタン、Reopen sign-in" />
+    <img className="only-dark" src="/images/usage-add-account-code-dark.webp" alt="Claude のコード入力画面。Paste ボタン付きの Paste authorization code 欄、Connect ボタン、Reopen sign-in" />
+  </div>
+</Frame>
+
+新しいアカウントには、プロバイダーがメールアドレスを公開していれば、そのアドレスが名前として付きます。すでに Nomo にあるアカウントでサインインすると「このアカウントはすでに追加されています」と表示され、何も変わりません。
+
+プロバイダーのアカウントが 5 つになると、「別のアカウントを追加」は淡色表示になります。
+
+### アカウントの管理 {#manage-accounts}
+
+アカウントの横にある **···** をタップし、次のどれかをタップします。
+
+- 「名前を変更」: `仕事` や `個人` など、短い名前を付けます。
+- 「デフォルトにする」: デフォルトのアカウントにします。デフォルトのアカウントには「デフォルト」のラベルが付きます。
+- 「削除」: このアカウントを Nomo からサインアウトします。ほかのアカウントはサインインしたままです。このアカウントを表示していたウィジェットには「削除されたアカウント」と表示され、別のアカウントを選ぶよう求められます。デフォルトのアカウントには切り替わりません。
+
+<Frame caption="デフォルトではないアカウントの ··· メニュー。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-account-menu-light.webp" alt="Personal アカウントの横の ··· メニュー。Rename、Make Default、Remove がある" />
+    <img className="only-dark" src="/images/usage-account-menu-dark.webp" alt="Personal アカウントの横の ··· メニュー。Rename、Make Default、Remove がある" />
+  </div>
+</Frame>
+
+上部の「使用量」カードには、デフォルトのアカウントが表示されます。ほかのアカウントを表示するには、カードの隅にあるアカウント名をタップして選びます。
+
+### ウィジェットでのアカウント {#accounts-in-widgets}
+
+ウィジェットには、ほかを選ばない限りデフォルトのアカウントが表示されます。
+
+1. ウィジェットをタッチして押さえたままにします。
+2. 「ウィジェットを編集」をタップします。
+3. 「アカウント」をタップし、1 つ選びます。
+
+「アカウント」は [Nomo使用量](/ja/widgets#nomo-usage) と [Nomo消費ペース](/ja/widgets#nomo-pace) にあります。[Nomoアカウント](/ja/widgets#nomo-accounts) は、すべてのアカウントを一度に表示します。
+
+### Nomo Pro がない場合 {#without-nomo-pro}
+
+Nomo Pro がない場合、アカウントはプロバイダーごとに 1 つです。「別のアカウントを追加」には **PRO** のラベルが表示されます。タップすると Nomo Pro の画面が開きます。登録すると、そのままアカウントの追加に進みます。デモモードでは、追加のアカウントは使えません。
+
+Nomo Pro が終了すると、追加のアカウントは削除されずに一時停止されます。「一時停止中 · PRO」と表示され、更新されるのはデフォルトのアカウントだけになります。デフォルトのアカウントが一時停止されることはありません。続きから使うには、「再登録する」をタップします。
+
+一時停止中のアカウントに設定した Nomo使用量ウィジェットには、「一時停止中 · Nomo Pro」と `Nomo Proが終了しました。Nomoで再登録すると、このアカウントを表示できます。` が表示されます。タップすると Nomo Pro の画面が開きます。
 
 ## ウィジェット
 
