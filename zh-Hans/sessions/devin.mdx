@@ -1,13 +1,13 @@
 ---
 title: "在 iPhone 上查看和批准 Devin 会话"
 sidebarTitle: "搭配 Devin 使用"
-description: "几步就能为 Devin CLI 配置好 Nomo、配对手机，然后在 iPhone 上跟进你的 Devin 会话——Devin 的权限请求可以直接允许或拒绝。"
+description: "几步就能为 Devin 配置好 Nomo、配对手机，然后在 iPhone 上跟进你的 Devin 会话——回答 Devin 的权限请求和提问，还能停止正在运行的这一轮。"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "搭配 Devin 使用"]
 ---
 
-在 iPhone 上看你的 Devin 会话——锁定屏幕上、灵动岛里都能看到。Devin 请求权限时，手机会问你要**允许**还是**拒绝**。
+在 iPhone 上看你的 Devin 会话——锁定屏幕上、灵动岛里都能看到。Devin 请求权限时，手机会问你要**允许**还是**拒绝**。Devin 向你提问时，也可以在手机上回答。
 
-支持 Devin CLI，也就是终端里的 `devin` 命令。
+支持 Devin CLI，也就是终端里的 `devin` 命令，以及 [Devin Desktop](#devin-desktop)。
 
 <Note>
   会话功能属于 Nomo Pro。你需要手机上的 Nomo **2.5.0** 或更高版本，以及 Mac 上的插件 **2.5.0** 或更高版本。
@@ -43,6 +43,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
       </Step>
 
       <Step title="安装 Nomo 插件">
+        这一步在终端里输入，不要在 Devin 里面输入。如果 Devin 开着，先打开一个新的终端窗口（按 **⌘N**）。
+
         复制下面这一行，粘贴到终端里，然后按回车：
 
         ```bash
@@ -52,8 +54,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
         用的是 Devin Desktop？前往 **Customize → Plugins → From repository**，输入 `KarrixLee/nomo`。
       </Step>
 
-      <Step title="重启 Devin">
-        如果 `devin` 已经开着，把它关掉，再重新启动。
+      <Step title="启动 Devin">
+        在终端里输入 `devin`，然后按回车。
       </Step>
 
       <Step title="输入 /nomo:pair">
@@ -129,7 +131,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
       </Step>
 
       <Step title="重启 Devin">
-        关掉每一个开着的 `devin`，再重新启动。
+        关掉每一个开着的 `devin`，再重新启动。用的是 Devin Desktop？也把它退出后再重新打开。
 
         <Warning>
           别跳过这一步。Devin 重启之前，Nomo 不会生效。
@@ -197,6 +199,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
 | `/nomo:pair code` | 同上，但改用一段要手动输入的短码代替二维码 |
 | `/nomo:status` | 检查一切是否正常 |
 
+想不再问手机，就在 Nomo 的[设置](/zh-Hans/sessions/settings#remote-approvals)里关掉**在 iPhone 上回答**。这台电脑上也在用 Claude Code？在 Claude Code 里输入 `/nomo-cc:approvals off`，就能暂停这台电脑的远程审批。
+
 **用 Nomo 安装工具时**，Devin 的对话里没有 Nomo 命令。改为在终端里运行这些：
 
 | 作用 | 粘贴到终端里 |
@@ -234,6 +238,7 @@ Devin 请求权限时——比如要运行一条命令——手机会问你。
 </Frame>
 
 - **允许**——Devin 继续执行。
+- **始终允许 …（本次会话）**——Devin 继续执行，在这个会话结束前，同样的操作 Nomo 不会再问你。见[下文](#always-allow)。
 - **拒绝**——Devin 不做这件事。
 - **拒绝并附注…**——Devin 不做这件事，并收到你写的附注，告诉它原因。
 
@@ -243,14 +248,50 @@ Devin 请求权限时——比如要运行一条命令——手机会问你。
 
 - **Devin 会等你的手机。**如果超时，Devin 会改在 Mac 上问你。
 - **手机不在身边也没关系。**如果手机连不上，或者远程审批已[暂停](/zh-Hans/sessions/approvals#pausing-it)，Devin 会在 Mac 上问你，和没有 Nomo 时一样。
-- **提问留在 Mac 上。**Devin 向你提问时，手机可能会显示一条提醒。请在 Mac 上的 Devin 里回答。目前还不能在手机上回答提问。
+
+### 始终允许 {#always-allow}
+
+**始终允许**只在**本次会话**内有效。会话结束后 Nomo 就会忘掉它，下一个会话会重新问你。
+
+- **简单的命令**按命令名记住。对 `touch b.txt` 选了始终允许，`touch c.txt` 也会被允许——但换一条命令就不行。
+- **串起来的命令**——带有 `&&`、`;`、`|` 或 `>` 的命令——每次都会送到手机上，除非和你已经允许过的命令一字不差。所以 `touch x && rm -rf ~` 照样会问你。
+- **其他操作**，比如写入文件，在这个会话剩下的时间里都会被允许。
+
+Nomo 把它保存在你的电脑上，从不改动 Devin 自己的设置。即使你暂停了审批，它在会话结束前也依然有效。
+
+### 回答 Devin 的提问 {#questions}
+
+Devin 向你提问时，那一行会话会显示`需要回答`。按住它，选择**回答…**：
+
+1. 轻点一个选项。Devin 允许的话，可以选多个。
+2. 都不合适？轻点**其他…**，输入你自己的回答。
+3. 轻点**提交**。
+
+**添加附注**可以给回答附上一段说明。**拒绝**会告诉 Devin 你选择不回答。
+
+<Note>
+  **在 Mac 上，这个问题会显示为 rejected。这是正常的。**Devin 没法直接从 Nomo 接收回答，所以 Nomo 把你的回答作为关闭 Devin 提问的理由发过去。你会看到问题被标成 **rejected**，旁边写着你的回答。Devin 会读到你的回答，然后继续工作。
+</Note>
+
+## 停止这一轮 {#interrupt}
+
+在**运行中**的 Devin 会话上轻点[**停止**](/zh-Hans/sessions/list#interrupt-a-running-session)，就能让它停下。需要绿色的 **⚡ 本地**角标——也就是 iPhone 和 Mac 在同一个网络里。
+
+Devin 会做完当前这一步再停下，没法把一条命令或一段回复从中间切断。会话显示**完成**，Devin 仍然开着——发一条新消息就能接着来。
+
+## Devin Desktop {#devin-desktop}
+
+Devin 的文档说，Devin Desktop 的 **Devin Local** 智能体和 Devin CLI 用的是同一个引擎，所以 Nomo 在那里的用法也一样。Nomo 已经在 Devin CLI 和 Devin 的 ACP 服务器上测试过。
+
+- **手机先回答。**手机上有权限请求或提问时，Devin Desktop 不会显示它自己的按钮。请在手机上回答。想改在 Mac 上回答，就在 Devin 的下一个提示之前[暂停审批](/zh-Hans/sessions/approvals#pausing-it)。
+- **哪些会送到手机。**在 Devin Desktop 默认的 **Code** 模式下，Devin 只在运行命令、抓取网页、在项目之外写入之前才会问你。手机上看到的就是这些权限请求。
+- **Restricted Mode 会让 Nomo 停止工作。**在你退出它之前，会话不会送到手机。
 
 ## Devin 的不同之处 {#whats-different-for-devin}
 
 - **只显示 Mac 上的 Devin。**Devin Cloud 的会话不会出现——Nomo 只显示在你 Mac 上运行的 Devin。
-- **Devin Desktop。**Devin 的文档说，Devin Desktop 的本地智能体和 CLI 共用同一个引擎。Nomo 已经在 Devin CLI 上测试过。
 - **短会话可能没有模型徽标。**Devin 只在会话结束时才保存模型。
-- **尚未支持 Devin 的功能：**包括**始终允许**、[停止](/zh-Hans/sessions/list#interrupt-a-running-session)、[回复](/zh-Hans/sessions/antigravity#reply-from-your-phone)和**在 Mac 上打开**。
+- **Devin 不支持的功能：**[回复](/zh-Hans/sessions/antigravity#reply-from-your-phone)和**在 Mac 上打开**。
 
 ## 出了问题 {#troubleshooting}
 
@@ -280,6 +321,20 @@ Devin 请求权限时——比如要运行一条命令——手机会问你。
     ```
 
     你的设置全都还在，只是注释被去掉了。
+  </Accordion>
+
+  <Accordion title="Devin 把我的回答显示为 rejected">
+    这是正常的。Nomo 把你的回答作为关闭 Devin 提问的理由发过去，所以 Mac 上这个问题会显示为 **rejected**，旁边写着你的回答。Devin 会读到你的回答，然后继续工作。
+  </Accordion>
+
+  <Accordion title="Devin Desktop 没有显示权限请求的按钮">
+    这个请求在你的手机上。请在手机上回答。想改在 Mac 上回答，就在 Devin 的下一个提示之前[暂停审批](/zh-Hans/sessions/approvals#pausing-it)。
+  </Accordion>
+
+  <Accordion title="轻点停止后 Devin 没有马上停下">
+    Devin 会先做完当前这一步——已经在运行的命令或回复会一直进行到结束，然后才停下。
+
+    没有**停止**按钮？iPhone 和 Mac 需要在同一个网络里，并且显示绿色的 **⚡ 本地**角标。
   </Accordion>
 
   <Accordion title="手机不再问我审批了">
@@ -347,8 +402,10 @@ devin plugins remove nomo
   <Accordion title="工作原理" icon="gear">
     - **安装工具改了什么。**它把插件克隆到 `~/.nomo`，并把 Nomo 的条目加进 `~/.config/devin/config.json` 的 `"hooks"` 键。Devin 的其他设置原样不动。再运行一次不会改动任何东西。如果文件里有注释，它会先把文件复制成 `config.json.nomo-backup`。卸载只删掉 Nomo 的条目。在 `devin` 里输入 `/hooks` 可以看到它加载了什么。
     - **插件添加了什么。**Devin 插件添加同样的两个 hook，以及 `/nomo:pair` 和 `/nomo:status` 命令。它不添加任何规则、MCP 服务器或智能体，而且只在本地的 Devin 会话里运行，绝不在 Devin Cloud 里运行。只要安装工具的条目还在，插件的 hook 就什么都不发送。
-    - **状态。**`UserPromptSubmit`、`PostToolUse`、`Stop`、`SessionEnd` 和 `PreToolUse`（只针对 `ask_user_question`）上的 hook 负责上报状态。它什么都不输出，所以既不会挡住提示，也不会改动工具调用。
+    - **状态。**`UserPromptSubmit`、`PostToolUse`、`Stop` 和 `SessionEnd` 上的 hook 负责上报状态。它什么都不输出，所以既不会挡住提示，也不会改动工具调用——只有一个例外：你轻点**停止**之后，它的下一个 `PostToolUse` 会输出 `{"continue":false}`，结束这一轮。
     - **审批。**`PermissionRequest` 上的 hook 把工具名称及其命令或文件路径发到你的手机，全程端到端加密。只有当你配对的手机针对这一条请求选择了允许时，它才回答 `approve`；拒绝时回答 `block`，并附上你的附注。其他所有情况——未配对、审批已暂停、离线、超时、出错——它都什么都不输出，也就是把决定交还给 Devin 自己的权限请求。
+    - **提问。**同一个 hook 在 `PreToolUse`（只针对 `ask_user_question`）上把 Devin 的问题和选项发到你的手机，全程端到端加密。你的回答会以 `block` 的形式传回，理由就是你的回答，Devin 的模型会读到它。
+    - **始终允许。**授权保存在 `~/.config/cc-status/sessions/<session>.devin-allow`，只有你自己能读，会话结束时删除。Devin 自己的设置文件从不写入。
     - **不会出现重复的行。**Devin 也会运行 Claude Code 的 hook。Nomo 的 Claude Code 插件在 Devin 里保持安静，所以 Devin 会话绝不会显示成 Claude Code 会话。
 
     完整细节见插件的 [README](https://github.com/KarrixLee/nomo#install--devin)。

@@ -1,13 +1,13 @@
 ---
 title: "Devin のセッションを iPhone で見守り、承認する"
 sidebarTitle: "Devin での利用"
-description: "数ステップで Devin CLI に Nomo をセットアップし、iPhone とペアリングして、Devin のセッションを iPhone から見守ります — Devin の許可リクエストには「許可」と「拒否」で回答できます。"
+description: "数ステップで Devin に Nomo をセットアップし、iPhone とペアリングして、Devin のセッションを iPhone から見守ります — Devin の許可リクエストや質問に回答し、実行中のターンを中断できます。"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "Devin での利用"]
 ---
 
-Devin のセッションを、iPhone のロック画面と Dynamic Island で確認できます。Devin が許可を求めると、iPhone で「許可」か「拒否」を選べます。
+Devin のセッションを、iPhone のロック画面と Dynamic Island で確認できます。Devin が許可を求めると、iPhone で「許可」か「拒否」を選べます。Devin からの質問にも、iPhone から回答できます。
 
-Devin CLI、つまりターミナルの `devin` コマンドで使えます。
+Devin CLI、つまりターミナルの `devin` コマンドと、[Devin Desktop](#devin-desktop) で使えます。
 
 <Note>
   セッションは Nomo Pro の機能です。iPhone に Nomo **2.5.0** 以降、Mac にプラグイン **2.5.0** 以降が必要です。
@@ -43,6 +43,8 @@ Devin に Nomo を追加する方法は 2 つあります。**Devin プラグイ
       </Step>
 
       <Step title="Nomo プラグインをインストールする">
+        これは Devin の中ではなく、ターミナルで入力します。Devin が開いている場合は、先に新しいターミナルウィンドウを開いてください（**⌘N** を押します）。
+
         次の行をコピーしてターミナルに貼り付け、Return キーを押します。
 
         ```bash
@@ -52,8 +54,8 @@ Devin に Nomo を追加する方法は 2 つあります。**Devin プラグイ
         Devin Desktop を使っている場合は、**Customize → Plugins → From repository** の順に進み、`KarrixLee/nomo` と入力します。
       </Step>
 
-      <Step title="Devin を再起動する">
-        `devin` がすでに開いていた場合は、閉じてからもう一度起動します。
+      <Step title="Devin を起動する">
+        ターミナルで `devin` と入力して、Return キーを押します。
       </Step>
 
       <Step title="/nomo:pair と入力する">
@@ -129,7 +131,7 @@ Devin に Nomo を追加する方法は 2 つあります。**Devin プラグイ
       </Step>
 
       <Step title="Devin を再起動する">
-        開いている `devin` をすべて閉じてから、もう一度起動します。
+        開いている `devin` をすべて閉じてから、もう一度起動します。Devin Desktop を使っている場合は、Devin Desktop も終了してから開き直してください。
 
         <Warning>
           この手順は飛ばさないでください。Devin を再起動するまで、Nomo は動きません。
@@ -197,6 +199,8 @@ Devin に Nomo を追加する方法は 2 つあります。**Devin プラグイ
 | `/nomo:pair code` | 同じことを、QR コードの代わりに入力用の短いコードで行う |
 | `/nomo:status` | すべて正常に動いているか確認する |
 
+iPhone への確認をやめるには、Nomo の[設定](/ja/sessions/settings#remote-approvals)で「iPhoneで回答」をオフにします。このコンピュータで Claude Code も使っている場合は、Claude Code で `/nomo-cc:approvals off` と入力すると、このコンピュータの iPhone での承認を一時停止できます。
+
 **Nomo インストーラーの場合**は、Devin のチャットの中に Nomo のコマンドがありません。代わりに、ターミナルで次を実行します。
 
 | すること | ターミナルに貼り付けるもの |
@@ -234,6 +238,7 @@ Devin が許可を求めると — たとえばコマンドを実行するとき
 </Frame>
 
 - **「許可」** — Devin はそのまま進めます。
+- **「…を常に許可（このセッション）」** — Devin はそのまま進め、このセッションが終わるまで、同じ操作について Nomo は確認しなくなります。[下記](#always-allow)をご覧ください。
 - **「拒否」** — Devin はその操作を行いません。
 - **「メモを付けて拒否…」** — Devin はその操作を行わず、その理由を書いたあなたのメモを受け取ります。
 
@@ -243,14 +248,50 @@ Devin が許可を求めると — たとえばコマンドを実行するとき
 
 - **Devin は iPhone からの回答を待ちます。** タイムアウトした場合は、代わりに Devin が Mac で確認します。
 - **iPhone がなくても大丈夫です。** iPhone に接続できないときや、承認を[一時停止中](/ja/sessions/approvals#pausing-it)のときは、Nomo がないときと同じように、Devin が Mac で確認します。
-- **質問は Mac で回答します。** Devin が質問してくると、iPhone にお知らせが表示されることがあります。回答は Mac の Devin で行ってください。iPhone から質問に回答する機能は、まだ使えません。
+
+### 常に許可 {#always-allow}
+
+「常に許可」が有効なのは、**このセッションの間だけ**です。セッションが終わると Nomo はこれを忘れ、次のセッションではまた確認されます。
+
+- **単純なコマンド**は、コマンド名で記憶されます。`touch b.txt` を常に許可すると、`touch c.txt` も許可されます — ただし、別のコマンドは許可されません。
+- **つなげたコマンド** — `&&`、`;`、`|`、`>` を含むもの — は、すでに許可したものとまったく同じコマンドでない限り、毎回 iPhone で確認されます。そのため、`touch x && rm -rf ~` はやはり確認されます。
+- **それ以外の操作**（ファイルの書き込みなど）は、セッションが終わるまで許可されます。
+
+Nomo はこれをコンピュータ上に保存し、Devin 自身の設定は変更しません。承認を一時停止しても、セッションが終わるまでは有効なままです。
+
+### Devin の質問への回答 {#questions}
+
+Devin が質問してくると、セッションに `回答が必要` と表示されます。セッションをタッチして押さえたままにし、「回答…」を選びます。
+
+1. 選択肢をタップします。Devin が許可している場合は、複数選べます。
+2. 合うものがない場合は、「その他…」をタップして、自分の回答を入力します。
+3. 「送信」をタップします。
+
+「メモを追加」で、回答にコメントを付けられます。「拒否」を選ぶと、回答しないことにしたと Devin に伝わります。
+
+<Note>
+  **Mac では、質問が「rejected」と表示されます。これは想定どおりです。** Devin には Nomo から直接回答を受け取る方法がないため、Nomo はあなたの回答を、Devin の質問を閉じる理由として送ります。そのため、質問には **rejected** と表示され、その横にあなたの回答が書かれます。Devin はあなたの回答を読んで、作業を続けます。
+</Note>
+
+## 中断 {#interrupt}
+
+`実行中` の Devin のセッションで[「中断」](/ja/sessions/list#interrupt-a-running-session)をタップすると、止められます。緑色の**⚡ ローカル**チップが必要です — iPhone と Mac が同じネットワークにつながっている必要があります。
+
+Devin はいまのステップを終えてから止まります。コマンドや返答を途中で打ち切ることはできません。セッションは `完了` になり、Devin は開いたままなので、続けるには新しいメッセージを送ってください。
+
+## Devin Desktop {#devin-desktop}
+
+Devin のドキュメントによると、Devin Desktop の **Devin Local** エージェントは Devin CLI と同じエンジンで動いているため、Nomo も同じように動作します。Nomo は Devin CLI と、Devin の ACP サーバーで動作を確認しています。
+
+- **iPhone が先に回答します。** iPhone に許可リクエストや質問が届いている間、Devin Desktop にはそのためのボタンが表示されません。iPhone で回答してください。Mac で回答したい場合は、Devin の次のプロンプトの前に[承認を一時停止](/ja/sessions/approvals#pausing-it)してください。
+- **iPhone に届くもの。** Devin Desktop の標準の **Code** モードでは、Devin が確認するのは、コマンドの実行、Web ページの取得、プロジェクトの外への書き込みの前だけです。iPhone に届くのは、これらの許可リクエストです。
+- **Restricted Mode では Nomo が動きません。** Restricted Mode を終えるまで、セッションは iPhone に届きません。
 
 ## Devin での違い {#whats-different-for-devin}
 
 - **Mac 上の Devin だけ。** Devin Cloud のセッションは表示されません — Nomo が表示するのは、Mac で動いている Devin だけです。
-- **Devin Desktop。** Devin のドキュメントによると、Devin Desktop のローカルエージェントは CLI と同じエンジンを使っています。Nomo は Devin CLI で動作を確認しています。
 - **短いセッションでは、モデルのバッジが表示されないことがあります。** Devin がモデルを保存するのは、セッションが終わったときだけです。
-- **Devin ではまだ使えないもの:** 「常に許可」、[「中断」](/ja/sessions/list#interrupt-a-running-session)、[「返信」](/ja/sessions/antigravity#reply-from-your-phone)、「Macで開く」。
+- **Devin では使えないもの:** [「返信」](/ja/sessions/antigravity#reply-from-your-phone)、「Macで開く」。
 
 ## うまくいかないとき {#troubleshooting}
 
@@ -280,6 +321,20 @@ Devin が許可を求めると — たとえばコマンドを実行するとき
     ```
 
     設定はすべて残っています。削除されたのはコメントだけです。
+  </Accordion>
+
+  <Accordion title="Devin で回答が「rejected」と表示される">
+    これは想定どおりです。Nomo はあなたの回答を、Devin の質問を閉じる理由として送るため、Mac では質問が **rejected** と表示され、その横にあなたの回答が書かれます。Devin はあなたの回答を読んで、作業を続けます。
+  </Accordion>
+
+  <Accordion title="Devin Desktop に許可リクエストのボタンが表示されない">
+    そのリクエストは iPhone に届いています。iPhone で回答してください。Mac で回答したい場合は、Devin の次のプロンプトの前に[承認を一時停止](/ja/sessions/approvals#pausing-it)してください。
+  </Accordion>
+
+  <Accordion title="「中断」しても Devin がすぐに止まらない">
+    Devin はいまのステップを先に終えます — すでに実行中のコマンドや返答は、終わるまで続きます。そのあとで止まります。
+
+    「中断」ボタンがない場合は、iPhone と Mac が同じネットワークにつながっていて、緑色の**⚡ ローカル**チップが表示されている必要があります。
   </Accordion>
 
   <Accordion title="iPhone で承認を求められなくなった">
@@ -347,8 +402,10 @@ iPhone とのペアリングは、ほかのコーディングアプリのため�
   <Accordion title="しくみ" icon="gear">
     - **インストーラーが変更するもの。** プラグインを `~/.nomo` にクローンし、`~/.config/devin/config.json` の `"hooks"` キーに Nomo の項目を追加します。ほかの Devin の設定には手を付けません。もう一度実行しても、何も変わりません。ファイルにコメントがある場合は、先に `config.json.nomo-backup` にコピーします。アンインストールで削除されるのは、Nomo の項目だけです。`devin` で `/hooks` と入力すると、読み込まれたものを確認できます。
     - **プラグインが追加するもの。** Devin プラグインは、同じ 2 つのフックと、`/nomo:pair` と `/nomo:status` のコマンドを追加します。ルール、MCP サーバー、エージェントは追加しません。動くのはローカルの Devin セッションの中だけで、Devin Cloud では動きません。インストーラーの項目がある間は、プラグインのフックは何も送りません。
-    - **状態。** `UserPromptSubmit`、`PostToolUse`、`Stop`、`SessionEnd`、`PreToolUse`（`ask_user_question` のときだけ）のフックが状態を報告します。何も出力しないので、プロンプトをブロックしたり、ツールの呼び出しを変えたりすることはありません。
+    - **状態。** `UserPromptSubmit`、`PostToolUse`、`Stop`、`SessionEnd` のフックが状態を報告します。何も出力しないので、プロンプトをブロックしたり、ツールの呼び出しを変えたりすることはありません — ただし、「中断」をタップしたあとは例外で、次の `PostToolUse` が `{"continue":false}` を出力して、そのターンを終わらせます。
     - **承認。** `PermissionRequest` のフックが、ツール名とそのコマンドまたはファイルパスを、エンドツーエンド暗号化して iPhone に送ります。`approve` を返すのは、ペアリングした iPhone からそのリクエストに対して「許可」が届いたときだけで、「拒否」のときはメモを付けて `block` を返します。それ以外 — ペアリングしていない、承認が一時停止中、オフライン、タイムアウト、エラー — では何も出力せず、判断を Devin 自身の確認に任せます。
+    - **質問。** 同じフックが `PreToolUse`（`ask_user_question` のときだけ）で、Devin の質問とその選択肢を、エンドツーエンド暗号化して iPhone に送ります。あなたの回答は、回答を理由にした `block` として返り、Devin のモデルがそれを読みます。
+    - **常に許可。** 許可は `~/.config/cc-status/sessions/<session>.devin-allow` に保存されます。このファイルを読めるのはあなただけで、セッションが終わると削除されます。Devin 自身の設定ファイルに書き込むことはありません。
     - **行の重複なし。** Devin は Claude Code のフックも実行します。Nomo の Claude Code プラグインは Devin の中では何もしないので、Devin のセッションが Claude Code のセッションとして表示されることはありません。
 
     詳しくは、プラグインの [README](https://github.com/KarrixLee/nomo#install--devin) をご覧ください。

@@ -254,7 +254,18 @@ $nomo-approvals status      # which way is it set
 /nomo-approvals on          # resume
 /nomo-approvals status      # which way is it set
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off      # pause on this computer
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on       # resume
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs status   # which way is it set
+```
 </CodeGroup>
+
+Para Devin, pega su línea en Terminal; funciona con el instalador de Nomo. El
+plugin de Devin no tiene comando de aprobaciones: ponlas en pausa desde otro
+agente del mismo ordenador, o desactiva **Responder en el iPhone** en tu
+teléfono. En Devin Desktop, ponlas en pausa antes del siguiente prompt de Devin.
 
 Pausa las aprobaciones remotas en **este ordenador**, de modo que las solicitudes
 de permiso van directas a la terminal en lugar de esperar a tu teléfono. La salida

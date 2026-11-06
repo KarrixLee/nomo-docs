@@ -196,14 +196,15 @@ $nomo-status
 </Accordion>
 
 <Accordion title="“停止”显示“已发送”，会话却还在运行" icon="circle-stop">
-  **已发送**的意思是 Mac 收到了，不代表这一轮已经停下。有四种情况会让它继续跑：
+  **已发送**的意思是 Mac 收到了，不代表这一轮已经停下。有五种情况会让它继续跑：
 
   - **Claude Code 要等到下一次工具调用**。它还在输出文字，或者一条耗时的命令已经在跑的时候，要等那一步结束才会有反应。
   - **够不到那个 Codex 会话**。停止信号要走 Codex 的共用 app-server——见[它覆盖哪些会话](/zh-Hans/sessions/codex#interrupt)。
   - **Antigravity 会先做完当前这一步**。已经在运行的模型调用或工具结束后，这一轮才会停下。
+  - **Devin 会先做完当前这一步**。已经在运行的命令或回复会一直进行到结束。
   - **两个插件里有一个低于 2.3.0**。版本是按电脑上报的，所以同一台 Mac 上既有 Claude Code 又有 Codex 时，两个都要更新。状态命令的第一行就写着版本。
 
-  根本没有**停止**按钮？它需要绿色的 **⚡ 本地**角标、一个 `运行中` 的会话、插件 **2.3.0**（Antigravity 要 **2.3.5**），而且必须是 Claude Code、Codex 或 Antigravity——OpenCode、Cursor 和 Devin 上永远没有。详见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
+  根本没有**停止**按钮？它需要绿色的 **⚡ 本地**角标、一个 `运行中` 的会话、插件 **2.3.0**（Antigravity 要 **2.3.5**，Devin 要 **2.5.0**），而且必须是 Claude Code、Codex、Antigravity 或 Devin——OpenCode 和 Cursor 上永远没有。详见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
 </Accordion>
 
 </AccordionGroup>

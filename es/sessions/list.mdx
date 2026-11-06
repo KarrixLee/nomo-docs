@@ -144,7 +144,7 @@ puede seleccionar, y va etiquetado con un símbolo en lugar de con una palabra:
 - **La pregunta pendiente**, entera, cuando la hay.
 - **Ver plan** — abre el plan. Se puede responder en Claude Code; en [Codex](/es/sessions/codex) es de solo lectura, y en [OpenCode](/es/sessions/opencode#plan-mode) suele ser la lista de tareas de la sesión en vez de un documento.
 - **Abrir en el Mac** — pone en primer plano la ventana de terminal de esa sesión en tu Mac. Solo aparece cuando Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network), y nunca en las sesiones de [OpenCode](/es/sessions/opencode#no-open-on-mac), que no tienen ventana propia, ni en las de [Cursor](/es/sessions/cursor#what-this-version-doesnt-do), [Antigravity](/es/sessions/antigravity#what-this-version-doesnt-do) y [Devin](/es/sessions/devin#whats-different-for-devin).
-- **Detener** — detiene el turno en curso, como pulsar Esc en el Mac. Solo en una sesión de Claude Code, Codex o [Antigravity](/es/sessions/antigravity#interrupt) que esté `En ejecución`, y solo por ese mismo enlace directo — ve [más abajo](#interrupt-a-running-session).
+- **Detener** — detiene el turno en curso, como pulsar Esc en el Mac. Solo en una sesión de Claude Code, Codex, [Antigravity](/es/sessions/antigravity#interrupt) o [Devin](/es/sessions/devin#interrupt) que esté `En ejecución`, y solo por ese mismo enlace directo — ve [más abajo](#interrupt-a-running-session).
 
 <Tip>
   Para **responder** a una solicitud, mantén pulsada la fila en lugar de tocarla.
@@ -168,12 +168,12 @@ esto:
 - La sesión está `En ejecución`. En una fila que te espera —una solicitud de
   permiso, una pregunta, un plan— o que ya está en `Listo` no hay nada que
   detener.
-- Es una sesión de Claude Code, de Codex o de Antigravity. Nunca de OpenCode,
-  de Cursor ni de Devin.
+- Es una sesión de Claude Code, de Codex, de Antigravity o de Devin. Nunca de
+  OpenCode ni de Cursor.
 - Nomo tiene un enlace directo por [red local](/es/sessions/settings#local-network)
   con ese Mac: la etiqueta verde **⚡ Local**. La orden nunca se envía a través
   del relé.
-- Ese ordenador tiene la versión **2.3.0** del plugin o una posterior.
+- Ese ordenador tiene la versión **2.3.0** del plugin o una posterior (la **2.5.0** para Devin).
 
 Después de tocar, el botón dice **Enviado**, o **Reintentar** si no se pudo
 llegar al Mac. **Enviado** significa que el Mac lo recibió, no que el turno ya
@@ -187,6 +187,7 @@ pausa, y no cierra la sesión.
 | --- | --- |
 | **Claude Code** | Se detiene en la siguiente llamada a una herramienta. La herramienta que iba a ejecutar se rechaza, el turno termina y Claude Code muestra `Interrupted from Nomo`. Mientras Claude escribe texto, o mientras corre un comando largo ya iniciado, no pasa nada hasta que ese paso termina. |
 | **Codex** | Se detiene al momento, en las sesiones que están en el `app-server` compartido de Codex — ve [el límite](/es/sessions/codex#interrupt). Un comando de shell que Codex ya hubiera lanzado puede seguir corriendo en segundo plano. |
+| **Devin** | Se detiene después del paso en el que está. Un comando o una respuesta que ya está en marcha termina antes — ve [Usar Devin](/es/sessions/devin#interrupt). |
 
 Dos cosas más en Claude Code. Si el turno termina por su cuenta antes, la orden
 no hace nada: nunca se arrastra a tu siguiente prompt. Y si el trabajo ocurre

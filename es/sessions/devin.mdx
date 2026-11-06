@@ -1,15 +1,17 @@
 ---
 title: "Sigue y aprueba sesiones de Devin desde tu iPhone"
 sidebarTitle: "Usar Devin"
-description: "Configura Nomo para la CLI de Devin en pocos pasos, vincula tu teléfono y sigue tus sesiones de Devin desde el iPhone, con Permitir y Denegar para las solicitudes de permiso de Devin."
+description: "Configura Nomo para Devin en pocos pasos, vincula tu teléfono y sigue tus sesiones de Devin desde el iPhone: responde a sus solicitudes de permiso y a sus preguntas, y detén un turno en curso."
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar Devin"]
 ---
 
 Ve tus sesiones de Devin en el iPhone: en la pantalla de bloqueo y en la
 Dynamic Island. Cuando Devin pide permiso, tu teléfono te pide **Permitir** o
-**Denegar**.
+**Denegar**. Cuando Devin te hace una pregunta, también puedes responderla
+desde el teléfono.
 
-Funciona con la CLI de Devin, el comando `devin` en Terminal.
+Funciona con la CLI de Devin, el comando `devin` en Terminal, y con
+[Devin Desktop](#devin-desktop).
 
 <Note>
   Sesiones forma parte de Nomo Pro. Necesitas Nomo **2.5.0** o posterior en tu
@@ -50,6 +52,9 @@ instalador y el plugin no hace nada.
       </Step>
 
       <Step title="Instala el plugin de Nomo">
+        Escribe esto en Terminal, no dentro de Devin. Si Devin está abierto,
+        abre antes una ventana nueva de Terminal (pulsa **⌘N**).
+
         Copia esta línea, pégala en Terminal y pulsa Retorno:
 
         ```bash
@@ -60,8 +65,8 @@ instalador y el plugin no hace nada.
         escribe `KarrixLee/nomo`.
       </Step>
 
-      <Step title="Reinicia Devin">
-        Si ya tenías `devin` abierto, ciérralo y vuelve a iniciarlo.
+      <Step title="Inicia Devin">
+        En Terminal, escribe `devin` y pulsa Retorno.
       </Step>
 
       <Step title="Escribe /nomo:pair">
@@ -143,6 +148,7 @@ instalador y el plugin no hace nada.
 
       <Step title="Reinicia Devin">
         Cierra todos los `devin` que tengas abiertos y vuelve a iniciar `devin`.
+        ¿Usas Devin Desktop? Ciérralo y vuelve a abrirlo también.
 
         <Warning>
           No te saltes este paso. Nomo no se activa hasta que Devin se reinicia.
@@ -223,6 +229,11 @@ instalador y el plugin no hace nada.
 | `/nomo:pair code` | Lo mismo, con un código corto que escribir en vez de un QR |
 | `/nomo:status` | Comprueba que todo funciona |
 
+Para dejar de preguntar a tu teléfono, desactiva **Responder en el iPhone** en
+los [ajustes](/es/sessions/settings#remote-approvals) de Nomo. ¿También usas
+Claude Code en este ordenador? `/nomo-cc:approvals off` en Claude Code pone en
+pausa las aprobaciones en el teléfono para este ordenador.
+
 **Con el instalador de Nomo**, Devin no tiene comandos de Nomo dentro de su
 chat. Ejecuta estos en Terminal:
 
@@ -266,6 +277,9 @@ Mantén pulsada la sesión, o usa la Dynamic Island, y elige:
 </Frame>
 
 - **Permitir**: Devin sigue adelante.
+- **Permitir siempre … (esta sesión)**: Devin sigue adelante, y Nomo deja de
+  preguntarte por lo mismo hasta que termine esta sesión. Más
+  [abajo](#always-allow).
 - **Denegar**: Devin no lo hace.
 - **Denegar con nota…**: Devin no lo hace y recibe tu nota explicándole por
   qué.
@@ -279,21 +293,79 @@ Conviene saber:
 - **¿Sin teléfono? No pasa nada.** Si no se puede llegar a tu teléfono, o las
   aprobaciones están [en pausa](/es/sessions/approvals#pausing-it), Devin
   pregunta en el Mac, igual que sin Nomo.
-- **Las preguntas se quedan en el Mac.** Cuando Devin te hace una pregunta, tu
-  teléfono puede mostrar un aviso. Respóndela en Devin, en el Mac. Responder
-  preguntas desde el teléfono aún no está disponible.
+
+### Permitir siempre {#always-allow}
+
+**Permitir siempre** dura **solo esta sesión**. Cuando la sesión termina, Nomo
+lo olvida y la siguiente sesión vuelve a preguntar.
+
+- **Un comando sencillo** se recuerda por su nombre. Si permites siempre
+  `touch b.txt`, Nomo también permite `touch c.txt`, pero no otro comando.
+- **Un comando encadenado** (uno con `&&`, `;`, `|` o `>`) sigue llegando a tu
+  teléfono cada vez, salvo que sea exactamente el mismo comando que ya
+  permitiste. Así, `touch x && rm -rf ~` te sigue preguntando.
+- **Cualquier otra cosa**, como escribir un archivo, queda permitida el resto
+  de la sesión.
+
+Nomo lo guarda en tu ordenador y nunca cambia los ajustes de Devin. Sigue
+funcionando aunque pongas en pausa las aprobaciones, hasta que termine la
+sesión.
+
+### Responder a las preguntas de Devin {#questions}
+
+Cuando Devin te hace una pregunta, la sesión muestra `Necesita una respuesta`.
+Mantenla pulsada y elige **Responder…**:
+
+1. Toca una opción. Si Devin lo permite, puedes elegir más de una.
+2. ¿Ninguna encaja? Toca **Otra respuesta…** y escribe la tuya.
+3. Toca **Enviar**.
+
+**Añadir nota** adjunta un comentario a tu respuesta. **Denegar** le dice a
+Devin que decidiste no responder.
+
+<Note>
+  **En el Mac, la pregunta aparece como rechazada. Es lo esperado.** Devin no
+  puede recibir una respuesta de Nomo directamente, así que Nomo envía tu
+  respuesta como el motivo para cerrar la pregunta de Devin. Verás la pregunta
+  marcada como **rejected**, con tu respuesta escrita al lado. Devin lee tu
+  respuesta y sigue.
+</Note>
+
+## Detener {#interrupt}
+
+Toca **[Detener](/es/sessions/list#interrupt-a-running-session)** en una sesión
+de Devin `En ejecución` para pararla. Necesita la etiqueta verde **⚡ Local**:
+tu iPhone y tu Mac en la misma red.
+
+Devin termina el paso en el que está y se detiene. No puede cortar un comando
+ni una respuesta a medias. La sesión pasa a `Listo` y Devin sigue abierto:
+envía un mensaje nuevo para continuar.
+
+## Devin Desktop {#devin-desktop}
+
+La documentación de Devin dice que el agente **Devin Local** de Devin Desktop
+usa el mismo motor que la CLI de Devin, así que Nomo funciona igual ahí. Nomo
+se ha probado con la CLI de Devin y con el servidor ACP de Devin.
+
+- **Tu teléfono responde primero.** Mientras tu teléfono tiene una solicitud de
+  permiso o una pregunta, Devin Desktop no muestra sus propios botones para
+  ella. Respóndela en el teléfono. Para responder en el Mac,
+  [pon en pausa las aprobaciones](/es/sessions/approvals#pausing-it) antes del
+  siguiente prompt de Devin.
+- **Qué llega a tu teléfono.** En el modo **Code**, el predeterminado de Devin
+  Desktop, Devin solo pregunta antes de ejecutar comandos, descargar páginas
+  web y escribir fuera de tu proyecto. Esas son las solicitudes que verás en
+  el teléfono.
+- **El Restricted Mode desactiva Nomo.** Las sesiones dejan de llegar a tu
+  teléfono hasta que salgas de él.
 
 ## Diferencias en Devin {#whats-different-for-devin}
 
 - **Solo Devin en tu Mac.** Las sesiones de Devin Cloud no aparecen: Nomo solo
   muestra Devin cuando se ejecuta en tu Mac.
-- **Devin Desktop.** La documentación de Devin dice que el agente local de
-  Devin Desktop comparte el motor de la CLI. Nomo se ha probado con la CLI de
-  Devin.
 - **En las sesiones cortas puede faltar la etiqueta del modelo.** Devin solo
   guarda el modelo cuando termina una sesión.
-- **Aún no disponible para Devin:** **Permitir siempre**,
-  [Detener](/es/sessions/list#interrupt-a-running-session),
+- **No disponible para Devin:**
   [Responder](/es/sessions/antigravity#reply-from-your-phone) y **Abrir en el
   Mac**.
 
@@ -330,6 +402,26 @@ Conviene saber:
     ```
 
     Todos tus ajustes siguen ahí. Solo se quitaron los comentarios.
+  </Accordion>
+
+  <Accordion title="Devin muestra mi respuesta como rechazada">
+    Es lo esperado. Nomo envía tu respuesta como el motivo para cerrar la
+    pregunta de Devin, así que el Mac muestra la pregunta como **rejected**, con
+    tu respuesta al lado. Devin lee tu respuesta y sigue.
+  </Accordion>
+
+  <Accordion title="Devin Desktop no muestra botones para una solicitud">
+    La tiene tu teléfono. Respóndela en el teléfono. Para responder en el Mac,
+    [pon en pausa las aprobaciones](/es/sessions/approvals#pausing-it) antes del
+    siguiente prompt de Devin.
+  </Accordion>
+
+  <Accordion title="Detener no paró a Devin enseguida">
+    Devin termina primero el paso en el que está: un comando o una respuesta que
+    ya está en marcha sigue hasta acabar. Después se detiene.
+
+    ¿No ves el botón **Detener**? Tu iPhone y tu Mac tienen que estar en la
+    misma red, con la etiqueta verde **⚡ Local** a la vista.
   </Accordion>
 
   <Accordion title="Mi teléfono dejó de pedirme aprobaciones">
@@ -409,10 +501,11 @@ desvincular de [Comandos](#commands) **antes** de desinstalar el instalador.
       MCP ni agentes, y solo se ejecuta en las sesiones locales de Devin, nunca
       en Devin Cloud. Mientras estén las entradas del instalador, los hooks del
       plugin no envían nada.
-    - **Estado.** Un hook en `UserPromptSubmit`, `PostToolUse`, `Stop`,
-      `SessionEnd` y `PreToolUse` (solo para `ask_user_question`) informa del
-      estado. No imprime nada, así que no puede bloquear un prompt ni cambiar
-      una llamada a una herramienta.
+    - **Estado.** Un hook en `UserPromptSubmit`, `PostToolUse`, `Stop` y
+      `SessionEnd` informa del estado. No imprime nada, así que no puede
+      bloquear un prompt ni cambiar una llamada a una herramienta, salvo
+      después de que toques **Detener**: entonces su siguiente `PostToolUse`
+      imprime `{"continue":false}`, que termina ese turno.
     - **Aprobaciones.** Un hook en `PermissionRequest` envía a tu teléfono el
       nombre de la herramienta y su comando o ruta de archivo, con cifrado de
       extremo a extremo. Responde `approve` solo ante un Permitir de tu
@@ -420,6 +513,14 @@ desvincular de [Comandos](#commands) **antes** de desinstalar el instalador.
       un Denegar. Cualquier otro caso (sin vincular, aprobaciones en pausa, sin
       conexión, tiempo agotado, un error) no imprime nada, lo que deja la
       decisión a la propia solicitud de Devin.
+    - **Preguntas.** El mismo hook en `PreToolUse` (solo para
+      `ask_user_question`) envía a tu teléfono la pregunta de Devin y sus
+      opciones, con cifrado de extremo a extremo. Tu respuesta vuelve como un
+      `block` cuyo motivo es tu respuesta, que el modelo de Devin lee.
+    - **Permitir siempre.** El permiso se guarda en
+      `~/.config/cc-status/sessions/<session>.devin-allow`, que solo tú puedes
+      leer, y se borra cuando termina la sesión. Nunca se escriben los archivos
+      de ajustes de Devin.
     - **Sin filas dobles.** Devin también ejecuta los hooks de Claude Code. El
       plugin de Nomo para Claude Code no hace nada dentro de Devin, así que una
       sesión de Devin nunca aparece como sesión de Claude Code.

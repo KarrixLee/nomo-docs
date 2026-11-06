@@ -189,7 +189,15 @@ $nomo-approvals status      # which way is it set
 /nomo-approvals on          # resume
 /nomo-approvals status      # which way is it set
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off      # pause on this computer
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on       # resume
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs status   # which way is it set
+```
 </CodeGroup>
+
+Devin 把它那一行粘贴到终端里——用 Nomo 安装工具时有效。Devin 插件没有审批命令：可以在同一台电脑的其他智能体里暂停，或者在手机上关掉**在 iPhone 上回答**。在 Devin Desktop 里，要在 Devin 的下一个提示之前暂停。
 
 暂停**这台电脑**的远程审批，让权限请求直接进终端，而不是等你的手机。这是手机没电或不在手边时的应急出口。
 

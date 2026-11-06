@@ -267,7 +267,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
 </Accordion>
 
 <Accordion title="Interrupt says Sent but the session keeps running" icon="circle-stop">
-  **Sent** means the Mac received it, not that the turn has stopped. Four
+  **Sent** means the Mac received it, not that the turn has stopped. Five
   things leave it running:
 
   - **Claude Code waits for the next tool call.** While it's writing text, or a
@@ -276,13 +276,16 @@ What each row means, with a healthy machine and a broken one side by side, is on
     app-server — [which sessions that covers](/sessions/codex#interrupt).
   - **Antigravity finishes the current step first.** The turn stops once the
     model call or tool that's already running is done.
+  - **Devin finishes the current step first.** A command or a reply that's
+    already running keeps going until it's done.
   - **One of the two plugins is older than 2.3.0.** The version is reported per
     computer, so with Claude Code and Codex on one Mac, update both. Status
     prints the version on its first line.
 
   No **Interrupt** button at all? It needs the green **⚡ Local** chip, a
-  `Running` session, plugin **2.3.0** (**2.3.5** for Antigravity), and Claude
-  Code, Codex or Antigravity — never OpenCode, Cursor or Devin. More in [Computers and sessions](/sessions/list#interrupt-a-running-session).
+  `Running` session, plugin **2.3.0** (**2.3.5** for Antigravity, **2.5.0** for
+  Devin), and Claude Code, Codex, Antigravity or Devin — never OpenCode or
+  Cursor. More in [Computers and sessions](/sessions/list#interrupt-a-running-session).
 </Accordion>
 
 </AccordionGroup>

@@ -282,7 +282,7 @@ está en [Comandos](/es/sessions/commands#status).
 
 <Accordion title="Detener dice Enviado pero la sesión sigue en marcha" icon="circle-stop">
   **Enviado** significa que el Mac lo recibió, no que el turno se haya detenido.
-  Hay cuatro cosas que lo dejan corriendo:
+  Hay cinco cosas que lo dejan corriendo:
 
   - **Claude Code espera a la siguiente llamada a una herramienta.** Mientras
     escribe texto, o mientras corre un comando largo ya iniciado, no pasa nada
@@ -293,13 +293,16 @@ está en [Comandos](/es/sessions/commands#status).
   - **Antigravity termina primero el paso en curso.** El turno se detiene en
     cuanto acaba la llamada al modelo o la herramienta que ya se está
     ejecutando.
+  - **Devin termina primero el paso en curso.** Un comando o una respuesta que
+    ya está en marcha sigue hasta acabar.
   - **Uno de los dos plugins es anterior a la 2.3.0.** La versión se informa por
     ordenador, así que con Claude Code y Codex en el mismo Mac hay que
     actualizar los dos. Status imprime la versión en su primera línea.
 
   ¿No hay botón **Detener**? Necesita la etiqueta verde **⚡ Local**, una sesión
-  `En ejecución`, la versión **2.3.0** del plugin (**2.3.5** para Antigravity), y
-  Claude Code, Codex o Antigravity — nunca OpenCode, Cursor ni Devin. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
+  `En ejecución`, la versión **2.3.0** del plugin (**2.3.5** para Antigravity, **2.5.0**
+  para Devin), y Claude Code, Codex, Antigravity o Devin — nunca OpenCode ni
+  Cursor. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
 </Accordion>
 
 </AccordionGroup>

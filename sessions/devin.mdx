@@ -1,15 +1,17 @@
 ---
 title: "Watch and approve Devin sessions from your iPhone"
 sidebarTitle: "Using Devin"
-description: "Set up Nomo for the Devin CLI in a few steps, pair your phone, and follow your Devin sessions from your iPhone — with Allow and Deny for Devin's permission prompts."
+description: "Set up Nomo for Devin in a few steps, pair your phone, and follow your Devin sessions from your iPhone — answer Devin's permission prompts and questions, and stop a running turn."
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Using Devin"]
 ---
 
 See your Devin sessions on your iPhone — on the Lock Screen and in the Dynamic
 Island. When Devin asks for permission, your phone asks you to **Allow** or
-**Deny** it.
+**Deny** it. When Devin asks you a question, you can answer it from your phone
+too.
 
-It works with the Devin CLI, the `devin` command in Terminal.
+It works with the Devin CLI, the `devin` command in Terminal, and with
+[Devin Desktop](#devin-desktop).
 
 <Note>
   Sessions is part of Nomo Pro. You need Nomo **2.5.0** or later on your phone
@@ -50,6 +52,9 @@ one, and the plugin stays quiet.
       </Step>
 
       <Step title="Install the Nomo plugin">
+        Type this in Terminal, not inside Devin. If Devin is open, open a new
+        Terminal window first (press **⌘N**).
+
         Copy this line, paste it into Terminal, and press Return:
 
         ```bash
@@ -60,8 +65,8 @@ one, and the plugin stays quiet.
         repository**, and enter `KarrixLee/nomo`.
       </Step>
 
-      <Step title="Restart Devin">
-        If `devin` was already open, close it, then start it again.
+      <Step title="Start Devin">
+        In Terminal, type `devin` and press Return.
       </Step>
 
       <Step title="Type /nomo:pair">
@@ -142,7 +147,8 @@ one, and the plugin stays quiet.
       </Step>
 
       <Step title="Restart Devin">
-        Close every open `devin`, then start it again.
+        Close every open `devin`, then start it again. Using Devin Desktop?
+        Quit it and open it again too.
 
         <Warning>
           Don't skip this. Nomo stays off until Devin restarts.
@@ -221,6 +227,11 @@ one, and the plugin stays quiet.
 | `/nomo:pair code` | The same, with a short code to type instead of a QR code |
 | `/nomo:status` | Check that everything works |
 
+To stop asking your phone, turn off **Answer on iPhone** in Nomo's
+[Settings](/sessions/settings#remote-approvals). Also using Claude Code on this
+computer? `/nomo-cc:approvals off` in Claude Code pauses phone approvals for
+this computer.
+
 **With the Nomo installer**, Devin has no Nomo commands inside its chat. Run
 these in Terminal instead:
 
@@ -263,6 +274,8 @@ Touch and hold the session, or use the island, and choose:
 </Frame>
 
 - **Allow** — Devin goes ahead.
+- **Always allow … (this session)** — Devin goes ahead, and Nomo stops asking
+  for the same thing until this session ends. See [below](#always-allow).
 - **Deny** — Devin doesn't do it.
 - **Deny with note…** — Devin doesn't do it, and gets your note telling it why.
 
@@ -275,20 +288,76 @@ Good to know:
 - **No phone? No problem.** If your phone can't be reached, or approvals are
   [paused](/sessions/approvals#pausing-it), Devin asks on your Mac, just as it
   would without Nomo.
-- **Questions stay on your Mac.** When Devin asks you a question, your phone
-  may show a heads-up. Answer it in Devin on your Mac. Answering questions
-  from your phone isn't available yet.
+
+### Always allow {#always-allow}
+
+**Always allow** lasts for **this session only**. When the session ends, Nomo
+forgets it, and the next session asks again.
+
+- **A simple command** is remembered by its name. Allow `touch b.txt` always,
+  and Nomo also allows `touch c.txt` — but not a different command.
+- **A chained command** — one with `&&`, `;`, `|` or `>` in it — still comes to
+  your phone every time, unless it's exactly the same command you already
+  allowed. So `touch x && rm -rf ~` still asks you.
+- **Anything else**, like writing a file, is allowed for the rest of the
+  session.
+
+Nomo keeps this on your computer and never changes Devin's own settings. It
+keeps working even if you pause approvals, until the session ends.
+
+### Answering Devin's questions {#questions}
+
+When Devin asks you a question, the session reads `Needs an answer`. Touch and
+hold it, and choose **Answer…**:
+
+1. Tap an option. Where Devin allows it, you can pick more than one.
+2. None fits? Tap **Other…** and type your own answer.
+3. Tap **Submit**.
+
+**Add note** attaches a comment to your answer. **Deny** tells Devin you chose
+not to answer.
+
+<Note>
+  **On your Mac, the question shows as rejected. That's expected.** Devin has
+  no way to take an answer from Nomo directly, so Nomo sends your answer as the
+  reason for closing Devin's question. You'll see the question marked
+  **rejected**, with your answer written next to it. Devin reads your answer
+  and carries on.
+</Note>
+
+## Interrupt {#interrupt}
+
+Tap **[Interrupt](/sessions/list#interrupt-a-running-session)** on a
+**Running** Devin session to stop it. It needs the green **⚡ Local** chip — your
+iPhone and your Mac on the same network.
+
+Devin finishes the step it's on, then stops. It can't cut off a command or a
+reply halfway. The session shows **Done**, and Devin stays open — send a new
+message to carry on.
+
+## Devin Desktop {#devin-desktop}
+
+Devin's docs say Devin Desktop's **Devin Local** agent runs on the same engine
+as the Devin CLI, so Nomo works there the same way. Nomo has been tested with
+the Devin CLI and with Devin's ACP server.
+
+- **Your phone answers first.** While your phone has a permission prompt or a
+  question, Devin Desktop doesn't show its own buttons for it. Answer on your
+  phone. To answer on the Mac instead, [pause
+  approvals](/sessions/approvals#pausing-it) before Devin's next prompt.
+- **What reaches your phone.** In Devin Desktop's default **Code** mode, Devin
+  only asks before running commands, fetching web pages, and writing outside
+  your project. Those are the prompts you'll see on your phone.
+- **Restricted Mode turns Nomo off.** Sessions stop reaching your phone until
+  you leave it.
 
 ## What's different for Devin
 
 - **Only Devin on your Mac.** Devin Cloud sessions don't appear — Nomo shows
   Devin running on your Mac only.
-- **Devin Desktop.** Devin's docs say Devin Desktop's local agent shares the
-  CLI's engine. Nomo has been tested with the Devin CLI.
 - **The model badge can be missing on short sessions.** Devin saves the model
   only when a session ends.
-- **Not available for Devin yet:** **Always allow**,
-  [Interrupt](/sessions/list#interrupt-a-running-session),
+- **Not available for Devin:**
   [Reply](/sessions/antigravity#reply-from-your-phone) and **Open on Mac**.
 
 ## Something's not working {#troubleshooting}
@@ -323,6 +392,26 @@ Good to know:
     ```
 
     All your settings are still there. Only the comments were removed.
+  </Accordion>
+
+  <Accordion title="Devin shows my answer as rejected">
+    That's expected. Nomo sends your answer as the reason for closing Devin's
+    question, so the Mac shows the question as **rejected**, with your answer
+    next to it. Devin reads your answer and carries on.
+  </Accordion>
+
+  <Accordion title="Devin Desktop shows no buttons for a prompt">
+    Your phone has it. Answer it on your phone. To answer on the Mac instead,
+    [pause approvals](/sessions/approvals#pausing-it) before Devin's next
+    prompt.
+  </Accordion>
+
+  <Accordion title="Interrupt didn't stop Devin right away">
+    Devin finishes the step it's on first — a command or a reply that's already
+    running keeps going until it's done. Then it stops.
+
+    No **Interrupt** button? Your iPhone and your Mac need to be on the same
+    network, with the green **⚡ Local** chip showing.
   </Accordion>
 
   <Accordion title="My phone stopped asking me to approve">
@@ -402,16 +491,24 @@ computer from your phone as well, run the disconnect command from
       servers or agents, and runs only in local Devin sessions, never in Devin
       Cloud. While the installer's entries are there, the plugin's hooks send
       nothing.
-    - **Status.** A hook on `UserPromptSubmit`, `PostToolUse`, `Stop`,
-      `SessionEnd` and `PreToolUse` (only for `ask_user_question`) reports
-      status. It prints nothing, so it can't block a prompt or change a tool
-      call.
+    - **Status.** A hook on `UserPromptSubmit`, `PostToolUse`, `Stop` and
+      `SessionEnd` reports status. It prints nothing, so it can't block a
+      prompt or change a tool call — except after you tap **Interrupt**: then
+      its next `PostToolUse` prints `{"continue":false}`, which ends that turn.
     - **Approvals.** A hook on `PermissionRequest` sends the tool name and its
       command or file path to your phone, end-to-end encrypted. It answers
       `approve` only for an Allow from your paired phone for that exact
       request, and `block` with your note for a Deny. Everything else —
       unpaired, approvals paused, offline, a timeout, an error — prints
       nothing, which leaves the decision to Devin's own prompt.
+    - **Questions.** The same hook on `PreToolUse` (only for
+      `ask_user_question`) sends Devin's question and its options to your
+      phone, end-to-end encrypted. Your answer comes back as a `block` whose
+      reason is your answer, which Devin's model reads.
+    - **Always allow.** A grant is stored in
+      `~/.config/cc-status/sessions/<session>.devin-allow`, readable only by
+      you, and removed when the session ends. Devin's own settings files are
+      never written.
     - **No double rows.** Devin also runs Claude Code hooks. Nomo's Claude Code
       plugin stays quiet inside Devin, so a Devin session never shows up as a
       Claude Code session.

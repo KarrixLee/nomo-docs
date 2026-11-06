@@ -1,14 +1,16 @@
 ---
 title: "iPhone에서 Devin 세션 확인하고 승인하기"
 sidebarTitle: "Devin 사용하기"
-description: "몇 단계만으로 Devin CLI에 Nomo를 설정하고 휴대폰을 페어링해, iPhone에서 Devin 세션을 지켜봅니다 — Devin의 권한 요청은 허용하거나 거부할 수 있습니다."
+description: "몇 단계만으로 Devin에 Nomo를 설정하고 휴대폰을 페어링해, iPhone에서 Devin 세션을 지켜봅니다 — Devin의 권한 요청과 질문에 답하고, 실행 중인 턴을 중단할 수 있습니다."
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "Devin 사용하기"]
 ---
 
 Devin 세션을 iPhone의 잠금 화면과 Dynamic Island에서 볼 수 있습니다. Devin이
-권한을 요청하면, 휴대폰이 **허용**할지 **거부**할지 물어봅니다.
+권한을 요청하면, 휴대폰이 **허용**할지 **거부**할지 물어봅니다. Devin이
+질문하면 휴대폰에서 답할 수도 있습니다.
 
-Devin CLI, 즉 터미널의 `devin` 명령에서 동작합니다.
+Devin CLI, 즉 터미널의 `devin` 명령과 [Devin Desktop](#devin-desktop)에서
+동작합니다.
 
 <Note>
   세션은 Nomo Pro에 포함됩니다. 휴대폰에는 Nomo **2.5.0** 이상, Mac에는
@@ -49,6 +51,9 @@ Devin에 Nomo를 추가하는 방법은 **Devin 플러그인**과 **Nomo 설치 
       </Step>
 
       <Step title="Nomo 플러그인 설치">
+        Devin 안이 아니라 터미널에 입력합니다. Devin이 열려 있다면 먼저 새
+        터미널 창을 엽니다(**⌘N**을 누릅니다).
+
         아래 줄을 복사해 터미널에 붙여 넣고 Return 키를 누릅니다.
 
         ```bash
@@ -59,8 +64,8 @@ Devin에 Nomo를 추가하는 방법은 **Devin 플러그인**과 **Nomo 설치 
         이동해 `KarrixLee/nomo`를 입력합니다.
       </Step>
 
-      <Step title="Devin 재시작">
-        `devin`이 이미 열려 있었다면 닫은 다음 다시 시작합니다.
+      <Step title="Devin 시작">
+        터미널에 `devin`을 입력하고 Return 키를 누릅니다.
       </Step>
 
       <Step title="/nomo:pair 입력">
@@ -140,7 +145,8 @@ Devin에 Nomo를 추가하는 방법은 **Devin 플러그인**과 **Nomo 설치 
       </Step>
 
       <Step title="Devin 재시작">
-        열려 있는 `devin`을 모두 닫은 다음 다시 시작합니다.
+        열려 있는 `devin`을 모두 닫은 다음 다시 시작합니다. Devin Desktop을
+        사용한다면 Devin Desktop도 종료한 다음 다시 엽니다.
 
         <Warning>
           이 단계를 건너뛰지 마십시오. Devin을 재시작하기 전까지 Nomo는
@@ -218,6 +224,11 @@ Devin에 Nomo를 추가하는 방법은 **Devin 플러그인**과 **Nomo 설치 
 | `/nomo:pair code` | 위와 같지만, QR 코드 대신 입력할 짧은 코드를 받습니다 |
 | `/nomo:status` | 모든 것이 잘 동작하는지 확인합니다 |
 
+휴대폰에 묻지 않게 하려면 Nomo [설정](/ko/sessions/settings#remote-approvals)에서
+**iPhone에서 답변**을 끕니다. 이 컴퓨터에서 Claude Code도 사용한다면 Claude
+Code에서 `/nomo-cc:approvals off`를 입력해 이 컴퓨터의 원격 승인을 일시 중지할
+수 있습니다.
+
 **Nomo 설치 도구를 썼다면** Devin에는 채팅 안에서 쓰는 Nomo 명령이 없습니다.
 대신 터미널에서 다음을 실행합니다.
 
@@ -259,6 +270,8 @@ Devin이 권한을 요청하면 — 예를 들어 명령을 실행하려 할 때
 </Frame>
 
 - **허용** — Devin이 그대로 진행합니다.
+- **… 항상 허용(이 세션)** — Devin이 그대로 진행하고, 이 세션이 끝날 때까지
+  Nomo는 같은 작업을 다시 묻지 않습니다. [아래](#always-allow)를 참고하십시오.
 - **거부** — Devin이 그 작업을 하지 않습니다.
 - **메모와 함께 거부…** — Devin이 그 작업을 하지 않고, 이유를 적은 메모를
   받습니다.
@@ -272,20 +285,75 @@ Devin이 권한을 요청하면 — 예를 들어 명령을 실행하려 할 때
 - **휴대폰이 없어도 괜찮습니다.** 휴대폰에 연결할 수 없거나 원격 승인이
   [일시 중지](/ko/sessions/approvals#pausing-it)되어 있으면, Devin은 Nomo가
   없을 때와 똑같이 Mac에서 묻습니다.
-- **질문은 Mac에서 답합니다.** Devin이 질문하면 휴대폰에 알림이 표시될 수
-  있습니다. Mac의 Devin에서 답하십시오. 휴대폰에서 질문에 답하는 기능은 아직
-  사용할 수 없습니다.
+
+### 항상 허용 {#always-allow}
+
+**항상 허용**은 **이 세션에서만** 유효합니다. 세션이 끝나면 Nomo는 이를 잊고,
+다음 세션에서는 다시 묻습니다.
+
+- **단순한 명령**은 명령 이름으로 기억됩니다. `touch b.txt`를 항상 허용하면
+  `touch c.txt`도 허용됩니다 — 하지만 다른 명령은 허용되지 않습니다.
+- **연결된 명령** — `&&`, `;`, `|`, `>`가 들어간 명령 — 은 이미 허용한 것과
+  완전히 같은 명령이 아니면 매번 휴대폰으로 옵니다. 그래서
+  `touch x && rm -rf ~`는 여전히 묻습니다.
+- **그 밖의 작업**(파일 쓰기 등)은 세션이 끝날 때까지 허용됩니다.
+
+Nomo는 이를 컴퓨터에 보관하며, Devin 자체 설정은 바꾸지 않습니다. 원격 승인을
+일시 중지해도 세션이 끝날 때까지는 계속 적용됩니다.
+
+### Devin의 질문에 답하기 {#questions}
+
+Devin이 질문하면 세션에 `답변 필요`가 표시됩니다. 세션을 길게 터치하고
+**답변하기…**를 선택합니다.
+
+1. 선택지를 탭합니다. Devin이 허용하는 경우 여러 개를 고를 수 있습니다.
+2. 맞는 것이 없다면 **기타…**를 탭하고 직접 답변을 입력합니다.
+3. **보내기**를 탭합니다.
+
+**메모 추가**로 답변에 코멘트를 붙일 수 있습니다. **거부**를 선택하면 답하지
+않기로 했다는 것이 Devin에 전달됩니다.
+
+<Note>
+  **Mac에서는 질문이 rejected로 표시됩니다. 정상입니다.** Devin은
+  Nomo로부터 답을 직접 받을 방법이 없어서, Nomo는 답변을 Devin의 질문을 닫는
+  이유로 보냅니다. 그래서 질문에 **rejected**가 표시되고, 그 옆에 답변이
+  적힙니다. Devin은 답변을 읽고 작업을 이어 갑니다.
+</Note>
+
+## 중단 {#interrupt}
+
+**실행 중**인 Devin 세션에서
+**[중단](/ko/sessions/list#interrupt-a-running-session)**을 탭하면 멈춥니다.
+초록색 **⚡ 로컬** 칩이 필요합니다 — iPhone과 Mac이 같은 네트워크에 있어야
+합니다.
+
+Devin은 진행 중인 단계를 마친 뒤에 멈춥니다. 명령이나 답변을 중간에 끊을 수는
+없습니다. 세션은 **완료**로 표시되고 Devin은 열린 채로 남으므로, 새 메시지를
+보내면 이어서 진행합니다.
+
+## Devin Desktop {#devin-desktop}
+
+Devin 문서에 따르면 Devin Desktop의 **Devin Local** 에이전트는 Devin CLI와
+같은 엔진으로 동작하므로, Nomo도 똑같이 동작합니다. Nomo는 Devin CLI와 Devin의
+ACP 서버로 테스트되었습니다.
+
+- **휴대폰이 먼저 답합니다.** 휴대폰에 권한 요청이나 질문이 와 있는 동안에는
+  Devin Desktop에 그에 대한 자체 버튼이 표시되지 않습니다. 휴대폰에서
+  답하십시오. Mac에서 답하려면 Devin의 다음 프롬프트 전에
+  [원격 승인을 일시 중지](/ko/sessions/approvals#pausing-it)하십시오.
+- **휴대폰으로 오는 것.** Devin Desktop의 기본 **Code** 모드에서 Devin은 명령
+  실행, 웹 페이지 가져오기, 프로젝트 밖에 쓰기 전에만 묻습니다. 휴대폰에서 보게
+  되는 권한 요청은 이것들입니다.
+- **Restricted Mode는 Nomo를 끕니다.** Restricted Mode를 끝낼 때까지 세션이
+  휴대폰에 오지 않습니다.
 
 ## Devin에서 다른 점 {#whats-different-for-devin}
 
 - **Mac의 Devin만 표시됩니다.** Devin Cloud 세션은 나타나지 않습니다 — Nomo는
   Mac에서 실행되는 Devin만 보여 줍니다.
-- **Devin Desktop.** Devin 문서에 따르면 Devin Desktop의 로컬 에이전트는 CLI와
-  같은 엔진을 사용합니다. Nomo는 Devin CLI로 테스트되었습니다.
 - **짧은 세션에는 모델 배지가 없을 수 있습니다.** Devin은 세션이 끝날 때만
   모델을 저장합니다.
-- **Devin에서는 아직 사용할 수 없음:** **항상 허용**,
-  [중단](/ko/sessions/list#interrupt-a-running-session),
+- **Devin에서 사용할 수 없음:**
   [답장](/ko/sessions/antigravity#reply-from-your-phone), **Mac에서 열기**.
 
 ## 문제 해결 {#troubleshooting}
@@ -320,6 +388,26 @@ Devin이 권한을 요청하면 — 예를 들어 명령을 실행하려 할 때
     ```
 
     설정은 모두 그대로 있습니다. 주석만 제거되었습니다.
+  </Accordion>
+
+  <Accordion title="Devin에 답변이 rejected로 표시됨">
+    정상입니다. Nomo는 답변을 Devin의 질문을 닫는 이유로 보내므로, Mac에서는
+    질문이 **rejected**로 표시되고 그 옆에 답변이 적힙니다. Devin은 답변을 읽고
+    작업을 이어 갑니다.
+  </Accordion>
+
+  <Accordion title="Devin Desktop에 권한 요청 버튼이 없음">
+    그 요청은 휴대폰에 와 있습니다. 휴대폰에서 답하십시오. Mac에서 답하려면
+    Devin의 다음 프롬프트 전에
+    [원격 승인을 일시 중지](/ko/sessions/approvals#pausing-it)하십시오.
+  </Accordion>
+
+  <Accordion title="중단해도 Devin이 바로 멈추지 않음">
+    Devin은 진행 중인 단계를 먼저 마칩니다 — 이미 실행 중인 명령이나 답변은
+    끝날 때까지 계속됩니다. 그런 다음 멈춥니다.
+
+    **중단** 버튼이 없다면, iPhone과 Mac이 같은 네트워크에 있고 초록색
+    **⚡ 로컬** 칩이 표시되어 있어야 합니다.
   </Accordion>
 
   <Accordion title="휴대폰에서 승인을 묻지 않음">
@@ -400,15 +488,23 @@ devin plugins remove nomo
       않으며, 로컬 Devin 세션에서만 실행되고 Devin Cloud에서는 절대 실행되지
       않습니다. 설치 도구의 항목이 있는 동안에는 플러그인의 Hook이 아무것도
       보내지 않습니다.
-    - **상태.** `UserPromptSubmit`, `PostToolUse`, `Stop`, `SessionEnd`,
-      `PreToolUse`(`ask_user_question`에만)의 Hook이 상태를 보고합니다. 아무것도
-      출력하지 않으므로 프롬프트를 막거나 도구 호출을 바꿀 수 없습니다.
+    - **상태.** `UserPromptSubmit`, `PostToolUse`, `Stop`, `SessionEnd`의 Hook이
+      상태를 보고합니다. 아무것도 출력하지 않으므로 프롬프트를 막거나 도구
+      호출을 바꿀 수 없습니다 — 단, **중단**을 탭한 뒤에는 예외로, 다음
+      `PostToolUse`가 `{"continue":false}`를 출력해 그 턴을 끝냅니다.
     - **승인.** `PermissionRequest` Hook이 도구 이름과 그 명령 또는 파일 경로를
       종단 간 암호화해 휴대폰으로 보냅니다. 페어링된 휴대폰에서 바로 그 요청을
       허용했을 때만 `approve`로, 거부하면 메모를 담아 `block`으로 응답합니다.
       그 밖의 모든 경우 — 페어링되지 않음, 원격 승인 일시 중지, 오프라인, 시간
       초과, 오류 — 에는 아무것도 출력하지 않아, 결정을 Devin 자체의 요청에
       맡깁니다.
+    - **질문.** 같은 Hook이 `PreToolUse`(`ask_user_question`에만)에서 Devin의
+      질문과 선택지를 종단 간 암호화해 휴대폰으로 보냅니다. 답변은 답변을
+      이유로 담은 `block`으로 돌아오고, Devin의 모델이 이를 읽습니다.
+    - **항상 허용.** 허용 내용은
+      `~/.config/cc-status/sessions/<session>.devin-allow`에 저장됩니다. 이
+      파일은 본인만 읽을 수 있으며, 세션이 끝나면 삭제됩니다. Devin 자체 설정
+      파일에는 아무것도 쓰지 않습니다.
     - **행 중복 없음.** Devin은 Claude Code Hook도 실행합니다. Nomo의 Claude
       Code 플러그인은 Devin 안에서는 아무것도 하지 않으므로, Devin 세션이 Claude
       Code 세션으로 표시되는 일은 없습니다.
