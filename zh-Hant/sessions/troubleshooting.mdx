@@ -195,6 +195,12 @@ $nomo-status
   如果開關是開的卻還是什麼都沒有，請確認 iOS 設定裡 Nomo 的「即時動態」已啟用。接著確認不是另一個 session 佔著動態島：你的手機[一次只顯示一個](/zh-Hant/sessions/island#which-session-it-picks)，而正在等你的 session 排在工作中的前面。
 </Accordion>
 
+<Accordion title="沒加入過的 session，權限請求卻出現在動態島上" icon="hand">
+  這是代理在請求權限，例如 Codex 想在沙箱外執行指令。代理在等你選「允許」或「拒絕」，而且「在 iPhone 上回答」開著的時候，Nomo 會把那個 session 放上動態島 — 即使「自動加入新 sessions」關著、那個 session 自己的開關也關著。否則鎖定的手機上什麼都不會顯示，代理只能卡在那裡，你也不知道它在等你。你回覆之後，或請求過期之後，session 就會離開動態島，你的設定保持原樣。
+
+  不想收到這些，請到「設定」>「Sessions」>「遠端批准」關閉「在 iPhone 上回答」；只想暫停一台電腦，就在那台電腦上執行 [`/nomo-cc:approvals off`](/zh-Hant/sessions/commands#approvals)。
+</Accordion>
+
 <Accordion title="某個 session 的動態島開關是開的、變灰，而且關不掉" icon="toggle-off">
   那個 session 正在請求權限。不管它的開關怎麼設，權限請求都會到達你的動態島 — 否則一個在你手機躺在口袋裡時抵達的請求，就會是一個你無法回覆的請求，而那正是這項功能的全部意義。所以在請求等待期間，開關會顯示為**開啟**，因為那才是實際正在發生的事。
 
@@ -418,6 +424,14 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "幾乎一定是預期中的行為：sessions 是你選了才會上去的。打開那台電腦，找到那個 session，把它的開關打開 — 或是到設定開啟「自動加入新 sessions」。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "沒加入過的 session，權限請求卻出現在動態島上",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "這是代理在請求權限，例如 Codex 想在沙箱外執行指令。代理在等你選「允許」或「拒絕」，而且「在 iPhone 上回答」開著的時候，Nomo 會把那個 session 放上動態島 — 即使「自動加入新 sessions」關著、那個 session 自己的開關也關著。否則鎖定的手機上什麼都不會顯示，代理只能卡在那裡，你也不知道它在等你。你回覆之後，或請求過期之後，session 就會離開動態島，你的設定保持原樣。不想收到這些，請到「設定」>「Sessions」>「遠端批准」關閉「在 iPhone 上回答」；只想暫停一台電腦，就在那台電腦上執行 /nomo-cc:approvals off。"
       }
     },
     {
