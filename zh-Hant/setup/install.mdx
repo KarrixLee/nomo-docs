@@ -1,7 +1,7 @@
 ---
 title: "為 Claude Code 與 Codex 安裝 Nomo 外掛程式"
 sidebarTitle: "安裝"
-description: "將 Nomo 外掛程式加入 Claude Code、Codex、OpenCode、Cursor 或 Antigravity。一鍵安裝，也可以手動安裝，零相依套件。"
+description: "將 Nomo 外掛程式加入 Claude Code、Codex、OpenCode、Cursor、Antigravity 或 Devin。一鍵安裝，也可以手動安裝，零相依套件。"
 icon: "puzzle-piece"
 ---
 
@@ -270,11 +270,61 @@ icon: "puzzle-piece"
 
     然後重新啟動 Antigravity。
   </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    適用於 Devin CLI。Devin 的權限請求可以在手機上回覆 — 細節寫在[搭配 Devin 使用](/zh-Hant/sessions/devin)裡。
+
+    <Steps>
+      <Step title="執行安裝工具">
+        把這行貼到終端機裡，然後按下 Return：
+
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --devin
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --devin
+        ```
+        </CodeGroup>
+
+        在它印出的內容裡，你應該會看到：
+
+        ```
+        devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
+        ```
+      </Step>
+
+      <Step title="重新啟動 Devin — 必要步驟">
+        <Warning>
+          關掉每一個開著的 `devin`，再重新啟動它。在你這麼做之前，Nomo 都不會運作。
+        </Warning>
+      </Step>
+
+      <Step title="從終端機配對">
+        Devin 沒有自己的 Nomo 指令。把這行貼到終端機裡，然後用 iPhone 上的 Nomo 掃描 QR code：
+
+        ```bash
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        ```
+
+        已經從其他代理配對過了？跳過這一步。每一個步驟都寫在[搭配 Devin 使用](/zh-Hant/sessions/devin#set-it-up)裡。
+      </Step>
+    </Steps>
+
+    它會在 `~/.config/devin/config.json` 裡加入 Nomo 的項目，你其他的 Devin 設定都原封不動。之後要移除它：
+
+    ```bash
+    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    ```
+
+    然後重新啟動 Devin。
+  </Tab>
 </Tabs>
 
 ## 一鍵安裝 {#one-command}
 
-安裝工具會找出這台電腦上有哪些 Claude Code、Codex、OpenCode、Cursor 和 Antigravity，再把 Nomo 裝進你挑的那幾個：
+安裝工具會找出這台電腦上有哪些 Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin，再把 Nomo 裝進你挑的那幾個：
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -286,22 +336,22 @@ npx nomo-ai
 ```
 </CodeGroup>
 
-一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的。接著它就去跑每個代理本來的安裝流程 — 也就是上面那五套。它不會在全域裝任何東西，也不會留下套件。
+一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的。接著它就去跑每個代理本來的安裝流程 — 也就是上面那六套。它不會在全域裝任何東西，也不會留下套件。
 
 寫指令碼或在 CI 裡使用時：
 
 | 選項 | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | 只裝這幾個 — 只要指定其中任何一個，就會略過選擇畫面 |
-| `--all` | 五個全裝，不管有沒有找到 — 只有 Cursor 和 Antigravity 例外：這台電腦上沒有它們時會略過（想照裝就指定 `--cursor` 或 `--antigravity`） |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | 只裝這幾個 — 只要指定其中任何一個，就會略過選擇畫面 |
+| `--all` | 六個全裝，不管有沒有找到 — 只有 Cursor、Antigravity 和 Devin 例外：這台電腦上沒有它們時會略過（想照裝就指定 `--cursor`、`--antigravity` 或 `--devin`） |
 | `-y`、`--yes` | 不出選擇畫面，找到多少裝多少 |
 | `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
 
-它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。
+它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。Devin 要從終端機配對 — 見[搭配 Devin 使用](/zh-Hant/sessions/devin#set-it-up)。
 
 ## 更新 {#updating}
 
-同一個指令也負責更新：已經裝了 Nomo 的代理，會顯示成更新而不是安裝。真正會執行的只有 OpenCode、Cursor 和 Antigravity 那三份，另外兩個只是印出來給你。
+同一個指令也負責更新：已經裝了 Nomo 的代理，會顯示成更新而不是安裝。真正會執行的只有 OpenCode、Cursor、Antigravity 和 Devin 那四份，另外兩個只是印出來給你。
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -348,6 +398,16 @@ npx nomo-ai
     ```
 
     之後重新啟動 Antigravity，以及任何開著的 `agy` session。
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    和當初安裝它的是同一個指令：
+
+    ```bash
+    bunx nomo-ai --devin
+    ```
+
+    之後重新啟動任何開著的 `devin`。
   </Tab>
 </Tabs>
 

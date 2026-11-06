@@ -2,7 +2,7 @@
 title: "疑難排解"
 description: "先執行 status 指令 — 它會指出問題，並印出解法。接著是：哪一列回答哪個症狀，以及 status 看不到的那幾件事。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "session", "電腦", "動態島", "權限", "配對", "疑難排解"]
 ---
 
 status 指令現在已經替這一頁做掉大部分的工作。它會讀過整台電腦，用白話指出任何不對勁的地方，並印出可以修好它的指令。請先執行它。
@@ -31,9 +31,15 @@ $nomo-status
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-status
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
+```
 </CodeGroup>
 
 在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。它會用簡單的話顯示一段簡短摘要，每個問題各一行，告訴你該怎麼做 — 輸入 `/nomo-status verbose` 就能看到下面說明的完整報告。
+
+Devin 的對話裡沒有 Nomo 指令。請改把 Devin 那一行貼到終端機裡。
 
 它回報的是整台**電腦**，不只是你的 session：配對、傳送、區域網路直連、批准，接著是你所在的那個代理，以及它找到的其他每一個代理。`!` 表示真的有問題，底下的 `→` 就是該怎麼處理，並以你發問時所在代理的指令寫法寫出來。大多數人看到這裡就結束了。
 
@@ -76,7 +82,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="我開了一個 session，它卻從來沒出現" icon="play">
-  看 **Hooks** — 在 OpenCode 裡則是 **Plugin**，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 `/hooks`、重新啟動 OpenCode、重新啟動 Cursor、重新啟動 Antigravity。
+  看 **Hooks** — 在 OpenCode 裡則是 **Plugin**，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 `/hooks`、重新啟動 OpenCode、重新啟動 Cursor、重新啟動 Antigravity、重新啟動 `devin`。
 
   Codex 的 hooks 必須被明確信任，而一次外掛程式更新會重新開啟那道審核，所以在 Codex 那邊，更新後執行 `/hooks` 通常就是答案 — [為什麼](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
@@ -136,6 +142,19 @@ $nomo-status
   等幾秒 — Nomo 會自己發現，這一列就會變成 `完成`。如果手機上有卡片，它也會一起消失。
 </Accordion>
 
+<Accordion title="我的手機沒有顯示 Devin 的任何東西" icon="terminal">
+  1. 關掉每一個開著的 `devin`，再重新啟動它。
+  2. 把這行貼到終端機裡，然後照著以 `→` 開頭的那一行做：
+
+     ```bash
+     ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
+     ```
+
+  3. 在 Devin 裡送出一則訊息。session 要等你送出第一則訊息後才會出現。
+
+  還是沒有？在 Nomo 裡點一下 **+** 按鈕（「選擇代理」），把 Devin 打開。更多內容請看[搭配 Devin 使用](/zh-Hant/sessions/devin#troubleshooting)。
+</Accordion>
+
 <Accordion title="各列看起來過時或重複" icon="broom">
   **Sessions** 算的是這台電腦仍然認為還活著的數量。如果那比你實際有的還多，清掉失效的那些，而不解除配對：
 
@@ -159,6 +178,10 @@ $nomo-status
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash Devin icon="/images/providers/devin.svg"
+  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  ```
   </CodeGroup>
 
   進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。OpenCode 的列屬於 OpenCode 的伺服器，所以有一列清不掉時，請先結束 OpenCode。
@@ -178,7 +201,7 @@ $nomo-status
   - **Antigravity 會先做完目前這一步**。已經在跑的模型呼叫或工具結束後，這一輪才會停下。
   - **兩個外掛程式裡有一個比 2.3.0 舊**。版本是依電腦回報的，所以同一台 Mac 上同時有 Claude Code 和 Codex 時，兩個都要更新。status 會在第一行印出版本。
 
-  完全沒有「停止」按鈕？它需要綠色的 **⚡ 本機** 標籤、一個 `執行中` 的 session、外掛程式 **2.3.0**（Antigravity 需要 **2.3.5**），而且必須是 Claude Code、Codex 或 Antigravity — OpenCode 和 Cursor 上不會有。詳情請看[電腦與 sessions](/zh-Hant/sessions/list#interrupt-a-running-session)。
+  完全沒有「停止」按鈕？它需要綠色的 **⚡ 本機** 標籤、一個 `執行中` 的 session、外掛程式 **2.3.0**（Antigravity 需要 **2.3.5**），而且必須是 Claude Code、Codex 或 Antigravity — OpenCode、Cursor 和 Devin 上不會有。詳情請看[電腦與 sessions](/zh-Hant/sessions/list#interrupt-a-running-session)。
 </Accordion>
 
 </AccordionGroup>
@@ -274,7 +297,7 @@ $nomo-status
 
 ## 功能建議 {#nothings-broken--you-just-want-something}
 
-「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)、[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)、[搭配 Cursor 使用](/zh-Hant/sessions/cursor)和[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity)講這四個代理，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
+「為什麼我不能在手機上做 X？」往往是個合理的問題，而不是一個 bug。其中有些是代理交給外掛程式的東西真的有限，而那都寫下來了：[搭配 Codex 使用](/zh-Hant/sessions/codex)、[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)、[搭配 Cursor 使用](/zh-Hant/sessions/cursor)、[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity)和[搭配 Devin 使用](/zh-Hant/sessions/devin)講這五個代理，[在手機上回覆](/zh-Hant/sessions/approvals)講一個即時動態能容納和不能容納什麼。
 
 其餘的就只是還沒做而已。
 
@@ -400,6 +423,14 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "等幾秒 — Nomo 會自己發現，這一列就會變成「完成」。如果手機上有卡片，它也會一起消失。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我的手機沒有顯示 Devin 的任何東西",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "關掉每一個開著的 devin，再重新啟動它。把 ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin 貼到終端機裡，然後照著以 → 開頭的那一行做。接著在 Devin 裡送出一則訊息：session 要等你送出第一則訊息後才會出現。還是沒有？在 Nomo 裡點一下 + 按鈕（「選擇代理」），把 Devin 打開。"
       }
     },
     {

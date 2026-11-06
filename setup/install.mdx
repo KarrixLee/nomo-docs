@@ -1,7 +1,7 @@
 ---
 title: "Install the Nomo plugin for Claude Code and Codex"
 sidebarTitle: "Installation"
-description: "Add the Nomo plugin to Claude Code, Codex, OpenCode, Cursor, or Antigravity. One command, or by hand — no dependencies."
+description: "Add the Nomo plugin to Claude Code, Codex, OpenCode, Cursor, Antigravity or Devin. One command, or by hand — no dependencies."
 icon: "puzzle-piece"
 ---
 
@@ -320,12 +320,67 @@ ones.
 
     Then restart Antigravity.
   </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    For the Devin CLI. Devin's permission prompts can be answered from your
+    phone — [Using Devin](/sessions/devin) has the details.
+
+    <Steps>
+      <Step title="Run the installer">
+        Paste this into Terminal and press Return:
+
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --devin
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --devin
+        ```
+        </CodeGroup>
+
+        Among the lines it prints, you should see:
+
+        ```
+        devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
+        ```
+      </Step>
+
+      <Step title="Restart Devin — required">
+        <Warning>
+          Close every open `devin` and start it again. Nomo stays off until you
+          do.
+        </Warning>
+      </Step>
+
+      <Step title="Pair from Terminal">
+        Devin has no Nomo commands of its own. Paste this into Terminal, then
+        scan the QR code with Nomo on your iPhone:
+
+        ```bash
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        ```
+
+        Already paired from another agent? Skip this step.
+        [Using Devin](/sessions/devin#set-it-up) walks through every step.
+      </Step>
+    </Steps>
+
+    It adds Nomo's entries to `~/.config/devin/config.json` and leaves your
+    other Devin settings as they are. To remove it later:
+
+    ```bash
+    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    ```
+
+    Then restart Devin.
+  </Tab>
 </Tabs>
 
 ## One command
 
-The installer detects which of Claude Code, Codex, OpenCode, Cursor and
-Antigravity are on
+The installer detects which of Claude Code, Codex, OpenCode, Cursor,
+Antigravity and Devin are on
 this machine and sets Nomo up in the ones you pick:
 
 <CodeGroup>
@@ -340,27 +395,28 @@ npx nomo-ai
 
 Nothing is ticked at the start: arrow keys (or `k` / `j`) move, space ticks an
 agent, enter installs everything ticked. Then it runs each agent's own install —
-the same five flows above. Nothing is installed globally and no package is left
+the same six flows above. Nothing is installed globally and no package is left
 behind.
 
 For scripting and CI:
 
 | Flag | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | install exactly these — naming any one of them skips the picker |
-| `--all` | all five, detected or not — except Cursor and Antigravity, which are skipped when they aren't on this machine (name `--cursor` or `--antigravity` to try anyway) |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | install exactly these — naming any one of them skips the picker |
+| `--all` | all six, detected or not — except Cursor, Antigravity and Devin, which are skipped when they aren't on this machine (name `--cursor`, `--antigravity` or `--devin` to try anyway) |
 | `-y`, `--yes` | no picker; install everything detected |
 | `-n`, `--dry-run` | print the commands, run nothing |
 
 It never pairs your phone. Finish exactly as the steps above describe: restart
 the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
-`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex.
+`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex. Devin pairs from
+Terminal — see [Using Devin](/sessions/devin#set-it-up).
 
 ## Updating
 
 The same command updates: an agent that already has Nomo shows up as an update
-rather than an install. Only OpenCode's, Cursor's and Antigravity's run — the
-other two are printed for you.
+rather than an install. Only OpenCode's, Cursor's, Antigravity's and Devin's run —
+the other two are printed for you.
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -415,6 +471,16 @@ other two are printed for you.
     ```
 
     Restart Antigravity afterwards, and any open `agy` session.
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    The same command that installed it:
+
+    ```bash
+    bunx nomo-ai --devin
+    ```
+
+    Restart any open `devin` afterwards.
   </Tab>
 </Tabs>
 

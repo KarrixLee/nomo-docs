@@ -1,6 +1,6 @@
 ---
 title: "Instalación"
-description: "Añade el plugin de Nomo a Claude Code, Codex, OpenCode, Cursor o Antigravity. Un solo comando, o a mano; sin dependencias."
+description: "Añade el plugin de Nomo a Claude Code, Codex, OpenCode, Cursor, Antigravity o Devin. Un solo comando, o a mano; sin dependencias."
 icon: "puzzle-piece"
 ---
 
@@ -317,12 +317,68 @@ comando status te avisa si son más antiguos.
 
     Después reinicia Antigravity.
   </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    Para la CLI de Devin. Las solicitudes de permiso de Devin se pueden
+    responder desde tu teléfono: [Usar Devin](/es/sessions/devin) tiene los
+    detalles.
+
+    <Steps>
+      <Step title="Ejecuta el instalador">
+        Pega esto en Terminal y pulsa Retorno:
+
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --devin
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --devin
+        ```
+        </CodeGroup>
+
+        Entre las líneas que imprime, deberías ver:
+
+        ```
+        devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
+        ```
+      </Step>
+
+      <Step title="Reinicia Devin — obligatorio">
+        <Warning>
+          Cierra todos los `devin` que tengas abiertos y vuelve a iniciar `devin`.
+          Nomo no se activa hasta que lo hagas.
+        </Warning>
+      </Step>
+
+      <Step title="Vincula desde Terminal">
+        Devin no tiene comandos de Nomo propios. Pega esto en Terminal y
+        después escanea el código QR con Nomo en tu iPhone:
+
+        ```bash
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        ```
+
+        ¿Ya vinculaste el ordenador desde otro agente? Sáltate este paso.
+        [Usar Devin](/es/sessions/devin#set-it-up) explica cada paso.
+      </Step>
+    </Steps>
+
+    Añade las entradas de Nomo a `~/.config/devin/config.json` y deja el resto
+    de tus ajustes de Devin como están. Para quitarlo más adelante:
+
+    ```bash
+    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    ```
+
+    Después reinicia Devin.
+  </Tab>
 </Tabs>
 
 ## Un solo comando {#one-command}
 
-El instalador detecta cuáles de Claude Code, Codex, OpenCode, Cursor y
-Antigravity hay en esta máquina y deja Nomo puesto en los que elijas:
+El instalador detecta cuáles de Claude Code, Codex, OpenCode, Cursor,
+Antigravity y Devin hay en esta máquina y deja Nomo puesto en los que elijas:
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -336,27 +392,28 @@ npx nomo-ai
 
 Al principio no hay nada marcado: las teclas de flecha (o `k` y `j`) mueven, el
 espacio marca un agente y enter instala todos los marcados. Luego ejecuta la
-instalación propia de cada uno: los mismos cinco caminos de arriba. No instala
+instalación propia de cada uno: los mismos seis caminos de arriba. No instala
 nada globalmente y no deja ningún paquete detrás.
 
 Para scripts y CI:
 
 | Opción | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
-| `--all` | los cinco, los haya encontrado o no; salvo Cursor y Antigravity, que se omiten si no están en este ordenador (nombra `--cursor` o `--antigravity` para intentarlo igualmente) |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
+| `--all` | los seis, los haya encontrado o no; salvo Cursor, Antigravity y Devin, que se omiten si no están en este ordenador (nombra `--cursor`, `--antigravity` o `--devin` para intentarlo igualmente) |
 | `-y`, `--yes` | sin selector; instala todo lo que encuentre |
 | `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
 
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
 agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
-`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex.
+`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex. Devin se vincula desde
+Terminal: consulta [Usar Devin](/es/sessions/devin#set-it-up).
 
 ## Actualizaciones {#updating}
 
 El mismo comando actualiza: un agente que ya tiene Nomo aparece como
-actualización en lugar de como instalación. Solo se ejecutan las de OpenCode, Cursor y
-Antigravity; las otras dos se imprimen para que las ejecutes tú.
+actualización en lugar de como instalación. Solo se ejecutan las de OpenCode, Cursor,
+Antigravity y Devin; las otras dos se imprimen para que las ejecutes tú.
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -412,6 +469,16 @@ Antigravity; las otras dos se imprimen para que las ejecutes tú.
     ```
 
     Reinicia Antigravity después, y cualquier sesión de `agy` abierta.
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    El mismo comando con el que lo instalaste:
+
+    ```bash
+    bunx nomo-ai --devin
+    ```
+
+    Reinicia después cualquier `devin` abierto.
   </Tab>
 </Tabs>
 

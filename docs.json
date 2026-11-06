@@ -133,7 +133,8 @@
                   "sessions/codex",
                   "sessions/opencode",
                   "sessions/cursor",
-                  "sessions/antigravity"
+                  "sessions/antigravity",
+                  "sessions/devin"
                 ]
               },
               {
@@ -213,7 +214,8 @@
                   "es/sessions/codex",
                   "es/sessions/opencode",
                   "es/sessions/cursor",
-                  "es/sessions/antigravity"
+                  "es/sessions/antigravity",
+                  "es/sessions/devin"
                 ]
               },
               {
@@ -293,7 +295,8 @@
                   "ja/sessions/codex",
                   "ja/sessions/opencode",
                   "ja/sessions/cursor",
-                  "ja/sessions/antigravity"
+                  "ja/sessions/antigravity",
+                  "ja/sessions/devin"
                 ]
               },
               {
@@ -373,7 +376,8 @@
                   "ko/sessions/codex",
                   "ko/sessions/opencode",
                   "ko/sessions/cursor",
-                  "ko/sessions/antigravity"
+                  "ko/sessions/antigravity",
+                  "ko/sessions/devin"
                 ]
               },
               {
@@ -453,7 +457,8 @@
                   "zh-Hans/sessions/codex",
                   "zh-Hans/sessions/opencode",
                   "zh-Hans/sessions/cursor",
-                  "zh-Hans/sessions/antigravity"
+                  "zh-Hans/sessions/antigravity",
+                  "zh-Hans/sessions/devin"
                 ]
               },
               {
@@ -533,7 +538,8 @@
                   "zh-Hant/sessions/codex",
                   "zh-Hant/sessions/opencode",
                   "zh-Hant/sessions/cursor",
-                  "zh-Hant/sessions/antigravity"
+                  "zh-Hant/sessions/antigravity",
+                  "zh-Hant/sessions/devin"
                 ]
               },
               {

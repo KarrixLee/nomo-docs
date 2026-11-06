@@ -11,7 +11,7 @@ icon: "qrcode-read"
 
 <Note>
   페어링 하나는 에이전트가 아니라 컴퓨터에 적용됩니다. 같은 컴퓨터에서 Claude
-  Code, Codex, OpenCode, Cursor, Antigravity를 어떻게 섞어 쓰든 페어링을 공유하므로, 두 번 페어링하지
+  Code, Codex, OpenCode, Cursor, Antigravity, Devin을 어떻게 섞어 쓰든 페어링을 공유하므로, 두 번 페어링하지
   않습니다.
 </Note>
 
@@ -41,9 +41,15 @@ icon: "qrcode-read"
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair
         ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        ```
         </CodeGroup>
 
         Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택합니다.
+        Devin에는 자체 Nomo 명령이 없습니다. Devin 줄을 터미널에 붙여 넣은 다음
+        [Devin 사용하기](/ko/sessions/devin#set-it-up)를 따르십시오.
 
         테마가 적용된 페어링 페이지가 QR 코드와 함께 브라우저에서 열립니다.
 
@@ -112,6 +118,10 @@ icon: "qrcode-read"
 
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair code
+        ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
         ```
         </CodeGroup>
 

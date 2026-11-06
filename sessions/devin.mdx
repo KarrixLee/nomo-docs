@@ -1,0 +1,306 @@
+---
+title: "Watch and approve Devin sessions from your iPhone"
+sidebarTitle: "Using Devin"
+description: "Set up Nomo for the Devin CLI in a few steps, pair your phone, and follow your Devin sessions from your iPhone — with Allow and Deny for Devin's permission prompts."
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Using Devin"]
+---
+
+See your Devin sessions on your iPhone — on the Lock Screen and in the Dynamic
+Island. When Devin asks for permission, your phone asks you to **Allow** or
+**Deny** it.
+
+It works with the Devin CLI, the `devin` command in Terminal.
+
+<Note>
+  Sessions is part of Nomo Pro. You need Nomo **2.4.1** or later on your phone
+  and plugin **2.4.1** or later on your Mac.
+</Note>
+
+## Set it up
+
+<Steps>
+  <Step title="Open Terminal">
+    On your Mac, open the **Terminal** app. It's in **Applications → Utilities**.
+  </Step>
+
+  <Step title="Install the Devin CLI">
+    Already have it? Skip this step.
+
+    Copy this line, paste it into Terminal, and press Return:
+
+    ```bash
+    brew install --cask devin-cli
+    ```
+
+    No Homebrew? Use this instead:
+
+    ```bash
+    curl -fsSL https://cli.devin.ai/install.sh | bash
+    ```
+
+    Then type `devin` and press Return. If Devin asks you to sign in, follow
+    its steps.
+  </Step>
+
+  <Step title="Run the Nomo installer">
+    Copy this line, paste it into Terminal, and press Return:
+
+    ```bash
+    bunx nomo-ai --devin
+    ```
+
+    No `bunx`? Use `npx nomo-ai --devin` instead.
+
+    Among the lines it prints, you should see:
+
+    ```
+    devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
+    ```
+  </Step>
+
+  <Step title="Restart Devin">
+    Close every open `devin`, then start it again.
+
+    <Warning>
+      Don't skip this. Nomo stays off until Devin restarts.
+    </Warning>
+  </Step>
+
+  <Step title="Start pairing">
+    Devin has no Nomo commands of its own, so you pair from Terminal. Copy this
+    line, paste it into Terminal, and press Return:
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+    ```
+
+    You should see a page with a QR code open in your browser.
+  </Step>
+
+  <Step title="Wait for your phone">
+    Copy this line, paste it into Terminal, and press Return:
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait
+    ```
+
+    You should see:
+
+    ```
+    Waiting for your phone to scan the QR…
+    ```
+  </Step>
+
+  <Step title="Scan the QR code">
+    On your iPhone, open Nomo → **Sessions** → **Pair a Computer**, and scan the
+    QR code in your browser.
+
+    You should see a line in Terminal that starts with `Paired with` and ends
+    with ✓.
+  </Step>
+
+  <Step title="Send a message in Devin">
+    In `devin`, send anything.
+
+    You should see the session appear in Nomo, under the **Devin** tab of your
+    computer. No Devin tab? Tap the **+** button (**Choose agents**) and turn
+    Devin on.
+  </Step>
+</Steps>
+
+<Tip>
+  **Already paired from Claude Code, Codex, OpenCode, Cursor or Antigravity?**
+  One pairing covers the whole computer. Skip steps 5–7.
+</Tip>
+
+<Tip>
+  **No browser on this computer?** In step 5, add `--show-code` to the end of
+  the line. Terminal shows a short code instead of opening a page. On your
+  iPhone, open Nomo → **Sessions** → **Pair a Computer** → **Enter Code**, and
+  type it. The code expires in 10 minutes.
+</Tip>
+
+## Commands
+
+Devin has no Nomo commands inside its chat. Run these in Terminal instead:
+
+| What it does | Paste this into Terminal |
+| --- | --- |
+| Connect this computer to your phone | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| The same, with a short code instead of a QR code | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+| Wait for your phone to finish pairing | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait` |
+| Check that everything works | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
+| Stop asking your phone — Devin asks on the Mac instead | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+| Ask your phone again | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+| Clear stuck sessions from your phone, and stay connected | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| Disconnect this computer from your phone | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+The connection and the approvals switch are shared by every coding app on this
+computer. Turning approvals off here turns them off for Claude Code and Codex
+too.
+
+## What you see
+
+- A session appears when you send your **first message**.
+- It shows **Running** while Devin works, and **Done** when it finishes.
+- Its name is Devin's own session title. Until Devin has made one, it uses
+  your first message.
+- The badge shows the model Devin is using.
+- The [Dynamic Island](/sessions/island) works as it does for the other agents.
+
+## Answering from your phone
+
+When Devin asks for permission — to run a command, for example — your phone
+asks you.
+
+Touch and hold the session, or use the island, and choose:
+
+<Frame caption="A Devin session asking to run a command.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/devin-approval-card.png" alt="An approval card for the Devin session Fix token refresh race, asking to run bun test, with Deny, Allow and Deny with note buttons" />
+    <img className="only-dark" src="/images/devin-approval-card-dark.png" alt="An approval card for the Devin session Fix token refresh race, asking to run bun test, with Deny, Allow and Deny with note buttons" />
+  </div>
+</Frame>
+
+- **Allow** — Devin goes ahead.
+- **Deny** — Devin doesn't do it.
+- **Deny with note…** — Devin doesn't do it, and gets your note telling it why.
+
+More in [Answering from your phone](/sessions/approvals).
+
+Good to know:
+
+- **Devin waits for your phone.** If it times out, Devin asks on your Mac
+  instead.
+- **No phone? No problem.** If your phone can't be reached, or approvals are
+  [paused](/sessions/approvals#pausing-it), Devin asks on your Mac, just as it
+  would without Nomo.
+- **Questions stay on your Mac.** When Devin asks you a question, your phone
+  may show a heads-up. Answer it in Devin on your Mac. Answering questions
+  from your phone isn't available yet.
+
+## What's different for Devin
+
+- **Only Devin on your Mac.** Devin Cloud sessions don't appear — Nomo shows
+  Devin running on your Mac only.
+- **Devin Desktop.** Devin's docs say Devin Desktop's local agent shares the
+  CLI's engine. Nomo has been tested with the Devin CLI.
+- **The model badge can be missing on short sessions.** Devin saves the model
+  only when a session ends.
+- **Not available for Devin yet:** **Always allow**,
+  [Interrupt](/sessions/list#interrupt-a-running-session),
+  [Reply](/sessions/antigravity#reply-from-your-phone) and **Open on Mac**.
+
+## Something's not working {#troubleshooting}
+
+<AccordionGroup>
+  <Accordion title="My phone shows nothing">
+    1. Close every open `devin`, and start it again.
+    2. Run this in Terminal:
+
+       ```bash
+       ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
+       ```
+
+    3. Do what the line starting with `→` says.
+
+    Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
+    Devin on.
+
+    If the Devin tab says **No Devin sessions yet**, send a message in Devin
+    first — a session appears only after your first message.
+  </Accordion>
+
+  <Accordion title="The installer says my config had comments">
+    That's fine. Devin's settings file can't keep comments once Nomo adds to
+    it, so the installer saved your original file first, next to it:
+
+    ```
+    ~/.config/devin/config.json.nomo-backup
+    ```
+
+    All your settings are still there. Only the comments were removed.
+  </Accordion>
+
+  <Accordion title="My phone stopped asking me to approve">
+    Run this in Terminal:
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on
+    ```
+
+    If approvals were already on, check **Answer on iPhone** in
+    [Settings](/sessions/settings#remote-approvals).
+  </Accordion>
+
+  <Accordion title="A session is stuck on Running">
+    Run this in Terminal:
+
+    ```bash
+    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+    ```
+  </Accordion>
+</AccordionGroup>
+
+More help in [Troubleshooting](/sessions/troubleshooting).
+
+## Updating
+
+Run the installer again, then restart Devin:
+
+```bash
+bunx nomo-ai --devin
+```
+
+## Uninstalling
+
+<Steps>
+  <Step title="Run this in Terminal">
+    ```bash
+    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    ```
+
+    You should see:
+
+    ```
+    devin-install: removed Nomo's hooks from Devin — restart devin
+    ```
+  </Step>
+
+  <Step title="Restart Devin">
+    Close every open `devin`, and start it again.
+  </Step>
+</Steps>
+
+Your phone stays connected for your other coding apps. To disconnect this
+computer from your phone as well, run the disconnect command from
+[Commands](#commands) **before** you uninstall.
+
+## Advanced
+
+<AccordionGroup>
+  <Accordion title="How it works" icon="gear">
+    - **What the installer changes.** It clones the plugin to `~/.nomo` and adds
+      Nomo's entries to the `"hooks"` key of `~/.config/devin/config.json`.
+      Your other Devin settings are left as they are. Running it again changes
+      nothing. If the file has comments, it first copies it to
+      `config.json.nomo-backup`. Uninstalling removes only Nomo's entries.
+      Type `/hooks` in `devin` to see what it loaded.
+    - **Status.** A hook on `UserPromptSubmit`, `PostToolUse`, `Stop`,
+      `SessionEnd` and `PreToolUse` (only for `ask_user_question`) reports
+      status. It prints nothing, so it can't block a prompt or change a tool
+      call.
+    - **Approvals.** A hook on `PermissionRequest` sends the tool name and its
+      command or file path to your phone, end-to-end encrypted. It answers
+      `approve` only for an Allow from your paired phone for that exact
+      request, and `block` with your note for a Deny. Everything else —
+      unpaired, approvals paused, offline, a timeout, an error — prints
+      nothing, which leaves the decision to Devin's own prompt.
+    - **No double rows.** Devin also runs Claude Code hooks. Nomo's Claude Code
+      plugin stays quiet inside Devin, so a Devin session never shows up as a
+      Claude Code session.
+
+    The full details are in the plugin's
+    [README](https://github.com/KarrixLee/nomo#install--devin).
+  </Accordion>
+</AccordionGroup>

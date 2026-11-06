@@ -2,7 +2,7 @@
 title: "Solución de problemas"
 description: "Ejecuta primero el comando status: nombra el problema e imprime el arreglo. Después, qué fila responde a cada síntoma y las pocas cosas que status no puede ver."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
 ---
 
 El comando status hace hoy casi todo el trabajo de esta página. Lee el ordenador
@@ -34,12 +34,19 @@ $nomo-status
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-status
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
+```
 </CodeGroup>
 
 En Antigravity, elige **Allow** (permitir) cuando pregunte si ejecuta un comando
 de Nomo. Muestra un resumen corto en palabras sencillas, y una línea por cada
 problema que dice qué hacer; escribe `/nomo-status verbose` para ver el informe
 completo que se describe abajo.
+
+Devin no tiene comandos de Nomo dentro de su chat. Pega la línea de Devin en
+Terminal.
 
 Informa sobre el **ordenador**, no solo sobre tu sesión: vinculación, entrega,
 el enlace directo por red local, aprobaciones, y después el agente en el que
@@ -122,7 +129,7 @@ está en [Comandos](/es/sessions/commands#status).
   **Hooks** — o **Plugin** en OpenCode, que no tiene. Si no se dispara, tu agente
   no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo
   al arrancar: reinicia Claude Code, ejecuta `/hooks` en Codex, reinicia
-  OpenCode, reinicia Cursor, reinicia Antigravity.
+  OpenCode, reinicia Cursor, reinicia Antigravity, reinicia `devin`.
 
   Codex confía en los hooks de forma explícita y una actualización del plugin
   reabre esa revisión, así que `/hooks` después de actualizar es ahí la respuesta
@@ -209,6 +216,21 @@ está en [Comandos](/es/sessions/commands#status).
   había una tarjeta en tu teléfono, también desaparece.
 </Accordion>
 
+<Accordion title="Mi teléfono no muestra nada de Devin" icon="terminal">
+  1. Cierra todos los `devin` que tengas abiertos y vuelve a iniciar `devin`.
+  2. Pega esto en Terminal y haz lo que dice la línea que empieza por `→`:
+
+     ```bash
+     ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
+     ```
+
+  3. Envía un mensaje en Devin. Una sesión solo aparece después de tu primer
+     mensaje.
+
+  ¿Sigue sin salir nada? En Nomo, toca el botón **+** (**Elegir agentes**) y
+  activa Devin. Más en [Usar Devin](/es/sessions/devin#troubleshooting).
+</Accordion>
+
 <Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
   **Sessions** cuenta lo que este ordenador todavía cree vivo. Si son más de las
   que tienes, limpia las muertas sin desvincular nada:
@@ -232,6 +254,10 @@ está en [Comandos](/es/sessions/commands#status).
 
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
+  ```
+
+  ```bash Devin icon="/images/providers/devin.svg"
+  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
   ```
   </CodeGroup>
 
@@ -271,7 +297,7 @@ está en [Comandos](/es/sessions/commands#status).
 
   ¿No hay botón **Detener**? Necesita la etiqueta verde **⚡ Local**, una sesión
   `En ejecución`, la versión **2.3.0** del plugin (**2.3.5** para Antigravity), y
-  Claude Code, Codex o Antigravity — nunca OpenCode ni Cursor. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
+  Claude Code, Codex o Antigravity — nunca OpenCode, Cursor ni Devin. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
 </Accordion>
 
 </AccordionGroup>
@@ -430,8 +456,9 @@ afectado también ayuda: la versión de su primera línea es medio diagnóstico.
 “¿Por qué no puedo hacer X desde el teléfono?” muchas veces es una pregunta justa
 y no un fallo. Una parte es un límite real de lo que un agente le entrega a un
 plugin, y está escrito: [Usar Codex](/es/sessions/codex), [Usar
-OpenCode](/es/sessions/opencode), [Usar Cursor](/es/sessions/cursor) y [Usar
-Antigravity](/es/sessions/antigravity) cubren esos cuatro agentes, y [Responder desde el
+OpenCode](/es/sessions/opencode), [Usar Cursor](/es/sessions/cursor), [Usar
+Antigravity](/es/sessions/antigravity) y [Usar Devin](/es/sessions/devin) cubren
+esos cinco agentes, y [Responder desde el
 iPhone](/es/sessions/approvals) cubre lo que una actividad en directo puede y no
 puede albergar.
 
@@ -565,6 +592,14 @@ que ejecutes ese comando allí.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Espera unos segundos: Nomo se da cuenta solo y la fila pasa a Listo. Si había una tarjeta en tu teléfono, también desaparece."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mi teléfono no muestra nada de Devin",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cierra todos los devin que tengas abiertos y vuelve a iniciar devin. Pega ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin en Terminal y haz lo que dice la línea que empieza por →. Después envía un mensaje en Devin: una sesión solo aparece después de tu primer mensaje. ¿Sigue sin salir nada? En Nomo, toca el botón + (Elegir agentes) y activa Devin."
       }
     },
     {

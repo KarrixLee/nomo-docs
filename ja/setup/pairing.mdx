@@ -10,7 +10,7 @@ icon: "qrcode-read"
 
 <Note>
   1 つのペアリングが対象とするのはマシンであり、エージェントではありません。同じコンピュータで
-  Claude Code、Codex、OpenCode、Cursor、Antigravity をどう組み合わせて使っていても、それらはペアリングを共有します — 2 回ペアリングする必要はありません。
+  Claude Code、Codex、OpenCode、Cursor、Antigravity、Devin をどう組み合わせて使っていても、それらはペアリングを共有します — 2 回ペアリングする必要はありません。
 </Note>
 
 <Tabs>
@@ -39,9 +39,14 @@ icon: "qrcode-read"
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair
         ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        ```
         </CodeGroup>
 
         Antigravity では、Nomo のコマンドを実行してよいか確認されたら「Allow」を選んでください。
+        Devin には専用の Nomo コマンドがありません。Devin の行をターミナルに貼り付けてから、[Devin での利用](/ja/sessions/devin#set-it-up)の手順に従ってください。
 
         テーマの適用されたペアリングページがブラウザで開き、QR コードが表示されます。
 
@@ -101,6 +106,10 @@ icon: "qrcode-read"
 
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair code
+        ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
         ```
         </CodeGroup>
 

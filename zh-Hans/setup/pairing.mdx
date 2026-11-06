@@ -11,7 +11,7 @@ icon: "qrcode-read"
 
 <Note>
   一次配对覆盖的是这台机器，而不是某个 智能体。如果你在同一台电脑上同时使用
-  Claude Code、Codex、OpenCode、Cursor 和 Antigravity 中的任意组合，它们共用这份配对 —— 不需要配对两次。
+  Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 中的任意组合，它们共用这份配对 —— 不需要配对两次。
 </Note>
 
 <Tabs>
@@ -40,9 +40,14 @@ icon: "qrcode-read"
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair
         ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        ```
         </CodeGroup>
 
         在 Antigravity 里，它要运行 Nomo 命令时选择 **Allow**（允许）。
+        Devin 没有自己的 Nomo 命令：把它那一行粘贴到终端里，然后按照[搭配 Devin 使用](/zh-Hans/sessions/devin#set-it-up)操作。
 
         浏览器会打开一个带二维码的配对页面。
 
@@ -102,6 +107,10 @@ icon: "qrcode-read"
 
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair code
+        ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
         ```
         </CodeGroup>
 
