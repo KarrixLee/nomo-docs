@@ -202,6 +202,13 @@ a[class*="mobile-nav-tabs-item"][href*="/setup/"] > *,
 .dark .device-frame img.only-light { display: none; }
 .dark .device-frame img.only-dark { display: block; }
 
+/* The same pairs without a phone frame: the Pro widget shots carry their own wallpaper. */
+.widget-shot img { display: block; width: 100%; margin: 0; }
+.widget-shot img.only-dark,
+.dark .widget-shot img.only-light { display: none; }
+.dark .widget-shot img.only-dark { display: block; }
+.widget-shot.narrow { max-width: 26rem; margin-inline: auto; }
+
 /* The two widget walkthrough clips. Square (they're lifted from the app's own
    onboarding), so a full-column width would be a 700px-tall block — capped at
    something closer to the phone they're showing, and centred because <Frame>

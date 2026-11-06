@@ -48,6 +48,74 @@ already pay for. Nomo reads the same numbers that account can see about itself
 
 Nomo is unofficial and not affiliated with any provider it reads.
 
+### Cursor and Grok {#cursor-and-grok}
+
+Cursor and Grok sign in through Safari, so your passkey, password manager and
+existing Safari sign-ins all work.
+
+**Cursor**
+
+1. Tap **Connect**.
+2. iOS asks to use **cursor.com** to sign in. Tap **Continue**.
+3. Sign in on Cursor's page.
+
+The page closes by itself, and your usage appears. Sign in again about every
+60 days.
+
+**Grok**
+
+1. Tap **Connect**.
+2. iOS asks to use **x.ai** to sign in. Tap **Continue**.
+3. xAI's page opens, and Nomo shows a short code, such as `ABCD-1234`.
+4. Check that it matches the code on xAI's page.
+5. Approve it on xAI's page.
+
+Nomo renews your Grok sign-in by itself.
+
+Grok usage needs a paid Grok plan, such as SuperGrok or an X subscription. A
+free account stays connected, but shows **Grok usage needs a paid Grok plan**
+instead of bars.
+
+<Note>
+  After you update to Nomo 2.4.0, sign in to Grok once more. Older Grok
+  sign-ins don't carry over.
+</Note>
+
+## The Pace line <span className="pro-pill" /> {#pace}
+
+With Nomo Pro, each limit on the **Usage** page has one more line. It tells you
+if your usage will last until the limit resets.
+
+<Frame caption="Both limits are being used faster than time is passing, so both lines are amber.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-pace-light.webp" alt="Claude's Your usage card: Session at 82% with the line 82% used · 60% time · Runs out in ~39m, and Weekly at 68% with 68% used · 39% time · Runs out in ~1d 7h, both in amber" />
+    <img className="only-dark" src="/images/usage-pace-dark.webp" alt="Claude's Your usage card: Session at 82% with the line 82% used · 60% time · Runs out in ~39m, and Weekly at 68% with 68% used · 39% time · Runs out in ~1d 7h, both in amber" />
+  </div>
+</Frame>
+
+The line starts with two numbers, such as `45% used · 60% time`:
+
+- **used**: how much of the limit you've used.
+- **time**: how much of the time window has gone by.
+
+If used is lower than time, you're fine. After the numbers, you'll see one of
+these:
+
+- `Lasts until reset`: you're fine.
+- `Runs out in`, then a time, such as `Runs out in ~2d 6h`. It's amber. At your
+  current speed, you'd run out before the reset. The `~` means it's an
+  estimate.
+- `Too early to tell`: the window has only just started.
+- `Maxed out`: you've used the whole limit.
+
+Some Cursor plans have no pace. Their limits show no line.
+
+The [Nomo Pace](/widgets#nomo-pace) widget shows the same thing on your Home
+Screen.
+
+**Without Nomo Pro**, the first limit shows one row instead: **See if you'll
+run out before reset**, with a **PRO** tag. Tap it to open Nomo Pro.
+
 ## When you hit a limit
 
 Once any window reaches 100%, a **Limit reached** callout appears under the
@@ -60,6 +128,111 @@ to a page you'd otherwise go looking for.
 
 The callout shows for Claude, Codex, Cursor and xAI, on App Store accounts in
 the United States, the European Union and Japan.
+
+## More than one account <span className="pro-pill" /> {#more-than-one-account}
+
+With Nomo Pro, you can add up to 5 accounts for each provider. For example, a
+work Claude account and a personal one. Each account gets its own row, with its
+own usage. Under each name you'll see the plan and email, such as
+`Max 20x · me@acme.com`. The header shows how many you've connected, such as
+**3/5**.
+
+<Frame caption="Two Claude accounts. Work is the Default.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-accounts-light.webp" alt="Nomo's Claude page showing 2/5 accounts: Work, the Default, at 42% and highlighted because its usage is on the card above, and Personal at 12%, with the Add another account button below them" />
+    <img className="only-dark" src="/images/usage-accounts-dark.webp" alt="Nomo's Claude page showing 2/5 accounts: Work, the Default, at 42% and highlighted because its usage is on the card above, and Personal at 12%, with the Add another account button below them" />
+  </div>
+</Frame>
+
+### Add another account {#add-another-account}
+
+1. Open Nomo.
+2. Tap the **Providers** tab.
+3. Tap the provider, such as **Claude**.
+4. Tap **Usage** at the top.
+5. Make sure you're signed in to your first account.
+6. Under your account, tap **Add another account**.
+7. Tap **Continue**.
+8. Sign in with the other account. Use a different email than your first one.
+
+<Frame caption="Tap Continue to open the sign-in page. The X closes it without adding anything.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-light.webp" alt="The Add Account sheet: Sign in to another Claude account, a tip to use a different email, a Continue button, and an X to close" />
+    <img className="only-dark" src="/images/usage-add-account-dark.webp" alt="The Add Account sheet: Sign in to another Claude account, a tip to use a different email, a Continue button, and an X to close" />
+  </div>
+</Frame>
+
+Nomo opens a fresh, private sign-in page, so it doesn't reuse the account
+you're already signed in with. The accounts you've already added stay signed
+in.
+
+For Claude, Claude shows you a code after you sign in:
+
+1. Copy the code.
+2. Go back to Nomo. Nomo pastes the code and connects for you.
+3. If nothing happens, tap **Paste**, then tap **Connect**.
+
+<Frame caption="For Claude: paste the code Claude shows you after you sign in.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-code-light.webp" alt="The Claude code step: a Paste authorization code field with a Paste button, a Connect button, and Reopen sign-in" />
+    <img className="only-dark" src="/images/usage-add-account-code-dark.webp" alt="The Claude code step: a Paste authorization code field with a Paste button, a Connect button, and Reopen sign-in" />
+  </div>
+</Frame>
+
+A new account is named after its email address, if the provider shares one. If
+you sign in to an account that's already in Nomo, you'll see **This account is
+already added**, and nothing changes.
+
+When a provider has 5 accounts, **Add another account** is greyed out.
+
+### Rename, Default and Remove {#manage-accounts}
+
+Tap the **···** next to an account, then tap one of these:
+
+- **Rename**: give the account a short name, such as `Work` or `Personal`.
+- **Make Default**: make it your Default account. The Default account has a
+  **Default** tag.
+- **Remove**: sign this account out of Nomo. Your other accounts stay signed
+  in. Widgets that showed it show **Account removed** and ask you to pick
+  another account. They don't switch to your Default account.
+
+<Frame caption="The ··· menu of an account that isn't the Default.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-account-menu-light.webp" alt="The ··· menu next to the Personal account, with Rename, Make Default and Remove" />
+    <img className="only-dark" src="/images/usage-account-menu-dark.webp" alt="The ··· menu next to the Personal account, with Rename, Make Default and Remove" />
+  </div>
+</Frame>
+
+The **Your usage** card at the top opens on your Default account. To see
+another account there, tap it in the list. The account shown is softly
+highlighted.
+
+### Accounts in widgets {#accounts-in-widgets}
+
+Widgets show your Default account unless you pick another one:
+
+1. Touch and hold the widget.
+2. Tap **Edit Widget**.
+3. Tap **Account** and pick one.
+
+**Account** is on [Nomo Usage](/widgets#nomo-usage) and
+[Nomo Pace](/widgets#nomo-pace). [Nomo Accounts](/widgets#nomo-accounts) shows
+every account at once.
+
+### Without Nomo Pro {#without-nomo-pro}
+
+Without Nomo Pro, you get one account per provider. **Add another account**
+shows a **PRO** tag. Tap it to open Nomo Pro. Once you subscribe, Nomo goes
+straight on to adding the account. Demo mode doesn't unlock extra accounts.
+
+If your Nomo Pro ends, your extra accounts are paused, not removed. They show
+**Paused · PRO**, and only your Default account keeps updating. Your Default
+account is never paused. Tap a paused account to open Nomo Pro. To pick up
+where you left off, tap **Resubscribe**.
+
+A Nomo Usage widget set to a paused account shows **Paused · Nomo Pro** and
+`Your Nomo Pro ended. Resubscribe in Nomo to see this account.` Tap it to open
+Nomo Pro.
 
 ## Widget
 

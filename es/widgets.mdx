@@ -1,0 +1,658 @@
+---
+title: "Widgets de uso de Claude y Codex en iPhone: límites y rachas"
+sidebarTitle: "Todos los widgets"
+description: "¿Te quedarás sin uso antes de que se restablezca el límite de 5 horas o el semanal? Míralo en la pantalla de inicio y de bloqueo del iPhone, con tu racha y tus agentes."
+icon: "clone"
+keywords: ["Nomo", "Nomo Pro", "estado", "Uso de Nomo", "widget", "Ritmo", "Actividad", "Cuentas", "Agentes en directo", "Claude", "Codex", "uso", "racha", "mapa de calor", "pantalla de bloqueo", "iPhone", "widget de uso de Claude", "límite de 5 horas", "límite semanal", "límite de uso de Codex", "varias cuentas de Claude", "widget de pantalla de bloqueo", "uso de tokens de Claude Code", "tokens por modelo", "Wrapped"]
+---
+
+Nomo tiene siete widgets para el iPhone. Dos son gratis: **Nomo**, para el
+estado, y **Uso de Nomo**. Otros cinco vienen con Nomo Pro.
+
+Esta página explica qué muestra cada widget y cómo configurarlo. Para poner un
+widget en la pantalla de inicio, consulta [Widget](/es/widget).
+
+## Gratis y Pro {#free-and-pro}
+
+| | Gratis | Nomo Pro <span className="pro-pill" /> |
+| --- | --- | --- |
+| Widget de estado **Nomo** | ✓ | ✓ |
+| Widget **Uso de Nomo** | ✓ | ✓ |
+| **Ritmo de Nomo**, **Actividad de Nomo**, **Cuentas de Nomo**, **Agentes en directo**, **Tokens de Nomo** | | ✓ |
+| Más de una cuenta por proveedor | | ✓ |
+
+En la galería de widgets, la descripción de un widget Pro empieza por
+**👑 Nomo Pro**.
+
+Sin Nomo Pro, puedes añadir igualmente un widget Pro. Muestra una vista previa
+atenuada con **Nomo Pro** y **Desbloquear** encima. Tócalo para abrir Nomo Pro
+en la app.
+
+## Widgets gratis {#free-widgets}
+
+### Estado de Nomo {#nomo-status}
+
+<Frame caption="Estado de Nomo en tamaño pequeño y mediano.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-status.webp" alt="Estado de Nomo: un widget pequeño que muestra Claude Code como Operational y un widget mediano que muestra Codex como Operational con una barra de historial de 30 días al 99,87 %" />
+    <img className="only-dark" src="/images/widgets-status-dark.webp" alt="Estado de Nomo en modo oscuro, pequeño y mediano" />
+  </div>
+</Frame>
+
+En la galería de widgets, este widget se llama **Nomo**.
+
+**Qué muestra:** si un servicio funciona ahora mismo, como Claude Code o Codex.
+Verás uno de estos estados:
+
+- `Operativo`
+- `Degradado`
+- `Interrupción parcial`
+- `Interrupción grave`
+- `Mantenimiento`
+
+Si Nomo no puede obtener el estado, muestra `No disponible`.
+
+| Tamaño | Qué muestra |
+| --- | --- |
+| Pequeño | El servicio, su estado y cuándo se actualizó por última vez. |
+| Mediano | Lo mismo, más los últimos 30 días en una barra y el porcentaje de disponibilidad. |
+
+**Qué necesitas antes:** nada. Ni cuenta ni inicio de sesión.
+
+**Configúralo:**
+
+1. Añade el widget. Consulta [Widget](/es/widget).
+2. Mantén pulsado el widget.
+3. Toca **“Editar widget”**.
+4. Toca **Proveedor** y elige uno: Claude, OpenAI, Cursor, xAI, Antigravity,
+   Kimi o DeepSeek.
+5. Toca **Servicio** y elige uno, como **Claude Code**.
+6. Toca fuera del widget para terminar.
+
+Para actualizarlo al momento, toca el botón de actualizar de su esquina. Toca en
+cualquier otro sitio para abrir la página **Estado** de ese proveedor en Nomo.
+
+Más información en [Estado](/es/status).
+
+### Uso de Nomo {#nomo-usage}
+
+<Frame caption="Uso de Nomo en tamaño pequeño y mediano.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-usage.webp" alt="Uso de Nomo: un widget pequeño que muestra Claude al 45 % con una barra y resets 2h, y un widget mediano que muestra Codex con Session al 30 % y Weekly al 41 %, cada una con su barra y cuándo se restablece" />
+    <img className="only-dark" src="/images/widgets-usage-dark.webp" alt="Uso de Nomo en modo oscuro, pequeño y mediano" />
+  </div>
+</Frame>
+
+**Qué muestra:** cuánto has usado del límite de tu plan, para una cuenta, y
+cuándo se restablece.
+
+| Tamaño | Qué muestra |
+| --- | --- |
+| Pequeño | Una ventana: un porcentaje grande, una barra y cuándo se restablece. |
+| Mediano | Dos ventanas, normalmente **Sesión** (5 horas) y **Semanal**, cada una con su barra y cuándo se restablece. |
+
+Las barras se vuelven ámbar al 70 % y rojas al 90 %. Si tu plan no tiene límite
+de 5 horas, el widget muestra `Sin límite de sesión`.
+
+**Qué necesitas antes:** una cuenta conectada, como Claude o Codex. Abre la
+pestaña **Proveedores**, toca el proveedor y conéctalo. Consulta
+[Uso](/es/usage). Hasta entonces, el widget muestra `Sin conectar`.
+
+**Configúralo:**
+
+1. Añade el widget. Consulta [Widget](/es/widget).
+2. Mantén pulsado el widget.
+3. Toca **“Editar widget”**.
+4. Toca **Proveedor** y elige uno, como **Codex**.
+5. Toca **Cuenta** y elige una. **Predeterminada** sigue a tu cuenta
+   predeterminada de la app.
+6. Toca **“Estilo del widget pequeño”** y elige uno. **“Porcentaje grande”**
+   muestra el número en grande. **“Animación grande”** muestra el icono animado
+   en grande.
+7. Toca **“Enfoque del widget pequeño”** y elige la ventana que muestra el
+   tamaño pequeño. **Automático** la elige por ti. Las opciones dependen del
+   proveedor.
+8. Toca fuera del widget para terminar.
+
+Con Cursor hay una opción más: **“Icono de Cursor”**. Elige **Grok Bot** o
+**“Logotipo de Cursor”**.
+
+Para actualizarlo al momento, toca el botón de actualizar de su esquina. Toca en
+cualquier otro sitio para abrir la página **Uso** de ese proveedor en Nomo.
+
+## Widgets Pro <span className="pro-pill" /> {#pro-widgets}
+
+Nomo Pro añade cinco widgets a los gratuitos. Cada uno responde a una pregunta
+para la que, si no, abrirías la app.
+
+- **Ritmo de Nomo**: ¿me llegará el uso hasta que se restablezca?
+- **Actividad de Nomo**: ¿cuántos días seguidos he programado con un agente?
+- **Cuentas de Nomo**: ¿a cuál de mis cuentas le queda menos?
+- **Agentes en directo**: ¿qué están haciendo mis agentes ahora mismo?
+- **Tokens de Nomo**: ¿cuántos tokens he usado y con qué modelos?
+
+<Frame caption="Los cinco widgets Pro en una pantalla de inicio: Ritmo de Nomo, Agentes en directo, Actividad de Nomo, Tokens de Nomo y Cuentas de Nomo.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Cinco widgets de Nomo en una pantalla de inicio clara: Ritmo con una cuenta atrás de dos horas hasta el restablecimiento de Claude, Agentes en directo con dos en marcha y uno esperando una respuesta, una racha de 13 días en Actividad con un mapa de programación, Tokens con 20,3 M de tokens en 14 días apilados por modelo, y un panel de Cuentas con seis cuentas ordenadas por lo que les queda" />
+    <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="Los mismos cinco widgets de Nomo en una pantalla de inicio oscura: Ritmo, Agentes en directo, Actividad, Tokens y Cuentas" />
+  </div>
+</Frame>
+
+Ritmo de Nomo y Actividad de Nomo también tienen tamaños para la pantalla de
+bloqueo.
+
+### Ritmo de Nomo <span className="pro-pill" /> {#nomo-pace}
+
+<Frame caption="Ritmo de Nomo en tamaño pequeño y mediano, y en la pantalla de bloqueo.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Ritmo de Nomo: un widget pequeño que indica Resets in 2:00:00 con 45% used · 60% time, un widget mediano que muestra la ventana de 5 horas sin problemas y la semanal agotándose en unos 2 días y 6 horas, y dos widgets de pantalla de bloqueo que indican 45% y Lasts until reset" />
+    <img className="only-dark" src="/images/pro-widgets-pace-dark.webp" alt="Ritmo de Nomo en modo oscuro: widgets pequeño, mediano y dos de pantalla de bloqueo" />
+  </div>
+</Frame>
+
+**Qué muestra:** si te quedarás sin uso antes de que tu límite se restablezca,
+si sigues al ritmo actual.
+
+La línea bajo el número grande compara dos cosas:
+
+- **Uso**: cuánto del límite has usado.
+- **plazo**: cuánto de la ventana de tiempo ha pasado.
+
+Por ejemplo, `Uso 45 % · plazo 60 %`. Si el uso es menor que el plazo, vas bien.
+El widget muestra **“Restablece en”** y una cuenta atrás hasta el
+restablecimiento.
+
+Si el uso es mayor que el plazo, vas demasiado rápido. El widget muestra
+**“Se agota en”** y una cuenta atrás hasta el momento en que te quedarías sin
+uso. Un `~` delante indica que es una estimación. El número se vuelve ámbar.
+
+También verás:
+
+- **“Aún es pronto para saberlo”**, justo después de que empiece una ventana.
+  Todavía no hay datos suficientes.
+- **“Al límite”**, cuando una ventana está al 100 %. La cuenta atrás es hasta el
+  restablecimiento.
+- **“El ritmo no está disponible para este plan”**, cuando el proveedor no dice
+  cuándo se restablece el límite.
+
+Los tamaños:
+
+| Tamaño | Qué muestra |
+| --- | --- |
+| Pequeño | Una ventana y su anillo. |
+| Mediano | Dos ventanas, normalmente la de 5 horas y la semanal. |
+| Pantalla de bloqueo, redondo | Cuánto has usado. Una marca de verificación significa que vas bien. Cuando vas demasiado rápido, muestra la hora a la que te quedarías sin uso. |
+| Pantalla de bloqueo, rectangular | `No se agota`, o la hora a la que te quedarías sin uso, como `Se agota ~21:20`. |
+
+Cada anillo se llena según lo que has usado. La pequeña marca indica dónde
+estarías si lo usaras a un ritmo constante. Si el relleno no llega a la marca,
+vas bien.
+
+**Qué necesitas antes:** una cuenta conectada, como Claude o Codex. Abre la
+pestaña **Proveedores**, toca el proveedor y conéctalo. Consulta
+[Uso](/es/usage).
+
+**Configúralo:**
+
+1. Añade el widget. Consulta [Widget](/es/widget).
+2. Mantén pulsado el widget.
+3. Toca **“Editar widget”**.
+4. Toca **Proveedor** y elige uno, como **Claude**.
+5. Toca **Cuenta** y elige una. **Predeterminada** sigue a tu cuenta
+   predeterminada de la app.
+6. Toca **Ventana** y elige una. **Automático** usa la ventana de 5 horas si tu
+   plan la tiene y, si no, la semanal. Esto cambia los tamaños pequeño y de
+   pantalla de bloqueo.
+7. Toca fuera del widget para terminar.
+
+Toca el widget para abrir la página **Uso** de ese proveedor en Nomo.
+
+### Actividad de Nomo <span className="pro-pill" /> {#nomo-activity}
+
+<Frame caption="Actividad de Nomo en tamaño pequeño, mediano y grande, y en la pantalla de bloqueo.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Actividad de Nomo: un widget pequeño con una racha de 13 días y los últimos siete días, un widget mediano con 16 semanas de días programando y 153h, 79 days y 9.7h/wk bajo el mapa, un widget grande con 26 semanas más el reparto entre Claude Code y Codex, 455 sesiones y 187 M de tokens, y un widget de pantalla de bloqueo que indica una racha de 13 días" />
+    <img className="only-dark" src="/images/pro-widgets-activity-dark.webp" alt="Actividad de Nomo en modo oscuro: widgets pequeño, mediano, grande y uno de pantalla de bloqueo" />
+  </div>
+</Frame>
+
+**Qué muestra:** un mapa de los días en que programaste con agentes de IA, como
+el de un perfil de GitHub, además de tu racha. La racha es cuántos días seguidos
+has programado. Cuenta todos los ordenadores vinculados juntos. Consulta
+[Más de un ordenador](#more-than-one-computer).
+
+Un color más intenso significa más programación ese día. Tu racha no se reinicia
+por la mañana: hasta tu primera sesión del día, cuenta hasta ayer.
+
+| Tamaño | Qué muestra |
+| --- | --- |
+| Pequeño | Tu racha y los últimos 7 días. |
+| Mediano | Tu racha, las últimas 16 semanas y tres datos bajo el mapa. |
+| Grande | Las últimas 26 semanas con los mismos tres datos, cómo se reparte tu tiempo entre agentes y los totales: sesiones, tokens, tu día con más actividad y tu racha más larga. |
+| Pantalla de bloqueo, rectangular | Tu racha y los últimos 7 días. |
+
+Los tres datos bajo el mapa cubren las semanas que muestra el mapa:
+
+- Un reloj: tus horas activas.
+- Un calendario: cuántos días tuviste actividad.
+- Un gráfico de barras: tu media por semana.
+
+Si el tamaño mediano no tiene sitio, solo muestra los dos primeros.
+
+En el tamaño grande, **Tokens** es tu total de las 26 semanas. Si tus
+ordenadores no envían datos de tokens, esa casilla muestra **“Horas activas”**
+en su lugar.
+
+**Qué necesitas antes:**
+
+- El plugin de Nomo en tu ordenador, versión **2.4.0** o posterior. Consulta
+  [Instalación](/es/setup/install) y [Actualizaciones](/es/setup/install#updating).
+- Ese ordenador vinculado con Nomo. Consulta [Vinculación](/es/setup/pairing).
+
+Cuenta Claude Code, Codex y OpenCode. Los días pasados también aparecen, porque
+el plugin lee el historial que ya está en tu ordenador.
+
+**Configúralo:**
+
+1. Añade el widget. Consulta [Widget](/es/widget).
+2. Mantén pulsado el widget.
+3. Toca **“Editar widget”**.
+4. Toca **Personaje** y elige uno: **Automático**, **Clawd**, **Codex**,
+   **Grok Bot**, **Antigravity**, **Kimi**, **DeepSeek**, **Cursor** u
+   **OpenCode**.
+5. Toca fuera del widget para terminar.
+
+**Automático** muestra el agente que más has usado en los últimos 7 días. Con
+cualquier otra opción, el widget muestra ese personaje y usa su color en el mapa,
+el cuadro de hoy, la llama y la insignia de la racha: coral (Clawd), azul (Codex)
+o dorado (Grok Bot). En el tamaño grande, la barra que reparte tu tiempo entre
+agentes mantiene el color de cada agente. Un widget que ya estaba en la pantalla
+de inicio empieza en **Automático**.
+
+<Frame caption="Actividad de Nomo con Clawd, Codex y Grok Bot.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character.webp" alt="Tres widgets pequeños de Actividad de Nomo con una racha de 13 días: Clawd en coral, Codex en azul y Grok Bot en dorado" />
+    <img className="only-dark" src="/images/widgets-character-dark.webp" alt="Los mismos tres widgets de Actividad de Nomo en modo oscuro: Clawd, Codex y Grok Bot" />
+  </div>
+</Frame>
+
+Solo Clawd, Codex y Grok Bot son personajes animados. Antigravity, Kimi,
+DeepSeek, Cursor y OpenCode muestran su logotipo en un recuadro del color de su
+marca, y ese color pasa al mapa, la llama, el cuadro de hoy y el brillo.
+
+<Frame caption="Actividad de Nomo con Antigravity, DeepSeek y Kimi.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character-providers.webp" alt="Tres widgets pequeños de Actividad de Nomo con una racha de 13 días, cada uno con el logotipo de un proveedor en un recuadro de color: Antigravity en morado, DeepSeek en azul y Kimi en negro" />
+    <img className="only-dark" src="/images/widgets-character-providers-dark.webp" alt="Los mismos tres widgets de Actividad de Nomo en modo oscuro: Antigravity, DeepSeek y Kimi" />
+  </div>
+</Frame>
+
+El plugin envía un resumen nuevo como mucho cada 6 horas. Nomo lo descarga
+cuando abres la app. Por eso el mapa puede ir unas horas por detrás.
+
+Toca el widget para abrir la [pantalla Actividad](#activity-screen) en Nomo.
+
+Lo que sale de tu ordenador para este mapa se detalla en
+[Privacidad](#privacy). Son solo recuentos, nunca tus prompts ni tu código.
+
+### Tokens de Nomo <span className="pro-pill" /> {#nomo-tokens}
+
+<Frame caption="Tokens de Nomo en tamaño mediano y grande.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-tokens.webp" alt="Tokens de Nomo: un widget mediano con 20,3 M de tokens en 14 días, 1,29 M hoy y Fable al 78 %, y un widget grande que añade un 41 % más que la semana pasada y una leyenda con Fable, GPT-5.5 y Haiku 4.5, con la barra de cada día apilada por modelo" />
+    <img className="only-dark" src="/images/widgets-tokens-dark.webp" alt="Tokens de Nomo en modo oscuro, mediano y grande" />
+  </div>
+</Frame>
+
+**Qué muestra:** cuántos tokens usaron tus agentes cada día durante los últimos
+14 días, en todos tus ordenadores vinculados. La barra de cada día se divide por
+modelo.
+
+Aquí, tokens significa entrada + salida + razonamiento. La caché no se cuenta:
+vuelve a leer el mismo contexto, así que taparía todas las demás cifras. La
+[pantalla Actividad](#activity-screen) muestra la caché aparte.
+
+| Tamaño | Qué muestra |
+| --- | --- |
+| Mediano | El total de 14 días, los tokens de hoy y tu modelo principal con su porcentaje. |
+| Grande | Lo mismo, más el cambio frente a la semana pasada y tus 4 modelos principales. El resto se suma en una fila, como `6 modelos más`. |
+
+Cada modelo mantiene un mismo color en todas partes: los modelos de Claude son
+coral; GPT, azul; Grok, dorado; Gemini, morado, y los demás modelos, gris.
+
+**Qué necesitas antes:** lo mismo que para Actividad de Nomo: el plugin de
+Nomo en un ordenador vinculado. Consulta [Actividad de Nomo](#nomo-activity).
+
+**Configúralo:**
+
+1. Añade el widget. Consulta [Widget](/es/widget).
+2. Mantén pulsado el widget.
+3. Toca **“Editar widget”**.
+4. Toca **Personaje** y elige uno. Las opciones son las mismas que en
+   [Actividad de Nomo](#nomo-activity).
+5. Toca fuera del widget para terminar.
+
+**Automático** sigue al proveedor de tu modelo principal: Clawd para Claude,
+Codex para GPT, Grok Bot para Grok, Antigravity para Gemini y el logotipo de
+Kimi, DeepSeek o Cursor para sus modelos. Cualquier otro modelo usa Clawd. Tu
+elección solo cambia el personaje, el brillo del fondo y la barra de hoy. Los colores de los modelos no cambian nunca.
+
+Toca el widget para abrir la [pantalla Actividad](#activity-screen) en Nomo.
+Sin Nomo Pro, al tocarlo se abre Nomo Pro.
+
+Usa el mismo resumen que Actividad de Nomo. Lo que sale de tu ordenador aparece
+en [Privacidad](#privacy).
+
+### Cuentas de Nomo <span className="pro-pill" /> {#nomo-accounts}
+
+<Frame caption="Cuentas de Nomo en tamaño mediano y grande.">
+  <div className="widget-shot narrow">
+    <img className="only-light" src="/images/pro-widgets-accounts.webp" alt="Cuentas de Nomo: un widget mediano con cuatro cuentas y uno grande con seis, cada una con una barra, el porcentaje restante y cuándo se restablece, con la cuenta a la que le queda menos arriba del todo" />
+    <img className="only-dark" src="/images/pro-widgets-accounts-dark.webp" alt="Cuentas de Nomo en modo oscuro, mediano y grande" />
+  </div>
+</Frame>
+
+**Qué muestra:** todas las cuentas conectadas en un solo panel, de todos los
+proveedores. La cuenta a la que le queda menos está arriba del todo.
+
+Cada fila muestra el nombre de la cuenta, la ventana que está más cerca de
+agotarse, cuánto le queda y cuándo se restablece.
+
+- El tamaño **mediano** muestra 4 filas. El **grande** muestra 8.
+- Si tienes más cuentas que eso, la última fila indica cuántas más hay.
+- Una cuenta en la que tienes que volver a iniciar sesión se queda en el panel,
+  al final, con **“Vuelve a conectar en Nomo”**. Nunca desaparece.
+
+**Qué necesitas antes:** al menos una cuenta conectada. Para seguir dos cuentas
+del mismo proveedor, consulta [Más de una cuenta](#more-than-one-account).
+
+**Configúralo:** añade el widget. Consulta [Widget](/es/widget).
+No hay nada que elegir en **“Editar widget”**.
+
+El panel muestra las últimas cifras que Nomo descargó. En el tamaño grande,
+toca el botón de actualizar de su esquina para actualizar todas las cuentas.
+
+Toca la fila de una cuenta para abrir la página **Uso** de ese proveedor en
+Nomo, con esa cuenta. Una fila con **“Vuelve a conectar en Nomo”** funciona
+igual. Toca en cualquier otro sitio, incluida la fila que indica cuántas cuentas
+más hay, para abrir la pestaña **Proveedores**. Sin Nomo Pro, al tocarlo se
+abre Nomo Pro.
+
+### Agentes en directo <span className="pro-pill" /> {#live-agents}
+
+<Frame caption="Agentes en directo en tamaño pequeño y mediano. La fila violeta necesita tu respuesta.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/pro-widgets-live-agents.webp" alt="Agentes en directo: un widget pequeño que indica 2 en ejecución con un botón violeta de Necesita una respuesta, y un widget mediano con tres sesiones: una violeta que necesita una respuesta, una en ejecución y una terminada" />
+    <img className="only-dark" src="/images/pro-widgets-live-agents-dark.webp" alt="Agentes en directo en modo oscuro, pequeño y mediano" />
+  </div>
+</Frame>
+
+**Qué muestra:** tus sesiones de Claude Code, Codex y otros agentes ahora mismo.
+Es la misma lista que la pestaña **Sesiones**.
+
+**El violeta significa que una necesita tu respuesta.**
+
+| Icono | Etiqueta | Qué significa |
+| --- | --- | --- |
+| Mano violeta | `Necesita permiso` | Pide permiso para una acción. Puedes responder desde el teléfono. |
+| Mano violeta | `Necesita una respuesta` | Te hace una pregunta. Puedes responder desde el teléfono. |
+| Mano naranja | `Necesita atención` | Se ha detenido y te espera, sin nada que responder desde el teléfono. |
+| Punto naranja | `En ejecución` | Trabajando. No necesita nada de ti. |
+| Marca verde | `Listo` | Terminada. |
+
+Coinciden con la [pestaña Sesiones](/es/sessions/list#session-states).
+
+- El tamaño **pequeño** muestra cuántas sesiones hay en ejecución. Cuando una te
+  necesita, un botón violeta lo indica.
+- El tamaño **mediano** muestra hasta 3 sesiones. Las que te necesitan aparecen
+  primero.
+
+El widget no tiene botones de permitir ni denegar. Tócalo para abrir
+**Sesiones** en Nomo. En el tamaño mediano, toca una sesión para abrir esa
+sesión.
+
+El widget copia la lista de sesiones de la app Nomo. Si no se ha actualizado en
+10 minutos, muestra un punto ámbar y cuánto hace que se actualizó. Abre Nomo
+para actualizarlo.
+
+**Qué necesitas antes:** un ordenador vinculado con el plugin de Nomo. Consulta
+[Instalación](/es/setup/install) y [Vinculación](/es/setup/pairing).
+
+**Configúralo:**
+
+1. Añade el widget. Consulta [Widget](/es/widget).
+2. Mantén pulsado el widget.
+3. Toca **“Editar widget”**.
+4. Toca **Personaje** y elige uno. Las opciones son las mismas que en
+   [Actividad de Nomo](#nomo-activity).
+5. Toca fuera del widget para terminar.
+
+**Automático** sigue a la sesión que está arriba de la lista. Si es una sesión
+de Antigravity, Cursor u OpenCode, muestra su logotipo. Con cualquier otra
+opción, el widget muestra ese personaje y tiñe el fondo con un toque de su color.
+Los colores de estado no cambian nunca: el violeta sigue indicando que una sesión
+necesita tu respuesta. Un widget que ya estaba en la pantalla de inicio empieza
+en **Automático**.
+
+## Pantalla Actividad y Wrapped <span className="pro-pill" /> {#activity-screen}
+
+La pantalla Actividad muestra tu racha y tus tokens al completo. También crea
+una tarjeta Wrapped que puedes compartir.
+
+<Frame caption="La parte de arriba de la pantalla Actividad: tu racha, el selector de 7 / 14 / 30 días y el gráfico de tokens.">
+  <div className="device-frame crop-top">
+    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="La pantalla Actividad: una racha de 13 días con un mapa de 26 semanas, el selector de 7, 14 y 30 días en 14 días, y 20,3 M de tokens en los últimos 14 días con Today, Daily average y Active hours sobre un gráfico apilado por modelo" />
+    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="La pantalla Actividad: una racha de 13 días con un mapa de 26 semanas, el selector de 7, 14 y 30 días en 14 días, y 20,3 M de tokens en los últimos 14 días con Today, Daily average y Active hours sobre un gráfico apilado por modelo" />
+  </div>
+</Frame>
+
+Para abrirla:
+
+1. Abre Nomo.
+2. Toca la pestaña **Sesiones**.
+3. Toca la [barra de racha](#streak-bar), justo encima de la barra de
+   pestañas. En iOS 26.0 o anterior, toca en su lugar la tarjeta **Actividad**,
+   arriba del todo de la lista.
+
+También puedes tocar el widget Actividad de Nomo o Tokens de Nomo. Funciona
+incluso con Nomo cerrado. Nomo espera a saber si tienes Nomo Pro, así que un
+suscriptor nunca acaba en la pantalla de Nomo Pro por error.
+
+En iOS 26.0 o anterior y sin Nomo Pro, la tarjeta muestra una corona,
+**Actividad** y **“Racha, tokens diarios y Wrapped con Nomo Pro.”** Tócala para
+abrir Nomo Pro.
+
+La pantalla muestra:
+
+- **Racha**: tu racha y un mapa de las últimas 26 semanas, con los mismos tres
+  datos que el [widget](#nomo-activity).
+- Un selector de **7 días**, **14 días** o **30 días**. Al cambiarlo, el
+  gráfico pasa de un periodo al otro con una animación.
+- **Tokens**: un gráfico de tus tokens diarios, apilado por modelo, con
+  **Hoy**, **“Media diaria”**, **“Horas activas”** y el cambio frente al periodo
+  anterior.
+- **“Por modelo”**: una tabla con **Entrada**, **Salida**, **Caché** y
+  **Total** para cada modelo.
+
+Al abrir la pantalla, aparece con una animación de un segundo, más o menos. Si
+tienes activado **“Reducir movimiento”**, todo aparece directamente.
+
+El personaje y el color de la pantalla siguen al proveedor de tu modelo
+principal, como [Tokens de Nomo](#nomo-tokens) en **Automático**. La barra de
+racha hace lo mismo.
+
+### La barra de racha <span className="pro-pill" /> {#streak-bar}
+
+En iOS 26.1 o posterior, la pestaña **Sesiones** tiene una pequeña barra que
+flota justo encima de la barra de pestañas. Muestra tu racha, los tokens de esta
+semana y los últimos 7 días en minibarras.
+
+- Al desplazarte, se encoge y se coloca junto a la barra de pestañas.
+- Tócala para abrir la pantalla Actividad.
+
+A veces muestra otra cosa:
+
+| Qué dice | Qué significa | Qué hace al tocarla |
+| --- | --- | --- |
+| **“Empieza tu racha”** | Todavía no hay ningún ordenador vinculado. | Abre los mismos pasos de vinculación que **“Vincular un ordenador”**. |
+| **“Aún no hay sesiones”** | Hay un ordenador vinculado, pero aún no ha llegado ninguna sesión. | Abre la pantalla Actividad. |
+| **“Actualiza el plugin de Nomo”** | Todos los ordenadores vinculados tienen un plugin de Nomo anterior a la 2.4.0. | Abre los pasos para actualizarlo. |
+
+Cuando la barra está encogida, dicen **“Vincular un ordenador”**, **“Aún no hay
+sesiones”** y **“Actualizar plugin”**.
+
+La barra necesita Nomo Pro. Sin Nomo Pro, no verás la barra.
+
+Cuando sale una versión nueva de Nomo, la barra de actualización ocupa este
+lugar. Actualiza Nomo, o toca **×** en la barra de actualización, para que
+vuelva la barra de racha.
+
+En iOS 26.0 o anterior, no hay barra. La tarjeta de racha aparece arriba del
+todo de la lista de sesiones.
+
+### Wrapped {#wrapped}
+
+Wrapped convierte tu semana, tu mes o tu año en una imagen que puedes compartir.
+
+1. En la pantalla Actividad, desplázate hasta abajo.
+2. Toca **“Tu Wrapped”**.
+3. Toca **Semana** (los últimos 7 días), **Mes** (los últimos 30 días) o **Año**
+   (este año natural).
+4. Toca **Compartir** y elige dónde enviarla.
+
+<Frame caption="Una tarjeta Wrapped de una semana. Siempre es oscura, sea cual sea el aspecto de tu iPhone.">
+  <div className="widget-shot narrow">
+    <img src="/images/widgets-wrapped.webp" alt="Una tarjeta Wrapped titulada My week in code: 11,9 M de tokens, un gráfico diario, 16 h activas, el 1 de noviembre como día con más actividad, una racha más larga de 7 días, Fable como modelo favorito, Claude Code como agente favorito y 27 sesiones" style={{ borderRadius: "1.5rem" }} />
+  </div>
+</Frame>
+
+La tarjeta muestra tus tokens, un gráfico, tus horas activas, tu día con más
+actividad, tu racha más larga, tu modelo y tu agente favoritos, y cuántas
+sesiones hiciste. Su personaje sigue al proveedor de tu modelo favorito o a tu
+agente favorito. **Compartir** la envía como una imagen de 1080 × 1350. Nunca
+incluye tus prompts, nombres de proyectos ni rutas de archivos.
+
+## Más de un ordenador {#more-than-one-computer}
+
+Actividad de Nomo, Tokens de Nomo, la pantalla Actividad, Wrapped y la barra de
+racha suman todos los ordenadores vinculados.
+
+- El tiempo activo cuenta una sola vez. Si programas en dos Mac a la vez, ese
+  tiempo no se cuenta dos veces.
+- Los tokens y las sesiones se suman.
+- Un Mac que se vinculó dos veces cuenta una sola vez.
+- Si eliminas un ordenador, su actividad sale de los totales.
+
+### Cuando un ordenador no se cuenta {#not-counted}
+
+Un ordenador con un plugin de Nomo anterior a la 2.4.0 no se cuenta. Verás:
+
+- En la pantalla Actividad, bajo tu racha: **“MacBook Air no se cuenta ·
+  actualiza su plugin”**, con el nombre de ese ordenador. Si hay más de uno,
+  dice cuántos, como **“2 ordenadores no se cuentan · actualiza sus plugins”**.
+  Tócalo para ver cómo actualizar.
+- En el widget Actividad de Nomo grande: **“1 ordenador sin contar”**. En los
+  iPhone más pequeños, no hay sitio para mostrarlo.
+
+Para arreglarlo, actualiza el plugin de Nomo en ese ordenador. Consulta
+[Actualizaciones](/es/setup/install#updating).
+
+## Más de una cuenta <span className="pro-pill" /> {#more-than-one-account}
+
+Con Nomo Pro, puedes añadir hasta 5 cuentas por cada proveedor. Por ejemplo, una
+cuenta de Claude del trabajo y otra personal. Ritmo de Nomo, Uso de Nomo y
+Cuentas de Nomo pueden usarlas todas.
+
+Tus widgets muestran la cuenta **Predeterminada** salvo que elijas otra. Para
+elegir una, mantén pulsado el widget, toca **“Editar widget”** y, luego, toca
+**Cuenta**. Cuentas de Nomo muestra cada cuenta por separado.
+
+Si eliminas una cuenta, los widgets que la mostraban muestran
+**“Cuenta eliminada”**. No pasan a tu cuenta predeterminada. Edita el widget y
+elige otra cuenta.
+
+Si tu Nomo Pro termina, tus cuentas adicionales quedan en pausa. No se elimina
+nada, y tu cuenta predeterminada se sigue actualizando. Un widget Uso de Nomo
+con una cuenta adicional muestra **En pausa · Nomo Pro** y `Tu Nomo Pro ha
+finalizado. Vuelve a suscribirte en Nomo para ver esta cuenta.` Tócalo para
+abrir Nomo Pro. Un widget que muestra tu cuenta predeterminada nunca se pone en
+pausa.
+
+Para añadir, cambiar el nombre o eliminar una cuenta, consulta
+[Más de una cuenta](/es/usage#more-than-one-account) en la página Uso.
+
+## Probar con el modo de demostración {#try-it-with-demo-mode}
+
+El modo de demostración rellena los widgets con datos de ejemplo, para que puedas
+verlos antes de conectar nada.
+
+1. Abre Nomo.
+2. Toca la pestaña **Ajustes**.
+3. Desplázate hasta **“Modo de demostración”**.
+4. Activa **“Mostrar datos de ejemplo”**.
+
+Ritmo de Nomo, Actividad de Nomo, Tokens de Nomo y Agentes en directo muestran
+entonces datos de
+ejemplo, no los tuyos. El modo de demostración siempre muestra datos de ejemplo.
+La única excepción: en cuanto hay un ordenador vinculado, Agentes en directo
+muestra tus sesiones reales.
+Cuentas de Nomo solo muestra las cuentas que has añadido de verdad, así que se
+queda vacío hasta que añadas una.
+
+Si no tienes Nomo Pro, el modo de demostración también desbloquea los widgets
+Pro, pero solo mientras no haya ningún ordenador vinculado.
+
+Para volver a tus datos reales, desactiva **“Mostrar datos de ejemplo”**.
+
+## Privacidad {#privacy}
+
+**Actividad de Nomo**
+
+- Qué sale de tu ordenador: para cada día y cada agente, el número de sesiones,
+  el número de prompts, qué franjas de 5 minutos del día tuvieron actividad y los
+  tokens totales por modelo.
+- Qué no sale nunca: tus prompts, las respuestas del agente, los nombres de los
+  proyectos y las rutas de los archivos.
+- Se cifra de extremo a extremo (AES-256-GCM, con tu clave de vinculación) antes
+  de subirse. El relé de Nomo no puede leerlo y lo borra pasados **35 días**.
+- También incluye un identificador aleatorio del ordenador. El plugin lo crea
+  una vez en tu ordenador y lo guarda en `~/.config/cc-status/machine-id`. Nunca
+  sale de tu hardware, como el número de serie, la dirección MAC, el nombre del
+  ordenador o tu nombre de usuario. Se cifra de extremo a extremo con todo lo
+  demás. Nomo solo lo usa para que tu iPhone no cuente el mismo ordenador dos
+  veces. Para obtener uno nuevo, borra ese archivo.
+- Se sube como mucho cada 6 horas, y solo cuando algo ha cambiado. Si no ha
+  cambiado nada, vuelve a enviar el mismo resumen una vez a la semana para que
+  el relé no lo borre. Justo
+  después de vincular un iPhone nuevo, se sube una vez en un minuto, más o
+  menos.
+- En tu ordenador, se guarda en `~/.config/cc-status/activity-days.json`. Solo tu
+  cuenta de usuario puede leerlo. Guarda 400 días como máximo.
+
+**Tokens de Nomo y la pantalla Actividad**
+
+- Usan el mismo resumen de actividad que Actividad de Nomo, así que todo lo
+  anterior también se aplica a ellos.
+
+**Wrapped**
+
+- Al compartir, solo se envía la imagen que ves en la tarjeta.
+
+**Agentes en directo**
+
+- El widget lee una instantánea de tus sesiones que la app guarda en tu iPhone.
+  Se queda en el teléfono y nunca se envía a ningún sitio.
+
+**Más de una cuenta**
+
+- Tus inicios de sesión se guardan en el llavero del iPhone.
+- Para iniciar sesión se usa una página del navegador nueva y privada, así que no
+  reutiliza tu sesión de Safari.
+
+**Los límites**
+
+- El relé puede ver que hubo una subida, cuánto ocupaba y cuándo fue.
+- Cualquiera que tenga tu teléfono desbloqueado puede ver tu actividad.
+
+Para verlo todo, consulta las notas de seguridad del
+[README del plugin](https://github.com/KarrixLee/nomo#readme).

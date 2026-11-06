@@ -34,6 +34,63 @@ icon: "gauge"
 
 Nomo 並非官方產品，與它所讀取的任何供應商都沒有關聯。
 
+### Cursor 和 Grok {#cursor-and-grok}
+
+Cursor 和 Grok 透過 Safari 登入，所以你的通行密鑰、密碼管理工具，以及已經在 Safari 登入的帳號都能直接使用。
+
+**Cursor**
+
+1. 點一下「連結」。
+2. iOS 會詢問是否允許使用 **cursor.com** 登入。點一下「繼續」。
+3. 在 Cursor 的頁面上登入。
+
+頁面會自動關閉，接著就會顯示用量。大約每 60 天要重新登入一次。
+
+**Grok**
+
+1. 點一下「連結」。
+2. iOS 會詢問是否允許使用 **x.ai** 登入。點一下「繼續」。
+3. xAI 的頁面會開啟，Nomo 會顯示一組短碼，例如 `ABCD-1234`。
+4. 確認它和 xAI 頁面上的代碼相同。
+5. 在 xAI 的頁面上批准。
+
+Nomo 會自動更新 Grok 的登入。
+
+查看 Grok 用量需要付費 Grok 方案，例如 SuperGrok 或 X 訂閱。免費帳號會保持連結，但不會顯示用量長條，而是顯示「查看 Grok 用量需要付費 Grok 方案」。
+
+<Note>
+  更新到 Nomo 2.4.0 後，請再登入一次 Grok。之前的 Grok 登入不會沿用。
+</Note>
+
+## 用量速度 <span className="pro-pill" /> {#pace}
+
+有了 Nomo Pro，「用量」頁面的每個限額下面會多一行，告訴你用量能不能撐到限額重設。
+
+<Frame caption="兩個限額都用得比時間過得快，所以兩行都是琥珀色。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-pace-light.webp" alt="Claude 的「你的用量」卡片：Session 為 82%，下面一行是 82% used · 60% time · Runs out in ~39m；每週為 68%，下面一行是 68% used · 39% time · Runs out in ~1d 7h，兩行都是琥珀色" />
+    <img className="only-dark" src="/images/usage-pace-dark.webp" alt="Claude 的「你的用量」卡片：Session 為 82%，下面一行是 82% used · 60% time · Runs out in ~39m；每週為 68%，下面一行是 68% used · 39% time · Runs out in ~1d 7h，兩行都是琥珀色" />
+  </div>
+</Frame>
+
+這一行開頭是兩個數字，例如 `已用 45%・時間 60%`：
+
+- **已用**：限額已經用了多少。
+- **時間**：這個時段已經過了多少。
+
+已用比時間低，就沒問題。數字後面會顯示下面其中一種：
+
+- 「可用到重設」：沒問題。
+- 「用完倒數」和剩下的時間：顯示為琥珀色。照目前的速度，你會在重設前用完。前面有 `~` 表示這是估計值。
+- 「現在還看不出來」：時段才剛開始。
+- 「已達限額」：整個限額已經用完。
+
+部分 Cursor 方案沒有用量速度。這些限額下面不會顯示這一行。
+
+在主畫面上，[Nomo 用量速度](/zh-Hant/widgets#nomo-pace)小工具會顯示同樣的內容。
+
+**沒有 Nomo Pro 時**，第一個限額下面只會顯示一行「看看會不會在重設前用完」，旁邊有 **PRO** 標籤。點一下它會打開 Nomo Pro。
+
 ## 達到限額時 {#when-you-hit-a-limit}
 
 任何一個視窗達到 100% 時，用量卡片下方會出現一則「已達限額」提示，上面只有一個按鈕 — 「在 Claude 管理用量」，或是你正在看的那一家供應商。它會在瀏覽器裡打開那家供應商自己的用量設定，你的方案在那裡可能提供額外用量。
@@ -41,6 +98,89 @@ Nomo 並非官方產品，與它所讀取的任何供應商都沒有關聯。
 Nomo 看不到那裡提供什麼，自己也不賣任何東西。它只是一條捷徑，通往一個你本來得自己去找的頁面。
 
 這則提示會對 Claude、Codex、Cursor 和 xAI 顯示，適用於美國、歐盟和日本的 App Store 帳號。
+
+## 多個帳戶 <span className="pro-pill" /> {#more-than-one-account}
+
+有了 Nomo Pro，每家供應商最多可以新增 5 個帳戶。例如，一個工作用的 Claude 帳戶和一個個人帳戶。每個帳戶各佔一列，顯示各自的用量。名稱下方會顯示方案和電子郵件，例如 `Max 20x · me@acme.com`。標題會顯示已連結的帳戶數，例如 **3/5**。
+
+<Frame caption="兩個 Claude 帳戶。Work 是預設帳戶。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-accounts-light.webp" alt="Nomo 的 Claude 頁面顯示 2/5 個帳戶：預設帳戶 Work 已用 42%，因其用量顯示在上方卡片中而醒目標示，Personal 已用 12%，下方是 Add another account 按鈕" />
+    <img className="only-dark" src="/images/usage-accounts-dark.webp" alt="Nomo 的 Claude 頁面顯示 2/5 個帳戶：預設帳戶 Work 已用 42%，因其用量顯示在上方卡片中而醒目標示，Personal 已用 12%，下方是 Add another account 按鈕" />
+  </div>
+</Frame>
+
+### 新增其他帳戶 {#add-another-account}
+
+1. 打開 Nomo。
+2. 點一下「供應商」分頁。
+3. 點一下供應商，例如 **Claude**。
+4. 點一下上方的「用量」。
+5. 確認你已經登入第一個帳戶。
+6. 在你的帳戶下方，點一下「新增其他帳戶」。
+7. 點一下「繼續」。
+8. 用另一個帳戶登入。請使用和第一個帳戶不同的電子郵件。
+
+<Frame caption="點一下「繼續」會打開登入頁面。點一下 X 會關閉它，不會新增任何帳戶。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-light.webp" alt="Add Account 面板：Sign in to another Claude account、提醒使用不同的電子郵件、Continue 按鈕，以及用來關閉的 X" />
+    <img className="only-dark" src="/images/usage-add-account-dark.webp" alt="Add Account 面板：Sign in to another Claude account、提醒使用不同的電子郵件、Continue 按鈕，以及用來關閉的 X" />
+  </div>
+</Frame>
+
+Nomo 會打開一個全新的私密登入頁面，所以不會沿用你已經登入的帳戶。已經新增的帳戶會保持登入。
+
+如果是 Claude，登入後 Claude 會顯示一組代碼：
+
+1. 複製代碼。
+2. 回到 Nomo。Nomo 會自動貼上代碼並連結。
+3. 如果沒有反應，點一下「貼上」，再點一下「連結」。
+
+<Frame caption="Claude：貼上登入後 Claude 顯示的代碼。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-add-account-code-light.webp" alt="Claude 的代碼步驟：附 Paste 按鈕的 Paste authorization code 欄位、Connect 按鈕和 Reopen sign-in" />
+    <img className="only-dark" src="/images/usage-add-account-code-dark.webp" alt="Claude 的代碼步驟：附 Paste 按鈕的 Paste authorization code 欄位、Connect 按鈕和 Reopen sign-in" />
+  </div>
+</Frame>
+
+如果供應商提供電子郵件，新帳戶會以電子郵件地址命名。如果你登入的帳戶已經在 Nomo 裡，會顯示「此帳戶已新增」，什麼都不會改變。
+
+一家供應商有 5 個帳戶後，「新增其他帳戶」會變成灰色。
+
+### 管理帳戶 {#manage-accounts}
+
+點一下帳戶旁邊的 **···**，再點一下以下其中一項：
+
+- 「重新命名」：幫帳戶取個短名稱，例如 `工作` 或 `個人`。
+- 「設為預設」：把它設為預設帳戶。預設帳戶會有「預設」標籤。
+- 「移除」：在 Nomo 中登出這個帳戶。其他帳戶會保持登入。原本顯示它的小工具會顯示「帳戶已移除」，並提示你選擇其他帳戶。它們不會改成顯示預設帳戶。
+
+<Frame caption="非預設帳戶的 ··· 選單。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-account-menu-light.webp" alt="Personal 帳戶旁邊的 ··· 選單，有 Rename、Make Default 和 Remove" />
+    <img className="only-dark" src="/images/usage-account-menu-dark.webp" alt="Personal 帳戶旁邊的 ··· 選單，有 Rename、Make Default 和 Remove" />
+  </div>
+</Frame>
+
+上方的「你的用量」卡片打開時顯示預設帳戶。要在這裡查看其他帳戶，在列表中點一下該帳戶。正在顯示的帳戶會以淺色醒目標示。
+
+### 小工具中的帳戶 {#accounts-in-widgets}
+
+除非你另外選一個，小工具會顯示預設帳戶：
+
+1. 按住小工具。
+2. 點一下「編輯小工具」。
+3. 點一下「帳戶」並選一個。
+
+[Nomo 用量](/zh-Hant/widgets#nomo-usage)和 [Nomo 用量速度](/zh-Hant/widgets#nomo-pace)都有「帳戶」選項。[Nomo 帳戶](/zh-Hant/widgets#nomo-accounts)會一次顯示所有帳戶。
+
+### 沒有 Nomo Pro 時 {#without-nomo-pro}
+
+沒有 Nomo Pro 時，每家供應商只能有一個帳戶。「新增其他帳戶」旁會顯示 **PRO** 標籤。點一下它會打開 Nomo Pro。訂閱後，Nomo 會直接繼續新增帳戶。示範模式不會解鎖額外的帳戶。
+
+如果你的 Nomo Pro 到期，額外的帳戶會被暫停，不會被移除。它們會顯示「已暫停 · PRO」，只有預設帳戶會繼續更新。預設帳戶永遠不會被暫停。點一下已暫停的帳戶會打開 Nomo Pro。要接著使用，點一下「重新訂閱」。
+
+設為已暫停帳戶的 Nomo 用量小工具會顯示「已暫停 · Nomo Pro」和 `你的 Nomo Pro 已結束。在 Nomo 中重新訂閱即可查看此帳戶。`。點一下它會打開 Nomo Pro。
 
 ## 小工具
 
