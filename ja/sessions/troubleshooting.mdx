@@ -39,7 +39,7 @@ $nomo-status
 
 Antigravity では、Nomo のコマンドを実行してよいか確認されたら「Allow」を選んでください。わかりやすい言葉の短い要約と、問題ごとに対処を示す 1 行が表示されます — 以下で説明する詳しい出力を見るには `/nomo-status verbose` と入力してください。
 
-Devin のチャットの中には Nomo のコマンドがありません。代わりに、Devin の行をターミナルに貼り付けてください。
+Devin では、Devin の行をターミナルに貼り付けてください。Devin プラグインの場合は、代わりに Devin で `/nomo:status` と入力します。
 
 報告の対象は、あなたのセッションだけでなく**コンピュータ**全体です。ペアリング、配信、ローカルネットワークによる直接接続、承認、そのあとにいま使っているエージェントと、見つかったほかのすべてのエージェントが続きます。`!` は実際の問題で、その下の `→` がその対処です。実行したエージェントのコマンドの書き方に合わせて書かれます。たいていの場合、ここで終わります。
 
@@ -144,13 +144,14 @@ Devin のチャットの中には Nomo のコマンドがありません。代�
 
 <Accordion title="Devin のセッションが iPhone に何も表示されない" icon="terminal">
   1. 開いている `devin` をすべて閉じて、もう一度起動します。
-  2. ターミナルに次を貼り付け、`→` で始まる行の指示に従います。
+  2. ターミナルに次を貼り付け、`→` で始まる行の指示に従います。Devin プラグインの場合は、代わりに Devin で `/nomo:status` と入力します。
 
      ```bash
      ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
      ```
 
-  3. Devin でメッセージを送ります。セッションが現れるのは、最初のメッセージを送ったあとです。
+  3. Devin Desktop を使っている場合は、**Restricted Mode** がオフになっていることを確認します。
+  4. Devin でメッセージを送ります。セッションが現れるのは、最初のメッセージを送ったあとです。
 
   それでも表示されない場合は、Nomo で **+** ボタン（「エージェントを選択」）をタップして、Devin をオンにしてください。詳しくは [Devin での利用](/ja/sessions/devin#troubleshooting)をご覧ください。
 </Accordion>
@@ -432,7 +433,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
       "name": "Devin のセッションが iPhone に何も表示されない",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "開いている devin をすべて閉じて、もう一度起動します。ターミナルに ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin を貼り付け、→ で始まる行の指示に従います。そのあと Devin でメッセージを送ってください。セッションが現れるのは、最初のメッセージを送ったあとです。それでも表示されない場合は、Nomo で + ボタン（「エージェントを選択」）をタップして、Devin をオンにしてください。"
+        "text": "開いている devin をすべて閉じて、もう一度起動します。ターミナルに ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin を貼り付け（Devin プラグインの場合は、Devin で /nomo:status と入力し）、→ で始まる行の指示に従います。Devin Desktop では、Restricted Mode がオフになっていることを確認してください。そのあと Devin でメッセージを送ってください。セッションが現れるのは、最初のメッセージを送ったあとです。それでも表示されない場合は、Nomo で + ボタン（「エージェントを選択」）をタップして、Devin をオンにしてください。"
       }
     },
     {

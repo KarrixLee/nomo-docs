@@ -273,6 +273,8 @@ icon: "puzzle-piece"
   <Tab title="Devin" icon="/images/providers/devin.svg">
     Devin CLI 向けです。Devin の許可リクエストには iPhone から回答できます — 詳しくは [Devin での利用](/ja/sessions/devin)にあります。
 
+    代わりに、Nomo を Devin プラグインとして追加することもできます: `devin plugins install KarrixLee/nomo`。どちらか一方をインストールしてください — [Devin での利用](/ja/sessions/devin#set-it-up)をご覧ください。以下はインストーラーの手順です。
+
     <Steps>
       <Step title="インストーラーを実行する">
         ターミナルに次を貼り付けて、Return キーを押します。
@@ -301,7 +303,7 @@ icon: "puzzle-piece"
       </Step>
 
       <Step title="ターミナルからペアリングする">
-        Devin には専用の Nomo コマンドがありません。ターミナルに次を貼り付けてから、iPhone の Nomo で QR コードをスキャンします。
+        インストーラーは Devin に Nomo のコマンドを追加しません。ターミナルに次を貼り付けてから、iPhone の Nomo で QR コードをスキャンします。
 
         ```bash
         ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs

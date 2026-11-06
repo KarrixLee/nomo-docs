@@ -12,117 +12,217 @@ Island. When Devin asks for permission, your phone asks you to **Allow** or
 It works with the Devin CLI, the `devin` command in Terminal.
 
 <Note>
-  Sessions is part of Nomo Pro. You need Nomo **2.4.1** or later on your phone
-  and plugin **2.4.1** or later on your Mac.
+  Sessions is part of Nomo Pro. You need Nomo **2.5.0** or later on your phone
+  and plugin **2.5.0** or later on your Mac.
 </Note>
 
 ## Set it up
 
-<Steps>
-  <Step title="Open Terminal">
-    On your Mac, open the **Terminal** app. It's in **Applications → Utilities**.
-  </Step>
+There are two ways to add Nomo to Devin: the **Devin plugin**, or the **Nomo
+installer**. Install one of them. If you install both, Nomo uses the installer
+one, and the plugin stays quiet.
 
-  <Step title="Install the Devin CLI">
-    Already have it? Skip this step.
+<Tabs>
+  <Tab title="Devin plugin">
+    <Steps>
+      <Step title="Open Terminal">
+        On your Mac, open the **Terminal** app. It's in **Applications →
+        Utilities**.
+      </Step>
 
-    Copy this line, paste it into Terminal, and press Return:
+      <Step title="Install the Devin CLI">
+        Already have it? Skip this step.
 
-    ```bash
-    brew install --cask devin-cli
-    ```
+        Copy this line, paste it into Terminal, and press Return:
 
-    No Homebrew? Use this instead:
+        ```bash
+        brew install --cask devin-cli
+        ```
 
-    ```bash
-    curl -fsSL https://cli.devin.ai/install.sh | bash
-    ```
+        No Homebrew? Use this instead:
 
-    Then type `devin` and press Return. If Devin asks you to sign in, follow
-    its steps.
-  </Step>
+        ```bash
+        curl -fsSL https://cli.devin.ai/install.sh | bash
+        ```
 
-  <Step title="Run the Nomo installer">
-    Copy this line, paste it into Terminal, and press Return:
+        Then type `devin` and press Return. If Devin asks you to sign in,
+        follow its steps.
+      </Step>
 
-    ```bash
-    bunx nomo-ai --devin
-    ```
+      <Step title="Install the Nomo plugin">
+        Copy this line, paste it into Terminal, and press Return:
 
-    No `bunx`? Use `npx nomo-ai --devin` instead.
+        ```bash
+        devin plugins install KarrixLee/nomo
+        ```
 
-    Among the lines it prints, you should see:
+        Using Devin Desktop instead? Go to **Customize → Plugins → From
+        repository**, and enter `KarrixLee/nomo`.
+      </Step>
 
-    ```
-    devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
-    ```
-  </Step>
+      <Step title="Restart Devin">
+        If `devin` was already open, close it, then start it again.
+      </Step>
 
-  <Step title="Restart Devin">
-    Close every open `devin`, then start it again.
+      <Step title="Type /nomo:pair">
+        In `devin`, type this and send it:
 
-    <Warning>
-      Don't skip this. Nomo stays off until Devin restarts.
-    </Warning>
-  </Step>
+        ```
+        /nomo:pair
+        ```
 
-  <Step title="Start pairing">
-    Devin has no Nomo commands of its own, so you pair from Terminal. Copy this
-    line, paste it into Terminal, and press Return:
+        Devin opens a page with a QR code in your browser.
+      </Step>
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-    ```
+      <Step title="Scan the QR code">
+        On your iPhone, open Nomo → **Sessions** → **Pair a Computer**, and scan
+        the QR code.
+      </Step>
 
-    You should see a page with a QR code open in your browser.
-  </Step>
+      <Step title="Check it">
+        In `devin`, type this and send it:
 
-  <Step title="Wait for your phone">
-    Copy this line, paste it into Terminal, and press Return:
+        ```
+        /nomo:status
+        ```
 
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait
-    ```
+        If a line starts with `!`, do what the `→` line under it says.
+      </Step>
 
-    You should see:
+      <Step title="Send a message in Devin">
+        In `devin`, send anything.
 
-    ```
-    Waiting for your phone to scan the QR…
-    ```
-  </Step>
+        You should see the session appear in Nomo, under the **Devin** tab of
+        your computer. No Devin tab? Tap the **+** button (**Choose agents**)
+        and turn Devin on.
+      </Step>
+    </Steps>
+  </Tab>
 
-  <Step title="Scan the QR code">
-    On your iPhone, open Nomo → **Sessions** → **Pair a Computer**, and scan the
-    QR code in your browser.
+  <Tab title="Nomo installer">
+    <Steps>
+      <Step title="Open Terminal">
+        On your Mac, open the **Terminal** app. It's in **Applications →
+        Utilities**.
+      </Step>
 
-    You should see a line in Terminal that starts with `Paired with` and ends
-    with ✓.
-  </Step>
+      <Step title="Install the Devin CLI">
+        Already have it? Skip this step.
 
-  <Step title="Send a message in Devin">
-    In `devin`, send anything.
+        Copy this line, paste it into Terminal, and press Return:
 
-    You should see the session appear in Nomo, under the **Devin** tab of your
-    computer. No Devin tab? Tap the **+** button (**Choose agents**) and turn
-    Devin on.
-  </Step>
-</Steps>
+        ```bash
+        brew install --cask devin-cli
+        ```
+
+        No Homebrew? Use this instead:
+
+        ```bash
+        curl -fsSL https://cli.devin.ai/install.sh | bash
+        ```
+
+        Then type `devin` and press Return. If Devin asks you to sign in,
+        follow its steps.
+      </Step>
+
+      <Step title="Run the Nomo installer">
+        Copy this line, paste it into Terminal, and press Return:
+
+        ```bash
+        bunx nomo-ai --devin
+        ```
+
+        No `bunx`? Use `npx nomo-ai --devin` instead.
+
+        Among the lines it prints, you should see:
+
+        ```
+        devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
+        ```
+      </Step>
+
+      <Step title="Restart Devin">
+        Close every open `devin`, then start it again.
+
+        <Warning>
+          Don't skip this. Nomo stays off until Devin restarts.
+        </Warning>
+      </Step>
+
+      <Step title="Start pairing">
+        The installer adds no Nomo commands to Devin, so you pair from
+        Terminal. Copy this line, paste it into Terminal, and press Return:
+
+        ```bash
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        ```
+
+        You should see a page with a QR code open in your browser.
+      </Step>
+
+      <Step title="Wait for your phone">
+        Copy this line, paste it into Terminal, and press Return:
+
+        ```bash
+        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait
+        ```
+
+        You should see:
+
+        ```
+        Waiting for your phone to scan the QR…
+        ```
+      </Step>
+
+      <Step title="Scan the QR code">
+        On your iPhone, open Nomo → **Sessions** → **Pair a Computer**, and scan
+        the QR code in your browser.
+
+        You should see a line in Terminal that starts with `Paired with` and
+        ends with ✓.
+      </Step>
+
+      <Step title="Send a message in Devin">
+        In `devin`, send anything.
+
+        You should see the session appear in Nomo, under the **Devin** tab of
+        your computer. No Devin tab? Tap the **+** button (**Choose agents**)
+        and turn Devin on.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
 
 <Tip>
   **Already paired from Claude Code, Codex, OpenCode, Cursor or Antigravity?**
-  One pairing covers the whole computer. Skip steps 5–7.
+  One pairing covers the whole computer. Skip the pairing steps.
 </Tip>
 
 <Tip>
-  **No browser on this computer?** In step 5, add `--show-code` to the end of
-  the line. Terminal shows a short code instead of opening a page. On your
-  iPhone, open Nomo → **Sessions** → **Pair a Computer** → **Enter Code**, and
-  type it. The code expires in 10 minutes.
+  **No browser on this computer?** Ask for a short code instead of a QR code:
+  with the plugin, type `/nomo:pair code` in Devin; with the installer, add
+  `--show-code` to the end of the pairing line in Terminal. On your iPhone,
+  open Nomo → **Sessions** → **Pair a Computer** → **Enter Code**, and type the
+  code. It expires in 10 minutes.
 </Tip>
+
+<Note>
+  **Devin Desktop's Restricted Mode turns Nomo off.** It turns off hooks, which
+  Nomo needs, so your sessions don't reach your phone while it's on.
+</Note>
 
 ## Commands
 
-Devin has no Nomo commands inside its chat. Run these in Terminal instead:
+**With the Devin plugin**, type these in Devin:
+
+| Type this | What it does |
+| --- | --- |
+| `/nomo:pair` | Connect this computer to your phone |
+| `/nomo:pair code` | The same, with a short code to type instead of a QR code |
+| `/nomo:status` | Check that everything works |
+
+**With the Nomo installer**, Devin has no Nomo commands inside its chat. Run
+these in Terminal instead:
 
 | What it does | Paste this into Terminal |
 | --- | --- |
@@ -196,13 +296,16 @@ Good to know:
 <AccordionGroup>
   <Accordion title="My phone shows nothing">
     1. Close every open `devin`, and start it again.
-    2. Run this in Terminal:
+    2. Check Nomo. With the plugin, type `/nomo:status` in Devin. With the
+       installer, run this in Terminal:
 
        ```bash
        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
        ```
 
     3. Do what the line starting with `→` says.
+
+    Using Devin Desktop? Make sure **Restricted Mode** is off.
 
     Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
     Devin on.
@@ -223,7 +326,7 @@ Good to know:
   </Accordion>
 
   <Accordion title="My phone stopped asking me to approve">
-    Run this in Terminal:
+    If you used the installer, run this in Terminal:
 
     ```bash
     ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on
@@ -234,7 +337,7 @@ Good to know:
   </Accordion>
 
   <Accordion title="A session is stuck on Running">
-    Run this in Terminal:
+    If you used the installer, run this in Terminal:
 
     ```bash
     ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
@@ -246,13 +349,21 @@ More help in [Troubleshooting](/sessions/troubleshooting).
 
 ## Updating
 
-Run the installer again, then restart Devin:
+If you used the installer, run it again, then restart Devin:
 
 ```bash
 bunx nomo-ai --devin
 ```
 
 ## Uninstalling
+
+**The Devin plugin:** copy this line, paste it into Terminal, and press Return:
+
+```bash
+devin plugins remove nomo
+```
+
+**The Nomo installer:**
 
 <Steps>
   <Step title="Run this in Terminal">
@@ -274,7 +385,7 @@ bunx nomo-ai --devin
 
 Your phone stays connected for your other coding apps. To disconnect this
 computer from your phone as well, run the disconnect command from
-[Commands](#commands) **before** you uninstall.
+[Commands](#commands) **before** you uninstall the installer.
 
 ## Advanced
 
@@ -286,6 +397,11 @@ computer from your phone as well, run the disconnect command from
       nothing. If the file has comments, it first copies it to
       `config.json.nomo-backup`. Uninstalling removes only Nomo's entries.
       Type `/hooks` in `devin` to see what it loaded.
+    - **What the plugin adds.** The Devin plugin adds the same two hooks, and
+      the `/nomo:pair` and `/nomo:status` commands. It adds no rules, MCP
+      servers or agents, and runs only in local Devin sessions, never in Devin
+      Cloud. While the installer's entries are there, the plugin's hooks send
+      nothing.
     - **Status.** A hook on `UserPromptSubmit`, `PostToolUse`, `Stop`,
       `SessionEnd` and `PreToolUse` (only for `ask_user_question`) reports
       status. It prints nothing, so it can't block a prompt or change a tool

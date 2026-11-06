@@ -274,6 +274,8 @@ icon: "puzzle-piece"
   <Tab title="Devin" icon="/images/providers/devin.svg">
     適用於 Devin CLI。Devin 的權限請求可以在手機上回覆 — 細節寫在[搭配 Devin 使用](/zh-Hant/sessions/devin)裡。
 
+    你也可以改把 Nomo 當作 Devin 外掛程式加入：`devin plugins install KarrixLee/nomo`。兩者擇一安裝 — 見[搭配 Devin 使用](/zh-Hant/sessions/devin#set-it-up)。下面的步驟適用於安裝工具。
+
     <Steps>
       <Step title="執行安裝工具">
         把這行貼到終端機裡，然後按下 Return：
@@ -302,7 +304,7 @@ icon: "puzzle-piece"
       </Step>
 
       <Step title="從終端機配對">
-        Devin 沒有自己的 Nomo 指令。把這行貼到終端機裡，然後用 iPhone 上的 Nomo 掃描 QR code：
+        安裝工具不會在 Devin 裡加入 Nomo 指令。把這行貼到終端機裡，然後用 iPhone 上的 Nomo 掃描 QR code：
 
         ```bash
         ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs

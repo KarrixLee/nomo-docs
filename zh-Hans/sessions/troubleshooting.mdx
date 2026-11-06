@@ -39,7 +39,7 @@ $nomo-status
 
 在 Antigravity 里，它要运行 Nomo 命令时选择 **Allow**（允许）。它会用大白话显示一段简短总结，每个问题一行，告诉你该怎么做——输入 `/nomo-status verbose` 可以看到下面讲的完整输出。
 
-Devin 的对话里没有 Nomo 命令。改为把 Devin 那一行粘贴到终端里。
+如果是 Devin，把 Devin 那一行粘贴到终端里。用 Devin 插件的话，改为在 Devin 里输入 `/nomo:status`。
 
 它报告的是**这台电脑**，而不只是你当前的会话：配对、投递、本地网络直连、审批，然后是你所在的这个智能体，以及它找到的其他每一个。`!` 是真正的问题，它下面的 `→` 就是该怎么办，并且按你发起询问的那个智能体的命令写法写出来。多数人看到这里就够了。
 
@@ -145,13 +145,14 @@ Devin 的对话里没有 Nomo 命令。改为把 Devin 那一行粘贴到终端�
 
 <Accordion title="手机上没有显示任何 Devin 的内容" icon="terminal">
   1. 关掉每一个开着的 `devin`，再重新启动。
-  2. 把下面这条粘贴到终端里，然后照着以 `→` 开头的那一行去做：
+  2. 把下面这条粘贴到终端里，然后照着以 `→` 开头的那一行去做。用 Devin 插件的话，改为在 Devin 里输入 `/nomo:status`。
 
      ```bash
      ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
      ```
 
-  3. 在 Devin 里发一条消息。会话要等你发出第一条消息后才会出现。
+  3. 用的是 Devin Desktop？确认 **Restricted Mode** 已关闭。
+  4. 在 Devin 里发一条消息。会话要等你发出第一条消息后才会出现。
 
   还是没有？在 Nomo 里轻点 **+** 按钮（**选择智能体**），把 Devin 打开。详见[搭配 Devin 使用](/zh-Hans/sessions/devin#troubleshooting)。
 </Accordion>
@@ -431,7 +432,7 @@ Devin 的对话里没有 Nomo 命令。改为把 Devin 那一行粘贴到终端�
       "name": "手机上没有显示任何 Devin 的内容",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "关掉每一个开着的 devin，再重新启动。把 ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin 粘贴到终端里，然后照着以 → 开头的那一行去做。接着在 Devin 里发一条消息：会话要等你发出第一条消息后才会出现。还是没有？在 Nomo 里轻点 + 按钮（选择智能体），把 Devin 打开。"
+        "text": "关掉每一个开着的 devin，再重新启动。把 ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin 粘贴到终端里（用 Devin 插件的话，改为在 Devin 里输入 /nomo:status），然后照着以 → 开头的那一行去做。在 Devin Desktop 里，确认 Restricted Mode 已关闭。接着在 Devin 里发一条消息：会话要等你发出第一条消息后才会出现。还是没有？在 Nomo 里轻点 + 按钮（选择智能体），把 Devin 打开。"
       }
     },
     {

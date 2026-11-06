@@ -325,6 +325,11 @@ ones.
     For the Devin CLI. Devin's permission prompts can be answered from your
     phone — [Using Devin](/sessions/devin) has the details.
 
+    You can also add Nomo as a Devin plugin instead:
+    `devin plugins install KarrixLee/nomo`. Install one or the other — see
+    [Using Devin](/sessions/devin#set-it-up). The steps below are for the
+    installer.
+
     <Steps>
       <Step title="Run the installer">
         Paste this into Terminal and press Return:
@@ -354,8 +359,8 @@ ones.
       </Step>
 
       <Step title="Pair from Terminal">
-        Devin has no Nomo commands of its own. Paste this into Terminal, then
-        scan the QR code with Nomo on your iPhone:
+        The installer adds no Nomo commands to Devin. Paste this into Terminal,
+        then scan the QR code with Nomo on your iPhone:
 
         ```bash
         ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs

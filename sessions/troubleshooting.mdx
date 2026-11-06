@@ -45,8 +45,8 @@ In Antigravity, choose **Allow** when it asks to run a Nomo command. It shows
 a short summary in plain words, and one line per problem saying what to do —
 type `/nomo-status verbose` for the full readout described below.
 
-Devin has no Nomo commands inside its chat. Paste the Devin line into Terminal
-instead.
+For Devin, paste the Devin line into Terminal. With the Devin plugin, type
+`/nomo:status` in Devin instead.
 
 It reports on the **computer**, not just your session: pairing, delivery, the
 direct local network link, approvals, then the agent you're in and every other
@@ -206,13 +206,15 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
 <Accordion title="My phone shows nothing from Devin" icon="terminal">
   1. Close every open `devin`, and start it again.
-  2. Paste this into Terminal, and do what the line starting with `→` says:
+  2. Paste this into Terminal, and do what the line starting with `→` says.
+     With the Devin plugin, type `/nomo:status` in Devin instead.
 
      ```bash
      ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
      ```
 
-  3. Send a message in Devin. A session only appears after your first message.
+  3. Using Devin Desktop? Make sure **Restricted Mode** is off.
+  4. Send a message in Devin. A session only appears after your first message.
 
   Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
   Devin on. More in [Using Devin](/sessions/devin#troubleshooting).
@@ -570,7 +572,7 @@ that command there.
       "name": "My phone shows nothing from Devin",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Close every open devin and start it again. Paste ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin into Terminal and do what the line starting with → says. Then send a message in Devin: a session only appears after your first message. Still nothing? In Nomo, tap the + button (Choose agents) and turn Devin on."
+        "text": "Close every open devin and start it again. Paste ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin into Terminal (or, with the Devin plugin, type /nomo:status in Devin) and do what the line starting with → says. In Devin Desktop, make sure Restricted Mode is off. Then send a message in Devin: a session only appears after your first message. Still nothing? In Nomo, tap the + button (Choose agents) and turn Devin on."
       }
     },
     {

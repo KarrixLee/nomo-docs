@@ -39,7 +39,7 @@ $nomo-status
 
 在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。它會用簡單的話顯示一段簡短摘要，每個問題各一行，告訴你該怎麼做 — 輸入 `/nomo-status verbose` 就能看到下面說明的完整報告。
 
-Devin 的對話裡沒有 Nomo 指令。請改把 Devin 那一行貼到終端機裡。
+Devin 的話，把 Devin 那一行貼到終端機裡。使用 Devin 外掛程式時，改在 Devin 裡輸入 `/nomo:status`。
 
 它回報的是整台**電腦**，不只是你的 session：配對、傳送、區域網路直連、批准，接著是你所在的那個代理，以及它找到的其他每一個代理。`!` 表示真的有問題，底下的 `→` 就是該怎麼處理，並以你發問時所在代理的指令寫法寫出來。大多數人看到這裡就結束了。
 
@@ -144,13 +144,14 @@ Devin 的對話裡沒有 Nomo 指令。請改把 Devin 那一行貼到終端機�
 
 <Accordion title="我的手機沒有顯示 Devin 的任何東西" icon="terminal">
   1. 關掉每一個開著的 `devin`，再重新啟動它。
-  2. 把這行貼到終端機裡，然後照著以 `→` 開頭的那一行做：
+  2. 把這行貼到終端機裡，然後照著以 `→` 開頭的那一行做。使用 Devin 外掛程式時，改在 Devin 裡輸入 `/nomo:status`。
 
      ```bash
      ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
      ```
 
-  3. 在 Devin 裡送出一則訊息。session 要等你送出第一則訊息後才會出現。
+  3. 在用 Devin Desktop？確認 **Restricted Mode** 已經關閉。
+  4. 在 Devin 裡送出一則訊息。session 要等你送出第一則訊息後才會出現。
 
   還是沒有？在 Nomo 裡點一下 **+** 按鈕（「選擇代理」），把 Devin 打開。更多內容請看[搭配 Devin 使用](/zh-Hant/sessions/devin#troubleshooting)。
 </Accordion>
@@ -430,7 +431,7 @@ Devin 的對話裡沒有 Nomo 指令。請改把 Devin 那一行貼到終端機�
       "name": "我的手機沒有顯示 Devin 的任何東西",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "關掉每一個開著的 devin，再重新啟動它。把 ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin 貼到終端機裡，然後照著以 → 開頭的那一行做。接著在 Devin 裡送出一則訊息：session 要等你送出第一則訊息後才會出現。還是沒有？在 Nomo 裡點一下 + 按鈕（「選擇代理」），把 Devin 打開。"
+        "text": "關掉每一個開著的 devin，再重新啟動它。把 ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin 貼到終端機裡（或者，使用 Devin 外掛程式時，在 Devin 裡輸入 /nomo:status），然後照著以 → 開頭的那一行做。在 Devin Desktop 裡，確認 Restricted Mode 已經關閉。接著在 Devin 裡送出一則訊息：session 要等你送出第一則訊息後才會出現。還是沒有？在 Nomo 裡點一下 + 按鈕（「選擇代理」），把 Devin 打開。"
       }
     },
     {
