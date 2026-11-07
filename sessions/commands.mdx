@@ -45,8 +45,8 @@ to do — `Not paired` is a success, not an error.
 
 The empty cells on the last row aren't an omission: Claude Code and Codex update
 through their own hosts, so Nomo adds no command there, and Cursor updates by
-running its installer again, as do Antigravity and Devin. What each of them needs — which for Codex is
-usually nothing — is in [Installation](/setup/install#updating).
+running its installer again, as do Antigravity and Devin. What each of them
+needs — which for Codex is usually nothing — is under [update](#update).
 
 Cursor's empty cell on the approvals row isn't one either: Cursor sessions are
 read-only, so there are no remote approvals to pause —
@@ -378,48 +378,113 @@ there.
 
 ## update
 
-```bash OpenCode icon="/images/opencode.svg"
-/nomo-update
-```
+Only OpenCode has an update command. Every other agent updates another way —
+open its tab.
 
-**OpenCode only** — and it checks before it changes anything. Already current is
-a stop, not a no-op with a pull attached:
+`bunx nomo-ai` (or `npx nomo-ai`) updates too: an agent that already has Nomo
+shows up as an update rather than an install. Only OpenCode's, Cursor's,
+Antigravity's and Devin's run — the Claude Code and Codex ones are printed for
+you.
 
-```
-OpenCode plugin: /Users/you/.nomo
-Already on 2.1.22 — nothing to do.
-```
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
 
-When there's something to get, it says what before it takes it:
+    Auto-update defaults off for third-party marketplaces, so nothing moves an
+    install on its own. To turn it on: `/plugin` → **Marketplaces** → Nomo's →
+    **Enable auto-update**.
+  </Tab>
 
-```
-OpenCode plugin: /Users/you/.nomo
-Update available: 2.1.22 → 2.1.23.
-```
+  <Tab title="Codex" icon="/images/codex.svg">
+    Usually nothing to run. Codex reads the plugin live from its path, so
+    pulling that checkout is the whole update — and there is no
+    `codex plugin update` verb.
 
-Then it pulls, re-runs the installer — which is what picks up any new `/nomo-*`
-command the release added — and tells you to restart OpenCode. Plugins are
-imported once when its server starts, so until you do, the old copy is still the
-one running.
+    If you added the marketplace from git, Codex holds a snapshot instead, and
+    refreshing it is the update:
 
-It refuses rather than acting when it can't be sure, and each refusal says what
-to do instead: a checkout pinned by an earlier `--ref` install, a working tree
-with uncommitted changes, a checkout that's been moved or deleted, a checkout
-that isn't Nomo's own repository, or nothing installed here at all.
+    ```bash
+    codex plugin marketplace upgrade <marketplace-name>
+    ```
 
-`bunx nomo-ai` runs the same update with `--global`: it updates only the global
-install, whichever folder you run it from. A `--project` install is updated by
-`/nomo-update`, run inside OpenCode in that project.
+    The name is whatever you added it as, not necessarily `nomo`.
+  </Tab>
 
-<Note>
-  It updates the checkout the **stub** points at — the copy OpenCode actually
-  imports — which isn't necessarily the one whose command file you typed. If you
-  keep more than one clone, that's the distinction that matters.
-</Note>
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    ```bash
+    /nomo-update
+    ```
 
-Claude Code and Codex have no counterpart, because their hosts own updates —
-and Codex usually has nothing to run at all:
-[Installation](/setup/install#updating) covers both.
+    It checks before it changes anything. Already current is a stop, not a
+    no-op with a pull attached:
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Already on 2.1.22 — nothing to do.
+    ```
+
+    When there's something to get, it says what before it takes it:
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Update available: 2.1.22 → 2.1.23.
+    ```
+
+    Then it pulls, re-runs the installer — which is what picks up any new
+    `/nomo-*` command the release added — and tells you to restart OpenCode.
+    Plugins are imported once when its server starts, so until you do, the old
+    copy is still the one running.
+
+    It refuses rather than acting when it can't be sure, and each refusal says
+    what to do instead: a checkout pinned by an earlier `--ref` install, a
+    working tree with uncommitted changes, a checkout that's been moved or
+    deleted, a checkout that isn't Nomo's own repository, or nothing installed
+    here at all.
+
+    `bunx nomo-ai` runs the same update with `--global`: it updates only the
+    global install, whichever folder you run it from. A `--project` install is
+    updated by `/nomo-update`, run inside OpenCode in that project.
+
+    <Note>
+      It updates the checkout the **stub** points at — the copy OpenCode
+      actually imports — which isn't necessarily the one whose command file you
+      typed. If you keep more than one clone, that's the distinction that
+      matters.
+    </Note>
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    The same command that installed it:
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    Restart Cursor afterwards, and any open `cursor-agent` session.
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    The same command that installed it:
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    Restart Antigravity afterwards, and any open `agy` session.
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    If you used the Nomo installer, the same command that installed it:
+
+    ```bash
+    bunx nomo-ai --devin
+    ```
+
+    Restart any open `devin` afterwards, and Devin Desktop.
+  </Tab>
+</Tabs>
 
 ## uninstall
 
@@ -455,7 +520,24 @@ bunx nomo-ai --uninstall --devin
 
 With the Devin plugin: `devin plugins remove nomo`.
 
-Then restart the agent.
+No `bunx`? Use `npx` instead — for example `npx nomo-ai --uninstall --cursor`.
+Or run the agent's own script, such as
+`node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
+(`antigravity-install.mjs` for Antigravity, `devin-install.mjs` for Devin).
+
+Antigravity and Devin say when it's done:
+
+```
+✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
+```
+
+```
+devin-install: removed Nomo's hooks from Devin — restart devin
+```
+
+Then restart the agent. For Cursor and Antigravity, quit the app and open it
+again, and restart any open `cursor-agent` or `agy`. For Devin, close every
+open `devin` and start it again.
 
 It removes only what Nomo added to that agent. Your phone stays paired, so your
 other agents keep working. To disconnect this computer as well, run
@@ -466,6 +548,26 @@ Imported Nomo's Claude Code plugin into Antigravity? Remove that too with
 
 `bunx nomo-ai --uninstall` always needs the agent named — it never guesses. More
 on each agent's install in [Installation](/setup/install).
+
+## Without slash commands
+
+Antigravity or Devin doesn't know Nomo's commands? Run them from Terminal
+instead. This works with the Nomo installer:
+
+| | |
+| --- | --- |
+| Pair | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| Pair with a typed code | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+| Check status (Antigravity) | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| Check status (Devin) | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
+| Pause approvals | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+| Resume approvals | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+| Clear stuck sessions | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| Unpair | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+After pairing from Terminal, run
+`~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait` and scan the
+QR code. Add `--verbose` to the installer to see what it changes.
 
 ## Where state lives
 
