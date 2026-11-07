@@ -171,6 +171,10 @@ it's still connected and whether events are actually being delivered.
   agent and try again, or use the typed-code path.
 - **The scan succeeds but no computer appears** — run the status command above
   to see whether events are being delivered at all.
+- **Old or duplicate rows show up** — run `/nomo-cc:reset` (or `$nomo-reset`).
+  It clears rows for sessions that are gone, and you stay paired.
+- **You want to disconnect a computer** — run `/nomo-cc:unpair` (or
+  `$nomo-unpair`). It removes the pairing and deletes the local key.
 - **Computer Limit Reached** — you're at **5** paired computers. Touch and hold
   one in the Sessions tab, forget it, and pair again.
 - **Couldn't Verify This iPhone** — Nomo's server couldn't verify your phone.
