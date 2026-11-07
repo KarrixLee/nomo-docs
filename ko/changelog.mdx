@@ -4,6 +4,36 @@ description: "무엇이, 언제 나왔는지."
 icon: "clock-rotate-left"
 ---
 
+<Update label="2026년 11월" description="2.5.0">
+  ## Devin: 상태, 사용량, 세션
+
+  Devin을 지원합니다. 상태와 사용량, 세션을 iPhone에서 확인하고, Devin의 권한 요청에도 iPhone에서 답할 수 있습니다.
+
+  **새로운 기능**
+
+  - **제공업체**에 **Devin** 추가: 다섯 가지 서비스의 [상태](/ko/status)를 알림과 상태 위젯으로 확인할 수 있습니다. 이미 Nomo를 쓰고 있었다면 Devin 상태 알림은 꺼진 상태로 시작합니다. [알림](/ko/notifications)에서 켜세요
+  - Devin 사용량: Devin 계정으로 로그인하면 일간·주간 한도와 각각의 초기화 시각을 볼 수 있습니다. [연결하기](/ko/usage#devin)
+  - [Devin 세션](/ko/sessions/devin)을 iPhone, Dynamic Island, 잠금 화면에서 볼 수 있습니다. Devin이 붙인 세션 제목과 모델도 함께 표시됩니다. Devin CLI와 Devin Desktop에서 동작합니다
+  - iPhone, Dynamic Island, 잠금 화면에서 Devin에 답할 수 있습니다: **허용**, **… 항상 허용(이 세션)**, **거부**, **메모와 함께 거부…**, 그리고 [Devin의 질문](/ko/sessions/devin#questions)에 대한 답변까지
+  - 실행 중인 Devin 세션을 [중단](/ko/sessions/devin#interrupt)할 수 있습니다. Devin은 진행 중인 단계를 마친 뒤 멈춥니다. 지금은 iPhone과 Mac이 같은 네트워크에 있어야 합니다
+
+  **개선**
+
+  - **메모와 함께 거부…**와 **메모 추가**를 누르면, 답하는 내용을 보면서 쓸 수 있는 넉넉한 메모 화면이 열립니다
+  - **항상 허용**에 허용하는 범위가 표시됩니다. 예: **`bun test` 명령 항상 허용(이 세션)**. OpenCode에서는 **OpenCode 재시작 전까지**라고 표시됩니다. 플러그인 2.5.0이 필요합니다
+  - 시트는 ✕로 닫습니다
+  - **제공업체** 목록이 A–Z 순으로 정렬됩니다
+  - Nomo Pro 화면에 Nomo가 지원하는 에이전트 여섯 가지가 모두 표시됩니다
+
+  **수정**
+
+  - 대기 중인 세션이나 컴퓨터 카드를 길게 터치했을 때 나타나는 메뉴가 더 이상 깜박이지 않습니다
+
+  **플러그인 2.5.0**
+
+  - Devin 세션을 사용하려면 컴퓨터에 플러그인 2.5.0이 필요합니다. Devin 플러그인으로 또는 `bunx nomo-ai --devin`으로 [설치](/ko/setup/install)하세요
+</Update>
+
 <Update label="2026년 11월" description="2.4.0">
   ## Pro 위젯, 활동, 여러 계정
 
