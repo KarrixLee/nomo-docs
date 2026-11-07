@@ -1,6 +1,6 @@
 ---
 title: "命令"
-description: "Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 的全部 Nomo 命令——配对、状态、审批、重置、解除配对和更新，都在这一页。"
+description: "Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 的全部 Nomo 命令——配对、状态、审批、重置、解除配对、更新和卸载，都在这一页。"
 icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
@@ -33,6 +33,8 @@ Claude Code、Codex、OpenCode、Antigravity 和 Devin 上都有的五条命令�
 最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令，而 Cursor 靠再运行一次它的安装工具来更新，Antigravity 和 Devin 也一样。它们各自需要什么——Codex 通常什么都不需要——都写在[安装](/zh-Hans/setup/install#updating)里。
 
 审批那一行上 Cursor 的空格同样不是漏写：Cursor 会话是只读的，所以没有远程审批可以暂停——[搭配 Cursor 使用](/zh-Hans/sessions/cursor)。
+
+移除 Nomo 没有 `/` 命令：只要在终端里粘贴一行——见 [uninstall](#uninstall)。
 
 ## pair {#pair}
 
@@ -331,6 +333,47 @@ Update available: 2.1.22 → 2.1.23.
 </Note>
 
 Claude Code 和 Codex 没有对应的命令，因为更新归它们各自的宿主管，而 Codex 通常根本没有什么要执行：两边都写在[安装](/zh-Hans/setup/install#updating)里。
+
+## uninstall {#uninstall}
+
+从一个智能体里移除 Nomo。在终端里运行，而不是在智能体里：选你的智能体那一栏，粘贴那一行，按回车。
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+claude plugin uninstall nomo-cc@nomo
+```
+
+```bash Codex icon="/images/codex.svg"
+codex plugin remove nomo@nomo
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+rm ~/.config/opencode/plugins/nomo.js
+rm ~/.config/opencode/commands/nomo-*.md
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
+bunx nomo-ai --uninstall --cursor
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+bunx nomo-ai --uninstall --antigravity
+```
+
+```bash Devin icon="/images/providers/devin.svg"
+bunx nomo-ai --uninstall --devin
+```
+</CodeGroup>
+
+用 Devin 插件时：`devin plugins remove nomo`。
+
+然后重启那个智能体。
+
+它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，**先**运行 [unpair](#unpair)——Nomo 一移除，这条命令也就没了。
+
+把 Nomo 的 Claude Code 插件导入过 Antigravity？也用 `agy plugin uninstall nomo-cc` 移除它，然后重启 Antigravity。
+
+`bunx nomo-ai --uninstall` 必须指定智能体——它从不猜。每个智能体的安装细节见[安装](/zh-Hans/setup/install)。
 
 ## 状态文件的位置 {#where-state-lives}
 

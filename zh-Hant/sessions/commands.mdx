@@ -1,6 +1,6 @@
 ---
 title: "指令"
-description: "Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 上的每一個 Nomo 指令 — 配對、狀態、批准、重設、解除配對與更新，全在同一頁。"
+description: "Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 上的每一個 Nomo 指令 — 配對、狀態、批准、重設、解除配對、更新與解除安裝，全在同一頁。"
 icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "session", "電腦", "動態島", "權限", "配對", "指令"]
 ---
@@ -33,6 +33,8 @@ Claude Code、Codex、OpenCode、Antigravity 和 Devin 上都有的五個指令�
 最後一列留白不是漏掉：Claude Code 和 Codex 由各自的主程式負責更新，所以 Nomo 沒有在那邊多加指令，而 Cursor 是再執行一次它的安裝工具來更新，Antigravity 和 Devin 也一樣。它們各自需要什麼 — Codex 通常什麼都不需要 — 都寫在[安裝](/zh-Hant/setup/install#updating)裡。
 
 Cursor 在批准那一列的留白同樣不是漏掉：Cursor 的 sessions 是唯讀的，所以沒有遠端批准可以暫停 — [搭配 Cursor 使用](/zh-Hant/sessions/cursor)。
+
+移除 Nomo 沒有 `/` 指令：只要在終端機裡貼上一行 — 請見 [uninstall](#uninstall)。
 
 ## pair {#pair}
 
@@ -331,6 +333,47 @@ Update available: 2.1.22 → 2.1.23.
 </Note>
 
 Claude Code 和 Codex 沒有對應的指令，因為更新由它們各自的主程式負責，而 Codex 通常根本沒有什麼要執行：兩邊都寫在[安裝](/zh-Hant/setup/install#updating)裡。
+
+## uninstall {#uninstall}
+
+從一個代理移除 Nomo。請在終端機裡執行，而不是在代理裡：選你的代理那一頁，貼上那一行，按 Return。
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+claude plugin uninstall nomo-cc@nomo
+```
+
+```bash Codex icon="/images/codex.svg"
+codex plugin remove nomo@nomo
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+rm ~/.config/opencode/plugins/nomo.js
+rm ~/.config/opencode/commands/nomo-*.md
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
+bunx nomo-ai --uninstall --cursor
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+bunx nomo-ai --uninstall --antigravity
+```
+
+```bash Devin icon="/images/providers/devin.svg"
+bunx nomo-ai --uninstall --devin
+```
+</CodeGroup>
+
+使用 Devin 外掛程式時：`devin plugins remove nomo`。
+
+然後重新啟動那個代理。
+
+它只會移除 Nomo 加進那個代理的東西。手機仍保持配對，你的其他代理照常運作。如果也想中斷這台電腦的連線，請**先**執行 [unpair](#unpair) — Nomo 一移除，這個指令也就沒了。
+
+曾把 Nomo 的 Claude Code 外掛程式匯入 Antigravity？也請用 `agy plugin uninstall nomo-cc` 移除它，然後重新啟動 Antigravity。
+
+`bunx nomo-ai --uninstall` 一定要指定代理 — 它絕不會自己猜。每個代理的安裝細節請見[安裝](/zh-Hant/setup/install)。
 
 ## 狀態存放的位置 {#where-state-lives}
 

@@ -1,7 +1,7 @@
 ---
 title: "Nomo plugin commands: pair, status, reset, update"
 sidebarTitle: "Commands"
-description: "Every Nomo command for Claude Code, Codex, OpenCode, Cursor, Antigravity and Devin — pairing, status, approvals, reset, unpair and update — in one place."
+description: "Every Nomo command for Claude Code, Codex, OpenCode, Cursor, Antigravity and Devin — pairing, status, approvals, reset, unpair, update and uninstall — in one place."
 icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Commands"]
 ---
@@ -51,6 +51,9 @@ usually nothing — is in [Installation](/setup/install#updating).
 Cursor's empty cell on the approvals row isn't one either: Cursor sessions are
 read-only, so there are no remote approvals to pause —
 [Using Cursor](/sessions/cursor).
+
+Removing Nomo has no slash command: it's one line you paste into Terminal —
+see [uninstall](#uninstall).
 
 ## pair
 
@@ -417,6 +420,52 @@ install, whichever folder you run it from. A `--project` install is updated by
 Claude Code and Codex have no counterpart, because their hosts own updates —
 and Codex usually has nothing to run at all:
 [Installation](/setup/install#updating) covers both.
+
+## uninstall
+
+Removes Nomo from one agent. Run it in Terminal, not inside the agent: pick
+your agent's tab, paste the line and press Return.
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+claude plugin uninstall nomo-cc@nomo
+```
+
+```bash Codex icon="/images/codex.svg"
+codex plugin remove nomo@nomo
+```
+
+```bash OpenCode icon="/images/opencode.svg"
+rm ~/.config/opencode/plugins/nomo.js
+rm ~/.config/opencode/commands/nomo-*.md
+```
+
+```bash Cursor icon="/images/providers/cursor.svg"
+bunx nomo-ai --uninstall --cursor
+```
+
+```bash Antigravity icon="/images/providers/antigravity.png"
+bunx nomo-ai --uninstall --antigravity
+```
+
+```bash Devin icon="/images/providers/devin.svg"
+bunx nomo-ai --uninstall --devin
+```
+</CodeGroup>
+
+With the Devin plugin: `devin plugins remove nomo`.
+
+Then restart the agent.
+
+It removes only what Nomo added to that agent. Your phone stays paired, so your
+other agents keep working. To disconnect this computer as well, run
+[unpair](#unpair) **first** — once Nomo is gone, so is that command.
+
+Imported Nomo's Claude Code plugin into Antigravity? Remove that too with
+`agy plugin uninstall nomo-cc`, then restart Antigravity.
+
+`bunx nomo-ai --uninstall` always needs the agent named — it never guesses. More
+on each agent's install in [Installation](/setup/install).
 
 ## Where state lives
 
