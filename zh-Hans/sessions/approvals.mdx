@@ -58,7 +58,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "Devin", "
 | --- | --- | --- |
 | **允许** | 灵动岛、App | 执行该操作并继续。 |
 | **拒绝** | 灵动岛、App | 跳过它，不做这一步继续往下。 |
-| **始终允许 Bash（本次会话）** | 仅 App | 允许，并且**在本次会话余下的时间里**不再问。绝不写入磁盘，也绝不带到下一次会话。 |
+| **始终允许 …（本次会话）** | 仅 App | 允许，并且对标签里写明的范围（例如所有 `bun test` 命令）**在本次会话余下的时间里**不再问。绝不写入磁盘，也绝不带到下一次会话。如果你的电脑只能允许这一次请求，这个选项就不会出现。 |
 | **批准并切换到自动模式** | 仅 App | 允许，并把那个会话切换到自动模式，直到会话结束。如果是计划，可选的是**批准并自动接受编辑**或**批准并使用自动模式**。仅限 Claude Code。 |
 | **拒绝并附注…** | 仅 App | 拒绝，并把你输入的内容一并带过去——*为什么*，或者*该怎么做*。在计划上它写作**继续规划…**。 |
 | **回答…** | 仅 App | 为一道选择题挑一个选项——或者在智能体接受的情况下，发送你自己输入的回答。 |
@@ -66,7 +66,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "Devin", "
 | **在 Mac 上打开** | 仅 App | 什么也不答复——它把那个会话的终端窗口在 Mac 上调到最前。需要一条[本地网络](/zh-Hans/sessions/settings#local-network)链路。 |
 
 <Note>
-  并不是每个智能体都支持每一个选项。**批准并…**这几个选项只有 Claude Code 有。Codex 没有**始终允许**，OpenCode 没有**拒绝并附注…**。在 OpenCode 上，**拒绝**答复的还是整轮对话，而不是单个工具；**在 Mac 上打开**则根本不会出现。[搭配 Codex 使用](/zh-Hans/sessions/codex)和[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)分别有说明。Cursor 一个都不支持：它的会话是只读的，它的请求永远到不了你的手机——[搭配 Cursor 使用](/zh-Hans/sessions/cursor#what-this-version-doesnt-do)。Antigravity 支持**允许**、**拒绝**和**拒绝并附注…**，但只针对 shell 命令和文件写入——[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#answering-from-your-phone)。Devin 支持**允许**、**始终允许**、**拒绝**和**拒绝并附注…**，也能回答它的提问。Devin 的**始终允许**由 Nomo 保存在你的电脑上，直到会话结束——[搭配 Devin 使用](/zh-Hans/sessions/devin#answering-from-your-phone)。
+  并不是每个智能体都支持每一个选项。**批准并…**这几个选项只有 Claude Code 有。Codex 没有**始终允许**，OpenCode 没有**拒绝并附注…**。在 OpenCode 上，**拒绝**答复的还是整轮对话，而不是单个工具；**始终允许**会一直有效，直到 OpenCode 重启；**在 Mac 上打开**则根本不会出现。[搭配 Codex 使用](/zh-Hans/sessions/codex)和[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)分别有说明。Cursor 一个都不支持：它的会话是只读的，它的请求永远到不了你的手机——[搭配 Cursor 使用](/zh-Hans/sessions/cursor#what-this-version-doesnt-do)。Antigravity 支持**允许**、**拒绝**和**拒绝并附注…**，但只针对 shell 命令和文件写入——[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#answering-from-your-phone)。Devin 支持**允许**、**始终允许**、**拒绝**和**拒绝并附注…**，也能回答它的提问。Devin 的**始终允许**由 Nomo 保存在你的电脑上，直到会话结束——[搭配 Devin 使用](/zh-Hans/sessions/devin#answering-from-your-phone)。
 </Note>
 
 **始终允许**和**拒绝并附注…**收在菜单的**更多…**里，**回答…**则直接在菜单上。三者都需要插件 **2.0.0**。在 1.0.0 上你只有普通的“允许”和“拒绝”——Nomo 不会显示一个 Mac 兑现不了的按钮。**批准并…**这几个选项同样收在**更多…**里，需要插件 **2.2.2**。有更新可用时，详情页会告诉你。
