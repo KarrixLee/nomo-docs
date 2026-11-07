@@ -36,7 +36,7 @@ $nomo-status
 ```
 
 ```bash Devin icon="/images/providers/devin.svg"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
+/nomo-status
 ```
 </CodeGroup>
 
@@ -45,8 +45,10 @@ de Nomo. Muestra un resumen corto en palabras sencillas, y una línea por cada
 problema que dice qué hacer; escribe `/nomo-status verbose` para ver el informe
 completo que se describe abajo.
 
-Para Devin, pega la línea de Devin en Terminal. Con el plugin de Devin, escribe
-`/nomo:status` en Devin.
+Con el plugin de Devin, escribe `/nomo:status` en Devin. Si Devin no reconoce
+el comando, pega
+`~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` en
+Terminal.
 
 Informa sobre el **ordenador**, no solo sobre tu sesión: vinculación, entrega,
 el enlace directo por red local, aprobaciones, y después el agente en el que
@@ -218,12 +220,8 @@ está en [Comandos](/es/sessions/commands#status).
 
 <Accordion title="Mi teléfono no muestra nada de Devin" icon="terminal">
   1. Cierra todos los `devin` que tengas abiertos y vuelve a iniciar `devin`.
-  2. Pega esto en Terminal y haz lo que dice la línea que empieza por `→`.
-     Con el plugin de Devin, escribe `/nomo:status` en Devin.
-
-     ```bash
-     ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
-     ```
+  2. Escribe `/nomo-status` en Devin y haz lo que dice la línea que empieza
+     por `→`. Con el plugin de Devin, escribe `/nomo:status`.
 
   3. ¿Usas Devin Desktop? Comprueba que **Restricted Mode** está desactivado.
   4. Envía un mensaje en Devin. Una sesión solo aparece después de tu primer
@@ -259,9 +257,11 @@ está en [Comandos](/es/sessions/commands#status).
   ```
 
   ```bash Devin icon="/images/providers/devin.svg"
-  ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
+  /nomo-reset
   ```
   </CodeGroup>
+
+  Con el plugin de Devin, escribe `/nomo:reset` en Devin.
 
   Las sesiones vivas, tu vinculación y tus claves se quedan intactas —
   [qué imprime](/es/sessions/commands#reset). Una fila de OpenCode pertenece al
@@ -604,7 +604,7 @@ que ejecutes ese comando allí.
       "name": "Mi teléfono no muestra nada de Devin",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cierra todos los devin que tengas abiertos y vuelve a iniciar devin. Pega ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin en Terminal (o, con el plugin de Devin, escribe /nomo:status en Devin) y haz lo que dice la línea que empieza por →. En Devin Desktop, comprueba que Restricted Mode está desactivado. Después envía un mensaje en Devin: una sesión solo aparece después de tu primer mensaje. ¿Sigue sin salir nada? En Nomo, toca el botón + (Elegir agentes) y activa Devin."
+        "text": "Cierra todos los devin que tengas abiertos y vuelve a iniciar devin. Escribe /nomo-status en Devin (con el plugin de Devin, /nomo:status) y haz lo que dice la línea que empieza por →. En Devin Desktop, comprueba que Restricted Mode está desactivado. Después envía un mensaje en Devin: una sesión solo aparece después de tu primer mensaje. ¿Sigue sin salir nada? En Nomo, toca el botón + (Elegir agentes) y activa Devin."
       }
     },
     {

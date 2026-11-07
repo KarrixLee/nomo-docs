@@ -131,8 +131,11 @@ bunx nomo-ai --cursor
 ## 제거 {#uninstalling}
 
 ```bash
-node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+bunx nomo-ai --uninstall --cursor
 ```
+
+`bunx`가 없다면 `npx nomo-ai --uninstall --cursor` 또는
+`node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`을 사용하십시오.
 
 그런 다음 Cursor를 재시작하십시오. 제거하면 Skill 네 개는 삭제되지만 페어링은
 그대로 남습니다. 이 컴퓨터의 다른 에이전트와 공유되기 때문입니다. 컴퓨터의

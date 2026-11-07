@@ -41,12 +41,12 @@ icon: "qrcode-read"
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        /nomo-pair
         ```
         </CodeGroup>
 
         在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。
-        Devin 的話，把它那一行貼到終端機裡，然後照著[搭配 Devin 使用](/zh-Hant/sessions/devin#set-it-up)做。使用 Devin 外掛程式時，也可以改在 Devin 裡輸入 `/nomo:pair`。
+        使用 Devin 外掛程式時，請改在 Devin 裡輸入 `/nomo:pair`。如果 Devin 不認得這個指令，請把 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` 貼到終端機裡。
 
         瀏覽器會開啟一個套用主題樣式的配對頁面，上面有一個 QR code。
 
@@ -109,9 +109,11 @@ icon: "qrcode-read"
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+        /nomo-pair code
         ```
         </CodeGroup>
+
+        使用 Devin 外掛程式時，請改在 Devin 裡輸入 `/nomo:pair code`。
 
         不會開啟瀏覽器。一次性代碼會直接印在終端機上：
 

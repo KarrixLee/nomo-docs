@@ -45,14 +45,15 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        /nomo-pair
         ```
         </CodeGroup>
 
         En Antigravity, elige **Allow** (permitir) cuando pregunte si ejecuta un
-        comando de Nomo. Para Devin, pega su línea en Terminal y después
-        sigue [Usar Devin](/es/sessions/devin#set-it-up). Con el plugin de
-        Devin, también puedes escribir `/nomo:pair` en Devin.
+        comando de Nomo. Con el plugin de Devin, escribe `/nomo:pair` en
+        Devin. Si Devin no reconoce el comando, pega
+        `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` en
+        Terminal.
 
         Se abre en tu navegador una página de vinculación con la estética de
         la app y un código QR.
@@ -127,9 +128,11 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+        /nomo-pair code
         ```
         </CodeGroup>
+
+        Con el plugin de Devin, escribe `/nomo:pair code` en Devin.
 
         No se abre ningún navegador. Un código de un solo uso se imprime
         directamente en la terminal:

@@ -215,7 +215,7 @@ icon: "puzzle-piece"
     以后要移除它：
 
     ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+    bunx nomo-ai --uninstall --cursor
     ```
 
     然后重启 Cursor。
@@ -265,7 +265,7 @@ icon: "puzzle-piece"
     以后要移除它：
 
     ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    bunx nomo-ai --uninstall --antigravity
     ```
 
     然后重启 Antigravity。
@@ -303,24 +303,20 @@ icon: "puzzle-piece"
         </Warning>
       </Step>
 
-      <Step title="在终端里配对">
-        安装工具不会给 Devin 添加 Nomo 命令。把下面这条粘贴到终端里，然后用 iPhone 上的 Nomo 扫描二维码：
-
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-        ```
+      <Step title="配对">
+        在 `devin` 里输入 `/nomo-pair`，然后用 iPhone 上的 Nomo 扫描二维码。
 
         已经在别的智能体里配对过？跳过这一步。[搭配 Devin 使用](/zh-Hans/sessions/devin#set-it-up)有每一步的详细说明。
       </Step>
     </Steps>
 
-    它会把 Nomo 的条目加进 `~/.config/devin/config.json`，Devin 的其他设置原样不动。以后要移除它：
+    它会把 Nomo 的条目加进 `~/.config/devin/config.json`，Devin 的其他设置原样不动，并把 `/nomo-*` 命令作为 Devin skill 添加进去。以后要移除它：
 
     ```bash
-    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    bunx nomo-ai --uninstall --devin
     ```
 
-    然后重启 Devin。
+    然后重启 Devin。用 Devin 插件的话，改为用 `devin plugins remove nomo` 移除。
   </Tab>
 </Tabs>
 
@@ -348,8 +344,9 @@ npx nomo-ai
 | `--all` | 六个全装，无论有没有找到——只有 Cursor、Antigravity 和 Devin 例外：这台电脑上没有它们时会跳过（想照装就指定 `--cursor`、`--antigravity` 或 `--devin`） |
 | `-y`、`--yes` | 不出选择界面，找到多少装多少 |
 | `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
+| `--uninstall` | 配合 `--cursor`、`--antigravity` 或 `--devin` 使用：从那个智能体里移除 Nomo。必须指定智能体——它从不猜 |
 
-它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。Devin 在终端里配对——见[搭配 Devin 使用](/zh-Hans/sessions/devin#set-it-up)。
+它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`（用 Devin 插件时是 `/nomo:pair`）。
 
 ## 更新 {#updating}
 

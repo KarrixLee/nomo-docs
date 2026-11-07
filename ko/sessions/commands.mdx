@@ -5,10 +5,10 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "세션", "컴퓨터", "Dynamic Island", "권한", "페어링", "명령"]
 ---
 
-Claude Code, Codex, OpenCode, Antigravity에서 쓰는 명령 다섯 개, OpenCode에만
-필요한 여섯 번째, 그리고 Cursor에서 쓰는 네 개가 있습니다. 적용할 컴퓨터의
-에이전트 세션 안에서 실행하며, Claude Code와 OpenCode에서는 `/` 명령, Cursor와
-Antigravity에서는 `/` Skill, Codex에서는 `$` Skill입니다.
+Claude Code, Codex, OpenCode, Antigravity, Devin에서 쓰는 명령 다섯 개,
+OpenCode에만 필요한 여섯 번째, 그리고 Cursor에서 쓰는 네 개가 있습니다. 적용할
+컴퓨터의 에이전트 세션 안에서 실행하며, Claude Code와 OpenCode에서는 `/` 명령,
+Cursor, Antigravity, Devin에서는 `/` Skill, Codex에서는 `$` Skill입니다.
 
 <Note>
   Antigravity에서는 모든 Nomo 명령이 실행 전에 먼저 묻습니다. **Allow**를
@@ -18,33 +18,32 @@ Antigravity에서는 `/` Skill, Codex에서는 `$` Skill입니다.
 </Note>
 
 <Note>
-  Devin에서는 Devin 플러그인이 `/nomo:pair`와 `/nomo:status`를 추가합니다. Nomo
-  설치 도구를 썼다면 Devin 채팅 안에는 Nomo 명령이 없으므로 터미널에서
-  실행합니다 — [Devin 사용하기](/ko/sessions/devin#commands)에 바로 붙여 넣을 수
-  있는 형태로 모두 있습니다.
+  Devin 플러그인을 쓴다면 Devin의 명령은 `/nomo-` 대신 `/nomo:`로
+  시작합니다 — `/nomo:pair`, `/nomo:status` 등입니다. 자세한 내용은
+  [Devin 사용하기](/ko/sessions/devin#commands)에 있습니다.
 </Note>
 
 <Tip>
   Claude Code에서는 모든 명령에 네임스페이스가 붙습니다. `/nomo-cc:`를 입력하면
   전체 목록이 표시됩니다. OpenCode의 명령 이름은 전역에 평평하게 놓이므로, 그쪽에서
-  Nomo 명령에는 접두사가 전혀 붙지 않습니다. Cursor와 Antigravity의 Skill도 마찬가지입니다.
+  Nomo 명령에는 접두사가 전혀 붙지 않습니다. Cursor, Antigravity, Devin의 Skill도 마찬가지입니다.
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
-| --- | --- | --- | --- | --- | --- |
-| <a href="#pair">이 컴퓨터 페어링</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">상태 확인</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">승인 일시 중지 또는 재개</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
-| <a href="#reset">멈춘 세션 정리</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">이 컴퓨터 연결 해제</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">플러그인 업데이트</a> | — | — | `/nomo-update` | — | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity | <img src="/images/providers/devin.svg" alt="" className="agent-mark invert-dark" /> Devin |
+| --- | --- | --- | --- | --- | --- | --- |
+| <a href="#pair">이 컴퓨터 페어링</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">상태 확인</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">승인 일시 중지 또는 재개</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">멈춘 세션 정리</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">이 컴퓨터 연결 해제</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">플러그인 업데이트</a> | — | — | `/nomo-update` | — | — | — |
 
 어느 것도 요란하게 실패하지 않습니다. 할 일이 없을 때에도 모두 정상적으로
 종료합니다 — `Not paired`는 오류가 아니라 성공입니다.
 
 마지막 줄의 빈칸은 빠뜨린 것이 아닙니다. Claude Code와 Codex는 각자의 호스트를
 통해 업데이트되므로 Nomo가 거기에 명령을 더하지 않고, Cursor는 설치 도구를 다시
-실행해 업데이트합니다. Antigravity도 마찬가지입니다. 각각 무엇이 필요한지는
+실행해 업데이트합니다. Antigravity와 Devin도 마찬가지입니다. 각각 무엇이 필요한지는
 — Codex는 대개 아무것도 필요 없습니다 —
 [설치](/ko/setup/install#updating)에 있습니다.
 
@@ -78,7 +77,14 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
+```
 </CodeGroup>
+
+Devin 플러그인을 쓴다면 `/nomo:pair`와 `/nomo:pair code`입니다.
 
 인자 없이 실행하면 QR 코드가 담긴 테마 페이지가 브라우저에서 열립니다. 앱에서
 스캔하면 페이지가 스스로 **Paired ✓**로 바뀝니다.
@@ -88,7 +94,7 @@ $nomo-pair code        # one-time code, printed in the terminal
 그 코드가 터미널에, 따라서 에이전트의 트랜스크립트에 남기 때문입니다.
 
 페어링은 사용되지 않으면 **10분** 뒤에 만료됩니다. 페어링 하나는 에이전트가 아니라
-컴퓨터에 적용되므로, 같은 Mac의 Claude Code, Codex, OpenCode, Cursor, Antigravity가 이를 공유합니다.
+컴퓨터에 적용되므로, 같은 Mac의 Claude Code, Codex, OpenCode, Cursor, Antigravity, Devin이 이를 공유합니다.
 전체 절차는 [페어링](/ko/setup/pairing)에 있습니다.
 
 ## status {#status}
@@ -114,7 +120,13 @@ $nomo-status
 /nomo-status           # a short summary in plain words
 /nomo-status verbose   # the full readout below
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
+
+Devin 플러그인을 쓴다면 `/nomo:status`입니다.
 
 무언가 이상해 보일 때 가장 먼저 실행할 명령입니다. 정상인 컴퓨터의 출력은 차분한
 몇 줄뿐입니다. 체크 표시는 없습니다. 아무 문제가 없다는 것은 곧 할 말이 없다는
@@ -246,16 +258,14 @@ $nomo-approvals status      # which way is it set
 ```
 
 ```bash Devin icon="/images/providers/devin.svg"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off      # pause on this computer
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on       # resume
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs status   # which way is it set
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
 ```
 </CodeGroup>
 
-Devin은 해당 줄을 터미널에 붙여 넣습니다 — Nomo 설치 도구를 쓴 경우에 동작합니다.
-Devin 플러그인에는 원격 승인 명령이 없습니다. 같은 컴퓨터의 다른 에이전트에서
-일시 중지하거나, 휴대폰에서 **iPhone에서 답변**을 끄십시오. Devin Desktop에서는
-Devin의 다음 프롬프트 전에 일시 중지하십시오.
+Devin 플러그인을 쓴다면 `/nomo:approvals off`, `on` 또는 `status`입니다. Devin
+Desktop에서는 Devin의 다음 프롬프트 전에 일시 중지하십시오.
 
 **이 컴퓨터**의 원격 승인을 일시 중지하여, 권한 요청이 휴대폰을 기다리지 않고
 곧바로 터미널로 가게 합니다. 휴대폰이 꺼져 있거나 손에 없을 때를 위한 비상구입니다.
@@ -297,7 +307,13 @@ $nomo-reset
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-reset
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-reset
+```
 </CodeGroup>
+
+Devin 플러그인을 쓴다면 `/nomo:reset`입니다.
 
 워치독을 멈추고 죽었거나 유령처럼 남은 세션 행을 정리한 다음, 휴대폰에도 그것을
 지우라고 알립니다.
@@ -337,7 +353,13 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-unpair
+```
 </CodeGroup>
+
+Devin 플러그인을 쓴다면 `/nomo:unpair`입니다.
 
 페어링을 취소하고 해당 컴퓨터의 키를 지웁니다.
 

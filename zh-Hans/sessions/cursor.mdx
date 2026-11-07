@@ -102,8 +102,10 @@ bunx nomo-ai --cursor
 ## 卸载 {#uninstalling}
 
 ```bash
-node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+bunx nomo-ai --uninstall --cursor
 ```
+
+没有 `bunx`？改用 `npx nomo-ai --uninstall --cursor`，或者 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`。
 
 然后重启 Cursor。卸载会删掉那四个 skill，但不会动配对——配对是这台电脑上所有智能体共用的。如果还想解除这台电脑的配对，请在卸载之前运行 `/nomo-unpair`。
 

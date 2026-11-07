@@ -258,7 +258,7 @@ ones.
     To remove it later:
 
     ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+    bunx nomo-ai --uninstall --cursor
     ```
 
     Then restart Cursor.
@@ -315,7 +315,7 @@ ones.
     To remove it later:
 
     ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    bunx nomo-ai --uninstall --antigravity
     ```
 
     Then restart Antigravity.
@@ -359,27 +359,25 @@ ones.
         </Warning>
       </Step>
 
-      <Step title="Pair from Terminal">
-        The installer adds no Nomo commands to Devin. Paste this into Terminal,
-        then scan the QR code with Nomo on your iPhone:
-
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-        ```
+      <Step title="Pair">
+        In `devin`, type `/nomo-pair`, then scan the QR code with Nomo on
+        your iPhone.
 
         Already paired from another agent? Skip this step.
         [Using Devin](/sessions/devin#set-it-up) walks through every step.
       </Step>
     </Steps>
 
-    It adds Nomo's entries to `~/.config/devin/config.json` and leaves your
-    other Devin settings as they are. To remove it later:
+    It adds Nomo's entries to `~/.config/devin/config.json`, leaving your
+    other Devin settings as they are, and the `/nomo-*` commands as Devin
+    skills. To remove it later:
 
     ```bash
-    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    bunx nomo-ai --uninstall --devin
     ```
 
-    Then restart Devin.
+    Then restart Devin. With the Devin plugin, remove it with
+    `devin plugins remove nomo` instead.
   </Tab>
 </Tabs>
 
@@ -412,11 +410,12 @@ For scripting and CI:
 | `--all` | all six, detected or not — except Cursor, Antigravity and Devin, which are skipped when they aren't on this machine (name `--cursor`, `--antigravity` or `--devin` to try anyway) |
 | `-y`, `--yes` | no picker; install everything detected |
 | `-n`, `--dry-run` | print the commands, run nothing |
+| `--uninstall` | with `--cursor`, `--antigravity` or `--devin`: remove Nomo from that agent. Name the agent — it never guesses |
 
 It never pairs your phone. Finish exactly as the steps above describe: restart
 the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
-`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex. Devin pairs from
-Terminal — see [Using Devin](/sessions/devin#set-it-up).
+`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex (`/nomo:pair` with
+the Devin plugin).
 
 ## Updating
 

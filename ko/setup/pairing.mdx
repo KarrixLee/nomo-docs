@@ -43,14 +43,15 @@ icon: "qrcode-read"
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        /nomo-pair
         ```
         </CodeGroup>
 
         Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택합니다.
-        Devin은 Devin 줄을 터미널에 붙여 넣은 다음
-        [Devin 사용하기](/ko/sessions/devin#set-it-up)를 따르십시오. Devin
-        플러그인을 쓴다면 대신 Devin에 `/nomo:pair`를 입력해도 됩니다.
+        Devin 플러그인을 쓴다면 대신 Devin에 `/nomo:pair`를 입력합니다. Devin이
+        이 명령을 알지 못한다면
+        `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs`를 터미널에
+        붙여 넣으십시오.
 
         테마가 적용된 페어링 페이지가 QR 코드와 함께 브라우저에서 열립니다.
 
@@ -122,9 +123,11 @@ icon: "qrcode-read"
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+        /nomo-pair code
         ```
         </CodeGroup>
+
+        Devin 플러그인을 쓴다면 대신 Devin에 `/nomo:pair code`를 입력합니다.
 
         브라우저는 열리지 않습니다. 일회용 코드가 터미널에 바로 출력됩니다:
 

@@ -5,11 +5,11 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
 ---
 
-Cinco comandos en Claude Code, Codex, OpenCode y Antigravity, un sexto que solo
-OpenCode necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del
-agente, en el ordenador al que quieras afectar: un comando con `/` en Claude Code
-y en OpenCode, una skill con `/` en Cursor y en Antigravity, una skill con `$` en
-Codex.
+Cinco comandos en Claude Code, Codex, OpenCode, Antigravity y Devin, un sexto
+que solo OpenCode necesita, y cuatro en Cursor. Se ejecutan desde dentro de una
+sesión del agente, en el ordenador al que quieras afectar: un comando con `/` en
+Claude Code y en OpenCode, una skill con `/` en Cursor, Antigravity y Devin, una
+skill con `$` en Codex.
 
 <Note>
   En Antigravity, cada comando de Nomo pregunta antes. Elige **Allow**
@@ -18,27 +18,26 @@ Codex.
 </Note>
 
 <Note>
-  En Devin, el plugin de Devin añade `/nomo:pair` y `/nomo:status`. Con el
-  instalador de Nomo, Devin no tiene comandos de Nomo dentro de su chat, así que
-  se ejecutan desde Terminal: [Usar Devin](/es/sessions/devin#commands) los
-  tiene todos, listos para pegar.
+  Con el plugin de Devin, los comandos de Devin empiezan por `/nomo:` en vez de
+  `/nomo-`: `/nomo:pair`, `/nomo:status`, etc. Más en
+  [Usar Devin](/es/sessions/devin#commands).
 </Note>
 
 <Tip>
   En Claude Code todo va con espacio de nombres: al escribir `/nomo-cc:` se
   listan todos. Los nombres de comando de OpenCode son planos y globales, así que
-  allí los de Nomo no llevan ningún prefijo, y sus skills de Cursor y
-  Antigravity tampoco.
+  allí los de Nomo no llevan ningún prefijo, y sus skills de Cursor, Antigravity
+  y Devin tampoco.
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
-| --- | --- | --- | --- | --- | --- |
-| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
-| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">Actualizar el plugin</a> | — | — | `/nomo-update` | — | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity | <img src="/images/providers/devin.svg" alt="" className="agent-mark invert-dark" /> Devin |
+| --- | --- | --- | --- | --- | --- | --- |
+| <a href="#pair">Vincular este ordenador</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">Comprobar la salud</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">Pausar o reanudar las aprobaciones</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">Limpiar sesiones atascadas</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">Desconectar este ordenador</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">Actualizar el plugin</a> | — | — | `/nomo-update` | — | — | — |
 
 Ninguno puede fallar a gritos. Todos terminan limpiamente incluso cuando no hay
 nada que hacer: `Not paired` es un éxito, no un error.
@@ -46,7 +45,7 @@ nada que hacer: `Not paired` es un éxito, no un error.
 Las casillas vacías de la última fila no son un olvido: Claude Code y Codex se
 actualizan a través de sus propios anfitriones, así que Nomo no añade ningún
 comando ahí, y Cursor se actualiza volviendo a ejecutar su instalador, igual que
-Antigravity. Lo que
+Antigravity y Devin. Lo que
 necesita cada uno —que en el caso de Codex suele ser nada— está en
 [Instalación](/es/setup/install#updating).
 
@@ -81,7 +80,14 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
+```
 </CodeGroup>
+
+Con el plugin de Devin: `/nomo:pair` y `/nomo:pair code`.
 
 Sin argumentos abre en tu navegador una página con la estética de la app y un
 código QR. Escanéalo en la app y la página cambia sola a **Paired ✓**.
@@ -92,8 +98,8 @@ sesión SSH. Es la vía de segunda opción a propósito: ese código acaba en tu
 terminal y, por tanto, en la transcripción del agente.
 
 Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubre
-la máquina, no el agente: Claude Code, Codex, OpenCode, Cursor y Antigravity en el
-mismo Mac la comparten. El recorrido completo está en [Vinculación](/es/setup/pairing).
+la máquina, no el agente: Claude Code, Codex, OpenCode, Cursor, Antigravity y
+Devin en el mismo Mac la comparten. El recorrido completo está en [Vinculación](/es/setup/pairing).
 
 ## status {#status}
 
@@ -118,7 +124,13 @@ $nomo-status
 /nomo-status           # a short summary in plain words
 /nomo-status verbose   # the full readout below
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
+
+Con el plugin de Devin: `/nomo:status`.
 
 El primero que hay que ejecutar cuando algo se ve raro. Una máquina sana son
 unas pocas líneas tranquilas: no hay marcas de visto, porque que todo esté bien
@@ -256,16 +268,14 @@ $nomo-approvals status      # which way is it set
 ```
 
 ```bash Devin icon="/images/providers/devin.svg"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off      # pause on this computer
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on       # resume
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs status   # which way is it set
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
 ```
 </CodeGroup>
 
-Para Devin, pega su línea en Terminal; funciona con el instalador de Nomo. El
-plugin de Devin no tiene comando de aprobaciones: ponlas en pausa desde otro
-agente del mismo ordenador, o desactiva **Responder en el iPhone** en tu
-teléfono. En Devin Desktop, ponlas en pausa antes del siguiente prompt de Devin.
+Con el plugin de Devin: `/nomo:approvals off`, `on` o `status`. En Devin
+Desktop, ponlas en pausa antes del siguiente prompt de Devin.
 
 Pausa las aprobaciones remotas en **este ordenador**, de modo que las solicitudes
 de permiso van directas a la terminal en lugar de esperar a tu teléfono. La salida
@@ -308,7 +318,13 @@ $nomo-reset
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-reset
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-reset
+```
 </CodeGroup>
+
+Con el plugin de Devin: `/nomo:reset`.
 
 Detiene el proceso supervisor y limpia las filas de sesión muertas o fantasma, y
 después le dice a tu teléfono que las suelte.
@@ -347,7 +363,13 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-unpair
+```
 </CodeGroup>
+
+Con el plugin de Devin: `/nomo:unpair`.
 
 Revoca la vinculación y borra la clave en ese ordenador.
 

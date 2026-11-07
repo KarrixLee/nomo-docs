@@ -214,7 +214,7 @@ icon: "puzzle-piece"
     あとから削除するには、次を実行します。
 
     ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+    bunx nomo-ai --uninstall --cursor
     ```
 
     そのあと Cursor を再起動します。
@@ -264,7 +264,7 @@ icon: "puzzle-piece"
     あとから削除するには、次を実行します。
 
     ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    bunx nomo-ai --uninstall --antigravity
     ```
 
     そのあと Antigravity を再起動します。
@@ -302,24 +302,20 @@ icon: "puzzle-piece"
         </Warning>
       </Step>
 
-      <Step title="ターミナルからペアリングする">
-        インストーラーは Devin に Nomo のコマンドを追加しません。ターミナルに次を貼り付けてから、iPhone の Nomo で QR コードをスキャンします。
-
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-        ```
+      <Step title="ペアリングする">
+        `devin` で `/nomo-pair` と入力してから、iPhone の Nomo で QR コードをスキャンします。
 
         ほかのエージェントですでにペアリング済みの場合は、この手順は飛ばしてください。すべての手順は [Devin での利用](/ja/sessions/devin#set-it-up)で説明しています。
       </Step>
     </Steps>
 
-    `~/.config/devin/config.json` に Nomo の項目を追加し、ほかの Devin の設定はそのまま残します。あとから削除するには、次を実行します。
+    `~/.config/devin/config.json` に Nomo の項目を追加し（ほかの Devin の設定はそのまま残します）、`/nomo-*` コマンドを Devin のスキルとして追加します。あとから削除するには、次を実行します。
 
     ```bash
-    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    bunx nomo-ai --uninstall --devin
     ```
 
-    そのあと Devin を再起動します。
+    そのあと Devin を再起動します。Devin プラグインの場合は、代わりに `devin plugins remove nomo` で削除します。
   </Tab>
 </Tabs>
 
@@ -347,8 +343,9 @@ npx nomo-ai
 | `--all` | 検出の有無にかかわらず 6 つすべて。ただし Cursor、Antigravity、Devin は、このマシンにない場合はスキップされます（それでも試すには `--cursor`、`--antigravity`、`--devin` のいずれかを指定します） |
 | `-y`、`--yes` | 選択画面を出さず、検出したものをすべてインストールします |
 | `-n`、`--dry-run` | 実行するコマンドを表示するだけで、何も実行しません |
+| `--uninstall` | `--cursor`、`--antigravity`、`--devin` のいずれかと一緒に指定すると、そのエージェントから Nomo を削除します。エージェントは必ず指定してください — 推測はしません |
 
-iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です。Devin はターミナルからペアリングします — [Devin での利用](/ja/sessions/devin#set-it-up)をご覧ください。
+iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です（Devin プラグインの場合は `/nomo:pair`）。
 
 ## 更新 {#updating}
 

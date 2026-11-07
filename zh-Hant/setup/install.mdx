@@ -215,7 +215,7 @@ icon: "puzzle-piece"
     之後要移除它：
 
     ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+    bunx nomo-ai --uninstall --cursor
     ```
 
     然後重新啟動 Cursor。
@@ -265,7 +265,7 @@ icon: "puzzle-piece"
     之後要移除它：
 
     ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    bunx nomo-ai --uninstall --antigravity
     ```
 
     然後重新啟動 Antigravity。
@@ -303,24 +303,20 @@ icon: "puzzle-piece"
         </Warning>
       </Step>
 
-      <Step title="從終端機配對">
-        安裝工具不會在 Devin 裡加入 Nomo 指令。把這行貼到終端機裡，然後用 iPhone 上的 Nomo 掃描 QR code：
-
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-        ```
+      <Step title="配對">
+        在 `devin` 裡輸入 `/nomo-pair`，然後用 iPhone 上的 Nomo 掃描 QR code。
 
         已經從其他代理配對過了？跳過這一步。每一個步驟都寫在[搭配 Devin 使用](/zh-Hant/sessions/devin#set-it-up)裡。
       </Step>
     </Steps>
 
-    它會在 `~/.config/devin/config.json` 裡加入 Nomo 的項目，你其他的 Devin 設定都原封不動。之後要移除它：
+    它會在 `~/.config/devin/config.json` 裡加入 Nomo 的項目，你其他的 Devin 設定都原封不動，並把 `/nomo-*` 指令以 Devin skills 的形式加入。之後要移除它：
 
     ```bash
-    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    bunx nomo-ai --uninstall --devin
     ```
 
-    然後重新啟動 Devin。
+    然後重新啟動 Devin。使用 Devin 外掛程式的話，改用 `devin plugins remove nomo` 移除它。
   </Tab>
 </Tabs>
 
@@ -348,8 +344,9 @@ npx nomo-ai
 | `--all` | 六個全裝，不管有沒有找到 — 只有 Cursor、Antigravity 和 Devin 例外：這台電腦上沒有它們時會略過（想照裝就指定 `--cursor`、`--antigravity` 或 `--devin`） |
 | `-y`、`--yes` | 不出選擇畫面，找到多少裝多少 |
 | `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
+| `--uninstall` | 搭配 `--cursor`、`--antigravity` 或 `--devin`：從那個代理移除 Nomo。請指定代理 — 它絕不會自己猜 |
 
-它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。Devin 要從終端機配對 — 見[搭配 Devin 使用](/zh-Hant/sessions/devin#set-it-up)。
+它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`（使用 Devin 外掛程式時是 `/nomo:pair`）。
 
 ## 更新 {#updating}
 

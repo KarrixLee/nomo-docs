@@ -42,12 +42,12 @@ icon: "qrcode-read"
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        /nomo-pair
         ```
         </CodeGroup>
 
         在 Antigravity 里，它要运行 Nomo 命令时选择 **Allow**（允许）。
-        如果是 Devin，把它那一行粘贴到终端里，然后按照[搭配 Devin 使用](/zh-Hans/sessions/devin#set-it-up)操作。用 Devin 插件的话，也可以改为在 Devin 里输入 `/nomo:pair`。
+        用 Devin 插件的话，改为在 Devin 里输入 `/nomo:pair`。如果 Devin 不认识这条命令，就把 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` 粘贴到终端里。
 
         浏览器会打开一个带二维码的配对页面。
 
@@ -110,9 +110,11 @@ icon: "qrcode-read"
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+        /nomo-pair code
         ```
         </CodeGroup>
+
+        用 Devin 插件的话，改为在 Devin 里输入 `/nomo:pair code`。
 
         不会打开浏览器。一次性配对码直接打印到终端：
 

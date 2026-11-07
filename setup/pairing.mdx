@@ -44,14 +44,15 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
+        /nomo-pair
         ```
         </CodeGroup>
 
         In Antigravity, choose **Allow** when it asks to run a Nomo command.
-        For Devin, paste its line into Terminal, then follow [Using
-        Devin](/sessions/devin#set-it-up). With the Devin plugin, you can type
-        `/nomo:pair` in Devin instead.
+        With the Devin plugin, type `/nomo:pair` in Devin instead. If Devin
+        doesn't know the command, paste
+        `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` into
+        Terminal.
 
         A themed pairing page opens in your browser with a QR code.
 
@@ -123,9 +124,11 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
         ```
 
         ```bash Devin icon="/images/providers/devin.svg"
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code
+        /nomo-pair code
         ```
         </CodeGroup>
+
+        With the Devin plugin, type `/nomo:pair code` in Devin instead.
 
         No browser opens. A one-time code prints straight to the terminal:
 

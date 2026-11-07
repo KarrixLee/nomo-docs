@@ -138,34 +138,28 @@ Devin に Nomo を追加する方法は 2 つあります。**Devin プラグイ
         </Warning>
       </Step>
 
-      <Step title="ペアリングを始める">
-        インストーラーは Devin に Nomo のコマンドを追加しないため、ターミナルからペアリングします。次の行をコピーしてターミナルに貼り付け、Return キーを押します。
-
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-        ```
-
-        ブラウザで QR コードのページが開きます。
-      </Step>
-
-      <Step title="iPhone を待つ">
-        次の行をコピーしてターミナルに貼り付け、Return キーを押します。
-
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait
-        ```
-
-        次のように表示されます。
+      <Step title="/nomo-pair と入力する">
+        `devin` で、次のように入力して送信します。
 
         ```
-        Waiting for your phone to scan the QR…
+        /nomo-pair
         ```
+
+        Devin が Nomo のコマンドを実行してよいか確認してきたら、許可してください。ブラウザで QR コードのページが開きます。
       </Step>
 
       <Step title="QR コードをスキャンする">
-        iPhone で Nomo を開き、**セッション** → **コンピュータをペアリング**の順に進んで、ブラウザに表示された QR コードをスキャンします。
+        iPhone で Nomo を開き、**セッション** → **コンピュータをペアリング**の順に進んで、QR コードをスキャンします。
+      </Step>
 
-        ターミナルに、`Paired with` で始まり ✓ で終わる行が表示されます。
+      <Step title="確認する">
+        `devin` で、次のように入力して送信します。
+
+        ```
+        /nomo-status
+        ```
+
+        `!` で始まる行がある場合は、その下の `→` の行の指示に従ってください。
       </Step>
 
       <Step title="Devin でメッセージを送る">
@@ -182,7 +176,7 @@ Devin に Nomo を追加する方法は 2 つあります。**Devin プラグイ
 </Tip>
 
 <Tip>
-  **このコンピュータにブラウザがない場合は、** QR コードの代わりに短いコードを表示させます。プラグインの場合は Devin で `/nomo:pair code` と入力し、インストーラーの場合はターミナルでペアリングの行の最後に `--show-code` を付けます。iPhone で Nomo を開き、**セッション** → **コンピュータをペアリング** → **コードを入力**の順に進んで、コードを入力してください。コードの有効期限は 10 分です。
+  **このコンピュータにブラウザがない場合は、** QR コードの代わりに短いコードを表示させます。Devin で `/nomo-pair code` と入力します（プラグインの場合は `/nomo:pair code`）。iPhone で Nomo を開き、**セッション** → **コンピュータをペアリング** → **コードを入力**の順に進んで、コードを入力してください。コードの有効期限は 10 分です。
 </Tip>
 
 <Note>
@@ -191,28 +185,19 @@ Devin に Nomo を追加する方法は 2 つあります。**Devin プラグイ
 
 ## コマンド {#commands}
 
-**Devin プラグインの場合**は、Devin で次のように入力します。
+Devin で次のように入力します。Devin プラグインの場合は、`/nomo-` ではなく `/nomo:` で始まります — たとえば `/nomo:pair` です。
 
-| 入力するもの | すること |
-| --- | --- |
-| `/nomo:pair` | このコンピュータを iPhone とペアリングする |
-| `/nomo:pair code` | 同じことを、QR コードの代わりに入力用の短いコードで行う |
-| `/nomo:status` | すべて正常に動いているか確認する |
+| 入力するもの | Devin プラグインの場合 | すること |
+| --- | --- | --- |
+| `/nomo-pair` | `/nomo:pair` | このコンピュータを iPhone とペアリングする |
+| `/nomo-pair code` | `/nomo:pair code` | 同じことを、QR コードの代わりに入力用の短いコードで行う |
+| `/nomo-status` | `/nomo:status` | すべて正常に動いているか確認する |
+| `/nomo-approvals off` | `/nomo:approvals off` | iPhone への確認をやめる — 代わりに Mac 上の Devin で確認されます |
+| `/nomo-approvals on` | `/nomo:approvals on` | iPhone への確認を再開する |
+| `/nomo-reset` | `/nomo:reset` | 止まったままのセッションを iPhone から消去する（ペアリングはそのまま） |
+| `/nomo-unpair` | `/nomo:unpair` | このコンピュータと iPhone のペアリングを解除する |
 
-iPhone への確認をやめるには、Nomo の[設定](/ja/sessions/settings#remote-approvals)で「iPhoneで回答」をオフにします。このコンピュータで Claude Code も使っている場合は、Claude Code で `/nomo-cc:approvals off` と入力すると、このコンピュータの iPhone での承認を一時停止できます。
-
-**Nomo インストーラーの場合**は、Devin のチャットの中に Nomo のコマンドがありません。代わりに、ターミナルで次を実行します。
-
-| すること | ターミナルに貼り付けるもの |
-| --- | --- |
-| このコンピュータを iPhone とペアリングする | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
-| 同じことを、QR コードの代わりに短いコードで行う | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
-| iPhone でのペアリングの完了を待つ | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait` |
-| すべて正常に動いているか確認する | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
-| iPhone への確認をやめる — 代わりに Mac 上の Devin で確認されます | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
-| iPhone への確認を再開する | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
-| 止まったままのセッションを iPhone から消去する（ペアリングはそのまま） | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
-| このコンピュータと iPhone のペアリングを解除する | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+Devin が Nomo のコマンドを実行してよいか確認してきたら、許可してください。Devin がコマンドを認識しない場合は、インストーラーをもう一度実行して Devin を再起動してください — または、[上級者向け](#advanced)にある方法でターミナルから実行します。
 
 ペアリングと承認のスイッチは、このコンピュータのすべてのコーディングアプリで共有されます。ここで承認をオフにすると、Claude Code と Codex でもオフになります。
 
@@ -298,11 +283,7 @@ Devin のドキュメントによると、Devin Desktop の **Devin Local** エ�
 <AccordionGroup>
   <Accordion title="iPhone に何も表示されない">
     1. 開いている `devin` をすべて閉じて、もう一度起動します。
-    2. Nomo の状態を確認します。プラグインの場合は、Devin で `/nomo:status` と入力します。インストーラーの場合は、ターミナルで次を実行します。
-
-       ```bash
-       ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
-       ```
+    2. Nomo の状態を確認します。Devin で `/nomo-status` と入力します（プラグインの場合は `/nomo:status`）。
 
     3. `→` で始まる行の指示に従います。
 
@@ -338,21 +319,13 @@ Devin のドキュメントによると、Devin Desktop の **Devin Local** エ�
   </Accordion>
 
   <Accordion title="iPhone で承認を求められなくなった">
-    インストーラーを使った場合は、ターミナルで次を実行します。
-
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on
-    ```
+    Devin で `/nomo-approvals on` と入力します（プラグインの場合は `/nomo:approvals on`）。
 
     すでにオンだった場合は、[設定](/ja/sessions/settings#remote-approvals)の「iPhoneで回答」を確認してください。
   </Accordion>
 
   <Accordion title="セッションが「実行中」のまま止まっている">
-    インストーラーを使った場合は、ターミナルで次を実行します。
-
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
-    ```
+    Devin で `/nomo-reset` と入力します（プラグインの場合は `/nomo:reset`）。
   </Accordion>
 </AccordionGroup>
 
@@ -379,7 +352,7 @@ devin plugins remove nomo
 <Steps>
   <Step title="ターミナルで次を実行する">
     ```bash
-    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    bunx nomo-ai --uninstall --devin
     ```
 
     次のように表示されます。
@@ -387,6 +360,8 @@ devin plugins remove nomo
     ```
     devin-install: removed Nomo's hooks from Devin — restart devin
     ```
+
+    `bunx` がない場合は、`npx nomo-ai --uninstall --devin` か `node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall` を使ってください。
   </Step>
 
   <Step title="Devin を再起動する">
@@ -394,14 +369,30 @@ devin plugins remove nomo
   </Step>
 </Steps>
 
-iPhone とのペアリングは、ほかのコーディングアプリのためにそのまま残ります。このコンピュータと iPhone のペアリングも解除したい場合は、インストーラーをアンインストールする**前に**、[コマンド](#commands)のペアリング解除のコマンドを実行してください。
+iPhone とのペアリングは、ほかのコーディングアプリのためにそのまま残ります。このコンピュータと iPhone のペアリングも解除したい場合は、アンインストールする**前に** Devin で `/nomo-unpair` と入力してください。
 
 ## 上級者向け {#advanced}
 
 <AccordionGroup>
+  <Accordion title="コマンドを使わずに実行する" icon="terminal">
+    同じコマンドを、Devin のチャットではなくターミナルから実行できます（Nomo インストーラーの場合）。
+
+    | | |
+    | --- | --- |
+    | ペアリング | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+    | コードを入力してペアリング | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+    | 状態の確認 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
+    | 承認の一時停止 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+    | 承認の再開 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+    | 止まったセッションの消去 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+    | ペアリングの解除 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+    ターミナルからペアリングしたあとは、`~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait` を実行して QR コードをスキャンします。インストーラーに `--verbose` を付けると、何を変更するかを確認できます。
+  </Accordion>
+
   <Accordion title="しくみ" icon="gear">
-    - **インストーラーが変更するもの。** プラグインを `~/.nomo` にクローンし、`~/.config/devin/config.json` の `"hooks"` キーに Nomo の項目を追加します。ほかの Devin の設定には手を付けません。もう一度実行しても、何も変わりません。ファイルにコメントがある場合は、先に `config.json.nomo-backup` にコピーします。アンインストールで削除されるのは、Nomo の項目だけです。`devin` で `/hooks` と入力すると、読み込まれたものを確認できます。
-    - **プラグインが追加するもの。** Devin プラグインは、同じ 2 つのフックと、`/nomo:pair` と `/nomo:status` のコマンドを追加します。ルール、MCP サーバー、エージェントは追加しません。動くのはローカルの Devin セッションの中だけで、Devin Cloud では動きません。インストーラーの項目がある間は、プラグインのフックは何も送りません。
+    - **インストーラーが変更するもの。** プラグインを `~/.nomo` にクローンし、`~/.config/devin/config.json` の `"hooks"` キーに Nomo の項目を追加します。ほかの Devin の設定には手を付けません。また、`/nomo-*` コマンドを Devin のスキルとして `~/.config/devin/skills/` に追加します。同じ名前のスキルがすでにある場合は、そのままにします。もう一度実行しても、何も変わりません。ファイルにコメントがある場合は、先に `config.json.nomo-backup` にコピーします。アンインストールで削除されるのは、Nomo の項目とスキルだけです。`devin` で `/hooks` と入力すると、読み込まれたものを確認できます。
+    - **プラグインが追加するもの。** Devin プラグインは、同じ 2 つのフックと、同じコマンドを `/nomo:pair`、`/nomo:status`、`/nomo:approvals`、`/nomo:reset`、`/nomo:unpair` として追加します。ルール、MCP サーバー、エージェントは追加しません。動くのはローカルの Devin セッションの中だけで、Devin Cloud では動きません。インストーラーの項目がある間は、プラグインのフックは何も送りません。
     - **状態。** `UserPromptSubmit`、`PostToolUse`、`Stop`、`SessionEnd` のフックが状態を報告します。何も出力しないので、プロンプトをブロックしたり、ツールの呼び出しを変えたりすることはありません — ただし、「中断」をタップしたあとは例外で、次の `PostToolUse` が `{"continue":false}` を出力して、そのターンを終わらせます。
     - **承認。** `PermissionRequest` のフックが、ツール名とそのコマンドまたはファイルパスを、エンドツーエンド暗号化して iPhone に送ります。`approve` を返すのは、ペアリングした iPhone からそのリクエストに対して「許可」が届いたときだけで、「拒否」のときはメモを付けて `block` を返します。それ以外 — ペアリングしていない、承認が一時停止中、オフライン、タイムアウト、エラー — では何も出力せず、判断を Devin 自身の確認に任せます。
     - **質問。** 同じフックが `PreToolUse`（`ask_user_question` のときだけ）で、Devin の質問とその選択肢を、エンドツーエンド暗号化して iPhone に送ります。あなたの回答は、回答を理由にした `block` として返り、Devin のモデルがそれを読みます。

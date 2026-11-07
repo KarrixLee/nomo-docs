@@ -101,8 +101,10 @@ bunx nomo-ai --cursor
 ## アンインストール {#uninstalling}
 
 ```bash
-node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+bunx nomo-ai --uninstall --cursor
 ```
+
+`bunx` がない場合は、`npx nomo-ai --uninstall --cursor` か `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall` を使ってください。
 
 そのあと Cursor を再起動します。アンインストールでは 4 つのスキルが削除されますが、ペアリングはそのまま残ります — このコンピュータのほかのエージェントと共有されているためです。コンピュータのペアリングも解除する場合は、アンインストールの前に `/nomo-unpair` を実行してください。
 

@@ -138,34 +138,28 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
         </Warning>
       </Step>
 
-      <Step title="開始配對">
-        安裝工具不會在 Devin 裡加入 Nomo 指令，所以要從終端機配對。複製下面這一行，貼到終端機裡，然後按下 Return：
-
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-        ```
-
-        你應該會看到瀏覽器打開一個有 QR code 的頁面。
-      </Step>
-
-      <Step title="等待手機">
-        複製下面這一行，貼到終端機裡，然後按下 Return：
-
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait
-        ```
-
-        你應該會看到：
+      <Step title="輸入 /nomo-pair">
+        在 `devin` 裡輸入下面這行並送出：
 
         ```
-        Waiting for your phone to scan the QR…
+        /nomo-pair
         ```
+
+        如果 Devin 問要不要執行 Nomo 的指令，請允許。Devin 會在瀏覽器裡打開一個有 QR code 的頁面。
       </Step>
 
       <Step title="掃描 QR code">
-        在 iPhone 上打開 Nomo → **Sessions** → **配對電腦**，然後掃描瀏覽器裡的 QR code。
+        在 iPhone 上打開 Nomo → **Sessions** → **配對電腦**，然後掃描 QR code。
+      </Step>
 
-        你應該會在終端機裡看到一行以 `Paired with` 開頭、以 ✓ 結尾的文字。
+      <Step title="確認一下">
+        在 `devin` 裡輸入下面這行並送出：
+
+        ```
+        /nomo-status
+        ```
+
+        如果有一行以 `!` 開頭，照著它底下那行 `→` 做。
       </Step>
 
       <Step title="在 Devin 裡送出一則訊息">
@@ -182,7 +176,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
 </Tip>
 
 <Tip>
-  **這台電腦沒有瀏覽器？**改用短代碼，而不是 QR code：用外掛程式的話，在 Devin 裡輸入 `/nomo:pair code`；用安裝工具的話，在終端機裡把 `--show-code` 加到配對那一行的最後面。在 iPhone 上打開 Nomo → **Sessions** → **配對電腦** → **輸入代碼**，把代碼打進去。代碼 10 分鐘後過期。
+  **這台電腦沒有瀏覽器？**改用短代碼，而不是 QR code：在 Devin 裡輸入 `/nomo-pair code`（用外掛程式的話，輸入 `/nomo:pair code`）。在 iPhone 上打開 Nomo → **Sessions** → **配對電腦** → **輸入代碼**，把代碼打進去。代碼 10 分鐘後過期。
 </Tip>
 
 <Note>
@@ -191,28 +185,19 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
 
 ## 指令 {#commands}
 
-**使用 Devin 外掛程式時**，在 Devin 裡輸入這些：
+在 Devin 裡輸入這些。用 Devin 外掛程式的話，指令開頭是 `/nomo:` 而不是 `/nomo-` — 例如 `/nomo:pair`。
 
-| 輸入這個 | 它會做什麼 |
-| --- | --- |
-| `/nomo:pair` | 把這台電腦連上你的手機 |
-| `/nomo:pair code` | 一樣，但改用一組可以打字輸入的短代碼，而不是 QR code |
-| `/nomo:status` | 確認一切正常 |
+| 輸入這個 | 用 Devin 外掛程式時 | 它會做什麼 |
+| --- | --- | --- |
+| `/nomo-pair` | `/nomo:pair` | 把這台電腦連上你的手機 |
+| `/nomo-pair code` | `/nomo:pair code` | 一樣，但改用一組可以打字輸入的短代碼，而不是 QR code |
+| `/nomo-status` | `/nomo:status` | 確認一切正常 |
+| `/nomo-approvals off` | `/nomo:approvals off` | 不再問你的手機 — 改由 Devin 在 Mac 上問 |
+| `/nomo-approvals on` | `/nomo:approvals on` | 重新改回問你的手機 |
+| `/nomo-reset` | `/nomo:reset` | 從手機上清除卡住的 sessions，連線保持不變 |
+| `/nomo-unpair` | `/nomo:unpair` | 解除這台電腦和手機的配對 |
 
-想不再問你的手機，請在 Nomo 的[設定](/zh-Hant/sessions/settings#remote-approvals)裡關閉「在 iPhone 上回答」。這台電腦上也在用 Claude Code？在 Claude Code 裡輸入 `/nomo-cc:approvals off`，就能暫停這台電腦的遠端批准。
-
-**使用 Nomo 安裝工具時**，Devin 的對話裡沒有 Nomo 指令。請改在終端機裡執行這些：
-
-| 它會做什麼 | 把這個貼到終端機裡 |
-| --- | --- |
-| 把這台電腦連上你的手機 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
-| 一樣，但改用短代碼，而不是 QR code | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
-| 等你的手機完成配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait` |
-| 確認一切正常 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
-| 不再問你的手機 — 改由 Devin 在 Mac 上問 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
-| 重新改回問你的手機 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
-| 從手機上清除卡住的 sessions，連線保持不變 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
-| 解除這台電腦和手機的配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+如果 Devin 問要不要執行 Nomo 的指令，請允許。Devin 不認得這些指令？再執行一次安裝工具並重新啟動 Devin — 或是改在終端機裡使用它們，請看[進階](#advanced)。
 
 連線和批准開關是這台電腦上所有寫程式的 App 共用的。在這裡關掉批准，Claude Code 和 Codex 的批准也會一起關掉。
 
@@ -298,11 +283,7 @@ Devin 的文件說，Devin Desktop 的 **Devin Local** 代理和 Devin CLI 使�
 <AccordionGroup>
   <Accordion title="我的手機什麼都沒顯示">
     1. 關掉每一個開著的 `devin`，再重新啟動它。
-    2. 檢查 Nomo。用外掛程式的話，在 Devin 裡輸入 `/nomo:status`。用安裝工具的話，在終端機裡執行這行：
-
-       ```bash
-       ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin
-       ```
+    2. 檢查 Nomo。在 Devin 裡輸入 `/nomo-status`（用外掛程式的話，輸入 `/nomo:status`）。
 
     3. 照著以 `→` 開頭的那一行做。
 
@@ -338,21 +319,13 @@ Devin 的文件說，Devin Desktop 的 **Devin Local** 代理和 Devin CLI 使�
   </Accordion>
 
   <Accordion title="我的手機不再問我要不要批准">
-    如果你用的是安裝工具，在終端機裡執行這行：
-
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on
-    ```
+    在 Devin 裡輸入 `/nomo-approvals on`（用外掛程式的話，輸入 `/nomo:approvals on`）。
 
     如果批准本來就開著，請檢查[設定](/zh-Hant/sessions/settings#remote-approvals)裡的「在 iPhone 上回答」。
   </Accordion>
 
   <Accordion title="session 一直卡在「執行中」">
-    如果你用的是安裝工具，在終端機裡執行這行：
-
-    ```bash
-    ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs
-    ```
+    在 Devin 裡輸入 `/nomo-reset`（用外掛程式的話，輸入 `/nomo:reset`）。
   </Accordion>
 </AccordionGroup>
 
@@ -379,7 +352,7 @@ devin plugins remove nomo
 <Steps>
   <Step title="在終端機裡執行這行">
     ```bash
-    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    bunx nomo-ai --uninstall --devin
     ```
 
     你應該會看到：
@@ -387,6 +360,8 @@ devin plugins remove nomo
     ```
     devin-install: removed Nomo's hooks from Devin — restart devin
     ```
+
+    沒有 `bunx`？改用 `npx nomo-ai --uninstall --devin`，或 `node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall`。
   </Step>
 
   <Step title="重新啟動 Devin">
@@ -394,14 +369,30 @@ devin plugins remove nomo
   </Step>
 </Steps>
 
-你的手機會繼續和你其他寫程式的 App 保持連線。如果也要解除這台電腦和手機的配對，請在解除安裝安裝工具**之前**，執行[指令](#commands)裡的解除配對指令。
+你的手機會繼續和你其他寫程式的 App 保持連線。如果也要解除這台電腦和手機的配對，請在解除安裝**之前**，在 Devin 裡輸入 `/nomo-unpair`。
 
 ## 進階 {#advanced}
 
 <AccordionGroup>
+  <Accordion title="不用斜線指令" icon="terminal">
+    同樣的指令，改在終端機裡執行，而不是在 Devin 的對話裡（使用 Nomo 安裝工具時）：
+
+    | | |
+    | --- | --- |
+    | 配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+    | 用打字輸入的代碼配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+    | 檢查狀態 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
+    | 暫停批准 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+    | 恢復批准 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+    | 清除卡住的 sessions | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+    | 解除配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+    從終端機開始配對後，執行 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait`，然後掃描 QR code。在安裝工具後面加上 `--verbose`，就能看到它改了什麼。
+  </Accordion>
+
   <Accordion title="運作原理" icon="gear">
-    - **安裝工具會改什麼**。它把外掛程式 clone 到 `~/.nomo`，並在 `~/.config/devin/config.json` 的 `"hooks"` 鍵裡加入 Nomo 的項目。你其他的 Devin 設定都原封不動。再執行一次也不會改變任何東西。如果檔案裡有註解，它會先把檔案複製成 `config.json.nomo-backup`。解除安裝只會移除 Nomo 的項目。在 `devin` 裡輸入 `/hooks`，就能看到它載入了什麼。
-    - **外掛程式會加入什麼**。Devin 外掛程式會加入同樣的兩個 hooks，以及 `/nomo:pair` 和 `/nomo:status` 指令。它不會加入任何規則、MCP 伺服器或代理，而且只在本機的 Devin sessions 裡執行，絕不會在 Devin Cloud 裡執行。只要安裝工具的項目還在，外掛程式的 hooks 就什麼都不送出。
+    - **安裝工具會改什麼**。它把外掛程式 clone 到 `~/.nomo`，並在 `~/.config/devin/config.json` 的 `"hooks"` 鍵裡加入 Nomo 的項目。你其他的 Devin 設定都原封不動。它也會把 `/nomo-*` 指令以 Devin skills 的形式加到 `~/.config/devin/skills/`；你自己同名的 skill 會原封不動。再執行一次也不會改變任何東西。如果檔案裡有註解，它會先把檔案複製成 `config.json.nomo-backup`。解除安裝只會移除 Nomo 的項目和 skills。在 `devin` 裡輸入 `/hooks`，就能看到它載入了什麼。
+    - **外掛程式會加入什麼**。Devin 外掛程式會加入同樣的兩個 hooks，以及同樣的指令：`/nomo:pair`、`/nomo:status`、`/nomo:approvals`、`/nomo:reset` 和 `/nomo:unpair`。它不會加入任何規則、MCP 伺服器或代理，而且只在本機的 Devin sessions 裡執行，絕不會在 Devin Cloud 裡執行。只要安裝工具的項目還在，外掛程式的 hooks 就什麼都不送出。
     - **狀態**。`UserPromptSubmit`、`PostToolUse`、`Stop` 和 `SessionEnd` 上的 hook 負責回報狀態。它什麼都不印出，所以不會擋住提示，也不會改變任何工具呼叫 — 唯一的例外是：你點了「停止」之後，它的下一個 `PostToolUse` 會印出 `{"continue":false}`，結束這一輪。
     - **批准**。`PermissionRequest` 上的 hook 會把工具名稱和它的指令或檔案路徑以端對端加密送到你的手機。只有你已配對的手機針對那一個請求點了「允許」，它才會回覆 `approve`；點了「拒絕」則回覆 `block`，並附上你的附註。其他所有情況 — 未配對、批准已暫停、離線、逾時、錯誤 — 它什麼都不印出，把決定交還給 Devin 自己的請求。
     - **問題**。同一個 hook 在 `PreToolUse`（只針對 `ask_user_question`）上把 Devin 的問題和選項以端對端加密送到你的手機。你的回答會以 `block` 的形式傳回，理由就是你的回答，Devin 的模型會讀到它。

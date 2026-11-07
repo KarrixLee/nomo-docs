@@ -138,8 +138,11 @@ bunx nomo-ai --cursor
 ## Desinstalación {#uninstalling}
 
 ```bash
-node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+bunx nomo-ai --uninstall --cursor
 ```
+
+¿No tienes `bunx`? Usa `npx nomo-ai --uninstall --cursor` o
+`node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`.
 
 Después reinicia Cursor. La desinstalación quita las cuatro skills y no toca la
 vinculación, que se comparte con los demás agentes de este ordenador. Para

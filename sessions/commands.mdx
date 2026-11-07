@@ -6,10 +6,10 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Commands"]
 ---
 
-Five commands on Claude Code, Codex, OpenCode and Antigravity, a sixth that
-only OpenCode needs, and four on Cursor. You run them from inside an agent
+Five commands on Claude Code, Codex, OpenCode, Antigravity and Devin, a sixth
+that only OpenCode needs, and four on Cursor. You run them from inside an agent
 session on the computer you want to affect — a `/` command in Claude Code and
-OpenCode, a `/` skill in Cursor and Antigravity, a `$` skill in Codex.
+OpenCode, a `/` skill in Cursor, Antigravity and Devin, a `$` skill in Codex.
 
 <Note>
   In Antigravity, every Nomo command asks first. Choose **Allow** — Antigravity
@@ -18,33 +18,32 @@ OpenCode, a `/` skill in Cursor and Antigravity, a `$` skill in Codex.
 </Note>
 
 <Note>
-  In Devin, the Devin plugin adds `/nomo:pair` and `/nomo:status`. With the
-  Nomo installer, Devin has no Nomo commands inside its chat, so you run them
-  from Terminal — [Using Devin](/sessions/devin#commands) has every one, ready
-  to paste.
+  With the Devin plugin, Devin's commands start with `/nomo:` instead of
+  `/nomo-` — `/nomo:pair`, `/nomo:status` and so on. More in [Using
+  Devin](/sessions/devin#commands).
 </Note>
 
 <Tip>
   In Claude Code everything is namespaced: typing `/nomo-cc:` lists them all.
   OpenCode command names are flat and global, so there Nomo's carry no prefix at
-  all — and neither do its Cursor and Antigravity skills.
+  all — and neither do its Cursor, Antigravity and Devin skills.
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
-| --- | --- | --- | --- | --- | --- |
-| <a href="#pair">Pair this computer</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">Check health</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">Pause or resume approvals</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
-| <a href="#reset">Clear stuck sessions</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">Disconnect this computer</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">Update the plugin</a> | — | — | `/nomo-update` | — | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity | <img src="/images/providers/devin.svg" alt="" className="agent-mark invert-dark" /> Devin |
+| --- | --- | --- | --- | --- | --- | --- |
+| <a href="#pair">Pair this computer</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">Check health</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">Pause or resume approvals</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">Clear stuck sessions</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">Disconnect this computer</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">Update the plugin</a> | — | — | `/nomo-update` | — | — | — |
 
 None of them can fail loudly. Every one exits cleanly even when there's nothing
 to do — `Not paired` is a success, not an error.
 
 The empty cells on the last row aren't an omission: Claude Code and Codex update
 through their own hosts, so Nomo adds no command there, and Cursor updates by
-running its installer again, as does Antigravity. What each of them needs — which for Codex is
+running its installer again, as do Antigravity and Devin. What each of them needs — which for Codex is
 usually nothing — is in [Installation](/setup/install#updating).
 
 Cursor's empty cell on the approvals row isn't one either: Cursor sessions are
@@ -78,7 +77,14 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
+```
 </CodeGroup>
+
+With the Devin plugin: `/nomo:pair` and `/nomo:pair code`.
 
 With no argument it opens a themed page in your browser with a QR code. Scan it
 in the app and the page flips to **Paired ✓** on its own.
@@ -89,8 +95,8 @@ purpose: that code lands in your terminal, and therefore in the agent's
 transcript.
 
 Pairings expire after **10 minutes** unused. One pairing covers the machine, not
-the agent — Claude Code, Codex, OpenCode, Cursor and Antigravity on the same
-Mac share it. Full
+the agent — Claude Code, Codex, OpenCode, Cursor, Antigravity and Devin on the
+same Mac share it. Full
 walkthrough in [Pairing](/setup/pairing).
 
 ## status
@@ -116,7 +122,13 @@ $nomo-status
 /nomo-status           # a short summary in plain words
 /nomo-status verbose   # the full readout below
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
+
+With the Devin plugin: `/nomo:status`.
 
 The one to run first when anything looks wrong. A healthy machine is a handful
 of calm lines — there are no checkmarks, because everything being fine is the
@@ -250,16 +262,14 @@ $nomo-approvals status      # which way is it set
 ```
 
 ```bash Devin icon="/images/providers/devin.svg"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off      # pause on this computer
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on       # resume
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs status   # which way is it set
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
 ```
 </CodeGroup>
 
-For Devin, paste its line into Terminal — that works with the Nomo installer.
-The Devin plugin has no approvals command: pause from another agent on the same
-computer, or turn off **Answer on iPhone** on your phone. In Devin Desktop,
-pause before Devin's next prompt.
+With the Devin plugin: `/nomo:approvals off`, `on` or `status`. In Devin
+Desktop, pause before Devin's next prompt.
 
 Pauses remote approvals for **this computer**, so permission prompts go straight
 to the terminal instead of waiting on your phone. The escape hatch for a phone
@@ -302,7 +312,13 @@ $nomo-reset
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-reset
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-reset
+```
 </CodeGroup>
+
+With the Devin plugin: `/nomo:reset`.
 
 Stops the watchdog and clears dead or phantom session rows, then tells your
 phone to drop them.
@@ -341,7 +357,13 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-unpair
+```
 </CodeGroup>
+
+With the Devin plugin: `/nomo:unpair`.
 
 Revokes the pairing and erases the key on that computer.
 

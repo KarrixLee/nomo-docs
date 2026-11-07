@@ -253,7 +253,7 @@ comando status te avisa si son más antiguos.
     Para quitarlo más adelante:
 
     ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
+    bunx nomo-ai --uninstall --cursor
     ```
 
     Después reinicia Cursor.
@@ -312,7 +312,7 @@ comando status te avisa si son más antiguos.
     Para quitarlo más adelante:
 
     ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    bunx nomo-ai --uninstall --antigravity
     ```
 
     Después reinicia Antigravity.
@@ -356,27 +356,25 @@ comando status te avisa si son más antiguos.
         </Warning>
       </Step>
 
-      <Step title="Vincula desde Terminal">
-        El instalador no añade comandos de Nomo a Devin. Pega esto en Terminal
-        y después escanea el código QR con Nomo en tu iPhone:
-
-        ```bash
-        ~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs
-        ```
+      <Step title="Vincula">
+        En `devin`, escribe `/nomo-pair` y después escanea el código QR con
+        Nomo en tu iPhone.
 
         ¿Ya vinculaste el ordenador desde otro agente? Sáltate este paso.
         [Usar Devin](/es/sessions/devin#set-it-up) explica cada paso.
       </Step>
     </Steps>
 
-    Añade las entradas de Nomo a `~/.config/devin/config.json` y deja el resto
-    de tus ajustes de Devin como están. Para quitarlo más adelante:
+    Añade las entradas de Nomo a `~/.config/devin/config.json`, deja el resto
+    de tus ajustes de Devin como están, y añade los comandos `/nomo-*` como
+    skills de Devin. Para quitarlo más adelante:
 
     ```bash
-    node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall
+    bunx nomo-ai --uninstall --devin
     ```
 
-    Después reinicia Devin.
+    Después reinicia Devin. Con el plugin de Devin, quítalo con
+    `devin plugins remove nomo`.
   </Tab>
 </Tabs>
 
@@ -408,11 +406,12 @@ Para scripts y CI:
 | `--all` | los seis, los haya encontrado o no; salvo Cursor, Antigravity y Devin, que se omiten si no están en este ordenador (nombra `--cursor`, `--antigravity` o `--devin` para intentarlo igualmente) |
 | `-y`, `--yes` | sin selector; instala todo lo que encuentre |
 | `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
+| `--uninstall` | con `--cursor`, `--antigravity` o `--devin`: quita Nomo de ese agente. Indica el agente: nunca lo adivina |
 
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
 agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
-`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex. Devin se vincula desde
-Terminal: consulta [Usar Devin](/es/sessions/devin#set-it-up).
+`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex (`/nomo:pair` con el
+plugin de Devin).
 
 ## Actualizaciones {#updating}
 

@@ -5,32 +5,32 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
 ---
 
-Claude Code、Codex、OpenCode、Antigravity に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor と Antigravity では `/` のスキル、Codex では `$` のスキルです。
+Claude Code、Codex、OpenCode、Antigravity、Devin に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor、Antigravity、Devin では `/` のスキル、Codex では `$` のスキルです。
 
 <Note>
   Antigravity では、Nomo のコマンドを実行するたびに確認が表示されます。「Allow」を選んでください — Antigravity は、コンピュータでコマンドを実行する前に必ず確認します。詳しくは [Antigravity での利用](/ja/sessions/antigravity#commands)をご覧ください。
 </Note>
 
 <Note>
-  Devin では、Devin プラグインが `/nomo:pair` と `/nomo:status` を追加します。Nomo インストーラーの場合は、Devin のチャットの中に Nomo のコマンドがないため、ターミナルから実行します — [Devin での利用](/ja/sessions/devin#commands)に、すぐ貼り付けられる形ですべて載せています。
+  Devin プラグインの場合、Devin のコマンドは `/nomo-` ではなく `/nomo:` で始まります — `/nomo:pair`、`/nomo:status` などです。詳しくは [Devin での利用](/ja/sessions/devin#commands)をご覧ください。
 </Note>
 
 <Tip>
-  Claude Code ではすべてが名前空間に入っています。`/nomo-cc:` と入力すると一覧が表示されます。OpenCode のコマンド名はフラットでグローバルなので、そちらでは Nomo のコマンドにも接頭辞は一切付きません — Cursor と Antigravity のスキルにも付きません。
+  Claude Code ではすべてが名前空間に入っています。`/nomo-cc:` と入力すると一覧が表示されます。OpenCode のコマンド名はフラットでグローバルなので、そちらでは Nomo のコマンドにも接頭辞は一切付きません — Cursor、Antigravity、Devin のスキルにも付きません。
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
-| --- | --- | --- | --- | --- | --- |
-| <a href="#pair">このコンピュータをペアリングする</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">状態を確認する</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">承認を一時停止・再開する</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
-| <a href="#reset">停止したセッションを消去する</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">このコンピュータの接続を解除する</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">プラグインを更新する</a> | — | — | `/nomo-update` | — | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity | <img src="/images/providers/devin.svg" alt="" className="agent-mark invert-dark" /> Devin |
+| --- | --- | --- | --- | --- | --- | --- |
+| <a href="#pair">このコンピュータをペアリングする</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">状態を確認する</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">承認を一時停止・再開する</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">停止したセッションを消去する</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">このコンピュータの接続を解除する</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">プラグインを更新する</a> | — | — | `/nomo-update` | — | — | — |
 
 どれも派手に失敗することはありません。することが何もない場合でも、すべて正常に終了します — `Not paired` はエラーではなく成功です。
 
-最終行が空欄なのは、抜けているからではありません。Claude Code と Codex はそれぞれのホスト側で更新するため、Nomo はそこにコマンドを足していません。Cursor と Antigravity はインストーラーをもう一度実行して更新します。それぞれに必要なもの — Codex の場合はたいてい何もありません — は[インストール](/ja/setup/install#updating)にまとめてあります。
+最終行が空欄なのは、抜けているからではありません。Claude Code と Codex はそれぞれのホスト側で更新するため、Nomo はそこにコマンドを足していません。Cursor、Antigravity、Devin はインストーラーをもう一度実行して更新します。それぞれに必要なもの — Codex の場合はたいてい何もありません — は[インストール](/ja/setup/install#updating)にまとめてあります。
 
 承認の行で Cursor が空欄なのも、抜けているからではありません。Cursor のセッションは読み取り専用で、一時停止するリモート承認がありません — [Cursor での利用](/ja/sessions/cursor)。
 
@@ -61,13 +61,20 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
+```
 </CodeGroup>
+
+Devin プラグインの場合は `/nomo:pair` と `/nomo:pair code` です。
 
 引数なしで実行すると、テーマの適用されたページがブラウザで開き、QR コードが表示されます。アプリでスキャンすると、ページは自動的に **Paired ✓** に切り替わります。
 
 `code` 引数を付けるとブラウザを完全に省き、入力できるワンタイムコードを出力します。ヘッドレスなマシンや SSH セッション向けです。これが第 2 の選択肢なのは意図的で、そのコードはターミナルに、つまりエージェントのトランスクリプトに残るからです。
 
-ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode、Cursor、Antigravity は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
+ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode、Cursor、Antigravity、Devin は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
 
 ## status {#status}
 
@@ -92,7 +99,13 @@ $nomo-status
 /nomo-status           # a short summary in plain words
 /nomo-status verbose   # the full readout below
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
+
+Devin プラグインの場合は `/nomo:status` です。
 
 何かおかしいと思ったら、まず最初に実行するコマンドです。正常なマシンの出力は、落ち着いた数行だけです — チェックマークは出てきません。問題がないというのは、言うべきことが何もないということだからです。
 
@@ -191,13 +204,13 @@ $nomo-approvals status      # which way is it set
 ```
 
 ```bash Devin icon="/images/providers/devin.svg"
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off      # pause on this computer
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on       # resume
-~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs status   # which way is it set
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
 ```
 </CodeGroup>
 
-Devin では、Devin の行をターミナルに貼り付けてください — Nomo インストーラーの場合に使えます。Devin プラグインには承認のコマンドがありません。同じコンピュータのほかのエージェントから一時停止するか、iPhone で「iPhoneで回答」をオフにしてください。Devin Desktop では、Devin の次のプロンプトの前に一時停止してください。
+Devin プラグインの場合は `/nomo:approvals off`、`on`、`status` です。Devin Desktop では、Devin の次のプロンプトの前に一時停止してください。
 
 **このコンピュータ**のリモート承認を一時停止し、許可リクエストが iPhone を待たずにターミナルへ直行するようにします。iPhone の電池が切れている、手元にないといったときの逃げ道です。
 
@@ -234,7 +247,13 @@ $nomo-reset
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-reset
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-reset
+```
 </CodeGroup>
+
+Devin プラグインの場合は `/nomo:reset` です。
 
 ウォッチドッグを停止し、無効になったセッションや実体のないセッションの行を消去して、それらを削除するよう iPhone に伝えます。
 
@@ -269,7 +288,13 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-unpair
+```
 </CodeGroup>
+
+Devin プラグインの場合は `/nomo:unpair` です。
 
 ペアリングを取り消し、そのコンピュータ上の鍵を消去します。
 
