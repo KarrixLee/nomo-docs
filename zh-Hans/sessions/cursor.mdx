@@ -42,7 +42,7 @@ Cursor 没有 approvals 命令——没有远程审批可以暂停。
 - **没有“停止”**。[**停止**](/zh-Hans/sessions/list#interrupt-a-running-session)按钮在 Cursor 会话上同样不可用。
 - **没有云端智能体**。Cursor 的云端智能体和后台智能体不会显示——只显示在你 Mac 上运行的智能体。
 - **标题可能一直是你的第一条提示**。如果读不到 Cursor 给聊天起的名称，标题就保持第一条提示——这一轮结束后，Nomo 还会继续检查大约两分钟。用 `cursor-agent` CLI 运行的聊天，标题始终是第一条提示。Nomo 只从 Cursor 的本地数据库读取聊天名称，其中的其他内容一概不会发送。
-- **崩溃可能留下一个会话**。如果 Cursor 被强制退出或崩溃，会话可能一直停在运行中，直到超时——大约 30 分钟——而不是立刻结束。
+- **崩溃可能留下一个会话**。如果 Cursor 被强制退出或崩溃，会话不会立刻结束。会停多久、怎么清掉，见[故障排查](/zh-Hans/sessions/troubleshooting)。
 
 如果有东西没有显示出来，先看[故障排查](/zh-Hans/sessions/troubleshooting)里关于 Cursor 的那几条。
 

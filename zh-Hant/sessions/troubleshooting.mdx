@@ -129,20 +129,8 @@ $nomo-status
   </Frame>
 </Accordion>
 
-<Accordion title="每個 Antigravity session 都出現兩次" icon="clone">
-  Nomo 的 Claude Code 外掛程式被匯入了 Antigravity。請在終端機裡執行下面這行，然後重新啟動 Antigravity：
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Antigravity 的指令說 Nomo 找不到自己的檔案" icon="folder-open">
-  Nomo 的資料夾被搬走或刪除了。Antigravity 還是能用，但什麼都不會送到你的手機。請再執行一次安裝工具，然後重新啟動 Antigravity：
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity session 出現兩次，或指令找不到 Nomo 的檔案" icon="clone">
+  兩種情況的解法都在[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#troubleshooting)。
 </Accordion>
 
 <Accordion title="取消了的 Antigravity 一輪還顯示「執行中」" icon="hourglass-half">
@@ -406,22 +394,6 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "重新啟動 Antigravity — 完全結束它，再重新打開。輸入 /nomo-status，選擇 Allow（允許），然後照著以 ⚠️ 或 ❌ 開頭的那一行做。接著送出一則訊息：session 要等你送出第一則訊息後才會出現。還是沒有？在 Nomo 裡點一下 + 按鈕（「選擇代理」），把 Antigravity 打開。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "每個 Antigravity session 都出現兩次",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 的 Claude Code 外掛程式被匯入了 Antigravity。請在終端機裡執行 agy plugin uninstall nomo-cc，然後重新啟動 Antigravity。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Antigravity 的指令說 Nomo 找不到自己的檔案",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 的資料夾被搬走或刪除了。Antigravity 還是能用，但什麼都不會送到你的手機。請再執行一次 bunx nomo-ai --antigravity，然後重新啟動 Antigravity。"
       }
     },
     {

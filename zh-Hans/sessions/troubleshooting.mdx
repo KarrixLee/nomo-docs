@@ -130,20 +130,8 @@ $nomo-status
   </Frame>
 </Accordion>
 
-<Accordion title="每个 Antigravity 会话都出现两次" icon="clone">
-  Nomo 的 Claude Code 插件被导入了 Antigravity。在终端里运行下面这条，然后重启 Antigravity：
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Antigravity 命令提示 Nomo 找不到它的文件" icon="folder-open">
-  Nomo 文件夹被移动或删除了。Antigravity 照常工作，但什么都不会送到你的手机。重新运行安装工具，然后重启 Antigravity：
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity 会话出现两次，或命令找不到 Nomo 的文件" icon="clone">
+  两种情况的解决办法都在[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#troubleshooting)。
 </Accordion>
 
 <Accordion title="取消了的 Antigravity 这一轮还显示“运行中”" icon="hourglass-half">
@@ -407,22 +395,6 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "重启 Antigravity——完全退出，再重新打开。输入 /nomo-status，选择 Allow，然后照着以 ⚠️ 或 ❌ 开头的那一行去做。接着发一条消息：会话要等你发出第一条消息后才会出现。还是没有？在 Nomo 里轻点 + 按钮（选择智能体），把 Antigravity 打开。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "每个 Antigravity 会话都出现两次",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 的 Claude Code 插件被导入了 Antigravity。在终端里运行 agy plugin uninstall nomo-cc，然后重启 Antigravity。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Antigravity 命令提示 Nomo 找不到它的文件",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 文件夹被移动或删除了。Antigravity 照常工作，但什么都不会送到你的手机。再运行一次 bunx nomo-ai --antigravity，然后重启 Antigravity。"
       }
     },
     {

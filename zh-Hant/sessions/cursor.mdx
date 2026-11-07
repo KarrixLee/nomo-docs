@@ -41,7 +41,7 @@ Cursor 沒有 approvals 指令 — 沒有遠端批准可以暫停。
 - **沒有「停止」**。[「停止」](/zh-Hant/sessions/list#interrupt-a-running-session)按鈕在 Cursor 的 sessions 上同樣無法使用。
 - **沒有雲端代理**。Cursor 的雲端代理和背景代理不會顯示 — 只有跑在你 Mac 上的代理才會。
 - **標題可能一直是你的第一個提示**。如果讀不到 Cursor 替對話取的名稱，標題就維持第一個提示 — 這一輪結束後，Nomo 還會繼續檢查大約兩分鐘。用 `cursor-agent` CLI 執行的對話，標題一直是第一個提示。Nomo 只從 Cursor 的本機資料庫讀取對話名稱，其中的其他內容一概不會傳送。
-- **當機可能留下一個 session**。如果 Cursor 被強制結束或當機，session 可能會停在執行中，直到逾時為止 — 大約 30 分鐘 — 而不是立刻結束。
+- **當機可能留下一個 session**。如果 Cursor 被強制結束或當機，session 不會立刻結束。會停多久、怎麼清掉，請看[疑難排解](/zh-Hant/sessions/troubleshooting)。
 
 如果有東西沒出現，[疑難排解](/zh-Hant/sessions/troubleshooting)裡關於 Cursor 的那幾項是該先看的地方。
 

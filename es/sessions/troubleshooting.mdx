@@ -201,23 +201,8 @@ está en [Comandos](/es/sessions/commands#status).
   </Frame>
 </Accordion>
 
-<Accordion title="Cada sesión de Antigravity sale dos veces" icon="clone">
-  El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta esto
-  en Terminal y después reinicia Antigravity:
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Un comando de Antigravity dice que Nomo no encuentra sus archivos" icon="folder-open">
-  La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero
-  nada llega a tu teléfono. Vuelve a ejecutar el instalador y después reinicia
-  Antigravity:
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Las sesiones de Antigravity salen dos veces, o un comando no encuentra los archivos de Nomo" icon="clone">
+  Las dos soluciones están en [Usar Antigravity](/es/sessions/antigravity#troubleshooting).
 </Accordion>
 
 <Accordion title="Un turno cancelado de Antigravity sigue En ejecución" icon="hourglass-half">
@@ -580,22 +565,6 @@ que ejecutes ese comando allí.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Reinicia Antigravity: ciérralo del todo y vuelve a abrirlo. Escribe /nomo-status, elige Allow y haz lo que dice la línea que empieza por ⚠️ o ❌. Después envía un mensaje: una sesión solo aparece después de tu primer mensaje. ¿Sigue sin salir nada? En Nomo, toca el botón + (Elegir agentes) y activa Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Cada sesión de Antigravity sale dos veces",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta agy plugin uninstall nomo-cc en Terminal y después reinicia Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Un comando de Antigravity dice que Nomo no encuentra sus archivos",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero nada llega a tu teléfono. Vuelve a ejecutar bunx nomo-ai --antigravity y después reinicia Antigravity."
       }
     },
     {

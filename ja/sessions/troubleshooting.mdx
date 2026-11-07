@@ -129,20 +129,8 @@ Devin プラグインの場合は、代わりに Devin で `/nomo:status` と入
   </Frame>
 </Accordion>
 
-<Accordion title="Antigravity のセッションが 2 つずつ表示される" icon="clone">
-  Nomo の Claude Code プラグインが Antigravity に読み込まれています。ターミナルで次を実行してから、Antigravity を再起動してください。
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Antigravity のコマンドで Nomo のファイルが見つからないと表示される" icon="folder-open">
-  Nomo のフォルダが移動または削除されています。Antigravity はそのまま使えますが、iPhone には何も届きません。インストーラーをもう一度実行してから、Antigravity を再起動してください。
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity のセッションが 2 つずつ表示される、またはコマンドで Nomo のファイルが見つからない" icon="clone">
+  どちらも [Antigravity での利用](/ja/sessions/antigravity#troubleshooting)に解決方法があります。
 </Accordion>
 
 <Accordion title="キャンセルした Antigravity のターンが「実行中」のまま" icon="hourglass-half">
@@ -408,22 +396,6 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Antigravity を再起動します — 完全に終了してから、もう一度開いてください。/nomo-status と入力して Allow を選び、⚠️ または ❌ で始まる行の指示に従います。そのあとメッセージを送ってください。セッションが現れるのは、最初のメッセージを送ったあとです。それでも表示されない場合は、Nomo で + ボタン（「エージェントを選択」）をタップして、Antigravity をオンにしてください。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Antigravity のセッションが 2 つずつ表示される",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo の Claude Code プラグインが Antigravity に読み込まれています。ターミナルで agy plugin uninstall nomo-cc を実行してから、Antigravity を再起動してください。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Antigravity のコマンドで Nomo のファイルが見つからないと表示される",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo のフォルダが移動または削除されています。Antigravity はそのまま使えますが、iPhone には何も届きません。bunx nomo-ai --antigravity をもう一度実行してから、Antigravity を再起動してください。"
       }
     },
     {

@@ -190,22 +190,8 @@ What each row means, with a healthy machine and a broken one side by side, is on
   </Frame>
 </Accordion>
 
-<Accordion title="Every Antigravity session shows up twice" icon="clone">
-  Nomo's Claude Code plugin is imported into Antigravity. Run this in Terminal,
-  then restart Antigravity:
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="An Antigravity command says Nomo could not find its files" icon="folder-open">
-  The Nomo folder was moved or deleted. Antigravity keeps working, but nothing
-  reaches your phone. Run the installer again, then restart Antigravity:
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity sessions show up twice, or a command can't find Nomo's files" icon="clone">
+  Both fixes are in [Using Antigravity](/sessions/antigravity#troubleshooting).
 </Accordion>
 
 <Accordion title="A cancelled Antigravity turn still says Running" icon="hourglass-half">
@@ -551,22 +537,6 @@ that command there.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Restart Antigravity — quit it completely and open it again. Type /nomo-status, choose Allow, and do what the line starting with ⚠️ or ❌ says. Then send a message: a session only appears after your first message. Still nothing? In Nomo, tap the + button (Choose agents) and turn Antigravity on."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Every Antigravity session shows up twice",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo's Claude Code plugin is imported into Antigravity. Run agy plugin uninstall nomo-cc in Terminal, then restart Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "An Antigravity command says Nomo could not find its files",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Nomo folder was moved or deleted. Antigravity keeps working, but nothing reaches your phone. Run bunx nomo-ai --antigravity again, then restart Antigravity."
       }
     },
     {
