@@ -263,20 +263,8 @@ Antigravity をどこで使っているかによって変わります。
 
 そのほかの問題（iPhone に何も表示されない、承認を求められなくなった、セッションが止まったままなど）は、[トラブルシューティング](/ja/sessions/troubleshooting)をご覧ください。
 
-## 上級者向け {#advanced}
+## 技術的な詳細とセキュリティ {#technical-details-and-security}
 
-<AccordionGroup>
-  <Accordion title="しくみ" icon="gear">
-    - **インストーラーが変更するもの。** プラグインを `~/.nomo` にクローンし、`~/.gemini/config/hooks.json` に `nomo` という名前のブロックを 1 つ追加し（ほかのブロックには手を付けません）、5 つの `/nomo-*` コマンドを備えた小さな Antigravity プラグイン `nomo` を `~/.gemini/config/plugins/nomo` にコピーします。`hooks.json` が有効な JSON でない場合や、そこにある `nomo` プラグインのフォルダが自分のものでない場合は、何も変更せずに中止します。アンインストールで削除されるのは、そのブロックとそのフォルダだけです。
-    - **フック。** `SessionStart`、`PreInvocation`、`PostInvocation`、`Stop`、`PostToolUse` が状態を報告します。どれもすぐに `{}` を返して処理をバックグラウンドで行うので、Antigravity が Nomo を待つことはありません。行が作られるのは、`SessionStart` ではなく最初の `PreInvocation` のときです。
-    - **承認。** `PreToolUse` フックは、シェルコマンドとファイルの書き込み・編集（`run_command`、`write_file`、`write_to_file`、`edit_file`、`replace_file_content`、`multi_replace_file_content`）にだけ一致し、タイムアウトは 24 時間です。「許可」は `auto_approve`、「拒否」は `deny` を返し、メモがその理由になります。それ以外の結果はすべて `allow` を返し、判断を Antigravity 自身の設定と許可リクエストに任せます。`agy` の `~/.gemini/antigravity-cli/settings.json` の `deny` ルールに一致しうるものは iPhone に届きません。単純な前方一致の `allow` ルールでカバーされ、どの `ask` ルールにも当てはまらない呼び出しは、そのまま通ります。
-    - **フェイルセーフ。** 各フックのコマンドは、まずスクリプトがまだ存在するかを確認します。`~/.nomo` が移動または削除されていれば自分で応答するので、何かがブロックされることはありません。承認フックでエラーが起きた場合も、Antigravity 自身の許可リクエストに戻ります。
-    - **中断。** iPhone が 1 回限りのフラグを立て、次の `PostInvocation` でターンが終わります。フラグが立っている間に iPhone を待っているシェルコマンドやファイルの書き込みは、「Stopped from phone」として拒否されます。使われなかったフラグは 10 分後に破棄されます。Nomo が `agy` のプロセスにシグナルを送ることはありません。
-    - **イベントなしで終わるターン。** ターンをキャンセルしたときや、実行が終了したときは、Nomo がフックを実行したプロセスと Antigravity 自身の会話インデックスを監視して、行を完了にします。30 分間動きのないセッションは、最後の手段として消去されます。カードが iPhone に表示されている間にキャンセルすると、カードは取り下げられます。
-    - **返信。** iPhone は `send-message` コマンド（メッセージ ID と最大 4,000 文字）を封印し、ローカル接続と中継サーバーの両方で送ります。Mac はメッセージごとに、所有者だけが読めるファイル（`<conversation>.<id>.agy-inbox`）を 1 つ書き込みます。次の `PreInvocation` が、キューにあるすべてのメッセージをユーザーメッセージとしてエージェントに渡します。ターンの最後のステップ中に届いたメッセージは、そのターンの `Stop` を 1 回だけ継続させます。受領の状態（キュー済み、再開中、配達済み、再開済み、取り消し、拒否）は、セッションの暗号化された更新で返ってきます。終わった `agy` の会話で `agy` がすでに終了している場合、Nomo はその会話のフォルダで `agy --conversation <id> --print=<message>` を実行します（メッセージは 1 つの引数で、シェルが解釈することはありません）。終わっていても `agy` が開いたままなら、メッセージは次のターンまで保持されます — Nomo が 1 つの会話で 2 つ目の `agy` を起動することはありません。中断のフラグが常に優先され、止めようとしているターンにメッセージが渡されることはありません。誰にも受け取られなかったメッセージは 1 日後に削除されます。Nomo 自身の `/nomo-*` コマンドが iPhone にカードを出すことはありません。
-    - **タイトル。** Antigravity の `conversation_summaries.db` から、システムの `sqlite3` で読み取り専用で読み取ります。それがまだない間は、会話のトランスクリプトの最初の行、次にワークスペースのフォルダ名を使います。
-    - **コマンド。** `/nomo-*` コマンドが実行するのは、Nomo 自身のローカルコマンド — ペアリング、状態確認、承認のスイッチ、リセット、ペアリング解除 — だけで、どれも Antigravity 自身のコマンド実行の確認を経由します。ペアリングのリンクや QR のシークレットを表示することはありません。
+Nomo が iPhone に送るのは、セッションの状況と、そのセッションからの確認だけです。送る内容はエンドツーエンド暗号化されます。何か問題が起きても、Antigravity はいつもどおりコンピュータで確認します。
 
-    詳しくは、プラグインの [README](https://github.com/KarrixLee/nomo#install--antigravity) をご覧ください。
-  </Accordion>
-</AccordionGroup>
+内部のしくみはプラグインの README で説明しています: [Nomo と Antigravity の連携](https://github.com/KarrixLee/nomo#antigravity-integration)、[フックとセキュリティ](https://github.com/KarrixLee/nomo#antigravity-hooks)。

@@ -44,3 +44,9 @@ Cursor 沒有 approvals 指令 — 沒有遠端批准可以暫停。
 - **當機可能留下一個 session**。如果 Cursor 被強制結束或當機，session 可能會停在執行中，直到逾時為止 — 大約 30 分鐘 — 而不是立刻結束。
 
 如果有東西沒出現，[疑難排解](/zh-Hant/sessions/troubleshooting)裡關於 Cursor 的那幾項是該先看的地方。
+
+## 技術細節與安全性 {#technical-details-and-security}
+
+Nomo 只會把 session 正在做什麼傳到你的手機，而且是端對端加密。
+
+內部怎麼運作，請看外掛程式的 README：[Nomo 如何搭配 Cursor](https://github.com/KarrixLee/nomo#cursor-integration)、[hook 與安全性](https://github.com/KarrixLee/nomo#cursor-hooks)。

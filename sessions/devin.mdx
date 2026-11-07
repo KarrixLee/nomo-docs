@@ -187,47 +187,11 @@ the Devin CLI and with Devin's ACP server.
 Anything else — nothing on your phone, approvals that stopped, a stuck
 session, Interrupt — is in [Troubleshooting](/sessions/troubleshooting).
 
-## Advanced
+## Technical details and security
 
-<AccordionGroup>
-  <Accordion title="How it works" icon="gear">
-    - **What the installer changes.** It clones the plugin to `~/.nomo` and adds
-      Nomo's entries to the `"hooks"` key of `~/.config/devin/config.json`.
-      Your other Devin settings are left as they are. It also adds the
-      `/nomo-*` commands as Devin skills in `~/.config/devin/skills/`; a skill
-      of yours with the same name is left alone. Running it again changes
-      nothing. If the file has comments, it first copies it to
-      `config.json.nomo-backup`. Uninstalling removes only Nomo's entries and
-      skills. Type `/hooks` in `devin` to see what it loaded.
-    - **What the plugin adds.** The Devin plugin adds the same two hooks, and
-      the same commands as `/nomo:pair`, `/nomo:status`, `/nomo:approvals`,
-      `/nomo:reset` and `/nomo:unpair`. It adds no rules, MCP
-      servers or agents, and runs only in local Devin sessions, never in Devin
-      Cloud. While the installer's entries are there, the plugin's hooks send
-      nothing.
-    - **Status.** A hook on `UserPromptSubmit`, `PostToolUse`, `Stop` and
-      `SessionEnd` reports status. It prints nothing, so it can't block a
-      prompt or change a tool call — except after you tap **Interrupt**: then
-      its next `PostToolUse` prints `{"continue":false}`, which ends that turn.
-    - **Approvals.** A hook on `PermissionRequest` sends the tool name and its
-      command or file path to your phone, end-to-end encrypted. It answers
-      `approve` only for an Allow from your paired phone for that exact
-      request, and `block` with your note for a Deny. Everything else —
-      unpaired, approvals paused, offline, a timeout, an error — prints
-      nothing, which leaves the decision to Devin's own prompt.
-    - **Questions.** The same hook on `PreToolUse` (only for
-      `ask_user_question`) sends Devin's question and its options to your
-      phone, end-to-end encrypted. Your answer comes back as a `block` whose
-      reason is your answer, which Devin's model reads.
-    - **Always allow.** A grant is stored in
-      `~/.config/cc-status/sessions/<session>.devin-allow`, readable only by
-      you, and removed when the session ends. Devin's own settings files are
-      never written.
-    - **No double rows.** Devin also runs Claude Code hooks. Nomo's Claude Code
-      plugin stays quiet inside Devin, so a Devin session never shows up as a
-      Claude Code session.
+Nomo only sends your phone what a session is doing and what it asks, end-to-end
+encrypted. It never changes Devin's own settings, and if anything fails, Devin
+asks on your Mac as usual.
 
-    The full details are in the plugin's
-    [README](https://github.com/KarrixLee/nomo#install--devin).
-  </Accordion>
-</AccordionGroup>
+How it works under the hood is in the plugin's README: [how Nomo works with Devin](https://github.com/KarrixLee/nomo#devin-integration) and
+[hooks and security](https://github.com/KarrixLee/nomo#devin-hooks).

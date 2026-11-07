@@ -45,3 +45,9 @@ Cursor 没有 approvals 命令——没有远程审批可以暂停。
 - **崩溃可能留下一个会话**。如果 Cursor 被强制退出或崩溃，会话可能一直停在运行中，直到超时——大约 30 分钟——而不是立刻结束。
 
 如果有东西没有显示出来，先看[故障排查](/zh-Hans/sessions/troubleshooting)里关于 Cursor 的那几条。
+
+## 技术细节与安全 {#technical-details-and-security}
+
+Nomo 只把会话在做什么发到你的手机，并且端到端加密。
+
+内部如何运作，见插件的 README：[Nomo 如何与 Cursor 配合](https://github.com/KarrixLee/nomo#cursor-integration)、[hook 与安全](https://github.com/KarrixLee/nomo#cursor-hooks)。

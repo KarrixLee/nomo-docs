@@ -128,18 +128,8 @@ Devin 的文件說，Devin Desktop 的 **Devin Local** 代理和 Devin CLI 使�
 
 其他問題 — 手機上什麼都沒有、批准停了、session 卡住、「停止」— 都在[疑難排解](/zh-Hant/sessions/troubleshooting)裡。
 
-## 進階 {#advanced}
+## 技術細節與安全性 {#technical-details-and-security}
 
-<AccordionGroup>
-  <Accordion title="運作原理" icon="gear">
-    - **安裝工具會改什麼**。它把外掛程式 clone 到 `~/.nomo`，並在 `~/.config/devin/config.json` 的 `"hooks"` 鍵裡加入 Nomo 的項目。你其他的 Devin 設定都原封不動。它也會把 `/nomo-*` 指令以 Devin skills 的形式加到 `~/.config/devin/skills/`；你自己同名的 skill 會原封不動。再執行一次也不會改變任何東西。如果檔案裡有註解，它會先把檔案複製成 `config.json.nomo-backup`。解除安裝只會移除 Nomo 的項目和 skills。在 `devin` 裡輸入 `/hooks`，就能看到它載入了什麼。
-    - **外掛程式會加入什麼**。Devin 外掛程式會加入同樣的兩個 hooks，以及同樣的指令：`/nomo:pair`、`/nomo:status`、`/nomo:approvals`、`/nomo:reset` 和 `/nomo:unpair`。它不會加入任何規則、MCP 伺服器或代理，而且只在本機的 Devin sessions 裡執行，絕不會在 Devin Cloud 裡執行。只要安裝工具的項目還在，外掛程式的 hooks 就什麼都不送出。
-    - **狀態**。`UserPromptSubmit`、`PostToolUse`、`Stop` 和 `SessionEnd` 上的 hook 負責回報狀態。它什麼都不印出，所以不會擋住提示，也不會改變任何工具呼叫 — 唯一的例外是：你點了「停止」之後，它的下一個 `PostToolUse` 會印出 `{"continue":false}`，結束這一輪。
-    - **批准**。`PermissionRequest` 上的 hook 會把工具名稱和它的指令或檔案路徑以端對端加密送到你的手機。只有你已配對的手機針對那一個請求點了「允許」，它才會回覆 `approve`；點了「拒絕」則回覆 `block`，並附上你的附註。其他所有情況 — 未配對、批准已暫停、離線、逾時、錯誤 — 它什麼都不印出，把決定交還給 Devin 自己的請求。
-    - **問題**。同一個 hook 在 `PreToolUse`（只針對 `ask_user_question`）上把 Devin 的問題和選項以端對端加密送到你的手機。你的回答會以 `block` 的形式傳回，理由就是你的回答，Devin 的模型會讀到它。
-    - **一律允許**。授權存放在 `~/.config/cc-status/sessions/<session>.devin-allow`，只有你自己能讀，session 結束時刪除。Devin 自己的設定檔絕不會被寫入。
-    - **不會出現重複的列**。Devin 也會執行 Claude Code 的 hooks。Nomo 的 Claude Code 外掛程式在 Devin 裡會保持安靜，所以 Devin 的 session 絕不會顯示成 Claude Code 的 session。
+Nomo 只會把 session 正在做什麼、它要問你什麼傳到你的手機，而且是端對端加密。它從不更動 Devin 自己的設定；出了任何問題，Devin 都會照常在 Mac 上問你。
 
-    完整細節在外掛程式的 [README](https://github.com/KarrixLee/nomo#install--devin) 裡。
-  </Accordion>
-</AccordionGroup>
+內部怎麼運作，請看外掛程式的 README：[Nomo 如何搭配 Devin](https://github.com/KarrixLee/nomo#devin-integration)、[hook 與安全性](https://github.com/KarrixLee/nomo#devin-hooks)。

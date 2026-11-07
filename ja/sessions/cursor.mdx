@@ -44,3 +44,9 @@ Cursor に approvals コマンドはありません — 一時停止するリモ
 - **クラッシュするとセッションが残ることがあります**。Cursor が強制終了されたりクラッシュしたりすると、セッションはすぐには終了せず、タイムアウトするまで — およそ 30 分 — `実行中` のまま残ることがあります。
 
 うまく表示されないときは、まず[トラブルシューティング](/ja/sessions/troubleshooting)の Cursor の項目をご覧ください。
+
+## 技術的な詳細とセキュリティ {#technical-details-and-security}
+
+Nomo が iPhone に送るのはセッションの状況だけで、送る内容はエンドツーエンド暗号化されます。
+
+内部のしくみはプラグインの README で説明しています: [Nomo と Cursor の連携](https://github.com/KarrixLee/nomo#cursor-integration)、[フックとセキュリティ](https://github.com/KarrixLee/nomo#cursor-hooks)。

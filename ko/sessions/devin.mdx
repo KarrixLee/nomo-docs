@@ -186,46 +186,10 @@ ACP 서버로 테스트되었습니다.
 경우, 그리고 중단에 관한 문제 등 그 밖의 문제는
 [문제 해결](/ko/sessions/troubleshooting)에 있습니다.
 
-## 고급 {#advanced}
+## 기술 세부 정보와 보안 {#technical-details-and-security}
 
-<AccordionGroup>
-  <Accordion title="동작 방식" icon="gear">
-    - **설치 도구가 바꾸는 것.** 플러그인을 `~/.nomo`에 클론하고,
-      `~/.config/devin/config.json`의 `"hooks"` 키에 Nomo 항목을 추가합니다.
-      다른 Devin 설정은 그대로 둡니다. 또한 `/nomo-*` 명령을 Devin Skill로
-      `~/.config/devin/skills/`에 추가하며, 같은 이름의 Skill이 이미 있으면
-      건드리지 않습니다. 다시 실행해도 아무것도 바뀌지 않습니다.
-      파일에 주석이 있으면 먼저 `config.json.nomo-backup`으로 복사합니다.
-      제거하면 Nomo 항목과 Skill만 삭제됩니다. `devin`에서 `/hooks`를 입력하면
-      무엇을 불러왔는지 볼 수 있습니다.
-    - **플러그인이 추가하는 것.** Devin 플러그인은 같은 두 Hook과, 같은 명령을
-      `/nomo:pair`, `/nomo:status`, `/nomo:approvals`, `/nomo:reset`,
-      `/nomo:unpair`로 추가합니다. 규칙, MCP 서버, 에이전트는 추가하지
-      않으며, 로컬 Devin 세션에서만 실행되고 Devin Cloud에서는 절대 실행되지
-      않습니다. 설치 도구의 항목이 있는 동안에는 플러그인의 Hook이 아무것도
-      보내지 않습니다.
-    - **상태.** `UserPromptSubmit`, `PostToolUse`, `Stop`, `SessionEnd`의 Hook이
-      상태를 보고합니다. 아무것도 출력하지 않으므로 프롬프트를 막거나 도구
-      호출을 바꿀 수 없습니다 — 단, **중단**을 탭한 뒤에는 예외로, 다음
-      `PostToolUse`가 `{"continue":false}`를 출력해 그 턴을 끝냅니다.
-    - **승인.** `PermissionRequest` Hook이 도구 이름과 그 명령 또는 파일 경로를
-      종단 간 암호화해 휴대폰으로 보냅니다. 페어링된 휴대폰에서 바로 그 요청을
-      허용했을 때만 `approve`로, 거부하면 메모를 담아 `block`으로 응답합니다.
-      그 밖의 모든 경우 — 페어링되지 않음, 원격 승인 일시 중지, 오프라인, 시간
-      초과, 오류 — 에는 아무것도 출력하지 않아, 결정을 Devin 자체의 요청에
-      맡깁니다.
-    - **질문.** 같은 Hook이 `PreToolUse`(`ask_user_question`에만)에서 Devin의
-      질문과 선택지를 종단 간 암호화해 휴대폰으로 보냅니다. 답변은 답변을
-      이유로 담은 `block`으로 돌아오고, Devin의 모델이 이를 읽습니다.
-    - **항상 허용.** 허용 내용은
-      `~/.config/cc-status/sessions/<session>.devin-allow`에 저장됩니다. 이
-      파일은 본인만 읽을 수 있으며, 세션이 끝나면 삭제됩니다. Devin 자체 설정
-      파일에는 아무것도 쓰지 않습니다.
-    - **행 중복 없음.** Devin은 Claude Code Hook도 실행합니다. Nomo의 Claude
-      Code 플러그인은 Devin 안에서는 아무것도 하지 않으므로, Devin 세션이 Claude
-      Code 세션으로 표시되는 일은 없습니다.
+Nomo는 세션이 하는 일과 요청만 휴대폰으로 보내며, 종단 간 암호화됩니다.
+Devin 자체 설정은 바꾸지 않으며, 문제가 생기면 Devin은 평소처럼 Mac에서
+묻습니다.
 
-    자세한 내용은 플러그인의
-    [README](https://github.com/KarrixLee/nomo#install--devin)에 있습니다.
-  </Accordion>
-</AccordionGroup>
+내부 동작 방식은 플러그인 README에 있습니다: [Nomo와 Devin의 연동](https://github.com/KarrixLee/nomo#devin-integration), [Hook과 보안](https://github.com/KarrixLee/nomo#devin-hooks).

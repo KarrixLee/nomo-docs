@@ -128,18 +128,8 @@ Devin のドキュメントによると、Devin Desktop の **Devin Local** エ�
 
 そのほかの問題（iPhone に何も表示されない、承認を求められなくなった、セッションが止まったまま、「中断」など）は、[トラブルシューティング](/ja/sessions/troubleshooting)をご覧ください。
 
-## 上級者向け {#advanced}
+## 技術的な詳細とセキュリティ {#technical-details-and-security}
 
-<AccordionGroup>
-  <Accordion title="しくみ" icon="gear">
-    - **インストーラーが変更するもの。** プラグインを `~/.nomo` にクローンし、`~/.config/devin/config.json` の `"hooks"` キーに Nomo の項目を追加します。ほかの Devin の設定には手を付けません。また、`/nomo-*` コマンドを Devin のスキルとして `~/.config/devin/skills/` に追加します。同じ名前のスキルがすでにある場合は、そのままにします。もう一度実行しても、何も変わりません。ファイルにコメントがある場合は、先に `config.json.nomo-backup` にコピーします。アンインストールで削除されるのは、Nomo の項目とスキルだけです。`devin` で `/hooks` と入力すると、読み込まれたものを確認できます。
-    - **プラグインが追加するもの。** Devin プラグインは、同じ 2 つのフックと、同じコマンドを `/nomo:pair`、`/nomo:status`、`/nomo:approvals`、`/nomo:reset`、`/nomo:unpair` として追加します。ルール、MCP サーバー、エージェントは追加しません。動くのはローカルの Devin セッションの中だけで、Devin Cloud では動きません。インストーラーの項目がある間は、プラグインのフックは何も送りません。
-    - **状態。** `UserPromptSubmit`、`PostToolUse`、`Stop`、`SessionEnd` のフックが状態を報告します。何も出力しないので、プロンプトをブロックしたり、ツールの呼び出しを変えたりすることはありません — ただし、「中断」をタップしたあとは例外で、次の `PostToolUse` が `{"continue":false}` を出力して、そのターンを終わらせます。
-    - **承認。** `PermissionRequest` のフックが、ツール名とそのコマンドまたはファイルパスを、エンドツーエンド暗号化して iPhone に送ります。`approve` を返すのは、ペアリングした iPhone からそのリクエストに対して「許可」が届いたときだけで、「拒否」のときはメモを付けて `block` を返します。それ以外 — ペアリングしていない、承認が一時停止中、オフライン、タイムアウト、エラー — では何も出力せず、判断を Devin 自身の確認に任せます。
-    - **質問。** 同じフックが `PreToolUse`（`ask_user_question` のときだけ）で、Devin の質問とその選択肢を、エンドツーエンド暗号化して iPhone に送ります。あなたの回答は、回答を理由にした `block` として返り、Devin のモデルがそれを読みます。
-    - **常に許可。** 許可は `~/.config/cc-status/sessions/<session>.devin-allow` に保存されます。このファイルを読めるのはあなただけで、セッションが終わると削除されます。Devin 自身の設定ファイルに書き込むことはありません。
-    - **行の重複なし。** Devin は Claude Code のフックも実行します。Nomo の Claude Code プラグインは Devin の中では何もしないので、Devin のセッションが Claude Code のセッションとして表示されることはありません。
+Nomo が iPhone に送るのは、セッションの状況と、そのセッションからの確認だけです。送る内容はエンドツーエンド暗号化されます。Devin 自体の設定は変更しません。何か問題が起きても、Devin はいつもどおり Mac で確認します。
 
-    詳しくは、プラグインの [README](https://github.com/KarrixLee/nomo#install--devin) をご覧ください。
-  </Accordion>
-</AccordionGroup>
+内部のしくみはプラグインの README で説明しています: [Nomo と Devin の連携](https://github.com/KarrixLee/nomo#devin-integration)、[フックとセキュリティ](https://github.com/KarrixLee/nomo#devin-hooks)。

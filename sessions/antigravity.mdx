@@ -328,66 +328,10 @@ Good to know:
 Anything else — nothing on your phone, approvals that stopped, a stuck
 session — is in [Troubleshooting](/sessions/troubleshooting).
 
-## Advanced
+## Technical details and security
 
-<AccordionGroup>
-  <Accordion title="How it works" icon="gear">
-    - **What the installer changes.** It clones the plugin to `~/.nomo`, adds one
-      block named `nomo` to `~/.gemini/config/hooks.json` (every other block is
-      left alone), and copies a small Antigravity plugin, `nomo`, with the five
-      `/nomo-*` commands to `~/.gemini/config/plugins/nomo`. It refuses, and
-      changes nothing, if `hooks.json` isn't valid JSON or a `nomo` plugin folder
-      there isn't its own. Uninstalling removes only that block and that folder.
-    - **Hooks.** `SessionStart`, `PreInvocation`, `PostInvocation`, `Stop` and
-      `PostToolUse` report status. They answer `{}` at once and do their work in
-      the background, so Antigravity never waits on Nomo. A row starts at the
-      first `PreInvocation`, not at `SessionStart`.
-    - **Approvals.** A `PreToolUse` hook is matched only to shell commands and
-      file writes and edits (`run_command`, `write_file`, `write_to_file`,
-      `edit_file`, `replace_file_content`, `multi_replace_file_content`), with a
-      24-hour timeout. Allow answers `auto_approve`; Deny answers `deny` with
-      your note as the reason. Every other outcome answers `allow`, which leaves
-      the decision to Antigravity's own settings and prompt. Anything a `deny`
-      rule in `agy`'s `~/.gemini/antigravity-cli/settings.json` may match never
-      reaches the phone; a call a plain-prefix `allow` rule covers, and no `ask`
-      rule touches, passes straight through.
-    - **Fail-safe.** Each hook command first checks that its script still
-      exists. If `~/.nomo` was moved or deleted, it answers on its own, so
-      nothing is ever blocked. Any error in the approval hook also falls back to
-      Antigravity's own prompt.
-    - **Interrupt.** Your phone sets a one-time flag; the next `PostInvocation`
-      ends the turn. A shell command or file write waiting on the phone while
-      the flag is set is denied with "Stopped from phone". An unused flag is
-      dropped after 10 minutes. Nomo never signals the `agy` process.
-    - **Turns that end with no event.** When you cancel a turn, or a run exits,
-      Nomo watches the process that ran the hook and Antigravity's own
-      conversation index, and marks the row done. A session quiet for 30
-      minutes is cleared as a last resort. Cancelling while a card is on your
-      phone withdraws the card.
-    - **Reply.** Your phone seals a `send-message` command (a message id and up to
-      4,000 characters) and sends it over the local link and the relay. The Mac
-      writes one owner-only file per message (`<conversation>.<id>.agy-inbox`).
-      The next `PreInvocation` hands every queued message to the agent as a
-      user message; a message that arrives during the turn's last step makes
-      that turn's `Stop` continue once. Receipts come back in the session's
-      encrypted update: queued, waking, delivered, resumed, cancelled or
-      refused. For a finished `agy` conversation whose `agy` has exited, Nomo
-      runs `agy --conversation <id> --print=<message>` in that conversation's
-      folder (the message is one argument, never parsed by a shell). A finished
-      `agy` that is still open keeps the message for its next turn — Nomo never
-      starts a second `agy` on one conversation. An Interrupt flag always wins:
-      a message is never handed to a turn being stopped. Messages nobody picks
-      up are deleted after a day. Nomo's own `/nomo-*` commands never put a card
-      on the phone.
-    - **Title.** Read-only, from Antigravity's `conversation_summaries.db` with
-      the system `sqlite3`. Before it exists: the first line of the
-      conversation's transcript, then the workspace folder name.
-    - **Commands.** The `/nomo-*` commands run only Nomo's own local commands —
-      pair, status, the approvals switch, reset, unpair — each behind
-      Antigravity's own run-command prompt. They never print the pairing link
-      or QR secret.
+Nomo only sends your phone what a session is doing and what it asks, end-to-end
+encrypted. If anything fails, Antigravity asks on your computer as usual.
 
-    The full details are in the plugin's
-    [README](https://github.com/KarrixLee/nomo#install--antigravity).
-  </Accordion>
-</AccordionGroup>
+How it works under the hood is in the plugin's README: [how Nomo works with Antigravity](https://github.com/KarrixLee/nomo#antigravity-integration) and
+[hooks and security](https://github.com/KarrixLee/nomo#antigravity-hooks).

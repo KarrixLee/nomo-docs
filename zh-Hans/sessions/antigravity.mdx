@@ -262,20 +262,8 @@ Antigravity 想**运行命令**或**创建、改动文件**时，手机会问你
 
 其他问题——手机上什么都没有、审批不再弹出、会话卡住——见[故障排查](/zh-Hans/sessions/troubleshooting)。
 
-## 进阶 {#advanced}
+## 技术细节与安全 {#technical-details-and-security}
 
-<AccordionGroup>
-  <Accordion title="工作原理" icon="gear">
-    - **安装工具改了什么。**它把插件克隆到 `~/.nomo`，在 `~/.gemini/config/hooks.json` 里加入一个名为 `nomo` 的区块（其他区块原样不动），并把一个小小的 Antigravity 插件 `nomo`——带五条 `/nomo-*` 命令——复制到 `~/.gemini/config/plugins/nomo`。如果 `hooks.json` 不是有效的 JSON，或者那里的 `nomo` 插件文件夹不是它自己的，它会拒绝执行，什么都不改。卸载只删掉那个区块和那个文件夹。
-    - **Hook。**`SessionStart`、`PreInvocation`、`PostInvocation`、`Stop` 和 `PostToolUse` 负责上报状态。它们立刻回答 `{}`，在后台完成自己的工作，所以 Antigravity 从不等待 Nomo。一行会话从第一次 `PreInvocation` 开始，而不是 `SessionStart`。
-    - **审批。**`PreToolUse` hook 只匹配 shell 命令和文件的写入与编辑（`run_command`、`write_file`、`write_to_file`、`edit_file`、`replace_file_content`、`multi_replace_file_content`），超时时间为 24 小时。允许回答 `auto_approve`；拒绝回答 `deny`，并把你的附注作为理由。其他所有结果都回答 `allow`，也就是把决定交还给 Antigravity 自己的设置和权限请求。`agy` 的 `~/.gemini/antigravity-cli/settings.json` 里任何 `deny` 规则可能匹配的操作永远不会送到手机；被纯前缀 `allow` 规则覆盖、且没有任何 `ask` 规则涉及的调用会直接放行。
-    - **故障保护。**每条 hook 命令都会先检查它的脚本是否还在。如果 `~/.nomo` 被移动或删除，它会自己作答，所以永远不会挡住任何操作。审批 hook 里出任何错误，也会退回到 Antigravity 自己的权限请求。
-    - **停止。**你的手机设置一个一次性标记；下一次 `PostInvocation` 会结束这一轮。标记存在期间，正在等手机答复的 shell 命令或文件写入会以“Stopped from phone”被拒绝。没用上的标记 10 分钟后丢弃。Nomo 从不向 `agy` 进程发送信号。
-    - **没有事件就结束的轮次。**当你取消一轮，或者一次运行退出时，Nomo 会盯着运行 hook 的那个进程和 Antigravity 自己的对话索引，把这一行标为完成。安静 30 分钟的会话会作为最后手段被清掉。卡片还在手机上时取消，卡片会被撤回。
-    - **回复。**手机把一条 `send-message` 命令（一个消息 ID 和最多 4000 个字符）加密封装，同时经本地连接和中继服务器发出。Mac 为每条消息写一个只有所有者能读的文件（`<conversation>.<id>.agy-inbox`）。下一次 `PreInvocation` 会把所有排队的消息作为用户消息交给智能体；在这一轮最后一步期间送达的消息，会让这一轮的 `Stop` 继续一次。回执（排队、唤醒中、已送达、已继续、已取消、已拒绝）随会话的加密更新返回。对于已经结束、且 `agy` 已退出的 `agy` 对话，Nomo 会在该对话的文件夹里运行 `agy --conversation <id> --print=<message>`（消息是单独一个参数，从不经过 shell 解析）。已结束但仍开着的 `agy` 会把消息留到它的下一轮——Nomo 绝不会在同一个对话上启动第二个 `agy`。停止标记永远优先：消息绝不会交给正在被停止的那一轮。没人取走的消息一天后删除。Nomo 自己的 `/nomo-*` 命令永远不会在手机上弹出卡片。
-    - **标题。**用系统自带的 `sqlite3` 以只读方式读取 Antigravity 的 `conversation_summaries.db`。在它出现之前：用对话记录的第一行，再不行就用工作区文件夹名称。
-    - **命令。**`/nomo-*` 命令只运行 Nomo 自己的本地命令——配对、状态、审批开关、重置、解除配对——每条都要先经过 Antigravity 自己的运行命令请求。它们从不输出配对链接或二维码密钥。
+Nomo 只把会话在做什么、它要问你什么发到你的手机，并且端到端加密。出了任何问题，Antigravity 都会照常在电脑上问你。
 
-    完整细节见插件的 [README](https://github.com/KarrixLee/nomo#install--antigravity)。
-  </Accordion>
-</AccordionGroup>
+内部如何运作，见插件的 README：[Nomo 如何与 Antigravity 配合](https://github.com/KarrixLee/nomo#antigravity-integration)、[hook 与安全](https://github.com/KarrixLee/nomo#antigravity-hooks)。

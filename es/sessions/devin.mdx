@@ -195,49 +195,11 @@ Todo lo demás —nada en tu teléfono, aprobaciones que dejaron de llegar, una
 sesión atascada, Detener— está en
 [Solución de problemas](/es/sessions/troubleshooting).
 
-## Avanzado {#advanced}
+## Detalles técnicos y seguridad {#technical-details-and-security}
 
-<AccordionGroup>
-  <Accordion title="Cómo funciona" icon="gear">
-    - **Qué cambia el instalador.** Clona el plugin en `~/.nomo` y añade las
-      entradas de Nomo a la clave `"hooks"` de `~/.config/devin/config.json`.
-      El resto de tus ajustes de Devin quedan como están. También añade los
-      comandos `/nomo-*` como skills de Devin en `~/.config/devin/skills/`; una
-      skill tuya con el mismo nombre se deja como está. Volver a ejecutarlo
-      no cambia nada. Si el archivo tiene comentarios, primero lo copia a
-      `config.json.nomo-backup`. Desinstalar quita solo las entradas y las
-      skills de Nomo. Escribe `/hooks` en `devin` para ver lo que ha cargado.
-    - **Qué añade el plugin.** El plugin de Devin añade los mismos dos hooks y
-      los mismos comandos como `/nomo:pair`, `/nomo:status`, `/nomo:approvals`,
-      `/nomo:reset` y `/nomo:unpair`. No añade reglas, servidores
-      MCP ni agentes, y solo se ejecuta en las sesiones locales de Devin, nunca
-      en Devin Cloud. Mientras estén las entradas del instalador, los hooks del
-      plugin no envían nada.
-    - **Estado.** Un hook en `UserPromptSubmit`, `PostToolUse`, `Stop` y
-      `SessionEnd` informa del estado. No imprime nada, así que no puede
-      bloquear un prompt ni cambiar una llamada a una herramienta, salvo
-      después de que toques **Detener**: entonces su siguiente `PostToolUse`
-      imprime `{"continue":false}`, que termina ese turno.
-    - **Aprobaciones.** Un hook en `PermissionRequest` envía a tu teléfono el
-      nombre de la herramienta y su comando o ruta de archivo, con cifrado de
-      extremo a extremo. Responde `approve` solo ante un Permitir de tu
-      teléfono vinculado para esa solicitud exacta, y `block` con tu nota ante
-      un Denegar. Cualquier otro caso (sin vincular, aprobaciones en pausa, sin
-      conexión, tiempo agotado, un error) no imprime nada, lo que deja la
-      decisión a la propia solicitud de Devin.
-    - **Preguntas.** El mismo hook en `PreToolUse` (solo para
-      `ask_user_question`) envía a tu teléfono la pregunta de Devin y sus
-      opciones, con cifrado de extremo a extremo. Tu respuesta vuelve como un
-      `block` cuyo motivo es tu respuesta, que el modelo de Devin lee.
-    - **Permitir siempre.** El permiso se guarda en
-      `~/.config/cc-status/sessions/<session>.devin-allow`, que solo tú puedes
-      leer, y se borra cuando termina la sesión. Nunca se escriben los archivos
-      de ajustes de Devin.
-    - **Sin filas dobles.** Devin también ejecuta los hooks de Claude Code. El
-      plugin de Nomo para Claude Code no hace nada dentro de Devin, así que una
-      sesión de Devin nunca aparece como sesión de Claude Code.
+Nomo solo envía a tu teléfono lo que hace una sesión y lo que pregunta, con
+cifrado de extremo a extremo. Nunca cambia los ajustes de Devin, y si algo
+falla, Devin pregunta en tu Mac, como siempre.
 
-    Todos los detalles están en el
-    [README](https://github.com/KarrixLee/nomo#install--devin) del plugin.
-  </Accordion>
-</AccordionGroup>
+Cómo funciona por dentro está en el README del plugin: [cómo funciona Nomo con Devin](https://github.com/KarrixLee/nomo#devin-integration)
+y [hooks y seguridad](https://github.com/KarrixLee/nomo#devin-hooks).

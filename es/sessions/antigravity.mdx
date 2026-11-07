@@ -337,73 +337,11 @@ Conviene saber:
 Todo lo demás —nada en tu teléfono, aprobaciones que dejaron de llegar, una
 sesión atascada— está en [Solución de problemas](/es/sessions/troubleshooting).
 
-## Avanzado {#advanced}
+## Detalles técnicos y seguridad {#technical-details-and-security}
 
-<AccordionGroup>
-  <Accordion title="Cómo funciona" icon="gear">
-    - **Qué cambia el instalador.** Clona el plugin en `~/.nomo`, añade un
-      bloque llamado `nomo` a `~/.gemini/config/hooks.json` (el resto de
-      bloques quedan intactos) y copia un pequeño plugin de Antigravity, `nomo`,
-      con los cinco comandos `/nomo-*` en `~/.gemini/config/plugins/nomo`. Se
-      niega, sin cambiar nada, si `hooks.json` no es JSON válido o si la carpeta
-      de plugin `nomo` de ahí no es suya. Desinstalar quita solo ese bloque y
-      esa carpeta.
-    - **Hooks.** `SessionStart`, `PreInvocation`, `PostInvocation`, `Stop` y
-      `PostToolUse` informan del estado. Responden `{}` al momento y hacen su
-      trabajo en segundo plano, así que Antigravity nunca espera a Nomo. Una
-      fila empieza en el primer `PreInvocation`, no en `SessionStart`.
-    - **Aprobaciones.** Un hook `PreToolUse` se aplica solo a comandos de shell
-      y a escrituras y ediciones de archivos (`run_command`, `write_file`,
-      `write_to_file`, `edit_file`, `replace_file_content`,
-      `multi_replace_file_content`), con un tiempo límite de 24 horas. Permitir
-      responde `auto_approve`; Denegar responde `deny` con tu nota como motivo.
-      Cualquier otro resultado responde `allow`, que deja la decisión a los
-      propios ajustes y a la solicitud de Antigravity. Lo que pueda coincidir
-      con una regla `deny` de `~/.gemini/antigravity-cli/settings.json` de `agy`
-      nunca llega al teléfono; una llamada que cubre una regla `allow` de
-      prefijo simple, y que ninguna regla `ask` toca, pasa directamente.
-    - **A prueba de fallos.** Cada comando de hook comprueba primero que su
-      script sigue existiendo. Si `~/.nomo` se movió o se borró, responde por
-      su cuenta, así que nunca se bloquea nada. Cualquier error en el hook de
-      aprobación también vuelve a la solicitud propia de Antigravity.
-    - **Detener.** Tu teléfono pone una marca de un solo uso; el siguiente
-      `PostInvocation` termina el turno. Un comando de shell o una escritura de
-      archivo que espera al teléfono mientras la marca está puesta se deniega
-      con “Stopped from phone”. Una marca sin usar se descarta a los 10
-      minutos. Nomo nunca envía señales al proceso `agy`.
-    - **Turnos que acaban sin evento.** Cuando cancelas un turno, o una
-      ejecución termina, Nomo vigila el proceso que ejecutó el hook y el índice
-      de conversaciones de Antigravity, y marca la fila como terminada. Una
-      sesión sin actividad durante 30 minutos se quita como último recurso.
-      Cancelar mientras hay una tarjeta en tu teléfono retira la tarjeta.
-    - **Respuestas.** Tu teléfono sella un comando `send-message` (un id de
-      mensaje y hasta 4000 caracteres) y lo envía por el enlace local y por el
-      relé. El Mac escribe un archivo por mensaje, solo legible por su dueño
-      (`<conversation>.<id>.agy-inbox`). El siguiente `PreInvocation` entrega
-      todos los mensajes en cola al agente como mensajes del usuario; un mensaje
-      que llega durante el último paso del turno hace que el `Stop` de ese turno
-      continúe una vez. Los acuses vuelven en la actualización cifrada de la
-      sesión: en cola, reanudando, entregado, reanudado, cancelado o rechazado.
-      Para una conversación de `agy` terminada cuyo `agy` ya se cerró, Nomo
-      ejecuta `agy --conversation <id> --print=<message>` en la carpeta de esa
-      conversación (el mensaje es un único argumento, nunca lo interpreta una
-      shell). Un `agy` terminado que sigue abierto guarda el mensaje para su
-      siguiente turno: Nomo nunca abre un segundo `agy` en una conversación. Un
-      Detener siempre gana: un mensaje nunca se entrega a un turno que se está
-      deteniendo. Los mensajes que nadie recoge se borran al cabo de un día. Los
-      comandos `/nomo-*` de Nomo nunca ponen una tarjeta en el teléfono.
-    - **Título.** De solo lectura, desde `conversation_summaries.db` de
-      Antigravity con el `sqlite3` del sistema. Antes de que exista: la primera
-      línea de la transcripción de la conversación y, si no, el nombre de la
-      carpeta del espacio de trabajo.
-    - **Comandos.** Los comandos `/nomo-*` solo ejecutan los propios comandos
-      locales de Nomo —vincular, estado, el interruptor de aprobaciones,
-      reiniciar, desvincular—, cada uno detrás de la solicitud de ejecutar
-      comandos de Antigravity. Nunca imprimen el enlace de vinculación ni el
-      secreto del QR.
+Nomo solo envía a tu teléfono lo que hace una sesión y lo que pregunta, con
+cifrado de extremo a extremo. Si algo falla, Antigravity pregunta en el
+ordenador, como siempre.
 
-    Todos los detalles están en el
-    [README](https://github.com/KarrixLee/nomo#install--antigravity) del
-    plugin.
-  </Accordion>
-</AccordionGroup>
+Cómo funciona por dentro está en el README del plugin: [cómo funciona Nomo con Antigravity](https://github.com/KarrixLee/nomo#antigravity-integration)
+y [hooks y seguridad](https://github.com/KarrixLee/nomo#antigravity-hooks).
