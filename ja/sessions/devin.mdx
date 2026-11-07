@@ -197,7 +197,11 @@ Devin で次のように入力します。Devin プラグインの場合は、`/
 | `/nomo-reset` | `/nomo:reset` | 止まったままのセッションを iPhone から消去する（ペアリングはそのまま） |
 | `/nomo-unpair` | `/nomo:unpair` | このコンピュータと iPhone のペアリングを解除する |
 
-Devin が Nomo のコマンドを実行してよいか確認してきたら、許可してください。Devin がコマンドを認識しない場合は、インストーラーをもう一度実行して Devin を再起動してください — または、[上級者向け](#advanced)にある方法でターミナルから実行します。
+<Note>
+  Cursor でも Nomo を使っていますか？その場合、Devin ではこれらのコマンドが `/devin:nomo-pair`、`/devin:nomo-status` のように表示されます。そちらを入力してください。`/nomo-approvals` の名前は変わりません。
+</Note>
+
+このコンピュータをペアリングしたあとは、Nomo 自身のコマンドは確認なしで実行されます。ただし `/nomo-approvals off`、`/nomo-unpair`、`/nomo-pair code` は、承認がオンのあいだ iPhone で確認されます。Devin が Nomo のコマンドを実行してよいか確認してきたら、許可してください。Devin がコマンドを認識しない場合は、インストーラーをもう一度実行して Devin を再起動してください — または、[上級者向け](#advanced)にある方法でターミナルから実行します。
 
 ペアリングと承認のスイッチは、このコンピュータのすべてのコーディングアプリで共有されます。ここで承認をオフにすると、Claude Code と Codex でもオフになります。
 

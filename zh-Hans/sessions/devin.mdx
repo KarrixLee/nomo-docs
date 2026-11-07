@@ -197,7 +197,11 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
 | `/nomo-reset` | `/nomo:reset` | 清掉手机上卡住的会话，连接保持不变 |
 | `/nomo-unpair` | `/nomo:unpair` | 断开这台电脑和手机的连接 |
 
-如果 Devin 问你要不要运行 Nomo 命令，允许即可。Devin 不认识这些命令？再运行一次安装工具并重启 Devin——或者在终端里运行它们，见[进阶](#advanced)。
+<Note>
+  同时也在 Cursor 里用 Nomo？Devin 会把这些命令显示为 `/devin:nomo-pair`、`/devin:nomo-status` 等等——改为输入这些即可。`/nomo-approvals` 的名字不变。
+</Note>
+
+这台电脑连接好之后，Devin 会直接运行 Nomo 自己的命令，不再询问。不过审批开启时，`/nomo-approvals off`、`/nomo-unpair` 和 `/nomo-pair code` 仍会先在手机上问你。如果 Devin 问你要不要运行 Nomo 命令，允许即可。Devin 不认识这些命令？再运行一次安装工具并重启 Devin——或者在终端里运行它们，见[进阶](#advanced)。
 
 连接和审批开关由这台电脑上的所有编程工具共用。在这里关掉审批，Claude Code 和 Codex 的审批也会一起关掉。
 

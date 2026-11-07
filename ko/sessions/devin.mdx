@@ -223,7 +223,15 @@ Devin에 다음을 입력합니다. Devin 플러그인을 쓴다면 명령이 `/
 | `/nomo-reset` | `/nomo:reset` | 연결은 유지한 채 휴대폰에서 멈춘 세션을 정리합니다 |
 | `/nomo-unpair` | `/nomo:unpair` | 이 컴퓨터를 휴대폰에서 연결 해제합니다 |
 
-Devin이 Nomo 명령을 실행할지 물으면 허용하십시오. Devin이 명령을 알지 못한다면
+<Note>
+  Cursor에서도 Nomo를 쓰십니까? 그렇다면 Devin에는 이 명령이 `/devin:nomo-pair`,
+  `/devin:nomo-status` 등으로 표시됩니다. 그 이름으로 입력하십시오.
+  `/nomo-approvals`는 이름이 그대로입니다.
+</Note>
+
+이 컴퓨터를 연결한 뒤에는 Devin이 Nomo 자체 명령을 묻지 않고 실행합니다. 단,
+`/nomo-approvals off`, `/nomo-unpair`, `/nomo-pair code`는 원격 승인이 켜져 있는
+동안 휴대폰에서 먼저 묻습니다. Devin이 Nomo 명령을 실행할지 물으면 허용하십시오. Devin이 명령을 알지 못한다면
 설치 도구를 다시 실행하고 Devin을 재시작하거나, [고급](#advanced)에 있는 대로
 터미널에서 실행하십시오.
 

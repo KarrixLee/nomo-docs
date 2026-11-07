@@ -224,8 +224,16 @@ of `/nomo-` — for example `/nomo:pair`.
 | `/nomo-reset` | `/nomo:reset` | Clear stuck sessions from your phone, and stay connected |
 | `/nomo-unpair` | `/nomo:unpair` | Disconnect this computer from your phone |
 
-If Devin asks to run a Nomo command, allow it. Devin doesn't know the
-commands? Run the installer again and restart Devin — or use them from
+<Note>
+  Also use Nomo with Cursor? Devin shows these as `/devin:nomo-pair`,
+  `/devin:nomo-status` and so on — type that instead. `/nomo-approvals` keeps
+  its name.
+</Note>
+
+Once this computer is connected, Devin runs Nomo's own commands without asking.
+`/nomo-approvals off`, `/nomo-unpair` and `/nomo-pair code` still ask first — on
+your phone while approvals are on. If Devin asks to run a Nomo command, allow
+it. Devin doesn't know the commands? Run the installer again and restart Devin — or use them from
 Terminal, under [Advanced](#advanced).
 
 The connection and the approvals switch are shared by every coding app on this

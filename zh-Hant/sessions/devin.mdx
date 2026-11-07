@@ -197,7 +197,11 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
 | `/nomo-reset` | `/nomo:reset` | 從手機上清除卡住的 sessions，連線保持不變 |
 | `/nomo-unpair` | `/nomo:unpair` | 解除這台電腦和手機的配對 |
 
-如果 Devin 問要不要執行 Nomo 的指令，請允許。Devin 不認得這些指令？再執行一次安裝工具並重新啟動 Devin — 或是改在終端機裡使用它們，請看[進階](#advanced)。
+<Note>
+  也在 Cursor 裡使用 Nomo？Devin 會把這些指令顯示成 `/devin:nomo-pair`、`/devin:nomo-status` 等等 — 請改為輸入這些。`/nomo-approvals` 的名稱不變。
+</Note>
+
+這台電腦連線之後，Devin 會直接執行 Nomo 自己的指令，不再詢問。不過在批准開啟時，`/nomo-approvals off`、`/nomo-unpair` 和 `/nomo-pair code` 仍會先在手機上問你。如果 Devin 問要不要執行 Nomo 的指令，請允許。Devin 不認得這些指令？再執行一次安裝工具並重新啟動 Devin — 或是改在終端機裡使用它們，請看[進階](#advanced)。
 
 連線和批准開關是這台電腦上所有寫程式的 App 共用的。在這裡關掉批准，Claude Code 和 Codex 的批准也會一起關掉。
 

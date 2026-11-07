@@ -226,7 +226,16 @@ de `/nomo-`: por ejemplo, `/nomo:pair`.
 | `/nomo-reset` | `/nomo:reset` | Quita de tu teléfono las sesiones atascadas, sin desvincular |
 | `/nomo-unpair` | `/nomo:unpair` | Desvincula este ordenador de tu teléfono |
 
-Si Devin pide permiso para ejecutar un comando de Nomo, permítelo. ¿Devin no
+<Note>
+  ¿También usas Nomo con Cursor? Devin muestra estos comandos como
+  `/devin:nomo-pair`, `/devin:nomo-status`, etc. Escribe esos en su lugar.
+  `/nomo-approvals` mantiene su nombre.
+</Note>
+
+Una vez vinculado este ordenador, Devin ejecuta los comandos propios de Nomo sin
+preguntar. `/nomo-approvals off`, `/nomo-unpair` y `/nomo-pair code` siguen
+preguntando antes: en tu teléfono, mientras las aprobaciones estén activadas. Si
+Devin pide permiso para ejecutar un comando de Nomo, permítelo. ¿Devin no
 reconoce los comandos? Vuelve a ejecutar el instalador y reinicia Devin, o
 úsalos desde Terminal, en [Avanzado](#advanced).
 
