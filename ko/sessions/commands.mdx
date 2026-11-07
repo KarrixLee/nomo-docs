@@ -47,8 +47,7 @@ Cursor, Antigravity, Devin에서는 `/` Skill, Codex에서는 `$` Skill입니다
 마지막 줄의 빈칸은 빠뜨린 것이 아닙니다. Claude Code와 Codex는 각자의 호스트를
 통해 업데이트되므로 Nomo가 거기에 명령을 더하지 않고, Cursor는 설치 도구를 다시
 실행해 업데이트합니다. Antigravity와 Devin도 마찬가지입니다. 각각 무엇이 필요한지는
-— Codex는 대개 아무것도 필요 없습니다 —
-[설치](/ko/setup/install#updating)에 있습니다.
+— Codex는 대개 아무것도 필요 없습니다 — [update](#update)에 있습니다.
 
 승인 줄에서 Cursor의 빈칸도 빠뜨린 것이 아닙니다. Cursor 세션은 읽기 전용이라
 일시 중지할 원격 승인이 없습니다 — [Cursor 사용하기](/ko/sessions/cursor).
@@ -375,48 +374,111 @@ Devin 플러그인을 쓴다면 `/nomo:unpair`입니다.
 
 ## update {#update}
 
-```bash OpenCode icon="/images/opencode.svg"
-/nomo-update
-```
+업데이트 명령이 있는 것은 OpenCode뿐입니다. 다른 에이전트는 다른 방법으로
+업데이트합니다. 사용하는 에이전트의 탭을 여십시오.
 
-**OpenCode 전용**이며, 무언가를 바꾸기 전에 먼저 확인합니다. 이미 최신이면 거기서
-멈춥니다. 받아 오지도, 다시 설치하지도 않습니다.
+`bunx nomo-ai`(또는 `npx nomo-ai`)로도 업데이트할 수 있습니다. Nomo가 이미 설치된
+에이전트는 설치가 아니라 업데이트로 표시됩니다. 실제로 실행되는 것은 OpenCode,
+Cursor, Antigravity, Devin 쪽뿐이고, Claude Code와 Codex 쪽은 출력만 됩니다.
 
-```
-OpenCode plugin: /Users/you/.nomo
-Already on 2.1.22 — nothing to do.
-```
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
 
-받아 올 것이 있으면, 받기 전에 무엇인지부터 말합니다.
+    자동 업데이트는 서드파티 마켓플레이스에서 꺼짐이 기본값이므로, 저절로 설치가
+    움직이는 일은 없습니다. 켜려면 `/plugin` → **Marketplaces** → Nomo의 것 →
+    **Enable auto-update**.
+  </Tab>
 
-```
-OpenCode plugin: /Users/you/.nomo
-Update available: 2.1.22 → 2.1.23.
-```
+  <Tab title="Codex" icon="/images/codex.svg">
+    대개 실행할 것이 없습니다. Codex는 플러그인을 그 경로에서 바로 읽으므로 그
+    클론에서 받아 오는 것이 업데이트의 전부이며, `codex plugin update`라는 명령
+    자체가 없습니다.
 
-그런 다음 받아 오고, 설치 스크립트를 다시 실행하고 — 새 버전이 추가한 `/nomo-*`
-명령을 가져오는 것이 바로 이 단계입니다 — OpenCode를 재시작하라고 알려 줍니다.
-플러그인은 서버가 시작될 때 한 번만 불러오므로, 재시작하기 전까지는 예전 사본이
-그대로 실행 중입니다.
+    마켓플레이스를 git에서 추가했다면 Codex가 스냅샷을 들고 있으며, 그것을
+    갱신하는 것이 곧 업데이트입니다.
 
-확신할 수 없을 때는 실행하는 대신 거부하며, 거부할 때마다 무엇을 해야 하는지
-알려 줍니다. 이전의 `--ref` 설치로 고정된 클론, 커밋하지 않은 변경이 남은 작업
-트리, 옮겨졌거나 삭제된 클론, Nomo 자체 저장소가 아닌 클론, 그리고 여기에 설치된
-것이 아예 없는 경우입니다.
+    ```bash
+    codex plugin marketplace upgrade <marketplace-name>
+    ```
 
-`bunx nomo-ai`는 같은 업데이트를 `--global`로 실행합니다. 어느 폴더에서 실행하든
-전역 설치만 업데이트합니다. `--project` 설치는 그 프로젝트에서 OpenCode를 열고
-`/nomo-update`를 실행해 업데이트합니다.
+    이름은 추가할 때 쓴 이름이며, 반드시 `nomo`인 것은 아닙니다.
+  </Tab>
 
-<Note>
-  업데이트 대상은 **스텁**이 가리키는 클론 — OpenCode가 실제로 불러오는 사본 —
-  이며, 당신이 입력한 명령 파일이 나온 클론과 반드시 같지는 않습니다. 클론을 여러
-  벌 두고 쓴다면 이 차이가 중요합니다.
-</Note>
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    ```bash
+    /nomo-update
+    ```
 
-Claude Code와 Codex에는 대응하는 명령이 없습니다. 업데이트를 각자의 호스트가
-맡기 때문이며, Codex는 대개 실행할 것 자체가 없습니다. 둘 다
-[설치](/ko/setup/install#updating)에서 다룹니다.
+    무언가를 바꾸기 전에 먼저 확인합니다. 이미 최신이면 거기서 멈춥니다. 받아
+    오지도, 다시 설치하지도 않습니다.
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Already on 2.1.22 — nothing to do.
+    ```
+
+    받아 올 것이 있으면, 받기 전에 무엇인지부터 말합니다.
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Update available: 2.1.22 → 2.1.23.
+    ```
+
+    그런 다음 받아 오고, 설치 스크립트를 다시 실행하고 — 새 버전이 추가한
+    `/nomo-*` 명령을 가져오는 것이 바로 이 단계입니다 — OpenCode를 재시작하라고
+    알려 줍니다. 플러그인은 서버가 시작될 때 한 번만 불러오므로, 재시작하기
+    전까지는 예전 사본이 그대로 실행 중입니다.
+
+    확신할 수 없을 때는 실행하는 대신 거부하며, 거부할 때마다 무엇을 해야 하는지
+    알려 줍니다. 이전의 `--ref` 설치로 고정된 클론, 커밋하지 않은 변경이 남은
+    작업 트리, 옮겨졌거나 삭제된 클론, Nomo 자체 저장소가 아닌 클론, 그리고
+    여기에 설치된 것이 아예 없는 경우입니다.
+
+    `bunx nomo-ai`는 같은 업데이트를 `--global`로 실행합니다. 어느 폴더에서
+    실행하든 전역 설치만 업데이트합니다. `--project` 설치는 그 프로젝트에서
+    OpenCode를 열고 `/nomo-update`를 실행해 업데이트합니다.
+
+    <Note>
+      업데이트 대상은 **스텁**이 가리키는 클론 — OpenCode가 실제로 불러오는
+      사본 — 이며, 당신이 입력한 명령 파일이 나온 클론과 반드시 같지는
+      않습니다. 클론을 여러 벌 두고 쓴다면 이 차이가 중요합니다.
+    </Note>
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    설치할 때 쓴 것과 같은 명령입니다.
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    끝나면 Cursor를 재시작하고, 열려 있는 `cursor-agent` 세션도 재시작하십시오.
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    설치할 때 쓴 것과 같은 명령입니다.
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    끝나면 Antigravity를 재시작하고, 열려 있는 `agy` 세션도 재시작하십시오.
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    Nomo 설치 도구를 썼다면, 설치할 때 쓴 것과 같은 명령입니다.
+
+    ```bash
+    bunx nomo-ai --devin
+    ```
+
+    끝나면 열려 있는 `devin`을 모두 재시작하고, Devin Desktop도
+    재시작하십시오.
+  </Tab>
+</Tabs>
 
 ## uninstall {#uninstall}
 
@@ -453,7 +515,24 @@ bunx nomo-ai --uninstall --devin
 
 Devin 플러그인으로 설치했다면 `devin plugins remove nomo`입니다.
 
-그런 다음 에이전트를 재시작하십시오.
+`bunx`가 없다면 대신 `npx`를 사용하십시오. 예: `npx nomo-ai --uninstall --cursor`.
+또는 에이전트 자체 스크립트를 실행합니다. 예:
+`node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
+(Antigravity는 `antigravity-install.mjs`, Devin은 `devin-install.mjs`).
+
+Antigravity와 Devin은 제거가 끝나면 다음과 같이 알려 줍니다.
+
+```
+✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
+```
+
+```
+devin-install: removed Nomo's hooks from Devin — restart devin
+```
+
+그런 다음 에이전트를 재시작하십시오. Cursor와 Antigravity는 앱을 종료했다가 다시
+열고, 열려 있는 `cursor-agent`나 `agy`도 재시작합니다. Devin은 열려 있는
+`devin`을 모두 닫고 다시 시작합니다.
 
 Nomo가 그 에이전트에 추가한 것만 제거합니다. 휴대폰 페어링은 그대로 남으므로
 다른 에이전트는 계속 작동합니다. 이 컴퓨터의 연결도 끊으려면 **먼저**
@@ -464,6 +543,27 @@ Nomo의 Claude Code 플러그인을 Antigravity로 가져왔다면
 
 `bunx nomo-ai --uninstall`에는 항상 에이전트를 지정해야 하며, 추측하지 않습니다.
 에이전트별 설치는 [설치](/ko/setup/install)에서 자세히 다룹니다.
+
+## 터미널에서 실행하기 {#without-slash-commands}
+
+Antigravity나 Devin이 Nomo 명령을 알지 못한다면 대신 터미널에서 실행하십시오.
+Nomo 설치 도구로 설치한 경우에 쓸 수 있습니다.
+
+| | |
+| --- | --- |
+| 페어링 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| 입력할 코드로 페어링 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+| 상태 확인(Antigravity) | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| 상태 확인(Devin) | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
+| 원격 승인 일시 중지 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+| 원격 승인 재개 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+| 멈춘 세션 정리 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| 페어링 해제 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+터미널에서 페어링한 뒤에는
+`~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait`를 실행하고
+QR 코드를 스캔합니다. 설치 도구에 `--verbose`를 붙이면 무엇을 바꾸는지 볼 수
+있습니다.
 
 ## 상태가 저장되는 위치 {#where-state-lives}
 

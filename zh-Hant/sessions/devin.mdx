@@ -1,7 +1,7 @@
 ---
 title: "在 iPhone 上看著並批准 Devin sessions"
 sidebarTitle: "搭配 Devin 使用"
-description: "幾個步驟就能為 Devin 設定好 Nomo、配對手機，然後在 iPhone 上跟著你的 Devin sessions — 回覆 Devin 的權限請求和問題，還能停止執行中的這一輪。"
+description: "在 iPhone 上跟著你的 Devin sessions — 回覆 Devin 的權限請求和問題，還能停止執行中的這一輪。Devin 有什麼不同，以及為什麼。"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "session", "電腦", "動態島", "權限", "配對", "搭配 Devin 使用"]
 ---
 
@@ -13,211 +13,42 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
   Sessions 屬於 Nomo Pro。你的手機需要 Nomo **2.5.0** 以上，Mac 上需要外掛程式 **2.5.0** 以上。
 </Note>
 
-## 設定步驟 {#set-it-up}
+## 相同的部分 {#what-works-the-same}
 
-把 Nomo 加進 Devin 有兩種方式：**Devin 外掛程式**，或 **Nomo 安裝工具**。兩者選一個安裝就好。如果兩個都裝了，Nomo 會使用安裝工具那一個，外掛程式則保持安靜。
+sessions、資料夾和[動態島](/zh-Hant/sessions/island)的運作和其他代理一樣。所有共用的部分都只寫在一個地方：
 
-<Tabs>
-  <Tab title="Devin 外掛程式">
-    <Steps>
-      <Step title="打開終端機">
-        在你的 Mac 上打開「終端機」App。它在「應用程式」>「工具程式」裡。
-      </Step>
+- **安裝** → [安裝](/zh-Hant/setup/install)的 **Devin** 分頁。兩種[安裝方式](#set-it-up)的步驟都在那裡。
+- **配對** → [配對](/zh-Hant/setup/pairing)。一次配對涵蓋這台電腦上的每個代理。
+- **指令、更新與解除安裝** → [指令](/zh-Hant/sessions/commands)，其中有 [update](/zh-Hant/sessions/commands#update) 和 [uninstall](/zh-Hant/sessions/commands#uninstall)。
+- **回答權限請求** → [在手機上回覆](/zh-Hant/sessions/approvals)。
+- **每個代理能做什麼** → [功能一覽](/zh-Hant/sessions/features)。
+- **出了問題** → [疑難排解](/zh-Hant/sessions/troubleshooting)。
 
-      <Step title="安裝 Devin CLI">
-        已經裝好了？跳過這一步。
+## 兩種安裝方式 {#set-it-up}
 
-        複製下面這一行，貼到終端機裡，然後按下 Return：
+把 Nomo 加進 Devin 有兩種方式：**Devin 外掛程式**，或 **Nomo 安裝工具**。兩者選一個安裝就好。如果兩個都裝了，Nomo 會使用安裝工具那一個，外掛程式則保持安靜。兩種方式的步驟都在[安裝](/zh-Hant/setup/install)的 **Devin** 分頁裡。
 
-        ```bash
-        brew install --cask devin-cli
-        ```
+用 Devin 外掛程式的話，Nomo 的指令開頭是 `/nomo:` 而不是 `/nomo-` — 例如 `/nomo:pair`。
 
-        沒有 Homebrew？改用這一行：
+## Nomo 的指令 {#commands}
 
-        ```bash
-        curl -fsSL https://cli.devin.ai/install.sh | bash
-        ```
-
-        然後輸入 `devin` 並按下 Return。如果 Devin 要你登入，照著它的步驟做。
-      </Step>
-
-      <Step title="安裝 Nomo 外掛程式">
-        這一步要在終端機裡輸入，不是在 Devin 裡面。如果 Devin 開著，請先開一個新的終端機視窗（按下 **⌘N**）。
-
-        複製下面這一行，貼到終端機裡，然後按下 Return：
-
-        ```bash
-        devin plugins install KarrixLee/nomo
-        ```
-
-        改用 Devin Desktop？前往 **Customize → Plugins → From repository**，然後輸入 `KarrixLee/nomo`。
-      </Step>
-
-      <Step title="啟動 Devin">
-        在終端機裡輸入 `devin`，然後按下 Return。
-      </Step>
-
-      <Step title="輸入 /nomo:pair">
-        在 `devin` 裡輸入下面這行並送出：
-
-        ```
-        /nomo:pair
-        ```
-
-        Devin 會在瀏覽器裡打開一個有 QR code 的頁面。
-      </Step>
-
-      <Step title="掃描 QR code">
-        在 iPhone 上打開 Nomo → **Sessions** → **配對電腦**，然後掃描 QR code。
-      </Step>
-
-      <Step title="確認一下">
-        在 `devin` 裡輸入下面這行並送出：
-
-        ```
-        /nomo:status
-        ```
-
-        如果有一行以 `!` 開頭，照著它底下那行 `→` 做。
-      </Step>
-
-      <Step title="在 Devin 裡送出一則訊息">
-        在 `devin` 裡隨便送出什麼都可以。
-
-        你應該會看到這個 session 出現在 Nomo 裡，在你那台電腦的 **Devin** 分頁底下。沒有 Devin 分頁？點一下 **+** 按鈕（「選擇代理」），把 Devin 打開。
-      </Step>
-    </Steps>
-  </Tab>
-
-  <Tab title="Nomo 安裝工具">
-    <Steps>
-      <Step title="打開終端機">
-        在你的 Mac 上打開「終端機」App。它在「應用程式」>「工具程式」裡。
-      </Step>
-
-      <Step title="安裝 Devin CLI">
-        已經裝好了？跳過這一步。
-
-        複製下面這一行，貼到終端機裡，然後按下 Return：
-
-        ```bash
-        brew install --cask devin-cli
-        ```
-
-        沒有 Homebrew？改用這一行：
-
-        ```bash
-        curl -fsSL https://cli.devin.ai/install.sh | bash
-        ```
-
-        然後輸入 `devin` 並按下 Return。如果 Devin 要你登入，照著它的步驟做。
-      </Step>
-
-      <Step title="執行 Nomo 安裝工具">
-        複製下面這一行，貼到終端機裡，然後按下 Return：
-
-        ```bash
-        bunx nomo-ai --devin
-        ```
-
-        沒有 `bunx`？改用 `npx nomo-ai --devin`。
-
-        在它印出的內容裡，你應該會看到：
-
-        ```
-        devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
-        ```
-      </Step>
-
-      <Step title="重新啟動 Devin">
-        關掉每一個開著的 `devin`，再重新啟動它。在用 Devin Desktop？也請把它結束後再重新打開。
-
-        <Warning>
-          別跳過這一步。在 Devin 重新啟動之前，Nomo 都不會運作。
-        </Warning>
-      </Step>
-
-      <Step title="輸入 /nomo-pair">
-        在 `devin` 裡輸入下面這行並送出：
-
-        ```
-        /nomo-pair
-        ```
-
-        如果 Devin 問要不要執行 Nomo 的指令，請允許。Devin 會在瀏覽器裡打開一個有 QR code 的頁面。
-      </Step>
-
-      <Step title="掃描 QR code">
-        在 iPhone 上打開 Nomo → **Sessions** → **配對電腦**，然後掃描 QR code。
-      </Step>
-
-      <Step title="確認一下">
-        在 `devin` 裡輸入下面這行並送出：
-
-        ```
-        /nomo-status
-        ```
-
-        如果有一行以 `!` 開頭，照著它底下那行 `→` 做。
-      </Step>
-
-      <Step title="在 Devin 裡送出一則訊息">
-        在 `devin` 裡隨便送出什麼都可以。
-
-        你應該會看到這個 session 出現在 Nomo 裡，在你那台電腦的 **Devin** 分頁底下。沒有 Devin 分頁？點一下 **+** 按鈕（「選擇代理」），把 Devin 打開。
-      </Step>
-    </Steps>
-  </Tab>
-</Tabs>
-
-<Tip>
-  **已經從 Claude Code、Codex、OpenCode、Cursor 或 Antigravity 配對過了？**一次配對涵蓋整台電腦。跳過配對的步驟。
-</Tip>
-
-<Tip>
-  **這台電腦沒有瀏覽器？**改用短代碼，而不是 QR code：在 Devin 裡輸入 `/nomo-pair code`（用外掛程式的話，輸入 `/nomo:pair code`）。在 iPhone 上打開 Nomo → **Sessions** → **配對電腦** → **輸入代碼**，把代碼打進去。代碼 10 分鐘後過期。
-</Tip>
-
-<Note>
-  **Devin Desktop 的 Restricted Mode 會讓 Nomo 停止運作。**它會關掉 Nomo 需要的 hooks，所以它開著的時候，你的 sessions 不會送到手機。
-</Note>
-
-## 指令 {#commands}
-
-在 Devin 裡輸入這些。用 Devin 外掛程式的話，指令開頭是 `/nomo:` 而不是 `/nomo-` — 例如 `/nomo:pair`。
-
-| 輸入這個 | 用 Devin 外掛程式時 | 它會做什麼 |
-| --- | --- | --- |
-| `/nomo-pair` | `/nomo:pair` | 把這台電腦連上你的手機 |
-| `/nomo-pair code` | `/nomo:pair code` | 一樣，但改用一組可以打字輸入的短代碼，而不是 QR code |
-| `/nomo-status` | `/nomo:status` | 確認一切正常 |
-| `/nomo-approvals off` | `/nomo:approvals off` | 不再問你的手機 — 改由 Devin 在 Mac 上問 |
-| `/nomo-approvals on` | `/nomo:approvals on` | 重新改回問你的手機 |
-| `/nomo-reset` | `/nomo:reset` | 從手機上清除卡住的 sessions，連線保持不變 |
-| `/nomo-unpair` | `/nomo:unpair` | 解除這台電腦和手機的配對 |
+這台電腦連線之後，Devin 會直接執行 Nomo 自己的指令，不再詢問。不過在批准開啟時，`/nomo-approvals off`、`/nomo-unpair` 和 `/nomo-pair code` 仍會先在手機上問你。如果 Devin 問要不要執行 Nomo 的指令，請允許。
 
 <Note>
   也在 Cursor 裡使用 Nomo？Devin 會把這些指令顯示成 `/devin:nomo-pair`、`/devin:nomo-status` 等等 — 請改為輸入這些。`/nomo-approvals` 的名稱不變。
 </Note>
 
-這台電腦連線之後，Devin 會直接執行 Nomo 自己的指令，不再詢問。不過在批准開啟時，`/nomo-approvals off`、`/nomo-unpair` 和 `/nomo-pair code` 仍會先在手機上問你。如果 Devin 問要不要執行 Nomo 的指令，請允許。Devin 不認得這些指令？再執行一次安裝工具並重新啟動 Devin — 或是改在終端機裡使用它們，請看[進階](#advanced)。
-
-連線和批准開關是這台電腦上所有寫程式的 App 共用的。在這裡關掉批准，Claude Code 和 Codex 的批准也會一起關掉。
+Devin 不認得這些指令？再執行一次安裝工具並重新啟動 Devin — 或是改[在終端機裡](/zh-Hant/sessions/commands#without-slash-commands)執行它們。每個指令都在[指令](/zh-Hant/sessions/commands)裡。
 
 ## 你會看到什麼 {#what-you-see}
 
 - session 會在你送出**第一則訊息**時出現。
-- Devin 工作時它顯示 `執行中`，結束時顯示 `完成`。
 - 它的名稱就是 Devin 自己的 session 標題。在 Devin 取好標題之前，會先用你的第一則訊息。
-- 標籤顯示 Devin 正在使用的模型。
-- [動態島](/zh-Hant/sessions/island)的運作和其他代理一樣。
+- 標籤顯示 Devin 正在使用的模型。短的 session 可能沒有這個標籤：Devin 只在 session 結束時才記下模型。
 
 ## 在手機上回覆 {#answering-from-your-phone}
 
-當 Devin 請求權限時 — 例如要執行一個指令 — 手機會問你。
-
-按住那個 session，或使用動態島，然後選擇：
+當 Devin 請求權限時 — 例如要執行一個指令 — 手機會問你。按住那個 session，或使用動態島。
 
 <Frame caption="一個請求執行指令的 Devin session。">
   <div className="device-frame">
@@ -226,17 +57,9 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", 
   </div>
 </Frame>
 
-- 「允許」— Devin 繼續做。
-- 「一律允許 …（本次 session）」— Devin 繼續做，而且在這個 session 結束前，同樣的事 Nomo 不會再問你。請看[下方](#always-allow)。
-- 「拒絕」— Devin 不會做這件事。
-- 「拒絕並附註…」— Devin 不會做這件事，並收到你的附註，告訴它原因。
+你可以選「允許」、「一律允許 …（本次 session）」、「拒絕」和「拒絕並附註…」— 各自的作用請看[在手機上回覆](/zh-Hant/sessions/approvals)。
 
-更多內容請看[在手機上回覆](/zh-Hant/sessions/approvals)。
-
-小提醒：
-
-- **Devin 會等你的手機**。如果逾時，Devin 會改在你的 Mac 上問你。
-- **手機不在身邊？沒關係**。如果連不上你的手機，或批准已經[暫停](/zh-Hant/sessions/approvals#pausing-it)，Devin 會在你的 Mac 上問你，就和沒有 Nomo 時一樣。
+**Devin 會等你的手機**。如果逾時，Devin 會改在你的 Mac 上問你。
 
 ### 一律允許 {#always-allow}
 
@@ -274,30 +97,16 @@ Devin 的文件說，Devin Desktop 的 **Devin Local** 代理和 Devin CLI 使�
 
 - **手機先回答**。當手機上有權限請求或問題時，Devin Desktop 不會顯示它自己的按鈕。請在手機上回答。想改在 Mac 上回答，請在 Devin 的下一個提示之前[暫停批准](/zh-Hant/sessions/approvals#pausing-it)。
 - **哪些會送到手機**。在 Devin Desktop 預設的 **Code** 模式下，Devin 只會在執行指令、抓取網頁，以及在專案之外寫入之前問你。你在手機上看到的就是這些權限請求。
-- **Restricted Mode 會讓 Nomo 停止運作**。在你離開它之前，sessions 不會送到手機。
+- **Restricted Mode 會讓 Nomo 停止運作**。它會關掉 Nomo 需要的 hooks，所以在你離開它之前，你的 sessions 不會送到手機。
 
-## Devin 有什麼不同 {#whats-different-for-devin}
+## 這個版本的限制 {#whats-different-for-devin}
 
-- **只有 Mac 上的 Devin**。Devin Cloud 的 sessions 不會出現 — Nomo 只顯示在你的 Mac 上執行的 Devin。
-- **短的 session 可能沒有模型標籤**。Devin 只在 session 結束時才記下模型。
-- **Devin 不支援：**[回覆](/zh-Hant/sessions/antigravity#reply-from-your-phone)和「在 Mac 上開啟」。
+- **沒有 Devin Cloud 的 sessions**。Nomo 只顯示在你的 Mac 上執行的 Devin。
+- **沒有「回覆」，也沒有「在 Mac 上開啟」**。[回覆](/zh-Hant/sessions/antigravity#reply-from-your-phone)和「在 Mac 上開啟」在 Devin 上無法使用。
 
 ## 有東西不能用 {#troubleshooting}
 
 <AccordionGroup>
-  <Accordion title="我的手機什麼都沒顯示">
-    1. 關掉每一個開著的 `devin`，再重新啟動它。
-    2. 檢查 Nomo。在 Devin 裡輸入 `/nomo-status`（用外掛程式的話，輸入 `/nomo:status`）。
-
-    3. 照著以 `→` 開頭的那一行做。
-
-    在用 Devin Desktop？確認 **Restricted Mode** 已經關閉。
-
-    還是沒有？在 Nomo 裡點一下 **+** 按鈕（「選擇代理」），把 Devin 打開。
-
-    如果 Devin 分頁顯示「**還沒有 Devin sessions**」，請先在 Devin 裡送出一則訊息 — session 要在你送出第一則訊息後才會出現。
-  </Accordion>
-
   <Accordion title="安裝工具說我的設定檔有註解">
     沒關係。Nomo 加入內容後，Devin 的設定檔就留不住註解，所以安裝工具會先把你原本的檔案存在它旁邊：
 
@@ -315,85 +124,13 @@ Devin 的文件說，Devin Desktop 的 **Devin Local** 代理和 Devin CLI 使�
   <Accordion title="Devin Desktop 沒有顯示權限請求的按鈕">
     這個請求在你的手機上。請在手機上回答。想改在 Mac 上回答，請在 Devin 的下一個提示之前[暫停批准](/zh-Hant/sessions/approvals#pausing-it)。
   </Accordion>
-
-  <Accordion title="點了停止，Devin 卻沒有馬上停下">
-    Devin 會先做完目前這一步 — 已經在執行的指令或回覆會繼續到結束，然後才停下。
-
-    沒有「停止」按鈕？iPhone 和 Mac 需要在同一個網路上，並且顯示綠色的 **⚡ 本機** 標籤。
-  </Accordion>
-
-  <Accordion title="我的手機不再問我要不要批准">
-    在 Devin 裡輸入 `/nomo-approvals on`（用外掛程式的話，輸入 `/nomo:approvals on`）。
-
-    如果批准本來就開著，請檢查[設定](/zh-Hant/sessions/settings#remote-approvals)裡的「在 iPhone 上回答」。
-  </Accordion>
-
-  <Accordion title="session 一直卡在「執行中」">
-    在 Devin 裡輸入 `/nomo-reset`（用外掛程式的話，輸入 `/nomo:reset`）。
-  </Accordion>
 </AccordionGroup>
 
-更多說明請看[疑難排解](/zh-Hant/sessions/troubleshooting)。
-
-## 更新 {#updating}
-
-如果你用的是安裝工具，再執行一次它，然後重新啟動 Devin：
-
-```bash
-bunx nomo-ai --devin
-```
-
-## 解除安裝 {#uninstalling}
-
-**Devin 外掛程式：**複製下面這一行，貼到終端機裡，然後按下 Return：
-
-```bash
-devin plugins remove nomo
-```
-
-**Nomo 安裝工具：**
-
-<Steps>
-  <Step title="在終端機裡執行這行">
-    ```bash
-    bunx nomo-ai --uninstall --devin
-    ```
-
-    你應該會看到：
-
-    ```
-    devin-install: removed Nomo's hooks from Devin — restart devin
-    ```
-
-    沒有 `bunx`？改用 `npx nomo-ai --uninstall --devin`，或 `node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall`。
-  </Step>
-
-  <Step title="重新啟動 Devin">
-    關掉每一個開著的 `devin`，再重新啟動它。
-  </Step>
-</Steps>
-
-你的手機會繼續和你其他寫程式的 App 保持連線。如果也要解除這台電腦和手機的配對，請在解除安裝**之前**，在 Devin 裡輸入 `/nomo-unpair`。
+其他問題 — 手機上什麼都沒有、批准停了、session 卡住、「停止」— 都在[疑難排解](/zh-Hant/sessions/troubleshooting)裡。
 
 ## 進階 {#advanced}
 
 <AccordionGroup>
-  <Accordion title="不用斜線指令" icon="terminal">
-    同樣的指令，改在終端機裡執行，而不是在 Devin 的對話裡（使用 Nomo 安裝工具時）：
-
-    | | |
-    | --- | --- |
-    | 配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
-    | 用打字輸入的代碼配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
-    | 檢查狀態 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
-    | 暫停批准 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
-    | 恢復批准 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
-    | 清除卡住的 sessions | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
-    | 解除配對 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
-
-    從終端機開始配對後，執行 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait`，然後掃描 QR code。在安裝工具後面加上 `--verbose`，就能看到它改了什麼。
-  </Accordion>
-
   <Accordion title="運作原理" icon="gear">
     - **安裝工具會改什麼**。它把外掛程式 clone 到 `~/.nomo`，並在 `~/.config/devin/config.json` 的 `"hooks"` 鍵裡加入 Nomo 的項目。你其他的 Devin 設定都原封不動。它也會把 `/nomo-*` 指令以 Devin skills 的形式加到 `~/.config/devin/skills/`；你自己同名的 skill 會原封不動。再執行一次也不會改變任何東西。如果檔案裡有註解，它會先把檔案複製成 `config.json.nomo-backup`。解除安裝只會移除 Nomo 的項目和 skills。在 `devin` 裡輸入 `/hooks`，就能看到它載入了什麼。
     - **外掛程式會加入什麼**。Devin 外掛程式會加入同樣的兩個 hooks，以及同樣的指令：`/nomo:pair`、`/nomo:status`、`/nomo:approvals`、`/nomo:reset` 和 `/nomo:unpair`。它不會加入任何規則、MCP 伺服器或代理，而且只在本機的 Devin sessions 裡執行，絕不會在 Devin Cloud 裡執行。只要安裝工具的項目還在，外掛程式的 hooks 就什麼都不送出。

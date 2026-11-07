@@ -48,9 +48,8 @@ nada que hacer: `Not paired` es un éxito, no un error.
 Las casillas vacías de la última fila no son un olvido: Claude Code y Codex se
 actualizan a través de sus propios anfitriones, así que Nomo no añade ningún
 comando ahí, y Cursor se actualiza volviendo a ejecutar su instalador, igual que
-Antigravity y Devin. Lo que
-necesita cada uno —que en el caso de Codex suele ser nada— está en
-[Instalación](/es/setup/install#updating).
+Antigravity y Devin. Lo que necesita cada uno —que en el caso de Codex suele
+ser nada— está en [update](#update).
 
 La casilla vacía de Cursor en la fila de aprobaciones tampoco lo es: las
 sesiones de Cursor son de solo lectura, así que no hay aprobaciones remotas que
@@ -385,50 +384,115 @@ allí.
 
 ## update {#update}
 
-```bash OpenCode icon="/images/opencode.svg"
-/nomo-update
-```
+Solo OpenCode tiene un comando de actualización. Los demás agentes se
+actualizan de otra forma: abre su pestaña.
 
-**Solo OpenCode**, y comprueba antes de cambiar nada. Estar al día es una
-parada, no un no-op con un pull detrás:
+`bunx nomo-ai` (o `npx nomo-ai`) también actualiza: un agente que ya tiene
+Nomo aparece como actualización en lugar de como instalación. Solo se ejecutan
+las de OpenCode, Cursor, Antigravity y Devin; las de Claude Code y Codex se
+imprimen para que las ejecutes tú.
 
-```
-OpenCode plugin: /Users/you/.nomo
-Already on 2.1.22 — nothing to do.
-```
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
 
-Cuando sí hay algo que traer, dice qué antes de traerlo:
+    La actualización automática viene desactivada para los marketplaces de
+    terceros, así que nada mueve una instalación por su cuenta. Para activarla:
+    `/plugin` → **Marketplaces** → el de Nomo → **Enable auto-update**.
+  </Tab>
 
-```
-OpenCode plugin: /Users/you/.nomo
-Update available: 2.1.22 → 2.1.23.
-```
+  <Tab title="Codex" icon="/images/codex.svg">
+    Normalmente no hay nada que ejecutar. Codex lee el plugin en vivo desde su
+    ruta, así que traer los cambios en ese clon es toda la actualización, y no
+    existe ningún verbo `codex plugin update`.
 
-Después trae los cambios, vuelve a ejecutar el instalador —que es lo que recoge
-cualquier comando `/nomo-*` nuevo que traiga la versión— y te dice que reinicies
-OpenCode. Los plugins se importan una sola vez, al arrancar su servidor, así que
-hasta entonces la copia vieja sigue siendo la que corre.
+    Si añadiste el marketplace desde git, Codex guarda una instantánea, y
+    refrescarla es la actualización:
 
-Se niega en lugar de actuar cuando no puede estar seguro, y cada negativa dice
-qué hacer en su lugar: un clon fijado por una instalación anterior con `--ref`,
-un árbol de trabajo con cambios sin confirmar, un clon que se ha movido o
-borrado, un clon que no es el repositorio propio de Nomo, o que aquí no haya
-nada instalado.
+    ```bash
+    codex plugin marketplace upgrade <marketplace-name>
+    ```
 
-`bunx nomo-ai` ejecuta la misma actualización con `--global`: solo actualiza la
-instalación global, sea cual sea la carpeta desde la que lo ejecutes. Una
-instalación con `--project` se actualiza con `/nomo-update`, ejecutado dentro de
-OpenCode en ese proyecto.
+    El nombre es aquel con el que lo añadiste, no necesariamente `nomo`.
+  </Tab>
 
-<Note>
-  Actualiza el clon al que apunta el **stub** —la copia que OpenCode importa de
-  verdad—, que no es necesariamente aquel de cuyo archivo de comando saliste. Si
-  mantienes más de un clon, esa es la distinción que importa.
-</Note>
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    ```bash
+    /nomo-update
+    ```
 
-Claude Code y Codex no tienen equivalente, porque sus anfitriones se encargan de
-las actualizaciones —y Codex normalmente no tiene nada que ejecutar—:
-[Instalación](/es/setup/install#updating) cubre los dos.
+    Comprueba antes de cambiar nada. Estar al día es una parada, no un no-op
+    con un pull detrás:
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Already on 2.1.22 — nothing to do.
+    ```
+
+    Cuando sí hay algo que traer, dice qué antes de traerlo:
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Update available: 2.1.22 → 2.1.23.
+    ```
+
+    Después trae los cambios, vuelve a ejecutar el instalador —que es lo que
+    recoge cualquier comando `/nomo-*` nuevo que traiga la versión— y te dice
+    que reinicies OpenCode. Los plugins se importan una sola vez, al arrancar su
+    servidor, así que hasta entonces la copia vieja sigue siendo la que corre.
+
+    Se niega en lugar de actuar cuando no puede estar seguro, y cada negativa
+    dice qué hacer en su lugar: un clon fijado por una instalación anterior con
+    `--ref`, un árbol de trabajo con cambios sin confirmar, un clon que se ha
+    movido o borrado, un clon que no es el repositorio propio de Nomo, o que
+    aquí no haya nada instalado.
+
+    `bunx nomo-ai` ejecuta la misma actualización con `--global`: solo
+    actualiza la instalación global, sea cual sea la carpeta desde la que lo
+    ejecutes. Una instalación con `--project` se actualiza con `/nomo-update`,
+    ejecutado dentro de OpenCode en ese proyecto.
+
+    <Note>
+      Actualiza el clon al que apunta el **stub** —la copia que OpenCode
+      importa de verdad—, que no es necesariamente aquel de cuyo archivo de
+      comando saliste. Si mantienes más de un clon, esa es la distinción que
+      importa.
+    </Note>
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    El mismo comando con el que lo instalaste:
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    Reinicia Cursor después, y cualquier sesión de `cursor-agent` abierta.
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    El mismo comando con el que lo instalaste:
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    Reinicia Antigravity después, y cualquier sesión de `agy` abierta.
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    Si usaste el instalador de Nomo, el mismo comando con el que lo
+    instalaste:
+
+    ```bash
+    bunx nomo-ai --devin
+    ```
+
+    Reinicia después cualquier `devin` abierto, y Devin Desktop.
+  </Tab>
+</Tabs>
 
 ## uninstall {#uninstall}
 
@@ -464,7 +528,24 @@ bunx nomo-ai --uninstall --devin
 
 Con el plugin de Devin: `devin plugins remove nomo`.
 
-Después reinicia el agente.
+¿No tienes `bunx`? Usa `npx` en su lugar; por ejemplo,
+`npx nomo-ai --uninstall --cursor`. O ejecuta el script propio del agente, como
+`node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
+(`antigravity-install.mjs` para Antigravity, `devin-install.mjs` para Devin).
+
+Antigravity y Devin avisan cuando terminan:
+
+```
+✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
+```
+
+```
+devin-install: removed Nomo's hooks from Devin — restart devin
+```
+
+Después reinicia el agente. En Cursor y Antigravity, cierra la app y vuelve a
+abrirla, y reinicia cualquier `cursor-agent` o `agy` abierto. En Devin, cierra
+todos los `devin` abiertos y vuelve a iniciarlo.
 
 Solo quita lo que Nomo añadió a ese agente. Tu teléfono sigue vinculado, así que
 tus otros agentes siguen funcionando. Para desconectar también este ordenador,
@@ -476,6 +557,26 @@ con `agy plugin uninstall nomo-cc` y reinicia Antigravity.
 `bunx nomo-ai --uninstall` siempre necesita que indiques el agente: nunca lo
 adivina. Más sobre la instalación de cada agente en
 [Instalación](/es/setup/install).
+
+## Sin los comandos con / {#without-slash-commands}
+
+¿Antigravity o Devin no reconocen los comandos de Nomo? Ejecútalos desde
+Terminal. Esto funciona con el instalador de Nomo:
+
+| | |
+| --- | --- |
+| Vincular | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| Vincular con un código | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+| Comprobar el estado (Antigravity) | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| Comprobar el estado (Devin) | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
+| Pausar las aprobaciones | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+| Reanudar las aprobaciones | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+| Limpiar sesiones atascadas | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| Desvincular | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+Tras vincular desde Terminal, ejecuta
+`~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait` y escanea el
+código QR. Añade `--verbose` al instalador para ver qué cambia.
 
 ## Dónde se guarda el estado {#where-state-lives}
 

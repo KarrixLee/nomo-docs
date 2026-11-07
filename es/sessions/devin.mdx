@@ -1,7 +1,7 @@
 ---
 title: "Sigue y aprueba sesiones de Devin desde tu iPhone"
 sidebarTitle: "Usar Devin"
-description: "Configura Nomo para Devin en pocos pasos, vincula tu teléfono y sigue tus sesiones de Devin desde el iPhone: responde a sus solicitudes de permiso y a sus preguntas, y detén un turno en curso."
+description: "Sigue tus sesiones de Devin desde el iPhone: responde a sus solicitudes de permiso y a sus preguntas, y detén un turno en curso. Qué cambia en Devin, y por qué."
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar Devin"]
 ---
 
@@ -18,213 +18,39 @@ Funciona con la CLI de Devin, el comando `devin` en Terminal, y con
   teléfono y el plugin **2.5.0** o posterior en tu Mac.
 </Note>
 
-## Configúralo {#set-it-up}
+## Lo que funciona igual {#what-works-the-same}
+
+Las sesiones, las carpetas y la [Dynamic Island](/es/sessions/island) funcionan
+igual que con los demás agentes. Todo lo compartido está en un solo sitio:
+
+- **Instalar** → [Instalación](/es/setup/install), pestaña **Devin**. Tiene los
+  pasos de las [dos formas de instalar](#set-it-up).
+- **Vincular** → [Vinculación](/es/setup/pairing). Una sola vinculación cubre
+  todos los agentes del ordenador.
+- **Comandos, actualización y desinstalación** →
+  [Comandos](/es/sessions/commands), con [update](/es/sessions/commands#update)
+  y [uninstall](/es/sessions/commands#uninstall).
+- **Responder a las solicitudes** → [Responder desde el
+  iPhone](/es/sessions/approvals).
+- **Qué puede hacer cada agente** → [Qué puedes hacer](/es/sessions/features).
+- **Algo no funciona** → [Solución de problemas](/es/sessions/troubleshooting).
+
+## Dos formas de instalar {#set-it-up}
 
 Hay dos formas de añadir Nomo a Devin: el **plugin de Devin** o el
 **instalador de Nomo**. Instala solo una. Si instalas las dos, Nomo usa la del
-instalador y el plugin no hace nada.
+instalador y el plugin no hace nada. Los pasos de las dos están en la pestaña
+**Devin** de [Instalación](/es/setup/install).
 
-<Tabs>
-  <Tab title="Plugin de Devin">
-    <Steps>
-      <Step title="Abre Terminal">
-        En tu Mac, abre la app **Terminal**. Está en **Aplicaciones →
-        Utilidades**.
-      </Step>
+Con el plugin de Devin, los comandos de Nomo empiezan por `/nomo:` en vez de
+`/nomo-`: por ejemplo, `/nomo:pair`.
 
-      <Step title="Instala la CLI de Devin">
-        ¿Ya la tienes? Sáltate este paso.
+## Los comandos de Nomo {#commands}
 
-        Copia esta línea, pégala en Terminal y pulsa Retorno:
-
-        ```bash
-        brew install --cask devin-cli
-        ```
-
-        ¿No tienes Homebrew? Usa esto en su lugar:
-
-        ```bash
-        curl -fsSL https://cli.devin.ai/install.sh | bash
-        ```
-
-        Después escribe `devin` y pulsa Retorno. Si Devin te pide iniciar
-        sesión, sigue sus pasos.
-      </Step>
-
-      <Step title="Instala el plugin de Nomo">
-        Escribe esto en Terminal, no dentro de Devin. Si Devin está abierto,
-        abre antes una ventana nueva de Terminal (pulsa **⌘N**).
-
-        Copia esta línea, pégala en Terminal y pulsa Retorno:
-
-        ```bash
-        devin plugins install KarrixLee/nomo
-        ```
-
-        ¿Usas Devin Desktop? Ve a **Customize → Plugins → From repository** y
-        escribe `KarrixLee/nomo`.
-      </Step>
-
-      <Step title="Inicia Devin">
-        En Terminal, escribe `devin` y pulsa Retorno.
-      </Step>
-
-      <Step title="Escribe /nomo:pair">
-        En `devin`, escribe esto y envíalo:
-
-        ```
-        /nomo:pair
-        ```
-
-        Devin abre en tu navegador una página con un código QR.
-      </Step>
-
-      <Step title="Escanea el código QR">
-        En tu iPhone, abre Nomo → **Sesiones** → **Vincular un ordenador** y
-        escanea el código QR.
-      </Step>
-
-      <Step title="Compruébalo">
-        En `devin`, escribe esto y envíalo:
-
-        ```
-        /nomo:status
-        ```
-
-        Si una línea empieza por `!`, haz lo que dice la línea `→` de debajo.
-      </Step>
-
-      <Step title="Envía un mensaje en Devin">
-        En `devin`, envía cualquier cosa.
-
-        Deberías ver la sesión en Nomo, en la pestaña **Devin** de tu
-        ordenador. ¿No hay pestaña Devin? Toca el botón **+** (**Elegir
-        agentes**) y activa Devin.
-      </Step>
-    </Steps>
-  </Tab>
-
-  <Tab title="Instalador de Nomo">
-    <Steps>
-      <Step title="Abre Terminal">
-        En tu Mac, abre la app **Terminal**. Está en **Aplicaciones →
-        Utilidades**.
-      </Step>
-
-      <Step title="Instala la CLI de Devin">
-        ¿Ya la tienes? Sáltate este paso.
-
-        Copia esta línea, pégala en Terminal y pulsa Retorno:
-
-        ```bash
-        brew install --cask devin-cli
-        ```
-
-        ¿No tienes Homebrew? Usa esto en su lugar:
-
-        ```bash
-        curl -fsSL https://cli.devin.ai/install.sh | bash
-        ```
-
-        Después escribe `devin` y pulsa Retorno. Si Devin te pide iniciar
-        sesión, sigue sus pasos.
-      </Step>
-
-      <Step title="Ejecuta el instalador de Nomo">
-        Copia esta línea, pégala en Terminal y pulsa Retorno:
-
-        ```bash
-        bunx nomo-ai --devin
-        ```
-
-        ¿No tienes `bunx`? Usa `npx nomo-ai --devin`.
-
-        Entre las líneas que imprime, deberías ver:
-
-        ```
-        devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
-        ```
-      </Step>
-
-      <Step title="Reinicia Devin">
-        Cierra todos los `devin` que tengas abiertos y vuelve a iniciar `devin`.
-        ¿Usas Devin Desktop? Ciérralo y vuelve a abrirlo también.
-
-        <Warning>
-          No te saltes este paso. Nomo no se activa hasta que Devin se reinicia.
-        </Warning>
-      </Step>
-
-      <Step title="Escribe /nomo-pair">
-        En `devin`, escribe esto y envíalo:
-
-        ```
-        /nomo-pair
-        ```
-
-        Si Devin pide permiso para ejecutar un comando de Nomo, permítelo.
-        Devin abre en tu navegador una página con un código QR.
-      </Step>
-
-      <Step title="Escanea el código QR">
-        En tu iPhone, abre Nomo → **Sesiones** → **Vincular un ordenador** y
-        escanea el código QR.
-      </Step>
-
-      <Step title="Compruébalo">
-        En `devin`, escribe esto y envíalo:
-
-        ```
-        /nomo-status
-        ```
-
-        Si una línea empieza por `!`, haz lo que dice la línea `→` de debajo.
-      </Step>
-
-      <Step title="Envía un mensaje en Devin">
-        En `devin`, envía cualquier cosa.
-
-        Deberías ver la sesión en Nomo, en la pestaña **Devin** de tu
-        ordenador. ¿No hay pestaña Devin? Toca el botón **+** (**Elegir
-        agentes**) y activa Devin.
-      </Step>
-    </Steps>
-  </Tab>
-</Tabs>
-
-<Tip>
-  **¿Ya vinculaste el ordenador desde Claude Code, Codex, OpenCode, Cursor o
-  Antigravity?** Una sola vinculación cubre todo el ordenador. Sáltate los pasos
-  de vinculación.
-</Tip>
-
-<Tip>
-  **¿No hay navegador en este ordenador?** Pide un código corto en vez de un
-  QR: escribe `/nomo-pair code` en Devin (con el plugin, `/nomo:pair code`).
-  En tu iPhone, abre Nomo → **Sesiones** → **Vincular un ordenador** →
-  **Introducir código** y escribe el código. Caduca a los 10 minutos.
-</Tip>
-
-<Note>
-  **El Restricted Mode de Devin Desktop desactiva Nomo.** Desactiva los hooks,
-  que Nomo necesita, así que tus sesiones no llegan a tu teléfono mientras está
-  activado.
-</Note>
-
-## Comandos {#commands}
-
-Escribe estos en Devin. Con el plugin de Devin, empiezan por `/nomo:` en vez
-de `/nomo-`: por ejemplo, `/nomo:pair`.
-
-| Escribe esto | Con el plugin de Devin | Qué hace |
-| --- | --- | --- |
-| `/nomo-pair` | `/nomo:pair` | Vincula este ordenador con tu teléfono |
-| `/nomo-pair code` | `/nomo:pair code` | Lo mismo, con un código corto que escribir en vez de un QR |
-| `/nomo-status` | `/nomo:status` | Comprueba que todo funciona |
-| `/nomo-approvals off` | `/nomo:approvals off` | Deja de preguntar a tu teléfono: Devin pregunta en el Mac |
-| `/nomo-approvals on` | `/nomo:approvals on` | Vuelve a preguntar a tu teléfono |
-| `/nomo-reset` | `/nomo:reset` | Quita de tu teléfono las sesiones atascadas, sin desvincular |
-| `/nomo-unpair` | `/nomo:unpair` | Desvincula este ordenador de tu teléfono |
+Una vez vinculado este ordenador, Devin ejecuta los comandos propios de Nomo sin
+preguntar. `/nomo-approvals off`, `/nomo-unpair` y `/nomo-pair code` siguen
+preguntando antes: en tu teléfono, mientras las aprobaciones estén activadas. Si
+Devin pide permiso para ejecutar un comando de Nomo, permítelo.
 
 <Note>
   ¿También usas Nomo con Cursor? Devin muestra estos comandos como
@@ -232,33 +58,22 @@ de `/nomo-`: por ejemplo, `/nomo:pair`.
   `/nomo-approvals` mantiene su nombre.
 </Note>
 
-Una vez vinculado este ordenador, Devin ejecuta los comandos propios de Nomo sin
-preguntar. `/nomo-approvals off`, `/nomo-unpair` y `/nomo-pair code` siguen
-preguntando antes: en tu teléfono, mientras las aprobaciones estén activadas. Si
-Devin pide permiso para ejecutar un comando de Nomo, permítelo. ¿Devin no
-reconoce los comandos? Vuelve a ejecutar el instalador y reinicia Devin, o
-úsalos desde Terminal, en [Avanzado](#advanced).
-
-La vinculación y el interruptor de aprobaciones los comparten todas las apps de
-programación de este ordenador. Si desactivas aquí las aprobaciones, también se
-desactivan para Claude Code y Codex.
+¿Devin no reconoce los comandos? Vuelve a ejecutar el instalador y reinicia
+Devin, o ejecútalos [desde Terminal](/es/sessions/commands#without-slash-commands).
+Todos los comandos están en [Comandos](/es/sessions/commands).
 
 ## Lo que ves {#what-you-see}
 
 - Una sesión aparece cuando envías tu **primer mensaje**.
-- Muestra **En ejecución** mientras Devin trabaja, y **Listo** cuando termina.
 - Su nombre es el título que Devin le da a la sesión. Hasta que Devin le pone
   uno, usa tu primer mensaje.
-- La etiqueta muestra el modelo que está usando Devin.
-- La [Dynamic Island](/es/sessions/island) funciona igual que con los demás
-  agentes.
+- La etiqueta muestra el modelo que está usando Devin. Puede faltar en las
+  sesiones cortas: Devin solo guarda el modelo cuando termina una sesión.
 
 ## Responder desde el teléfono {#answering-from-your-phone}
 
 Cuando Devin pide permiso (para ejecutar un comando, por ejemplo), tu teléfono
-te pregunta.
-
-Mantén pulsada la sesión, o usa la Dynamic Island, y elige:
+te pregunta. Mantén pulsada la sesión, o usa la Dynamic Island.
 
 <Frame caption="Una sesión de Devin que pide ejecutar un comando.">
   <div className="device-frame">
@@ -267,23 +82,12 @@ Mantén pulsada la sesión, o usa la Dynamic Island, y elige:
   </div>
 </Frame>
 
-- **Permitir**: Devin sigue adelante.
-- **Permitir siempre … (esta sesión)**: Devin sigue adelante, y Nomo deja de
-  preguntarte por lo mismo hasta que termine esta sesión. Más
-  [abajo](#always-allow).
-- **Denegar**: Devin no lo hace.
-- **Denegar con nota…**: Devin no lo hace y recibe tu nota explicándole por
-  qué.
+Tienes **Permitir**, **Permitir siempre … (esta sesión)**, **Denegar** y
+**Denegar con nota…**; qué hace cada uno está en [Responder desde el
+iPhone](/es/sessions/approvals).
 
-Más en [Responder desde el iPhone](/es/sessions/approvals).
-
-Conviene saber:
-
-- **Devin espera a tu teléfono.** Si se agota el tiempo, Devin pregunta en el
-  Mac.
-- **¿Sin teléfono? No pasa nada.** Si no se puede llegar a tu teléfono, o las
-  aprobaciones están [en pausa](/es/sessions/approvals#pausing-it), Devin
-  pregunta en el Mac, igual que sin Nomo.
+**Devin espera a tu teléfono.** Si se agota el tiempo, Devin pregunta en el
+Mac.
 
 ### Permitir siempre {#always-allow}
 
@@ -347,38 +151,21 @@ se ha probado con la CLI de Devin y con el servidor ACP de Devin.
   Desktop, Devin solo pregunta antes de ejecutar comandos, descargar páginas
   web y escribir fuera de tu proyecto. Esas son las solicitudes que verás en
   el teléfono.
-- **El Restricted Mode desactiva Nomo.** Las sesiones dejan de llegar a tu
-  teléfono hasta que salgas de él.
+- **El Restricted Mode desactiva Nomo.** Desactiva los hooks, que Nomo
+  necesita, así que tus sesiones no llegan a tu teléfono hasta que salgas de
+  él.
 
-## Diferencias en Devin {#whats-different-for-devin}
+## Lo que esta versión no hace {#whats-different-for-devin}
 
-- **Solo Devin en tu Mac.** Las sesiones de Devin Cloud no aparecen: Nomo solo
-  muestra Devin cuando se ejecuta en tu Mac.
-- **En las sesiones cortas puede faltar la etiqueta del modelo.** Devin solo
-  guarda el modelo cuando termina una sesión.
-- **No disponible para Devin:**
+- **Sin sesiones de Devin Cloud.** Nomo solo muestra Devin cuando se ejecuta en
+  tu Mac.
+- **Sin “Responder” ni “Abrir en el Mac”.**
   [Responder](/es/sessions/antigravity#reply-from-your-phone) y **Abrir en el
-  Mac**.
+  Mac** no están disponibles para Devin.
 
 ## Algo no funciona {#troubleshooting}
 
 <AccordionGroup>
-  <Accordion title="Mi teléfono no muestra nada">
-    1. Cierra todos los `devin` que tengas abiertos y vuelve a iniciar `devin`.
-    2. Comprueba Nomo. Escribe `/nomo-status` en Devin (con el plugin,
-       `/nomo:status`).
-
-    3. Haz lo que dice la línea que empieza por `→`.
-
-    ¿Usas Devin Desktop? Comprueba que **Restricted Mode** está desactivado.
-
-    ¿Sigue sin salir nada? En Nomo, toca el botón **+** (**Elegir agentes**) y
-    activa Devin.
-
-    Si la pestaña Devin dice **Aún no hay sesiones de Devin**, envía primero un
-    mensaje en Devin: una sesión solo aparece tras tu primer mensaje.
-  </Accordion>
-
   <Accordion title="El instalador dice que mi archivo de ajustes tenía comentarios">
     No pasa nada. El archivo de ajustes de Devin no puede conservar comentarios
     cuando Nomo le añade algo, así que el instalador guardó antes tu archivo
@@ -402,95 +189,15 @@ se ha probado con la CLI de Devin y con el servidor ACP de Devin.
     [pon en pausa las aprobaciones](/es/sessions/approvals#pausing-it) antes del
     siguiente prompt de Devin.
   </Accordion>
-
-  <Accordion title="Detener no paró a Devin enseguida">
-    Devin termina primero el paso en el que está: un comando o una respuesta que
-    ya está en marcha sigue hasta acabar. Después se detiene.
-
-    ¿No ves el botón **Detener**? Tu iPhone y tu Mac tienen que estar en la
-    misma red, con la etiqueta verde **⚡ Local** a la vista.
-  </Accordion>
-
-  <Accordion title="Mi teléfono dejó de pedirme aprobaciones">
-    Escribe `/nomo-approvals on` en Devin (con el plugin, `/nomo:approvals on`).
-
-    Si ya estaban activadas, revisa **Responder en el iPhone** en
-    [Ajustes](/es/sessions/settings#remote-approvals).
-  </Accordion>
-
-  <Accordion title="Una sesión se queda en En ejecución">
-    Escribe `/nomo-reset` en Devin (con el plugin, `/nomo:reset`).
-  </Accordion>
 </AccordionGroup>
 
-Más ayuda en [Solución de problemas](/es/sessions/troubleshooting).
-
-## Actualizaciones {#updating}
-
-Si usaste el instalador, vuelve a ejecutarlo y después reinicia Devin:
-
-```bash
-bunx nomo-ai --devin
-```
-
-## Desinstalación {#uninstalling}
-
-**El plugin de Devin:** copia esta línea, pégala en Terminal y pulsa Retorno:
-
-```bash
-devin plugins remove nomo
-```
-
-**El instalador de Nomo:**
-
-<Steps>
-  <Step title="Ejecuta esto en Terminal">
-    ```bash
-    bunx nomo-ai --uninstall --devin
-    ```
-
-    Deberías ver:
-
-    ```
-    devin-install: removed Nomo's hooks from Devin — restart devin
-    ```
-
-    ¿No tienes `bunx`? Usa `npx nomo-ai --uninstall --devin` o
-    `node ~/.nomo/plugin/scripts/devin-install.mjs --uninstall`.
-  </Step>
-
-  <Step title="Reinicia Devin">
-    Cierra todos los `devin` que tengas abiertos y vuelve a iniciar `devin`.
-  </Step>
-</Steps>
-
-Tu teléfono sigue vinculado para tus otras apps de programación. Para
-desvincular también este ordenador de tu teléfono, escribe `/nomo-unpair` en
-Devin **antes** de desinstalar.
+Todo lo demás —nada en tu teléfono, aprobaciones que dejaron de llegar, una
+sesión atascada, Detener— está en
+[Solución de problemas](/es/sessions/troubleshooting).
 
 ## Avanzado {#advanced}
 
 <AccordionGroup>
-  <Accordion title="Sin los comandos con /" icon="terminal">
-    Los mismos comandos, ejecutados desde Terminal en vez de un chat de Devin
-    (con el instalador de Nomo):
-
-    | | |
-    | --- | --- |
-    | Vincular | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
-    | Vincular con un código | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
-    | Comprobar el estado | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
-    | Pausar las aprobaciones | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
-    | Reanudar las aprobaciones | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
-    | Limpiar sesiones atascadas | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
-    | Desvincular | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
-
-    Tras vincular desde Terminal, ejecuta
-    `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait` y
-    escanea el código QR. Añade `--verbose` al instalador para ver qué
-    cambia.
-  </Accordion>
-
   <Accordion title="Cómo funciona" icon="gear">
     - **Qué cambia el instalador.** Clona el plugin en `~/.nomo` y añade las
       entradas de Nomo a la clave `"hooks"` de `~/.config/devin/config.json`.

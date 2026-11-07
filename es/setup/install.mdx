@@ -235,12 +235,30 @@ comando status te avisa si son más antiguos.
         </Warning>
       </Step>
 
-      <Step title="Comprueba">
+      <Step title="Vincula">
         En Cursor, escribe `/` para elegir una skill, y ejecuta:
 
         ```
-        /nomo-status
+        /nomo-pair
         ```
+
+        Muestra un código QR: escanéalo con la app de Nomo. Donde no puedas
+        abrir un navegador, `/nomo-pair code` te da un código corto para
+        escribirlo. Las dos vías están explicadas paso a paso en
+        [Vinculación](/es/setup/pairing).
+
+        La vinculación se comparte entre los agentes de un mismo Mac. Un
+        ordenador ya vinculado para Claude Code, Codex u OpenCode no necesita
+        vincularse otra vez para Cursor: basta con instalar, y puedes saltarte
+        este paso.
+      </Step>
+
+      <Step title="Muestra la pestaña Cursor">
+        En la app, abre el ordenador. Las sesiones de Cursor están bajo la
+        pestaña **Cursor** de su panel de sesiones.
+
+        El panel muestra hasta tres pestañas de agente. Si Cursor no es una de
+        ellas, toca el botón **+** (**Elegir agentes**) y actívalo.
       </Step>
     </Steps>
 
@@ -249,14 +267,6 @@ comando status te avisa si son más antiguos.
       `/nomo-status`, `/nomo-reset` y `/nomo-unpair`. Las cuatro están en
       [Comandos](/es/sessions/commands).
     </Tip>
-
-    Para quitarlo más adelante:
-
-    ```bash
-    bunx nomo-ai --uninstall --cursor
-    ```
-
-    Después reinicia Cursor.
   </Tab>
 
   <Tab title="Antigravity" icon="/images/providers/antigravity.png">
@@ -298,24 +308,46 @@ comando status te avisa si son más antiguos.
         Antigravity pregunte si ejecuta un comando de Nomo, elige **Allow**
         (permitir). Después escanea el código QR con Nomo en tu iPhone.
 
+        Deberías ver en Antigravity: “Done! This computer is connected to your
+        phone.” (listo, este ordenador está conectado a tu teléfono).
+
+        En la app de escritorio de Antigravity, el primer comando de Nomo puede
+        mostrar una línea que dice `operation not permitted`. Es normal:
+        Antigravity lo vuelve a intentar fuera de su sandbox por sí solo. Solo
+        espera.
+
         ¿Ya vinculaste el ordenador desde otro agente? Escribe `/nomo-status`
         para comprobarlo.
+      </Step>
+
+      <Step title="Envía un mensaje en Antigravity">
+        Empieza un chat y envía cualquier cosa.
+
+        Deberías ver la sesión en Nomo, en la pestaña **Antigravity** de tu
+        ordenador. ¿No hay pestaña Antigravity? Toca el botón **+** (**Elegir
+        agentes**) y activa Antigravity.
+
+        <Frame caption="Elegir agentes, desde el botón +. Antigravity está marcado, así que tiene su propia pestaña.">
+          <div className="device-frame">
+            <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="El menú Elegir agentes con Claude Code, Codex y Antigravity marcados, y OpenCode y Cursor sin marcar" />
+            <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="El menú Elegir agentes con Claude Code, Codex y Antigravity marcados, y OpenCode y Cursor sin marcar" />
+          </div>
+        </Frame>
       </Step>
     </Steps>
 
     <Warning>
-      No importes en Antigravity el plugin de Nomo para Claude Code: cada sesión
-      saldría dos veces. Si lo hiciste, ejecuta `agy plugin uninstall nomo-cc` y
-      reinicia Antigravity.
+      No importes en Antigravity el plugin de Nomo para Claude Code (por
+      ejemplo, con `agy plugin import claude`): cada sesión saldría dos veces.
+      Si lo hiciste, el instalador te avisa:
+
+      ```
+      ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+      ```
+
+      Para arreglarlo, ejecuta `agy plugin uninstall nomo-cc` y reinicia
+      Antigravity.
     </Warning>
-
-    Para quitarlo más adelante:
-
-    ```bash
-    bunx nomo-ai --uninstall --antigravity
-    ```
-
-    Después reinicia Antigravity.
   </Tab>
 
   <Tab title="Devin" icon="/images/providers/devin.svg">
@@ -323,58 +355,162 @@ comando status te avisa si son más antiguos.
     preguntas de Devin se pueden responder desde tu teléfono: [Usar
     Devin](/es/sessions/devin) tiene los detalles.
 
-    También puedes añadir Nomo como plugin de Devin:
-    `devin plugins install KarrixLee/nomo`. Instala uno u otro; consulta
-    [Usar Devin](/es/sessions/devin#set-it-up). Los pasos de abajo son para el
-    instalador.
+    Hay dos formas de añadir Nomo a Devin: el **plugin de Devin** o el
+    **instalador de Nomo**. Instala solo una. Si instalas las dos, Nomo usa la
+    del instalador y el plugin no hace nada.
 
-    <Steps>
-      <Step title="Ejecuta el instalador">
-        Pega esto en Terminal y pulsa Retorno:
-
-        <CodeGroup>
-        ```bash bunx icon="terminal"
-        bunx nomo-ai --devin
-        ```
-
-        ```bash npx icon="terminal"
-        npx nomo-ai --devin
-        ```
-        </CodeGroup>
-
-        Entre las líneas que imprime, deberías ver:
-
-        ```
-        devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
-        ```
-      </Step>
-
-      <Step title="Reinicia Devin — obligatorio">
-        <Warning>
-          Cierra todos los `devin` que tengas abiertos y vuelve a iniciar `devin`.
-          Nomo no se activa hasta que lo hagas.
-        </Warning>
-      </Step>
-
-      <Step title="Vincula">
-        En `devin`, escribe `/nomo-pair` y después escanea el código QR con
-        Nomo en tu iPhone.
-
-        ¿Ya vinculaste el ordenador desde otro agente? Sáltate este paso.
-        [Usar Devin](/es/sessions/devin#set-it-up) explica cada paso.
-      </Step>
-    </Steps>
-
-    Añade las entradas de Nomo a `~/.config/devin/config.json`, deja el resto
-    de tus ajustes de Devin como están, y añade los comandos `/nomo-*` como
-    skills de Devin. Para quitarlo más adelante:
+    **¿Todavía no tienes la CLI de Devin?** En tu Mac, abre la app **Terminal**
+    (está en **Aplicaciones → Utilidades**). Copia esta línea, pégala en
+    Terminal y pulsa Retorno:
 
     ```bash
-    bunx nomo-ai --uninstall --devin
+    brew install --cask devin-cli
     ```
 
-    Después reinicia Devin. Con el plugin de Devin, quítalo con
-    `devin plugins remove nomo`.
+    ¿No tienes Homebrew? Usa esto en su lugar:
+
+    ```bash
+    curl -fsSL https://cli.devin.ai/install.sh | bash
+    ```
+
+    Después escribe `devin` y pulsa Retorno. Si Devin te pide iniciar sesión,
+    sigue sus pasos.
+
+    <Tabs>
+      <Tab title="Plugin de Devin" icon="puzzle-piece">
+        <Steps>
+          <Step title="Instala el plugin de Nomo">
+            Escribe esto en Terminal, no dentro de Devin. Si Devin está abierto,
+            abre antes una ventana nueva de Terminal (pulsa **⌘N**).
+
+            Copia esta línea, pégala en Terminal y pulsa Retorno:
+
+            ```bash
+            devin plugins install KarrixLee/nomo
+            ```
+
+            ¿Usas Devin Desktop? Ve a **Customize → Plugins → From
+            repository** y escribe `KarrixLee/nomo`.
+          </Step>
+
+          <Step title="Inicia Devin">
+            En Terminal, escribe `devin` y pulsa Retorno.
+          </Step>
+
+          <Step title="Escribe /nomo:pair">
+            En `devin`, escribe esto y envíalo:
+
+            ```
+            /nomo:pair
+            ```
+
+            Devin abre en tu navegador una página con un código QR.
+          </Step>
+
+          <Step title="Escanea el código QR">
+            En tu iPhone, abre Nomo → **Sesiones** → **Vincular un ordenador** y
+            escanea el código QR.
+          </Step>
+
+          <Step title="Compruébalo">
+            En `devin`, escribe esto y envíalo:
+
+            ```
+            /nomo:status
+            ```
+
+            Si una línea empieza por `!`, haz lo que dice la línea `→` de
+            debajo.
+          </Step>
+
+          <Step title="Envía un mensaje en Devin">
+            En `devin`, envía cualquier cosa.
+
+            Deberías ver la sesión en Nomo, en la pestaña **Devin** de tu
+            ordenador. ¿No hay pestaña Devin? Toca el botón **+** (**Elegir
+            agentes**) y activa Devin.
+          </Step>
+        </Steps>
+      </Tab>
+
+      <Tab title="Instalador de Nomo" icon="terminal">
+        <Steps>
+          <Step title="Ejecuta el instalador">
+            Copia esta línea, pégala en Terminal y pulsa Retorno:
+
+            <CodeGroup>
+            ```bash bunx icon="terminal"
+            bunx nomo-ai --devin
+            ```
+
+            ```bash npx icon="terminal"
+            npx nomo-ai --devin
+            ```
+            </CodeGroup>
+
+            Entre las líneas que imprime, deberías ver:
+
+            ```
+            devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
+            ```
+          </Step>
+
+          <Step title="Reinicia Devin — obligatorio">
+            Cierra todos los `devin` que tengas abiertos y vuelve a iniciar
+            `devin`. ¿Usas Devin Desktop? Ciérralo y vuelve a abrirlo también.
+
+            <Warning>
+              No te saltes este paso. Nomo no se activa hasta que Devin se
+              reinicia.
+            </Warning>
+          </Step>
+
+          <Step title="Escribe /nomo-pair">
+            En `devin`, escribe esto y envíalo:
+
+            ```
+            /nomo-pair
+            ```
+
+            Si Devin pide permiso para ejecutar un comando de Nomo, permítelo.
+            Devin abre en tu navegador una página con un código QR.
+          </Step>
+
+          <Step title="Escanea el código QR">
+            En tu iPhone, abre Nomo → **Sesiones** → **Vincular un ordenador** y
+            escanea el código QR.
+          </Step>
+
+          <Step title="Compruébalo">
+            En `devin`, escribe esto y envíalo:
+
+            ```
+            /nomo-status
+            ```
+
+            Si una línea empieza por `!`, haz lo que dice la línea `→` de
+            debajo.
+          </Step>
+
+          <Step title="Envía un mensaje en Devin">
+            En `devin`, envía cualquier cosa.
+
+            Deberías ver la sesión en Nomo, en la pestaña **Devin** de tu
+            ordenador. ¿No hay pestaña Devin? Toca el botón **+** (**Elegir
+            agentes**) y activa Devin.
+          </Step>
+        </Steps>
+
+        Añade las entradas de Nomo a `~/.config/devin/config.json`, deja el
+        resto de tus ajustes de Devin como están, y añade los comandos
+        `/nomo-*` como skills de Devin.
+      </Tab>
+    </Tabs>
+
+    ¿Ya vinculaste el ordenador desde otro agente? Una sola vinculación cubre
+    todo el ordenador: sáltate los pasos de vinculación. ¿No hay navegador en
+    este ordenador? Usa `/nomo-pair code` (con el plugin, `/nomo:pair code`);
+    consulta [Vinculación](/es/setup/pairing).
   </Tab>
 </Tabs>
 
@@ -406,7 +542,7 @@ Para scripts y CI:
 | `--all` | los seis, los haya encontrado o no; salvo Cursor, Antigravity y Devin, que se omiten si no están en este ordenador (nombra `--cursor`, `--antigravity` o `--devin` para intentarlo igualmente) |
 | `-y`, `--yes` | sin selector; instala todo lo que encuentre |
 | `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
-| `--uninstall` | con `--cursor`, `--antigravity` o `--devin`: quita Nomo de ese agente. Indica el agente: nunca lo adivina |
+| `--uninstall` | con `--cursor`, `--antigravity` o `--devin`: quita Nomo de ese agente. Indica el agente: nunca lo adivina. Consulta [uninstall](/es/sessions/commands#uninstall) |
 
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
 agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
@@ -415,76 +551,11 @@ plugin de Devin).
 
 ## Actualizaciones {#updating}
 
-El mismo comando actualiza: un agente que ya tiene Nomo aparece como
-actualización en lugar de como instalación. Solo se ejecutan las de OpenCode, Cursor,
-Antigravity y Devin; las otras dos se imprimen para que las ejecutes tú.
-
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
-
-    La actualización automática viene desactivada para los marketplaces de
-    terceros, así que nada mueve una instalación por su cuenta. Para activarla:
-    `/plugin` → **Marketplaces** → el de Nomo → **Enable auto-update**.
-  </Tab>
-
-  <Tab title="Codex" icon="/images/codex.svg">
-    Normalmente no hay nada que ejecutar. Codex lee el plugin en vivo desde su
-    ruta, así que traer los cambios en ese clon es toda la actualización, y no
-    existe ningún verbo `codex plugin update`.
-
-    Si añadiste el marketplace desde git, Codex guarda una instantánea, y
-    refrescarla es la actualización:
-
-    ```bash
-    codex plugin marketplace upgrade <nombre-del-marketplace>
-    ```
-
-    El nombre es aquel con el que lo añadiste, no necesariamente `nomo`.
-  </Tab>
-
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    De esta se encarga el instalador, en una instalación global. Y también
-    [`/nomo-update`](/es/sessions/commands#update) desde dentro de OpenCode: la
-    única forma de actualizar una instalación con `--project`, ejecutándolo en
-    ese proyecto.
-
-    En ambos casos, reinicia OpenCode después: los plugins se importan una sola
-    vez, al arrancar el servidor.
-  </Tab>
-
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    El mismo comando con el que lo instalaste:
-
-    ```bash
-    bunx nomo-ai --cursor
-    ```
-
-    Reinicia Cursor después, y cualquier sesión de `cursor-agent` abierta.
-  </Tab>
-
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    El mismo comando con el que lo instalaste:
-
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
-
-    Reinicia Antigravity después, y cualquier sesión de `agy` abierta.
-  </Tab>
-
-  <Tab title="Devin" icon="/images/providers/devin.svg">
-    El mismo comando con el que lo instalaste:
-
-    ```bash
-    bunx nomo-ai --devin
-    ```
-
-    Reinicia después cualquier `devin` abierto.
-  </Tab>
-</Tabs>
+<Note>
+  Para actualizar o desinstalar, consulta [Comandos → update](/es/sessions/commands#update)
+  y [Comandos → uninstall](/es/sessions/commands#uninstall). Todos los agentes
+  están ahí, cada uno en su pestaña.
+</Note>
 
 ## Qué hace el plugin
 
