@@ -1,0 +1,197 @@
+---
+title: "Watch and approve Devin sessions from your iPhone"
+sidebarTitle: "Using Devin"
+description: "Follow your Devin sessions from your iPhone — answer Devin's permission prompts and questions, and stop a running turn. What's different for Devin, and why."
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Using Devin"]
+---
+
+See your Devin sessions on your iPhone — on the Lock Screen and in the Dynamic
+Island. When Devin asks for permission, your phone asks you to **Allow** or
+**Deny** it. When Devin asks you a question, you can answer it from your phone
+too.
+
+It works with the Devin CLI, the `devin` command in Terminal, and with
+[Devin Desktop](#devin-desktop).
+
+<Note>
+  Sessions is part of Nomo Pro. You need Nomo **2.5.0** or later on your phone
+  and plugin **2.5.0** or later on your Mac.
+</Note>
+
+## What works the same
+
+Sessions, folders and the [Dynamic Island](/sessions/island) work as they do
+for the other agents. Everything that's shared has one home:
+
+- **Install** → [Installation](/setup/install), **Devin** tab. It has the
+  steps for both [ways to install](#set-it-up).
+- **Pair** → [Pairing](/setup/pairing). One pairing covers every agent on the
+  computer.
+- **Commands, update and uninstall** → [Commands](/sessions/commands), with
+  [update](/sessions/commands#update) and
+  [uninstall](/sessions/commands#uninstall).
+- **Answering prompts** → [Answering from your phone](/sessions/approvals).
+- **What each agent can do** → [What you can do](/sessions/features).
+- **Something's wrong** → [Troubleshooting](/sessions/troubleshooting).
+
+## Two ways to install {#set-it-up}
+
+There are two ways to add Nomo to Devin: the **Devin plugin**, or the **Nomo
+installer**. Install one of them. If you install both, Nomo uses the installer
+one, and the plugin stays quiet. The steps for both are on the **Devin** tab of
+[Installation](/setup/install).
+
+With the Devin plugin, Nomo's commands start with `/nomo:` instead of `/nomo-`
+— for example `/nomo:pair`.
+
+## Nomo's commands {#commands}
+
+Once this computer is connected, Devin runs Nomo's own commands without asking.
+`/nomo-approvals off`, `/nomo-unpair` and `/nomo-pair code` still ask first — on
+your phone while approvals are on. If Devin asks to run a Nomo command, allow
+it.
+
+<Note>
+  Also use Nomo with Cursor? Devin shows these as `/devin:nomo-pair`,
+  `/devin:nomo-status` and so on — type that instead. `/nomo-approvals` keeps
+  its name.
+</Note>
+
+Devin doesn't know the commands? Run the installer again and restart Devin — or
+run them [from Terminal](/sessions/commands#without-slash-commands). Every
+command is in [Commands](/sessions/commands).
+
+## What you see
+
+- A session appears when you send your **first message**.
+- Its name is Devin's own session title. Until Devin has made one, it uses
+  your first message.
+- The badge shows the model Devin is using. It can be missing on short
+  sessions: Devin saves the model only when a session ends.
+
+## Answering from your phone
+
+When Devin asks for permission — to run a command, for example — your phone
+asks you. Touch and hold the session, or use the island.
+
+<Frame caption="A Devin session asking to run a command.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/devin-approval-card.png" alt="An approval card for the Devin session Fix token refresh race, asking to run bun test, with Deny, Allow and Deny with note buttons" />
+    <img className="only-dark" src="/images/devin-approval-card-dark.png" alt="An approval card for the Devin session Fix token refresh race, asking to run bun test, with Deny, Allow and Deny with note buttons" />
+  </div>
+</Frame>
+
+You get **Allow**, **Always allow … (this session)**, **Deny** and **Deny with
+note…** — what each does is in [Answering from your
+phone](/sessions/approvals).
+
+**Devin waits for your phone.** If it times out, Devin asks on your Mac
+instead.
+
+### Always allow {#always-allow}
+
+**Always allow** lasts for **this session only**. When the session ends, Nomo
+forgets it, and the next session asks again.
+
+- **A simple command** is remembered by its name. Allow `touch b.txt` always,
+  and Nomo also allows `touch c.txt` — but not a different command.
+- **A chained command** — one with `&&`, `;`, `|` or `>` in it — still comes to
+  your phone every time, unless it's exactly the same command you already
+  allowed. So `touch x && rm -rf ~` still asks you.
+- **Anything else**, like writing a file, is allowed for the rest of the
+  session.
+
+Nomo keeps this on your computer and never changes Devin's own settings. It
+keeps working even if you pause approvals, until the session ends.
+
+### Answering Devin's questions {#questions}
+
+When Devin asks you a question, the session reads `Needs an answer`. Touch and
+hold it, and choose **Answer…**:
+
+1. Tap an option. Where Devin allows it, you can pick more than one.
+2. None fits? Tap **Other…** and type your own answer.
+3. Tap **Submit**.
+
+**Add note** attaches a comment to your answer. **Deny** tells Devin you chose
+not to answer.
+
+<Note>
+  **On your Mac, the question shows as rejected. That's expected.** Devin has
+  no way to take an answer from Nomo directly, so Nomo sends your answer as the
+  reason for closing Devin's question. You'll see the question marked
+  **rejected**, with your answer written next to it. Devin reads your answer
+  and carries on.
+</Note>
+
+## Interrupt {#interrupt}
+
+Tap **[Interrupt](/sessions/list#interrupt-a-running-session)** on a
+**Running** Devin session to stop it. It needs the green **⚡ Local** chip — your
+iPhone and your Mac on the same network.
+
+Devin finishes the step it's on, then stops. It can't cut off a command or a
+reply halfway. The session shows **Done**, and Devin stays open — send a new
+message to carry on.
+
+## Devin Desktop {#devin-desktop}
+
+Devin's docs say Devin Desktop's **Devin Local** agent runs on the same engine
+as the Devin CLI, so Nomo works there the same way. Nomo has been tested with
+the Devin CLI and with Devin's ACP server.
+
+- **Your phone answers first.** While your phone has a permission prompt or a
+  question, Devin Desktop doesn't show its own buttons for it. Answer on your
+  phone. To answer on the Mac instead, [pause
+  approvals](/sessions/approvals#pausing-it) before Devin's next prompt.
+- **What reaches your phone.** In Devin Desktop's default **Code** mode, Devin
+  only asks before running commands, fetching web pages, and writing outside
+  your project. Those are the prompts you'll see on your phone.
+- **Restricted Mode turns Nomo off.** It turns off hooks, which Nomo needs, so
+  your sessions don't reach your phone until you leave it.
+
+## What this version doesn't do {#whats-different-for-devin}
+
+- **No Devin Cloud sessions.** Nomo shows Devin running on your Mac only.
+- **No Reply and no "Open on Mac".**
+  [Reply](/sessions/antigravity#reply-from-your-phone) and **Open on Mac**
+  aren't available for Devin.
+
+## Something's not working {#troubleshooting}
+
+<AccordionGroup>
+  <Accordion title="The installer says my config had comments">
+    That's fine. Devin's settings file can't keep comments once Nomo adds to
+    it, so the installer saved your original file first, next to it:
+
+    ```
+    ~/.config/devin/config.json.nomo-backup
+    ```
+
+    All your settings are still there. Only the comments were removed.
+  </Accordion>
+
+  <Accordion title="Devin shows my answer as rejected">
+    That's expected. Nomo sends your answer as the reason for closing Devin's
+    question, so the Mac shows the question as **rejected**, with your answer
+    next to it. Devin reads your answer and carries on.
+  </Accordion>
+
+  <Accordion title="Devin Desktop shows no buttons for a prompt">
+    Your phone has it. Answer it on your phone. To answer on the Mac instead,
+    [pause approvals](/sessions/approvals#pausing-it) before Devin's next
+    prompt.
+  </Accordion>
+</AccordionGroup>
+
+Anything else — nothing on your phone, approvals that stopped, a stuck
+session, Interrupt — is in [Troubleshooting](/sessions/troubleshooting).
+
+## Technical details and security
+
+Nomo only sends your phone what a session is doing and what it asks, end-to-end
+encrypted. It never changes Devin's own settings, and if anything fails, Devin
+asks on your Mac as usual.
+
+How it works under the hood is in the plugin's README: [how Nomo works with Devin](https://github.com/KarrixLee/nomo#devin-integration) and
+[hooks and security](https://github.com/KarrixLee/nomo#devin-hooks).

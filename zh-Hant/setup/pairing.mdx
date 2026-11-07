@@ -10,7 +10,7 @@ icon: "qrcode-read"
 
 <Note>
   一次配對涵蓋的是這台電腦，而不是個別代理。如果你在同一台電腦上同時執行
-  Claude Code、Codex、OpenCode、Cursor 和 Antigravity 的任何組合，它們會共用同一組配對 — 不需要配對兩次。
+  Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 的任何組合，它們會共用同一組配對 — 不需要配對兩次。
 </Note>
 
 <Tabs>
@@ -39,9 +39,14 @@ icon: "qrcode-read"
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair
         ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair
+        ```
         </CodeGroup>
 
         在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。
+        使用 Devin 外掛程式時，請改在 Devin 裡輸入 `/nomo:pair`。如果 Devin 不認得這個指令，請把 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` 貼到終端機裡。
 
         瀏覽器會開啟一個套用主題樣式的配對頁面，上面有一個 QR code。
 
@@ -102,7 +107,13 @@ icon: "qrcode-read"
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair code
         ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair code
+        ```
         </CodeGroup>
+
+        使用 Devin 外掛程式時，請改在 Devin 裡輸入 `/nomo:pair code`。
 
         不會開啟瀏覽器。一次性代碼會直接印在終端機上：
 

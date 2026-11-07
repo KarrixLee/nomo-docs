@@ -3,7 +3,7 @@ title: "Fix Nomo pairing, session, and approval problems"
 sidebarTitle: "Troubleshooting"
 description: "Run the status command first — it names the problem and prints the fix. Then: which row answers which symptom, and the few things status can't see."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Troubleshooting"]
 ---
 
 The status command does most of this page's job for you now. It reads the whole
@@ -35,11 +35,20 @@ $nomo-status
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-status
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
 
 In Antigravity, choose **Allow** when it asks to run a Nomo command. It shows
 a short summary in plain words, and one line per problem saying what to do —
 type `/nomo-status verbose` for the full readout described below.
+
+With the Devin plugin, type `/nomo:status` in Devin instead. If Devin doesn't
+know the command, paste
+`~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` into
+Terminal.
 
 It reports on the **computer**, not just your session: pairing, delivery, the
 direct local network link, approvals, then the agent you're in and every other
@@ -116,7 +125,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
   **Hooks** — or **Plugin** in OpenCode, which has none. If it isn't firing,
   your agent isn't handing Nomo anything, and every agent loads that wiring only
   at startup: restart Claude Code, run `/hooks` in Codex, restart OpenCode,
-  restart Cursor, restart Antigravity.
+  restart Cursor, restart Antigravity, restart `devin`.
 
   Codex trusts hooks explicitly and a plugin update re-opens that review, so
   `/hooks` after an update is the usual answer there —
@@ -150,7 +159,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
 <Accordion title="A Cursor chat shows up as a Claude Code session" icon="clone">
   Update the Nomo plugin for Claude Code. Older versions ran inside Cursor,
   through Cursor's import of Claude Code plugins; the current version ignores
-  Cursor. [Updating](/setup/install#updating) has the command.
+  Cursor. [Updating](/sessions/commands#update) has the command.
 </Accordion>
 
 <Accordion title="A Cursor session stays working after Cursor has quit" icon="hourglass-half">
@@ -172,29 +181,34 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
   Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
   Antigravity on. More in [Using Antigravity](/sessions/antigravity#troubleshooting).
+
+  <Frame caption="The Antigravity tab before any session has arrived.">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="Every Antigravity session shows up twice" icon="clone">
-  Nomo's Claude Code plugin is imported into Antigravity. Run this in Terminal,
-  then restart Antigravity:
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="An Antigravity command says Nomo could not find its files" icon="folder-open">
-  The Nomo folder was moved or deleted. Antigravity keeps working, but nothing
-  reaches your phone. Run the installer again, then restart Antigravity:
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity sessions show up twice, or a command can't find Nomo's files" icon="clone">
+  Both fixes are in [Using Antigravity](/sessions/antigravity#troubleshooting).
 </Accordion>
 
 <Accordion title="A cancelled Antigravity turn still says Running" icon="hourglass-half">
   Wait a few seconds — Nomo notices on its own and the row goes to `Done`. If a
   card was on your phone, it disappears too.
+</Accordion>
+
+<Accordion title="My phone shows nothing from Devin" icon="terminal">
+  1. Close every open `devin`, and start it again.
+  2. Type `/nomo-status` in Devin, and do what the line starting with `→`
+     says. With the Devin plugin, type `/nomo:status` instead.
+
+  3. Using Devin Desktop? Make sure **Restricted Mode** is off.
+  4. Send a message in Devin. A session only appears after your first message.
+
+  Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
+  Devin on. More in [Using Devin](/sessions/devin#troubleshooting).
 </Accordion>
 
 <Accordion title="Rows look stale or duplicated" icon="broom">
@@ -221,7 +235,13 @@ What each row means, with a healthy machine and a broken one side by side, is on
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash Devin icon="/images/providers/devin.svg"
+  /nomo-reset
+  ```
   </CodeGroup>
+
+  With the Devin plugin, type `/nomo:reset` in Devin instead.
 
   Live sessions, your pairing and your keys are left alone —
   [what it prints](/sessions/commands#reset). An OpenCode row belongs to
@@ -236,11 +256,11 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
   On 2.2.2 the first settles to `Done` in about 20 seconds, and the second
   doesn't appear until it has work to do.
-  [Update the plugin](/setup/install#updating).
+  [Update the plugin](/sessions/commands#update).
 </Accordion>
 
 <Accordion title="Interrupt says Sent but the session keeps running" icon="circle-stop">
-  **Sent** means the Mac received it, not that the turn has stopped. Four
+  **Sent** means the Mac received it, not that the turn has stopped. Five
   things leave it running:
 
   - **Claude Code waits for the next tool call.** While it's writing text, or a
@@ -249,13 +269,16 @@ What each row means, with a healthy machine and a broken one side by side, is on
     app-server — [which sessions that covers](/sessions/codex#interrupt).
   - **Antigravity finishes the current step first.** The turn stops once the
     model call or tool that's already running is done.
+  - **Devin finishes the current step first.** A command or a reply that's
+    already running keeps going until it's done.
   - **One of the two plugins is older than 2.3.0.** The version is reported per
     computer, so with Claude Code and Codex on one Mac, update both. Status
     prints the version on its first line.
 
   No **Interrupt** button at all? It needs the green **⚡ Local** chip, a
-  `Running` session, plugin **2.3.0** (**2.3.5** for Antigravity), and Claude
-  Code, Codex or Antigravity — never OpenCode or Cursor. More in [Computers and sessions](/sessions/list#interrupt-a-running-session).
+  `Running` session, plugin **2.3.0** (**2.3.5** for Antigravity, **2.5.0** for
+  Devin), and Claude Code, Codex, Antigravity or Devin — never OpenCode or
+  Cursor. More in [Computers and sessions](/sessions/list#interrupt-a-running-session).
 </Accordion>
 
 </AccordionGroup>
@@ -405,8 +428,9 @@ computer helps too — the version on its first line is half the diagnosis.
 "Why can't I do X from my phone?" is often a fair question rather than a bug.
 Some of it is a real limit of what an agent hands to a plugin, and that's
 written down: [Using Codex](/sessions/codex), [Using
-OpenCode](/sessions/opencode), [Using Cursor](/sessions/cursor) and [Using
-Antigravity](/sessions/antigravity) cover those four agents, and [Answering from your
+OpenCode](/sessions/opencode), [Using Cursor](/sessions/cursor), [Using
+Antigravity](/sessions/antigravity) and [Using Devin](/sessions/devin) cover
+those five agents, and [Answering from your
 phone](/sessions/approvals) covers what a Live Activity can and can't host.
 
 The rest is just not built yet.
@@ -517,26 +541,18 @@ that command there.
     },
     {
       "@type": "Question",
-      "name": "Every Antigravity session shows up twice",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo's Claude Code plugin is imported into Antigravity. Run agy plugin uninstall nomo-cc in Terminal, then restart Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "An Antigravity command says Nomo could not find its files",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Nomo folder was moved or deleted. Antigravity keeps working, but nothing reaches your phone. Run bunx nomo-ai --antigravity again, then restart Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "A cancelled Antigravity turn still says Running",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Wait a few seconds — Nomo notices on its own and the row goes to Done. If a card was on your phone, it disappears too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My phone shows nothing from Devin",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Close every open devin and start it again. Type /nomo-status in Devin (with the Devin plugin, /nomo:status) and do what the line starting with → says. In Devin Desktop, make sure Restricted Mode is off. Then send a message in Devin: a session only appears after your first message. Still nothing? In Nomo, tap the + button (Choose agents) and turn Devin on."
       }
     },
     {

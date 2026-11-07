@@ -13,8 +13,8 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
 
 <Note>
   Una vinculación cubre la máquina, no el agente. Si usas cualquier combinación
-  de Claude Code, Codex, OpenCode, Cursor y Antigravity en el mismo ordenador,
-  lo comparten: no lo vinculas dos veces.
+  de Claude Code, Codex, OpenCode, Cursor, Antigravity y Devin en el mismo
+  ordenador, lo comparten: no lo vinculas dos veces.
 </Note>
 
 <Tabs>
@@ -43,10 +43,17 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair
         ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair
+        ```
         </CodeGroup>
 
         En Antigravity, elige **Allow** (permitir) cuando pregunte si ejecuta un
-        comando de Nomo.
+        comando de Nomo. Con el plugin de Devin, escribe `/nomo:pair` en
+        Devin. Si Devin no reconoce el comando, pega
+        `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` en
+        Terminal.
 
         Se abre en tu navegador una página de vinculación con la estética de
         la app y un código QR.
@@ -119,7 +126,13 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair code
         ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair code
+        ```
         </CodeGroup>
+
+        Con el plugin de Devin, escribe `/nomo:pair code` en Devin.
 
         No se abre ningún navegador. Un código de un solo uso se imprime
         directamente en la terminal:

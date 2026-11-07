@@ -12,8 +12,8 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
 
 <Note>
   One pairing covers the machine, not the agent. If you run any mix of Claude
-  Code, Codex, OpenCode, Cursor and Antigravity on the same computer, they
-  share it — you don't pair twice.
+  Code, Codex, OpenCode, Cursor, Antigravity and Devin on the same computer,
+  they share it — you don't pair twice.
 </Note>
 
 <Tabs>
@@ -42,9 +42,17 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair
         ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair
+        ```
         </CodeGroup>
 
         In Antigravity, choose **Allow** when it asks to run a Nomo command.
+        With the Devin plugin, type `/nomo:pair` in Devin instead. If Devin
+        doesn't know the command, paste
+        `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` into
+        Terminal.
 
         A themed pairing page opens in your browser with a QR code.
 
@@ -114,7 +122,13 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair code
         ```
+
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair code
+        ```
         </CodeGroup>
+
+        With the Devin plugin, type `/nomo:pair code` in Devin instead.
 
         No browser opens. A one-time code prints straight to the terminal:
 
@@ -157,6 +171,10 @@ it's still connected and whether events are actually being delivered.
   agent and try again, or use the typed-code path.
 - **The scan succeeds but no computer appears** — run the status command above
   to see whether events are being delivered at all.
+- **Old or duplicate rows show up** — run `/nomo-cc:reset` (or `$nomo-reset`).
+  It clears rows for sessions that are gone, and you stay paired.
+- **You want to disconnect a computer** — run `/nomo-cc:unpair` (or
+  `$nomo-unpair`). It removes the pairing and deletes the local key.
 - **Computer Limit Reached** — you're at **5** paired computers. Touch and hold
   one in the Sessions tab, forget it, and pair again.
 - **Couldn't Verify This iPhone** — Nomo's server couldn't verify your phone.

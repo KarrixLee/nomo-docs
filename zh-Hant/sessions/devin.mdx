@@ -1,0 +1,135 @@
+---
+title: "在 iPhone 上看著並批准 Devin sessions"
+sidebarTitle: "搭配 Devin 使用"
+description: "在 iPhone 上跟著你的 Devin sessions — 回覆 Devin 的權限請求和問題，還能停止執行中的這一輪。Devin 有什麼不同，以及為什麼。"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "session", "電腦", "動態島", "權限", "配對", "搭配 Devin 使用"]
+---
+
+在 iPhone 的鎖定畫面和動態島上，看著你的 Devin sessions。當 Devin 請求權限時，手機會問你要「允許」還是「拒絕」。Devin 問你問題時，也可以在手機上回答。
+
+它搭配 Devin CLI 使用，也就是終端機裡的 `devin` 指令，也能搭配 [Devin Desktop](#devin-desktop) 使用。
+
+<Note>
+  Sessions 屬於 Nomo Pro。你的手機需要 Nomo **2.5.0** 以上，Mac 上需要外掛程式 **2.5.0** 以上。
+</Note>
+
+## 相同的部分 {#what-works-the-same}
+
+sessions、資料夾和[動態島](/zh-Hant/sessions/island)的運作和其他代理一樣。所有共用的部分都只寫在一個地方：
+
+- **安裝** → [安裝](/zh-Hant/setup/install)的 **Devin** 分頁。兩種[安裝方式](#set-it-up)的步驟都在那裡。
+- **配對** → [配對](/zh-Hant/setup/pairing)。一次配對涵蓋這台電腦上的每個代理。
+- **指令、更新與解除安裝** → [指令](/zh-Hant/sessions/commands)，其中有 [update](/zh-Hant/sessions/commands#update) 和 [uninstall](/zh-Hant/sessions/commands#uninstall)。
+- **回答權限請求** → [在手機上回覆](/zh-Hant/sessions/approvals)。
+- **每個代理能做什麼** → [功能一覽](/zh-Hant/sessions/features)。
+- **出了問題** → [疑難排解](/zh-Hant/sessions/troubleshooting)。
+
+## 兩種安裝方式 {#set-it-up}
+
+把 Nomo 加進 Devin 有兩種方式：**Devin 外掛程式**，或 **Nomo 安裝工具**。兩者選一個安裝就好。如果兩個都裝了，Nomo 會使用安裝工具那一個，外掛程式則保持安靜。兩種方式的步驟都在[安裝](/zh-Hant/setup/install)的 **Devin** 分頁裡。
+
+用 Devin 外掛程式的話，Nomo 的指令開頭是 `/nomo:` 而不是 `/nomo-` — 例如 `/nomo:pair`。
+
+## Nomo 的指令 {#commands}
+
+這台電腦連線之後，Devin 會直接執行 Nomo 自己的指令，不再詢問。不過在批准開啟時，`/nomo-approvals off`、`/nomo-unpair` 和 `/nomo-pair code` 仍會先在手機上問你。如果 Devin 問要不要執行 Nomo 的指令，請允許。
+
+<Note>
+  也在 Cursor 裡使用 Nomo？Devin 會把這些指令顯示成 `/devin:nomo-pair`、`/devin:nomo-status` 等等 — 請改為輸入這些。`/nomo-approvals` 的名稱不變。
+</Note>
+
+Devin 不認得這些指令？再執行一次安裝工具並重新啟動 Devin — 或是改[在終端機裡](/zh-Hant/sessions/commands#without-slash-commands)執行它們。每個指令都在[指令](/zh-Hant/sessions/commands)裡。
+
+## 你會看到什麼 {#what-you-see}
+
+- session 會在你送出**第一則訊息**時出現。
+- 它的名稱就是 Devin 自己的 session 標題。在 Devin 取好標題之前，會先用你的第一則訊息。
+- 標籤顯示 Devin 正在使用的模型。短的 session 可能沒有這個標籤：Devin 只在 session 結束時才記下模型。
+
+## 在手機上回覆 {#answering-from-your-phone}
+
+當 Devin 請求權限時 — 例如要執行一個指令 — 手機會問你。按住那個 session，或使用動態島。
+
+<Frame caption="一個請求執行指令的 Devin session。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/devin-approval-card.png" alt="Devin session Fix token refresh race 的批准卡片，請求執行 bun test，有「拒絕」、「允許」和「拒絕並附註…」按鈕" />
+    <img className="only-dark" src="/images/devin-approval-card-dark.png" alt="Devin session Fix token refresh race 的批准卡片，請求執行 bun test，有「拒絕」、「允許」和「拒絕並附註…」按鈕" />
+  </div>
+</Frame>
+
+你可以選「允許」、「一律允許 …（本次 session）」、「拒絕」和「拒絕並附註…」— 各自的作用請看[在手機上回覆](/zh-Hant/sessions/approvals)。
+
+**Devin 會等你的手機**。如果逾時，Devin 會改在你的 Mac 上問你。
+
+### 一律允許 {#always-allow}
+
+「一律允許」只在**本次 session** 有效。session 結束時，Nomo 就會忘掉它，下一個 session 會重新問你。
+
+- **簡單的指令**會依指令名稱記住。對 `touch b.txt` 選了一律允許，`touch c.txt` 也會被允許 — 但換成別的指令就不行。
+- **串在一起的指令** — 含有 `&&`、`;`、`|` 或 `>` 的指令 — 每次都會送到手機，除非它和你已經允許過的指令一模一樣。所以 `touch x && rm -rf ~` 還是會問你。
+- **其他操作**，例如寫入檔案，在這個 session 剩下的時間裡都會被允許。
+
+Nomo 把它存在你的電腦上，絕不會改動 Devin 自己的設定。就算你暫停了批准，它在 session 結束前也仍然有效。
+
+### 回答 Devin 的問題 {#questions}
+
+Devin 問你問題時，那個 session 會顯示 `需要回答`。按住它，然後選擇「回答…」：
+
+1. 點一下一個選項。Devin 允許的話，可以選好幾個。
+2. 都不合適？點一下「其他…」，輸入你自己的回答。
+3. 點一下「提交」。
+
+「新增附註」可以替你的回答加上一段說明。「拒絕」會告訴 Devin 你選擇不回答。
+
+<Note>
+  **在 Mac 上，這個問題會顯示為 rejected。這是正常的**。Devin 沒辦法直接從 Nomo 收到回答，所以 Nomo 把你的回答當成關閉 Devin 問題的理由送過去。你會看到問題被標成 **rejected**，旁邊寫著你的回答。Devin 會讀到你的回答，然後繼續工作。
+</Note>
+
+## 停止這一輪 {#interrupt}
+
+在 `執行中` 的 Devin session 上點一下 **[停止](/zh-Hant/sessions/list#interrupt-a-running-session)** 就能停下它。它需要綠色的 **⚡ 本機** 標籤 — 也就是 iPhone 和 Mac 在同一個網路上。
+
+Devin 會先做完目前這一步再停下，沒辦法把指令或回覆從中間切斷。session 會顯示 `完成`，Devin 仍然開著 — 送出新的訊息就能繼續。
+
+## Devin Desktop {#devin-desktop}
+
+Devin 的文件說，Devin Desktop 的 **Devin Local** 代理和 Devin CLI 使用同一個引擎，所以 Nomo 在那裡的用法也一樣。Nomo 已經用 Devin CLI 和 Devin 的 ACP 伺服器測試過。
+
+- **手機先回答**。當手機上有權限請求或問題時，Devin Desktop 不會顯示它自己的按鈕。請在手機上回答。想改在 Mac 上回答，請在 Devin 的下一個提示之前[暫停批准](/zh-Hant/sessions/approvals#pausing-it)。
+- **哪些會送到手機**。在 Devin Desktop 預設的 **Code** 模式下，Devin 只會在執行指令、抓取網頁，以及在專案之外寫入之前問你。你在手機上看到的就是這些權限請求。
+- **Restricted Mode 會讓 Nomo 停止運作**。它會關掉 Nomo 需要的 hooks，所以在你離開它之前，你的 sessions 不會送到手機。
+
+## 這個版本的限制 {#whats-different-for-devin}
+
+- **沒有 Devin Cloud 的 sessions**。Nomo 只顯示在你的 Mac 上執行的 Devin。
+- **沒有「回覆」，也沒有「在 Mac 上開啟」**。[回覆](/zh-Hant/sessions/antigravity#reply-from-your-phone)和「在 Mac 上開啟」在 Devin 上無法使用。
+
+## 有東西不能用 {#troubleshooting}
+
+<AccordionGroup>
+  <Accordion title="安裝工具說我的設定檔有註解">
+    沒關係。Nomo 加入內容後，Devin 的設定檔就留不住註解，所以安裝工具會先把你原本的檔案存在它旁邊：
+
+    ```
+    ~/.config/devin/config.json.nomo-backup
+    ```
+
+    你所有的設定都還在，只有註解被移除了。
+  </Accordion>
+
+  <Accordion title="Devin 把我的回答顯示為 rejected">
+    這是正常的。Nomo 把你的回答當成關閉 Devin 問題的理由送過去，所以 Mac 上這個問題會顯示為 **rejected**，旁邊寫著你的回答。Devin 會讀到你的回答，然後繼續工作。
+  </Accordion>
+
+  <Accordion title="Devin Desktop 沒有顯示權限請求的按鈕">
+    這個請求在你的手機上。請在手機上回答。想改在 Mac 上回答，請在 Devin 的下一個提示之前[暫停批准](/zh-Hant/sessions/approvals#pausing-it)。
+  </Accordion>
+</AccordionGroup>
+
+其他問題 — 手機上什麼都沒有、批准停了、session 卡住、「停止」— 都在[疑難排解](/zh-Hant/sessions/troubleshooting)裡。
+
+## 技術細節與安全性 {#technical-details-and-security}
+
+Nomo 只會把 session 正在做什麼、它要問你什麼傳到你的手機，而且是端對端加密。它從不更動 Devin 自己的設定；出了任何問題，Devin 都會照常在 Mac 上問你。
+
+內部怎麼運作，請看外掛程式的 README：[Nomo 如何搭配 Devin](https://github.com/KarrixLee/nomo#devin-integration)、[hook 與安全性](https://github.com/KarrixLee/nomo#devin-hooks)。

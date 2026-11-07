@@ -2,7 +2,7 @@
 title: "Solución de problemas"
 description: "Ejecuta primero el comando status: nombra el problema e imprime el arreglo. Después, qué fila responde a cada síntoma y las pocas cosas que status no puede ver."
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Solución de problemas"]
 ---
 
 El comando status hace hoy casi todo el trabajo de esta página. Lee el ordenador
@@ -34,12 +34,21 @@ $nomo-status
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-status
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
 
 En Antigravity, elige **Allow** (permitir) cuando pregunte si ejecuta un comando
 de Nomo. Muestra un resumen corto en palabras sencillas, y una línea por cada
 problema que dice qué hacer; escribe `/nomo-status verbose` para ver el informe
 completo que se describe abajo.
+
+Con el plugin de Devin, escribe `/nomo:status` en Devin. Si Devin no reconoce
+el comando, pega
+`~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` en
+Terminal.
 
 Informa sobre el **ordenador**, no solo sobre tu sesión: vinculación, entrega,
 el enlace directo por red local, aprobaciones, y después el agente en el que
@@ -122,7 +131,7 @@ está en [Comandos](/es/sessions/commands#status).
   **Hooks** — o **Plugin** en OpenCode, que no tiene. Si no se dispara, tu agente
   no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo
   al arrancar: reinicia Claude Code, ejecuta `/hooks` en Codex, reinicia
-  OpenCode, reinicia Cursor, reinicia Antigravity.
+  OpenCode, reinicia Cursor, reinicia Antigravity, reinicia `devin`.
 
   Codex confía en los hooks de forma explícita y una actualización del plugin
   reabre esa revisión, así que `/hooks` después de actualizar es ahí la respuesta
@@ -159,7 +168,7 @@ está en [Comandos](/es/sessions/commands#status).
   Actualiza el plugin de Nomo para Claude Code. Las versiones anteriores se
   ejecutaban dentro de Cursor, a través de la importación de plugins de Claude
   Code que hace Cursor; la versión actual ignora Cursor.
-  [Actualizaciones](/es/setup/install#updating) tiene el comando.
+  [Actualizaciones](/es/sessions/commands#update) tiene el comando.
 </Accordion>
 
 <Accordion title="Una sesión de Cursor sigue En ejecución después de cerrarse Cursor" icon="hourglass-half">
@@ -183,30 +192,35 @@ está en [Comandos](/es/sessions/commands#status).
 
   ¿Sigue sin salir nada? En Nomo, toca el botón **+** (**Elegir agentes**) y
   activa Antigravity. Más en [Usar Antigravity](/es/sessions/antigravity#troubleshooting).
+
+  <Frame caption="La pestaña Antigravity antes de que llegue ninguna sesión.">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="La pestaña Antigravity de un ordenador, que dice Aún no hay sesiones de Antigravity" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="La pestaña Antigravity de un ordenador, que dice Aún no hay sesiones de Antigravity" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="Cada sesión de Antigravity sale dos veces" icon="clone">
-  El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta esto
-  en Terminal y después reinicia Antigravity:
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Un comando de Antigravity dice que Nomo no encuentra sus archivos" icon="folder-open">
-  La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero
-  nada llega a tu teléfono. Vuelve a ejecutar el instalador y después reinicia
-  Antigravity:
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Las sesiones de Antigravity salen dos veces, o un comando no encuentra los archivos de Nomo" icon="clone">
+  Las dos soluciones están en [Usar Antigravity](/es/sessions/antigravity#troubleshooting).
 </Accordion>
 
 <Accordion title="Un turno cancelado de Antigravity sigue En ejecución" icon="hourglass-half">
   Espera unos segundos: Nomo se da cuenta solo y la fila pasa a `Listo`. Si
   había una tarjeta en tu teléfono, también desaparece.
+</Accordion>
+
+<Accordion title="Mi teléfono no muestra nada de Devin" icon="terminal">
+  1. Cierra todos los `devin` que tengas abiertos y vuelve a iniciar `devin`.
+  2. Escribe `/nomo-status` en Devin y haz lo que dice la línea que empieza
+     por `→`. Con el plugin de Devin, escribe `/nomo:status`.
+
+  3. ¿Usas Devin Desktop? Comprueba que **Restricted Mode** está desactivado.
+  4. Envía un mensaje en Devin. Una sesión solo aparece después de tu primer
+     mensaje.
+
+  ¿Sigue sin salir nada? En Nomo, toca el botón **+** (**Elegir agentes**) y
+  activa Devin. Más en [Usar Devin](/es/sessions/devin#troubleshooting).
 </Accordion>
 
 <Accordion title="Las filas parecen obsoletas o duplicadas" icon="broom">
@@ -233,7 +247,13 @@ está en [Comandos](/es/sessions/commands#status).
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash Devin icon="/images/providers/devin.svg"
+  /nomo-reset
+  ```
   </CodeGroup>
+
+  Con el plugin de Devin, escribe `/nomo:reset` en Devin.
 
   Las sesiones vivas, tu vinculación y tus claves se quedan intactas —
   [qué imprime](/es/sessions/commands#reset). Una fila de OpenCode pertenece al
@@ -249,12 +269,12 @@ está en [Comandos](/es/sessions/commands#status).
 
   Con la 2.2.2, la primera pasa a `Listo` en unos 20 segundos, y la segunda no
   aparece hasta que tiene trabajo que hacer.
-  [Actualiza el plugin](/es/setup/install#updating).
+  [Actualiza el plugin](/es/sessions/commands#update).
 </Accordion>
 
 <Accordion title="Detener dice Enviado pero la sesión sigue en marcha" icon="circle-stop">
   **Enviado** significa que el Mac lo recibió, no que el turno se haya detenido.
-  Hay cuatro cosas que lo dejan corriendo:
+  Hay cinco cosas que lo dejan corriendo:
 
   - **Claude Code espera a la siguiente llamada a una herramienta.** Mientras
     escribe texto, o mientras corre un comando largo ya iniciado, no pasa nada
@@ -265,13 +285,16 @@ está en [Comandos](/es/sessions/commands#status).
   - **Antigravity termina primero el paso en curso.** El turno se detiene en
     cuanto acaba la llamada al modelo o la herramienta que ya se está
     ejecutando.
+  - **Devin termina primero el paso en curso.** Un comando o una respuesta que
+    ya está en marcha sigue hasta acabar.
   - **Uno de los dos plugins es anterior a la 2.3.0.** La versión se informa por
     ordenador, así que con Claude Code y Codex en el mismo Mac hay que
     actualizar los dos. Status imprime la versión en su primera línea.
 
   ¿No hay botón **Detener**? Necesita la etiqueta verde **⚡ Local**, una sesión
-  `En ejecución`, la versión **2.3.0** del plugin (**2.3.5** para Antigravity), y
-  Claude Code, Codex o Antigravity — nunca OpenCode ni Cursor. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
+  `En ejecución`, la versión **2.3.0** del plugin (**2.3.5** para Antigravity, **2.5.0**
+  para Devin), y Claude Code, Codex, Antigravity o Devin — nunca OpenCode ni
+  Cursor. Más en [Ordenadores y sesiones](/es/sessions/list#interrupt-a-running-session).
 </Accordion>
 
 </AccordionGroup>
@@ -430,8 +453,9 @@ afectado también ayuda: la versión de su primera línea es medio diagnóstico.
 “¿Por qué no puedo hacer X desde el teléfono?” muchas veces es una pregunta justa
 y no un fallo. Una parte es un límite real de lo que un agente le entrega a un
 plugin, y está escrito: [Usar Codex](/es/sessions/codex), [Usar
-OpenCode](/es/sessions/opencode), [Usar Cursor](/es/sessions/cursor) y [Usar
-Antigravity](/es/sessions/antigravity) cubren esos cuatro agentes, y [Responder desde el
+OpenCode](/es/sessions/opencode), [Usar Cursor](/es/sessions/cursor), [Usar
+Antigravity](/es/sessions/antigravity) y [Usar Devin](/es/sessions/devin) cubren
+esos cinco agentes, y [Responder desde el
 iPhone](/es/sessions/approvals) cubre lo que una actividad en directo puede y no
 puede albergar.
 
@@ -545,26 +569,18 @@ que ejecutes ese comando allí.
     },
     {
       "@type": "Question",
-      "name": "Cada sesión de Antigravity sale dos veces",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta agy plugin uninstall nomo-cc en Terminal y después reinicia Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Un comando de Antigravity dice que Nomo no encuentra sus archivos",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero nada llega a tu teléfono. Vuelve a ejecutar bunx nomo-ai --antigravity y después reinicia Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "Un turno cancelado de Antigravity sigue En ejecución",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Espera unos segundos: Nomo se da cuenta solo y la fila pasa a Listo. Si había una tarjeta en tu teléfono, también desaparece."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mi teléfono no muestra nada de Devin",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cierra todos los devin que tengas abiertos y vuelve a iniciar devin. Escribe /nomo-status en Devin (con el plugin de Devin, /nomo:status) y haz lo que dice la línea que empieza por →. En Devin Desktop, comprueba que Restricted Mode está desactivado. Después envía un mensaje en Devin: una sesión solo aparece después de tu primer mensaje. ¿Sigue sin salir nada? En Nomo, toca el botón + (Elegir agentes) y activa Devin."
       }
     },
     {

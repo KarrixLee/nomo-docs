@@ -1,8 +1,8 @@
 ---
 title: "在手機上回覆"
-description: "遠端允許、拒絕或回答 Claude Code、Codex、OpenCode 和 Antigravity 的權限請求 — 在動態島上，或在App裡使用完整選項。"
+description: "遠端允許、拒絕或回答 Claude Code、Codex、OpenCode、Antigravity 和 Devin 的權限請求 — 在動態島上，或在App裡使用完整選項。"
 icon: "hand"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", "session", "電腦", "動態島", "權限", "配對", "在手機上回覆"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "Devin", "iPhone", "session", "電腦", "動態島", "權限", "配對", "在手機上回覆"]
 ---
 
 當你的代理想執行某件它沒有既有權限的事，它會停下來詢問。平常你會在 Mac 上回覆。有了 Nomo，你可以在手機上回覆，代理會立刻接著做下去。
@@ -58,7 +58,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", 
 | --- | --- | --- |
 | **允許** | 動態島、App | 執行該動作並繼續。 |
 | **拒絕** | 動態島、App | 跳過它，不做這件事繼續下去。 |
-| **一律允許 Bash（本次 session）** | 僅App | 允許它，並且**在這個 session 剩下的時間裡**不再詢問。絕不寫入磁碟，也絕不帶進下一個 session。 |
+| **一律允許 …（本次 session）** | 僅App | 允許它，並且對標籤上寫明的範圍（例如所有 `bun test` 指令）**在這個 session 剩下的時間裡**不再詢問。絕不寫入磁碟，也絕不帶進下一個 session。如果你的電腦只能允許這一次請求，這個選項就不會出現。 |
 | **批准並切換到自動模式** | 僅App | 允許它，並把那個 session 切換到自動模式，直到 session 結束。在計畫上，選項是「批准並自動接受編輯」或「批准並使用自動模式」。僅限 Claude Code。 |
 | **拒絕並附註…** | 僅App | 拒絕，並把你打的內容一併帶過去 — *為什麼*，或*改做什麼*。在計畫上，它寫的是「繼續規劃…」。 |
 | **回答…** | 僅App | 為一個選擇題挑一個選項 — 或是在代理接受的情況下，送出你自己輸入的回答。 |
@@ -66,7 +66,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", 
 | **在 Mac 上開啟** | 僅App | 不回答任何事 — 它把那個 session 的終端機視窗切到你 Mac 的最前面。需要[區域網路](/zh-Hant/sessions/settings#local-network)連線。 |
 
 <Note>
-  不是每個代理都接受每一個選項。「批准並…」這幾個選項是 Claude Code 獨有的。Codex 沒有「一律允許」，OpenCode 沒有「拒絕並附註…」。在 OpenCode 上，「拒絕」回覆的還是整輪，而不是單一工具；「在 Mac 上開啟」則完全不會出現。各自的原因寫在[搭配 Codex 使用](/zh-Hant/sessions/codex)和[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)裡。Cursor 則一個都不接受：它的 sessions 是唯讀的，它的請求從來不會送到你的手機 — [搭配 Cursor 使用](/zh-Hant/sessions/cursor#what-this-version-doesnt-do)。Antigravity 接受「允許」、「拒絕」和「拒絕並附註…」，但只用於 shell 指令和檔案寫入 — [搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#answering-from-your-phone)。
+  不是每個代理都接受每一個選項。「批准並…」這幾個選項是 Claude Code 獨有的。Codex 沒有「一律允許」，OpenCode 沒有「拒絕並附註…」。在 OpenCode 上，「拒絕」回覆的還是整輪，而不是單一工具；「一律允許」會一直有效到 OpenCode 重新啟動；「在 Mac 上開啟」則完全不會出現。各自的原因寫在[搭配 Codex 使用](/zh-Hant/sessions/codex)和[搭配 OpenCode 使用](/zh-Hant/sessions/opencode)裡。Cursor 則一個都不接受：它的 sessions 是唯讀的，它的請求從來不會送到你的手機 — [搭配 Cursor 使用](/zh-Hant/sessions/cursor#what-this-version-doesnt-do)。Antigravity 接受「允許」、「拒絕」和「拒絕並附註…」，但只用於 shell 指令和檔案寫入 — [搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#answering-from-your-phone)。Devin 接受「允許」、「一律允許」、「拒絕」和「拒絕並附註…」，也能回答它的問題。Devin 的「一律允許」由 Nomo 存在你的電腦上，直到 session 結束 — [搭配 Devin 使用](/zh-Hant/sessions/devin#answering-from-your-phone)。
 </Note>
 
 「一律允許」和「拒絕並附註…」在選單的「更多…」底下，「回答…」則直接在選單上。三個都需要外掛程式 **2.0.0**。在 1.0.0 上你只會拿到單純的「允許」和「拒絕」 — Nomo 不會顯示一個 Mac 無法兌現的按鈕。「批准並…」這幾個選項同樣在「更多…」底下，需要外掛程式 **2.2.2**。有更新可用時，面板會告訴你。
@@ -92,7 +92,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", 
 
 如果代理為某個選項附了預覽 — 一小段程式碼、一張版面草圖 — 你選取那個選項時，它會出現在清單下方。
 
-這三項都需要外掛程式 **2.2.2**。附註和預覽是 Claude Code 才有的。Codex 只在提供自由輸入答案的問題上顯示「其他…」，OpenCode 則三項都沒有。
+這三項都需要外掛程式 **2.2.2**。預覽是 Claude Code 才有的，附註則 Claude Code 和 Devin 都有。Codex 只在提供自由輸入答案的問題上顯示「其他…」，OpenCode 則三項都沒有。在 Devin 上，回答過的問題在 Mac 上會顯示為 rejected — [原因](/zh-Hant/sessions/devin#questions)。
 
 ## 檢視計畫 {#reviewing-a-plan}
 
@@ -119,6 +119,8 @@ Codex 的計畫在手機上是**唯讀**的 — 你在這裡讀，在終端機�
 那一列會顯示 `傳送中…`，然後定下來。你的回覆在手機上封裝一次，並同時以兩條路送到你的 Mac — 經過中繼伺服器，以及在可用時直接走你的網路。先到的那個算數，第二個會被丟掉，所以重複的訊息不會把同一件事回答兩次。
 
 Nomo 事後還會驗證。中繼伺服器單純回一句「OK」是不會被採信的 — 手機會確認那個請求真的被處理掉了，沒有的話就重送。如果它真的無法確認，按鈕會回來，而不是讓你以為某件事已經發生了。
+
+回覆如何加密和傳送，請看[外掛程式的 README](https://github.com/KarrixLee/nomo#approval-holds-all-agents)。
 
 ### 說明文字的意思 {#what-the-caption-tells-you}
 
