@@ -4,6 +4,44 @@ description: "Qué salió, y cuándo."
 icon: "clock-rotate-left"
 ---
 
+También puedes leer esta lista en la app. En **Inicio**, cierra la tarjeta
+**Novedades** (×). En su lugar aparece la fila **Registro de cambios**. Tócala
+para ver todas las versiones.
+
+<Frame caption="La hoja Registro de cambios, abierta desde su fila en Inicio. Toca una versión para volver a ver su tarjeta.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/changelog-sheet.png" alt="La pantalla Inicio de Nomo con la fila Changelog y la hoja Changelog con 2.4.2, marcada como Latest, y 2.4.0" />
+    <img className="only-dark" src="/images/changelog-sheet-dark.png" alt="La pantalla Inicio de Nomo con la fila Changelog y la hoja Changelog con 2.4.2, marcada como Latest, y 2.4.0" />
+  </div>
+</Frame>
+
+<Update label="noviembre de 2026" description="2.4.2">
+  ## Revisa el código antes de aprobar
+
+  Mira exactamente qué quieren cambiar Claude Code y Codex antes de permitirlo, y ve de un vistazo qué sesiones han terminado.
+
+  **Nuevo**
+
+  - **Revisa el código antes de aprobar**: las solicitudes de edición de Claude Code y Codex muestran los archivos que cambian, con el número de líneas `+` y `−`. Mantén pulsada la sesión y toca **Revisar cambios** para leer cada línea antes de tocar **Permitir** o **Denegar**. [Cómo funciona](/es/sessions/approvals#see-the-code-before-you-approve)
+  - **Resultados nuevos de un vistazo**: un punto azul marca cada sesión que ha terminado desde la última vez que miraste, y cada ordenador muestra cuántas son nuevas, por ejemplo **2 nuevas**. [Más](/es/sessions/list#new-results)
+  - **Registro de cambios** en **Inicio**: después de cerrar la tarjeta **Novedades**, toca **Registro de cambios** para ver las versiones anteriores
+
+  **Mejorado**
+
+  - La Dynamic Island y la pantalla de bloqueo muestran el tamaño de una edición, por ejemplo `+13 −16`
+  - Títulos de aprobación más claros: las ediciones de Codex dicen `Edit notes.txt` o `Edit 2 files` en lugar de `apply_patch`, y las herramientas MCP se leen como `github · create issue`
+  - Compatible con Codex 0.167
+
+  **Corregido**
+
+  - Una fila de sesión de Codex ya no se queda en **En ejecución** hasta una hora
+
+  **Plugin 2.4.2**
+
+  - Los cambios, los títulos más claros y la compatibilidad con Codex 0.167 necesitan el plugin 2.4.2 en tu ordenador
+  - Después de actualizar el plugin, Codex te pide de nuevo que confíes en los hooks de Nomo. Ejecuta `/hooks` y confía en ellos, o elige **Trust all and continue**: [por qué](/es/sessions/codex#hooks-have-to-be-trusted)
+</Update>
+
 <Update label="noviembre de 2026" description="2.4.1">
   ## Enviar comentarios desde la app
 

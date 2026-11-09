@@ -73,6 +73,8 @@ Antigravity では、Nomo のコマンドを実行してよいか確認された
   **Approvals** を見てください。`PAUSED` は、そのコンピュータで一時停止のコマンドが実行されたという意味です — 何か月も前かもしれません。だからこそ、これまでは気づきようがありませんでした。そのマシンのセッションから再開すれば、許可リクエストは戻ってきます — [approvals](/ja/sessions/commands#approvals)。
 
   `on` と出ているなら、オフになっているスイッチは iPhone 側にあります。「iPhoneで回答」は初期状態でオフです — [設定](/ja/sessions/settings#remote-approvals)。見分け方は色です。挙がった手がすべて黄色（`要対応`、ターミナルでしか受け取れないもの）で、紫（`許可が必要`、回答できるほう）が 1 つもない、というのがその印です。[iPhone からの回答](/ja/sessions/approvals)をご覧ください。
+
+  **Codex だけで、Nomo プラグインを更新してから起きている場合は？** Codex が Nomo のフックをもう一度信頼してもらうのを待っています。Codex で `/hooks` を実行して Nomo の項目を信頼するか、起動時に Codex が確認してきたら「Trust all and continue」を選んでください — [理由](/ja/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="セッションを開始したのに表示されない" icon="play">
@@ -321,7 +323,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
       "name": "iPhone が承認を求めてこない",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Approvals の行を見てください。PAUSED は、そのコンピュータで一時停止のコマンドが実行されたという意味で、何か月も前かもしれません。そのマシンのセッションから再開すれば、許可リクエストは戻ってきます。on と出ているなら、オフになっているスイッチはアプリの設定にある「iPhoneで回答」で、これは初期状態でオフです。"
+        "text": "Approvals の行を見てください。PAUSED は、そのコンピュータで一時停止のコマンドが実行されたという意味で、何か月も前かもしれません。そのマシンのセッションから再開すれば、許可リクエストは戻ってきます。on と出ているなら、オフになっているスイッチはアプリの設定にある「iPhoneで回答」で、これは初期状態でオフです。Codex だけが尋ねてこなくなったのが Nomo プラグインの更新後なら、Codex は Nomo のフックをもう一度信頼してもらうのを待っています。/hooks を実行して信頼するか、Codex が確認してきたときに Trust all and continue を選んでください。"
       }
     },
     {

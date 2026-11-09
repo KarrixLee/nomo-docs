@@ -73,6 +73,8 @@ $nomo-status
   看 **Approvals**。`PAUSED` 表示有人在這台電腦上執行過暫停指令 — 可能是好幾個月前的事，而這正是它以前根本沒人找得到的原因。在那台機器上的 session 裡恢復它，請求就會回來：[approvals](/zh-Hant/sessions/commands#approvals)。
 
   如果它顯示 `on`，那關著的開關是在你的手機上。「在 iPhone 上回答」預設就是關的 — 請看[設定](/zh-Hant/sessions/settings#remote-approvals)。判斷方式是顏色：每一隻舉起的手都是黃色（`需要協助`，那種只有終端機能處理），沒有一隻是紫色（`需要權限`，可以回覆的那一種）。請看[在手機上回覆](/zh-Hant/sessions/approvals)。
+
+  **只有 Codex 這樣，而且是從更新 Nomo 外掛程式之後開始的？** Codex 在等你重新信任 Nomo 的 hooks。在 Codex 裡執行 `/hooks` 並信任 Nomo 的項目，或在 Codex 啟動時詢問的時候選擇 **Trust all and continue** — [原因](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="我開了一個 session，它卻從來沒出現" icon="play">
@@ -319,7 +321,7 @@ $nomo-status
       "name": "我的手機從來不問我要不要批准",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "看 Approvals 那一列。PAUSED 表示有人在這台電腦上執行過暫停指令，可能是好幾個月前的事。在那台機器上的 session 裡恢復它，請求就會回來。如果它顯示 on，那關著的開關是 App 設定裡的「在 iPhone 上回答」，它預設就是關的。"
+        "text": "看 Approvals 那一列。PAUSED 表示有人在這台電腦上執行過暫停指令，可能是好幾個月前的事。在那台機器上的 session 裡恢復它，請求就會回來。如果它顯示 on，那關著的開關是 App 設定裡的「在 iPhone 上回答」，它預設就是關的。如果是更新 Nomo 外掛程式之後只有 Codex 不再詢問，那是 Codex 在等你重新信任 Nomo 的 hooks：執行 /hooks 並信任它們，或在 Codex 詢問時選擇 Trust all and continue。"
       }
     },
     {

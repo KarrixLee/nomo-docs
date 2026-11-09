@@ -92,6 +92,7 @@ propósito.
 | **Denegar con nota…** | Solo en la app | Deniega y transmite lo que hayas escrito: *por qué*, o *qué hacer en su lugar*. En un plan dice **Seguir planificando…**. |
 | **Responder…** | Solo en la app | Elige una opción para una pregunta de varias opciones, o envía una respuesta que hayas escrito, cuando el agente la admite. |
 | **Ver plan completo** | App, además de **Ver plan** en la Dynamic Island | Abre el plan para leerlo antes de decidir. |
+| **Revisar cambios** | Solo en la app | Abre los cambios de una solicitud de edición para leerlos antes de decidir: [cómo](/es/sessions/approvals#see-the-code-before-you-approve). |
 | **Abrir en el Mac** | Solo en la app | No responde nada: pone en primer plano la ventana de terminal de esa sesión en tu Mac. Necesita un enlace por [red local](/es/sessions/settings#local-network). |
 
 <Note>
@@ -114,6 +115,78 @@ la 1.0.0 tienes Permitir y Denegar a secas — Nomo no muestra un botón que el 
 no pueda cumplir. Las opciones **Aprobar y…** también están bajo **Más…**, y
 necesitan la versión **2.2.2** del plugin. El panel te avisa cuando hay una
 actualización disponible.
+
+## Revisar el código antes de aprobar {#see-the-code-before-you-approve}
+
+Cuando Claude Code o Codex quiere editar archivos, puedes leer el cambio en el
+iPhone antes de responder.
+
+<Steps>
+  <Step title="Mantén pulsada la fila de la sesión">
+    La tarjeta muestra cada archivo que cambia, con cuántas líneas se añaden
+    (`+`) y cuántas se quitan (`−`). Debajo ves las primeras líneas del cambio.
+  </Step>
+  <Step title="Toca Revisar cambios">
+    Se abre la hoja **Cambios**. Las líneas quitadas son rojas y las añadidas,
+    verdes. La parte de la línea que cambia aparece resaltada. Toca un archivo
+    para abrirlo o cerrarlo.
+  </Step>
+  <Step title="Toca Permitir o Denegar">
+    Los botones se quedan al pie de la hoja mientras te desplazas.
+  </Step>
+</Steps>
+
+<Frame caption="Mantén pulsada una solicitud de edición: los archivos, sus recuentos + y −, el primer cambio y Revisar cambios arriba del menú.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-approval-card.png" alt="Una solicitud de edición de Codex mantenida pulsada, con tres archivos cambiados y sus recuentos de líneas, el primer cambio y un menú con Revisar cambios, Permitir, Denegar y Más" />
+    <img className="only-dark" src="/images/diff-approval-card-dark.png" alt="Una solicitud de edición de Codex mantenida pulsada, con tres archivos cambiados y sus recuentos de líneas, el primer cambio y un menú con Revisar cambios, Permitir, Denegar y Más" />
+  </div>
+</Frame>
+
+<Frame caption="La hoja Cambios. Las líneas rojas se quitan, las verdes se añaden, y Permitir y Denegar se quedan al pie.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-changes-sheet.png" alt="La hoja Cambios con Edit 3 files, un total de +13 −16 y el primer archivo abierto con líneas rojas y verdes" />
+    <img className="only-dark" src="/images/diff-changes-sheet-dark.png" alt="La hoja Cambios con Edit 3 files, un total de +13 −16 y el primer archivo abierto con líneas rojas y verdes" />
+  </div>
+</Frame>
+
+### Cambios grandes {#a-big-change}
+
+Un cambio grande se abre como vista previa. Al pie de la hoja verás `Vista
+previa — el resto de este cambio aún no se ha cargado`.
+
+1. Toca **Ver todos los cambios**.
+2. Espera un momento. Nomo trae el resto del cambio desde tu ordenador. También
+   funciona fuera de tu red Wi-Fi.
+
+Mientras carga, verás `Cargando todos los cambios…`. Si no se puede contactar
+con tu ordenador, dice `Reconectando…` y lo sigue intentando. Puedes tocar
+**Permitir** o **Denegar** en cualquier momento, incluso antes de que llegue el
+resto.
+
+<Frame caption="Un cambio grande: el aviso de vista previa y Ver todos los cambios, con Permitir y Denegar todavía disponibles.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-show-full.png" alt="El pie de la hoja Cambios con el aviso Vista previa — el resto de este cambio aún no se ha cargado, un botón Ver todos los cambios, y Denegar y Permitir" />
+    <img className="only-dark" src="/images/diff-show-full-dark.png" alt="El pie de la hoja Cambios con el aviso Vista previa — el resto de este cambio aún no se ha cargado, un botón Ver todos los cambios, y Denegar y Permitir" />
+  </div>
+</Frame>
+
+El cambio está cifrado de extremo a extremo, como todo lo que envía Nomo. El
+README del plugin detalla
+[qué sale de tu ordenador](https://github.com/KarrixLee/nomo#what-leaves-your-computer).
+La [Dynamic Island](/es/sessions/island#the-four-shapes) muestra los mismos
+recuentos `+13 −16` en una solicitud de edición.
+
+### Títulos más claros {#clearer-titles}
+
+Las solicitudes ahora dicen lo que hacen:
+
+- Una edición de Codex dice `Edit notes.txt` o `Edit 2 files`, no `apply_patch`.
+- Una solicitud de una herramienta MCP se lee como `github · create issue`:
+  primero el servidor y luego la herramienta.
+
+Todo esto necesita el plugin **2.4.2** en tu ordenador. Con un plugin anterior,
+la tarjeta se ve como antes, sin la lista de cambios.
 
 ## Responder a una pregunta {#answering-a-question}
 

@@ -5,6 +5,43 @@ description: "Every Nomo app and plugin release, newest first: what's new, what 
 icon: "clock-rotate-left"
 ---
 
+You can also read this list in the app. On **Home**, close the What's New card
+(×). A **Changelog** row takes its place. Tap it to see every release.
+
+<Frame caption="The Changelog sheet, opened from the Changelog row on Home. Tap a release to see its card again.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/changelog-sheet.png" alt="Nomo's Home screen with the Changelog row, and the Changelog sheet listing 2.4.2 marked Latest and 2.4.0" />
+    <img className="only-dark" src="/images/changelog-sheet-dark.png" alt="Nomo's Home screen with the Changelog row, and the Changelog sheet listing 2.4.2 marked Latest and 2.4.0" />
+  </div>
+</Frame>
+
+<Update label="November 2026" description="2.4.2">
+  ## See the code before you approve
+
+  See exactly what Claude Code and Codex want to change before you allow it, and spot finished sessions at a glance.
+
+  **New**
+
+  - **See the code before you approve**: edit requests from Claude Code and Codex list the files that change, with `+` and `−` line counts. Touch and hold the session, then tap **Review changes** to read every line before you tap **Allow** or **Deny**. [How it works](/sessions/approvals#see-the-code-before-you-approve)
+  - **New results at a glance**: a blue dot marks a session that finished since you last looked, and each computer shows how many are new, like **2 new**. [More](/sessions/list#new-results)
+  - **Changelog** on **Home**: after you close the What's New card, tap **Changelog** to see past releases
+
+  **Improved**
+
+  - The Dynamic Island and Lock Screen show the size of an edit, like `+13 −16`
+  - Clearer approval titles: Codex edits read `Edit notes.txt` or `Edit 2 files` instead of `apply_patch`, and MCP tools read like `github · create issue`
+  - Works with Codex 0.167
+
+  **Fixed**
+
+  - A Codex session row no longer gets stuck on **Running** for up to an hour
+
+  **Plugin 2.4.2**
+
+  - Changes, clearer titles and Codex 0.167 support need plugin 2.4.2 on your computer
+  - After you update the plugin, Codex asks you to trust Nomo's hooks again. Run `/hooks` and trust them, or choose **Trust all and continue** — [why](/sessions/codex#hooks-have-to-be-trusted)
+</Update>
+
 <Update label="November 2026" description="2.4.1">
   ## Send feedback from the app
 

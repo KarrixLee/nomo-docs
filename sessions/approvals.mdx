@@ -89,6 +89,7 @@ purpose.
 | **Deny with note…** | App only | Denies, and passes along what you typed — *why*, or *what to do instead*. On a plan it reads **Keep planning…**. |
 | **Answer…** | App only | Picks an option for a multiple-choice question — or sends an answer you typed, where the agent takes one. |
 | **View full plan** | App, plus **View plan** on the island | Opens the plan to read before deciding. |
+| **Review changes** | App only | Opens an edit request's changes to read before deciding — [how](#see-the-code-before-you-approve). |
 | **Open on Mac** | App only | Answers nothing — it brings that session's terminal window to the front on your Mac. Needs a [local network](/sessions/settings#local-network) link. |
 
 <Note>
@@ -109,6 +110,77 @@ get plain Allow and Deny
 — Nomo won't show a button the Mac can't honour. The **Approve + …** choices sit
 under **More…** too, and need plugin **2.2.2**. The drawer tells you when an
 update is available.
+
+## See the code before you approve
+
+When Claude Code or Codex wants to edit files, you can read the change on your
+phone before you answer.
+
+<Steps>
+  <Step title="Touch and hold the session row">
+    The card lists each file that changes, with how many lines are added (`+`)
+    and removed (`−`). Below that you see the first lines of the change.
+  </Step>
+  <Step title="Tap Review changes">
+    The **Changes** sheet opens. Removed lines are red and added lines are
+    green. The part of a line that changed is highlighted. Tap a file to open or
+    close it.
+  </Step>
+  <Step title="Tap Allow or Deny">
+    The buttons stay at the bottom of the sheet while you scroll.
+  </Step>
+</Steps>
+
+<Frame caption="Touch and hold an edit request: the files, their + and − counts, the first change, and Review changes at the top of the menu.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-approval-card.png" alt="A Codex edit request held down, showing three changed files with their line counts, the first change, and a menu with Review changes, Allow, Deny and More" />
+    <img className="only-dark" src="/images/diff-approval-card-dark.png" alt="A Codex edit request held down, showing three changed files with their line counts, the first change, and a menu with Review changes, Allow, Deny and More" />
+  </div>
+</Frame>
+
+<Frame caption="The Changes sheet. Red lines are removed, green lines are added, and Allow and Deny stay at the bottom.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-changes-sheet.png" alt="The Changes sheet showing Edit 3 files, a +13 −16 total, and the first file open with red and green lines" />
+    <img className="only-dark" src="/images/diff-changes-sheet-dark.png" alt="The Changes sheet showing Edit 3 files, a +13 −16 total, and the first file open with red and green lines" />
+  </div>
+</Frame>
+
+### A big change
+
+A big change opens as a preview. At the bottom of the sheet you see `Preview —
+the rest of this change isn’t loaded yet`.
+
+1. Tap **Show full diff**.
+2. Wait a moment. Nomo gets the rest of the change from your computer. This
+   works away from your Wi-Fi too.
+
+While it loads, you see `Loading the full diff…`. If your computer can't be
+reached, it says `Reconnecting…` and keeps trying. You can tap **Allow** or
+**Deny** at any time, even before the rest arrives.
+
+<Frame caption="A big change: the preview note and Show full diff, with Allow and Deny still there.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-show-full.png" alt="The bottom of the Changes sheet with the note Preview — the rest of this change isn’t loaded yet, a Show full diff button, and Deny and Allow" />
+    <img className="only-dark" src="/images/diff-show-full-dark.png" alt="The bottom of the Changes sheet with the note Preview — the rest of this change isn’t loaded yet, a Show full diff button, and Deny and Allow" />
+  </div>
+</Frame>
+
+The change is end-to-end encrypted, like everything else Nomo sends. The plugin
+README lists
+[what leaves your computer](https://github.com/KarrixLee/nomo#what-leaves-your-computer).
+The [Dynamic Island](/sessions/island#the-four-shapes) shows the same `+13 −16`
+counts on an edit request.
+
+### Clearer titles
+
+Requests now say what they do:
+
+- A Codex edit reads `Edit notes.txt` or `Edit 2 files`, not `apply_patch`.
+- A request from an MCP tool reads like `github · create issue`: the server,
+  then the tool.
+
+All of this needs plugin **2.4.2** on your computer. With an older plugin the
+card looks as it did before, with no list of changes.
 
 ## Answering a question
 

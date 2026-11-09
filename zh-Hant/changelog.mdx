@@ -4,6 +4,42 @@ description: "每個版本帶來什麼，以及上線的時間。"
 icon: "clock-rotate-left"
 ---
 
+這份列表在 App 裡也看得到。在「首頁」關閉「新功能」卡片（×）後，原本的位置會出現「更新日誌」這一列。點一下就能看到所有版本。
+
+<Frame caption="從「首頁」的「更新日誌」這一列打開的表單。點一下某個版本，可以再次查看它的卡片。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/changelog-sheet.png" alt="Nomo「首頁」上的 Changelog 列，以及列出標有 Latest 的 2.4.2 和 2.4.0 的 Changelog 表單" />
+    <img className="only-dark" src="/images/changelog-sheet-dark.png" alt="Nomo「首頁」上的 Changelog 列，以及列出標有 Latest 的 2.4.2 和 2.4.0 的 Changelog 表單" />
+  </div>
+</Frame>
+
+<Update label="2026年11月" description="2.4.2">
+  ## 批准前先看程式碼
+
+  在允許之前，先看清楚 Claude Code 和 Codex 到底要改什麼；哪些 session 已經結束，也一目了然。
+
+  **新增**
+
+  - **批准前先看程式碼**：Claude Code 和 Codex 的編輯請求會列出要變更的檔案，以及 `+` / `−` 行數。按住 session，再點一下「檢視變更」，就能在點一下「允許」或「拒絕」之前讀完每一行。[用法](/zh-Hant/sessions/approvals#see-the-code-before-you-approve)
+  - **新結果一目了然**：上次查看後結束的 session 會標上藍點，每台電腦都會顯示新結果的數量，例如「2 個新結果」。[詳情](/zh-Hant/sessions/list#new-results)
+  - 「首頁」上的「更新日誌」：關閉「新功能」卡片後，點一下「更新日誌」即可查看以往的版本
+
+  **改進**
+
+  - 動態島和鎖定畫面會顯示一次編輯的大小，例如 `+13 −16`
+  - 更清楚的批准標題：Codex 的編輯會顯示為 `Edit notes.txt` 或 `Edit 2 files`，而不是 `apply_patch`；MCP 工具會顯示為 `github · create issue` 這樣
+  - 支援 Codex 0.167
+
+  **修正**
+
+  - Codex 的 session 列不會再停在「執行中」長達一小時
+
+  **外掛程式 2.4.2**
+
+  - 檢視變更、更清楚的標題和 Codex 0.167 支援，需要電腦上裝有外掛程式 2.4.2
+  - 更新外掛程式後，Codex 會再次詢問你是否信任 Nomo 的 hooks。執行 `/hooks` 並信任它們，或選擇 **Trust all and continue** — [原因](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)
+</Update>
+
 <Update label="2026年11月" description="2.4.1">
   ## 在 App 內傳送意見回饋
 

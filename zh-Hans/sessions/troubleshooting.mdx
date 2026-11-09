@@ -74,6 +74,8 @@ $nomo-status
   看 **Approvals**。`PAUSED` 表示有人在这台电脑上运行过暂停命令——可能是好几个月以前，而这正是过去这件事根本无从发现的原因。在那台机器上的一个会话里恢复它，请求就回来了：[approvals](/zh-Hans/sessions/commands#approvals)。
 
   如果它显示 `on`，那关着的开关就在你手机上。**在 iPhone 上回答**默认是关的——见[设置](/zh-Hans/sessions/settings#remote-approvals)。判断的依据是颜色：每一只举起的手都是黄色（`需要帮助`，只有终端能处理），没有一只是紫色（`需要权限`，那才是能答复的）。见[在手机上回答](/zh-Hans/sessions/approvals)。
+
+  **只有 Codex 这样，而且是从更新 Nomo 插件之后开始的？** Codex 在等你重新信任 Nomo 的 hook。在 Codex 里运行 `/hooks` 并信任 Nomo 的条目，或者在 Codex 启动时询问的时候选择 **Trust all and continue**——[原因](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="我开了一个会话，它一直没出现" icon="play">
@@ -320,7 +322,7 @@ $nomo-status
       "name": "手机从来不来问我要不要批准",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "看 Approvals 这一行。PAUSED 表示有人在这台电脑上运行过暂停命令，可能是好几个月以前。在那台机器上的一个会话里恢复它，请求就回来了。如果它显示 on，那关着的开关就是 App 设置里的“在 iPhone 上回答”，它默认是关的。"
+        "text": "看 Approvals 这一行。PAUSED 表示有人在这台电脑上运行过暂停命令，可能是好几个月以前。在那台机器上的一个会话里恢复它，请求就回来了。如果它显示 on，那关着的开关就是 App 设置里的“在 iPhone 上回答”，它默认是关的。如果是更新 Nomo 插件之后只有 Codex 不再询问，那是 Codex 在等你重新信任 Nomo 的 hook：运行 /hooks 并信任它们，或者在 Codex 询问时选择 Trust all and continue。"
       }
     },
     {

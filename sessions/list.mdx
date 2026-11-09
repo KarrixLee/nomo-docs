@@ -36,6 +36,9 @@ The summary reads `No active sessions`, `1 session`, or `3 active · 7 sessions`
 "Active" excludes finished sessions, unreadable ones, and any session that
 claims to be working but has been silent for more than 10 minutes.
 
+When a session has finished since you last looked, a blue count joins the
+summary: `3 active · 7 sessions · 2 new`. See [New results](#new-results).
+
 A chip in the top-right shows how many computers you've paired. It turns orange
 if you hit the cap.
 
@@ -129,6 +132,38 @@ Once a prompt has been settled, the row picks up a small caption saying how:
 
 Rows are ordered by most recent activity. Nomo never hides a row — the list
 mirrors what the relay holds, exactly.
+
+## New results
+
+When a session finishes and you haven't looked at it yet, its row gets a small
+blue dot on the left. On the **Sessions** tab, the computer's card shows how
+many are new, like `2 new`. That way you can see something finished without
+opening every computer.
+
+<Frame caption="The computer card counts the finished sessions you haven't seen.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/sessions-new-count.png" alt="A computer card reading MacBook Pro, 5 active · 7 sessions · 2 new, with 2 new in blue" />
+    <img className="only-dark" src="/images/sessions-new-count-dark.png" alt="A computer card reading MacBook Pro, 5 active · 7 sessions · 2 new, with 2 new in blue" />
+  </div>
+</Frame>
+
+<Frame caption="Inside the computer, the blue dot sits beside the green check of the session that finished.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/session-unread-dot.png" alt="Two session rows, one running and one Done with a small blue dot to the left of its green check" />
+    <img className="only-dark" src="/images/session-unread-dot-dark.png" alt="Two session rows, one running and one Done with a small blue dot to the left of its green check" />
+  </div>
+</Frame>
+
+To clear the dots:
+
+- **Open the computer.** The dots on the agent tab you look at clear when you
+  close it, so you can still find them while you're there.
+- **Tap a row to expand it.** That row's dot clears right away.
+
+The count covers every agent tab in the drawer, so a finished Codex session
+shows up even while you're on the Claude Code tab. Agents you hid with
+**Choose agents** aren't counted. Sessions that finished before you updated to
+Nomo 2.4.2 don't get a dot.
 
 ## Tap a row for detail
 
