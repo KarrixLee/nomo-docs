@@ -2,7 +2,7 @@
 title: "故障排查"
 description: "先运行状态命令——它会直接说出问题所在，并打印出对应的修复命令。然后：哪一行回答哪个症状，以及状态命令看不到的少数几件事。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
 ---
 
 这一页的活，现在大半由状态命令替你干了。它会把整台电脑读一遍，用大白话说出哪里不对，并打印出能修好它的那条命令。先运行它。
@@ -31,9 +31,15 @@ $nomo-status
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-status
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
 
 在 Antigravity 里，它要运行 Nomo 命令时选择 **Allow**（允许）。它会用大白话显示一段简短总结，每个问题一行，告诉你该怎么做——输入 `/nomo-status verbose` 可以看到下面讲的完整输出。
+
+用 Devin 插件的话，改为在 Devin 里输入 `/nomo:status`。如果 Devin 不认识这条命令，就把 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` 粘贴到终端里。
 
 它报告的是**这台电脑**，而不只是你当前的会话：配对、投递、本地网络直连、审批，然后是你所在的这个智能体，以及它找到的其他每一个。`!` 是真正的问题，它下面的 `→` 就是该怎么办，并且按你发起询问的那个智能体的命令写法写出来。多数人看到这里就够了。
 
@@ -77,7 +83,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="我开了一个会话，它一直没出现" icon="play">
-  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode；重启 Cursor；重启 Antigravity。
+  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode；重启 Cursor；重启 Antigravity；重启 `devin`。
 
   Codex 需要你明确信任 hook，而一次插件更新会重新开启那次审核，所以在那边，更新之后运行 `/hooks` 通常就是答案——[原因](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
@@ -97,7 +103,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="Cursor 的聊天显示成了 Claude Code 会话" icon="clone">
-  更新 Claude Code 的 Nomo 插件。旧版本会通过 Cursor 对 Claude Code 插件的导入在 Cursor 里运行；当前版本会忽略 Cursor。命令在[更新](/zh-Hans/setup/install#updating)里。
+  更新 Claude Code 的 Nomo 插件。旧版本会通过 Cursor 对 Claude Code 插件的导入在 Cursor 里运行；当前版本会忽略 Cursor。命令在[更新](/zh-Hans/sessions/commands#update)里。
 </Accordion>
 
 <Accordion title="Cursor 退出之后，会话还停在“运行中”" icon="hourglass-half">
@@ -115,26 +121,31 @@ $nomo-status
   4. 发一条消息。会话要等你发出第一条消息后才会出现。
 
   还是没有？在 Nomo 里轻点 **+** 按钮（**选择智能体**），把 Antigravity 打开。详见[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#troubleshooting)。
+
+  <Frame caption="还没有会话送达时的 Antigravity 标签页。">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="一台电脑的 Antigravity 标签页，显示“还没有 Antigravity 会话”" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="一台电脑的 Antigravity 标签页，显示“还没有 Antigravity 会话”" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="每个 Antigravity 会话都出现两次" icon="clone">
-  Nomo 的 Claude Code 插件被导入了 Antigravity。在终端里运行下面这条，然后重启 Antigravity：
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Antigravity 命令提示 Nomo 找不到它的文件" icon="folder-open">
-  Nomo 文件夹被移动或删除了。Antigravity 照常工作，但什么都不会送到你的手机。重新运行安装工具，然后重启 Antigravity：
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity 会话出现两次，或命令找不到 Nomo 的文件" icon="clone">
+  两种情况的解决办法都在[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#troubleshooting)。
 </Accordion>
 
 <Accordion title="取消了的 Antigravity 这一轮还显示“运行中”" icon="hourglass-half">
   等几秒钟——Nomo 会自己发现，这一行会变为 `完成`。如果手机上有卡片，它也会一起消失。
+</Accordion>
+
+<Accordion title="手机上没有显示任何 Devin 的内容" icon="terminal">
+  1. 关掉每一个开着的 `devin`，再重新启动。
+  2. 在 Devin 里输入 `/nomo-status`，然后照着以 `→` 开头的那一行去做。用 Devin 插件的话，改为输入 `/nomo:status`。
+
+  3. 用的是 Devin Desktop？确认 **Restricted Mode** 已关闭。
+  4. 在 Devin 里发一条消息。会话要等你发出第一条消息后才会出现。
+
+  还是没有？在 Nomo 里轻点 **+** 按钮（**选择智能体**），把 Devin 打开。详见[搭配 Devin 使用](/zh-Hans/sessions/devin#troubleshooting)。
 </Accordion>
 
 <Accordion title="会话行看着陈旧或重复" icon="broom">
@@ -160,7 +171,13 @@ $nomo-status
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash Devin icon="/images/providers/devin.svg"
+  /nomo-reset
+  ```
   </CodeGroup>
+
+  用 Devin 插件的话，改为在 Devin 里输入 `/nomo:reset`。
 
   活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。OpenCode 的会话行属于 OpenCode 的服务器，所以要是有一行清不掉，先退出 OpenCode。
 </Accordion>
@@ -168,18 +185,19 @@ $nomo-status
 <Accordion title="会话明明没在干活，却显示“运行中”" icon="hourglass">
   先看第一行，那里写着插件版本。在 **2.2.2** 之前，打开或恢复后停在空提示符的 Claude Code 会话会显示 `运行中` 长达半小时；而没有提示就创建出来的 OpenCode 会话——比如 fork 出来的——会一直显示 `运行中`，直到 OpenCode 退出。
 
-  到了 2.2.2，前者大约 20 秒就会落定为 `完成`，后者要等到有活可干才会出现。[更新插件](/zh-Hans/setup/install#updating)。
+  到了 2.2.2，前者大约 20 秒就会落定为 `完成`，后者要等到有活可干才会出现。[更新插件](/zh-Hans/sessions/commands#update)。
 </Accordion>
 
 <Accordion title="“停止”显示“已发送”，会话却还在运行" icon="circle-stop">
-  **已发送**的意思是 Mac 收到了，不代表这一轮已经停下。有四种情况会让它继续跑：
+  **已发送**的意思是 Mac 收到了，不代表这一轮已经停下。有五种情况会让它继续跑：
 
   - **Claude Code 要等到下一次工具调用**。它还在输出文字，或者一条耗时的命令已经在跑的时候，要等那一步结束才会有反应。
   - **够不到那个 Codex 会话**。停止信号要走 Codex 的共用 app-server——见[它覆盖哪些会话](/zh-Hans/sessions/codex#interrupt)。
   - **Antigravity 会先做完当前这一步**。已经在运行的模型调用或工具结束后，这一轮才会停下。
+  - **Devin 会先做完当前这一步**。已经在运行的命令或回复会一直进行到结束。
   - **两个插件里有一个低于 2.3.0**。版本是按电脑上报的，所以同一台 Mac 上既有 Claude Code 又有 Codex 时，两个都要更新。状态命令的第一行就写着版本。
 
-  根本没有**停止**按钮？它需要绿色的 **⚡ 本地**角标、一个 `运行中` 的会话、插件 **2.3.0**（Antigravity 要 **2.3.5**），而且必须是 Claude Code、Codex 或 Antigravity——OpenCode 和 Cursor 上永远没有。详见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
+  根本没有**停止**按钮？它需要绿色的 **⚡ 本地**角标、一个 `运行中` 的会话、插件 **2.3.0**（Antigravity 要 **2.3.5**，Devin 要 **2.5.0**），而且必须是 Claude Code、Codex、Antigravity 或 Devin——OpenCode 和 Cursor 上永远没有。详见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
 </Accordion>
 
 </AccordionGroup>
@@ -275,7 +293,7 @@ $nomo-status
 
 ## 功能建议 {#nothings-broken--you-just-want-something}
 
-“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)、[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)、[搭配 Cursor 使用](/zh-Hans/sessions/cursor)和[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity)讲这四个智能体，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
+“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)、[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)、[搭配 Cursor 使用](/zh-Hans/sessions/cursor)、[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity)和[搭配 Devin 使用](/zh-Hans/sessions/devin)讲这五个智能体，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
 
 其余的就是还没做。
 
@@ -381,26 +399,18 @@ $nomo-status
     },
     {
       "@type": "Question",
-      "name": "每个 Antigravity 会话都出现两次",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 的 Claude Code 插件被导入了 Antigravity。在终端里运行 agy plugin uninstall nomo-cc，然后重启 Antigravity。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Antigravity 命令提示 Nomo 找不到它的文件",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 文件夹被移动或删除了。Antigravity 照常工作，但什么都不会送到你的手机。再运行一次 bunx nomo-ai --antigravity，然后重启 Antigravity。"
-      }
-    },
-    {
-      "@type": "Question",
       "name": "取消了的 Antigravity 这一轮还显示“运行中”",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "等几秒钟——Nomo 会自己发现，这一行会变为“完成”。如果手机上有卡片，它也会一起消失。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "手机上没有显示任何 Devin 的内容",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "关掉每一个开着的 devin，再重新启动。在 Devin 里输入 /nomo-status（用 Devin 插件的话，输入 /nomo:status），然后照着以 → 开头的那一行去做。在 Devin Desktop 里，确认 Restricted Mode 已关闭。接着在 Devin 里发一条消息：会话要等你发出第一条消息后才会出现。还是没有？在 Nomo 里轻点 + 按钮（选择智能体），把 Devin 打开。"
       }
     },
     {

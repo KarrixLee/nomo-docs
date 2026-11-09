@@ -1,0 +1,135 @@
+---
+title: "Devin のセッションを iPhone で見守り、承認する"
+sidebarTitle: "Devin での利用"
+description: "Devin のセッションを iPhone から見守ります — Devin の許可リクエストや質問に回答し、実行中のターンを中断できます。Devin ならではの違いと、その理由を説明します。"
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "Devin での利用"]
+---
+
+Devin のセッションを、iPhone のロック画面と Dynamic Island で確認できます。Devin が許可を求めると、iPhone で「許可」か「拒否」を選べます。Devin からの質問にも、iPhone から回答できます。
+
+Devin CLI、つまりターミナルの `devin` コマンドと、[Devin Desktop](#devin-desktop) で使えます。
+
+<Note>
+  セッションは Nomo Pro の機能です。iPhone に Nomo **2.5.0** 以降、Mac にプラグイン **2.5.0** 以降が必要です。
+</Note>
+
+## ほかのエージェントとの共通点 {#what-works-the-same}
+
+セッション、フォルダ、[Dynamic Island](/ja/sessions/island) は、ほかのエージェントと同じように動作します。共通の内容は、それぞれ 1 か所にまとめてあります。
+
+- **インストール** → [インストール](/ja/setup/install)の **Devin** タブ。[2 つのインストール方法](#set-it-up)の手順がどちらも載っています。
+- **ペアリング** → [ペアリング](/ja/setup/pairing)。1 回のペアリングで、そのコンピュータのすべてのエージェントがカバーされます。
+- **コマンド、更新、アンインストール** → [コマンド](/ja/sessions/commands)の [update](/ja/sessions/commands#update) と [uninstall](/ja/sessions/commands#uninstall)。
+- **許可リクエストへの回答** → [iPhone からの回答](/ja/sessions/approvals)。
+- **エージェントごとにできること** → [できること](/ja/sessions/features)。
+- **うまくいかないとき** → [トラブルシューティング](/ja/sessions/troubleshooting)。
+
+## 2 つのインストール方法 {#set-it-up}
+
+Devin に Nomo を追加する方法は 2 つあります。**Devin プラグイン**と **Nomo インストーラー**です。どちらか一方をインストールしてください。両方をインストールした場合は、Nomo はインストーラーのほうを使い、プラグインは何もしません。どちらの手順も、[インストール](/ja/setup/install)の **Devin** タブにあります。
+
+Devin プラグインの場合、Nomo のコマンドは `/nomo-` ではなく `/nomo:` で始まります — たとえば `/nomo:pair` です。
+
+## Nomo のコマンド {#commands}
+
+このコンピュータをペアリングしたあとは、Nomo 自身のコマンドは確認なしで実行されます。ただし `/nomo-approvals off`、`/nomo-unpair`、`/nomo-pair code` は、承認がオンのあいだ iPhone で確認されます。Devin が Nomo のコマンドを実行してよいか確認してきたら、許可してください。
+
+<Note>
+  Cursor でも Nomo を使っていますか？その場合、Devin ではこれらのコマンドが `/devin:nomo-pair`、`/devin:nomo-status` のように表示されます。そちらを入力してください。`/nomo-approvals` の名前は変わりません。
+</Note>
+
+Devin がコマンドを認識しない場合は、インストーラーをもう一度実行して Devin を再起動してください — または、[ターミナルから](/ja/sessions/commands#without-slash-commands)実行します。すべてのコマンドは[コマンド](/ja/sessions/commands)にあります。
+
+## 表示されるもの {#what-you-see}
+
+- セッションが現れるのは、**最初のメッセージ**を送ったときです。
+- 名前は、Devin 自身が付けるセッションのタイトルです。タイトルが付くまでは、最初のメッセージが使われます。
+- バッジには、Devin が使っているモデルが表示されます。短いセッションでは表示されないことがあります。Devin がモデルを保存するのは、セッションが終わったときだけです。
+
+## iPhone からの回答 {#answering-from-your-phone}
+
+Devin が許可を求めると — たとえばコマンドを実行するとき — iPhone で確認されます。セッションをタッチして押さえたままにするか、Dynamic Island を使います。
+
+<Frame caption="コマンドの実行を求めている Devin のセッション。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/devin-approval-card.png" alt="Devin のセッション Fix token refresh race の承認カード。bun test の実行を求めていて、「拒否」「許可」「メモを付けて拒否…」のボタンがある" />
+    <img className="only-dark" src="/images/devin-approval-card-dark.png" alt="Devin のセッション Fix token refresh race の承認カード。bun test の実行を求めていて、「拒否」「許可」「メモを付けて拒否…」のボタンがある" />
+  </div>
+</Frame>
+
+選べるのは「許可」「…を常に許可（このセッション）」「拒否」「メモを付けて拒否…」です。それぞれの動作は [iPhone からの回答](/ja/sessions/approvals)をご覧ください。
+
+**Devin は iPhone からの回答を待ちます。** タイムアウトした場合は、代わりに Devin が Mac で確認します。
+
+### 常に許可 {#always-allow}
+
+「常に許可」が有効なのは、**このセッションの間だけ**です。セッションが終わると Nomo はこれを忘れ、次のセッションではまた確認されます。
+
+- **単純なコマンド**は、コマンド名で記憶されます。`touch b.txt` を常に許可すると、`touch c.txt` も許可されます — ただし、別のコマンドは許可されません。
+- **つなげたコマンド** — `&&`、`;`、`|`、`>` を含むもの — は、すでに許可したものとまったく同じコマンドでない限り、毎回 iPhone で確認されます。そのため、`touch x && rm -rf ~` はやはり確認されます。
+- **それ以外の操作**（ファイルの書き込みなど）は、セッションが終わるまで許可されます。
+
+Nomo はこれをコンピュータ上に保存し、Devin 自身の設定は変更しません。承認を一時停止しても、セッションが終わるまでは有効なままです。
+
+### Devin の質問への回答 {#questions}
+
+Devin が質問してくると、セッションに `回答が必要` と表示されます。セッションをタッチして押さえたままにし、「回答…」を選びます。
+
+1. 選択肢をタップします。Devin が許可している場合は、複数選べます。
+2. 合うものがない場合は、「その他…」をタップして、自分の回答を入力します。
+3. 「送信」をタップします。
+
+「メモを追加」で、回答にコメントを付けられます。「拒否」を選ぶと、回答しないことにしたと Devin に伝わります。
+
+<Note>
+  **Mac では、質問が「rejected」と表示されます。これは想定どおりです。** Devin には Nomo から直接回答を受け取る方法がないため、Nomo はあなたの回答を、Devin の質問を閉じる理由として送ります。そのため、質問には **rejected** と表示され、その横にあなたの回答が書かれます。Devin はあなたの回答を読んで、作業を続けます。
+</Note>
+
+## 中断 {#interrupt}
+
+`実行中` の Devin のセッションで[「中断」](/ja/sessions/list#interrupt-a-running-session)をタップすると、止められます。緑色の**⚡ ローカル**チップが必要です — iPhone と Mac が同じネットワークにつながっている必要があります。
+
+Devin はいまのステップを終えてから止まります。コマンドや返答を途中で打ち切ることはできません。セッションは `完了` になり、Devin は開いたままなので、続けるには新しいメッセージを送ってください。
+
+## Devin Desktop {#devin-desktop}
+
+Devin のドキュメントによると、Devin Desktop の **Devin Local** エージェントは Devin CLI と同じエンジンで動いているため、Nomo も同じように動作します。Nomo は Devin CLI と、Devin の ACP サーバーで動作を確認しています。
+
+- **iPhone が先に回答します。** iPhone に許可リクエストや質問が届いている間、Devin Desktop にはそのためのボタンが表示されません。iPhone で回答してください。Mac で回答したい場合は、Devin の次のプロンプトの前に[承認を一時停止](/ja/sessions/approvals#pausing-it)してください。
+- **iPhone に届くもの。** Devin Desktop の標準の **Code** モードでは、Devin が確認するのは、コマンドの実行、Web ページの取得、プロジェクトの外への書き込みの前だけです。iPhone に届くのは、これらの許可リクエストです。
+- **Restricted Mode では Nomo が動きません。** Restricted Mode は Nomo に必要なフックをオフにするため、Restricted Mode を終えるまで、セッションは iPhone に届きません。
+
+## このバージョンでの制限 {#whats-different-for-devin}
+
+- **Devin Cloud のセッションは非対応。** Nomo が表示するのは、Mac で動いている Devin だけです。
+- **「返信」と「Macで開く」は非対応。** Devin では、[「返信」](/ja/sessions/antigravity#reply-from-your-phone)と「Macで開く」は使えません。
+
+## うまくいかないとき {#troubleshooting}
+
+<AccordionGroup>
+  <Accordion title="インストーラーに設定ファイルのコメントについて表示される">
+    問題ありません。Nomo が項目を追加すると、Devin の設定ファイルにはコメントを残せなくなります。そのため、インストーラーは先に元のファイルを同じ場所に保存しています。
+
+    ```
+    ~/.config/devin/config.json.nomo-backup
+    ```
+
+    設定はすべて残っています。削除されたのはコメントだけです。
+  </Accordion>
+
+  <Accordion title="Devin で回答が「rejected」と表示される">
+    これは想定どおりです。Nomo はあなたの回答を、Devin の質問を閉じる理由として送るため、Mac では質問が **rejected** と表示され、その横にあなたの回答が書かれます。Devin はあなたの回答を読んで、作業を続けます。
+  </Accordion>
+
+  <Accordion title="Devin Desktop に許可リクエストのボタンが表示されない">
+    そのリクエストは iPhone に届いています。iPhone で回答してください。Mac で回答したい場合は、Devin の次のプロンプトの前に[承認を一時停止](/ja/sessions/approvals#pausing-it)してください。
+  </Accordion>
+</AccordionGroup>
+
+そのほかの問題（iPhone に何も表示されない、承認を求められなくなった、セッションが止まったまま、「中断」など）は、[トラブルシューティング](/ja/sessions/troubleshooting)をご覧ください。
+
+## 技術的な詳細とセキュリティ {#technical-details-and-security}
+
+Nomo が iPhone に送るのは、セッションの状況と、そのセッションからの確認だけです。送る内容はエンドツーエンド暗号化されます。Devin 自体の設定は変更しません。何か問題が起きても、Devin はいつもどおり Mac で確認します。
+
+内部のしくみはプラグインの README で説明しています: [Nomo と Devin の連携](https://github.com/KarrixLee/nomo#devin-integration)、[フックとセキュリティ](https://github.com/KarrixLee/nomo#devin-hooks)。

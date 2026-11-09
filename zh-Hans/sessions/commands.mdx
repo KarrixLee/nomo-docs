@@ -1,34 +1,40 @@
 ---
 title: "命令"
-description: "Claude Code、Codex、OpenCode、Cursor 和 Antigravity 的全部 Nomo 命令——配对、状态、审批、重置、解除配对和更新，都在这一页。"
+description: "Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 的全部 Nomo 命令——配对、状态、审批、重置、解除配对、更新和卸载，都在这一页。"
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
 
-Claude Code、Codex、OpenCode 和 Antigravity 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor 和 Antigravity 里是 `/` skill，在 Codex 里是 `$` skill。
+Claude Code、Codex、OpenCode、Antigravity 和 Devin 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor、Antigravity 和 Devin 里是 `/` skill，在 Codex 里是 `$` skill。
 
 <Note>
   在 Antigravity 里，每条 Nomo 命令都会先问你。选择 **Allow**（允许）——Antigravity 在你的电脑上运行任何命令前都会先问。详见[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#commands)。
 </Note>
 
+<Note>
+  用 Devin 插件时，Devin 的命令以 `/nomo:` 开头，而不是 `/nomo-`——`/nomo:pair`、`/nomo:status` 等等。同时也在 Cursor 里用 Nomo？Devin 会把 `/nomo-pair` 显示为 `/devin:nomo-pair`，其他命令同理——改为输入这些即可。电脑连接好之后，Devin 会直接运行 Nomo 自己的命令，不再询问。详见[搭配 Devin 使用](/zh-Hans/sessions/devin#commands)。
+</Note>
+
 <Tip>
-  Claude Code 里一切都带命名空间：输入 `/nomo-cc:` 就会列出全部。OpenCode 的命令名是扁平且全局的，所以在那里 Nomo 的命令完全不带前缀——它的 Cursor 和 Antigravity skill 也一样。
+  Claude Code 里一切都带命名空间：输入 `/nomo-cc:` 就会列出全部。OpenCode 的命令名是扁平且全局的，所以在那里 Nomo 的命令完全不带前缀——它的 Cursor、Antigravity 和 Devin skill 也一样。
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
-| --- | --- | --- | --- | --- | --- |
-| <a href="#pair">配对这台电脑</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">检查健康状况</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">暂停或恢复审批</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
-| <a href="#reset">清理卡住的会话</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">断开这台电脑</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">更新插件</a> | — | — | `/nomo-update` | — | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity | <img src="/images/providers/devin.svg" alt="" className="agent-mark invert-dark" /> Devin |
+| --- | --- | --- | --- | --- | --- | --- |
+| <a href="#pair">配对这台电脑</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">检查健康状况</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">暂停或恢复审批</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">清理卡住的会话</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">断开这台电脑</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">更新插件</a> | — | — | `/nomo-update` | — | — | — |
 
 它们都不会大声报错。即使无事可做也会干净地退出——`Not paired` 是成功，不是错误。
 
-最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令，而 Cursor 靠再运行一次它的安装工具来更新，Antigravity 也一样。它们各自需要什么——Codex 通常什么都不需要——都写在[安装](/zh-Hans/setup/install#updating)里。
+最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令，而 Cursor 靠再运行一次它的安装工具来更新，Antigravity 和 Devin 也一样。它们各自需要什么——Codex 通常什么都不需要——都写在 [update](#update) 里。
 
 审批那一行上 Cursor 的空格同样不是漏写：Cursor 会话是只读的，所以没有远程审批可以暂停——[搭配 Cursor 使用](/zh-Hans/sessions/cursor)。
+
+移除 Nomo 没有 `/` 命令：只要在终端里粘贴一行——见 [uninstall](#uninstall)。
 
 ## pair {#pair}
 
@@ -57,13 +63,20 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
+```
 </CodeGroup>
+
+用 Devin 插件时：`/nomo:pair` 和 `/nomo:pair code`。
 
 不带参数时，它会在浏览器里打开一个配了主题的页面，上面有二维码。在 App 里扫一下，页面会自己翻成 **Paired ✓**。
 
 `code` 参数完全跳过浏览器，直接打印一段可以手输的一次性配对码，供无头机器或 SSH 会话使用。它是刻意排在第二位的：那段配对码会落进你的终端，也就落进了智能体的转录记录。
 
-配对若 **10 分钟**内未使用就会过期。一次配对覆盖的是这台机器，而不是某个智能体——同一台 Mac 上的 Claude Code、Codex、OpenCode、Cursor 和 Antigravity 共用它。完整流程见[配对](/zh-Hans/setup/pairing)。
+配对若 **10 分钟**内未使用就会过期。一次配对覆盖的是这台机器，而不是某个智能体——同一台 Mac 上的 Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 共用它。完整流程见[配对](/zh-Hans/setup/pairing)。
 
 ## status {#status}
 
@@ -88,7 +101,13 @@ $nomo-status
 /nomo-status           # a short summary in plain words
 /nomo-status verbose   # the full readout below
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
+
+用 Devin 插件时：`/nomo:status`。
 
 一旦哪里看着不对，先运行它。一台健康的机器只有寥寥几行平静的输出——这里没有对勾，因为一切正常本身就是无话可说：
 
@@ -185,7 +204,15 @@ $nomo-approvals status      # which way is it set
 /nomo-approvals on          # resume
 /nomo-approvals status      # which way is it set
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
+
+用 Devin 插件时：`/nomo:approvals off`、`on` 或 `status`。在 Devin Desktop 里，要在 Devin 的下一个提示之前暂停。
 
 暂停**这台电脑**的远程审批，让权限请求直接进终端，而不是等你的手机。这是手机没电或不在手边时的应急出口。
 
@@ -222,7 +249,13 @@ $nomo-reset
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-reset
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-reset
+```
 </CodeGroup>
+
+用 Devin 插件时：`/nomo:reset`。
 
 停掉看门狗，清理掉失效或残留的会话行，然后通知你的手机把它们丢掉。
 
@@ -257,7 +290,13 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-unpair
+```
 </CodeGroup>
+
+用 Devin 插件时：`/nomo:unpair`。
 
 撤销配对，并抹掉那台电脑上的密钥。
 
@@ -265,35 +304,169 @@ $nomo-unpair
 
 ## update {#update}
 
+只有 OpenCode 有更新命令。其他智能体各有各的更新方式——打开它的标签页看看。
+
+`bunx nomo-ai`（或 `npx nomo-ai`）也负责更新：已经装了 Nomo 的智能体，会显示成更新而不是安装。真正会跑的只有 OpenCode、Cursor、Antigravity 和 Devin 那四份，Claude Code 和 Codex 那两份只是打印出来给你。
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
+
+    自动更新对第三方插件市场默认是关闭的，所以安装不会自己动。要打开：`/plugin` → **Marketplaces** → Nomo 那个 → **Enable auto-update**。
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    通常没有什么要执行。Codex 直接从插件所在路径实时读取，所以在那份克隆目录里拉取更新就是全部的更新——而且根本不存在 `codex plugin update` 这个动词。
+
+    如果你这个插件市场是从 git 添加的，那 Codex 存着一份快照，刷新它就是更新：
+
+    ```bash
+    codex plugin marketplace upgrade <插件市场名称>
+    ```
+
+    名称是你当初添加时用的那个，未必是 `nomo`。
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    ```bash
+    /nomo-update
+    ```
+
+    它在动手之前先检查。已经是最新的，就到此为止，不会顺手再拉一次：
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Already on 2.1.22 — nothing to do.
+    ```
+
+    真有东西可拿时，它会先说是什么，再去拿：
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Update available: 2.1.22 → 2.1.23.
+    ```
+
+    接着它拉取更新、重新运行安装脚本——新版本要是加了新的 `/nomo-*` 命令，就是靠这一步收进来的——然后让你重启 OpenCode。插件只在服务器启动时导入一次，所以在你重启之前，跑着的仍然是旧的那一份。
+
+    拿不准的时候，它宁可拒绝也不动手，而且每一次拒绝都会说清楚该怎么办：被之前的 `--ref` 安装钉住的克隆目录、还有未提交改动的工作区、被搬走或删掉的克隆目录、不是 Nomo 自己存储库的克隆目录，以及这里根本什么都没装。
+
+    `bunx nomo-ai` 会带上 `--global` 执行同样的更新：不管你在哪个文件夹里运行，它都只更新全局安装。`--project` 安装要用 `/nomo-update` 更新——在那个项目的 OpenCode 里运行。
+
+    <Note>
+      它更新的是**桩文件**指向的那份克隆目录——也就是 OpenCode 真正导入的那一份——未必是你输入的命令文件所属的那一份。如果你留着不止一份克隆，这个区别就要紧了。
+    </Note>
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    和安装时是同一条命令：
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    之后重启 Cursor，以及所有开着的 `cursor-agent` 会话。
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    和安装时是同一条命令：
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    之后重启 Antigravity，以及所有开着的 `agy` 会话。
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    如果你用的是 Nomo 安装工具，就用安装时的同一条命令：
+
+    ```bash
+    bunx nomo-ai --devin
+    ```
+
+    用 Devin 插件时：
+
+    ```bash
+    devin plugins update nomo
+    ```
+
+    Devin 插件跟随 Nomo 仓库的默认分支，所以拿到的是最新发布的版本。
+
+    之后重启所有开着的 `devin`，以及 Devin Desktop。
+  </Tab>
+</Tabs>
+
+## uninstall {#uninstall}
+
+从一个智能体里移除 Nomo。在终端里运行，而不是在智能体里：选你的智能体那一栏，粘贴那一行，按回车。
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+claude plugin uninstall nomo-cc@nomo
+```
+
+```bash Codex icon="/images/codex.svg"
+codex plugin remove nomo@nomo
+```
+
 ```bash OpenCode icon="/images/opencode.svg"
-/nomo-update
+rm ~/.config/opencode/plugins/nomo.js
+rm ~/.config/opencode/commands/nomo-*.md
 ```
 
-**只有 OpenCode 有**，而且它在动手之前先检查。已经是最新的，就到此为止，不会顺手再拉一次：
-
-```
-OpenCode plugin: /Users/you/.nomo
-Already on 2.1.22 — nothing to do.
+```bash Cursor icon="/images/providers/cursor.svg"
+bunx nomo-ai --uninstall --cursor
 ```
 
-真有东西可拿时，它会先说是什么，再去拿：
-
-```
-OpenCode plugin: /Users/you/.nomo
-Update available: 2.1.22 → 2.1.23.
+```bash Antigravity icon="/images/providers/antigravity.png"
+bunx nomo-ai --uninstall --antigravity
 ```
 
-接着它拉取更新、重新运行安装脚本——新版本要是加了新的 `/nomo-*` 命令，就是靠这一步收进来的——然后让你重启 OpenCode。插件只在服务器启动时导入一次，所以在你重启之前，跑着的仍然是旧的那一份。
+```bash Devin icon="/images/providers/devin.svg"
+bunx nomo-ai --uninstall --devin
+```
+</CodeGroup>
 
-拿不准的时候，它宁可拒绝也不动手，而且每一次拒绝都会说清楚该怎么办：被之前的 `--ref` 安装钉住的克隆目录、还有未提交改动的工作区、被搬走或删掉的克隆目录、不是 Nomo 自己存储库的克隆目录，以及这里根本什么都没装。
+用 Devin 插件时：`devin plugins remove nomo`。
 
-`bunx nomo-ai` 会带上 `--global` 执行同样的更新：不管你在哪个文件夹里运行，它都只更新全局安装。`--project` 安装要用 `/nomo-update` 更新——在那个项目的 OpenCode 里运行。
+没有 `bunx`？改用 `npx`——比如 `npx nomo-ai --uninstall --cursor`。也可以直接运行那个智能体自己的脚本，比如 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`（Antigravity 用 `antigravity-install.mjs`，Devin 用 `devin-install.mjs`）。
 
-<Note>
-  它更新的是**桩文件**指向的那份克隆目录——也就是 OpenCode 真正导入的那一份——未必是你输入的命令文件所属的那一份。如果你留着不止一份克隆，这个区别就要紧了。
-</Note>
+Antigravity 和 Devin 完成后会告诉你：
 
-Claude Code 和 Codex 没有对应的命令，因为更新归它们各自的宿主管，而 Codex 通常根本没有什么要执行：两边都写在[安装](/zh-Hans/setup/install#updating)里。
+```
+✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
+```
+
+```
+devin-install: removed Nomo's hooks from Devin — restart devin
+```
+
+然后重启那个智能体。Cursor 和 Antigravity：退出应用再重新打开，并重启所有开着的 `cursor-agent` 或 `agy`。Devin：关掉每一个开着的 `devin`，再重新启动。
+
+它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，**先**运行 [unpair](#unpair)——Nomo 一移除，这条命令也就没了。
+
+把 Nomo 的 Claude Code 插件导入过 Antigravity？也用 `agy plugin uninstall nomo-cc` 移除它，然后重启 Antigravity。
+
+`bunx nomo-ai --uninstall` 必须指定智能体——它从不猜。每个智能体的安装细节见[安装](/zh-Hans/setup/install)。
+
+## 在终端里运行 {#without-slash-commands}
+
+Antigravity 或 Devin 不认识 Nomo 的命令？改在终端里运行。用 Nomo 安装工具时可以这样做：
+
+| | |
+| --- | --- |
+| 配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| 改用手动输入的配对码配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+| 检查状态（Antigravity） | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| 检查状态（Devin） | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
+| 暂停审批 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+| 恢复审批 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+| 清理卡住的会话 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| 解除配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+在终端里开始配对后，运行 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait`，然后扫描二维码。给安装工具加上 `--verbose`，可以看到它改动了什么。
 
 ## 状态文件的位置 {#where-state-lives}
 

@@ -1,6 +1,6 @@
 ---
 title: "安装"
-description: "为 Claude Code、Codex、OpenCode、Cursor 或 Antigravity 添加 Nomo 插件。一键安装，也可以手动装，零依赖。"
+description: "为 Claude Code、Codex、OpenCode、Cursor、Antigravity 或 Devin 添加 Nomo 插件。一键安装，也可以手动装，零依赖。"
 icon: "puzzle-piece"
 ---
 
@@ -199,26 +199,28 @@ icon: "puzzle-piece"
         </Warning>
       </Step>
 
-      <Step title="确认">
+      <Step title="配对">
         在 Cursor 里输入 `/` 来挑选 skill，然后运行：
 
         ```
-        /nomo-status
+        /nomo-pair
         ```
+
+        它会显示一个二维码——用 Nomo App 扫一下。打不开浏览器的地方，`/nomo-pair code` 会改为给你一段可以手输的短码。两种方式的完整流程都在[配对](/zh-Hans/setup/pairing)里。
+
+        同一台 Mac 上的各个智能体共用配对。一台已经为 Claude Code、Codex 或 OpenCode 配对过的电脑，不需要为 Cursor 再配对一次——安装就够了，这一步可以跳过。
+      </Step>
+
+      <Step title="显示 Cursor 标签页">
+        在 App 里打开那台电脑。Cursor 的会话在它会话详情页的 **Cursor** 标签页下面。
+
+        详情页最多显示三个智能体标签页。如果 Cursor 不在其中，轻点 **+** 按钮（**选择智能体**），把它打开。
       </Step>
     </Steps>
 
     <Tip>
       Nomo 的 Cursor 命令是不带前缀的 skill：`/nomo-pair`、`/nomo-status`、`/nomo-reset` 和 `/nomo-unpair`。四个都在[命令](/zh-Hans/sessions/commands)里。
     </Tip>
-
-    以后要移除它：
-
-    ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
-    ```
-
-    然后重启 Cursor。
   </Tab>
 
   <Tab title="Antigravity" icon="/images/providers/antigravity.png">
@@ -254,27 +256,180 @@ icon: "puzzle-piece"
       <Step title="输入 /nomo-pair">
         在 Antigravity 的对话里输入 `/nomo-pair` 并发送。Antigravity 问你要不要运行 Nomo 命令时，选择 **Allow**（允许）。然后用 iPhone 上的 Nomo 扫描二维码。
 
+        你应该会在 Antigravity 里看到：“Done! This computer is connected to your phone.”（完成！这台电脑已连接到你的手机。）
+
+        在 Antigravity 桌面应用里，第一条 Nomo 命令可能会显示一行 `operation not permitted`。这是正常的——Antigravity 会自己在沙箱外重试。等着就好。
+
         已经在别的智能体里配对过？改为输入 `/nomo-status` 检查一下。
+      </Step>
+
+      <Step title="在 Antigravity 里发一条消息">
+        开始一个对话，随便发点什么。
+
+        你应该会看到这个会话出现在 Nomo 里，在你这台电脑的 **Antigravity** 标签页下。没有 Antigravity 标签页？轻点 **+** 按钮（**选择智能体**），把 Antigravity 打开。
+
+        <Frame caption="从 + 按钮打开的“选择智能体”。Antigravity 已勾选，所以它有自己的标签页。">
+          <div className="device-frame">
+            <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="“选择智能体”菜单，Claude Code、Codex 和 Antigravity 已勾选，OpenCode 和 Cursor 未勾选" />
+            <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="“选择智能体”菜单，Claude Code、Codex 和 Antigravity 已勾选，OpenCode 和 Cursor 未勾选" />
+          </div>
+        </Frame>
       </Step>
     </Steps>
 
     <Warning>
-      不要把 Nomo 的 Claude Code 插件导入 Antigravity——否则每个会话都会出现两次。如果你已经导入了，运行 `agy plugin uninstall nomo-cc`，然后重启 Antigravity。
-    </Warning>
+      不要把 Nomo 的 Claude Code 插件导入 Antigravity（比如用 `agy plugin import claude`）——否则每个会话都会出现两次。如果你已经导入了，安装工具会提醒你：
 
-    以后要移除它：
+      ```
+      ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+      ```
+
+      要修复，运行 `agy plugin uninstall nomo-cc`，然后重启 Antigravity。
+    </Warning>
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    适用于 Devin CLI 和 Devin Desktop。Devin 的权限请求和提问可以在手机上答复——详情见[搭配 Devin 使用](/zh-Hans/sessions/devin)。
+
+    把 Nomo 加进 Devin 有两种方式：**Devin 插件**，或者 **Nomo 安装工具**。二选一即可。如果两个都装了，Nomo 会用安装工具那一份，插件则保持安静。
+
+    **还没有 Devin CLI？**在 Mac 上打开**终端** App（它在**应用程序 → 实用工具**里）。复制下面这一行，粘贴到终端里，然后按回车：
 
     ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    brew install --cask devin-cli
     ```
 
-    然后重启 Antigravity。
+    没有 Homebrew？改用这一行：
+
+    ```bash
+    curl -fsSL https://cli.devin.ai/install.sh | bash
+    ```
+
+    然后输入 `devin` 并按回车。如果 Devin 要求你登录，按它的步骤操作。
+
+    <Tabs>
+      <Tab title="Devin 插件" icon="puzzle-piece">
+        <Steps>
+          <Step title="安装 Nomo 插件">
+            这一步在终端里输入，不要在 Devin 里面输入。如果 Devin 开着，先打开一个新的终端窗口（按 **⌘N**）。
+
+            复制下面这一行，粘贴到终端里，然后按回车：
+
+            ```bash
+            devin plugins install KarrixLee/nomo
+            ```
+
+            用的是 Devin Desktop？前往 **Customize → Plugins → From repository**，输入 `KarrixLee/nomo`。
+          </Step>
+
+          <Step title="启动 Devin">
+            在终端里输入 `devin`，然后按回车。
+          </Step>
+
+          <Step title="输入 /nomo:pair">
+            在 `devin` 里输入下面这条并发送：
+
+            ```
+            /nomo:pair
+            ```
+
+            Devin 会在浏览器里打开一个带二维码的页面。
+          </Step>
+
+          <Step title="扫描二维码">
+            在 iPhone 上打开 Nomo → **会话** → **配对电脑**，扫描这个二维码。
+          </Step>
+
+          <Step title="检查一下">
+            在 `devin` 里输入下面这条并发送：
+
+            ```
+            /nomo:status
+            ```
+
+            如果有一行以 `!` 开头，照着它下面那行 `→` 去做。
+          </Step>
+
+          <Step title="在 Devin 里发一条消息">
+            在 `devin` 里随便发点什么。
+
+            你应该会看到这个会话出现在 Nomo 里，在你这台电脑的 **Devin** 标签页下。没有 Devin 标签页？轻点 **+** 按钮（**选择智能体**），把 Devin 打开。
+          </Step>
+        </Steps>
+      </Tab>
+
+      <Tab title="Nomo 安装工具" icon="terminal">
+        <Steps>
+          <Step title="运行安装工具">
+            复制下面这一行，粘贴到终端里，然后按回车：
+
+            <CodeGroup>
+            ```bash bunx icon="terminal"
+            bunx nomo-ai --devin
+            ```
+
+            ```bash npx icon="terminal"
+            npx nomo-ai --devin
+            ```
+            </CodeGroup>
+
+            在它打印的内容里，你应该会看到：
+
+            ```
+            devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
+            ```
+          </Step>
+
+          <Step title="重启 Devin——必做">
+            关掉每一个开着的 `devin`，再重新启动。用的是 Devin Desktop？也把它退出后再重新打开。
+
+            <Warning>
+              别跳过这一步。Devin 重启之前，Nomo 不会生效。
+            </Warning>
+          </Step>
+
+          <Step title="输入 /nomo-pair">
+            在 `devin` 里输入下面这条并发送：
+
+            ```
+            /nomo-pair
+            ```
+
+            如果 Devin 问你要不要运行 Nomo 命令，允许即可。Devin 会在浏览器里打开一个带二维码的页面。
+          </Step>
+
+          <Step title="扫描二维码">
+            在 iPhone 上打开 Nomo → **会话** → **配对电脑**，扫描这个二维码。
+          </Step>
+
+          <Step title="检查一下">
+            在 `devin` 里输入下面这条并发送：
+
+            ```
+            /nomo-status
+            ```
+
+            如果有一行以 `!` 开头，照着它下面那行 `→` 去做。
+          </Step>
+
+          <Step title="在 Devin 里发一条消息">
+            在 `devin` 里随便发点什么。
+
+            你应该会看到这个会话出现在 Nomo 里，在你这台电脑的 **Devin** 标签页下。没有 Devin 标签页？轻点 **+** 按钮（**选择智能体**），把 Devin 打开。
+          </Step>
+        </Steps>
+
+        它会把 Nomo 的条目加进 `~/.config/devin/config.json`，Devin 的其他设置原样不动，并把 `/nomo-*` 命令作为 Devin skill 添加进去。
+      </Tab>
+    </Tabs>
+
+    已经在别的智能体里配对过？一次配对覆盖整台电脑——跳过配对的步骤。这台电脑上没有浏览器？改用 `/nomo-pair code`（用插件的话，用 `/nomo:pair code`）——见[配对](/zh-Hans/setup/pairing)。
   </Tab>
 </Tabs>
 
 ## 一键安装 {#one-command}
 
-安装工具会找出这台电脑上有哪些 Claude Code、Codex、OpenCode、Cursor 和 Antigravity，然后把 Nomo 装进你挑中的那几个：
+安装工具会找出这台电脑上有哪些 Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin，然后把 Nomo 装进你挑中的那几个：
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -286,70 +441,25 @@ npx nomo-ai
 ```
 </CodeGroup>
 
-一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的。接着它就去跑每个智能体本来的安装流程——也就是上面那五套。它不会全局安装任何东西，也不会留下包。
+一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的。接着它就去跑每个智能体本来的安装流程——也就是上面那六套。它不会全局安装任何东西，也不会留下包。
 
 写脚本或在 CI 里用时：
 
 | 选项 | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | 只装这些——只要指定其中任意一个，就会跳过选择界面 |
-| `--all` | 五个全装，无论有没有找到——只有 Cursor 和 Antigravity 例外：这台电脑上没有它们时会跳过（想照装就指定 `--cursor` 或 `--antigravity`） |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | 只装这些——只要指定其中任意一个，就会跳过选择界面 |
+| `--all` | 六个全装，无论有没有找到——只有 Cursor、Antigravity 和 Devin 例外：这台电脑上没有它们时会跳过（想照装就指定 `--cursor`、`--antigravity` 或 `--devin`） |
 | `-y`、`--yes` | 不出选择界面，找到多少装多少 |
 | `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
+| `--uninstall` | 配合 `--cursor`、`--antigravity` 或 `--devin` 使用：从那个智能体里移除 Nomo。必须指定智能体——它从不猜。见 [uninstall](/zh-Hans/sessions/commands#uninstall) |
 
-它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。
+它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`（用 Devin 插件时是 `/nomo:pair`）。
 
 ## 更新 {#updating}
 
-同一条命令也负责更新：已经装了 Nomo 的智能体，会显示成更新而不是安装。真正会跑的只有 OpenCode、Cursor 和 Antigravity 那三份，另外两个只是打印出来给你。
-
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
-
-    自动更新对第三方插件市场默认是关闭的，所以安装不会自己动。要打开：`/plugin` → **Marketplaces** → Nomo 那个 → **Enable auto-update**。
-  </Tab>
-
-  <Tab title="Codex" icon="/images/codex.svg">
-    通常没有什么要执行。Codex 直接从插件所在路径实时读取，所以在那份克隆目录里拉取更新就是全部的更新——而且根本不存在 `codex plugin update` 这个动词。
-
-    如果你这个插件市场是从 git 添加的，那 Codex 存着一份快照，刷新它就是更新：
-
-    ```bash
-    codex plugin marketplace upgrade <插件市场名称>
-    ```
-
-    名称是你当初添加时用的那个，未必是 `nomo`。
-  </Tab>
-
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    全局安装由安装工具代劳。在 OpenCode 里运行 [`/nomo-update`](/zh-Hans/sessions/commands#update) 也一样——这也是更新 `--project` 安装的唯一办法，要在那个项目里运行。
-
-    两种方式之后都要重启 OpenCode——插件只在服务器启动时导入一次。
-  </Tab>
-
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    和安装时是同一条命令：
-
-    ```bash
-    bunx nomo-ai --cursor
-    ```
-
-    之后重启 Cursor，以及所有开着的 `cursor-agent` 会话。
-  </Tab>
-
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    和安装时是同一条命令：
-
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
-
-    之后重启 Antigravity，以及所有开着的 `agy` 会话。
-  </Tab>
-</Tabs>
+<Note>
+  要更新或卸载，见[命令 → update](/zh-Hans/sessions/commands#update)和[命令 → uninstall](/zh-Hans/sessions/commands#uninstall)。每个智能体都在那里，各有自己的标签页。
+</Note>
 
 ## 插件做了什么
 

@@ -14,15 +14,17 @@ icon: "gauge"
 
 ## 支持哪些服务商
 
-六家：**Claude**、**Codex**、**Cursor**、**xAI**、**Antigravity** 和 **Kimi**——[状态](/zh-Hans/status)覆盖的服务商里，只有只看状态的 DeepSeek 不在其中。
+七家：**Claude**、**Codex**、**Cursor**、**xAI**、**Antigravity**、**Kimi** 和 **Devin**——[状态](/zh-Hans/status)覆盖的服务商里，只有只看状态的 DeepSeek 不在其中。
 
-六家也都能在各自窗口的 70%、90%、100% 给你**提醒**——见[用量提醒](/zh-Hans/notifications#usage-alerts)。
+七家也都能在各自窗口的 70%、90%、100% 给你**提醒**——见[用量提醒](/zh-Hans/notifications#usage-alerts)。
 
 两个小组件之间有一处名称不同。用量这边显示 **Codex**，而状态那边盯的是整个 **OpenAI**——你消耗的是 Codex 的套餐，会挂掉的却是 OpenAI。
 
 **Antigravity** 读的是你的 **Google Antigravity** 配额，包括单独的 **Claude & GPT** 限额，走 Google 登录，而不是你粘贴的令牌。
 
 **Kimi** 读的是你 **Kimi Code** 套餐的 5 小时限额和每周限额。连接时会显示一个短码，在 Kimi 的登录页面上批准就完成了。
+
+**Devin** 读的是你 Devin 套餐的每日限额和每周限额：各用了多少，以及各自什么时候重置——见 [Devin](#devin)。
 
 ## 登录 {#signing-in}
 
@@ -61,6 +63,23 @@ Nomo 会自动续期 Grok 的登录。
 <Note>
   更新到 Nomo 2.4.0 后，请再登录一次 Grok。之前的 Grok 登录不会保留。
 </Note>
+
+### Devin {#devin}
+
+Devin 通过 Safari，在 Devin 自己的登录页面上登录。
+
+1. 在**服务商**标签页里打开 **Devin**，然后选择**用量**。
+2. 轻点**连接 Devin 账户**。
+3. iOS 会询问是否允许使用 **devin.ai** 登录。轻点“继续”。
+4. 在 Devin 的页面上登录。
+
+页面会自动关闭。Nomo 会显示你的**每日**和**每周**限额，以及已用的百分比和各自的重置时间。
+
+在 Devin 的免费套餐上，两个用量条可能都显示 0%。
+
+在 Devin 结束这次登录之前，你会一直保持登录。到时 Nomo 会请你重新登录。
+
+你的登录信息保存在 iPhone 的钥匙串里，并且只会发给 Cognition——开发 Devin 的公司。
 
 ## 用量速度 <span className="pro-pill" /> {#pace}
 

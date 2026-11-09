@@ -4,6 +4,40 @@ description: "每個版本帶來什麼，以及上線的時間。"
 icon: "clock-rotate-left"
 ---
 
+<Update label="2026年11月" description="2.5.0">
+  ## Devin：狀態、用量與 sessions
+
+  <Frame>
+    <img src="/images/changelog-2-5-0-devin.jpg" alt="Nomo 2.5.0：Devin 提問，你來核准。iPhone 上的 Devin 權限請求，附「允許」與「拒絕」按鈕" />
+  </Frame>
+
+  Nomo 現已支援 Devin：在手機上查看它的狀態、你的用量和它的 sessions，還能直接回應 Devin 的權限請求。
+
+  **新增**
+
+  - 「供應商」中新增 Devin：查看它五項服務的[狀態](/zh-Hant/status)，支援提醒與狀態小工具。如果你之前就在用 Nomo，Devin 的狀態提醒一開始是關著的，可以在[通知](/zh-Hant/notifications)中開啟
+  - Devin 用量：用你的 Devin 帳戶登入，即可查看每日和每週限額，以及各自的重置時間。[連結帳戶](/zh-Hant/usage#devin)
+  - 在手機、動態島和鎖定畫面上查看 [Devin 的 sessions](/zh-Hant/sessions/devin)，顯示 Devin 自己的 session 標題和模型。支援 Devin CLI 和 Devin Desktop
+  - 在手機、動態島或鎖定畫面上回應 Devin：「允許」、「一律允許…（本次 session）」、「拒絕」和「拒絕並附註…」，還能[回答 Devin 的問題](/zh-Hant/sessions/devin#questions)
+  - [停止](/zh-Hant/sessions/devin#interrupt)正在執行的 Devin session：它會做完目前這一步再停下。目前需要 iPhone 和 Mac 在同一個網路中
+
+  **改進**
+
+  - 「拒絕並附註…」和「新增附註」會開啟一個寬敞的附註畫面，同時顯示你正在回應的內容
+  - 「一律允許」會寫明允許的範圍，例如「一律允許以 `bun test` 開頭的指令（本次 session）」。OpenCode 的則寫明「直到 OpenCode 重新啟動」。需要外掛程式 2.5.0
+  - 彈出的畫面改用 ✕ 關閉
+  - 「供應商」列表依 A–Z 排序
+  - Nomo Pro 畫面會顯示 Nomo 支援的全部六個代理
+
+  **修正**
+
+  - 按住等待中的 session 或電腦卡片時跳出的選單不再閃爍
+
+  **外掛程式 2.5.0**
+
+  - 要使用 Devin 的 sessions，電腦上需要安裝外掛程式 2.5.0。可以作為 Devin 外掛程式[安裝](/zh-Hant/setup/install)，也可以用 `bunx nomo-ai --devin`
+</Update>
+
 <Update label="2026年11月" description="2.4.1">
   ## 在 App 內傳送意見回饋
 

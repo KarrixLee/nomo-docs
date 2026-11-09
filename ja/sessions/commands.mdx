@@ -1,34 +1,40 @@
 ---
 title: "コマンド"
-description: "Claude Code、Codex、OpenCode、Cursor、Antigravity 向けの Nomo のコマンドをすべて — ペアリング、状態確認、承認、リセット、ペアリング解除、更新 — 1 ページにまとめました。"
+description: "Claude Code、Codex、OpenCode、Cursor、Antigravity、Devin 向けの Nomo のコマンドをすべて — ペアリング、状態確認、承認、リセット、ペアリング解除、更新、アンインストール — 1 ページにまとめました。"
 icon: "terminal"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
 ---
 
-Claude Code、Codex、OpenCode、Antigravity に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor と Antigravity では `/` のスキル、Codex では `$` のスキルです。
+Claude Code、Codex、OpenCode、Antigravity、Devin に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor、Antigravity、Devin では `/` のスキル、Codex では `$` のスキルです。
 
 <Note>
   Antigravity では、Nomo のコマンドを実行するたびに確認が表示されます。「Allow」を選んでください — Antigravity は、コンピュータでコマンドを実行する前に必ず確認します。詳しくは [Antigravity での利用](/ja/sessions/antigravity#commands)をご覧ください。
 </Note>
 
+<Note>
+  Devin プラグインの場合、Devin のコマンドは `/nomo-` ではなく `/nomo:` で始まります — `/nomo:pair`、`/nomo:status` などです。Cursor でも Nomo を使っている場合、Devin では `/nomo-pair` が `/devin:nomo-pair` のように表示されるので、そちらを入力してください。ペアリング後は、Nomo 自身のコマンドは確認なしで実行されます。詳しくは [Devin での利用](/ja/sessions/devin#commands)をご覧ください。
+</Note>
+
 <Tip>
-  Claude Code ではすべてが名前空間に入っています。`/nomo-cc:` と入力すると一覧が表示されます。OpenCode のコマンド名はフラットでグローバルなので、そちらでは Nomo のコマンドにも接頭辞は一切付きません — Cursor と Antigravity のスキルにも付きません。
+  Claude Code ではすべてが名前空間に入っています。`/nomo-cc:` と入力すると一覧が表示されます。OpenCode のコマンド名はフラットでグローバルなので、そちらでは Nomo のコマンドにも接頭辞は一切付きません — Cursor、Antigravity、Devin のスキルにも付きません。
 </Tip>
 
-| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity |
-| --- | --- | --- | --- | --- | --- |
-| <a href="#pair">このコンピュータをペアリングする</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
-| <a href="#status">状態を確認する</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
-| <a href="#approvals">承認を一時停止・再開する</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` |
-| <a href="#reset">停止したセッションを消去する</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
-| <a href="#unpair">このコンピュータの接続を解除する</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
-| <a href="#update">プラグインを更新する</a> | — | — | `/nomo-update` | — | — |
+| | <img src="/images/claude-code.svg" alt="" className="agent-mark" /> Claude Code | <img src="/images/codex.svg" alt="" className="agent-mark" /> Codex | <img src="/images/opencode.svg" alt="" className="agent-mark" /> OpenCode | <img src="/images/providers/cursor.svg" alt="" className="agent-mark invert-dark" /> Cursor | <img src="/images/providers/antigravity.png" alt="" className="agent-mark" /> Antigravity | <img src="/images/providers/devin.svg" alt="" className="agent-mark invert-dark" /> Devin |
+| --- | --- | --- | --- | --- | --- | --- |
+| <a href="#pair">このコンピュータをペアリングする</a> | `/nomo-cc:pair` | `$nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` | `/nomo-pair` |
+| <a href="#status">状態を確認する</a> | `/nomo-cc:status` | `$nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` | `/nomo-status` |
+| <a href="#approvals">承認を一時停止・再開する</a> | `/nomo-cc:approvals` | `$nomo-approvals` | `/nomo-approvals` | — | `/nomo-approvals` | `/nomo-approvals` |
+| <a href="#reset">停止したセッションを消去する</a> | `/nomo-cc:reset` | `$nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` | `/nomo-reset` |
+| <a href="#unpair">このコンピュータの接続を解除する</a> | `/nomo-cc:unpair` | `$nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` | `/nomo-unpair` |
+| <a href="#update">プラグインを更新する</a> | — | — | `/nomo-update` | — | — | — |
 
 どれも派手に失敗することはありません。することが何もない場合でも、すべて正常に終了します — `Not paired` はエラーではなく成功です。
 
-最終行が空欄なのは、抜けているからではありません。Claude Code と Codex はそれぞれのホスト側で更新するため、Nomo はそこにコマンドを足していません。Cursor と Antigravity はインストーラーをもう一度実行して更新します。それぞれに必要なもの — Codex の場合はたいてい何もありません — は[インストール](/ja/setup/install#updating)にまとめてあります。
+最終行が空欄なのは、抜けているからではありません。Claude Code と Codex はそれぞれのホスト側で更新するため、Nomo はそこにコマンドを足していません。Cursor、Antigravity、Devin はインストーラーをもう一度実行して更新します。それぞれに必要なもの — Codex の場合はたいてい何もありません — は [update](#update) にまとめてあります。
 
 承認の行で Cursor が空欄なのも、抜けているからではありません。Cursor のセッションは読み取り専用で、一時停止するリモート承認がありません — [Cursor での利用](/ja/sessions/cursor)。
+
+Nomo の削除には `/` コマンドがありません。ターミナルに 1 行貼り付けるだけです — [uninstall](#uninstall) を参照してください。
 
 ## pair {#pair}
 
@@ -57,13 +63,20 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-pair             # QR code, opens your browser
+/nomo-pair code        # one-time code, shown in the chat
+```
 </CodeGroup>
+
+Devin プラグインの場合は `/nomo:pair` と `/nomo:pair code` です。
 
 引数なしで実行すると、テーマの適用されたページがブラウザで開き、QR コードが表示されます。アプリでスキャンすると、ページは自動的に **Paired ✓** に切り替わります。
 
 `code` 引数を付けるとブラウザを完全に省き、入力できるワンタイムコードを出力します。ヘッドレスなマシンや SSH セッション向けです。これが第 2 の選択肢なのは意図的で、そのコードはターミナルに、つまりエージェントのトランスクリプトに残るからです。
 
-ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode、Cursor、Antigravity は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
+ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode、Cursor、Antigravity、Devin は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
 
 ## status {#status}
 
@@ -88,7 +101,13 @@ $nomo-status
 /nomo-status           # a short summary in plain words
 /nomo-status verbose   # the full readout below
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
+
+Devin プラグインの場合は `/nomo:status` です。
 
 何かおかしいと思ったら、まず最初に実行するコマンドです。正常なマシンの出力は、落ち着いた数行だけです — チェックマークは出てきません。問題がないというのは、言うべきことが何もないということだからです。
 
@@ -185,7 +204,15 @@ $nomo-approvals status      # which way is it set
 /nomo-approvals on          # resume
 /nomo-approvals status      # which way is it set
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-approvals off         # pause on this computer
+/nomo-approvals on          # resume
+/nomo-approvals status      # which way is it set
+```
 </CodeGroup>
+
+Devin プラグインの場合は `/nomo:approvals off`、`on`、`status` です。Devin Desktop では、Devin の次のプロンプトの前に一時停止してください。
 
 **このコンピュータ**のリモート承認を一時停止し、許可リクエストが iPhone を待たずにターミナルへ直行するようにします。iPhone の電池が切れている、手元にないといったときの逃げ道です。
 
@@ -222,7 +249,13 @@ $nomo-reset
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-reset
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-reset
+```
 </CodeGroup>
+
+Devin プラグインの場合は `/nomo:reset` です。
 
 ウォッチドッグを停止し、無効になったセッションや実体のないセッションの行を消去して、それらを削除するよう iPhone に伝えます。
 
@@ -257,7 +290,13 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-unpair
+```
 </CodeGroup>
+
+Devin プラグインの場合は `/nomo:unpair` です。
 
 ペアリングを取り消し、そのコンピュータ上の鍵を消去します。
 
@@ -265,35 +304,169 @@ $nomo-unpair
 
 ## update {#update}
 
+更新コマンドがあるのは OpenCode だけです。ほかのエージェントは別の方法で更新します — 使っているエージェントのタブを開いてください。
+
+`bunx nomo-ai`（または `npx nomo-ai`）でも更新できます。すでに Nomo が入っているエージェントは、インストールではなく更新として表示されます。実行されるのは OpenCode、Cursor、Antigravity、Devin の分だけで、Claude Code と Codex の分は表示されるだけです。
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
+
+    自動更新はサードパーティのマーケットプレイスでは無効が既定なので、放っておいてインストールが動くことはありません。有効にするには `/plugin` → **Marketplaces** → Nomo のもの → **Enable auto-update** と進みます。
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    通常、実行するものはありません。Codex はプラグインをそのパスから直接読み込むため、そのクローンで取得することが更新のすべてです。`codex plugin update` という動詞もそもそも存在しません。
+
+    マーケットプレイスを git から追加した場合は、Codex がスナップショットを保持しており、それを更新することが更新にあたります。
+
+    ```bash
+    codex plugin marketplace upgrade <marketplace-name>
+    ```
+
+    名前は追加したときのもので、必ずしも `nomo` とは限りません。
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    ```bash
+    /nomo-update
+    ```
+
+    何かを変更する前に必ず確認します。最新であればそこで終わりで、ついでに取得することもありません。
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Already on 2.1.22 — nothing to do.
+    ```
+
+    取得するものがある場合は、取得する前に内容を伝えます。
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Update available: 2.1.22 → 2.1.23.
+    ```
+
+    そのあと取得し、インストーラーを実行し直して — 新しい `/nomo-*` コマンドが追加されていれば、これが取り込みます — OpenCode の再起動を促します。プラグインはサーバーの起動時に 1 回だけ読み込まれるため、再起動するまでは古いコピーが動いたままです。
+
+    判断がつかないときは、実行せずに断ります。断る理由ごとに、代わりにすべきことも示します。以前の `--ref` 付きインストールで固定されたクローン、コミットしていない変更が残る作業ツリー、移動または削除されたクローン、Nomo 自身のリポジトリではないクローン、そして何もインストールされていない場合です。
+
+    `bunx nomo-ai` は同じ更新を `--global` 付きで実行します。どのフォルダから実行しても、更新するのはグローバルインストールだけです。`--project` でのインストールは、そのプロジェクトの OpenCode の中で `/nomo-update` を実行して更新します。
+
+    <Note>
+      更新の対象は、**スタブ**が指しているクローン — OpenCode が実際に読み込むコピー — であって、入力したコマンドファイルの出どころとは限りません。クローンを複数持っている場合は、ここが重要な違いになります。
+    </Note>
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    インストールしたときと同じコマンドです。
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    そのあと Cursor を再起動し、開いている `cursor-agent` のセッションがあればそれも再起動してください。
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    インストールしたときと同じコマンドです。
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    そのあと Antigravity を再起動し、開いている `agy` のセッションがあればそれも再起動してください。
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    Nomo インストーラーを使った場合は、インストールしたときと同じコマンドです。
+
+    ```bash
+    bunx nomo-ai --devin
+    ```
+
+    Devin プラグインの場合は次のとおりです。
+
+    ```bash
+    devin plugins update nomo
+    ```
+
+    Devin プラグインは Nomo のリポジトリのデフォルトブランチに従うので、最新のリリース版が入ります。
+
+    そのあと、開いている `devin` があれば再起動し、Devin Desktop も再起動してください。
+  </Tab>
+</Tabs>
+
+## uninstall {#uninstall}
+
+1 つのエージェントから Nomo を削除します。エージェントの中ではなく、ターミナルで実行します。使っているエージェントのタブを選び、その行を貼り付けて Return キーを押します。
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+claude plugin uninstall nomo-cc@nomo
+```
+
+```bash Codex icon="/images/codex.svg"
+codex plugin remove nomo@nomo
+```
+
 ```bash OpenCode icon="/images/opencode.svg"
-/nomo-update
+rm ~/.config/opencode/plugins/nomo.js
+rm ~/.config/opencode/commands/nomo-*.md
 ```
 
-**OpenCode 専用**で、何かを変更する前に必ず確認します。最新であればそこで終わりで、ついでに取得することもありません。
-
-```
-OpenCode plugin: /Users/you/.nomo
-Already on 2.1.22 — nothing to do.
+```bash Cursor icon="/images/providers/cursor.svg"
+bunx nomo-ai --uninstall --cursor
 ```
 
-取得するものがある場合は、取得する前に内容を伝えます。
-
-```
-OpenCode plugin: /Users/you/.nomo
-Update available: 2.1.22 → 2.1.23.
+```bash Antigravity icon="/images/providers/antigravity.png"
+bunx nomo-ai --uninstall --antigravity
 ```
 
-そのあと取得し、インストーラーを実行し直して — 新しい `/nomo-*` コマンドが追加されていれば、これが取り込みます — OpenCode の再起動を促します。プラグインはサーバーの起動時に 1 回だけ読み込まれるため、再起動するまでは古いコピーが動いたままです。
+```bash Devin icon="/images/providers/devin.svg"
+bunx nomo-ai --uninstall --devin
+```
+</CodeGroup>
 
-判断がつかないときは、実行せずに断ります。断る理由ごとに、代わりにすべきことも示します。以前の `--ref` 付きインストールで固定されたクローン、コミットしていない変更が残る作業ツリー、移動または削除されたクローン、Nomo 自身のリポジトリではないクローン、そして何もインストールされていない場合です。
+Devin プラグインの場合は `devin plugins remove nomo` です。
 
-`bunx nomo-ai` は同じ更新を `--global` 付きで実行します。どのフォルダから実行しても、更新するのはグローバルインストールだけです。`--project` でのインストールは、そのプロジェクトの OpenCode の中で `/nomo-update` を実行して更新します。
+`bunx` がない場合は、代わりに `npx` を使ってください — たとえば `npx nomo-ai --uninstall --cursor` です。または、エージェント専用のスクリプトを実行します。たとえば `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall` です（Antigravity なら `antigravity-install.mjs`、Devin なら `devin-install.mjs`）。
 
-<Note>
-  更新の対象は、**スタブ**が指しているクローン — OpenCode が実際に読み込むコピー — であって、入力したコマンドファイルの出どころとは限りません。クローンを複数持っている場合は、ここが重要な違いになります。
-</Note>
+Antigravity と Devin は、完了すると次のように表示します。
 
-Claude Code と Codex に相当するコマンドはありません。更新はそれぞれのホストが担うためで、Codex にいたっては実行するものがないのが通常です。どちらも[インストール](/ja/setup/install#updating)で説明しています。
+```
+✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
+```
+
+```
+devin-install: removed Nomo's hooks from Devin — restart devin
+```
+
+そのあとエージェントを再起動します。Cursor と Antigravity は、アプリを終了してもう一度開き、開いている `cursor-agent` や `agy` も再起動してください。Devin は、開いている `devin` をすべて閉じて、もう一度起動してください。
+
+削除されるのは、Nomo がそのエージェントに追加したものだけです。iPhone とのペアリングはそのまま残るので、ほかのエージェントは引き続き使えます。このコンピュータの接続も切りたい場合は、**先に** [unpair](#unpair) を実行してください — Nomo を削除すると、そのコマンドも使えなくなります。
+
+Nomo の Claude Code プラグインを Antigravity に読み込んでいた場合は、`agy plugin uninstall nomo-cc` でそちらも削除し、Antigravity を再起動します。
+
+`bunx nomo-ai --uninstall` には必ずエージェントを指定してください — 推測はしません。エージェントごとのインストールについては[インストール](/ja/setup/install)を参照してください。
+
+## コマンドを使わずに実行する {#without-slash-commands}
+
+Antigravity や Devin が Nomo のコマンドを認識しない場合は、代わりにターミナルから実行します。これは Nomo インストーラーでインストールした場合に使えます。
+
+| | |
+| --- | --- |
+| ペアリング | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| コードを入力してペアリング | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+| 状態の確認（Antigravity） | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| 状態の確認（Devin） | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` |
+| 承認の一時停止 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+| 承認の再開 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+| 止まったセッションの消去 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| ペアリングの解除 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+ターミナルからペアリングしたあとは、`~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait` を実行して QR コードをスキャンします。インストーラーに `--verbose` を付けると、何を変更するかを確認できます。
 
 ## 状態の保存場所 {#where-state-lives}
 

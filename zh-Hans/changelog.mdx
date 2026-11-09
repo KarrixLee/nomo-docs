@@ -4,6 +4,40 @@ description: "发布了什么，什么时候发布的。"
 icon: "clock-rotate-left"
 ---
 
+<Update label="2026年11月" description="2.5.0">
+  ## Devin：状态、用量和会话
+
+  <Frame>
+    <img src="/images/changelog-2-5-0-devin.jpg" alt="Nomo 2.5.0：Devin 提问，你来批准。iPhone 上的 Devin 权限请求，附“允许”和“拒绝”按钮" />
+  </Frame>
+
+  Nomo 现已支持 Devin：在手机上查看它的状态、你的用量和它的会话，还能直接回应 Devin 的权限请求。
+
+  **新增**
+
+  - **服务商**中新增 **Devin**：查看它五项服务的[状态](/zh-Hans/status)，支持提醒和状态小组件。如果你之前就在用 Nomo，Devin 的状态提醒一开始是关着的，可以在[通知](/zh-Hans/notifications)中打开
+  - Devin 用量：用你的 Devin 账户登录，即可查看每日和每周限额，以及各自的重置时间。[连接账户](/zh-Hans/usage#devin)
+  - 在手机、灵动岛和锁定屏幕上查看 [Devin 会话](/zh-Hans/sessions/devin)，显示 Devin 自己的会话标题和模型。支持 Devin CLI 和 Devin Desktop
+  - 在手机、灵动岛或锁定屏幕上回应 Devin：**允许**、**始终允许 …（本次会话）**、**拒绝**和**拒绝并附注…**，还能[回答 Devin 的问题](/zh-Hans/sessions/devin#questions)
+  - [停止](/zh-Hans/sessions/devin#interrupt)正在运行的 Devin 会话：它会做完当前这一步再停下。目前需要 iPhone 和 Mac 在同一网络中
+
+  **改进**
+
+  - **拒绝并附注…**和**添加附注**会打开一个宽敞的附注页面，同时显示你正在回应的内容
+  - **始终允许**会写明允许的范围，例如**始终允许以 `bun test` 开头的命令（本次会话）**。OpenCode 的则写明**直到 OpenCode 重启**。需要插件 2.5.0
+  - 弹出的页面改用 ✕ 关闭
+  - **服务商**列表按 A–Z 排序
+  - Nomo Pro 页面会显示 Nomo 支持的全部六个智能体
+
+  **修复**
+
+  - 按住等待中的会话或电脑卡片时弹出的菜单不再闪烁
+
+  **插件 2.5.0**
+
+  - Devin 会话需要电脑上安装插件 2.5.0。可以作为 Devin 插件[安装](/zh-Hans/setup/install)，也可以用 `bunx nomo-ai --devin`
+</Update>
+
 <Update label="2026年11月" description="2.4.1">
   ## 在 App 内发送反馈
 

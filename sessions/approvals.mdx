@@ -1,9 +1,9 @@
 ---
 title: "Approve agent permission prompts from your iPhone"
 sidebarTitle: "Answering from your phone"
-description: "Allow, deny, or answer Claude Code, Codex, OpenCode and Antigravity permission prompts remotely — from the island, or from the app with the full set of options."
+description: "Allow, deny, or answer Claude Code, Codex, OpenCode, Antigravity and Devin permission prompts remotely — from the island, or from the app with the full set of options."
 icon: "hand"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Answering from your phone"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "Devin", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Answering from your phone"]
 ---
 
 When your agent wants to run something it doesn't have standing permission for,
@@ -84,7 +84,7 @@ purpose.
 | --- | --- | --- |
 | **Allow** | Island, app | Runs the action and continues. |
 | **Deny** | Island, app | Skips it and continues without it. |
-| **Always allow Bash (this session)** | App only | Allows it and stops asking **for the rest of this session**. Never written to disk, never carried into the next session. |
+| **Always allow `bun test` commands (this session)** | App only | Allows it and stops asking about what the label names — here, every `bun test` command — **for the rest of this session**. Never written to disk, never carried into the next session. When your computer can only allow this one request, the option isn't shown. |
 | **Approve + switch to auto mode** | App only | Allows it and switches that session to auto mode, for the rest of the session. On a plan the choice is **Approve + auto-accept edits** or **Approve + auto mode**. Claude Code only. |
 | **Deny with note…** | App only | Denies, and passes along what you typed — *why*, or *what to do instead*. On a plan it reads **Keep planning…**. |
 | **Answer…** | App only | Picks an option for a multiple-choice question — or sends an answer you typed, where the agent takes one. |
@@ -95,12 +95,17 @@ purpose.
   Not every agent takes every option. The **Approve + …** choices are Claude
   Code's alone. Codex has no **Always allow**, and OpenCode has no **Deny with
   note…**. On OpenCode, **Deny** also answers for the whole turn rather than one
-  tool, and **Open on Mac** never appears. [Using Codex](/sessions/codex) and
+  tool, its **Always allow** lasts until OpenCode restarts, and **Open on Mac**
+  never appears. [Using Codex](/sessions/codex) and
   [Using OpenCode](/sessions/opencode) explain each. Cursor takes none of them:
   its sessions are read-only, and its prompts never reach your phone —
   [Using Cursor](/sessions/cursor#what-this-version-doesnt-do). Antigravity
   takes **Allow**, **Deny** and **Deny with note…**, for shell commands and file
   writes only — [Using Antigravity](/sessions/antigravity#answering-from-your-phone).
+  Devin takes **Allow**, **Always allow**, **Deny** and **Deny with note…**,
+  and answers to its questions. Its **Always allow** is kept by Nomo on your
+  computer until the session ends — [Using
+  Devin](/sessions/devin#answering-from-your-phone).
 </Note>
 
 **Always allow** and **Deny with note…** live under **More…** in the menu;
@@ -143,9 +148,10 @@ changing it.
 If the agent attached a preview to an option — a snippet of code, a sketch of a
 layout — it appears beneath the list when you pick that option.
 
-All three need plugin **2.2.2**. Notes and previews are Claude Code's. Codex
-shows **Other…** only on a question that offers a free-text answer, and OpenCode
-has none of the three.
+All three need plugin **2.2.2**. Previews are Claude Code's, and notes are
+Claude Code's and Devin's. Codex shows **Other…** only on a question that offers
+a free-text answer, and OpenCode has none of the three. On Devin, the Mac shows
+an answered question as rejected — [why](/sessions/devin#questions).
 
 ## Reviewing a plan
 
@@ -191,6 +197,8 @@ Nomo also verifies afterwards. A plain "OK" from the relay isn't trusted on its
 own — the phone checks the prompt actually got settled, and re-sends if it
 didn't. If it genuinely can't confirm, the buttons come back rather than leaving
 you believing something happened.
+
+How the answer is encrypted and sent is in the plugin's [README](https://github.com/KarrixLee/nomo#approval-holds-all-agents).
 
 ### What the caption tells you
 

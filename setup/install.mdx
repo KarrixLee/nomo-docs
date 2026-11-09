@@ -1,7 +1,7 @@
 ---
 title: "Install the Nomo plugin for Claude Code and Codex"
 sidebarTitle: "Installation"
-description: "Add the Nomo plugin to Claude Code, Codex, OpenCode, Cursor, or Antigravity. One command, or by hand — no dependencies."
+description: "Add the Nomo plugin to Claude Code, Codex, OpenCode, Cursor, Antigravity or Devin. One command, or by hand — no dependencies."
 icon: "puzzle-piece"
 ---
 
@@ -136,7 +136,8 @@ ones.
     </Steps>
 
     <Tip>
-      Codex skills use a `$` prefix rather than a slash. All five are listed in
+      Codex skills use a `$` prefix rather than a slash: `$nomo-pair`,
+      `$nomo-status`, `$nomo-reset`, `$nomo-unpair`. All of them are in
       [Commands](/sessions/commands).
     </Tip>
   </Tab>
@@ -240,12 +241,28 @@ ones.
         </Warning>
       </Step>
 
-      <Step title="Confirm">
+      <Step title="Pair">
         In Cursor, type `/` to pick a skill, and run:
 
         ```
-        /nomo-status
+        /nomo-pair
         ```
+
+        It shows a QR code — scan it with the Nomo app. Where you can't open a
+        browser, `/nomo-pair code` gives you a short code to type instead. Both
+        paths are walked through in [Pairing](/setup/pairing).
+
+        Pairing is shared across agents on one Mac. A computer already paired
+        for Claude Code, Codex or OpenCode doesn't need pairing again for
+        Cursor — installing is enough, and you can skip this step.
+      </Step>
+
+      <Step title="Show the Cursor tab">
+        In the app, open the computer. Cursor sessions sit under a **Cursor**
+        tab in its session drawer.
+
+        The drawer shows up to three agent tabs. If Cursor isn't one of them,
+        tap the **+** button (**Choose agents**) and turn it on.
       </Step>
     </Steps>
 
@@ -254,14 +271,6 @@ ones.
       `/nomo-status`, `/nomo-reset` and `/nomo-unpair`. All four are in
       [Commands](/sessions/commands).
     </Tip>
-
-    To remove it later:
-
-    ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
-    ```
-
-    Then restart Cursor.
   </Tab>
 
   <Tab title="Antigravity" icon="/images/providers/antigravity.png">
@@ -302,30 +311,210 @@ ones.
         asks to run a Nomo command, choose **Allow**. Then scan the QR code with
         Nomo on your iPhone.
 
+        You should see, in Antigravity: "Done! This computer is connected to
+        your phone."
+
+        In the Antigravity desktop app, the first Nomo command may show one line
+        that says `operation not permitted`. That's normal — Antigravity tries
+        again outside its sandbox by itself. Just wait.
+
         Already paired from another agent? Type `/nomo-status` instead to check.
+      </Step>
+
+      <Step title="Send a message in Antigravity">
+        Start a chat and send anything.
+
+        You should see the session appear in Nomo, under the **Antigravity** tab
+        of your computer. No Antigravity tab? Tap the **+** button (**Choose
+        agents**) and turn Antigravity on.
+
+        <Frame caption="Choose agents, from the + button. Antigravity is ticked, so it gets its own tab.">
+          <div className="device-frame">
+            <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="The Choose agents menu with Claude Code, Codex and Antigravity ticked, and OpenCode and Cursor unticked" />
+            <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="The Choose agents menu with Claude Code, Codex and Antigravity ticked, and OpenCode and Cursor unticked" />
+          </div>
+        </Frame>
       </Step>
     </Steps>
 
     <Warning>
-      Don't import Nomo's Claude Code plugin into Antigravity — every session
-      would show up twice. If you did, run `agy plugin uninstall nomo-cc` and
-      restart Antigravity.
-    </Warning>
+      Don't import Nomo's Claude Code plugin into Antigravity (for example with
+      `agy plugin import claude`) — every session would show up twice. If you
+      did, the installer warns you:
 
-    To remove it later:
+      ```
+      ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+      ```
+
+      To fix it, run `agy plugin uninstall nomo-cc` and restart Antigravity.
+    </Warning>
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    For the Devin CLI and Devin Desktop. Devin's permission prompts and
+    questions can be answered from your phone — [Using Devin](/sessions/devin)
+    has the details.
+
+    There are two ways to add Nomo to Devin: the **Devin plugin**, or the
+    **Nomo installer**. Install one of them. If you install both, Nomo uses the
+    installer one, and the plugin stays quiet.
+
+    **No Devin CLI yet?** On your Mac, open the **Terminal** app (it's in
+    **Applications → Utilities**). Copy this line, paste it into Terminal, and
+    press Return:
 
     ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
+    brew install --cask devin-cli
     ```
 
-    Then restart Antigravity.
+    No Homebrew? Use this instead:
+
+    ```bash
+    curl -fsSL https://cli.devin.ai/install.sh | bash
+    ```
+
+    Then type `devin` and press Return. If Devin asks you to sign in, follow its
+    steps.
+
+    <Tabs>
+      <Tab title="Devin plugin" icon="puzzle-piece">
+        <Steps>
+          <Step title="Install the Nomo plugin">
+            Type this in Terminal, not inside Devin. If Devin is open, open a
+            new Terminal window first (press **⌘N**).
+
+            Copy this line, paste it into Terminal, and press Return:
+
+            ```bash
+            devin plugins install KarrixLee/nomo
+            ```
+
+            Using Devin Desktop instead? Go to **Customize → Plugins → From
+            repository**, and enter `KarrixLee/nomo`.
+          </Step>
+
+          <Step title="Start Devin">
+            In Terminal, type `devin` and press Return.
+          </Step>
+
+          <Step title="Type /nomo:pair">
+            In `devin`, type this and send it:
+
+            ```
+            /nomo:pair
+            ```
+
+            Devin opens a page with a QR code in your browser.
+          </Step>
+
+          <Step title="Scan the QR code">
+            On your iPhone, open Nomo → **Sessions** → **Pair a Computer**, and
+            scan the QR code.
+          </Step>
+
+          <Step title="Check it">
+            In `devin`, type this and send it:
+
+            ```
+            /nomo:status
+            ```
+
+            If a line starts with `!`, do what the `→` line under it says.
+          </Step>
+
+          <Step title="Send a message in Devin">
+            In `devin`, send anything.
+
+            You should see the session appear in Nomo, under the **Devin** tab
+            of your computer. No Devin tab? Tap the **+** button (**Choose
+            agents**) and turn Devin on.
+          </Step>
+        </Steps>
+      </Tab>
+
+      <Tab title="Nomo installer" icon="terminal">
+        <Steps>
+          <Step title="Run the installer">
+            Copy this line, paste it into Terminal, and press Return:
+
+            <CodeGroup>
+            ```bash bunx icon="terminal"
+            bunx nomo-ai --devin
+            ```
+
+            ```bash npx icon="terminal"
+            npx nomo-ai --devin
+            ```
+            </CodeGroup>
+
+            Among the lines it prints, you should see:
+
+            ```
+            devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
+            ```
+          </Step>
+
+          <Step title="Restart Devin — required">
+            Close every open `devin`, then start it again. Using Devin Desktop?
+            Quit it and open it again too.
+
+            <Warning>
+              Don't skip this. Nomo stays off until Devin restarts.
+            </Warning>
+          </Step>
+
+          <Step title="Type /nomo-pair">
+            In `devin`, type this and send it:
+
+            ```
+            /nomo-pair
+            ```
+
+            If Devin asks to run a Nomo command, allow it. Devin opens a page
+            with a QR code in your browser.
+          </Step>
+
+          <Step title="Scan the QR code">
+            On your iPhone, open Nomo → **Sessions** → **Pair a Computer**, and
+            scan the QR code.
+          </Step>
+
+          <Step title="Check it">
+            In `devin`, type this and send it:
+
+            ```
+            /nomo-status
+            ```
+
+            If a line starts with `!`, do what the `→` line under it says.
+          </Step>
+
+          <Step title="Send a message in Devin">
+            In `devin`, send anything.
+
+            You should see the session appear in Nomo, under the **Devin** tab
+            of your computer. No Devin tab? Tap the **+** button (**Choose
+            agents**) and turn Devin on.
+          </Step>
+        </Steps>
+
+        It adds Nomo's entries to `~/.config/devin/config.json`, leaving your
+        other Devin settings as they are, and the `/nomo-*` commands as Devin
+        skills.
+      </Tab>
+    </Tabs>
+
+    Already paired from another agent? One pairing covers the whole computer —
+    skip the pairing steps. No browser on this computer? Use
+    `/nomo-pair code` (with the plugin, `/nomo:pair code`) — see
+    [Pairing](/setup/pairing).
   </Tab>
 </Tabs>
 
 ## One command
 
-The installer detects which of Claude Code, Codex, OpenCode, Cursor and
-Antigravity are on
+The installer detects which of Claude Code, Codex, OpenCode, Cursor,
+Antigravity and Devin are on
 this machine and sets Nomo up in the ones you pick:
 
 <CodeGroup>
@@ -340,83 +529,31 @@ npx nomo-ai
 
 Nothing is ticked at the start: arrow keys (or `k` / `j`) move, space ticks an
 agent, enter installs everything ticked. Then it runs each agent's own install —
-the same five flows above. Nothing is installed globally and no package is left
+the same six flows above. Nothing is installed globally and no package is left
 behind.
 
 For scripting and CI:
 
 | Flag | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | install exactly these — naming any one of them skips the picker |
-| `--all` | all five, detected or not — except Cursor and Antigravity, which are skipped when they aren't on this machine (name `--cursor` or `--antigravity` to try anyway) |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | install exactly these — naming any one of them skips the picker |
+| `--all` | all six, detected or not — except Cursor, Antigravity and Devin, which are skipped when they aren't on this machine (name `--cursor`, `--antigravity` or `--devin` to try anyway) |
 | `-y`, `--yes` | no picker; install everything detected |
 | `-n`, `--dry-run` | print the commands, run nothing |
+| `--uninstall` | with `--cursor`, `--antigravity` or `--devin`: remove Nomo from that agent. Name the agent — it never guesses. See [uninstall](/sessions/commands#uninstall) |
 
 It never pairs your phone. Finish exactly as the steps above describe: restart
 the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
-`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex.
+`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex (`/nomo:pair` with
+the Devin plugin).
 
 ## Updating
 
-The same command updates: an agent that already has Nomo shows up as an update
-rather than an install. Only OpenCode's, Cursor's and Antigravity's run — the
-other two are printed for you.
-
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
-
-    Auto-update defaults off for third-party marketplaces, so nothing moves an
-    install on its own. To turn it on: `/plugin` → **Marketplaces** → Nomo's →
-    **Enable auto-update**.
-  </Tab>
-
-  <Tab title="Codex" icon="/images/codex.svg">
-    Usually nothing to run. Codex reads the plugin live from its path, so
-    pulling that checkout is the whole update — and there is no
-    `codex plugin update` verb.
-
-    If you added the marketplace from git, Codex holds a snapshot instead, and
-    refreshing it is the update:
-
-    ```bash
-    codex plugin marketplace upgrade <marketplace-name>
-    ```
-
-    The name is whatever you added it as, not necessarily `nomo`.
-  </Tab>
-
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    The installer does it for a global install. So does
-    [`/nomo-update`](/sessions/commands#update) from inside OpenCode — the only
-    way to update a `--project` install, run in that project.
-
-    Either way, restart OpenCode afterwards — plugins are imported once at
-    server start.
-  </Tab>
-
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    The same command that installed it:
-
-    ```bash
-    bunx nomo-ai --cursor
-    ```
-
-    Restart Cursor afterwards, and any open `cursor-agent` session.
-  </Tab>
-
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    The same command that installed it:
-
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
-
-    Restart Antigravity afterwards, and any open `agy` session.
-  </Tab>
-</Tabs>
+<Note>
+  To update or uninstall, see [Commands → update](/sessions/commands#update)
+  and [Commands → uninstall](/sessions/commands#uninstall). Every agent is
+  there, on its own tab.
+</Note>
 
 ## What the plugin does
 

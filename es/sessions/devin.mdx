@@ -1,0 +1,205 @@
+---
+title: "Sigue y aprueba sesiones de Devin desde tu iPhone"
+sidebarTitle: "Usar Devin"
+description: "Sigue tus sesiones de Devin desde el iPhone: responde a sus solicitudes de permiso y a sus preguntas, y detén un turno en curso. Qué cambia en Devin, y por qué."
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "Devin CLI", "Cognition", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Usar Devin"]
+---
+
+Ve tus sesiones de Devin en el iPhone: en la pantalla de bloqueo y en la
+Dynamic Island. Cuando Devin pide permiso, tu teléfono te pide **Permitir** o
+**Denegar**. Cuando Devin te hace una pregunta, también puedes responderla
+desde el teléfono.
+
+Funciona con la CLI de Devin, el comando `devin` en Terminal, y con
+[Devin Desktop](#devin-desktop).
+
+<Note>
+  Sesiones forma parte de Nomo Pro. Necesitas Nomo **2.5.0** o posterior en tu
+  teléfono y el plugin **2.5.0** o posterior en tu Mac.
+</Note>
+
+## Lo que funciona igual {#what-works-the-same}
+
+Las sesiones, las carpetas y la [Dynamic Island](/es/sessions/island) funcionan
+igual que con los demás agentes. Todo lo compartido está en un solo sitio:
+
+- **Instalar** → [Instalación](/es/setup/install), pestaña **Devin**. Tiene los
+  pasos de las [dos formas de instalar](#set-it-up).
+- **Vincular** → [Vinculación](/es/setup/pairing). Una sola vinculación cubre
+  todos los agentes del ordenador.
+- **Comandos, actualización y desinstalación** →
+  [Comandos](/es/sessions/commands), con [update](/es/sessions/commands#update)
+  y [uninstall](/es/sessions/commands#uninstall).
+- **Responder a las solicitudes** → [Responder desde el
+  iPhone](/es/sessions/approvals).
+- **Qué puede hacer cada agente** → [Qué puedes hacer](/es/sessions/features).
+- **Algo no funciona** → [Solución de problemas](/es/sessions/troubleshooting).
+
+## Dos formas de instalar {#set-it-up}
+
+Hay dos formas de añadir Nomo a Devin: el **plugin de Devin** o el
+**instalador de Nomo**. Instala solo una. Si instalas las dos, Nomo usa la del
+instalador y el plugin no hace nada. Los pasos de las dos están en la pestaña
+**Devin** de [Instalación](/es/setup/install).
+
+Con el plugin de Devin, los comandos de Nomo empiezan por `/nomo:` en vez de
+`/nomo-`: por ejemplo, `/nomo:pair`.
+
+## Los comandos de Nomo {#commands}
+
+Una vez vinculado este ordenador, Devin ejecuta los comandos propios de Nomo sin
+preguntar. `/nomo-approvals off`, `/nomo-unpair` y `/nomo-pair code` siguen
+preguntando antes: en tu teléfono, mientras las aprobaciones estén activadas. Si
+Devin pide permiso para ejecutar un comando de Nomo, permítelo.
+
+<Note>
+  ¿También usas Nomo con Cursor? Devin muestra estos comandos como
+  `/devin:nomo-pair`, `/devin:nomo-status`, etc. Escribe esos en su lugar.
+  `/nomo-approvals` mantiene su nombre.
+</Note>
+
+¿Devin no reconoce los comandos? Vuelve a ejecutar el instalador y reinicia
+Devin, o ejecútalos [desde Terminal](/es/sessions/commands#without-slash-commands).
+Todos los comandos están en [Comandos](/es/sessions/commands).
+
+## Lo que ves {#what-you-see}
+
+- Una sesión aparece cuando envías tu **primer mensaje**.
+- Su nombre es el título que Devin le da a la sesión. Hasta que Devin le pone
+  uno, usa tu primer mensaje.
+- La etiqueta muestra el modelo que está usando Devin. Puede faltar en las
+  sesiones cortas: Devin solo guarda el modelo cuando termina una sesión.
+
+## Responder desde el teléfono {#answering-from-your-phone}
+
+Cuando Devin pide permiso (para ejecutar un comando, por ejemplo), tu teléfono
+te pregunta. Mantén pulsada la sesión, o usa la Dynamic Island.
+
+<Frame caption="Una sesión de Devin que pide ejecutar un comando.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/devin-approval-card.png" alt="Una tarjeta de aprobación de la sesión de Devin Fix token refresh race, que pide ejecutar bun test, con los botones Denegar, Permitir y Denegar con nota" />
+    <img className="only-dark" src="/images/devin-approval-card-dark.png" alt="Una tarjeta de aprobación de la sesión de Devin Fix token refresh race, que pide ejecutar bun test, con los botones Denegar, Permitir y Denegar con nota" />
+  </div>
+</Frame>
+
+Tienes **Permitir**, **Permitir siempre … (esta sesión)**, **Denegar** y
+**Denegar con nota…**; qué hace cada uno está en [Responder desde el
+iPhone](/es/sessions/approvals).
+
+**Devin espera a tu teléfono.** Si se agota el tiempo, Devin pregunta en el
+Mac.
+
+### Permitir siempre {#always-allow}
+
+**Permitir siempre** dura **solo esta sesión**. Cuando la sesión termina, Nomo
+lo olvida y la siguiente sesión vuelve a preguntar.
+
+- **Un comando sencillo** se recuerda por su nombre. Si permites siempre
+  `touch b.txt`, Nomo también permite `touch c.txt`, pero no otro comando.
+- **Un comando encadenado** (uno con `&&`, `;`, `|` o `>`) sigue llegando a tu
+  teléfono cada vez, salvo que sea exactamente el mismo comando que ya
+  permitiste. Así, `touch x && rm -rf ~` te sigue preguntando.
+- **Cualquier otra cosa**, como escribir un archivo, queda permitida el resto
+  de la sesión.
+
+Nomo lo guarda en tu ordenador y nunca cambia los ajustes de Devin. Sigue
+funcionando aunque pongas en pausa las aprobaciones, hasta que termine la
+sesión.
+
+### Responder a las preguntas de Devin {#questions}
+
+Cuando Devin te hace una pregunta, la sesión muestra `Necesita una respuesta`.
+Mantenla pulsada y elige **Responder…**:
+
+1. Toca una opción. Si Devin lo permite, puedes elegir más de una.
+2. ¿Ninguna encaja? Toca **Otra respuesta…** y escribe la tuya.
+3. Toca **Enviar**.
+
+**Añadir nota** adjunta un comentario a tu respuesta. **Denegar** le dice a
+Devin que decidiste no responder.
+
+<Note>
+  **En el Mac, la pregunta aparece como rechazada. Es lo esperado.** Devin no
+  puede recibir una respuesta de Nomo directamente, así que Nomo envía tu
+  respuesta como el motivo para cerrar la pregunta de Devin. Verás la pregunta
+  marcada como **rejected**, con tu respuesta escrita al lado. Devin lee tu
+  respuesta y sigue.
+</Note>
+
+## Detener {#interrupt}
+
+Toca **[Detener](/es/sessions/list#interrupt-a-running-session)** en una sesión
+de Devin `En ejecución` para pararla. Necesita la etiqueta verde **⚡ Local**:
+tu iPhone y tu Mac en la misma red.
+
+Devin termina el paso en el que está y se detiene. No puede cortar un comando
+ni una respuesta a medias. La sesión pasa a `Listo` y Devin sigue abierto:
+envía un mensaje nuevo para continuar.
+
+## Devin Desktop {#devin-desktop}
+
+La documentación de Devin dice que el agente **Devin Local** de Devin Desktop
+usa el mismo motor que la CLI de Devin, así que Nomo funciona igual ahí. Nomo
+se ha probado con la CLI de Devin y con el servidor ACP de Devin.
+
+- **Tu teléfono responde primero.** Mientras tu teléfono tiene una solicitud de
+  permiso o una pregunta, Devin Desktop no muestra sus propios botones para
+  ella. Respóndela en el teléfono. Para responder en el Mac,
+  [pon en pausa las aprobaciones](/es/sessions/approvals#pausing-it) antes del
+  siguiente prompt de Devin.
+- **Qué llega a tu teléfono.** En el modo **Code**, el predeterminado de Devin
+  Desktop, Devin solo pregunta antes de ejecutar comandos, descargar páginas
+  web y escribir fuera de tu proyecto. Esas son las solicitudes que verás en
+  el teléfono.
+- **El Restricted Mode desactiva Nomo.** Desactiva los hooks, que Nomo
+  necesita, así que tus sesiones no llegan a tu teléfono hasta que salgas de
+  él.
+
+## Lo que esta versión no hace {#whats-different-for-devin}
+
+- **Sin sesiones de Devin Cloud.** Nomo solo muestra Devin cuando se ejecuta en
+  tu Mac.
+- **Sin “Responder” ni “Abrir en el Mac”.**
+  [Responder](/es/sessions/antigravity#reply-from-your-phone) y **Abrir en el
+  Mac** no están disponibles para Devin.
+
+## Algo no funciona {#troubleshooting}
+
+<AccordionGroup>
+  <Accordion title="El instalador dice que mi archivo de ajustes tenía comentarios">
+    No pasa nada. El archivo de ajustes de Devin no puede conservar comentarios
+    cuando Nomo le añade algo, así que el instalador guardó antes tu archivo
+    original, a su lado:
+
+    ```
+    ~/.config/devin/config.json.nomo-backup
+    ```
+
+    Todos tus ajustes siguen ahí. Solo se quitaron los comentarios.
+  </Accordion>
+
+  <Accordion title="Devin muestra mi respuesta como rechazada">
+    Es lo esperado. Nomo envía tu respuesta como el motivo para cerrar la
+    pregunta de Devin, así que el Mac muestra la pregunta como **rejected**, con
+    tu respuesta al lado. Devin lee tu respuesta y sigue.
+  </Accordion>
+
+  <Accordion title="Devin Desktop no muestra botones para una solicitud">
+    La tiene tu teléfono. Respóndela en el teléfono. Para responder en el Mac,
+    [pon en pausa las aprobaciones](/es/sessions/approvals#pausing-it) antes del
+    siguiente prompt de Devin.
+  </Accordion>
+</AccordionGroup>
+
+Todo lo demás —nada en tu teléfono, aprobaciones que dejaron de llegar, una
+sesión atascada, Detener— está en
+[Solución de problemas](/es/sessions/troubleshooting).
+
+## Detalles técnicos y seguridad {#technical-details-and-security}
+
+Nomo solo envía a tu teléfono lo que hace una sesión y lo que pregunta, con
+cifrado de extremo a extremo. Nunca cambia los ajustes de Devin, y si algo
+falla, Devin pregunta en tu Mac, como siempre.
+
+Cómo funciona por dentro está en el README del plugin: [cómo funciona Nomo con Devin](https://github.com/KarrixLee/nomo#devin-integration)
+y [hooks y seguridad](https://github.com/KarrixLee/nomo#devin-hooks).
