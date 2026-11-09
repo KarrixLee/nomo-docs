@@ -38,7 +38,31 @@ icon: "clock-rotate-left"
   - 要使用 Devin 的 sessions，電腦上需要安裝外掛程式 2.5.0。可以作為 Devin 外掛程式[安裝](/zh-Hant/setup/install)，也可以用 `bunx nomo-ai --devin`
 </Update>
 
-<Update label="2026年11月" description="2.4.0">
+<Update label="2026年11月" description="2.4.1">
+  ## 在 App 內傳送意見回饋
+
+  不必離開 Nomo 就能傳送意見回饋，有事發生時能感覺到輕輕一震，Cursor 的第三方模型出問題時也能即時知道。
+
+  **新增**
+
+  - 「設定 → 說明」中的「傳送意見回饋」：選一個主題，想寫什麼就寫什麼，想收到回覆的話再填上電子郵件
+  - 電腦選單中的「回報問題」會自動幫你填好這台電腦的資訊
+
+  **改進**
+
+  - 「設定」中的「說明」與「追蹤」兩個區塊更整齊了
+  - 「設定」更好用了：「通知」和「用量」排在最前面，主題選擇器加上了「系統」、「淺色」、「深色」圖示，「設定 → 用量」中還有一條範例長條，讓你看懂「已用」和「剩餘」是什麼意思
+  - **Cursor**：新增 **Third-party models** 狀態項目，資料來自 xAI 的狀態頁面，那裡出問題時會顯示出來並[提醒你](/zh-Hant/notifications)。如果你關掉了 Cursor 的所有提醒，這一項一開始也是關著的
+  - Nomo 現在會用觸覺回饋回應你：回覆送達、配對成功或失敗、切換「狀態 / 用量」或「已用 / 剩餘」這類選項等時候，你都能感覺到輕輕一震。可以在「設定 → 外觀 → 觸覺回饋」中關閉（預設開啟）
+  - 在「狀態」、「用量」、「用量速度」或「帳戶」小工具上點一下重新整理按鈕（↻）後，數字會變暗，直到新資料送達
+  - 小工具的重新整理更有效率，背景重新整理和下載更少，因此更省電
+
+  **修正**
+
+  - [用量速度](/zh-Hant/widgets#nomo-pace)和[帳戶](/zh-Hant/widgets#nomo-accounts)小工具現在會跟隨「設定 → 用量」中的「用量顯示方式」（已用 / 剩餘）
+</Update>
+
+<Update label="2026年11月8日" description="2.4.0">
   ## Pro 小工具、活動與多個帳戶
 
   <Frame>
@@ -69,7 +93,7 @@ icon: "clock-rotate-left"
   - 要使用活動功能，電腦上需要安裝外掛程式 2.4.0
 </Update>
 
-<Update label="2026年11月" description="2.3.6">
+<Update label="2026年11月1日" description="2.3.6">
   ## 更新提示、你的方案和最新限額
 
   **新增**
@@ -101,7 +125,7 @@ icon: "clock-rotate-left"
   - **Claude**：Free 帳戶現在會顯示空白的列，而不是載入錯誤。Design、Cowork、Routines 等 Claude 產品的限額不會再顯示成模型限額
 </Update>
 
-<Update label="2026年10月" description="2.3.5">
+<Update label="2026年10月28日" description="2.3.5">
   ## Antigravity sessions
 
   <Frame>
@@ -186,7 +210,7 @@ icon: "clock-rotate-left"
   - 登入 Claude、Codex、Cursor、Gemini 或 Grok 時，每次切換應用程式頁面都會重新載入，需要雙重驗證碼的登入因此永遠無法完成。現在離開去取得驗證碼，回來後可以接著登入
 </Update>
 
-<Update label="2026年10月18日" description="2.3.1">
+<Update label="2026年10月17日" description="2.3.1">
   ## 用量小工具上的 Grok Bot
 
   **新增**
@@ -199,7 +223,7 @@ icon: "clock-rotate-left"
   - Cursor 用量不再預設以月為週期 — X Subscription 方案以週計算內含用量，其他方案以月計算，文字兩種都適用
 </Update>
 
-<Update label="2026年10月" description="2.3">
+<Update label="2026年10月15日" description="2.3">
   ## Cursor 與停止這一輪
 
   **新增**
@@ -231,7 +255,7 @@ icon: "clock-rotate-left"
   - 「狀態」分頁、提醒和小工具改為跟隨 xAI 新的狀態頁面。設定成 xAI 某一個 API 的小工具，不管你選哪一個，顯示的都是清單裡的第一個 API
 </Update>
 
-<Update label="2026年10月10日" description="2.2.2">
+<Update label="2026年10月11日" description="2.2.2">
   ## 更多回覆方式
 
   **新增**
@@ -254,7 +278,7 @@ icon: "clock-rotate-left"
   - 用量可能卡在一份舊的快照上，卻繼續把它當成最新的顯示
 </Update>
 
-<Update label="2026年9月21日" description="2.2.1">
+<Update label="2026年9月19日" description="2.2.1">
   ## 修正
 
   **修正**
@@ -263,7 +287,7 @@ icon: "clock-rotate-left"
   - Claude 和 Cursor 的運作紀錄回到「狀態」分頁和小工具上了
 </Update>
 
-<Update label="2026年8月" description="2.2">
+<Update label="2026年8月23日" description="2.2">
   ## OpenCode
 
   **新增**
@@ -289,7 +313,7 @@ icon: "clock-rotate-left"
   - 已配對電腦上顯示的「本機」被截斷成一個字
 </Update>
 
-<Update label="2026年8月19日" description="2.1.1">
+<Update label="2026年8月18日" description="2.1.1">
   ## 修正與打磨
 
   **新增**
@@ -329,7 +353,7 @@ icon: "clock-rotate-left"
   - 小工具、通知與即時動態的版面與穩定性
 </Update>
 
-<Update label="2026年7月14日" description="2.0">
+<Update label="2026年7月16日" description="2.0">
   ## Sessions
 
   **新增**

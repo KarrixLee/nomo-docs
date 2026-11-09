@@ -38,7 +38,31 @@ icon: "clock-rotate-left"
   - Devin 会话需要电脑上安装插件 2.5.0。可以作为 Devin 插件[安装](/zh-Hans/setup/install)，也可以用 `bunx nomo-ai --devin`
 </Update>
 
-<Update label="2026年11月" description="2.4.0">
+<Update label="2026年11月" description="2.4.1">
+  ## 在 App 内发送反馈
+
+  不用离开 Nomo 就能发送反馈，有事发生时能感到轻轻一震，Cursor 的第三方模型出故障时也能及时知道。
+
+  **新增**
+
+  - **设置 → 帮助**中的**发送反馈**：选一个主题，想写什么就写什么，想收到回复的话再填上邮箱
+  - 电脑菜单中的**报告问题**会自动替你填好这台电脑的信息
+
+  **改进**
+
+  - 设置中的**帮助**和**关注**两个部分更整洁了
+  - 设置更好用了：**通知**和**用量**排在最前面，主题选择器带有**系统**、**浅色**、**深色**图标，**设置 → 用量**里还有一条示例用量条，让你看懂**已用**和**剩余**是什么意思
+  - **Cursor**：新增 **Third-party models** 状态行，数据来自 xAI 的状态页面，那里出故障时会显示出来并[提醒你](/zh-Hans/notifications)。如果你关掉了 Cursor 的全部提醒，这一项一开始也是关着的
+  - Nomo 现在会用触感反馈回应你：回复送达、配对成功或失败、切换**状态 / 用量**或**已用 / 剩余**这类选项等时候，你都能感到轻轻一震。可以在**设置 → 外观 → 触感反馈**中关闭（默认开启）
+  - 在**状态**、**用量**、**用量速度**或**账户**小组件上轻点刷新按钮（↻）后，数字会变暗，直到新数据送达
+  - 小组件的刷新更高效，后台刷新和下载更少，因此更省电
+
+  **修复**
+
+  - [用量速度](/zh-Hans/widgets#nomo-pace)和[账户](/zh-Hans/widgets#nomo-accounts)小组件现在跟随**设置 → 用量**中的**用量显示方式（已用 / 剩余）**
+</Update>
+
+<Update label="2026年11月8日" description="2.4.0">
   ## Pro 小组件、活动和多个账户
 
   <Frame>
@@ -69,7 +93,7 @@ icon: "clock-rotate-left"
   - 活动功能需要电脑上安装插件 2.4.0
 </Update>
 
-<Update label="2026年11月" description="2.3.6">
+<Update label="2026年11月1日" description="2.3.6">
   ## 更新提示、你的套餐和最新限额
 
   **新增**
@@ -101,7 +125,7 @@ icon: "clock-rotate-left"
   - **Claude**：Free 账户现在显示空行，而不是加载错误。Design、Cowork、Routines 等 Claude 产品的限额不会再显示成模型限额
 </Update>
 
-<Update label="2026年10月" description="2.3.5">
+<Update label="2026年10月28日" description="2.3.5">
   ## Antigravity 会话
 
   <Frame>
@@ -186,7 +210,7 @@ icon: "clock-rotate-left"
   - 登录 Claude、Codex、Cursor、Gemini 或 Grok 时，每次切换应用页面都会重新加载，需要双重验证码的登录因此永远无法完成。现在离开去取验证码，回来后可以接着登录
 </Update>
 
-<Update label="2026年10月18日" description="2.3.1">
+<Update label="2026年10月17日" description="2.3.1">
   ## 用量小组件上的 Grok Bot
 
   **新增**
@@ -199,7 +223,7 @@ icon: "clock-rotate-left"
   - Cursor 用量不再默认按月计算周期——X Subscription 套餐按周计算内含用量，其他套餐按月，文案两种都适用
 </Update>
 
-<Update label="2026年10月" description="2.3">
+<Update label="2026年10月15日" description="2.3">
   ## Cursor 与停止这一轮
 
   **新增**
@@ -231,7 +255,7 @@ icon: "clock-rotate-left"
   - “状态”标签页、提醒和小组件改为跟随 xAI 的新状态页。此前，设成 xAI 某个 API 的小组件，不管你选的是哪一个，显示的都是列表里的第一个 API
 </Update>
 
-<Update label="2026年10月10日" description="2.2.2">
+<Update label="2026年10月11日" description="2.2.2">
   ## 更多回答方式
 
   **新增**
@@ -254,7 +278,7 @@ icon: "clock-rotate-left"
   - 用量可能卡在一份旧快照上，还一直把它当作最新数据显示
 </Update>
 
-<Update label="2026年9月21日" description="2.2.1">
+<Update label="2026年9月19日" description="2.2.1">
   ## 修复
 
   **修复**
@@ -263,7 +287,7 @@ icon: "clock-rotate-left"
   - Claude 和 Cursor 的可用率历史重新出现在“状态”标签页和小组件上
 </Update>
 
-<Update label="2026年8月" description="2.2">
+<Update label="2026年8月23日" description="2.2">
   ## OpenCode
 
   **新增**
@@ -289,7 +313,7 @@ icon: "clock-rotate-left"
   - 已配对电脑上显示的“本地”被截断成一个字
 </Update>
 
-<Update label="2026年8月19日" description="2.1.1">
+<Update label="2026年8月18日" description="2.1.1">
   ## 修复与打磨
 
   **新增**
@@ -329,7 +353,7 @@ icon: "clock-rotate-left"
   - 小组件、通知和实时活动的布局与稳定性问题
 </Update>
 
-<Update label="2026年7月14日" description="2.0">
+<Update label="2026年7月16日" description="2.0">
   ## 会话
 
   **新增**
