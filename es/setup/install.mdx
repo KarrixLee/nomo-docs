@@ -376,8 +376,8 @@ Para scripts y CI:
 | Opción | |
 | --- | --- |
 | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--grokbot` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
-| `--all` | todos, los haya encontrado o no; salvo Cursor, Antigravity y Grok Bot, que se omiten si no están en este ordenador (nombra `--cursor`, `--antigravity` o `--grokbot` para intentarlo igualmente) |
-| `-y`, `--yes` | sin selector; instala todo lo que encuentre |
+| `--all` | todos, los haya encontrado o no; salvo Cursor y Antigravity, que se omiten si no están en este ordenador (nombra `--cursor` o `--antigravity` para intentarlo igualmente). Grok Bot solo se añade si es el único agente de este Mac |
+| `-y`, `--yes` | sin selector; instala todo lo que encuentre. Grok Bot solo se añade si es el único agente de este Mac |
 | `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
 | `--global` | añade también el comando corto `nomo`, sin preguntar. Consulta [Desde Terminal](/es/sessions/commands#terminal) |
 | `uninstall` | con `--cursor`, `--antigravity` o `--grokbot`: quita Nomo de ese agente (`--uninstall` también funciona). Indica el agente: nunca lo adivina. Consulta [uninstall](/es/sessions/commands#uninstall) |
@@ -389,8 +389,16 @@ Codex. Tienes más comandos de Terminal en
 [Desde Terminal](/es/sessions/commands#terminal).
 
 `--grokbot` es para un Mac en el que la app Grok Bot es tu única app de IA.
-Añade una pequeña tarea cada hora en lugar de hooks, y solo funciona en macOS.
+Solo funciona en macOS. En lugar de hooks, añade una pequeña tarea que cuenta tus
+días con Grok Bot al iniciar sesión y una vez cada hora, y luego se detiene.
 Consulta [Usar Grok Bot](/es/sessions/grok-bot).
+
+Con `--all` o `-y`, Grok Bot se queda fuera si hay otro agente en este Mac,
+porque ese agente ya envía tu actividad. El instalador lo dice:
+
+```
+Grok Bot left out — another agent here already sends its activity. Name it with --grokbot to install it anyway.
+```
 
 ## Actualizaciones {#updating}
 

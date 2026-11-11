@@ -51,7 +51,7 @@ Nomo 不会把 Grok Bot 的聊天显示成会话。Grok Bot 不在会话列表�
 
     这需要 bun，或者 Node.js 18 及更高版本。见[安装](/zh-Hans/setup/install)。
 
-    它会加一个小小的后台任务。这个任务在你登录时运行，之后每小时运行一次，统计你用 Grok Bot 的日子。你可能会看到一条 macOS 通知，写着**已添加后台项目**。那就是这个任务。
+    它会加一个小小的后台任务。这个任务在你登录时、之后每小时一次，统计你用 Grok Bot 的日子，统计完就停下。如果 Nomo 已经在为其他智能体运行，这个任务什么也不做。你可能会看到一条 macOS 通知，写着**已添加后台项目**。那就是这个任务。
   </Step>
 
   <Step title="配对 iPhone">
@@ -86,6 +86,7 @@ Nomo 不会把 Grok Bot 的聊天显示成会话。Grok Bot 不在会话列表�
 ## 限制
 
 - Mac 上没有 Grok Bot 应用，就没有可统计的内容。
+- 只有当天你给 Grok Bot 发过消息，那一天才算。只有定时例程运行不算。
 - 你在手机或网页版上的聊天也会算进去，只要 Mac 上的应用已经同步过来。时不时打开一下 Mac 上的应用。
 - Mac 上的应用每个 Bot 只保留最近的消息。所以第一次可能看不到较早的日子。
 - Grok Bot 没有 Token 数。它会给 Nomo 活动增加天数和时长，但不会给 Nomo Token 增加任何数字。
@@ -98,6 +99,6 @@ Nomo 不会把 Grok Bot 的聊天显示成会话。Grok Bot 不在会话列表�
 bunx nomo-ai uninstall --grokbot
 ```
 
-它只移除那个后台任务。你的 iPhone 仍保持配对。如果也想断开这台 Mac 和 iPhone 的连接，运行 `bunx nomo-ai unpair`，之前或之后都可以。
+它只移除那个后台任务。就算你删掉了 `~/.nomo` 文件夹，这条命令也能用。你的 iPhone 仍保持配对。如果也想断开这台 Mac 和 iPhone 的连接，运行 `bunx nomo-ai unpair`，之前或之后都可以。
 
 离开你 Mac 的只有计数，而且是端到端加密的。插件的 README 写明了[哪些内容会离开你的电脑](https://github.com/KarrixLee/nomo#what-leaves-your-computer)，以及[后台任务做了什么](https://github.com/KarrixLee/nomo#grok-bot-background-job)。

@@ -376,8 +376,8 @@ For scripting and CI:
 | Flag | |
 | --- | --- |
 | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--grokbot` | install exactly these — naming any one of them skips the picker |
-| `--all` | all of them, detected or not — except Cursor, Antigravity and Grok Bot, which are skipped when they aren't on this machine (name `--cursor`, `--antigravity` or `--grokbot` to try anyway) |
-| `-y`, `--yes` | no picker; install everything detected |
+| `--all` | all of them, detected or not — except Cursor and Antigravity, which are skipped when they aren't on this machine (name `--cursor` or `--antigravity` to try anyway). Grok Bot is added only when it's the only agent on this Mac |
+| `-y`, `--yes` | no picker; install everything detected. Grok Bot is added only when it's the only agent on this Mac |
 | `-n`, `--dry-run` | print the commands, run nothing |
 | `--global` | also add the short `nomo` command, without asking. See [From Terminal](/sessions/commands#terminal) |
 | `uninstall` | with `--cursor`, `--antigravity` or `--grokbot`: remove Nomo from that agent (`--uninstall` works too). Name the agent — it never guesses. See [uninstall](/sessions/commands#uninstall) |
@@ -388,9 +388,17 @@ Terminal, or `/nomo-pair`, `/nomo-cc:pair` in Claude Code and `$nomo-pair` in
 Codex. More Terminal commands are in
 [From Terminal](/sessions/commands#terminal).
 
-`--grokbot` is for a Mac where the Grok Bot app is your only AI app. It adds a
-small hourly job instead of hooks, and works on macOS only. See
+`--grokbot` is for a Mac where the Grok Bot app is your only AI app. It works on
+macOS only. Instead of hooks, it adds a small job that counts your Grok Bot days
+when you log in and once an hour, then stops. See
 [Using Grok Bot](/sessions/grok-bot).
+
+With `--all` or `-y`, Grok Bot is left out when another agent is on this Mac,
+because that agent already sends your activity. The installer says:
+
+```
+Grok Bot left out — another agent here already sends its activity. Name it with --grokbot to install it anyway.
+```
 
 ## Updating
 

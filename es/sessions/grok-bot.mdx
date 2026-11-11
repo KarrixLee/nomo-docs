@@ -59,8 +59,9 @@ Nomo 2.4.2 y Nomo Pro.
     Para esto necesitas bun o Node.js 18 o posterior. Consulta
     [Instalación](/es/setup/install).
 
-    Añade una pequeña tarea en segundo plano. La tarea se ejecuta al iniciar
-    sesión y una vez cada hora, y cuenta tus días con Grok Bot. Puede que veas
+    Añade una pequeña tarea en segundo plano. Al iniciar sesión, y luego una
+    vez cada hora, la tarea cuenta tus días con Grok Bot y se detiene. Si Nomo
+    ya está en marcha para otro agente, la tarea no hace nada. Puede que veas
     un aviso de macOS que dice **Background Items Added**. Es esta tarea.
   </Step>
 
@@ -107,6 +108,8 @@ abajo.
 ## Límites
 
 - Sin la app de Grok Bot en un Mac, no hay nada que contar.
+- Un día cuenta solo si ese día le enviaste un mensaje a Grok Bot. Las rutinas
+  programadas por sí solas no cuentan.
 - Los chats que tuviste en el teléfono o en la web también cuentan, cuando la
   app del Mac los haya sincronizado. Abre la app del Mac de vez en cuando.
 - La app del Mac solo guarda los mensajes recientes de cada Bot. Por eso, los
@@ -124,7 +127,8 @@ abajo.
 bunx nomo-ai uninstall --grokbot
 ```
 
-Esto solo quita la tarea en segundo plano. Tu iPhone sigue vinculado. Para
+Esto solo quita la tarea en segundo plano. Funciona aunque hayas borrado la
+carpeta `~/.nomo`. Tu iPhone sigue vinculado. Para
 desconectar también este Mac de tu iPhone, ejecuta `bunx nomo-ai unpair`, antes
 o después.
 

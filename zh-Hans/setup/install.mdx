@@ -310,15 +310,21 @@ npx nomo-ai
 | 选项 | |
 | --- | --- |
 | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--grokbot` | 只装这些——只要指定其中任意一个，就会跳过选择界面 |
-| `--all` | 全部都装，无论有没有找到——只有 Cursor、Antigravity 和 Grok Bot 例外：这台电脑上没有它们时会跳过（想照装就指定 `--cursor`、`--antigravity` 或 `--grokbot`） |
-| `-y`、`--yes` | 不出选择界面，找到多少装多少 |
+| `--all` | 全部都装，无论有没有找到——只有 Cursor 和 Antigravity 例外：这台电脑上没有它们时会跳过（想照装就指定 `--cursor` 或 `--antigravity`）。只有当 Grok Bot 是这台 Mac 上唯一的智能体时，才会装 Grok Bot |
+| `-y`、`--yes` | 不出选择界面，找到多少装多少。只有当 Grok Bot 是这台 Mac 上唯一的智能体时，才会装 Grok Bot |
 | `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
 | `--global` | 同时加上简短的 `nomo` 命令，不再询问。见[终端命令](/zh-Hans/sessions/commands#terminal) |
 | `uninstall` | 配合 `--cursor`、`--antigravity` 或 `--grokbot` 使用：从那个智能体里移除 Nomo（写成 `--uninstall` 也可以）。必须指定智能体——它从不猜。见 [uninstall](/zh-Hans/sessions/commands#uninstall) |
 
 它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——在终端里运行 `bunx nomo-ai pair`，或者用 `/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`。更多终端命令见[终端命令](/zh-Hans/sessions/commands#terminal)。
 
-`--grokbot` 适用于只用 Grok Bot 应用这一个 AI 应用的 Mac。它加的不是 hook，而是一个每小时运行一次的小任务，而且只支持 macOS。见[搭配 Grok Bot 使用](/zh-Hans/sessions/grok-bot)。
+`--grokbot` 适用于只用 Grok Bot 应用这一个 AI 应用的 Mac。它只支持 macOS。它加的不是 hook，而是一个小任务：在你登录时、之后每小时一次，统计你用 Grok Bot 的日子，统计完就停下。见[搭配 Grok Bot 使用](/zh-Hans/sessions/grok-bot)。
+
+用 `--all` 或 `-y` 时，如果这台 Mac 上还有其他智能体，就不会装 Grok Bot，因为那个智能体已经在发送你的活动。安装工具会显示：
+
+```
+Grok Bot left out — another agent here already sends its activity. Name it with --grokbot to install it anyway.
+```
 
 ## 更新 {#updating}
 

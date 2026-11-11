@@ -363,8 +363,8 @@ npx nomo-ai
 | 옵션 | |
 | --- | --- |
 | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--grokbot` | 그것들만 설치합니다. 하나라도 지정하면 선택 화면을 건너뜁니다 |
-| `--all` | 찾아냈든 아니든 전부. 단, Cursor, Antigravity, Grok Bot은 이 컴퓨터에 없으면 건너뜁니다(그래도 시도하려면 `--cursor`, `--antigravity`, `--grokbot`을 지정하십시오) |
-| `-y`, `--yes` | 선택 화면 없이, 찾아낸 것을 모두 설치합니다 |
+| `--all` | 찾아냈든 아니든 전부. 단, Cursor와 Antigravity는 이 컴퓨터에 없으면 건너뜁니다(그래도 시도하려면 `--cursor`나 `--antigravity`를 지정하십시오). Grok Bot은 이 Mac의 에이전트가 Grok Bot뿐일 때만 추가됩니다 |
+| `-y`, `--yes` | 선택 화면 없이, 찾아낸 것을 모두 설치합니다. Grok Bot은 이 Mac의 에이전트가 Grok Bot뿐일 때만 추가됩니다 |
 | `-n`, `--dry-run` | 실행할 명령을 출력만 하고 아무것도 실행하지 않습니다 |
 | `--global` | 묻지 않고 짧은 `nomo` 명령도 추가합니다. [터미널 명령](/ko/sessions/commands#terminal)을 참고하십시오 |
 | `uninstall` | `--cursor`, `--antigravity`, `--grokbot` 중 하나와 함께 쓰면 해당 에이전트에서 Nomo를 제거합니다(`--uninstall`도 됩니다). 에이전트를 지정해야 하며, 추측하지 않습니다. [uninstall](/ko/sessions/commands#uninstall)을 참고하십시오 |
@@ -375,9 +375,17 @@ npx nomo-ai
 Codex에서는 `$nomo-pair`입니다. 다른 터미널 명령은
 [터미널 명령](/ko/sessions/commands#terminal)에 있습니다.
 
-`--grokbot`은 Grok Bot 앱만 AI 앱으로 쓰는 Mac을 위한 옵션입니다. Hook 대신
-1시간마다 도는 작은 작업을 추가하며, macOS에서만 동작합니다.
+`--grokbot`은 Grok Bot 앱만 AI 앱으로 쓰는 Mac을 위한 옵션입니다. macOS에서만
+동작합니다. Hook 대신 작은 작업을 추가하는데, 이 작업은 로그인할 때와 1시간마다
+Grok Bot을 쓴 날을 세고 바로 멈춥니다.
 [Grok Bot 사용하기](/ko/sessions/grok-bot)를 참고하십시오.
+
+`--all`이나 `-y`를 쓰면, 이 Mac에 다른 에이전트가 있을 때 Grok Bot은 빠집니다.
+그 에이전트가 이미 활동을 보내기 때문입니다. 설치 도구는 이렇게 알려 줍니다.
+
+```
+Grok Bot left out — another agent here already sends its activity. Name it with --grokbot to install it anyway.
+```
 
 ## 업데이트 {#updating}
 

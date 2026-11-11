@@ -57,9 +57,10 @@ These steps are for a Mac where Grok Bot is your only AI app. You need Nomo
     You need bun or Node.js 18 or later for this. See
     [Installation](/setup/install).
 
-    It adds a small background job. The job runs when you log in and once an
-    hour, and counts your Grok Bot days. You may see a macOS notice that says
-    **Background Items Added**. That's this job.
+    It adds a small background job. When you log in, and then once an hour,
+    the job counts your Grok Bot days and stops. If Nomo is already running
+    for another agent, the job does nothing. You may see a macOS notice that
+    says **Background Items Added**. That's this job.
   </Step>
 
   <Step title="Pair your iPhone">
@@ -103,6 +104,8 @@ says `Sent your activity summary (heatmap and streak) to your phone.`, open the
 ## Limits
 
 - Without the Grok Bot app on a Mac, there's nothing to count.
+- A day counts only when you sent Grok Bot a message that day. Scheduled
+  routines alone don't count.
 - Chats you had on your phone or the web count too, once the Mac app has
   synced them. Open the Mac app now and then.
 - The Mac app keeps only recent messages for each Bot. So older days may not
@@ -120,7 +123,8 @@ says `Sent your activity summary (heatmap and streak) to your phone.`, open the
 bunx nomo-ai uninstall --grokbot
 ```
 
-This removes only the background job. Your iPhone stays paired. To also
+This removes only the background job. It works even if you deleted the
+`~/.nomo` folder. Your iPhone stays paired. To also
 disconnect this Mac from your iPhone, run `bunx nomo-ai unpair`, before or
 after.
 
