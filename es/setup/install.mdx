@@ -235,12 +235,30 @@ comando status te avisa si son más antiguos.
         </Warning>
       </Step>
 
-      <Step title="Comprueba">
+      <Step title="Vincula">
         En Cursor, escribe `/` para elegir una skill, y ejecuta:
 
         ```
-        /nomo-status
+        /nomo-pair
         ```
+
+        Muestra un código QR: escanéalo con la app de Nomo. Donde no puedas
+        abrir un navegador, `/nomo-pair code` te da un código corto para
+        escribirlo. Las dos vías están explicadas paso a paso en
+        [Vinculación](/es/setup/pairing).
+
+        La vinculación se comparte entre los agentes de un mismo Mac. Un
+        ordenador ya vinculado para Claude Code, Codex u OpenCode no necesita
+        vincularse otra vez para Cursor: basta con instalar, y puedes saltarte
+        este paso.
+      </Step>
+
+      <Step title="Muestra la pestaña Cursor">
+        En la app, abre el ordenador. Las sesiones de Cursor están bajo la
+        pestaña **Cursor** de su panel de sesiones.
+
+        El panel muestra hasta tres pestañas de agente. Si Cursor no es una de
+        ellas, toca el botón **+** (**Elegir agentes**) y actívalo.
       </Step>
     </Steps>
 
@@ -249,14 +267,6 @@ comando status te avisa si son más antiguos.
       `/nomo-status`, `/nomo-reset` y `/nomo-unpair`. Las cuatro están en
       [Comandos](/es/sessions/commands).
     </Tip>
-
-    Para quitarlo más adelante:
-
-    ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
-    ```
-
-    Después reinicia Cursor.
   </Tab>
 
   <Tab title="Antigravity" icon="/images/providers/antigravity.png">
@@ -298,24 +308,46 @@ comando status te avisa si son más antiguos.
         Antigravity pregunte si ejecuta un comando de Nomo, elige **Allow**
         (permitir). Después escanea el código QR con Nomo en tu iPhone.
 
+        Deberías ver en Antigravity: “Done! This computer is connected to your
+        phone.” (listo, este ordenador está conectado a tu teléfono).
+
+        En la app de escritorio de Antigravity, el primer comando de Nomo puede
+        mostrar una línea que dice `operation not permitted`. Es normal:
+        Antigravity lo vuelve a intentar fuera de su sandbox por sí solo. Solo
+        espera.
+
         ¿Ya vinculaste el ordenador desde otro agente? Escribe `/nomo-status`
         para comprobarlo.
+      </Step>
+
+      <Step title="Envía un mensaje en Antigravity">
+        Empieza un chat y envía cualquier cosa.
+
+        Deberías ver la sesión en Nomo, en la pestaña **Antigravity** de tu
+        ordenador. ¿No hay pestaña Antigravity? Toca el botón **+** (**Elegir
+        agentes**) y activa Antigravity.
+
+        <Frame caption="Elegir agentes, desde el botón +. Antigravity está marcado, así que tiene su propia pestaña.">
+          <div className="device-frame">
+            <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="El menú Elegir agentes con Claude Code, Codex y Antigravity marcados, y OpenCode y Cursor sin marcar" />
+            <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="El menú Elegir agentes con Claude Code, Codex y Antigravity marcados, y OpenCode y Cursor sin marcar" />
+          </div>
+        </Frame>
       </Step>
     </Steps>
 
     <Warning>
-      No importes en Antigravity el plugin de Nomo para Claude Code: cada sesión
-      saldría dos veces. Si lo hiciste, ejecuta `agy plugin uninstall nomo-cc` y
-      reinicia Antigravity.
+      No importes en Antigravity el plugin de Nomo para Claude Code (por
+      ejemplo, con `agy plugin import claude`): cada sesión saldría dos veces.
+      Si lo hiciste, el instalador te avisa:
+
+      ```
+      ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+      ```
+
+      Para arreglarlo, ejecuta `agy plugin uninstall nomo-cc` y reinicia
+      Antigravity.
     </Warning>
-
-    Para quitarlo más adelante:
-
-    ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
-    ```
-
-    Después reinicia Antigravity.
   </Tab>
 </Tabs>
 
@@ -347,6 +379,7 @@ Para scripts y CI:
 | `--all` | los cinco, los haya encontrado o no; salvo Cursor y Antigravity, que se omiten si no están en este ordenador (nombra `--cursor` o `--antigravity` para intentarlo igualmente) |
 | `-y`, `--yes` | sin selector; instala todo lo que encuentre |
 | `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
+| `--uninstall` | con `--cursor` o `--antigravity`: quita Nomo de ese agente. Indica el agente: nunca lo adivina. Consulta [uninstall](/es/sessions/commands#uninstall) |
 
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
 agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
@@ -354,66 +387,11 @@ agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
 
 ## Actualizaciones {#updating}
 
-El mismo comando actualiza: un agente que ya tiene Nomo aparece como
-actualización en lugar de como instalación. Solo se ejecutan las de OpenCode, Cursor y
-Antigravity; las otras dos se imprimen para que las ejecutes tú.
-
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
-
-    La actualización automática viene desactivada para los marketplaces de
-    terceros, así que nada mueve una instalación por su cuenta. Para activarla:
-    `/plugin` → **Marketplaces** → el de Nomo → **Enable auto-update**.
-  </Tab>
-
-  <Tab title="Codex" icon="/images/codex.svg">
-    Normalmente no hay nada que ejecutar. Codex lee el plugin en vivo desde su
-    ruta, así que traer los cambios en ese clon es toda la actualización, y no
-    existe ningún verbo `codex plugin update`.
-
-    Si añadiste el marketplace desde git, Codex guarda una instantánea, y
-    refrescarla es la actualización:
-
-    ```bash
-    codex plugin marketplace upgrade <nombre-del-marketplace>
-    ```
-
-    El nombre es aquel con el que lo añadiste, no necesariamente `nomo`.
-  </Tab>
-
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    De esta se encarga el instalador, en una instalación global. Y también
-    [`/nomo-update`](/es/sessions/commands#update) desde dentro de OpenCode: la
-    única forma de actualizar una instalación con `--project`, ejecutándolo en
-    ese proyecto.
-
-    En ambos casos, reinicia OpenCode después: los plugins se importan una sola
-    vez, al arrancar el servidor.
-  </Tab>
-
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    El mismo comando con el que lo instalaste:
-
-    ```bash
-    bunx nomo-ai --cursor
-    ```
-
-    Reinicia Cursor después, y cualquier sesión de `cursor-agent` abierta.
-  </Tab>
-
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    El mismo comando con el que lo instalaste:
-
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
-
-    Reinicia Antigravity después, y cualquier sesión de `agy` abierta.
-  </Tab>
-</Tabs>
+<Note>
+  Para actualizar o desinstalar, consulta [Comandos → update](/es/sessions/commands#update)
+  y [Comandos → uninstall](/es/sessions/commands#uninstall). Todos los agentes
+  están ahí, cada uno en su pestaña.
+</Note>
 
 ## Qué hace el plugin
 

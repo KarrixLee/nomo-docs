@@ -240,12 +240,28 @@ ones.
         </Warning>
       </Step>
 
-      <Step title="Confirm">
+      <Step title="Pair">
         In Cursor, type `/` to pick a skill, and run:
 
         ```
-        /nomo-status
+        /nomo-pair
         ```
+
+        It shows a QR code — scan it with the Nomo app. Where you can't open a
+        browser, `/nomo-pair code` gives you a short code to type instead. Both
+        paths are walked through in [Pairing](/setup/pairing).
+
+        Pairing is shared across agents on one Mac. A computer already paired
+        for Claude Code, Codex or OpenCode doesn't need pairing again for
+        Cursor — installing is enough, and you can skip this step.
+      </Step>
+
+      <Step title="Show the Cursor tab">
+        In the app, open the computer. Cursor sessions sit under a **Cursor**
+        tab in its session drawer.
+
+        The drawer shows up to three agent tabs. If Cursor isn't one of them,
+        tap the **+** button (**Choose agents**) and turn it on.
       </Step>
     </Steps>
 
@@ -254,14 +270,6 @@ ones.
       `/nomo-status`, `/nomo-reset` and `/nomo-unpair`. All four are in
       [Commands](/sessions/commands).
     </Tip>
-
-    To remove it later:
-
-    ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
-    ```
-
-    Then restart Cursor.
   </Tab>
 
   <Tab title="Antigravity" icon="/images/providers/antigravity.png">
@@ -302,23 +310,43 @@ ones.
         asks to run a Nomo command, choose **Allow**. Then scan the QR code with
         Nomo on your iPhone.
 
+        You should see, in Antigravity: "Done! This computer is connected to
+        your phone."
+
+        In the Antigravity desktop app, the first Nomo command may show one line
+        that says `operation not permitted`. That's normal — Antigravity tries
+        again outside its sandbox by itself. Just wait.
+
         Already paired from another agent? Type `/nomo-status` instead to check.
+      </Step>
+
+      <Step title="Send a message in Antigravity">
+        Start a chat and send anything.
+
+        You should see the session appear in Nomo, under the **Antigravity** tab
+        of your computer. No Antigravity tab? Tap the **+** button (**Choose
+        agents**) and turn Antigravity on.
+
+        <Frame caption="Choose agents, from the + button. Antigravity is ticked, so it gets its own tab.">
+          <div className="device-frame">
+            <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="The Choose agents menu with Claude Code, Codex and Antigravity ticked, and OpenCode and Cursor unticked" />
+            <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="The Choose agents menu with Claude Code, Codex and Antigravity ticked, and OpenCode and Cursor unticked" />
+          </div>
+        </Frame>
       </Step>
     </Steps>
 
     <Warning>
-      Don't import Nomo's Claude Code plugin into Antigravity — every session
-      would show up twice. If you did, run `agy plugin uninstall nomo-cc` and
-      restart Antigravity.
+      Don't import Nomo's Claude Code plugin into Antigravity (for example with
+      `agy plugin import claude`) — every session would show up twice. If you
+      did, the installer warns you:
+
+      ```
+      ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+      ```
+
+      To fix it, run `agy plugin uninstall nomo-cc` and restart Antigravity.
     </Warning>
-
-    To remove it later:
-
-    ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
-    ```
-
-    Then restart Antigravity.
   </Tab>
 </Tabs>
 
@@ -351,6 +379,7 @@ For scripting and CI:
 | `--all` | all five, detected or not — except Cursor and Antigravity, which are skipped when they aren't on this machine (name `--cursor` or `--antigravity` to try anyway) |
 | `-y`, `--yes` | no picker; install everything detected |
 | `-n`, `--dry-run` | print the commands, run nothing |
+| `--uninstall` | with `--cursor` or `--antigravity`: remove Nomo from that agent. Name the agent — it never guesses. See [uninstall](/sessions/commands#uninstall) |
 
 It never pairs your phone. Finish exactly as the steps above describe: restart
 the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
@@ -358,65 +387,11 @@ the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
 
 ## Updating
 
-The same command updates: an agent that already has Nomo shows up as an update
-rather than an install. Only OpenCode's, Cursor's and Antigravity's run — the
-other two are printed for you.
-
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
-
-    Auto-update defaults off for third-party marketplaces, so nothing moves an
-    install on its own. To turn it on: `/plugin` → **Marketplaces** → Nomo's →
-    **Enable auto-update**.
-  </Tab>
-
-  <Tab title="Codex" icon="/images/codex.svg">
-    Usually nothing to run. Codex reads the plugin live from its path, so
-    pulling that checkout is the whole update — and there is no
-    `codex plugin update` verb.
-
-    If you added the marketplace from git, Codex holds a snapshot instead, and
-    refreshing it is the update:
-
-    ```bash
-    codex plugin marketplace upgrade <marketplace-name>
-    ```
-
-    The name is whatever you added it as, not necessarily `nomo`.
-  </Tab>
-
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    The installer does it for a global install. So does
-    [`/nomo-update`](/sessions/commands#update) from inside OpenCode — the only
-    way to update a `--project` install, run in that project.
-
-    Either way, restart OpenCode afterwards — plugins are imported once at
-    server start.
-  </Tab>
-
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    The same command that installed it:
-
-    ```bash
-    bunx nomo-ai --cursor
-    ```
-
-    Restart Cursor afterwards, and any open `cursor-agent` session.
-  </Tab>
-
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    The same command that installed it:
-
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
-
-    Restart Antigravity afterwards, and any open `agy` session.
-  </Tab>
-</Tabs>
+<Note>
+  To update or uninstall, see [Commands → update](/sessions/commands#update)
+  and [Commands → uninstall](/sessions/commands#uninstall). Every agent is
+  there, on its own tab.
+</Note>
 
 ## What the plugin does
 

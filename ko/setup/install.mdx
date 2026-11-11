@@ -226,12 +226,28 @@ icon: "puzzle-piece"
         </Warning>
       </Step>
 
-      <Step title="확인">
+      <Step title="페어링">
         Cursor에서 `/`를 입력해 Skill을 고르고 다음을 실행합니다.
 
         ```
-        /nomo-status
+        /nomo-pair
         ```
+
+        QR 코드가 표시되면 Nomo 앱으로 스캔합니다. 브라우저를 열 수 없는
+        환경에서는 `/nomo-pair code`가 대신 입력할 짧은 코드를 줍니다. 두 방법
+        모두 [페어링](/ko/setup/pairing)에 단계별로 설명되어 있습니다.
+
+        페어링은 한 Mac의 에이전트들이 공유합니다. 이미 Claude Code, Codex 또는
+        OpenCode용으로 페어링한 컴퓨터는 Cursor를 위해 다시 페어링할 필요가
+        없습니다 — 설치만으로 충분하며, 이 단계는 건너뛰어도 됩니다.
+      </Step>
+
+      <Step title="Cursor 탭 표시">
+        앱에서 컴퓨터를 엽니다. Cursor 세션은 세션 드로어의 **Cursor** 탭 아래에
+        있습니다.
+
+        드로어에는 에이전트 탭이 최대 세 개까지 표시됩니다. Cursor가 그중에
+        없으면 **+** 버튼(**에이전트 선택**)을 탭해 켭니다.
       </Step>
     </Steps>
 
@@ -240,14 +256,6 @@ icon: "puzzle-piece"
       `/nomo-status`, `/nomo-reset`, `/nomo-unpair`. 네 개 전부
       [명령](/ko/sessions/commands)에 있습니다.
     </Tip>
-
-    나중에 제거하려면 다음을 실행합니다.
-
-    ```bash
-    node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall
-    ```
-
-    그런 다음 Cursor를 재시작하십시오.
   </Tab>
 
   <Tab title="Antigravity" icon="/images/providers/antigravity.png">
@@ -288,24 +296,45 @@ icon: "puzzle-piece"
         명령을 실행할지 물으면 **Allow**를 선택합니다. 그런 다음 iPhone의
         Nomo로 QR 코드를 스캔합니다.
 
+        Antigravity에 "Done! This computer is connected to your phone."(완료! 이
+        컴퓨터가 휴대폰에 연결되었습니다)이 표시됩니다.
+
+        Antigravity 데스크톱 앱에서는 첫 Nomo 명령에서 `operation not permitted`라는
+        줄이 한 줄 표시될 수 있습니다. 정상입니다. Antigravity가 샌드박스 밖에서
+        알아서 다시 시도하므로 그대로 기다리십시오.
+
         다른 에이전트에서 이미 페어링했다면 대신 `/nomo-status`를 입력해
         확인합니다.
+      </Step>
+
+      <Step title="Antigravity에서 메시지 보내기">
+        채팅을 시작하고 아무 메시지나 보냅니다.
+
+        Nomo에서 컴퓨터의 **Antigravity** 탭 아래에 세션이 나타납니다.
+        Antigravity 탭이 없다면 **+** 버튼(**에이전트 선택**)을 탭해
+        Antigravity를 켭니다.
+
+        <Frame caption="+ 버튼에서 여는 에이전트 선택. Antigravity가 선택되어 있어 자체 탭이 생깁니다.">
+          <div className="device-frame">
+            <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="에이전트 선택 메뉴. Claude Code, Codex, Antigravity는 선택되어 있고 OpenCode와 Cursor는 선택되어 있지 않음" />
+            <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="에이전트 선택 메뉴. Claude Code, Codex, Antigravity는 선택되어 있고 OpenCode와 Cursor는 선택되어 있지 않음" />
+          </div>
+        </Frame>
       </Step>
     </Steps>
 
     <Warning>
-      Nomo의 Claude Code 플러그인을 Antigravity로 가져오지 마십시오 — 모든
-      세션이 두 번씩 표시됩니다. 이미 가져왔다면 `agy plugin uninstall nomo-cc`를
-      실행하고 Antigravity를 재시작하십시오.
+      Nomo의 Claude Code 플러그인을 Antigravity로 가져오지 마십시오(예:
+      `agy plugin import claude`). 모든 세션이 두 번씩 표시됩니다. 이미
+      가져왔다면 설치 도구가 다음과 같이 경고합니다.
+
+      ```
+      ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+      ```
+
+      고치려면 `agy plugin uninstall nomo-cc`를 실행하고 Antigravity를
+      재시작하십시오.
     </Warning>
-
-    나중에 제거하려면 다음을 실행합니다.
-
-    ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
-    ```
-
-    그런 다음 Antigravity를 재시작하십시오.
   </Tab>
 </Tabs>
 
@@ -337,6 +366,7 @@ npx nomo-ai
 | `--all` | 찾아냈든 아니든 다섯 모두. 단, Cursor와 Antigravity는 이 컴퓨터에 없으면 건너뜁니다(그래도 시도하려면 `--cursor`나 `--antigravity`를 지정하십시오) |
 | `-y`, `--yes` | 선택 화면 없이, 찾아낸 것을 모두 설치합니다 |
 | `-n`, `--dry-run` | 실행할 명령을 출력만 하고 아무것도 실행하지 않습니다 |
+| `--uninstall` | `--cursor` 또는 `--antigravity`와 함께 쓰면 해당 에이전트에서 Nomo를 제거합니다. 에이전트를 지정해야 하며, 추측하지 않습니다. [uninstall](/ko/sessions/commands#uninstall)을 참고하십시오 |
 
 휴대폰 페어링은 하지 않습니다. 그다음은 위 단계와 똑같이 마무리합니다. 에이전트를
 재시작하고, Codex라면 Hook을 신뢰하고, 페어링합니다 — `/nomo-pair`, Claude
@@ -344,66 +374,11 @@ Code에서는 `/nomo-cc:pair`, Codex에서는 `$nomo-pair`입니다.
 
 ## 업데이트 {#updating}
 
-같은 명령이 업데이트도 합니다. Nomo가 이미 설치된 에이전트는 설치가 아니라
-업데이트로 표시됩니다. 실제로 실행되는 것은 OpenCode, Cursor, Antigravity 쪽뿐이고, 나머지 둘은
-출력만 됩니다.
-
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
-
-    자동 업데이트는 서드파티 마켓플레이스에서 꺼짐이 기본값이므로, 저절로 설치가
-    움직이는 일은 없습니다. 켜려면 `/plugin` → **Marketplaces** → Nomo의 것 →
-    **Enable auto-update**.
-  </Tab>
-
-  <Tab title="Codex" icon="/images/codex.svg">
-    대개 실행할 것이 없습니다. Codex는 플러그인을 그 경로에서 바로 읽으므로 그
-    클론에서 받아 오는 것이 업데이트의 전부이며, `codex plugin update`라는 명령
-    자체가 없습니다.
-
-    마켓플레이스를 git에서 추가했다면 Codex가 스냅샷을 들고 있으며, 그것을
-    갱신하는 것이 곧 업데이트입니다.
-
-    ```bash
-    codex plugin marketplace upgrade <마켓플레이스-이름>
-    ```
-
-    이름은 추가할 때 쓴 이름이며, 반드시 `nomo`인 것은 아닙니다.
-  </Tab>
-
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    전역 설치라면 설치 도구가 해 줍니다. OpenCode 안에서
-    [`/nomo-update`](/ko/sessions/commands#update)를 실행해도 같습니다.
-    `--project` 설치는 이 방법으로만 업데이트할 수 있으며, 그 프로젝트에서
-    실행합니다.
-
-    어느 쪽이든 끝나면 OpenCode를 재시작하십시오. 플러그인은 서버가 시작될 때 한
-    번만 불러옵니다.
-  </Tab>
-
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    설치할 때 쓴 것과 같은 명령입니다.
-
-    ```bash
-    bunx nomo-ai --cursor
-    ```
-
-    끝나면 Cursor를 재시작하고, 열려 있는 `cursor-agent` 세션도 재시작하십시오.
-  </Tab>
-
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    설치할 때 쓴 것과 같은 명령입니다.
-
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
-
-    끝나면 Antigravity를 재시작하고, 열려 있는 `agy` 세션도 재시작하십시오.
-  </Tab>
-</Tabs>
+<Note>
+  업데이트나 제거는 [명령 → update](/ko/sessions/commands#update)와
+  [명령 → uninstall](/ko/sessions/commands#uninstall)을 참고하십시오. 모든
+  에이전트가 각자의 탭에 정리되어 있습니다.
+</Note>
 
 ## 플러그인이 하는 일
 

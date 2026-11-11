@@ -1,6 +1,6 @@
 ---
 title: "命令"
-description: "Claude Code、Codex、OpenCode、Cursor 和 Antigravity 的全部 Nomo 命令——配对、状态、审批、重置、解除配对和更新，都在这一页。"
+description: "Claude Code、Codex、OpenCode、Cursor 和 Antigravity 的全部 Nomo 命令——配对、状态、审批、重置、解除配对、更新和卸载，都在这一页。"
 icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
@@ -26,9 +26,11 @@ Claude Code、Codex、OpenCode 和 Antigravity 上都有的五条命令，外加
 
 它们都不会大声报错。即使无事可做也会干净地退出——`Not paired` 是成功，不是错误。
 
-最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令，而 Cursor 靠再运行一次它的安装工具来更新，Antigravity 也一样。它们各自需要什么——Codex 通常什么都不需要——都写在[安装](/zh-Hans/setup/install#updating)里。
+最后一行的空格不是漏写：Claude Code 和 Codex 由各自的宿主负责更新，所以 Nomo 没有在那边加命令，而 Cursor 靠再运行一次它的安装工具来更新，Antigravity 也一样。它们各自需要什么——Codex 通常什么都不需要——都写在 [update](#update) 里。
 
 审批那一行上 Cursor 的空格同样不是漏写：Cursor 会话是只读的，所以没有远程审批可以暂停——[搭配 Cursor 使用](/zh-Hans/sessions/cursor)。
+
+移除 Nomo 没有 `/` 命令：只要在终端里粘贴一行——见 [uninstall](#uninstall)。
 
 ## pair {#pair}
 
@@ -265,35 +267,140 @@ $nomo-unpair
 
 ## update {#update}
 
+只有 OpenCode 有更新命令。其他智能体各有各的更新方式——打开它的标签页看看。
+
+`bunx nomo-ai`（或 `npx nomo-ai`）也负责更新：已经装了 Nomo 的智能体，会显示成更新而不是安装。真正会跑的只有 OpenCode、Cursor 和 Antigravity 那三份，Claude Code 和 Codex 那两份只是打印出来给你。
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
+
+    自动更新对第三方插件市场默认是关闭的，所以安装不会自己动。要打开：`/plugin` → **Marketplaces** → Nomo 那个 → **Enable auto-update**。
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    通常没有什么要执行。Codex 直接从插件所在路径实时读取，所以在那份克隆目录里拉取更新就是全部的更新——而且根本不存在 `codex plugin update` 这个动词。
+
+    如果你这个插件市场是从 git 添加的，那 Codex 存着一份快照，刷新它就是更新：
+
+    ```bash
+    codex plugin marketplace upgrade <插件市场名称>
+    ```
+
+    名称是你当初添加时用的那个，未必是 `nomo`。
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    ```bash
+    /nomo-update
+    ```
+
+    它在动手之前先检查。已经是最新的，就到此为止，不会顺手再拉一次：
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Already on 2.1.22 — nothing to do.
+    ```
+
+    真有东西可拿时，它会先说是什么，再去拿：
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Update available: 2.1.22 → 2.1.23.
+    ```
+
+    接着它拉取更新、重新运行安装脚本——新版本要是加了新的 `/nomo-*` 命令，就是靠这一步收进来的——然后让你重启 OpenCode。插件只在服务器启动时导入一次，所以在你重启之前，跑着的仍然是旧的那一份。
+
+    拿不准的时候，它宁可拒绝也不动手，而且每一次拒绝都会说清楚该怎么办：被之前的 `--ref` 安装钉住的克隆目录、还有未提交改动的工作区、被搬走或删掉的克隆目录、不是 Nomo 自己存储库的克隆目录，以及这里根本什么都没装。
+
+    `bunx nomo-ai` 会带上 `--global` 执行同样的更新：不管你在哪个文件夹里运行，它都只更新全局安装。`--project` 安装要用 `/nomo-update` 更新——在那个项目的 OpenCode 里运行。
+
+    <Note>
+      它更新的是**桩文件**指向的那份克隆目录——也就是 OpenCode 真正导入的那一份——未必是你输入的命令文件所属的那一份。如果你留着不止一份克隆，这个区别就要紧了。
+    </Note>
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    和安装时是同一条命令：
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    之后重启 Cursor，以及所有开着的 `cursor-agent` 会话。
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    和安装时是同一条命令：
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    之后重启 Antigravity，以及所有开着的 `agy` 会话。
+  </Tab>
+</Tabs>
+
+## uninstall {#uninstall}
+
+从一个智能体里移除 Nomo。在终端里运行，而不是在智能体里：选你的智能体那一栏，粘贴那一行，按回车。
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+claude plugin uninstall nomo-cc@nomo
+```
+
+```bash Codex icon="/images/codex.svg"
+codex plugin remove nomo@nomo
+```
+
 ```bash OpenCode icon="/images/opencode.svg"
-/nomo-update
+rm ~/.config/opencode/plugins/nomo.js
+rm ~/.config/opencode/commands/nomo-*.md
 ```
 
-**只有 OpenCode 有**，而且它在动手之前先检查。已经是最新的，就到此为止，不会顺手再拉一次：
-
-```
-OpenCode plugin: /Users/you/.nomo
-Already on 2.1.22 — nothing to do.
+```bash Cursor icon="/images/providers/cursor.svg"
+bunx nomo-ai --uninstall --cursor
 ```
 
-真有东西可拿时，它会先说是什么，再去拿：
+```bash Antigravity icon="/images/providers/antigravity.png"
+bunx nomo-ai --uninstall --antigravity
+```
+</CodeGroup>
+
+没有 `bunx`？改用 `npx`——比如 `npx nomo-ai --uninstall --cursor`。也可以直接运行那个智能体自己的脚本，比如 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`（Antigravity 用 `antigravity-install.mjs`）。
+
+Antigravity 完成后会告诉你：
 
 ```
-OpenCode plugin: /Users/you/.nomo
-Update available: 2.1.22 → 2.1.23.
+✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
 ```
 
-接着它拉取更新、重新运行安装脚本——新版本要是加了新的 `/nomo-*` 命令，就是靠这一步收进来的——然后让你重启 OpenCode。插件只在服务器启动时导入一次，所以在你重启之前，跑着的仍然是旧的那一份。
+然后重启那个智能体。Cursor 和 Antigravity：退出应用再重新打开，并重启所有开着的 `cursor-agent` 或 `agy`。
 
-拿不准的时候，它宁可拒绝也不动手，而且每一次拒绝都会说清楚该怎么办：被之前的 `--ref` 安装钉住的克隆目录、还有未提交改动的工作区、被搬走或删掉的克隆目录、不是 Nomo 自己存储库的克隆目录，以及这里根本什么都没装。
+它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，**先**运行 [unpair](#unpair)——Nomo 一移除，这条命令也就没了。
 
-`bunx nomo-ai` 会带上 `--global` 执行同样的更新：不管你在哪个文件夹里运行，它都只更新全局安装。`--project` 安装要用 `/nomo-update` 更新——在那个项目的 OpenCode 里运行。
+把 Nomo 的 Claude Code 插件导入过 Antigravity？也用 `agy plugin uninstall nomo-cc` 移除它，然后重启 Antigravity。
 
-<Note>
-  它更新的是**桩文件**指向的那份克隆目录——也就是 OpenCode 真正导入的那一份——未必是你输入的命令文件所属的那一份。如果你留着不止一份克隆，这个区别就要紧了。
-</Note>
+`bunx nomo-ai --uninstall` 必须指定智能体——它从不猜。每个智能体的安装细节见[安装](/zh-Hans/setup/install)。
 
-Claude Code 和 Codex 没有对应的命令，因为更新归它们各自的宿主管，而 Codex 通常根本没有什么要执行：两边都写在[安装](/zh-Hans/setup/install#updating)里。
+## 在终端里运行 {#without-slash-commands}
+
+Antigravity 不认识 Nomo 的命令？改在终端里运行。用 Nomo 安装工具时可以这样做：
+
+| | |
+| --- | --- |
+| 配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| 改用手动输入的配对码配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+| 检查状态 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| 暂停审批 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+| 恢复审批 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+| 清理卡住的会话 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| 解除配对 | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+在终端里开始配对后，运行 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait`，然后扫描二维码。给安装工具加上 `--verbose`，可以看到它改动了什么。
 
 ## 状态文件的位置 {#where-state-lives}
 

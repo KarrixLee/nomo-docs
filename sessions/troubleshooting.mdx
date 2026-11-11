@@ -155,7 +155,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
 <Accordion title="A Cursor chat shows up as a Claude Code session" icon="clone">
   Update the Nomo plugin for Claude Code. Older versions ran inside Cursor,
   through Cursor's import of Claude Code plugins; the current version ignores
-  Cursor. [Updating](/setup/install#updating) has the command.
+  Cursor. [Updating](/sessions/commands#update) has the command.
 </Accordion>
 
 <Accordion title="A Cursor session stays working after Cursor has quit" icon="hourglass-half">
@@ -177,24 +177,17 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
   Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
   Antigravity on. More in [Using Antigravity](/sessions/antigravity#troubleshooting).
+
+  <Frame caption="The Antigravity tab before any session has arrived.">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="Every Antigravity session shows up twice" icon="clone">
-  Nomo's Claude Code plugin is imported into Antigravity. Run this in Terminal,
-  then restart Antigravity:
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="An Antigravity command says Nomo could not find its files" icon="folder-open">
-  The Nomo folder was moved or deleted. Antigravity keeps working, but nothing
-  reaches your phone. Run the installer again, then restart Antigravity:
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity sessions show up twice, or a command can't find Nomo's files" icon="clone">
+  Both fixes are in [Using Antigravity](/sessions/antigravity#troubleshooting).
 </Accordion>
 
 <Accordion title="A cancelled Antigravity turn still says Running" icon="hourglass-half">
@@ -241,7 +234,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
   On 2.2.2 the first settles to `Done` in about 20 seconds, and the second
   doesn't appear until it has work to do.
-  [Update the plugin](/setup/install#updating).
+  [Update the plugin](/sessions/commands#update).
 </Accordion>
 
 <Accordion title="Interrupt says Sent but the session keeps running" icon="circle-stop">
@@ -518,22 +511,6 @@ that command there.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Restart Antigravity — quit it completely and open it again. Type /nomo-status, choose Allow, and do what the line starting with ⚠️ or ❌ says. Then send a message: a session only appears after your first message. Still nothing? In Nomo, tap the + button (Choose agents) and turn Antigravity on."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Every Antigravity session shows up twice",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo's Claude Code plugin is imported into Antigravity. Run agy plugin uninstall nomo-cc in Terminal, then restart Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "An Antigravity command says Nomo could not find its files",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Nomo folder was moved or deleted. Antigravity keeps working, but nothing reaches your phone. Run bunx nomo-ai --antigravity again, then restart Antigravity."
       }
     },
     {

@@ -99,7 +99,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="Cursor 的聊天显示成了 Claude Code 会话" icon="clone">
-  更新 Claude Code 的 Nomo 插件。旧版本会通过 Cursor 对 Claude Code 插件的导入在 Cursor 里运行；当前版本会忽略 Cursor。命令在[更新](/zh-Hans/setup/install#updating)里。
+  更新 Claude Code 的 Nomo 插件。旧版本会通过 Cursor 对 Claude Code 插件的导入在 Cursor 里运行；当前版本会忽略 Cursor。命令在[更新](/zh-Hans/sessions/commands#update)里。
 </Accordion>
 
 <Accordion title="Cursor 退出之后，会话还停在“运行中”" icon="hourglass-half">
@@ -117,22 +117,17 @@ $nomo-status
   4. 发一条消息。会话要等你发出第一条消息后才会出现。
 
   还是没有？在 Nomo 里轻点 **+** 按钮（**选择智能体**），把 Antigravity 打开。详见[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#troubleshooting)。
+
+  <Frame caption="还没有会话送达时的 Antigravity 标签页。">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="一台电脑的 Antigravity 标签页，显示“还没有 Antigravity 会话”" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="一台电脑的 Antigravity 标签页，显示“还没有 Antigravity 会话”" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="每个 Antigravity 会话都出现两次" icon="clone">
-  Nomo 的 Claude Code 插件被导入了 Antigravity。在终端里运行下面这条，然后重启 Antigravity：
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Antigravity 命令提示 Nomo 找不到它的文件" icon="folder-open">
-  Nomo 文件夹被移动或删除了。Antigravity 照常工作，但什么都不会送到你的手机。重新运行安装工具，然后重启 Antigravity：
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity 会话出现两次，或命令找不到 Nomo 的文件" icon="clone">
+  两种情况的解决办法都在[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#troubleshooting)。
 </Accordion>
 
 <Accordion title="取消了的 Antigravity 这一轮还显示“运行中”" icon="hourglass-half">
@@ -170,7 +165,7 @@ $nomo-status
 <Accordion title="会话明明没在干活，却显示“运行中”" icon="hourglass">
   先看第一行，那里写着插件版本。在 **2.2.2** 之前，打开或恢复后停在空提示符的 Claude Code 会话会显示 `运行中` 长达半小时；而没有提示就创建出来的 OpenCode 会话——比如 fork 出来的——会一直显示 `运行中`，直到 OpenCode 退出。
 
-  到了 2.2.2，前者大约 20 秒就会落定为 `完成`，后者要等到有活可干才会出现。[更新插件](/zh-Hans/setup/install#updating)。
+  到了 2.2.2，前者大约 20 秒就会落定为 `完成`，后者要等到有活可干才会出现。[更新插件](/zh-Hans/sessions/commands#update)。
 </Accordion>
 
 <Accordion title="“停止”显示“已发送”，会话却还在运行" icon="circle-stop">
@@ -379,22 +374,6 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "重启 Antigravity——完全退出，再重新打开。输入 /nomo-status，选择 Allow，然后照着以 ⚠️ 或 ❌ 开头的那一行去做。接着发一条消息：会话要等你发出第一条消息后才会出现。还是没有？在 Nomo 里轻点 + 按钮（选择智能体），把 Antigravity 打开。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "每个 Antigravity 会话都出现两次",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 的 Claude Code 插件被导入了 Antigravity。在终端里运行 agy plugin uninstall nomo-cc，然后重启 Antigravity。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Antigravity 命令提示 Nomo 找不到它的文件",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 文件夹被移动或删除了。Antigravity 照常工作，但什么都不会送到你的手机。再运行一次 bunx nomo-ai --antigravity，然后重启 Antigravity。"
       }
     },
     {
