@@ -1,0 +1,103 @@
+---
+title: "Nomo 裡的 Grok Bot：狀態、用量和連續紀錄"
+sidebarTitle: "搭配 Grok Bot 使用"
+description: "Nomo 會為 Grok Bot 顯示什麼：iPhone 上的狀態和你的用量，以及搭配 Mac 時，你用 Grok Bot 的日子會算進 Nomo 活動的連續紀錄。"
+keywords: ["Nomo", "Grok Bot", "Cursor", "iPhone", "Mac", "Nomo 活動", "連續紀錄", "小工具", "配對", "搭配 Grok Bot 使用"]
+---
+
+Nomo 不會把 Grok Bot 的聊天顯示成 sessions。Grok Bot 不會出現在 Sessions 列表或動態島上。你會看到的是它的狀態、你的用量，以及你使用它的日子。
+
+## 你會得到什麼
+
+| | 方案 | 需要什麼 |
+| --- | --- | --- |
+| Grok Bot 的狀態，顯示在小工具和提醒裡 | 免費 | 什麼都不需要 |
+| 你的用量，顯示在小工具和提醒裡 | 免費 | 在 Nomo 裡登入 Cursor |
+| 用量速度那一行和 Nomo 用量速度小工具 | Nomo Pro | 在 Nomo 裡登入 Cursor |
+| Nomo 活動裡的 Grok Bot 日子 | Nomo Pro | 一台裝有 Grok Bot 應用程式和 Nomo 的 Mac |
+
+## 只用 iPhone 就能看的內容 {#iphone-only}
+
+前三列不需要電腦。每一項都有自己的說明頁：
+
+- **狀態**：在小工具裡選 Cursor 的 **Grok Bot** 服務。請看[狀態](/zh-Hant/status)和[小工具](/zh-Hant/widget)。
+- **用量**：登入 Cursor。請看 [Cursor 和 Grok](/zh-Hant/usage#cursor-and-grok)。
+- **提醒**：請看[通知](/zh-Hant/notifications)。
+- **用量速度**：請看[用量速度](/zh-Hant/usage#pace)和 [Nomo 用量速度](/zh-Hant/widgets#nomo-pace)。
+
+## 把 Grok Bot 的日子算進連續紀錄 {#streak}
+
+這些步驟適用於唯一的 AI 應用程式是 Grok Bot 的 Mac。你需要 Nomo 2.4.2 和 Nomo Pro。
+
+<Steps>
+  <Step title="在 Mac 上安裝 Grok Bot">
+    在你的 Mac 上安裝 Grok Bot 桌面應用程式，然後登入。
+  </Step>
+
+  <Step title="安裝 Nomo">
+    打開終端機。它是 Mac 上用來輸入指令的應用程式。按下 Command-空白鍵，輸入 `Terminal`，然後按下 Return。
+
+    把這行貼上，然後按下 Return：
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --grokbot
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --grokbot
+    ```
+    </CodeGroup>
+
+    這需要 bun 或 Node.js 18 以上版本。請看[安裝](/zh-Hant/setup/install)。
+
+    它會加入一個小型的背景工作。這個工作會在你登入時執行，之後每小時執行一次，計算你使用 Grok Bot 的日子。你可能會看到 macOS 的通知顯示「已加入背景項目」。那就是這個工作。
+  </Step>
+
+  <Step title="配對你的 iPhone">
+    如果這台 Mac 已經配對過，就跳過這一步。再配對一次會取代原本的配對。
+
+    ```bash
+    bunx nomo-ai pair
+    ```
+
+    瀏覽器會開啟一個有 QR code 的頁面。在 Nomo 裡點一下「Sessions」分頁，再點一下「配對電腦」，然後掃描這個 QR code。請看[配對](/zh-Hant/setup/pairing)。
+  </Step>
+
+  <Step title="確認可以運作">
+    ```bash
+    bunx nomo-ai status
+    ```
+
+    **Phone** 那一行應該顯示 `paired`。這裡不會有 Grok Bot 那一行。
+  </Step>
+
+  <Step title="加入小工具">
+    加入 Nomo 活動小工具。按住它，點一下「編輯小工具」，點一下「角色」，然後選 **Grok Bot**。請看 [Nomo 活動](/zh-Hant/widgets#nomo-activity)。
+  </Step>
+</Steps>
+
+想馬上看到你的日子，請在 Mac 上執行 `bunx nomo-ai reset`。它顯示 `Sent your activity summary (heatmap and streak) to your phone.` 之後，在 Nomo 裡打開[活動頁面](/zh-Hant/widgets#activity-screen)，然後往下拉。
+
+<Note>
+  這台 Mac 上已經有 Claude Code、Codex、OpenCode、Cursor 或 Antigravity 搭配 Nomo 使用了嗎？那就不需要 `--grokbot`。只要把[外掛程式更新](/zh-Hant/sessions/commands#update)到 2.4.2 就好。
+</Note>
+
+## 限制
+
+- Mac 上沒有 Grok Bot 應用程式，就沒有可以計算的內容。
+- 你在手機或網頁版上的聊天也會算進去，只要 Mac 上的應用程式已經同步過來。請偶爾打開 Mac 上的應用程式。
+- Mac 上的應用程式每個 Bot 只保留最近的訊息。所以第一次可能看不到比較早的日子。
+- Grok Bot 沒有 Token 數。它會為 Nomo 活動加上天數和時間，但不會為 Nomo Token 加上任何數字。
+- 使用 The X Subscription 時，Grok Bot 和 Cursor 共用一個每週限額，Nomo 會顯示它。使用較舊的 Cursor 方案時，Grok Bot 有自己的限額，Nomo 不會讀取。
+- 目前只支援 Mac。
+
+## 移除 {#remove}
+
+```bash
+bunx nomo-ai uninstall --grokbot
+```
+
+這只會移除背景工作。你的 iPhone 仍保持配對。如果也想中斷這台 Mac 的連線，請**先**執行 unpair。請看[不用 `/` 指令](/zh-Hant/sessions/commands#without-slash-commands)。
+
+離開你 Mac 的只有計數，而且是端對端加密的。外掛程式的 README 列出了[哪些內容會離開你的電腦](https://github.com/KarrixLee/nomo#what-leaves-your-computer)，以及[背景工作會做什麼](https://github.com/KarrixLee/nomo#grok-bot-background-job)。

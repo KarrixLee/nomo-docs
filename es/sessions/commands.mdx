@@ -9,7 +9,8 @@ Cinco comandos en Claude Code, Codex, OpenCode y Antigravity, un sexto que solo
 OpenCode necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del
 agente, en el ordenador al que quieras afectar: un comando con `/` en Claude Code
 y en OpenCode, una skill con `/` en Cursor y en Antigravity, una skill con `$` en
-Codex.
+Codex. Vincular, el estado y el reinicio también funcionan en Terminal: consulta
+[Desde Terminal](#terminal).
 
 <Note>
   En Antigravity, cada comando de Nomo pregunta antes. Elige **Allow**
@@ -49,6 +50,36 @@ pausar — [Usar Cursor](/es/sessions/cursor).
 Quitar Nomo no tiene comando con `/`: es una línea que pegas en la terminal —
 mira [uninstall](#uninstall).
 
+## Desde Terminal {#terminal}
+
+También puedes ejecutar los comandos principales en Terminal, desde cualquier
+carpeta. En un Mac en el que [Grok Bot](/es/sessions/grok-bot) es tu única app
+de IA, es la única forma.
+
+| | Terminal |
+| --- | --- |
+| Instalar o actualizar Nomo | `bunx nomo-ai` |
+| <a href="#pair">Vincular este ordenador</a> | `bunx nomo-ai pair` |
+| Vincular con un código | `bunx nomo-ai pair code` |
+| <a href="#status">Comprobar la salud</a> | `bunx nomo-ai status` |
+| <a href="#reset">Limpiar sesiones atascadas y enviar tu actividad ya</a> | `bunx nomo-ai reset` |
+| <a href="#uninstall">Quitar Nomo de un agente</a> | `bunx nomo-ai uninstall --cursor` |
+
+Hacen lo mismo que los comandos dentro de tu agente. Una sola vinculación o un
+solo reinicio cubre todos los agentes de ese ordenador. ¿No tienes bun? Usa
+`npx nomo-ai` en su lugar, como `npx nomo-ai status`. Si Nomo aún no está
+instalado, te lo dicen:
+
+```
+Nomo is not installed on this computer yet — run `bunx nomo-ai` first.
+```
+
+Al final de una instalación, `bunx nomo-ai` te pregunta si también quieres el
+comando corto `nomo`. Si dijiste que sí, puedes escribir `nomo pair`,
+`nomo status` y `nomo reset` en su lugar. `bunx nomo-ai …` funciona siempre,
+digas lo que digas. No escribas `bunx nomo` ni `npx nomo`: el paquete de npm
+llamado `nomo` no es de Nomo.
+
 ## pair {#pair}
 
 <CodeGroup>
@@ -76,6 +107,11 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash Terminal icon="terminal"
+bunx nomo-ai pair      # QR code, opens your browser
+bunx nomo-ai pair code # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 Sin argumentos abre en tu navegador una página con la estética de la app y un
@@ -85,6 +121,9 @@ El argumento `code` se salta el navegador por completo e imprime un código de u
 solo uso que puedes escribir, pensado para una máquina sin interfaz gráfica o una
 sesión SSH. Es la vía de segunda opción a propósito: ese código acaba en tu
 terminal y, por tanto, en la transcripción del agente.
+
+Vincular un ordenador que ya está vinculado sustituye su vinculación. Si el
+ordenador ya está vinculado, no hace falta vincularlo otra vez.
 
 Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubre
 la máquina, no el agente: Claude Code, Codex, OpenCode, Cursor y Antigravity en el
@@ -112,6 +151,10 @@ $nomo-status
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-status           # a short summary in plain words
 /nomo-status verbose   # the full readout below
+```
+
+```bash Terminal icon="terminal"
+bunx nomo-ai status
 ```
 </CodeGroup>
 
@@ -292,17 +335,31 @@ $nomo-reset
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-reset
 ```
+
+```bash Terminal icon="terminal"
+bunx nomo-ai reset
+```
 </CodeGroup>
 
 Detiene el proceso supervisor y limpia las filas de sesión muertas o fantasma, y
-después le dice a tu teléfono que las suelte.
+después le dice a tu teléfono que las suelte. Luego envía tu actividad (el mapa
+y la racha de [Actividad de Nomo](/es/widgets#nomo-activity)) en el momento, en
+lugar de esperar hasta 6 horas.
 
 ```
 Stopped the watchdog (it restarts automatically on your next session).
 Cleared 4 stale session record(s) (4 end signals delivered to your phone).
 Left 2 live sessions untouched.
+Sent your activity summary (heatmap and streak) to your phone.
 Pairing and keys were not touched — use the unpair command if you want that.
 ```
+
+La línea de la actividad también puede decir `No activity to send yet.`, o que
+ahora no ha podido enviarla y lo volverá a intentar más tarde por su cuenta. El
+primer reinicio en un ordenador con un historial largo de Claude Code puede
+tardar un rato.
+
+Un solo reinicio cubre todos los agentes de ese ordenador.
 
 Es lo seguro a lo que recurrir cuando las filas se ven obsoletas o duplicadas,
 porque dice qué ha dejado intacto. Una fila de OpenCode pertenece al **servidor**
@@ -438,6 +495,17 @@ imprimen para que las ejecutes tú.
 
     Reinicia Antigravity después, y cualquier sesión de `agy` abierta.
   </Tab>
+
+  <Tab title="Grok Bot" icon="robot">
+    El mismo comando con el que lo instalaste:
+
+    ```bash
+    bunx nomo-ai --grokbot
+    ```
+
+    No hay nada que reiniciar. La siguiente ejecución de cada hora ya usa la
+    actualización.
+  </Tab>
 </Tabs>
 
 ## uninstall {#uninstall}
@@ -460,18 +528,29 @@ rm ~/.config/opencode/commands/nomo-*.md
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
-bunx nomo-ai --uninstall --cursor
+bunx nomo-ai uninstall --cursor
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-bunx nomo-ai --uninstall --antigravity
+bunx nomo-ai uninstall --antigravity
+```
+
+```bash Grok Bot icon="robot"
+bunx nomo-ai uninstall --grokbot
 ```
 </CodeGroup>
 
 ¿No tienes `bunx`? Usa `npx` en su lugar; por ejemplo,
-`npx nomo-ai --uninstall --cursor`. O ejecuta el script propio del agente, como
+`npx nomo-ai uninstall --cursor`. La forma antigua `--uninstall` también
+funciona. O ejecuta el script propio del agente, como
 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
-(`antigravity-install.mjs` para Antigravity).
+(`antigravity-install.mjs` para Antigravity, `grokbot-install.mjs` para Grok
+Bot).
+
+En Grok Bot, esto quita la tarea en segundo plano de cada hora, y nada más.
+
+Desinstalar deja el comando corto `nomo` en su sitio. Para quitarlo también,
+ejecuta `bun remove -g nomo-ai` (o `npm uninstall -g nomo-ai`).
 
 Antigravity avisa cuando termina:
 
@@ -489,14 +568,16 @@ ejecuta [unpair](#unpair) **antes**: cuando Nomo ya no está, ese comando tampoc
 ¿Importaste en Antigravity el plugin de Nomo para Claude Code? Quítalo también
 con `agy plugin uninstall nomo-cc` y reinicia Antigravity.
 
-`bunx nomo-ai --uninstall` siempre necesita que indiques el agente: nunca lo
+`bunx nomo-ai uninstall` siempre necesita que indiques el agente: nunca lo
 adivina. Más sobre la instalación de cada agente en
 [Instalación](/es/setup/install).
 
 ## Sin los comandos con / {#without-slash-commands}
 
 ¿Antigravity no reconoce los comandos de Nomo? Ejecútalos desde
-Terminal. Esto funciona con el instalador de Nomo:
+Terminal. Vincular, el estado y el reinicio son más fáciles como
+[comandos `bunx nomo-ai`](#terminal). La lista completa, que funciona con el
+instalador de Nomo:
 
 | | |
 | --- | --- |

@@ -219,11 +219,29 @@ What each row means, with a healthy machine and a broken one side by side, is on
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash Terminal icon="terminal"
+  bunx nomo-ai reset
+  ```
   </CodeGroup>
 
   Live sessions, your pairing and your keys are left alone —
   [what it prints](/sessions/commands#reset). An OpenCode row belongs to
   OpenCode's server, so quit OpenCode first if one refuses to clear.
+</Accordion>
+
+<Accordion title="My heatmap or streak looks out of date" icon="calendar">
+  It catches up by itself. Your computer sends a new summary at most every 6
+  hours, and the app checks for it at most once an hour. To update it now:
+
+  1. On the computer, open Terminal and run `bunx nomo-ai reset`. Or run the
+     reset command inside your agent, such as `/nomo-cc:reset`. It says
+     `Sent your activity summary (heatmap and streak) to your phone.`
+  2. In Nomo, open the [Activity screen](/widgets#activity-screen) and pull
+     down.
+
+  Still missing a computer? See
+  [When a computer isn't counted](/widgets#not-counted).
 </Accordion>
 
 <Accordion title="A session says Running when nothing is" icon="hourglass">
@@ -527,6 +545,14 @@ that command there.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "The Sessions row counts what this computer still believes is alive. If that's more than you have, run the reset command to clear the dead ones without unpairing. Live sessions, your pairing and your keys are left alone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My heatmap or streak looks out of date",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It catches up by itself: your computer sends a new summary at most every 6 hours, and the app checks at most once an hour. To update it now, run bunx nomo-ai reset in Terminal on the computer (or the reset command inside your agent), then open the Activity screen in Nomo and pull down."
       }
     },
     {

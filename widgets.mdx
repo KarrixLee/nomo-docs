@@ -247,30 +247,9 @@ from your computers, that tile shows **Active hours** instead.
 It counts Claude Code, Codex and OpenCode. Past days show up too, because the
 plugin reads the history that's already on your computer.
 
-From Nomo 2.4.2 with plugin 2.4.2, it also counts Grok Bot. For that, you
-need:
-
-- The Grok Bot desktop app on a Mac, signed in. Open it now and then so it can
-  sync.
-- Nomo set up and paired on that same Mac. See [Install](/setup/install) and
-  [Pairing](/setup/pairing).
-
-Chats you had on your phone or the web count too, once the Mac app has synced
-them.
-
-A few limits:
-
-- Without the Grok Bot app on a Mac, there's nothing to count.
-- Grok Bot has no token numbers. It adds days and time to Nomo Activity, but
-  nothing to Nomo Tokens.
-- The Mac app keeps only recent messages for each Bot. So older days may not
-  show up the first time.
-- Grok Bot isn't in the Sessions list or the Dynamic Island. It only shows up
-  in Nomo Activity.
-
-Only counts leave your Mac, and they're end-to-end encrypted. See
-[What leaves your computer](https://github.com/KarrixLee/nomo#what-leaves-your-computer)
-in the plugin's README.
+From Nomo 2.4.2 with plugin 2.4.2, it also counts Grok Bot, from the Grok Bot
+app on a Mac. Grok Bot adds days and time, but no tokens. What it needs, and
+its limits, are in [Using Grok Bot](/sessions/grok-bot#streak).
 
 **Set it up:**
 
@@ -306,8 +285,10 @@ and that color takes over the map, the flame, today's square and the glow.
   </div>
 </Frame>
 
-The plugin sends a new summary at most every 6 hours. Nomo fetches it when you
-open the app. So the map can be a few hours behind.
+The plugin sends a new summary at most every 6 hours, and once right after a
+plugin update. Nomo fetches it when you open the app, at most once an hour. So
+the map can be a few hours behind. To fetch it now, open the
+[Activity screen](#activity-screen) and pull down.
 
 Tap the widget to open the [Activity screen](#activity-screen) in Nomo.
 
@@ -634,7 +615,8 @@ To go back to your real data, turn **Show sample data** off.
   user name. It's end-to-end encrypted with the rest. Nomo uses it only so
   your phone doesn't count the same computer twice. To get a new one, delete
   that file.
-- It uploads at most every 6 hours, and only when something changed. If
+- It uploads at most every 6 hours, and only when something changed. The
+  reset command uploads it right away. If
   nothing changed, it sends the same summary again once a week, so the relay
   doesn't delete it. Right after you pair a new phone, it uploads once within
   about a minute.

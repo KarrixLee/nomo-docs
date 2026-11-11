@@ -231,11 +231,30 @@ está en [Comandos](/es/sessions/commands#status).
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash Terminal icon="terminal"
+  bunx nomo-ai reset
+  ```
   </CodeGroup>
 
   Las sesiones vivas, tu vinculación y tus claves se quedan intactas —
   [qué imprime](/es/sessions/commands#reset). Una fila de OpenCode pertenece al
   servidor de OpenCode, así que cierra OpenCode primero si alguna se resiste.
+</Accordion>
+
+<Accordion title="El mapa o la racha no están al día" icon="calendar">
+  Se pone al día solo. Tu ordenador envía un resumen nuevo como mucho cada 6
+  horas, y la app lo busca como mucho una vez por hora. Para actualizarlo ya:
+
+  1. En el ordenador, abre Terminal y ejecuta `bunx nomo-ai reset`. También
+     puedes ejecutar el comando de reinicio dentro de tu agente, como
+     `/nomo-cc:reset`. Dirá
+     `Sent your activity summary (heatmap and streak) to your phone.`
+  2. En Nomo, abre la [pantalla Actividad](/es/widgets#activity-screen) y
+     desliza hacia abajo.
+
+  ¿Sigue faltando un ordenador? Consulta
+  [Cuando un ordenador no se cuenta](/es/widgets#not-counted).
 </Accordion>
 
 <Accordion title="Una sesión dice En ejecución cuando no hay nada en marcha" icon="hourglass">
@@ -555,6 +574,14 @@ que ejecutes ese comando allí.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "La fila Sessions cuenta lo que este ordenador todavía cree vivo. Si son más de las que tienes, ejecuta el comando de reinicio para limpiar las muertas sin desvincular nada. Las sesiones vivas, tu vinculación y tus claves se quedan intactas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "El mapa o la racha no están al día",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Se pone al día solo: tu ordenador envía un resumen nuevo como mucho cada 6 horas, y la app lo busca como mucho una vez por hora. Para actualizarlo ya, ejecuta bunx nomo-ai reset en Terminal en el ordenador (o el comando de reinicio dentro de tu agente), y después abre la pantalla Actividad en Nomo y desliza hacia abajo."
       }
     },
     {

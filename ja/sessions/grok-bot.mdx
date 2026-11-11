@@ -1,0 +1,103 @@
+---
+title: "Nomo で見る Grok Bot: ステータス、使用量、連続記録"
+sidebarTitle: "Grok Bot での利用"
+description: "Nomo が Grok Bot について表示するもの: iPhone ではステータスと使用量、Mac があれば Nomoアクティビティの連続記録に Grok Bot を使った日が加わります。"
+keywords: ["Nomo", "Grok Bot", "Cursor", "iPhone", "Mac", "Nomoアクティビティ", "連続記録", "ウィジェット", "ペアリング", "Grok Bot での利用"]
+---
+
+Nomo は、Grok Bot のチャットをセッションとしては表示しません。Grok Bot は「セッション」リストにも Dynamic Island にも表示されません。表示されるのは、Grok Bot のステータス、使用量、そして使った日です。
+
+## 表示されるもの
+
+| | プラン | 必要なもの |
+| --- | --- | --- |
+| Grok Bot のステータス（ウィジェットと通知） | 無料 | なし |
+| 使用量（ウィジェットと通知） | 無料 | Nomo で Cursor にサインイン |
+| 消費ペースの行と Nomo消費ペースのウィジェット | Nomo Pro | Nomo で Cursor にサインイン |
+| Nomoアクティビティに Grok Bot を使った日 | Nomo Pro | Grok Bot アプリと Nomo を入れた Mac |
+
+## iPhone だけで使えるもの {#iphone-only}
+
+上の 3 行は、コンピュータがなくても使えます。それぞれ専用のページがあります。
+
+- **ステータス**: ウィジェットで、Cursor の **Grok Bot** サービスを選びます。[ステータス](/ja/status)と[ウィジェット](/ja/widget)をご覧ください。
+- **使用量**: Cursor にサインインします。[Cursor と Grok](/ja/usage#cursor-and-grok)をご覧ください。
+- **通知**: [通知](/ja/notifications)をご覧ください。
+- **消費ペース**: [消費ペース](/ja/usage#pace)と [Nomo消費ペース](/ja/widgets#nomo-pace)をご覧ください。
+
+## Grok Bot を連続記録に数える {#streak}
+
+この手順は、AI アプリが Grok Bot だけの Mac 向けです。Nomo 2.4.2 と Nomo Pro が必要です。
+
+<Steps>
+  <Step title="Mac に Grok Bot を入れる">
+    Mac に Grok Bot のデスクトップアプリをインストールして、サインインします。
+  </Step>
+
+  <Step title="Nomo を入れる">
+    ターミナルを開きます。ターミナルは、コマンドを入力するための Mac のアプリです。Command＋スペースキーを押し、`Terminal` と入力して、Return キーを押します。
+
+    次の行を貼り付けて、Return キーを押します。
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --grokbot
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --grokbot
+    ```
+    </CodeGroup>
+
+    これには bun か、Node.js 18 以降が必要です。[インストール](/ja/setup/install)をご覧ください。
+
+    小さなバックグラウンドジョブが追加されます。このジョブはログイン時と 1 時間ごとに動き、Grok Bot を使った日を数えます。macOS から「**バックグラウンド項目が追加されました**」という通知が出ることがあります。これがそのジョブです。
+  </Step>
+
+  <Step title="iPhone とペアリングする">
+    この Mac がすでにペアリング済みなら、この手順は飛ばしてください。もう一度ペアリングすると、前のペアリングが置き換わります。
+
+    ```bash
+    bunx nomo-ai pair
+    ```
+
+    QR コードのページがブラウザで開きます。Nomo で「セッション」タブ、「コンピュータをペアリング」の順にタップして、コードをスキャンします。[ペアリング](/ja/setup/pairing)をご覧ください。
+  </Step>
+
+  <Step title="動作を確認する">
+    ```bash
+    bunx nomo-ai status
+    ```
+
+    **Phone** の行に `paired` と表示されていれば大丈夫です。ここに Grok Bot の行はありません。
+  </Step>
+
+  <Step title="ウィジェットを追加する">
+    Nomoアクティビティのウィジェットを追加します。ウィジェットをタッチして押さえたままにし、「ウィジェットを編集」をタップします。「キャラクター」をタップして、**Grok Bot** を選びます。[Nomoアクティビティ](/ja/widgets#nomo-activity)をご覧ください。
+  </Step>
+</Steps>
+
+すぐに日数を確認したい場合は、Mac で `bunx nomo-ai reset` を実行します。`Sent your activity summary (heatmap and streak) to your phone.` と表示されたら、Nomo で[アクティビティ画面](/ja/widgets#activity-screen)を開き、下に引っ張ります。
+
+<Note>
+  この Mac で、すでに Claude Code、Codex、OpenCode、Cursor、Antigravity を Nomo と一緒に使っていますか？ その場合、`--grokbot` は不要です。[プラグインを更新](/ja/sessions/commands#update)して 2.4.2 にするだけです。
+</Note>
+
+## 制限
+
+- Mac に Grok Bot のアプリがなければ、数えるものはありません。
+- スマートフォンや Web でしたチャットも、Mac のアプリが同期すれば数えられます。Mac のアプリをときどき開いてください。
+- Mac のアプリは Bot ごとに最近のメッセージしか残しません。そのため、最初は古い日が表示されないことがあります。
+- Grok Bot にはトークン数がありません。Nomoアクティビティには日数と時間が加わりますが、Nomoトークンには何も加わりません。
+- The X Subscription では、Grok Bot と Cursor が 1 つの週間上限を共有し、Nomo はそれを表示します。以前の Cursor のプランでは Grok Bot に別の上限があり、Nomo はそれを読み取りません。
+- 今のところ Mac のみです。
+
+## 削除する {#remove}
+
+```bash
+bunx nomo-ai uninstall --grokbot
+```
+
+削除されるのはバックグラウンドジョブだけです。iPhone とのペアリングはそのまま残ります。Mac の接続も切りたい場合は、**先に**ペアリングを解除してください。[コマンドを使わずに実行する](/ja/sessions/commands#without-slash-commands)をご覧ください。
+
+Mac から送られるのは数値だけで、エンドツーエンド暗号化されています。プラグインの README に、[コンピュータから送られるもの](https://github.com/KarrixLee/nomo#what-leaves-your-computer)と[バックグラウンドジョブの動作](https://github.com/KarrixLee/nomo#grok-bot-background-job)が記載されています。

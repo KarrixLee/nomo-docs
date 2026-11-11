@@ -257,30 +257,9 @@ en su lugar.
 Cuenta Claude Code, Codex y OpenCode. Los días pasados también aparecen, porque
 el plugin lee el historial que ya está en tu ordenador.
 
-Desde Nomo 2.4.2 con el plugin 2.4.2, también cuenta Grok Bot. Para ello
-necesitas:
-
-- La app de escritorio de Grok Bot en un Mac, con la sesión iniciada. Ábrela de
-  vez en cuando para que se sincronice.
-- Nomo instalado y vinculado en ese mismo Mac. Consulta
-  [Instalación](/es/setup/install) y [Vinculación](/es/setup/pairing).
-
-Los chats que tuviste en el teléfono o en la web también cuentan, cuando la app
-del Mac los haya sincronizado.
-
-Algunos límites:
-
-- Sin la app de Grok Bot en un Mac, no hay nada que contar.
-- Grok Bot no tiene cifras de tokens. Suma días y tiempo a Actividad de Nomo,
-  pero nada a Tokens de Nomo.
-- La app del Mac solo guarda los mensajes recientes de cada Bot. Por eso, los
-  días más antiguos pueden no aparecer la primera vez.
-- Grok Bot no aparece en la lista de sesiones ni en la Dynamic Island. Solo
-  aparece en Actividad de Nomo.
-
-Solo salen recuentos de tu Mac, y van cifrados de extremo a extremo. Consulta
-[qué sale de tu ordenador](https://github.com/KarrixLee/nomo#what-leaves-your-computer)
-en el README del plugin.
+Desde Nomo 2.4.2 con el plugin 2.4.2, también cuenta Grok Bot, desde la app
+de Grok Bot en un Mac. Grok Bot suma días y tiempo, pero no tokens. Lo que
+necesita y sus límites están en [Usar Grok Bot](/es/sessions/grok-bot#streak).
 
 **Configúralo:**
 
@@ -317,8 +296,11 @@ marca, y ese color pasa al mapa, la llama, el cuadro de hoy y el brillo.
   </div>
 </Frame>
 
-El plugin envía un resumen nuevo como mucho cada 6 horas. Nomo lo descarga
-cuando abres la app. Por eso el mapa puede ir unas horas por detrás.
+El plugin envía un resumen nuevo como mucho cada 6 horas, y una vez justo
+después de actualizar el plugin. Nomo lo descarga cuando abres la app, como
+mucho una vez por hora. Por eso el mapa puede ir unas horas por detrás. Para
+descargarlo ya, abre la [pantalla Actividad](#activity-screen) y desliza hacia
+abajo.
 
 Toca el widget para abrir la [pantalla Actividad](#activity-screen) en Nomo.
 
@@ -654,7 +636,8 @@ Para volver a tus datos reales, desactiva **“Mostrar datos de ejemplo”**.
   ordenador o tu nombre de usuario. Se cifra de extremo a extremo con todo lo
   demás. Nomo solo lo usa para que tu iPhone no cuente el mismo ordenador dos
   veces. Para obtener uno nuevo, borra ese archivo.
-- Se sube como mucho cada 6 horas, y solo cuando algo ha cambiado. Si no ha
+- Se sube como mucho cada 6 horas, y solo cuando algo ha cambiado. El comando
+  de reinicio lo sube en el momento. Si no ha
   cambiado nada, vuelve a enviar el mismo resumen una vez a la semana para que
   el relé no lo borre. Justo
   después de vincular un iPhone nuevo, se sube una vez en un minuto, más o

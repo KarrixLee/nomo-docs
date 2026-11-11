@@ -353,8 +353,8 @@ comando status te avisa si son más antiguos.
 
 ## Un solo comando {#one-command}
 
-El instalador detecta cuáles de Claude Code, Codex, OpenCode, Cursor y
-Antigravity hay en esta máquina y deja Nomo puesto en los que elijas:
+El instalador detecta cuáles de Claude Code, Codex, OpenCode, Cursor,
+Antigravity y Grok Bot hay en esta máquina y deja Nomo puesto en los que elijas:
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -375,15 +375,22 @@ Para scripts y CI:
 
 | Opción | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
-| `--all` | los cinco, los haya encontrado o no; salvo Cursor y Antigravity, que se omiten si no están en este ordenador (nombra `--cursor` o `--antigravity` para intentarlo igualmente) |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--grokbot` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
+| `--all` | todos, los haya encontrado o no; salvo Cursor, Antigravity y Grok Bot, que se omiten si no están en este ordenador (nombra `--cursor`, `--antigravity` o `--grokbot` para intentarlo igualmente) |
 | `-y`, `--yes` | sin selector; instala todo lo que encuentre |
 | `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
-| `--uninstall` | con `--cursor` o `--antigravity`: quita Nomo de ese agente. Indica el agente: nunca lo adivina. Consulta [uninstall](/es/sessions/commands#uninstall) |
+| `--global` | añade también el comando corto `nomo`, sin preguntar. Consulta [Desde Terminal](/es/sessions/commands#terminal) |
+| `uninstall` | con `--cursor`, `--antigravity` o `--grokbot`: quita Nomo de ese agente (`--uninstall` también funciona). Indica el agente: nunca lo adivina. Consulta [uninstall](/es/sessions/commands#uninstall) |
 
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
-agente, confía en los hooks si es Codex, y vincula — `/nomo-pair`, o
-`/nomo-cc:pair` en Claude Code y `$nomo-pair` en Codex.
+agente, confía en los hooks si es Codex, y vincula — `bunx nomo-ai pair` en
+Terminal, o `/nomo-pair`, `/nomo-cc:pair` en Claude Code y `$nomo-pair` en
+Codex. Tienes más comandos de Terminal en
+[Desde Terminal](/es/sessions/commands#terminal).
+
+`--grokbot` es para un Mac en el que la app Grok Bot es tu única app de IA.
+Añade una pequeña tarea cada hora en lugar de hooks, y solo funciona en macOS.
+Consulta [Usar Grok Bot](/es/sessions/grok-bot).
 
 ## Actualizaciones {#updating}
 

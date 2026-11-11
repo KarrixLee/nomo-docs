@@ -352,8 +352,8 @@ ones.
 
 ## One command
 
-The installer detects which of Claude Code, Codex, OpenCode, Cursor and
-Antigravity are on
+The installer detects which of Claude Code, Codex, OpenCode, Cursor,
+Antigravity and Grok Bot are on
 this machine and sets Nomo up in the ones you pick:
 
 <CodeGroup>
@@ -375,15 +375,22 @@ For scripting and CI:
 
 | Flag | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | install exactly these — naming any one of them skips the picker |
-| `--all` | all five, detected or not — except Cursor and Antigravity, which are skipped when they aren't on this machine (name `--cursor` or `--antigravity` to try anyway) |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--grokbot` | install exactly these — naming any one of them skips the picker |
+| `--all` | all of them, detected or not — except Cursor, Antigravity and Grok Bot, which are skipped when they aren't on this machine (name `--cursor`, `--antigravity` or `--grokbot` to try anyway) |
 | `-y`, `--yes` | no picker; install everything detected |
 | `-n`, `--dry-run` | print the commands, run nothing |
-| `--uninstall` | with `--cursor` or `--antigravity`: remove Nomo from that agent. Name the agent — it never guesses. See [uninstall](/sessions/commands#uninstall) |
+| `--global` | also add the short `nomo` command, without asking. See [From Terminal](/sessions/commands#terminal) |
+| `uninstall` | with `--cursor`, `--antigravity` or `--grokbot`: remove Nomo from that agent (`--uninstall` works too). Name the agent — it never guesses. See [uninstall](/sessions/commands#uninstall) |
 
 It never pairs your phone. Finish exactly as the steps above describe: restart
-the agent, trust the hooks if it's Codex, and pair — `/nomo-pair`, or
-`/nomo-cc:pair` in Claude Code and `$nomo-pair` in Codex.
+the agent, trust the hooks if it's Codex, and pair — `bunx nomo-ai pair` in
+Terminal, or `/nomo-pair`, `/nomo-cc:pair` in Claude Code and `$nomo-pair` in
+Codex. More Terminal commands are in
+[From Terminal](/sessions/commands#terminal).
+
+`--grokbot` is for a Mac where the Grok Bot app is your only AI app. It adds a
+small hourly job instead of hooks, and works on macOS only. See
+[Using Grok Bot](/sessions/grok-bot).
 
 ## Updating
 

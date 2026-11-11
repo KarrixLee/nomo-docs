@@ -6,7 +6,7 @@ icon: "qrcode-read"
 
 ペアリングは、スマートフォンとコンピュータに共有の暗号鍵を渡します。サーバーがその鍵を見ることは一切ありません — ログインではなくスキャンまたはコード入力が必要なのはそのためです。
 
-この作業はコンピュータごとに 1 回行います。ペアリングは **10 分間**使われないと期限切れになります。
+この作業はコンピュータごとに 1 回行います。もう一度ペアリングすると、前のペアリングが置き換わります。ペアリングは **10 分間**使われないと期限切れになります。
 
 <Note>
   1 つのペアリングが対象とするのはマシンであり、エージェントではありません。同じコンピュータで
@@ -39,9 +39,14 @@ icon: "qrcode-read"
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair
         ```
+
+        ```bash ターミナル icon="terminal"
+        bunx nomo-ai pair
+        ```
         </CodeGroup>
 
         Antigravity では、Nomo のコマンドを実行してよいか確認されたら「Allow」を選んでください。
+        **ターミナル**は、どのフォルダからでも、エージェントを開かずに使えます。[ターミナルから実行する](/ja/sessions/commands#terminal)をご覧ください。
 
         テーマの適用されたペアリングページがブラウザで開き、QR コードが表示されます。
 
@@ -101,6 +106,10 @@ icon: "qrcode-read"
 
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair code
+        ```
+
+        ```bash ターミナル icon="terminal"
+        bunx nomo-ai pair code
         ```
         </CodeGroup>
 

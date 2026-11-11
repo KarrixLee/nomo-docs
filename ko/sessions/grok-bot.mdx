@@ -1,0 +1,135 @@
+---
+title: "Nomo의 Grok Bot: 상태, 사용량, 연속 기록"
+sidebarTitle: "Grok Bot 사용하기"
+description: "Nomo가 Grok Bot에 대해 보여 주는 것: iPhone에서는 상태와 사용량, Mac이 있으면 Nomo 활동의 연속 기록에 Grok Bot을 쓴 날까지."
+keywords: ["Nomo", "Grok Bot", "Cursor", "iPhone", "Mac", "Nomo 활동", "연속 기록", "위젯", "페어링", "Grok Bot 사용하기"]
+---
+
+Nomo는 Grok Bot 채팅을 세션으로 보여 주지 않습니다. Grok Bot은 세션 목록에도,
+Dynamic Island에도 나타나지 않습니다. 대신 상태, 사용량, 그리고 Grok Bot을 쓴
+날을 볼 수 있습니다.
+
+## 볼 수 있는 것
+
+| | 요금제 | 필요한 것 |
+| --- | --- | --- |
+| Grok Bot의 상태(위젯과 알림) | 무료 | 없음 |
+| 사용량(위젯과 알림) | 무료 | Nomo에서 Cursor에 로그인 |
+| 사용 속도 줄과 Nomo 사용 속도 위젯 | Nomo Pro | Nomo에서 Cursor에 로그인 |
+| Nomo 활동에 Grok Bot을 쓴 날 표시 | Nomo Pro | Grok Bot 앱과 Nomo가 설치된 Mac |
+
+## iPhone만으로 쓰기 {#iphone-only}
+
+위의 처음 세 줄은 컴퓨터가 필요 없습니다. 각각 설명하는 페이지가 따로
+있습니다.
+
+- **상태**: 위젯에서 Cursor의 **Grok Bot** 서비스를 고릅니다.
+  [상태](/ko/status)와 [위젯](/ko/widget)을 참고하십시오.
+- **사용량**: Cursor에 로그인합니다.
+  [Cursor와 Grok](/ko/usage#cursor-and-grok)을 참고하십시오.
+- **알림**: [알림](/ko/notifications)을 참고하십시오.
+- **사용 속도**: [사용 속도](/ko/usage#pace)와
+  [Nomo 사용 속도](/ko/widgets#nomo-pace)를 참고하십시오.
+
+## 연속 기록에 Grok Bot을 쓴 날 더하기 {#streak}
+
+Grok Bot만 AI 앱으로 쓰는 Mac을 위한 단계입니다. Nomo 2.4.2와 Nomo Pro가
+필요합니다.
+
+<Steps>
+  <Step title="Mac에 Grok Bot 설치">
+    Mac에 Grok Bot 데스크톱 앱을 설치하고 로그인합니다.
+  </Step>
+
+  <Step title="Nomo 설치">
+    터미널을 엽니다. 명령을 입력하는 Mac 앱입니다. Command-Space를 누르고
+    `Terminal`을 입력한 뒤 Return 키를 누르십시오.
+
+    다음을 붙여 넣고 Return 키를 누릅니다.
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --grokbot
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --grokbot
+    ```
+    </CodeGroup>
+
+    이 명령에는 bun 또는 Node.js 18 이상이 필요합니다.
+    [설치](/ko/setup/install)를 참고하십시오.
+
+    작은 백그라운드 작업이 추가됩니다. 이 작업은 로그인할 때와 1시간마다
+    실행되며, Grok Bot을 쓴 날을 셉니다. macOS에서 **백그라운드 항목이 추가됨**
+    알림이 나타날 수 있습니다. 바로 이 작업에 대한 알림입니다.
+  </Step>
+
+  <Step title="iPhone과 페어링">
+    이 Mac이 이미 페어링되어 있다면 이 단계를 건너뛰십시오. 다시 페어링하면
+    기존 페어링이 바뀝니다.
+
+    ```bash
+    bunx nomo-ai pair
+    ```
+
+    QR 코드가 있는 페이지가 브라우저에서 열립니다. Nomo에서 **세션** 탭을
+    탭하고 **컴퓨터 페어링**을 탭한 뒤 코드를 스캔합니다.
+    [페어링](/ko/setup/pairing)을 참고하십시오.
+  </Step>
+
+  <Step title="동작 확인">
+    ```bash
+    bunx nomo-ai status
+    ```
+
+    **Phone** 줄에 `paired`가 표시되어야 합니다. 여기에는 Grok Bot 줄이
+    없습니다.
+  </Step>
+
+  <Step title="위젯 추가">
+    Nomo 활동 위젯을 추가합니다. 위젯을 길게 터치하고 **위젯 편집**을 탭한 뒤
+    **캐릭터**를 탭하고 **Grok Bot**을 고릅니다.
+    [Nomo 활동](/ko/widgets#nomo-activity)을 참고하십시오.
+  </Step>
+</Steps>
+
+Grok Bot을 쓴 날을 바로 보려면 Mac에서 `bunx nomo-ai reset`을 실행하십시오.
+`Sent your activity summary (heatmap and streak) to your phone.`이 표시되면
+Nomo에서 [활동 화면](/ko/widgets#activity-screen)을 열고 아래로 당깁니다.
+
+<Note>
+  이 Mac에서 이미 Claude Code, Codex, OpenCode, Cursor, Antigravity를 Nomo와
+  함께 쓰고 있습니까? 그렇다면 `--grokbot`은 필요 없습니다.
+  [플러그인을 2.4.2로 업데이트](/ko/sessions/commands#update)하기만 하면 됩니다.
+</Note>
+
+## 제한
+
+- Mac에 Grok Bot 앱이 없으면 셀 것이 없습니다.
+- 휴대폰이나 웹에서 나눈 채팅도 Mac 앱이 동기화하면 함께 셉니다. Mac 앱을
+  가끔 열어 주십시오.
+- Mac 앱은 Bot마다 최근 메시지만 보관합니다. 그래서 처음에는 오래된 날짜가
+  표시되지 않을 수 있습니다.
+- Grok Bot에는 토큰 수가 없습니다. Nomo 활동에는 날짜와 시간이 더해지지만,
+  Nomo 토큰에는 아무것도 더해지지 않습니다.
+- The X Subscription에서는 Grok Bot과 Cursor가 주간 한도 하나를 함께 쓰며,
+  Nomo가 이 한도를 보여 줍니다. 예전 Cursor 요금제에서는 Grok Bot에 별도의
+  한도가 있으며, Nomo는 이 한도를 읽지 않습니다.
+- 지금은 Mac에서만 됩니다.
+
+## 제거하기 {#remove}
+
+```bash
+bunx nomo-ai uninstall --grokbot
+```
+
+백그라운드 작업만 제거합니다. iPhone과의 페어링은 그대로 남습니다. 이 Mac의
+연결도 끊으려면 **먼저** 페어링 해제를 실행하십시오.
+[`/` 명령 없이 실행하기](/ko/sessions/commands#without-slash-commands)를
+참고하십시오.
+
+Mac에서 나가는 것은 숫자뿐이며, 종단 간 암호화됩니다. 플러그인 README에서
+[컴퓨터에서 나가는 정보](https://github.com/KarrixLee/nomo#what-leaves-your-computer)와
+[백그라운드 작업이 하는 일](https://github.com/KarrixLee/nomo#grok-bot-background-job)을
+확인할 수 있습니다.

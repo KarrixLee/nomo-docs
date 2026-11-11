@@ -220,11 +220,30 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash 터미널 icon="terminal"
+  bunx nomo-ai reset
+  ```
   </CodeGroup>
 
   실행 중인 세션, 페어링, 키는 건드리지 않습니다 —
   [출력 내용](/ko/sessions/commands#reset). OpenCode 행은 OpenCode 서버에 속하므로,
   지워지지 않는 행이 있으면 OpenCode를 먼저 종료하십시오.
+</Accordion>
+
+<Accordion title="히트맵이나 연속 기록이 최신이 아님" icon="calendar">
+  기다리면 저절로 따라잡습니다. 컴퓨터는 새 요약을 최대 6시간에 한 번 보내고,
+  앱은 최대 1시간에 한 번 이를 확인합니다. 지금 바로 업데이트하려면:
+
+  1. 컴퓨터에서 터미널을 열고 `bunx nomo-ai reset`을 실행합니다. 또는
+     에이전트 안에서 `/nomo-cc:reset` 같은 초기화 명령을 실행합니다.
+     `Sent your activity summary (heatmap and streak) to your phone.`이라고
+     표시됩니다.
+  2. Nomo에서 [활동 화면](/ko/widgets#activity-screen)을 열고 아래로
+     당깁니다.
+
+  그래도 빠진 컴퓨터가 있다면
+  [집계되지 않는 컴퓨터](/ko/widgets#not-counted)를 참고하십시오.
 </Accordion>
 
 <Accordion title="아무것도 실행되지 않는데 세션이 실행 중으로 표시됨" icon="hourglass">
@@ -534,6 +553,14 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Sessions 줄은 이 컴퓨터가 아직 살아 있다고 믿는 세션의 수입니다. 실제보다 많다면 초기화 명령으로 페어링을 해제하지 않고 죽은 행만 정리하십시오. 실행 중인 세션, 페어링, 키는 건드리지 않습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "히트맵이나 연속 기록이 최신이 아님",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "기다리면 저절로 따라잡습니다. 컴퓨터는 새 요약을 최대 6시간에 한 번 보내고, 앱은 최대 1시간에 한 번 확인합니다. 지금 바로 업데이트하려면 그 컴퓨터의 터미널에서 bunx nomo-ai reset을 실행하고(또는 에이전트 안에서 초기화 명령을 실행하고), Nomo에서 활동 화면을 열고 아래로 당기십시오."
       }
     },
     {

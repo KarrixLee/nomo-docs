@@ -156,9 +156,22 @@ $nomo-status
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash 終端機 icon="terminal"
+  bunx nomo-ai reset
+  ```
   </CodeGroup>
 
   進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。OpenCode 的列屬於 OpenCode 的伺服器，所以有一列清不掉時，請先結束 OpenCode。
+</Accordion>
+
+<Accordion title="熱度圖或連續紀錄沒有更新" icon="calendar">
+  它會自己跟上。你的電腦最多每 6 小時傳送一次新的摘要，App 最多每小時檢查一次。想現在就更新：
+
+  1. 在電腦上打開終端機，執行 `bunx nomo-ai reset`。或是在代理裡執行重設指令，例如 `/nomo-cc:reset`。它會顯示 `Sent your activity summary (heatmap and streak) to your phone.`
+  2. 在 Nomo 裡打開[活動頁面](/zh-Hant/widgets#activity-screen)，然後往下拉。
+
+  還是少了某台電腦？請看[未計入的電腦](/zh-Hant/widgets#not-counted)。
 </Accordion>
 
 <Accordion title="某個 session 顯示「執行中」，其實什麼都沒在跑" icon="hourglass">
@@ -389,6 +402,14 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Sessions 那一列算的是這台電腦仍然認為還活著的數量。如果那比你實際有的還多，執行 reset 指令清掉失效的那些，而不解除配對。進行中的 sessions、你的配對和金鑰都不會被動到。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "熱度圖或連續紀錄沒有更新",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "它會自己跟上：你的電腦最多每 6 小時傳送一次新的摘要，App 最多每小時檢查一次。想現在就更新，請在那台電腦的終端機裡執行 bunx nomo-ai reset（或在代理裡執行重設指令），然後在 Nomo 裡打開活動頁面並往下拉。"
       }
     },
     {

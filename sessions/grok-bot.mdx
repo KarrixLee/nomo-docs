@@ -1,0 +1,129 @@
+---
+title: "Grok Bot in Nomo: status, usage and your streak"
+sidebarTitle: "Using Grok Bot"
+description: "What Nomo shows for Grok Bot: its status and your usage on your iPhone, and your Grok Bot days on the Nomo Activity streak with a Mac."
+keywords: ["Nomo", "Grok Bot", "Cursor", "iPhone", "Mac", "Nomo Activity", "streak", "widget", "pairing", "Using Grok Bot"]
+---
+
+Nomo doesn't show Grok Bot chats as sessions. Grok Bot isn't in the Sessions
+list or on the Dynamic Island. What you get is its status, your usage, and the
+days you used it.
+
+## What you get
+
+| | Plan | What you need |
+| --- | --- | --- |
+| Grok Bot's status, in the widget and in alerts | Free | Nothing |
+| Your usage, in the widget and in alerts | Free | Sign in to Cursor in Nomo |
+| The Pace line and the Nomo Pace widget | Nomo Pro | Sign in to Cursor in Nomo |
+| Grok Bot days on Nomo Activity | Nomo Pro | A Mac with the Grok Bot app and Nomo |
+
+## On your iPhone only {#iphone-only}
+
+The first three rows need no computer. Each one has its own page:
+
+- **Status**: pick Cursor's **Grok Bot** service in the widget. See
+  [Status](/status) and [Widget](/widget).
+- **Usage**: sign in to Cursor. See [Cursor and Grok](/usage#cursor-and-grok).
+- **Alerts**: see [Notifications](/notifications).
+- **Pace**: see [The Pace line](/usage#pace) and [Nomo Pace](/widgets#nomo-pace).
+
+## Count Grok Bot days on your streak {#streak}
+
+These steps are for a Mac where Grok Bot is your only AI app. You need Nomo
+2.4.2 and Nomo Pro.
+
+<Steps>
+  <Step title="Install Grok Bot on your Mac">
+    Install the Grok Bot desktop app on your Mac, and sign in.
+  </Step>
+
+  <Step title="Install Nomo">
+    Open Terminal. It's the Mac app for typing commands. Press Command-Space,
+    type `Terminal`, and press Return.
+
+    Paste this and press Return:
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai --grokbot
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai --grokbot
+    ```
+    </CodeGroup>
+
+    You need bun or Node.js 18 or later for this. See
+    [Installation](/setup/install).
+
+    It adds a small background job. The job runs when you log in and once an
+    hour, and counts your Grok Bot days. You may see a macOS notice that says
+    **Background Items Added**. That's this job.
+  </Step>
+
+  <Step title="Pair your iPhone">
+    Skip this step if this Mac is already paired. Pairing again replaces the
+    old pairing.
+
+    ```bash
+    bunx nomo-ai pair
+    ```
+
+    A page with a QR code opens in your browser. In Nomo, tap the **Sessions**
+    tab, then **Pair a Computer**, and scan the code. See
+    [Pairing](/setup/pairing).
+  </Step>
+
+  <Step title="Check it works">
+    ```bash
+    bunx nomo-ai status
+    ```
+
+    The **Phone** line should say `paired`. There's no Grok Bot line here.
+  </Step>
+
+  <Step title="Add the widget">
+    Add the Nomo Activity widget. Touch and hold it, tap **Edit Widget**, tap
+    **Character**, and pick **Grok Bot**. See
+    [Nomo Activity](/widgets#nomo-activity).
+  </Step>
+</Steps>
+
+To see your days right away, run `bunx nomo-ai reset` on your Mac. When it
+says `Sent your activity summary (heatmap and streak) to your phone.`, open the
+[Activity screen](/widgets#activity-screen) in Nomo and pull down.
+
+<Note>
+  Already use Claude Code, Codex, OpenCode, Cursor or Antigravity with Nomo on
+  this Mac? You don't need `--grokbot`. Just
+  [update the plugin](/sessions/commands#update) to 2.4.2.
+</Note>
+
+## Limits
+
+- Without the Grok Bot app on a Mac, there's nothing to count.
+- Chats you had on your phone or the web count too, once the Mac app has
+  synced them. Open the Mac app now and then.
+- The Mac app keeps only recent messages for each Bot. So older days may not
+  show up the first time.
+- Grok Bot has no token numbers. It adds days and time to Nomo Activity, but
+  nothing to Nomo Tokens.
+- On The X Subscription, Grok Bot and Cursor share one weekly limit, and Nomo
+  shows it. On an older Cursor plan, Grok Bot has its own limit, and Nomo
+  doesn't read it.
+- Mac only, for now.
+
+## Remove it {#remove}
+
+```bash
+bunx nomo-ai uninstall --grokbot
+```
+
+This removes only the background job. Your iPhone stays paired. To disconnect
+the Mac as well, run unpair **first**. See
+[Without slash commands](/sessions/commands#without-slash-commands).
+
+Only counts leave your Mac, and they're end-to-end encrypted. The plugin's
+README lists [what leaves your computer](https://github.com/KarrixLee/nomo#what-leaves-your-computer)
+and [what the background job does](https://github.com/KarrixLee/nomo#grok-bot-background-job).
