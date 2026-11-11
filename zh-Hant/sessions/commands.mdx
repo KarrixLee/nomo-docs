@@ -5,7 +5,7 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "session", "電腦", "動態島", "權限", "配對", "指令"]
 ---
 
-Claude Code、Codex、OpenCode 和 Antigravity 上都有的五個指令，再加上只有 OpenCode 需要的第六個，Cursor 上則有四個。你在想影響的那台電腦上、從代理的 session 裡執行它們 — 在 Claude Code 和 OpenCode 裡是 `/` 指令，在 Cursor 和 Antigravity 裡是 `/` skill，在 Codex 裡是 `$` skill。配對、狀態和重設也能在終端機裡執行：請見[從終端機執行](#terminal)。
+Claude Code、Codex、OpenCode 和 Antigravity 上都有的五個指令，再加上只有 OpenCode 需要的第六個，Cursor 上則有四個。你在想影響的那台電腦上、從代理的 session 裡執行它們 — 在 Claude Code 和 OpenCode 裡是 `/` 指令，在 Cursor 和 Antigravity 裡是 `/` skill，在 Codex 裡是 `$` skill。配對、狀態、重設和解除配對也能在終端機裡執行：請見[從終端機執行](#terminal)。
 
 <Note>
   在 Antigravity 裡，每個 Nomo 指令都會先問你。請選擇 **Allow**（允許）— Antigravity 在你的電腦上執行任何指令之前都會先問。更多內容請看[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#commands)。
@@ -43,6 +43,7 @@ Cursor 在批准那一列的留白同樣不是漏掉：Cursor 的 sessions 是�
 | 用打字輸入的代碼配對 | `bunx nomo-ai pair code` |
 | <a href="#status">檢查健康狀態</a> | `bunx nomo-ai status` |
 | <a href="#reset">清除卡住的 sessions，並立刻傳送你的活動</a> | `bunx nomo-ai reset` |
+| <a href="#unpair">中斷這台電腦</a> | `bunx nomo-ai unpair` |
 | <a href="#uninstall">從一個代理移除 Nomo</a> | `bunx nomo-ai uninstall --cursor` |
 
 它們的作用和代理裡的指令一樣。一次配對或一次重設，就涵蓋這台電腦上的每個代理。沒有 bun？改用 `npx nomo-ai`，例如 `npx nomo-ai status`。如果還沒裝 Nomo，它們會告訴你：
@@ -300,6 +301,10 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash 終端機 icon="terminal"
+bunx nomo-ai unpair
+```
 </CodeGroup>
 
 撤銷配對，並清除那台電腦上的金鑰。
@@ -439,7 +444,7 @@ Antigravity 完成時會告訴你：
 
 然後重新啟動那個代理。Cursor 和 Antigravity 的話，結束應用程式再重新打開，也重新啟動任何開著的 `cursor-agent` 或 `agy`。
 
-它只會移除 Nomo 加進那個代理的東西。手機仍保持配對，你的其他代理照常運作。如果也想中斷這台電腦的連線，請**先**執行 [unpair](#unpair) — Nomo 一移除，這個指令也就沒了。
+它只會移除 Nomo 加進那個代理的東西。手機仍保持配對，你的其他代理照常運作。如果也想中斷這台電腦的連線，請執行 `bunx nomo-ai unpair`，在解除安裝之前或之後都可以。請見 [unpair](#unpair)。
 
 曾把 Nomo 的 Claude Code 外掛程式匯入 Antigravity？也請用 `agy plugin uninstall nomo-cc` 移除它，然後重新啟動 Antigravity。
 
@@ -447,7 +452,7 @@ Antigravity 完成時會告訴你：
 
 ## 不用 `/` 指令 {#without-slash-commands}
 
-Antigravity 不認得 Nomo 的指令？改在終端機裡執行它們。配對、狀態和重設最簡單的做法是用 [`bunx nomo-ai` 指令](#terminal)。以下是完整清單，適用於 Nomo 安裝工具：
+Antigravity 不認得 Nomo 的指令？改在終端機裡執行它們。配對、狀態、重設和解除配對最簡單的做法是用 [`bunx nomo-ai` 指令](#terminal)。以下是完整清單，適用於 Nomo 安裝工具：
 
 | | |
 | --- | --- |

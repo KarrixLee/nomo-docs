@@ -10,7 +10,7 @@ Five commands on Claude Code, Codex, OpenCode and Antigravity, a sixth that
 only OpenCode needs, and four on Cursor. You run them from inside an agent
 session on the computer you want to affect — a `/` command in Claude Code and
 OpenCode, a `/` skill in Cursor and Antigravity, a `$` skill in Codex. Pair,
-status and reset also work in Terminal: see [From Terminal](#terminal).
+status, reset and unpair also work in Terminal: see [From Terminal](#terminal).
 
 <Note>
   In Antigravity, every Nomo command asks first. Choose **Allow** — Antigravity
@@ -60,6 +60,7 @@ You can also run the main commands in Terminal, from any folder. On a Mac where
 | Pair with a typed code | `bunx nomo-ai pair code` |
 | <a href="#status">Check health</a> | `bunx nomo-ai status` |
 | <a href="#reset">Clear stuck sessions and send your activity now</a> | `bunx nomo-ai reset` |
+| <a href="#unpair">Disconnect this computer</a> | `bunx nomo-ai unpair` |
 | <a href="#uninstall">Remove Nomo from an agent</a> | `bunx nomo-ai uninstall --cursor` |
 
 They do the same as the commands inside your agent. One pairing or one reset
@@ -379,6 +380,10 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash Terminal icon="terminal"
+bunx nomo-ai unpair
+```
 </CodeGroup>
 
 Revokes the pairing and erases the key on that computer.
@@ -550,7 +555,7 @@ again, and restart any open `cursor-agent` or `agy`.
 
 It removes only what Nomo added to that agent. Your phone stays paired, so your
 other agents keep working. To disconnect this computer as well, run
-[unpair](#unpair) **first** — once Nomo is gone, so is that command.
+`bunx nomo-ai unpair`, before or after you uninstall. See [unpair](#unpair).
 
 Imported Nomo's Claude Code plugin into Antigravity? Remove that too with
 `agy plugin uninstall nomo-cc`, then restart Antigravity.
@@ -561,7 +566,7 @@ on each agent's install in [Installation](/setup/install).
 ## Without slash commands
 
 Antigravity doesn't know Nomo's commands? Run them from Terminal
-instead. Pair, status and reset are easiest as
+instead. Pair, status, reset and unpair are easiest as
 [`bunx nomo-ai` commands](#terminal). The full list, which works with the Nomo
 installer:
 

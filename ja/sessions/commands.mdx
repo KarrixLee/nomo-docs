@@ -5,7 +5,7 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
 ---
 
-Claude Code、Codex、OpenCode、Antigravity に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor と Antigravity では `/` のスキル、Codex では `$` のスキルです。ペアリング、状態確認、リセットはターミナルからも実行できます。[ターミナルから実行する](#terminal)をご覧ください。
+Claude Code、Codex、OpenCode、Antigravity に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor と Antigravity では `/` のスキル、Codex では `$` のスキルです。ペアリング、状態確認、リセット、ペアリングの解除はターミナルからも実行できます。[ターミナルから実行する](#terminal)をご覧ください。
 
 <Note>
   Antigravity では、Nomo のコマンドを実行するたびに確認が表示されます。「Allow」を選んでください — Antigravity は、コンピュータでコマンドを実行する前に必ず確認します。詳しくは [Antigravity での利用](/ja/sessions/antigravity#commands)をご覧ください。
@@ -43,6 +43,7 @@ Nomo の削除には `/` コマンドがありません。ターミナルに 1 �
 | コードを入力してペアリングする | `bunx nomo-ai pair code` |
 | <a href="#status">状態を確認する</a> | `bunx nomo-ai status` |
 | <a href="#reset">停止したセッションを消去し、アクティビティを今すぐ送る</a> | `bunx nomo-ai reset` |
+| <a href="#unpair">このコンピュータの接続を解除する</a> | `bunx nomo-ai unpair` |
 | <a href="#uninstall">エージェントから Nomo を削除する</a> | `bunx nomo-ai uninstall --cursor` |
 
 どれも、エージェントの中で実行するコマンドと同じ働きをします。ペアリングもリセットも、1 回でそのコンピュータのすべてのエージェントに効きます。bun がない場合は、代わりに `npx nomo-ai` を使ってください。たとえば `npx nomo-ai status` です。Nomo がまだインストールされていない場合は、次のように表示されます。
@@ -300,6 +301,10 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash ターミナル icon="terminal"
+bunx nomo-ai unpair
+```
 </CodeGroup>
 
 ペアリングを取り消し、そのコンピュータ上の鍵を消去します。
@@ -439,7 +444,7 @@ Antigravity は、完了すると次のように表示します。
 
 そのあとエージェントを再起動します。Cursor と Antigravity は、アプリを終了してもう一度開き、開いている `cursor-agent` や `agy` も再起動してください。
 
-削除されるのは、Nomo がそのエージェントに追加したものだけです。iPhone とのペアリングはそのまま残るので、ほかのエージェントは引き続き使えます。このコンピュータの接続も切りたい場合は、**先に** [unpair](#unpair) を実行してください — Nomo を削除すると、そのコマンドも使えなくなります。
+削除されるのは、Nomo がそのエージェントに追加したものだけです。iPhone とのペアリングはそのまま残るので、ほかのエージェントは引き続き使えます。このコンピュータの接続も切りたい場合は、`bunx nomo-ai unpair` を実行してください。アンインストールの前でも後でもかまいません。[unpair](#unpair) をご覧ください。
 
 Nomo の Claude Code プラグインを Antigravity に読み込んでいた場合は、`agy plugin uninstall nomo-cc` でそちらも削除し、Antigravity を再起動します。
 
@@ -447,7 +452,7 @@ Nomo の Claude Code プラグインを Antigravity に読み込んでいた場�
 
 ## コマンドを使わずに実行する {#without-slash-commands}
 
-Antigravity が Nomo のコマンドを認識しない場合は、代わりにターミナルから実行します。ペアリング、状態確認、リセットは、[`bunx nomo-ai` のコマンド](#terminal)を使うのがいちばん簡単です。Nomo インストーラーでインストールした場合に使える、すべてのコマンドの一覧です。
+Antigravity が Nomo のコマンドを認識しない場合は、代わりにターミナルから実行します。ペアリング、状態確認、リセット、ペアリングの解除は、[`bunx nomo-ai` のコマンド](#terminal)を使うのがいちばん簡単です。Nomo インストーラーでインストールした場合に使える、すべてのコマンドの一覧です。
 
 | | |
 | --- | --- |

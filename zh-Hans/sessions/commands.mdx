@@ -5,7 +5,7 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
 
-Claude Code、Codex、OpenCode 和 Antigravity 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor 和 Antigravity 里是 `/` skill，在 Codex 里是 `$` skill。配对、状态和重置也能在终端里运行：见[终端命令](#terminal)。
+Claude Code、Codex、OpenCode 和 Antigravity 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor 和 Antigravity 里是 `/` skill，在 Codex 里是 `$` skill。配对、状态、重置和解除配对也能在终端里运行：见[终端命令](#terminal)。
 
 <Note>
   在 Antigravity 里，每条 Nomo 命令都会先问你。选择 **Allow**（允许）——Antigravity 在你的电脑上运行任何命令前都会先问。详见[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#commands)。
@@ -43,6 +43,7 @@ Claude Code、Codex、OpenCode 和 Antigravity 上都有的五条命令，外加
 | 改用手动输入的配对码配对 | `bunx nomo-ai pair code` |
 | <a href="#status">检查健康状况</a> | `bunx nomo-ai status` |
 | <a href="#reset">清理卡住的会话，并马上发送你的活动</a> | `bunx nomo-ai reset` |
+| <a href="#unpair">断开这台电脑</a> | `bunx nomo-ai unpair` |
 | <a href="#uninstall">从一个智能体里移除 Nomo</a> | `bunx nomo-ai uninstall --cursor` |
 
 它们和智能体里的命令作用相同。一次配对或一次重置，就覆盖这台电脑上的所有智能体。没有 bun？改用 `npx nomo-ai`，比如 `npx nomo-ai status`。如果还没装 Nomo，它们会直接告诉你：
@@ -300,6 +301,10 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash 终端 icon="terminal"
+bunx nomo-ai unpair
+```
 </CodeGroup>
 
 撤销配对，并抹掉那台电脑上的密钥。
@@ -439,7 +444,7 @@ Antigravity 完成后会告诉你：
 
 然后重启那个智能体。Cursor 和 Antigravity：退出应用再重新打开，并重启所有开着的 `cursor-agent` 或 `agy`。
 
-它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，**先**运行 [unpair](#unpair)——Nomo 一移除，这条命令也就没了。
+它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，运行 `bunx nomo-ai unpair`，在卸载之前或之后都可以。见 [unpair](#unpair)。
 
 把 Nomo 的 Claude Code 插件导入过 Antigravity？也用 `agy plugin uninstall nomo-cc` 移除它，然后重启 Antigravity。
 
@@ -447,7 +452,7 @@ Antigravity 完成后会告诉你：
 
 ## 在终端里运行 {#without-slash-commands}
 
-Antigravity 不认识 Nomo 的命令？改在终端里运行。配对、状态和重置用 [`bunx nomo-ai` 命令](#terminal)最简单。下面是完整列表，用 Nomo 安装工具时可以这样做：
+Antigravity 不认识 Nomo 的命令？改在终端里运行。配对、状态、重置和解除配对用 [`bunx nomo-ai` 命令](#terminal)最简单。下面是完整列表，用 Nomo 安装工具时可以这样做：
 
 | | |
 | --- | --- |

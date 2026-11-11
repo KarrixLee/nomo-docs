@@ -9,7 +9,7 @@ Cinco comandos en Claude Code, Codex, OpenCode y Antigravity, un sexto que solo
 OpenCode necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del
 agente, en el ordenador al que quieras afectar: un comando con `/` en Claude Code
 y en OpenCode, una skill con `/` en Cursor y en Antigravity, una skill con `$` en
-Codex. Vincular, el estado y el reinicio también funcionan en Terminal: consulta
+Codex. Vincular, el estado, el reinicio y desvincular también funcionan en Terminal: consulta
 [Desde Terminal](#terminal).
 
 <Note>
@@ -63,6 +63,7 @@ de IA, es la única forma.
 | Vincular con un código | `bunx nomo-ai pair code` |
 | <a href="#status">Comprobar la salud</a> | `bunx nomo-ai status` |
 | <a href="#reset">Limpiar sesiones atascadas y enviar tu actividad ya</a> | `bunx nomo-ai reset` |
+| <a href="#unpair">Desconectar este ordenador</a> | `bunx nomo-ai unpair` |
 | <a href="#uninstall">Quitar Nomo de un agente</a> | `bunx nomo-ai uninstall --cursor` |
 
 Hacen lo mismo que los comandos dentro de tu agente. Una sola vinculación o un
@@ -388,6 +389,10 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash Terminal icon="terminal"
+bunx nomo-ai unpair
+```
 </CodeGroup>
 
 Revoca la vinculación y borra la clave en ese ordenador.
@@ -563,7 +568,8 @@ abrirla, y reinicia cualquier `cursor-agent` o `agy` abierto.
 
 Solo quita lo que Nomo añadió a ese agente. Tu teléfono sigue vinculado, así que
 tus otros agentes siguen funcionando. Para desconectar también este ordenador,
-ejecuta [unpair](#unpair) **antes**: cuando Nomo ya no está, ese comando tampoco.
+ejecuta `bunx nomo-ai unpair`, antes o después de desinstalar. Consulta
+[unpair](#unpair).
 
 ¿Importaste en Antigravity el plugin de Nomo para Claude Code? Quítalo también
 con `agy plugin uninstall nomo-cc` y reinicia Antigravity.
@@ -575,7 +581,7 @@ adivina. Más sobre la instalación de cada agente en
 ## Sin los comandos con / {#without-slash-commands}
 
 ¿Antigravity no reconoce los comandos de Nomo? Ejecútalos desde
-Terminal. Vincular, el estado y el reinicio son más fáciles como
+Terminal. Vincular, el estado, el reinicio y desvincular son más fáciles como
 [comandos `bunx nomo-ai`](#terminal). La lista completa, que funciona con el
 instalador de Nomo:
 
