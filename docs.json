@@ -91,9 +91,11 @@
                     "icon": "puzzle-piece",
                     "root": "widget",
                     "pages": [
+                      "free-widgets",
                       "widgets"
                     ]
                   },
+                  "sessions/grok-bot",
                   "notifications"
                 ]
               },
@@ -133,8 +135,7 @@
                   "sessions/codex",
                   "sessions/opencode",
                   "sessions/cursor",
-                  "sessions/antigravity",
-                  "sessions/grok-bot"
+                  "sessions/antigravity"
                 ]
               },
               {
@@ -172,9 +173,11 @@
                     "icon": "puzzle-piece",
                     "root": "es/widget",
                     "pages": [
+                      "es/free-widgets",
                       "es/widgets"
                     ]
                   },
+                  "es/sessions/grok-bot",
                   "es/notifications"
                 ]
               },
@@ -214,8 +217,7 @@
                   "es/sessions/codex",
                   "es/sessions/opencode",
                   "es/sessions/cursor",
-                  "es/sessions/antigravity",
-                  "es/sessions/grok-bot"
+                  "es/sessions/antigravity"
                 ]
               },
               {
@@ -253,9 +255,11 @@
                     "icon": "puzzle-piece",
                     "root": "ja/widget",
                     "pages": [
+                      "ja/free-widgets",
                       "ja/widgets"
                     ]
                   },
+                  "ja/sessions/grok-bot",
                   "ja/notifications"
                 ]
               },
@@ -295,8 +299,7 @@
                   "ja/sessions/codex",
                   "ja/sessions/opencode",
                   "ja/sessions/cursor",
-                  "ja/sessions/antigravity",
-                  "ja/sessions/grok-bot"
+                  "ja/sessions/antigravity"
                 ]
               },
               {
@@ -334,9 +337,11 @@
                     "icon": "puzzle-piece",
                     "root": "ko/widget",
                     "pages": [
+                      "ko/free-widgets",
                       "ko/widgets"
                     ]
                   },
+                  "ko/sessions/grok-bot",
                   "ko/notifications"
                 ]
               },
@@ -376,8 +381,7 @@
                   "ko/sessions/codex",
                   "ko/sessions/opencode",
                   "ko/sessions/cursor",
-                  "ko/sessions/antigravity",
-                  "ko/sessions/grok-bot"
+                  "ko/sessions/antigravity"
                 ]
               },
               {
@@ -415,9 +419,11 @@
                     "icon": "puzzle-piece",
                     "root": "zh-Hans/widget",
                     "pages": [
+                      "zh-Hans/free-widgets",
                       "zh-Hans/widgets"
                     ]
                   },
+                  "zh-Hans/sessions/grok-bot",
                   "zh-Hans/notifications"
                 ]
               },
@@ -457,8 +463,7 @@
                   "zh-Hans/sessions/codex",
                   "zh-Hans/sessions/opencode",
                   "zh-Hans/sessions/cursor",
-                  "zh-Hans/sessions/antigravity",
-                  "zh-Hans/sessions/grok-bot"
+                  "zh-Hans/sessions/antigravity"
                 ]
               },
               {
@@ -496,9 +501,11 @@
                     "icon": "puzzle-piece",
                     "root": "zh-Hant/widget",
                     "pages": [
+                      "zh-Hant/free-widgets",
                       "zh-Hant/widgets"
                     ]
                   },
+                  "zh-Hant/sessions/grok-bot",
                   "zh-Hant/notifications"
                 ]
               },
@@ -538,8 +545,7 @@
                   "zh-Hant/sessions/codex",
                   "zh-Hant/sessions/opencode",
                   "zh-Hant/sessions/cursor",
-                  "zh-Hant/sessions/antigravity",
-                  "zh-Hant/sessions/grok-bot"
+                  "zh-Hant/sessions/antigravity"
                 ]
               },
               {

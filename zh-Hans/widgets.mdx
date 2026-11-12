@@ -1,107 +1,11 @@
 ---
-title: "iPhone 上的 Claude 和 Codex 用量小组件：限额与连续记录"
-sidebarTitle: "全部小组件"
-description: "在 iPhone 主屏幕和锁定屏幕上查看 Claude 和 Codex 用量：5 小时和每周限额会不会在重置前用完，还有编程连续记录和智能体实时状态。"
-icon: "clone"
+title: "iPhone 上的 Nomo Pro 小组件：Claude 和 Codex 用量速度、连续记录与 Token"
+sidebarTitle: "Pro 小组件"
+description: "五个 iPhone 上的 Nomo Pro 小组件：Claude 或 Codex 的限额能不能撑到重置、你的编程连续记录、按模型统计的 Token、你的所有账户，以及智能体实时状态。"
+icon: "crown"
+tag: "PRO"
 keywords: ["Nomo", "Nomo Pro", "状态", "Nomo 用量", "小组件", "用量速度", "活动", "账户", "智能体实时状态", "Claude", "Codex", "用量", "连续记录", "热力图", "锁定屏幕", "iPhone", "Claude 用量小组件", "5 小时限额", "每周限额", "Codex 用量限额", "多个 Claude 账户", "锁定屏幕小组件", "Claude Code Token 用量", "按模型 Token", "回顾"]
 ---
-
-Nomo 有七个 iPhone 小组件。其中两个免费：显示状态的 **Nomo** 和 **Nomo 用量**。另外五个随 Nomo Pro 提供。
-
-本页介绍每个小组件显示什么，以及如何设置。要把小组件放到主屏幕上，见[小组件](/zh-Hans/widget)。
-
-## 免费版与 Pro {#free-and-pro}
-
-| | 免费 | Nomo Pro <span className="pro-pill" /> |
-| --- | --- | --- |
-| **Nomo** 状态小组件 | ✓ | ✓ |
-| **Nomo 用量**小组件 | ✓ | ✓ |
-| **Nomo 用量速度**、**Nomo 活动**、**Nomo 账户**、**智能体实时状态**、**Nomo Token** | | ✓ |
-| 每个服务商多个账户 | | ✓ |
-
-在小组件中心里，Pro 小组件的描述以 **👑 Nomo Pro** 开头。
-
-没有 Nomo Pro 也可以添加 Pro 小组件。它会显示一个淡化的预览，上面写着 **Nomo Pro** 和“解锁”。轻点它，就会在 App 里打开 Nomo Pro。
-
-## 免费小组件 {#free-widgets}
-
-### Nomo 状态 {#nomo-status}
-
-<Frame caption="小号和中号的 Nomo 状态。">
-  <div className="widget-shot">
-    <img className="only-light" src="/images/widgets-status.webp" alt="Nomo 状态：小号小组件显示 Claude Code 为 Operational，中号小组件显示 Codex 为 Operational，并带有 30 天历史条和 99.87%" />
-    <img className="only-dark" src="/images/widgets-status-dark.webp" alt="深色模式下的 Nomo 状态，小号和中号" />
-  </div>
-</Frame>
-
-在小组件中心里，这个小组件叫 **Nomo**。
-
-**它显示什么**：某一项服务此刻是否正常，例如 Claude Code 或 Codex。你会看到以下其中一种：
-
-- `运行正常`
-- `性能下降`
-- `部分中断`
-- `严重中断`
-- `维护中`
-
-如果 Nomo 拿不到状态，会显示 `无法获取`。
-
-| 尺寸 | 显示内容 |
-| --- | --- |
-| 小号 | 服务、它的状态，以及上次更新的时间。 |
-| 中号 | 同样的内容，外加过去 30 天的历史条和可用率。 |
-
-**事先需要**：什么都不用。不需要账户，也不需要登录。
-
-**设置方法**：
-
-1. 添加小组件。见[小组件](/zh-Hans/widget)。
-2. 按住小组件。
-3. 轻点“编辑小组件”。
-4. 轻点“服务商”，从 Claude、OpenAI、Cursor、xAI、Antigravity、Kimi、DeepSeek 中选一个。
-5. 轻点“服务”，选一个，例如 **Claude Code**。
-6. 轻点小组件外面，完成设置。
-
-想马上更新，轻点角落里的刷新按钮。轻点其他任何地方，会在 Nomo 中打开那个服务商的“状态”页面。
-
-详细内容见[状态](/zh-Hans/status)。
-
-### Nomo 用量 {#nomo-usage}
-
-<Frame caption="小号和中号的 Nomo 用量。">
-  <div className="widget-shot">
-    <img className="only-light" src="/images/widgets-usage.webp" alt="Nomo 用量：小号小组件显示 Claude 已用 45%、进度条和 resets 2h，中号小组件显示 Codex 的 Session 30% 和 Weekly 41%，各带进度条和重置时间" />
-    <img className="only-dark" src="/images/widgets-usage-dark.webp" alt="深色模式下的 Nomo 用量，小号和中号" />
-  </div>
-</Frame>
-
-**它显示什么**：一个账户的套餐限额用了多少，以及什么时候重置。
-
-| 尺寸 | 显示内容 |
-| --- | --- |
-| 小号 | 一个时段：大号百分比、进度条，以及多久后重置。 |
-| 中号 | 两个时段，通常是“会话”（5 小时）和“每周”，各带进度条和多久后重置。 |
-
-用到 70% 时进度条变成琥珀色，90% 时变成红色。如果你的套餐没有 5 小时限额，会改为显示 `无会话限额`。
-
-**事先需要**：一个已连接的账户，例如 Claude 或 Codex。打开“服务商”标签页，轻点那个服务商并连接。见[用量](/zh-Hans/usage)。连接之前，小组件会显示 `未连接`。
-
-**设置方法**：
-
-1. 添加小组件。见[小组件](/zh-Hans/widget)。
-2. 按住小组件。
-3. 轻点“编辑小组件”。
-4. 轻点“服务商”，选一个，例如 **Codex**。
-5. 轻点“账户”，选一个。“默认”会跟随你在 App 里设定的默认账户。
-6. 轻点“小尺寸样式”，选一个。“大百分比”把数字放大显示。“大动画”把动画图标放大显示。
-7. 轻点“小尺寸小组件焦点”，选择小号要显示的时段。“自动”会替你选。可选项因服务商而异。
-8. 轻点小组件外面，完成设置。
-
-选 Cursor 时还多一个选项：“Cursor 图标”。选 **Grok Bot** 或“Cursor 标志”。
-
-想马上更新，轻点角落里的刷新按钮。轻点其他任何地方，会在 Nomo 中打开那个服务商的“用量”页面。
-
-## Pro 小组件 <span className="pro-pill" /> {#pro-widgets}
 
 Nomo Pro 在免费小组件之外再加五个小组件。每个都回答一个你原本要打开 App 才能弄清的问题。
 
@@ -120,7 +24,13 @@ Nomo Pro 在免费小组件之外再加五个小组件。每个都回答一个�
 
 Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
-### Nomo 用量速度 <span className="pro-pill" /> {#nomo-pace}
+免费小组件 Nomo 状态和 Nomo 用量，见[免费小组件](/zh-Hans/free-widgets)。想把小组件放到主屏幕上，见[小组件](/zh-Hans/widget)。
+
+在小组件中心里，Pro 小组件的描述以 **👑 Nomo Pro** 开头。
+
+没有 Nomo Pro 也可以添加 Pro 小组件。它会显示一个淡化的预览，上面写着 **Nomo Pro** 和“解锁”。轻点它，就会在 App 里打开 Nomo Pro。
+
+## Nomo 用量速度 {#nomo-pace}
 
 <Frame caption="小号和中号的 Nomo 用量速度，以及锁定屏幕上的样子。">
   <div className="widget-shot">
@@ -173,7 +83,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
 轻点小组件，会在 Nomo 中打开那个服务商的“用量”页面。
 
-### Nomo 活动 <span className="pro-pill" /> {#nomo-activity}
+## Nomo 活动 {#nomo-activity}
 
 <Frame caption="小号、中号和大号的 Nomo 活动，以及锁定屏幕上的样子。">
   <div className="widget-shot">
@@ -212,6 +122,10 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
 从 Nomo 2.4.2 起，它也统计 Grok Bot，连同它的 Token。这不需要电脑。在 Nomo 里用你登录 Grok Bot 的账户连接 **Cursor**。之后 Nomo 会直接从 Cursor 的服务器读取 Token 数。只要当天 Grok Bot 用了 Token，那一天就算，所以定时例程也算。你自己用 Cursor 也会显示，单独占一行：**Cursor**。步骤见[搭配 Grok Bot 使用](/zh-Hans/sessions/grok-bot#streak)。
 
+<Card title="Grok Bot widgets on iPhone" icon="newspaper" href="https://nomo.gg/blog/grok-bot-widget-iphone/" horizontal>
+  带图的完整教程，在 Nomo 博客上（英文）。
+</Card>
+
 **设置方法**：
 
 1. 添加小组件。见[小组件](/zh-Hans/widget)。
@@ -244,7 +158,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
 为这张地图离开你电脑的内容，列在[隐私](#privacy)下面。只有计数，绝不包括你的提示或代码。
 
-### Nomo Token <span className="pro-pill" /> {#nomo-tokens}
+## Nomo Token {#nomo-tokens}
 
 <Frame caption="中号和大号的 Nomo Token。">
   <div className="widget-shot">
@@ -280,7 +194,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
 它和 Nomo 活动使用同一份摘要。离开你电脑的内容列在[隐私](#privacy)下面。
 
-### Nomo 账户 <span className="pro-pill" /> {#nomo-accounts}
+## Nomo 账户 {#nomo-accounts}
 
 <Frame caption="中号和大号的 Nomo 账户。">
   <div className="widget-shot narrow">
@@ -307,7 +221,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
 轻点某个账户的那一行，会在 Nomo 中打开那个服务商的“用量”页面，并显示这个账户。显示“在 Nomo 中重新连接”的那一行也一样。轻点其他任何地方（包括 `还有 3 个` 那一行），会打开“服务商”标签页。没有 Nomo Pro 时，轻点会打开 Nomo Pro。
 
-### 智能体实时状态 <span className="pro-pill" /> {#live-agents}
+## 智能体实时状态 {#live-agents}
 
 <Frame caption="小号和中号的智能体实时状态。紫色那一行需要你回答。">
   <div className="widget-shot">
@@ -349,7 +263,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
 “自动”会跟随列表最上面的会话。如果是 Antigravity、Cursor 或 OpenCode 的会话，就显示它的标志。选其他角色时，小组件会显示那个角色，背景也会带上淡淡的同色调。状态颜色不会变：紫色仍然表示有会话需要你回答。已经在主屏幕上的小组件会从“自动”开始。
 
-## 活动页面和回顾 <span className="pro-pill" /> {#activity-screen}
+## 活动页面和回顾 {#activity-screen}
 
 活动页面会完整显示你的连续记录和 Token，还能生成一张可以分享的回顾卡片。
 
@@ -381,7 +295,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
 页面的角色和颜色会跟随你用得最多的模型的服务商，和设为“自动”的 [Nomo Token](#nomo-tokens) 一样。连续记录栏也是如此。
 
-### 连续记录栏 <span className="pro-pill" /> {#streak-bar}
+### 连续记录栏 {#streak-bar}
 
 在 iOS 26.1 或更高版本上，“会话”标签页的标签栏正上方会浮着一个小栏。它显示你的连续记录、本周的 Token，以及最近 7 天的迷你柱状图。
 
@@ -439,7 +353,7 @@ Nomo 插件早于 2.4.0 的电脑不会被计入。你会看到：
 
 要解决这个问题，请更新那台电脑上的 Nomo 插件。见[更新](/zh-Hans/sessions/commands#update)。
 
-## 多个账户 <span className="pro-pill" /> {#more-than-one-account}
+## 多个账户 {#more-than-one-account}
 
 有了 Nomo Pro，每个服务商最多可以添加 5 个账户。例如，一个工作用的 Claude 账户和一个个人账户。Nomo 用量速度、Nomo 用量和 Nomo 账户都可以使用它们。
 
