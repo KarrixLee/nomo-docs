@@ -103,14 +103,20 @@ Nomo 会自动续期 Grok 的登录。
 
 **没有 Nomo Pro 时**，第一个限额下面只会显示一行“看看会不会在重置前用完”，旁边有 **PRO** 标签。轻点它会打开 Nomo Pro。
 
-## 已存的重置次数 {#banked-resets}
+## 可用的重置次数 {#banked-resets}
 
-Claude 和 Codex 有时会给你额外的限额重置，留着以后用。Nomo 把它们叫作已存的重置次数。只要至少有一次，用量卡片就会显示次数，比如**已存 4 次重置**。
+Claude 和 Codex 有时会给你额外的限额重置，留着以后用。只要至少有一次，Nomo 就会按你的时区显示次数和最早的到期时间，比如**4 次重置可用 · 12月11日 06:00到期**。
 
-- **Claude**：就是 claude.ai 上 **Settings → Usage** 里的 **Limit resets**。比如每周一次的重置，或者新模型发布时给的重置。Nomo 显示的是还没过期的剩余次数。
-- **Codex**：就是 OpenAI 给你的 Codex 套餐的已存重置次数。
+在各服务商的网站上也能看到这些重置：
 
-Nomo 只显示次数。它不会使用或消耗你的重置，也不显示过期时间。次数显示在 App 的用量卡片上，不在小组件里。它和以前一样随用量请求一起获取，直接从 Anthropic 或 OpenAI 发到你的手机。
+- **Claude**：claude.ai 的 **Settings → Usage** 里的 **Limit resets**。
+- **Codex**：chatgpt.com 的 **Settings → Usage** 里的 **Usage limit resets**。
+
+用量卡片会同时显示次数和到期时间。[Nomo 用量](/zh-Hans/free-widgets#nomo-usage)和 [Nomo 用量速度](/zh-Hans/widgets#nomo-pace)小组件会显示次数。
+
+**提醒**：Nomo 会在重置到期前 1 周和 1 天提醒你。这些提醒跟着各服务商的[用量提醒](/zh-Hans/notifications#usage-alerts)走，没有单独的开关。想关掉，就关闭那个服务商的用量提醒。落在深夜的提醒会改到傍晚或早上，绝不会晚于到期时间。
+
+Nomo 只显示你的重置，绝不会使用或消耗它们。它们和以前一样随用量请求一起获取，直接从 Anthropic 或 OpenAI 发到你的手机。
 
 ## 达到限额时 {#when-you-hit-a-limit}
 
