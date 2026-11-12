@@ -112,8 +112,8 @@ Tap the widget to open that provider's **Usage** page in Nomo.
 
 **What it shows:** a map of the days you coded with AI agents, like the one on
 a GitHub profile, plus your streak. A streak is how many days in a row you've
-coded. It counts every paired computer together. See
-[More than one computer](#more-than-one-computer).
+coded. It adds up every paired computer, plus Grok Bot and Cursor from your
+Cursor sign-in. See [More than one computer](#more-than-one-computer).
 
 A stronger color means more coding that day. Your streak doesn't reset in the
 morning: until your first session of the day, it counts up to yesterday.
@@ -122,7 +122,7 @@ morning: until your first session of the day, it counts up to yesterday.
 | --- | --- |
 | Small | Your streak and the last 7 days. |
 | Medium | Your streak, the last 16 weeks, and three stats under the map. |
-| Large | The last 26 weeks with the same three stats, how your time splits between agents, and totals: sessions, tokens, your busiest day and your longest streak. |
+| Large | **Last 26 weeks** under the title, the map with the same three stats, how your activity splits between agents with percentages, and totals: sessions, tokens, your busiest day and your longest streak. |
 | Lock Screen, rectangle | Your streak and the last 7 days. |
 
 The three stats under the map cover the weeks the map shows:
@@ -131,7 +131,9 @@ The three stats under the map cover the weeks the map shows:
 - A calendar: how many days you were active, such as `79 days`.
 - A bar chart: your average per week, such as `9.7h/wk`.
 
-If Medium is short on room, it shows only the first two.
+If Medium is short on room, it shows only the first two. If those weeks have
+no time at all, only the calendar shows. See
+[No time, only tokens](#no-time-only-tokens).
 
 On Large, **Tokens** is your total for the 26 weeks. If no token data comes in
 from your computers, that tile shows **Active hours** instead.
@@ -145,7 +147,8 @@ from your computers, that tile shows **Active hours** instead.
 It counts Claude Code, Codex and OpenCode. Past days show up too, because the
 plugin reads the history that's already on your computer.
 
-It also counts Grok Bot, with no computer needed. See [Grok Bot](#grok-bot).
+It also counts Grok Bot and Cursor, with no computer needed. See
+[Grok Bot](#grok-bot).
 
 **Set it up:**
 
@@ -157,8 +160,13 @@ It also counts Grok Bot, with no computer needed. See [Grok Bot](#grok-bot).
    **OpenCode**.
 5. Tap outside the widget to finish.
 
-**Automatic** shows the agent you used most in the last 7 days. Any other pick
-shows that character, and its color: the map, today's square, the streak flame
+**Automatic** shows the agent you used most in the last 7 days: the one with
+the most active time. If Grok Bot or Cursor was active in those days, it's the
+one with the most active days instead. A tie goes to the agent with more active
+days in the last 30 days. The [Activity screen](#activity-screen) uses the same
+rule.
+
+Any other pick shows that character, and its color: the map, today's square, the streak flame
 and the streak badge turn coral (Clawd), blue (Codex) or gold (Grok Bot). On
 Large, the bar that splits your time between agents keeps each agent's own
 color. A widget that was already on your Home Screen starts on **Automatic**.
@@ -173,6 +181,12 @@ color. A widget that was already on your Home Screen starts on **Automatic**.
 Only Clawd, Codex and Grok Bot are animated characters. Antigravity, Kimi,
 DeepSeek, Cursor and OpenCode show their logo on a tile in their brand color,
 and that color takes over the map, the flame, today's square and the glow.
+
+Clawd's mood follows your streak. It sleeps when you have no streak. It works
+out on a day you've already coded, and types while today is still empty. On a
+streak of 30 days or more, or a streak of at least 7 days that's your longest
+yet, Clawd turns into the Claude spark. That's still the **Clawd** pick. Grok
+Bot sleeps when you have no streak. Codex always looks the same.
 
 <Frame caption="Nomo Activity with Antigravity, DeepSeek and Kimi.">
   <div className="widget-shot">
@@ -215,6 +229,20 @@ Bot** under **Character**.
 - Your own Cursor use, in the Cursor editor or its command line, shows up on
   its own line: **Cursor**.
 
+#### No time, only tokens {#no-time-only-tokens}
+
+For Grok Bot and Cursor, Cursor reports tokens only. There's no time and no
+sessions. So:
+
+- A number that needs time or sessions, such as **Active hours** or
+  **Sessions**, shows **—** when nothing else gave one.
+- On the map, a Grok Bot or Cursor day is shaded by its tokens, compared with
+  its other days.
+- When Grok Bot or Cursor was active, the split between agents counts active
+  days, not time.
+- Their totals are the ones Cursor reports, and may include cached tokens. On
+  the [Activity screen](#activity-screen), the note under **By model** says so.
+
 What Nomo reads is under [Privacy](#privacy).
 
 <Card title="Grok Bot widgets on iPhone" icon="newspaper" href="https://nomo.gg/blog/grok-bot-widget-iphone/" horizontal>
@@ -231,7 +259,8 @@ What Nomo reads is under [Privacy](#privacy).
 </Frame>
 
 **What it shows:** how many tokens your agents used each day for the last 14
-days, across every paired computer. Each day's bar is split by model.
+days. Each day is split by model, or by agent if you pick that. It adds up
+every paired computer, plus Grok Bot and Cursor from your Cursor sign-in.
 
 Tokens here means input + output + reasoning. Cache isn't counted: it re-reads
 the same context, so it would swamp every other number. The
@@ -239,11 +268,13 @@ the same context, so it would swamp every other number. The
 
 | Size | What's on it |
 | --- | --- |
-| Medium | The 14-day total, today's tokens, and your top model with its share. |
-| Large | The same, plus the change from last week and your top 4 models. The rest are added up in one row, such as `6 more models`. |
+| Medium | The 14-day total, today's tokens, and your top model with its share. By agent, your top agent instead. |
+| Large | **Last 14 days** under the title. The same numbers, plus the change from last week and your top 4 models. The rest are added up in one row, such as `6 more models`. By agent, up to 5 agents instead. |
 
 Each model keeps one color everywhere: Claude models are coral, GPT blue, Grok
-gold, Gemini purple, and other models grey.
+gold, Gemini purple, and other models grey. By agent, each agent has its own
+color, such as coral for Claude Code, blue for Codex and gold for Grok Bot.
+Cursor's line is dashed.
 
 **What you need first:** the same as Nomo Activity: the Nomo plugin on a
 paired computer, or Cursor connected in Nomo for Grok Bot. See
@@ -256,13 +287,30 @@ paired computer, or Cursor connected in Nomo for Grok Bot. See
 3. Tap **Edit Widget**.
 4. Tap **Character** and pick one, the same choices as
    [Nomo Activity](#nomo-activity).
-5. Tap outside the widget to finish.
+5. Tap **Group by** and pick **Model** or **Agent**.
+6. Tap **Style** and pick **Bars** or **Lines**.
+7. If you picked **Agent**, tap **Agents**. Pick the agents you want: Claude
+   Code, Codex, OpenCode, Grok Bot or Cursor. At first, all of them are picked.
+8. Tap outside the widget to finish.
+
+**Agents** shows only when **Group by** is **Agent**. If you pick only some
+agents, the numbers count just them, and the label under the total reads
+**Selected agents** instead of **14-day total**. If none of your picks used
+tokens in the 14 days, the widget shows every agent.
+
+A widget that was already on your Home Screen starts on **Model** and **Bars**,
+so it looks the same as before.
 
 **Automatic** follows your top model's provider: Clawd for Claude, Codex for
 GPT, Grok Bot for Grok, Antigravity for Gemini, and the Kimi, DeepSeek or
 Cursor logo for their models. Any other model gets Clawd. Your pick changes
 only the character, the background glow and today's bar. Model colors never
 change.
+
+When the widget shows Clawd, its mood follows your tokens. It sleeps after 3
+days with no tokens, and types while today has none yet. When today is your
+best day of the 14, Clawd turns into the Claude spark. That's still the
+**Clawd** pick. Grok Bot sleeps after 3 days with no tokens.
 
 Tap the widget to open the [Activity screen](#activity-screen) in Nomo. Without
 Nomo Pro, a tap opens Nomo Pro.
@@ -390,20 +438,95 @@ Pro.
 
 The screen shows:
 
-- **Streak**: your streak and a map of the last 26 weeks, with the same three
-  stats as the [widget](#nomo-activity).
+- **Streak**: your streak and a map of the last 26 weeks, with month names
+  above it and the same three stats as the [widget](#nomo-activity). Under
+  them: how your activity splits between agents, with percentages, then
+  **Sessions** and **Busiest day**.
+- **Your Wrapped**: a card that makes an image to share. See
+  [Wrapped](#wrapped).
 - A switch for **7 days**, **14 days** or **30 days**. The chart moves from one
   range to the next when you switch.
-- **Tokens**: a chart of your daily tokens, stacked by model, with **Today**,
-  **Daily average**, **Active hours** and the change from the previous period.
+- **Tokens**: a chart of your daily tokens, with **Today**, **Daily average**,
+  **Active hours** and the change from the previous period. See
+  [The Tokens chart](#tokens-chart).
 - **By model**: a table with **Input**, **Output**, **Cache** and **Total**
   for each model.
+
+**Busiest day** is the day with the most active time, such as
+`Busiest day · 1h 59m`. With no time at all, it's the day with the most tokens.
 
 When you open the screen, it animates in for about a second. If Reduce Motion
 is on, everything just appears.
 
-The screen's character and color follow your top model's provider, like
-[Nomo Tokens](#nomo-tokens) on **Automatic**. The streak bar does the same.
+The screen's character and color follow the agent you used most, like
+[Nomo Activity](#nomo-activity) on **Automatic**. The streak bar does the same.
+To pick another one, see [Choose a character](#activity-character).
+
+### Choose a character {#activity-character}
+
+Under the streak card, it says **Touch and hold to choose a character**.
+
+1. Touch and hold the streak card.
+2. The card lifts and turns over to **Character**.
+3. Tap a character: **Automatic**, **Clawd**, **Codex**, **Grok Bot**,
+   **Antigravity**, **Kimi**, **DeepSeek**, **Cursor** or **OpenCode**.
+
+The card turns back by itself. To go back without a change, tap **×**, or tap
+outside the card.
+
+Each row has a second line:
+
+- **Automatic**: the character it shows now, such as
+  `Follows your most-used agent · now Clawd`.
+- A character whose agent you've used: its share of your activity, such as
+  `38% of your activity`.
+- Any other character: **No activity yet**.
+
+Your pick changes the character and the colors of the Activity screen and the
+[streak bar](#streak-bar). Nomo remembers it. Widgets keep their own
+**Character** option in **Edit Widget**, and Wrapped always follows your
+favorite agent.
+
+With VoiceOver, use the card's **Change character** action.
+
+### The Tokens chart {#tokens-chart}
+
+Two switches sit next to the **Tokens** title. On a small screen, they sit
+under it.
+
+- **Model** or **Agent**: split each day by model, or by agent.
+- **Bars** or **Lines**: the bar icon shows a bar chart. The line icon shows one
+  line for each model or agent.
+
+The **7 days**, **14 days** and **30 days** switch still sets the range.
+
+By model, the chart shows your top 5 models. The rest are added up as
+**Other**.
+
+Under the chart, each model or agent has a name and a total. Tap a name to
+hide it from the chart. Tap it again to show it. The numbers above the chart
+still count everything: hiding changes only the chart.
+
+Nomo remembers your choices for next time.
+
+### Filter the chart {#tokens-filter}
+
+Under the Tokens card, it says **Touch and hold to filter**.
+
+1. Touch and hold the Tokens card.
+2. The card lifts and turns over to **Filter**. Each model or agent has a tile
+   with its total and its share of the range.
+3. Tap a tile to hide it or show it. A checkmark means it's shown.
+4. To show everything again, tap **Show all**.
+5. To go back, tap **×**, or tap outside the card.
+
+It's the same choice as tapping a name under the chart. You can't hide the
+last one: it shows a lock.
+
+While something is hidden, the card says how many are shown, such as
+`3 of 4 shown`.
+
+With VoiceOver, use the card's **Filter** action.
 
 ### The streak bar {#streak-bar}
 
@@ -418,8 +541,8 @@ Sometimes it shows something else:
 
 | What it says | What it means | What a tap does |
 | --- | --- | --- |
-| **Start your streak** | No computer is paired yet. | Opens the same pairing steps as **Pair a Computer**. |
-| **No sessions yet** | A computer is paired, but no sessions have come in yet. | Opens the Activity screen. |
+| **Start your streak** | No computer is paired, and Cursor isn't connected in Nomo. | Opens the same pairing steps as **Pair a Computer**. |
+| **No sessions yet** | A computer is paired or Cursor is connected, but no activity has come in yet. | Opens the Activity screen. |
 | **Update the Nomo plugin** | Every paired computer has a Nomo plugin older than 2.4.0. | Opens the steps to update it. |
 
 When the bar is shrunk, these say **Pair a computer**, **No sessions yet** and
@@ -437,11 +560,22 @@ Sessions list instead.
 
 Wrapped turns your week, month or year into one image you can share.
 
-1. On the Activity screen, scroll to the bottom.
-2. Tap **Your Wrapped**.
-3. Tap **Week** (the last 7 days), **Month** (the last 30 days) or **Year**
+1. On the Activity screen, tap **Your Wrapped**, just under the streak card.
+   You can also tap the share button at the top right.
+2. Tap **Week** (the last 7 days), **Month** (the last 30 days) or **Year**
    (this calendar year).
+3. In the switch next to it, tap a style: bars, lines or heatmap.
 4. Tap **Share**, then pick where to send it.
+
+The style sets the chart on the card, and so on the image you share:
+
+- **Bars**: your tokens for each day. For a year, for each month.
+- **Lines**: one line for each agent. An agent with less than 5% of your tokens
+  is left out, unless it's your top one.
+- **Heatmap**: your active days. A week shows 7 tiles. A month shows the last
+  30 days in two rows. A year shows the whole year's map so far.
+
+Nomo remembers the style for next time.
 
 <Frame caption="A week's Wrapped card. It's always dark, whatever your iPhone's appearance.">
   <div className="widget-shot narrow">
@@ -451,8 +585,14 @@ Wrapped turns your week, month or year into one image you can share.
 
 The card shows your tokens, a chart, your active hours, your busiest day, your
 longest streak, your favorite model and agent, and how many sessions you ran.
-Its character follows your favorite model's provider or your favorite agent.
-**Share** sends it as a 1080 × 1350 image. It never includes your prompts,
+
+- **Favorite model** is always a real model, such as Fable. Grok Bot and Cursor
+  aren't models. If they're all you used, the tile shows **Active days**
+  instead.
+- When Grok Bot or Cursor tokens are included, the note at the bottom reads
+  `Tokens = input + output + reasoning + Cursor's totals`.
+
+Its character follows your favorite agent. **Share** sends it as a 1080 × 1350 image. It never includes your prompts,
 project names or file paths.
 
 ## More than one computer {#more-than-one-computer}
@@ -561,8 +701,10 @@ To go back to your real data, turn **Show sample data** off.
 
 **Nomo Tokens and the Activity screen**
 
-- They use the same activity summary as Nomo Activity, so everything above
-  applies to them too.
+- They use the same activity summary as Nomo Activity, and the same Grok Bot
+  and Cursor counts, so everything above applies to them too.
+- Your chart choices, your filter and your character pick are saved on your
+  iPhone only.
 
 **Wrapped**
 

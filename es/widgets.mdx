@@ -119,7 +119,8 @@ Toca el widget para abrir la página **Uso** de ese proveedor en Nomo.
 
 **Qué muestra:** un mapa de los días en que programaste con agentes de IA, como
 el de un perfil de GitHub, además de tu racha. La racha es cuántos días seguidos
-has programado. Cuenta todos los ordenadores vinculados juntos. Consulta
+has programado. Suma todos los ordenadores vinculados, más Grok Bot y Cursor
+desde tu inicio de sesión de Cursor. Consulta
 [Más de un ordenador](#more-than-one-computer).
 
 Un color más intenso significa más programación ese día. Tu racha no se reinicia
@@ -129,7 +130,7 @@ por la mañana: hasta tu primera sesión del día, cuenta hasta ayer.
 | --- | --- |
 | Pequeño | Tu racha y los últimos 7 días. |
 | Mediano | Tu racha, las últimas 16 semanas y tres datos bajo el mapa. |
-| Grande | Las últimas 26 semanas con los mismos tres datos, cómo se reparte tu tiempo entre agentes y los totales: sesiones, tokens, tu día con más actividad y tu racha más larga. |
+| Grande | **“Últimas 26 semanas”** bajo el título, el mapa con los mismos tres datos, cómo se reparte tu actividad entre agentes con porcentajes y los totales: sesiones, tokens, tu día con más actividad y tu racha más larga. |
 | Pantalla de bloqueo, rectangular | Tu racha y los últimos 7 días. |
 
 Los tres datos bajo el mapa cubren las semanas que muestra el mapa:
@@ -138,7 +139,9 @@ Los tres datos bajo el mapa cubren las semanas que muestra el mapa:
 - Un calendario: cuántos días tuviste actividad.
 - Un gráfico de barras: tu media por semana.
 
-Si el tamaño mediano no tiene sitio, solo muestra los dos primeros.
+Si el tamaño mediano no tiene sitio, solo muestra los dos primeros. Si esas
+semanas no tienen nada de tiempo, solo se ve el calendario. Consulta
+[Sin tiempo, solo tokens](#no-time-only-tokens).
 
 En el tamaño grande, **Tokens** es tu total de las 26 semanas. Si tus
 ordenadores no envían datos de tokens, esa casilla muestra **“Horas activas”**
@@ -153,7 +156,7 @@ en su lugar.
 Cuenta Claude Code, Codex y OpenCode. Los días pasados también aparecen, porque
 el plugin lee el historial que ya está en tu ordenador.
 
-También cuenta Grok Bot, sin necesidad de ordenador. Consulta
+También cuenta Grok Bot y Cursor, sin necesidad de ordenador. Consulta
 [Grok Bot](#grok-bot).
 
 **Configúralo:**
@@ -166,8 +169,13 @@ También cuenta Grok Bot, sin necesidad de ordenador. Consulta
    **OpenCode**.
 5. Toca fuera del widget para terminar.
 
-**Automático** muestra el agente que más has usado en los últimos 7 días. Con
-cualquier otra opción, el widget muestra ese personaje y usa su color en el mapa,
+**Automático** muestra el agente que más has usado en los últimos 7 días: el
+que tiene más tiempo activo. Si Grok Bot o Cursor tuvieron actividad esos días,
+se elige el que tiene más días activos. Si hay empate, gana el agente con más
+días activos en los últimos 30 días. La [pantalla Actividad](#activity-screen)
+usa la misma regla.
+
+Con cualquier otra opción, el widget muestra ese personaje y usa su color en el mapa,
 el cuadro de hoy, la llama y la insignia de la racha: coral (Clawd), azul (Codex)
 o dorado (Grok Bot). En el tamaño grande, la barra que reparte tu tiempo entre
 agentes mantiene el color de cada agente. Un widget que ya estaba en la pantalla
@@ -183,6 +191,13 @@ de inicio empieza en **Automático**.
 Solo Clawd, Codex y Grok Bot son personajes animados. Antigravity, Kimi,
 DeepSeek, Cursor y OpenCode muestran su logotipo en un recuadro del color de su
 marca, y ese color pasa al mapa, la llama, el cuadro de hoy y el brillo.
+
+El humor de Clawd sigue a tu racha. Duerme cuando no tienes racha. Hace
+ejercicio un día en que ya has programado, y teclea mientras hoy sigue vacío.
+Con una racha de 30 días o más, o de al menos 7 días que sea la más larga hasta
+ahora, Clawd se convierte en la chispa de Claude. Sigue siendo la opción
+**Clawd**. Grok Bot duerme cuando no tienes racha. Codex siempre tiene el mismo
+aspecto.
 
 <Frame caption="Actividad de Nomo con Antigravity, DeepSeek y Kimi.">
   <div className="widget-shot">
@@ -227,6 +242,20 @@ tokens con Grok Bot al abrirse. Para mostrar Grok Bot en el widget, elige
 - Tu propio uso de Cursor, en el editor de Cursor o en su línea de comandos,
   aparece en su propia línea: **Cursor**.
 
+#### Sin tiempo, solo tokens {#no-time-only-tokens}
+
+Para Grok Bot y Cursor, Cursor solo informa de tokens. No hay tiempo ni
+sesiones. Por eso:
+
+- Una cifra que necesita tiempo o sesiones, como **“Horas activas”** o
+  **Sesiones**, muestra **—** si ningún otro dato la aporta.
+- En el mapa, un día de Grok Bot o Cursor se colorea según sus tokens,
+  comparado con sus otros días.
+- Cuando Grok Bot o Cursor tuvieron actividad, el reparto entre agentes cuenta
+  días activos, no tiempo.
+- Sus totales son los que informa Cursor y pueden incluir tokens de caché. En la
+  [pantalla Actividad](#activity-screen), la nota bajo **“Por modelo”** lo indica.
+
 Lo que lee Nomo está en [Privacidad](#privacy).
 
 <Card title="Grok Bot widgets on iPhone" icon="newspaper" href="https://nomo.gg/blog/grok-bot-widget-iphone/" horizontal>
@@ -243,8 +272,9 @@ Lo que lee Nomo está en [Privacidad](#privacy).
 </Frame>
 
 **Qué muestra:** cuántos tokens usaron tus agentes cada día durante los últimos
-14 días, en todos tus ordenadores vinculados. La barra de cada día se divide por
-modelo.
+14 días. Cada día se divide por modelo o, si lo eliges, por agente. Suma todos
+los ordenadores vinculados, más Grok Bot y Cursor desde tu inicio de sesión de
+Cursor.
 
 Aquí, tokens significa entrada + salida + razonamiento. La caché no se cuenta:
 vuelve a leer el mismo contexto, así que taparía todas las demás cifras. La
@@ -252,11 +282,13 @@ vuelve a leer el mismo contexto, así que taparía todas las demás cifras. La
 
 | Tamaño | Qué muestra |
 | --- | --- |
-| Mediano | El total de 14 días, los tokens de hoy y tu modelo principal con su porcentaje. |
-| Grande | Lo mismo, más el cambio frente a la semana pasada y tus 4 modelos principales. El resto se suma en una fila, como `6 modelos más`. |
+| Mediano | El total de 14 días, los tokens de hoy y tu modelo principal con su porcentaje. Por agente, tu agente principal en su lugar. |
+| Grande | **“Últimos 14 días”** bajo el título. Las mismas cifras, más el cambio frente a la semana pasada y tus 4 modelos principales. El resto se suma en una fila, como `6 modelos más`. Por agente, hasta 5 agentes en su lugar. |
 
 Cada modelo mantiene un mismo color en todas partes: los modelos de Claude son
-coral; GPT, azul; Grok, dorado; Gemini, morado, y los demás modelos, gris.
+coral; GPT, azul; Grok, dorado; Gemini, morado, y los demás modelos, gris. Por
+agente, cada agente tiene su propio color, como coral para Claude Code, azul
+para Codex y dorado para Grok Bot. La línea de Cursor es discontinua.
 
 **Qué necesitas antes:** lo mismo que para Actividad de Nomo: el plugin de
 Nomo en un ordenador vinculado, o Cursor conectado en Nomo para Grok Bot.
@@ -269,12 +301,31 @@ Consulta [Actividad de Nomo](#nomo-activity).
 3. Toca **“Editar widget”**.
 4. Toca **Personaje** y elige uno. Las opciones son las mismas que en
    [Actividad de Nomo](#nomo-activity).
-5. Toca fuera del widget para terminar.
+5. Toca **“Agrupar por”** y elige **Modelo** o **Agente**.
+6. Toca **Estilo** y elige **Barras** o **Líneas**.
+7. Si elegiste **Agente**, toca **Agentes**. Elige los agentes que quieras:
+   Claude Code, Codex, OpenCode, Grok Bot o Cursor. Al principio están todos
+   elegidos.
+8. Toca fuera del widget para terminar.
+
+**Agentes** solo aparece cuando **“Agrupar por”** está en **Agente**. Si eliges
+solo algunos agentes, las cifras cuentan solo esos, y la etiqueta bajo el total
+dice **“Agentes elegidos”** en lugar de **“Total de 14 días”**. Si ninguno de
+los que elegiste usó tokens en esos 14 días, el widget muestra todos los
+agentes.
+
+Un widget que ya estaba en la pantalla de inicio empieza en **Modelo** y
+**Barras**, así que se ve igual que antes.
 
 **Automático** sigue al proveedor de tu modelo principal: Clawd para Claude,
 Codex para GPT, Grok Bot para Grok, Antigravity para Gemini y el logotipo de
 Kimi, DeepSeek o Cursor para sus modelos. Cualquier otro modelo usa Clawd. Tu
 elección solo cambia el personaje, el brillo del fondo y la barra de hoy. Los colores de los modelos no cambian nunca.
+
+Cuando el widget muestra a Clawd, su humor sigue a tus tokens. Duerme tras 3
+días sin tokens, y teclea mientras hoy aún no tiene ninguno. Cuando hoy es tu
+mejor día de los 14, Clawd se convierte en la chispa de Claude. Sigue siendo la
+opción **Clawd**. Grok Bot duerme tras 3 días sin tokens.
 
 Toca el widget para abrir la [pantalla Actividad](#activity-screen) en Nomo.
 Sin Nomo Pro, al tocarlo se abre Nomo Pro.
@@ -406,22 +457,96 @@ abrir Nomo Pro.
 
 La pantalla muestra:
 
-- **Racha**: tu racha y un mapa de las últimas 26 semanas, con los mismos tres
-  datos que el [widget](#nomo-activity).
+- **Racha**: tu racha y un mapa de las últimas 26 semanas, con los nombres de
+  los meses encima y los mismos tres datos que el [widget](#nomo-activity).
+  Debajo: cómo se reparte tu actividad entre agentes, con porcentajes, y
+  después **Sesiones** y **“Día más activo”**.
+- **“Tu Wrapped”**: una tarjeta que crea una imagen para compartir. Consulta
+  [Wrapped](#wrapped).
 - Un selector de **7 días**, **14 días** o **30 días**. Al cambiarlo, el
   gráfico pasa de un periodo al otro con una animación.
-- **Tokens**: un gráfico de tus tokens diarios, apilado por modelo, con
-  **Hoy**, **“Media diaria”**, **“Horas activas”** y el cambio frente al periodo
-  anterior.
+- **Tokens**: un gráfico de tus tokens diarios, con **Hoy**, **“Media
+  diaria”**, **“Horas activas”** y el cambio frente al periodo anterior.
+  Consulta [El gráfico de tokens](#tokens-chart).
 - **“Por modelo”**: una tabla con **Entrada**, **Salida**, **Caché** y
   **Total** para cada modelo.
+
+**“Día más activo”** es el día con más tiempo activo, como
+`Día más activo · 1h 59m`. Si no hay nada de tiempo, es el día con más tokens.
 
 Al abrir la pantalla, aparece con una animación de un segundo, más o menos. Si
 tienes activado **“Reducir movimiento”**, todo aparece directamente.
 
-El personaje y el color de la pantalla siguen al proveedor de tu modelo
-principal, como [Tokens de Nomo](#nomo-tokens) en **Automático**. La barra de
-racha hace lo mismo.
+El personaje y el color de la pantalla siguen al agente que más has usado, como
+[Actividad de Nomo](#nomo-activity) en **Automático**. La barra de racha hace lo
+mismo. Para elegir otro, consulta [Elegir un personaje](#activity-character).
+
+### Elegir un personaje {#activity-character}
+
+Bajo la tarjeta de racha pone **“Mantén pulsado para elegir un personaje”**.
+
+1. Mantén pulsada la tarjeta de racha.
+2. La tarjeta se eleva y se da la vuelta para mostrar **Personaje**.
+3. Toca un personaje: **Automático**, **Clawd**, **Codex**, **Grok Bot**,
+   **Antigravity**, **Kimi**, **DeepSeek**, **Cursor** u **OpenCode**.
+
+La tarjeta vuelve a girarse sola. Para volver sin cambiar nada, toca **×** o
+toca fuera de la tarjeta.
+
+Cada fila tiene una segunda línea:
+
+- **Automático**: el personaje que muestra ahora, como
+  `Sigue a tu agente más usado · ahora Clawd`.
+- Un personaje cuyo agente has usado: su parte de tu actividad, como
+  `38 % de tu actividad`.
+- Cualquier otro personaje: **“Aún no hay actividad”**.
+
+Tu elección cambia el personaje y los colores de la pantalla Actividad y de la
+[barra de racha](#streak-bar). Nomo la recuerda. Los widgets tienen su propia
+opción **Personaje** en **“Editar widget”**, y Wrapped siempre sigue a tu agente
+favorito.
+
+Con VoiceOver, usa la acción **“Cambiar personaje”** de la tarjeta.
+
+### El gráfico de tokens {#tokens-chart}
+
+Junto al título **Tokens** hay dos selectores. En una pantalla pequeña, aparecen
+debajo.
+
+- **Modelo** o **Agente**: divide cada día por modelo o por agente.
+- **Barras** o **Líneas**: el icono de barras muestra un gráfico de barras. El
+  icono de líneas muestra una línea por cada modelo o agente.
+
+El selector de **7 días**, **14 días** y **30 días** sigue fijando el periodo.
+
+Por modelo, el gráfico muestra tus 5 modelos principales. El resto se suma como
+**Otros**.
+
+Bajo el gráfico, cada modelo o agente tiene un nombre y un total. Toca un nombre
+para ocultarlo del gráfico. Vuelve a tocarlo para mostrarlo. Las cifras de
+encima del gráfico siguen contándolo todo: ocultar solo cambia el gráfico.
+
+Nomo recuerda tus elecciones para la próxima vez.
+
+### Filtrar el gráfico {#tokens-filter}
+
+Bajo la tarjeta Tokens pone **“Mantén pulsado para filtrar”**.
+
+1. Mantén pulsada la tarjeta Tokens.
+2. La tarjeta se eleva y se da la vuelta para mostrar **Filtrar**. Cada modelo
+   o agente tiene un recuadro con su total y su parte del periodo.
+3. Toca un recuadro para ocultarlo o mostrarlo. Una marca de verificación
+   indica que se muestra.
+4. Para volver a mostrarlo todo, toca **“Mostrar todo”**.
+5. Para volver, toca **×** o toca fuera de la tarjeta.
+
+Es lo mismo que tocar un nombre bajo el gráfico. No puedes ocultar el último:
+muestra un candado.
+
+Mientras haya algo oculto, la tarjeta indica cuántos se muestran, como
+`3 de 4 visibles`.
+
+Con VoiceOver, usa la acción **Filtrar** de la tarjeta.
 
 ### La barra de racha {#streak-bar}
 
@@ -436,8 +561,8 @@ A veces muestra otra cosa:
 
 | Qué dice | Qué significa | Qué hace al tocarla |
 | --- | --- | --- |
-| **“Empieza tu racha”** | Todavía no hay ningún ordenador vinculado. | Abre los mismos pasos de vinculación que **“Vincular un ordenador”**. |
-| **“Aún no hay sesiones”** | Hay un ordenador vinculado, pero aún no ha llegado ninguna sesión. | Abre la pantalla Actividad. |
+| **“Empieza tu racha”** | No hay ningún ordenador vinculado y Cursor no está conectado en Nomo. | Abre los mismos pasos de vinculación que **“Vincular un ordenador”**. |
+| **“Aún no hay sesiones”** | Hay un ordenador vinculado o Cursor está conectado, pero aún no ha llegado ninguna actividad. | Abre la pantalla Actividad. |
 | **“Actualiza el plugin de Nomo”** | Todos los ordenadores vinculados tienen un plugin de Nomo anterior a la 2.4.0. | Abre los pasos para actualizarlo. |
 
 Cuando la barra está encogida, dicen **“Vincular un ordenador”**, **“Aún no hay
@@ -456,11 +581,24 @@ todo de la lista de sesiones.
 
 Wrapped convierte tu semana, tu mes o tu año en una imagen que puedes compartir.
 
-1. En la pantalla Actividad, desplázate hasta abajo.
-2. Toca **“Tu Wrapped”**.
-3. Toca **Semana** (los últimos 7 días), **Mes** (los últimos 30 días) o **Año**
+1. En la pantalla Actividad, toca **“Tu Wrapped”**, justo debajo de la tarjeta
+   de racha. También puedes tocar el botón de compartir de arriba a la derecha.
+2. Toca **Semana** (los últimos 7 días), **Mes** (los últimos 30 días) o **Año**
    (este año natural).
+3. En el selector de al lado, toca un estilo: barras, líneas o mapa de calor.
 4. Toca **Compartir** y elige dónde enviarla.
+
+El estilo define el gráfico de la tarjeta y, por tanto, el de la imagen que
+compartes:
+
+- **Barras**: tus tokens de cada día. En un año, de cada mes.
+- **Líneas**: una línea por cada agente. Un agente con menos del 5 % de tus
+  tokens queda fuera, salvo que sea el principal.
+- **“Mapa de calor”**: tus días activos. Una semana muestra 7 recuadros. Un mes
+  muestra los últimos 30 días en dos filas. Un año muestra el mapa de todo el
+  año hasta ahora.
+
+Nomo recuerda el estilo para la próxima vez.
 
 <Frame caption="Una tarjeta Wrapped de una semana. Siempre es oscura, sea cual sea el aspecto de tu iPhone.">
   <div className="widget-shot narrow">
@@ -470,9 +608,17 @@ Wrapped convierte tu semana, tu mes o tu año en una imagen que puedes compartir
 
 La tarjeta muestra tus tokens, un gráfico, tus horas activas, tu día con más
 actividad, tu racha más larga, tu modelo y tu agente favoritos, y cuántas
-sesiones hiciste. Su personaje sigue al proveedor de tu modelo favorito o a tu
-agente favorito. **Compartir** la envía como una imagen de 1080 × 1350. Nunca
-incluye tus prompts, nombres de proyectos ni rutas de archivos.
+sesiones hiciste.
+
+- **“Modelo favorito”** siempre es un modelo real, como Fable. Grok Bot y
+  Cursor no son modelos. Si son lo único que usaste, la casilla muestra
+  **“Días activos”** en su lugar.
+- Cuando se incluyen tokens de Grok Bot o Cursor, la nota de abajo dice
+  `Tokens = entrada + salida + razonamiento + totales de Cursor`.
+
+Su personaje sigue a tu agente favorito. **Compartir** la envía como una imagen
+de 1080 × 1350. Nunca incluye tus prompts, nombres de proyectos ni rutas de
+archivos.
 
 ## Más de un ordenador {#more-than-one-computer}
 
@@ -583,8 +729,11 @@ Para volver a tus datos reales, desactiva **“Mostrar datos de ejemplo”**.
 
 **Tokens de Nomo y la pantalla Actividad**
 
-- Usan el mismo resumen de actividad que Actividad de Nomo, así que todo lo
-  anterior también se aplica a ellos.
+- Usan el mismo resumen de actividad que Actividad de Nomo, y los mismos
+  recuentos de Grok Bot y Cursor, así que todo lo anterior también se aplica a
+  ellos.
+- Tus elecciones del gráfico, tu filtro y el personaje que elijas se guardan
+  solo en tu iPhone.
 
 **Wrapped**
 
