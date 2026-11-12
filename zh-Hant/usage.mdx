@@ -6,9 +6,9 @@ icon: "gauge"
 
 「用量」的運作方式跟[狀態](/zh-Hant/status)一樣 — 一個小工具加上通知 — 只多一個步驟：它要從你的帳號讀數字，所以需要登入。一樣不必在 Mac 上裝外掛程式；這個功能只在手機上跑。
 
-<Frame caption="Claude 的用量分頁：5 小時的計算週期、每週的計算週期，以及各自何時重置。">
+<Frame caption="Claude 的用量分頁：5 小時、每週和 Fable 的計算週期，各自何時重設，以及可用的重設次數。">
   <div className="device-frame">
-    <img src="/images/claude-usage-overview.png" alt="Nomo 的用量分頁，顯示 Claude 的 session 與每週上限" />
+    <img src="/images/claude-usage-overview.png" alt="沒有 Nomo Pro 時 Nomo 的 Claude 用量分頁：Claude Max 卡片顯示 Session 45%、Weekly 79% 和 Fable 48% 及各自的重設時間，一行帶 PRO 標籤的 See if you'll run out before reset，以及 4 resets available；下方是 Connected to Claude、1/5 個帳戶和帶 PRO 標籤的 Add another account" />
   </div>
 </Frame>
 
@@ -106,6 +106,13 @@ Nomo 會自動更新 Grok 的登入。
 ## 可用的重設次數 {#available-resets}
 
 Claude 和 Codex 有時會給你額外的限額重設，留著以後用。只要至少有一次，Nomo 就會依你的時區顯示次數和最早的到期時間，例如「4 次重設可用 · 12月11日 清晨6:00到期」。
+
+<Frame caption="用量卡片會顯示你有幾次重設，以及第一次重設的到期時間。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-resets-light.webp" alt="Claude Max 的 Claude Your usage 卡片：Session 45%、Weekly 79% 和 Fable 48%，各附重設時間和一行 Lasts until reset；下方是 4 resets available · use by Dec 11 at 6:00 AM" />
+    <img className="only-dark" src="/images/usage-resets-dark.webp" alt="Claude Max 的 Claude Your usage 卡片：Session 45%、Weekly 79% 和 Fable 48%，各附重設時間和一行 Lasts until reset；下方是 4 resets available · use by Dec 11 at 6:00 AM" />
+  </div>
+</Frame>
 
 在各供應商的網站上也看得到這些重設：
 

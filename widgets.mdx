@@ -18,7 +18,7 @@ otherwise open the app for.
 
 <Frame caption="All five Pro widgets on a Home Screen: Nomo Pace, Live Agents, Nomo Activity, Nomo Tokens and Nomo Accounts.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Five Nomo widgets on a light Home Screen: Pace counting down two hours to a Claude reset, Live Agents with two running and one needing an answer, a 13-day Activity streak with a coding heatmap, Tokens with 20.3M tokens in 14 days stacked by model, and an Accounts board of six accounts sorted by what's left" />
+    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Five Nomo widgets on a light Home Screen: Pace counting down to a Claude reset at 45% used · 60% time, Live Agents with two running and one needing an answer, a 46-day Activity streak with a coding map, Tokens with 193M tokens in 14 days and Grok Bot at the top of the list, and an Accounts board of six accounts, highest used first" />
     <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="The same five Nomo widgets on a dark Home Screen: Pace, Live Agents, Activity, Tokens and Accounts" />
   </div>
 </Frame>
@@ -38,7 +38,7 @@ Without Nomo Pro, you can still add a Pro widget. It shows a faded preview with
 
 <Frame caption="Nomo Pace in Small and Medium, and on the Lock Screen.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Nomo Pace: a small widget reading Resets in 2:00:00 with 45% used · 60% time, a medium widget showing the 5-hour window fine and the weekly window running out in about 2 days 6 hours, and two Lock Screen widgets reading 45% and Lasts until reset" />
+    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Nomo Pace: a small widget counting down to a Claude reset with 45% used · 60% time and the reset symbol with 4, a medium widget showing the 5-hour window fine, Weekly reading Runs out in ~1d and 4 resets available, and two Lock Screen widgets reading 45% and Lasts until reset" />
     <img className="only-dark" src="/images/pro-widgets-pace-dark.webp" alt="Nomo Pace in dark mode: small, medium and two Lock Screen widgets" />
   </div>
 </Frame>
@@ -110,7 +110,7 @@ Tap the widget to open that provider's **Usage** page in Nomo.
 
 <Frame caption="Nomo Activity in Small, Medium and Large, and on the Lock Screen.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Nomo Activity: a small widget with a 13-day streak and the last seven days, a medium widget with 16 weeks of coding days and 153h, 79 days and 9.7h/wk under the map, a large widget with 26 weeks plus a Claude Code and Codex split, 455 sessions and 187M tokens, and a Lock Screen widget reading 13-day streak" />
+    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Nomo Activity: a small widget with a 46-day streak and the last seven days, a medium widget with a map from August to November and 171h, 91 days and 11h/wk under it, a large widget with 26 weeks, a split of Grok Bot 43%, Claude Code 36% and Codex 12%, 474 sessions, 2.05B tokens, Aug 24 as the busiest day and a 46-day longest streak, and a Lock Screen widget reading 46-day streak" />
     <img className="only-dark" src="/images/pro-widgets-activity-dark.webp" alt="Nomo Activity in dark mode: small, medium, large and a Lock Screen widget" />
   </div>
 </Frame>
@@ -132,9 +132,9 @@ morning: until your first session of the day, it counts up to yesterday.
 
 The three stats under the map cover the weeks the map shows:
 
-- A clock: your active hours, such as `153h`.
-- A calendar: how many days you were active, such as `79 days`.
-- A bar chart: your average per week, such as `9.7h/wk`.
+- A clock: your active hours, such as `171h`.
+- A calendar: how many days you were active, such as `91 days`.
+- A bar chart: your average per week, such as `11h/wk`.
 
 If Medium is short on room, it shows only the first two. If those weeks have
 no time at all, only the calendar shows. See
@@ -258,7 +258,7 @@ What Nomo reads is under [Privacy](#privacy).
 
 <Frame caption="Nomo Tokens in Medium and Large.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/widgets-tokens.webp" alt="Nomo Tokens: a medium widget with 20.3M tokens in 14 days, 1.29M today and Fable at 78%, and a large widget that adds 41% more than last week and a legend of Fable, GPT-5.5 and Haiku 4.5, with each day's bar stacked by model" />
+    <img className="only-light" src="/images/widgets-tokens.webp" alt="Nomo Tokens: a medium widget with 193M tokens in 14 days, 13.4M today and Fable 7% as the top model, and a large widget that adds ↗20% vs last week and rows for Grok Bot, Fable, GPT-5.5, Cursor and Haiku 4.5, with each day's bar stacked" />
     <img className="only-dark" src="/images/widgets-tokens-dark.webp" alt="Nomo Tokens in dark mode, medium and large" />
   </div>
 </Frame>
@@ -273,8 +273,8 @@ the same context, so it would swamp every other number. The
 
 | Size | What's on it |
 | --- | --- |
-| Medium | The 14-day total, today's tokens, and your top model with its share. By agent, your top agent instead. |
-| Large | **Last 14 days** under the title. The same numbers, plus the change from last week and your top 4 models. The rest are added up in one row, such as `6 more models`. By agent, up to 5 agents instead. |
+| Medium | The 14-day total, today's tokens, and your top model with its share. Grok Bot and Cursor aren't models, so they don't count here. By agent, your top agent instead. |
+| Large | **Last 14 days** under the title. The same numbers, plus the change from last week and up to 5 rows. Grok Bot and Cursor get a row each, next to your models. With more than 5, the last row adds up the rest, such as `6 more models`. By agent, up to 5 agents instead. |
 
 Each model keeps one color everywhere: Claude models are coral, GPT blue, Grok
 gold, Gemini purple, and other models grey. By agent, each agent has its own
@@ -327,7 +327,7 @@ under [Privacy](#privacy).
 
 <Frame caption="Nomo Accounts in Medium and Large.">
   <div className="widget-shot narrow">
-    <img className="only-light" src="/images/pro-widgets-accounts.webp" alt="Nomo Accounts: a medium widget with four accounts and a large widget with six, each with a bar, the percent used or left and when it resets, the account with the least left at the top" />
+    <img className="only-light" src="/images/pro-widgets-accounts.webp" alt="Nomo Accounts, highest first: a medium widget with three accounts and +3 more, and a large widget with six, each with its plan name, a bar, the percent used and when it resets" />
     <img className="only-dark" src="/images/pro-widgets-accounts-dark.webp" alt="Nomo Accounts in dark mode, medium and large" />
   </div>
 </Frame>
@@ -419,10 +419,10 @@ that was already on your Home Screen starts on **Automatic**.
 The Activity screen shows your streak and your tokens in full. It also makes a
 Wrapped card you can share.
 
-<Frame caption="The top of the Activity screen: your streak, the 7 / 14 / 30 days switch and the tokens chart.">
+<Frame caption="The top of the Activity screen: your streak, Your Wrapped, the 7 / 14 / 30 days switch and the Tokens switches.">
   <div className="device-frame crop-top">
-    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="The Activity screen: a 13-day streak with a 26-week map, the 7, 14 and 30 days switch set to 14 days, and 20.3M tokens in the last 14 days with Today, Daily average and Active hours above a chart stacked by model" />
-    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="The Activity screen: a 13-day streak with a 26-week map, the 7, 14 and 30 days switch set to 14 days, and 20.3M tokens in the last 14 days with Today, Daily average and Active hours above a chart stacked by model" />
+    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="The Activity screen: a 46-day streak with a map from May to November, 254h, 141 days and 9.8h/wk, a split of Grok Bot 43%, Claude Code 36% and Codex 12%, and Sessions and Busiest day tiles, then the Your Wrapped card, the 7, 14 and 30 days switch set to 14 days, and the Tokens title with the Model and Agent switch and the bars and lines switch" />
+    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="The Activity screen: a 46-day streak with a map from May to November, 254h, 141 days and 9.8h/wk, a split of Grok Bot 43%, Claude Code 36% and Codex 12%, and Sessions and Busiest day tiles, then the Your Wrapped card, the 7, 14 and 30 days switch set to 14 days, and the Tokens title with the Model and Agent switch and the bars and lines switch" />
   </div>
 </Frame>
 
@@ -502,6 +502,13 @@ under it.
 - **Model** or **Agent**: split each day by model, or by agent.
 - **Bars** or **Lines**: the bar icon shows a bar chart. The line icon shows one
   line for each model or agent.
+
+<Frame caption="The Tokens chart with Agent and Lines picked: one line for each agent.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/widgets-tokens-agent-lines-light.webp" alt="The Tokens card with Agent and the line icon picked: 193M tokens in the last 14 days, ↗2% vs previous 14 days, 13.4M today, 13.8M daily average and 25h active hours, and a line for each of Grok Bot, Claude Code, Codex and Cursor, with Cursor's line dashed and each agent's total under the chart" />
+    <img className="only-dark" src="/images/widgets-tokens-agent-lines-dark.webp" alt="The Tokens card with Agent and the line icon picked: 193M tokens in the last 14 days, ↗2% vs previous 14 days, 13.4M today, 13.8M daily average and 25h active hours, and a line for each of Grok Bot, Claude Code, Codex and Cursor, with Cursor's line dashed and each agent's total under the chart" />
+  </div>
+</Frame>
 
 The **7 days**, **14 days** and **30 days** switch still sets the range.
 

@@ -18,7 +18,7 @@ para la que, si no, abrirías la app.
 
 <Frame caption="Los cinco widgets Pro en una pantalla de inicio: Ritmo de Nomo, Agentes en directo, Actividad de Nomo, Tokens de Nomo y Cuentas de Nomo.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Cinco widgets de Nomo en una pantalla de inicio clara: Ritmo con una cuenta atrás de dos horas hasta el restablecimiento de Claude, Agentes en directo con dos en marcha y uno esperando una respuesta, una racha de 13 días en Actividad con un mapa de programación, Tokens con 20,3 M de tokens en 14 días apilados por modelo, y un panel de Cuentas con seis cuentas ordenadas por lo que les queda" />
+    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Cinco widgets de Nomo en una pantalla de inicio clara: Ritmo con una cuenta atrás hasta el restablecimiento de Claude y 45% used · 60% time, Agentes en directo con dos en marcha y uno esperando una respuesta, una racha de 46 días en Actividad con un mapa de programación, Tokens con 193 M de tokens en 14 días y Grok Bot arriba de la lista, y un panel de Cuentas con seis cuentas, de más a menos usada" />
     <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="Los mismos cinco widgets de Nomo en una pantalla de inicio oscura: Ritmo, Agentes en directo, Actividad, Tokens y Cuentas" />
   </div>
 </Frame>
@@ -41,7 +41,7 @@ en la app.
 
 <Frame caption="Ritmo de Nomo en tamaño pequeño y mediano, y en la pantalla de bloqueo.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Ritmo de Nomo: un widget pequeño que indica Resets in 2:00:00 con 45% used · 60% time, un widget mediano que muestra la ventana de 5 horas sin problemas y la semanal agotándose en unos 2 días y 6 horas, y dos widgets de pantalla de bloqueo que indican 45% y Lasts until reset" />
+    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Ritmo de Nomo: un widget pequeño con una cuenta atrás hasta el restablecimiento de Claude, 45% used · 60% time y el símbolo de restablecimiento con un 4, un widget mediano que muestra la ventana de 5 horas sin problemas, Weekly con Runs out in ~1d y 4 resets available, y dos widgets de pantalla de bloqueo que indican 45% y Lasts until reset" />
     <img className="only-dark" src="/images/pro-widgets-pace-dark.webp" alt="Ritmo de Nomo en modo oscuro: widgets pequeño, mediano y dos de pantalla de bloqueo" />
   </div>
 </Frame>
@@ -117,7 +117,7 @@ Toca el widget para abrir la página **Uso** de ese proveedor en Nomo.
 
 <Frame caption="Actividad de Nomo en tamaño pequeño, mediano y grande, y en la pantalla de bloqueo.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Actividad de Nomo: un widget pequeño con una racha de 13 días y los últimos siete días, un widget mediano con 16 semanas de días programando y 153h, 79 days y 9.7h/wk bajo el mapa, un widget grande con 26 semanas más el reparto entre Claude Code y Codex, 455 sesiones y 187 M de tokens, y un widget de pantalla de bloqueo que indica una racha de 13 días" />
+    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Actividad de Nomo: un widget pequeño con una racha de 46 días y los últimos siete días, un widget mediano con un mapa de agosto a noviembre y 171h, 91 days y 11h/wk debajo, un widget grande con 26 semanas, el reparto Grok Bot 43 %, Claude Code 36 % y Codex 12 %, 474 sesiones, 2050 M de tokens, el 24 de agosto como día más activo y una racha más larga de 46 días, y un widget de pantalla de bloqueo que indica una racha de 46 días" />
     <img className="only-dark" src="/images/pro-widgets-activity-dark.webp" alt="Actividad de Nomo en modo oscuro: widgets pequeño, mediano, grande y uno de pantalla de bloqueo" />
   </div>
 </Frame>
@@ -271,7 +271,7 @@ Lo que lee Nomo está en [Privacidad](#privacy).
 
 <Frame caption="Tokens de Nomo en tamaño mediano y grande.">
   <div className="widget-shot">
-    <img className="only-light" src="/images/widgets-tokens.webp" alt="Tokens de Nomo: un widget mediano con 20,3 M de tokens en 14 días, 1,29 M hoy y Fable al 78 %, y un widget grande que añade un 41 % más que la semana pasada y una leyenda con Fable, GPT-5.5 y Haiku 4.5, con la barra de cada día apilada por modelo" />
+    <img className="only-light" src="/images/widgets-tokens.webp" alt="Tokens de Nomo: un widget mediano con 193 M de tokens en 14 días, 13,4 M hoy y Fable al 7 % como modelo principal, y un widget grande que añade ↗20 % frente a la semana pasada y filas para Grok Bot, Fable, GPT-5.5, Cursor y Haiku 4.5, con la barra de cada día apilada" />
     <img className="only-dark" src="/images/widgets-tokens-dark.webp" alt="Tokens de Nomo en modo oscuro, mediano y grande" />
   </div>
 </Frame>
@@ -287,8 +287,8 @@ vuelve a leer el mismo contexto, así que taparía todas las demás cifras. La
 
 | Tamaño | Qué muestra |
 | --- | --- |
-| Mediano | El total de 14 días, los tokens de hoy y tu modelo principal con su porcentaje. Por agente, tu agente principal en su lugar. |
-| Grande | **“Últimos 14 días”** bajo el título. Las mismas cifras, más el cambio frente a la semana pasada y tus 4 modelos principales. El resto se suma en una fila, como `6 modelos más`. Por agente, hasta 5 agentes en su lugar. |
+| Mediano | El total de 14 días, los tokens de hoy y tu modelo principal con su porcentaje. Grok Bot y Cursor no son modelos, así que aquí no cuentan. Por agente, tu agente principal en su lugar. |
+| Grande | **“Últimos 14 días”** bajo el título. Las mismas cifras, más el cambio frente a la semana pasada y hasta 5 filas. Grok Bot y Cursor tienen una fila cada uno, junto a tus modelos. Si hay más de 5, la última fila suma el resto, como `6 modelos más`. Por agente, hasta 5 agentes en su lugar. |
 
 Cada modelo mantiene un mismo color en todas partes: los modelos de Claude son
 coral; GPT, azul; Grok, dorado; Gemini, morado, y los demás modelos, gris. Por
@@ -342,7 +342,7 @@ en [Privacidad](#privacy).
 
 <Frame caption="Cuentas de Nomo en tamaño mediano y grande.">
   <div className="widget-shot narrow">
-    <img className="only-light" src="/images/pro-widgets-accounts.webp" alt="Cuentas de Nomo: un widget mediano con cuatro cuentas y uno grande con seis, cada una con una barra, el porcentaje usado o restante y cuándo se restablece, con la cuenta a la que le queda menos arriba del todo" />
+    <img className="only-light" src="/images/pro-widgets-accounts.webp" alt="Cuentas de Nomo, de más a menos usada: un widget mediano con tres cuentas y +3 more, y uno grande con seis, cada una con el nombre de su plan, una barra, el porcentaje usado y cuándo se restablece" />
     <img className="only-dark" src="/images/pro-widgets-accounts-dark.webp" alt="Cuentas de Nomo en modo oscuro, mediano y grande" />
   </div>
 </Frame>
@@ -437,10 +437,10 @@ en **Automático**.
 La pantalla Actividad muestra tu racha y tus tokens al completo. También crea
 una tarjeta Wrapped que puedes compartir.
 
-<Frame caption="La parte de arriba de la pantalla Actividad: tu racha, el selector de 7 / 14 / 30 días y el gráfico de tokens.">
+<Frame caption="La parte de arriba de la pantalla Actividad: tu racha, Tu Wrapped, el selector de 7 / 14 / 30 días y los selectores de tokens.">
   <div className="device-frame crop-top">
-    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="La pantalla Actividad: una racha de 13 días con un mapa de 26 semanas, el selector de 7, 14 y 30 días en 14 días, y 20,3 M de tokens en los últimos 14 días con Today, Daily average y Active hours sobre un gráfico apilado por modelo" />
-    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="La pantalla Actividad: una racha de 13 días con un mapa de 26 semanas, el selector de 7, 14 y 30 días en 14 días, y 20,3 M de tokens en los últimos 14 días con Today, Daily average y Active hours sobre un gráfico apilado por modelo" />
+    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="La pantalla Actividad: una racha de 46 días con un mapa de mayo a noviembre, 254h, 141 days y 9.8h/wk, el reparto Grok Bot 43 %, Claude Code 36 % y Codex 12 %, y las casillas Sessions y Busiest day; después, la tarjeta Your Wrapped, el selector de 7, 14 y 30 días en 14 días, y el título Tokens con los selectores Model y Agent, y de barras y líneas" />
+    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="La pantalla Actividad: una racha de 46 días con un mapa de mayo a noviembre, 254h, 141 days y 9.8h/wk, el reparto Grok Bot 43 %, Claude Code 36 % y Codex 12 %, y las casillas Sessions y Busiest day; después, la tarjeta Your Wrapped, el selector de 7, 14 y 30 días en 14 días, y el título Tokens con los selectores Model y Agent, y de barras y líneas" />
   </div>
 </Frame>
 
@@ -521,6 +521,13 @@ debajo.
 - **Modelo** o **Agente**: divide cada día por modelo o por agente.
 - **Barras** o **Líneas**: el icono de barras muestra un gráfico de barras. El
   icono de líneas muestra una línea por cada modelo o agente.
+
+<Frame caption="El gráfico de tokens con Agente y Líneas elegidos: una línea por cada agente.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/widgets-tokens-agent-lines-light.webp" alt="La tarjeta Tokens con Agent y el icono de líneas elegidos: 193 M de tokens en los últimos 14 días, ↗2 % frente a los 14 días anteriores, 13,4 M hoy, 13,8 M de media diaria y 25 h activas, y una línea para Grok Bot, Claude Code, Codex y Cursor, la de Cursor discontinua, con el total de cada agente bajo el gráfico" />
+    <img className="only-dark" src="/images/widgets-tokens-agent-lines-dark.webp" alt="La tarjeta Tokens con Agent y el icono de líneas elegidos: 193 M de tokens en los últimos 14 días, ↗2 % frente a los 14 días anteriores, 13,4 M hoy, 13,8 M de media diaria y 25 h activas, y una línea para Grok Bot, Claude Code, Codex y Cursor, la de Cursor discontinua, con el total de cada agente bajo el gráfico" />
+  </div>
+</Frame>
 
 El selector de **7 días**, **14 días** y **30 días** sigue fijando el periodo.
 

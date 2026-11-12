@@ -6,9 +6,9 @@ icon: "gauge"
 
 使用量は[ステータス](/ja/status)と同じつくりです — ウィジェットと通知 — ただし手順が 1 つだけ増えます。アカウントから数値を読み取るため、サインインが必要です。Mac 側のプラグインはこちらも不要で、スマートフォンだけで完結します。
 
-<Frame caption="Claude の使用量タブ。5 時間の枠、週の枠、そしてそれぞれがいつリセットされるか。">
+<Frame caption="Claude の使用量タブ。5 時間の枠、週の枠、Fable の枠、それぞれがいつリセットされるか、そして使えるリセット。">
   <div className="device-frame">
-    <img src="/images/claude-usage-overview.png" alt="Claude のセッション上限と週間上限を表示した Nomo の使用量タブ" />
+    <img src="/images/claude-usage-overview.png" alt="Nomo Pro がない場合の Claude の使用量タブ。Session 45%、Weekly 79%、Fable 48% とそれぞれのリセットまでの時間、PRO のラベルが付いた See if you'll run out before reset の行、4 resets available を表示した Claude Max のカード。その下に Connected to Claude、1/5 のアカウント、PRO のラベルが付いた Add another account" />
   </div>
 </Frame>
 
@@ -106,6 +106,13 @@ Nomo Pro では、「使用量」ページの各上限の下に 1 行追加さ�
 ## 使えるリセット {#available-resets}
 
 Claude と Codex では、あとで使える上限のリセットがもらえることがあります。1 回以上あるときは、その回数と、いちばん早い使用期限が表示されます。日時はお使いのタイムゾーンです。例: 「使えるリセット4回 · 12月11日 6:00までに使用」。
+
+<Frame caption="使用量のカードには、使えるリセットの回数と、最初のリセットの使用期限が表示されます。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-resets-light.webp" alt="Claude Max の Claude の Your usage カード。Session 45%、Weekly 79%、Fable 48% とそれぞれのリセットまでの時間、Lasts until reset の行。その下に 4 resets available · use by Dec 11 at 6:00 AM" />
+    <img className="only-dark" src="/images/usage-resets-dark.webp" alt="Claude Max の Claude の Your usage カード。Session 45%、Weekly 79%、Fable 48% とそれぞれのリセットまでの時間、Lasts until reset の行。その下に 4 resets available · use by Dec 11 at 6:00 AM" />
+  </div>
+</Frame>
 
 同じリセットは、各プロバイダーのサイトでも確認できます。
 

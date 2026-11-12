@@ -17,7 +17,7 @@ Nomo Pro 在免费小组件之外再加五个小组件。每个都回答一个�
 
 <Frame caption="主屏幕上的全部五个 Pro 小组件：Nomo 用量速度、智能体实时状态、Nomo 活动、Nomo Token 和 Nomo 账户。">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="浅色主屏幕上的五个 Nomo 小组件：用量速度显示距 Claude 重置还有两小时的倒计时，智能体实时状态显示两个运行中、一个需要回答，活动显示 13 天连续记录和编程热力图，Token 显示 14 天共 2030 万 Token 并按模型堆叠，账户面板按剩余量排列六个账户" />
+    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="浅色主屏幕上的五个 Nomo 小组件：用量速度显示距 Claude 重置的倒计时和 45% used · 60% time，智能体实时状态显示两个运行中、一个需要回答，活动显示 46 天连续记录和编程地图，Token 显示 14 天共 1.93 亿 Token、Grok Bot 排在列表最上面，账户面板按用量从高到低排列六个账户" />
     <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="深色主屏幕上同样的五个 Nomo 小组件：用量速度、智能体实时状态、活动、Token 和账户" />
   </div>
 </Frame>
@@ -34,7 +34,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
 <Frame caption="小号和中号的 Nomo 用量速度，以及锁定屏幕上的样子。">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Nomo 用量速度：小号小组件显示 Resets in 2:00:00 和 45% used · 60% time，中号小组件显示 5 小时时段没问题、每周时段约 2 天 6 小时后用完，两个锁定屏幕小组件分别显示 45% 和 Lasts until reset" />
+    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Nomo 用量速度：小号小组件显示距 Claude 重置的倒计时、45% used · 60% time，以及重置符号和 4；中号小组件显示 5 小时时段没问题，Weekly 显示 Runs out in ~1d，还有 4 resets available；两个锁定屏幕小组件分别显示 45% 和 Lasts until reset" />
     <img className="only-dark" src="/images/pro-widgets-pace-dark.webp" alt="深色模式下的 Nomo 用量速度：小号、中号和两个锁定屏幕小组件" />
   </div>
 </Frame>
@@ -89,7 +89,7 @@ Nomo 用量速度和 Nomo 活动也有锁定屏幕尺寸。
 
 <Frame caption="小号、中号和大号的 Nomo 活动，以及锁定屏幕上的样子。">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Nomo 活动：小号小组件显示 13 天连续记录和最近七天，中号小组件显示 16 周的编程日，地图下方是 153h、79 days 和 9.7h/wk，大号小组件显示 26 周外加 Claude Code 和 Codex 的占比、455 个会话和 1.87 亿 Token，锁定屏幕小组件显示 13 天连续记录" />
+    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Nomo 活动：小号小组件显示 46 天连续记录和最近七天；中号小组件显示 8 月到 11 月的地图，下方是 171h、91 days 和 11h/wk；大号小组件显示 26 周，外加 Grok Bot 43%、Claude Code 36%、Codex 12% 的占比、474 个会话、20.5 亿 Token、最忙的一天 8 月 24 日和最长连续记录 46 天；锁定屏幕小组件显示 46 天连续记录" />
     <img className="only-dark" src="/images/pro-widgets-activity-dark.webp" alt="深色模式下的 Nomo 活动：小号、中号、大号和一个锁定屏幕小组件" />
   </div>
 </Frame>
@@ -196,7 +196,7 @@ Nomo 读取哪些内容，见[隐私](#privacy)。
 
 <Frame caption="中号和大号的 Nomo Token。">
   <div className="widget-shot">
-    <img className="only-light" src="/images/widgets-tokens.webp" alt="Nomo Token：中号小组件显示 14 天共 2030 万 Token、今天 129 万、Fable 占 78%，大号小组件再加上较上周增长 41%，以及 Fable、GPT-5.5 和 Haiku 4.5 的图例，每天的条形按模型堆叠" />
+    <img className="only-light" src="/images/widgets-tokens.webp" alt="Nomo Token：中号小组件显示 14 天共 1.93 亿 Token、今天 1340 万，以及用得最多的模型 Fable 7%；大号小组件再加上较上周 ↗20%，以及 Grok Bot、Fable、GPT-5.5、Cursor 和 Haiku 4.5 各一行，每天的条形堆叠显示" />
     <img className="only-dark" src="/images/widgets-tokens-dark.webp" alt="深色模式下的 Nomo Token，中号和大号" />
   </div>
 </Frame>
@@ -207,8 +207,8 @@ Nomo 读取哪些内容，见[隐私](#privacy)。
 
 | 尺寸 | 显示内容 |
 | --- | --- |
-| 中号 | 14 天总计、今天的 Token，以及用得最多的模型和它的占比。按智能体分组时，改为显示用得最多的智能体。 |
-| 大号 | 标题下方显示“最近 14 天”。同样的数字，外加较上周的变化和前 4 个模型。其余的合并成一行，例如 `其他 6 个模型`。按智能体分组时，改为最多显示 5 个智能体。 |
+| 中号 | 14 天总计、今天的 Token，以及用得最多的模型和它的占比。Grok Bot 和 Cursor 不是模型，所以这里不算它们。按智能体分组时，改为显示用得最多的智能体。 |
+| 大号 | 标题下方显示“最近 14 天”。同样的数字，外加较上周的变化和最多 5 行。Grok Bot 和 Cursor 跟你的模型并列，各占一行。超过 5 个时，最后一行合并其余的，例如 `其他 6 个模型`。按智能体分组时，改为最多显示 5 个智能体。 |
 
 每个模型在任何地方都保持同一种颜色：Claude 模型是珊瑚色，GPT 是蓝色，Grok 是金色，Gemini 是紫色，其他模型是灰色。按智能体分组时，每个智能体有自己的颜色，比如 Claude Code 是珊瑚色，Codex 是蓝色，Grok Bot 是金色。Cursor 的线是虚线。
 
@@ -241,7 +241,7 @@ Nomo 读取哪些内容，见[隐私](#privacy)。
 
 <Frame caption="中号和大号的 Nomo 账户。">
   <div className="widget-shot narrow">
-    <img className="only-light" src="/images/pro-widgets-accounts.webp" alt="Nomo 账户：中号小组件显示四个账户，大号显示六个，每个账户都有一条进度条、已用或剩余百分比和重置时间，剩得最少的账户排在最上面" />
+    <img className="only-light" src="/images/pro-widgets-accounts.webp" alt="Nomo 账户，按用量从高到低：中号小组件显示三个账户和 +3 more，大号显示六个，每个账户都有套餐名称、进度条、已用百分比和重置时间" />
     <img className="only-dark" src="/images/pro-widgets-accounts-dark.webp" alt="深色模式下的 Nomo 账户，中号和大号" />
   </div>
 </Frame>
@@ -310,10 +310,10 @@ Nomo 读取哪些内容，见[隐私](#privacy)。
 
 活动页面会完整显示你的连续记录和 Token，还能生成一张可以分享的回顾卡片。
 
-<Frame caption="活动页面的上半部分：连续记录、7 / 14 / 30 天切换，以及 Token 图表。">
+<Frame caption="活动页面的上半部分：连续记录、回顾卡片、7 / 14 / 30 天切换，以及 Token 图表的切换。">
   <div className="device-frame crop-top">
-    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="活动页面：13 天连续记录和 26 周地图，7、14、30 天切换选在 14 天，以及最近 14 天的 2030 万 Token，Today、Daily average 和 Active hours 下方是按模型堆叠的图表" />
-    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="活动页面：13 天连续记录和 26 周地图，7、14、30 天切换选在 14 天，以及最近 14 天的 2030 万 Token，Today、Daily average 和 Active hours 下方是按模型堆叠的图表" />
+    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="活动页面：46 天连续记录和 5 月到 11 月的地图，254h、141 days 和 9.8h/wk，Grok Bot 43%、Claude Code 36%、Codex 12% 的占比，以及 Sessions 和 Busiest day 两格；下面是 Your Wrapped 卡片、选在 14 天的 7、14、30 天切换，以及带有 Model 和 Agent 切换、柱状和折线切换的 Tokens 标题" />
+    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="活动页面：46 天连续记录和 5 月到 11 月的地图，254h、141 days 和 9.8h/wk，Grok Bot 43%、Claude Code 36%、Codex 12% 的占比，以及 Sessions 和 Busiest day 两格；下面是 Your Wrapped 卡片、选在 14 天的 7、14、30 天切换，以及带有 Model 和 Agent 切换、柱状和折线切换的 Tokens 标题" />
   </div>
 </Frame>
 
@@ -367,6 +367,13 @@ Nomo 读取哪些内容，见[隐私](#privacy)。
 
 - “模型”或“智能体”：每天按模型分段，或按智能体分段。
 - “柱状”或“折线”：柱状图标显示柱状图。折线图标为每个模型或智能体各画一条线。
+
+<Frame caption="选了“智能体”和“折线”的 Token 图表：每个智能体一条线。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/widgets-tokens-agent-lines-light.webp" alt="选了 Agent 和折线图标的 Tokens 卡片：最近 14 天 1.93 亿 Token，较前 14 天 ↗2%，今天 1340 万、日均 1380 万、活跃时长 25h，以及 Grok Bot、Claude Code、Codex 和 Cursor 各一条线，Cursor 是虚线，图表下方是每个智能体的总数" />
+    <img className="only-dark" src="/images/widgets-tokens-agent-lines-dark.webp" alt="选了 Agent 和折线图标的 Tokens 卡片：最近 14 天 1.93 亿 Token，较前 14 天 ↗2%，今天 1340 万、日均 1380 万、活跃时长 25h，以及 Grok Bot、Claude Code、Codex 和 Cursor 各一条线，Cursor 是虚线，图表下方是每个智能体的总数" />
+  </div>
+</Frame>
 
 “7 天”“14 天”“30 天”切换仍然用来设置时间范围。
 
