@@ -120,11 +120,7 @@ Nomo Pro がなくても、Pro ウィジェットは追加できます。その�
 
 Claude Code、Codex、OpenCode を数えます。プラグインがコンピュータにすでにある履歴を読み取るので、過去の日も表示されます。
 
-Nomo 2.4.2 からは、Grok Bot もトークンと一緒に数えます。コンピュータは必要ありません。Nomo で、Grok Bot に使っているアカウントで **Cursor** を接続してください。Nomo は Cursor のサーバーから直接トークン数を読み取ります。その日に Grok Bot が少しでもトークンを使っていれば、その日を数えるので、スケジュールされたルーティンも数えます。あなた自身の Cursor の利用も、別の行「**Cursor**」に表示されます。手順は [Grok Bot での利用](/ja/sessions/grok-bot#streak)にまとめています。
-
-<Card title="Grok Bot のウィジェットを iPhone に" icon="newspaper" href="https://nomo.gg/ja/blog/grok-bot-widget-iphone/" horizontal>
-  写真付きの詳しい手順を、Nomo のブログで紹介しています。
-</Card>
+Grok Bot も数えます。コンピュータは必要ありません。[Grok Bot](#grok-bot)をご覧ください。
 
 **設定方法:**
 
@@ -157,6 +153,29 @@ Nomo 2.4.2 からは、Grok Bot もトークンと一緒に数えます。コン
 ウィジェットをタップすると、Nomo の[アクティビティ画面](#activity-screen)が開きます。
 
 このマップのためにコンピュータから送られるものは、[プライバシー](#privacy)に記載しています。送られるのは件数だけで、プロンプトやコードは決して送られません。
+
+### Grok Bot {#grok-bot}
+
+Nomo 2.4.2 からは、Nomoアクティビティと Nomoトークンで Grok Bot も数えます。コンピュータは必要ありません。
+
+**事前に必要なもの:**
+
+- Nomo 2.4.2 と Nomo Pro。
+- Grok Bot に使っているのと同じアカウントで、Nomo に Cursor を接続しておくこと。接続するのは Grok ではなく Cursor です。[Cursor と Grok](/ja/usage#cursor-and-grok)をご覧ください。
+
+そのあと、[アクティビティ画面](#activity-screen)を開きます。開いたときに、Grok Bot を使った日とトークンを取得します。ウィジェットに Grok Bot を表示するには、「キャラクター」で **Grok Bot** を選びます。
+
+**数えられるもの:**
+
+- その日に Grok Bot が少しでもトークンを使っていれば、その日を数えます。スケジュールされたルーティンや、Grok Bot のスマートフォンアプリでの利用も数えます。
+- Nomoトークンとアクティビティ画面には、Grok Bot の実際のトークン数が表示されます。
+- Cursor エディタやそのコマンドラインでのあなた自身の Cursor の利用は、別の行「**Cursor**」に表示されます。
+
+Nomo が読み取るものは、[プライバシー](#privacy)に記載しています。
+
+<Card title="Grok Bot のウィジェットを iPhone に" icon="newspaper" href="https://nomo.gg/ja/blog/grok-bot-widget-iphone/" horizontal>
+  写真付きの詳しい手順を、Nomo のブログで紹介しています。
+</Card>
 
 ## Nomoトークン {#nomo-tokens}
 
@@ -396,6 +415,7 @@ Nomo Pro がない場合も、デモモードで Pro ウィジェットのロッ
 
 - Nomo が読み取るのは、Nomo で接続した Cursor のアカウントの、1 時間ごとのトークン数だけです。メッセージやコードは読み取りません。
 - 数値は Cursor のサーバーから直接 iPhone に届きます。どこにもアップロードされません。
+- やめるには、「プロバイダー」タブで Cursor を開き、「使用量」をタップして、「接続解除」をタップします。これで Nomo での Cursor の使用量の表示も止まります。
 
 **Nomoトークンとアクティビティ画面**
 

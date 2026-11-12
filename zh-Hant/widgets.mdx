@@ -120,11 +120,7 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 它會計算 Claude Code、Codex 和 OpenCode。過去的日子也會出現，因為外掛程式會讀取你電腦上已經有的歷史紀錄。
 
-從 Nomo 2.4.2 起，它也會計算 Grok Bot，連同它的 Token。這不需要電腦。在 Nomo 裡用你使用 Grok Bot 的帳戶連結 **Cursor**。Nomo 接著會直接從 Cursor 的伺服器讀取 Token 數。只要 Grok Bot 當天用了任何 Token，那一天就算，所以排程的例行工作也算。你自己使用 Cursor 的部分也會顯示出來，在獨立的一行：**Cursor**。步驟請看[搭配 Grok Bot 使用](/zh-Hant/sessions/grok-bot#streak)。
-
-<Card title="Grok Bot iPhone 小工具" icon="newspaper" href="https://nomo.gg/zh-Hant/blog/grok-bot-widget-iphone/" horizontal>
-  在 Nomo 部落格上看附圖的完整教學。
-</Card>
+它也會計算 Grok Bot，不需要電腦。請看 [Grok Bot](#grok-bot)。
 
 **設定方式**：
 
@@ -157,6 +153,29 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 點一下小工具，會在 Nomo 中打開[活動頁面](#activity-screen)。
 
 為了這張地圖而離開你電腦的內容，列在[隱私](#privacy)底下。只有計數，絕不包括你的提示或程式碼。
+
+### Grok Bot {#grok-bot}
+
+從 Nomo 2.4.2 起，Nomo 活動和 Nomo Token 也會計算 Grok Bot。你不需要電腦。
+
+**事前需要**：
+
+- Nomo 2.4.2 和 Nomo Pro。
+- 在 Nomo 裡連結 Cursor，用你使用 Grok Bot 的同一個帳戶。請連結 Cursor，不是 Grok。請看 [Cursor 和 Grok](/zh-Hant/usage#cursor-and-grok)。
+
+接著打開[活動頁面](#activity-screen)。它一打開就會取得你用 Grok Bot 的日子和 Token。想在小工具上顯示 Grok Bot，請在「角色」裡選 **Grok Bot**。
+
+**哪些會算進去**：
+
+- 只要 Grok Bot 當天用了任何 Token，那一天就算。排程的例行工作和在 Grok Bot 手機應用程式裡的使用也算。
+- Nomo Token 和活動頁面會顯示 Grok Bot 實際的 Token 數。
+- 你自己使用 Cursor 的部分，不管是在 Cursor 編輯器還是它的命令列工具，會顯示在獨立的一行：**Cursor**。
+
+Nomo 會讀取哪些內容，列在[隱私](#privacy)底下。
+
+<Card title="Grok Bot iPhone 小工具" icon="newspaper" href="https://nomo.gg/zh-Hant/blog/grok-bot-widget-iphone/" horizontal>
+  在 Nomo 部落格上看附圖的完整教學。
+</Card>
 
 ## Nomo Token {#nomo-tokens}
 
@@ -396,6 +415,7 @@ Nomo 帳戶只會列出你真正新增過的帳戶，所以在你新增帳戶之
 
 - Nomo 只會用你在 Nomo 裡連結的 Cursor 帳戶，讀取每小時的 Token 數。它絕不會讀取你的訊息或程式碼。
 - 這些數字直接從 Cursor 的伺服器傳到你的手機，不會上傳到任何地方。
+- 想停止的話，在「供應商」分頁打開 Cursor，點一下「用量」，然後點一下「中斷連結」。這也會停止在 Nomo 裡顯示你的 Cursor 用量。
 
 **Nomo Token 和活動頁面**
 

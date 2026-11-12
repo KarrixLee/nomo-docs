@@ -145,16 +145,7 @@ from your computers, that tile shows **Active hours** instead.
 It counts Claude Code, Codex and OpenCode. Past days show up too, because the
 plugin reads the history that's already on your computer.
 
-From Nomo 2.4.2, it also counts Grok Bot, with its tokens. This needs no
-computer. Connect **Cursor** in Nomo with the account you use for Grok Bot.
-Nomo then reads the token counts straight from Cursor's server. A day counts
-when Grok Bot used any tokens that day, so scheduled routines count too. Your
-own Cursor use shows up too, on its own line: **Cursor**. Steps are in
-[Using Grok Bot](/sessions/grok-bot#streak).
-
-<Card title="Grok Bot widgets on iPhone" icon="newspaper" href="https://nomo.gg/blog/grok-bot-widget-iphone/" horizontal>
-  The full walkthrough with pictures, on the Nomo blog.
-</Card>
+It also counts Grok Bot, with no computer needed. See [Grok Bot](#grok-bot).
 
 **Set it up:**
 
@@ -200,6 +191,35 @@ Tap the widget to open the [Activity screen](#activity-screen) in Nomo.
 
 What leaves your computer for this map is listed under
 [Privacy](#privacy). It's counts only, never your prompts or code.
+
+### Grok Bot {#grok-bot}
+
+From Nomo 2.4.2, Nomo Activity and Nomo Tokens also count Grok Bot. You don't
+need a computer.
+
+**What you need first:**
+
+- Nomo 2.4.2 and Nomo Pro.
+- Cursor connected in Nomo, with the same account you use for Grok Bot.
+  Connect Cursor, not Grok. See [Cursor and Grok](/usage#cursor-and-grok).
+
+Then open the [Activity screen](#activity-screen). It fetches your Grok Bot
+days and tokens when it opens. To show Grok Bot on the widget, pick **Grok
+Bot** under **Character**.
+
+**What counts:**
+
+- A day counts when Grok Bot used any tokens that day. Scheduled routines and
+  use in the Grok Bot phone app count too.
+- Nomo Tokens and the Activity screen show Grok Bot's real token counts.
+- Your own Cursor use, in the Cursor editor or its command line, shows up on
+  its own line: **Cursor**.
+
+What Nomo reads is under [Privacy](#privacy).
+
+<Card title="Grok Bot widgets on iPhone" icon="newspaper" href="https://nomo.gg/blog/grok-bot-widget-iphone/" horizontal>
+  The full walkthrough with pictures, on the Nomo blog.
+</Card>
 
 ## Nomo Tokens {#nomo-tokens}
 
@@ -536,6 +556,8 @@ To go back to your real data, turn **Show sample data** off.
   in Nomo. It never reads your messages or code.
 - The counts go straight from Cursor's server to your phone. They aren't
   uploaded anywhere.
+- To stop, open Cursor in the **Providers** tab, tap **Usage**, and tap
+  **Disconnect**. This also stops your Cursor usage in Nomo.
 
 **Nomo Tokens and the Activity screen**
 

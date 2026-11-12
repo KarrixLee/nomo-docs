@@ -95,7 +95,6 @@
                       "widgets"
                     ]
                   },
-                  "sessions/grok-bot",
                   "notifications"
                 ]
               },
@@ -177,7 +176,6 @@
                       "es/widgets"
                     ]
                   },
-                  "es/sessions/grok-bot",
                   "es/notifications"
                 ]
               },
@@ -259,7 +257,6 @@
                       "ja/widgets"
                     ]
                   },
-                  "ja/sessions/grok-bot",
                   "ja/notifications"
                 ]
               },
@@ -341,7 +338,6 @@
                       "ko/widgets"
                     ]
                   },
-                  "ko/sessions/grok-bot",
                   "ko/notifications"
                 ]
               },
@@ -423,7 +419,6 @@
                       "zh-Hans/widgets"
                     ]
                   },
-                  "zh-Hans/sessions/grok-bot",
                   "zh-Hans/notifications"
                 ]
               },
@@ -505,7 +500,6 @@
                       "zh-Hant/widgets"
                     ]
                   },
-                  "zh-Hant/sessions/grok-bot",
                   "zh-Hant/notifications"
                 ]
               },
