@@ -23,12 +23,15 @@ icon: "clock-rotate-left"
   - **批准前先看程式碼**：Claude Code 和 Codex 的編輯請求會列出要變更的檔案，以及 `+` / `−` 行數。按住 session，再點一下「檢視變更」，就能在點一下「允許」或「拒絕」之前讀完每一行。[用法](/zh-Hant/sessions/approvals#see-the-code-before-you-approve)
   - **新結果一目了然**：上次查看後結束的 session 會標上藍點，每台電腦都會顯示新結果的數量，例如「2 個新結果」。[詳情](/zh-Hant/sessions/list#new-results)
   - 「首頁」上的「更新日誌」：關閉「新功能」卡片後，點一下「更新日誌」即可查看以往的版本
+  - **連續紀錄也算 Grok Bot**：Nomo 活動現在會計算你使用 Grok Bot 的日子。需要在已配對的 Mac 上裝好 Grok Bot 的 Mac 應用程式。[設定方式](/zh-Hant/sessions/grok-bot)
+  - **終端機指令**：`bunx nomo-ai pair`、`status`、`reset` 和 `unpair` 在任何資料夾裡都能執行。[詳情](/zh-Hant/sessions/commands#terminal)
 
   **改進**
 
   - 動態島和鎖定畫面會顯示一次編輯的大小，例如 `+13 −16`
   - 更清楚的批准標題：Codex 的編輯會顯示為 `Edit notes.txt` 或 `Edit 2 files`，而不是 `apply_patch`；MCP 工具會顯示為 `github · create issue` 這樣
   - 支援 Codex 0.167
+  - 打開活動頁面會取得你最新的活動，在電腦上執行 `reset` 會馬上傳送
 
   **修正**
 
