@@ -221,7 +221,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
   ```
 
   ```bash Terminal icon="terminal"
-  bunx nomo-ai reset
+  nomo reset
   ```
   </CodeGroup>
 
@@ -234,7 +234,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
   It catches up by itself. Your computer sends a new summary at most every 6
   hours, and the app checks for it at most once an hour. To update it now:
 
-  1. On the computer, open Terminal and run `bunx nomo-ai reset`. Or run the
+  1. On the computer, open Terminal and run `nomo reset`. Or run the
      reset command inside your agent, such as `/nomo-cc:reset`. It says
      `Sent your activity summary (heatmap and streak) to your phone.`
   2. In Nomo, open the [Activity screen](/widgets#activity-screen). It fetches
@@ -242,6 +242,9 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
   Still missing a computer? See
   [When a computer isn't counted](/widgets#not-counted).
+
+  Grok Bot missing? Its days come from Cursor connected in Nomo, not from a
+  computer. See [Using Grok Bot](/sessions/grok-bot#streak).
 </Accordion>
 
 <Accordion title="A session says Running when nothing is" icon="hourglass">
@@ -552,7 +555,7 @@ that command there.
       "name": "My heatmap or streak looks out of date",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It catches up by itself: your computer sends a new summary at most every 6 hours, and the app checks at most once an hour. To update it now, run bunx nomo-ai reset in Terminal on the computer (or the reset command inside your agent), then open the Activity screen in Nomo. It fetches the latest summary when it opens."
+        "text": "It catches up by itself: your computer sends a new summary at most every 6 hours, and the app checks at most once an hour. To update it now, run nomo reset in Terminal on the computer (or the reset command inside your agent), then open the Activity screen in Nomo. It fetches the latest summary when it opens."
       }
     },
     {

@@ -210,7 +210,7 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 它會計算 Claude Code、Codex 和 OpenCode。過去的日子也會出現，因為外掛程式會讀取你電腦上已經有的歷史紀錄。
 
-從 Nomo 2.4.2 和外掛程式 2.4.2 起，它也會計算 Grok Bot，資料來自 Mac 上的 Grok Bot 應用程式。Grok Bot 會加上天數和時間，但沒有 Token。只有當天你傳過訊息給 Grok Bot，那一天才算。只有排程的例行工作不算。它需要什麼、有哪些限制，請看[搭配 Grok Bot 使用](/zh-Hant/sessions/grok-bot#streak)。
+從 Nomo 2.4.2 起，它也會計算 Grok Bot，連同它的 Token。這不需要電腦。在 Nomo 裡用你使用 Grok Bot 的帳戶連結 **Cursor**。Nomo 接著會直接從 Cursor 的伺服器讀取 Token 數。只要 Grok Bot 當天用了任何 Token，那一天就算，所以排程的例行工作也算。你自己使用 Cursor 的部分也會顯示出來，在獨立的一行：**Cursor**。步驟請看[搭配 Grok Bot 使用](/zh-Hant/sessions/grok-bot#streak)。
 
 **設定方式**：
 
@@ -264,7 +264,7 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 每個模型在任何地方都維持同一種顏色：Claude 模型是珊瑚色，GPT 是藍色，Grok 是金色，Gemini 是紫色，其他模型是灰色。
 
-**事前需要**：和 Nomo 活動一樣，需要一台裝了 Nomo 外掛程式並已配對的電腦。請看 [Nomo 活動](#nomo-activity)。
+**事前需要**：和 Nomo 活動一樣，需要一台裝了 Nomo 外掛程式並已配對的電腦；如果是 Grok Bot，則需要在 Nomo 裡連結 Cursor。請看 [Nomo 活動](#nomo-activity)。
 
 **設定方式**：
 
@@ -477,6 +477,11 @@ Nomo 帳戶只會列出你真正新增過的帳戶，所以在你新增帳戶之
 - 其中還有一個隨機的電腦 ID。它由外掛程式在你的電腦上產生一次，儲存在 `~/.config/cc-status/machine-id`。它絕不來自你的硬體資訊，例如序號、MAC 位址、電腦名稱或使用者名稱。它和其他內容一樣經過端對端加密。Nomo 只用它來避免 iPhone 把同一台電腦算兩次。刪除這個檔案就會產生新的 ID。
 - 最多每 6 小時上傳一次，而且只在有變化時上傳。重設指令會立刻上傳。如果沒有變化，它每週會把同樣的摘要重新上傳一次，以免中繼伺服器把它刪除。剛和新的 iPhone 配對後，會在大約一分鐘內上傳一次。
 - 在你的電腦上，它存放在 `~/.config/cc-status/activity-days.json`。只有你的使用者帳號能讀取。最多保留 400 天。
+
+**Grok Bot 和 Cursor**
+
+- Nomo 只會用你在 Nomo 裡連結的 Cursor 帳戶，讀取每小時的 Token 數。它絕不會讀取你的訊息或程式碼。
+- 這些數字直接從 Cursor 的伺服器傳到你的手機，不會上傳到任何地方。
 
 **Nomo Token 和活動頁面**
 

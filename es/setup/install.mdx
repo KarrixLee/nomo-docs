@@ -353,8 +353,8 @@ comando status te avisa si son más antiguos.
 
 ## Un solo comando {#one-command}
 
-El instalador detecta cuáles de Claude Code, Codex, OpenCode, Cursor,
-Antigravity y Grok Bot hay en esta máquina y deja Nomo puesto en los que elijas:
+El instalador detecta cuáles de Claude Code, Codex, OpenCode, Cursor y
+Antigravity hay en esta máquina y deja Nomo puesto en los que elijas:
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -368,37 +368,35 @@ npx nomo-ai
 
 Al principio no hay nada marcado: las teclas de flecha (o `k` y `j`) mueven, el
 espacio marca un agente y enter instala todos los marcados. Luego ejecuta la
-instalación propia de cada uno: los mismos cinco caminos de arriba. No instala
-nada globalmente y no deja ningún paquete detrás.
+instalación propia de cada uno: los mismos cinco caminos de arriba.
+
+También añade un comando corto, `nomo`, para que después puedas escribir
+`nomo pair`, `nomo status`, etc. Lo dice así:
+
+```
+Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+```
+
+Para omitirlo, añade `--no-global`. Si más adelante no se encuentra `nomo`, `bunx nomo-ai` funciona igual; por ejemplo,
+`bunx nomo-ai pair`. Consulta
+[Si no se encuentra `nomo`](/es/sessions/commands#nomo-not-found).
 
 Para scripts y CI:
 
 | Opción | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--grokbot` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
-| `--all` | todos, los haya encontrado o no; salvo Cursor y Antigravity, que se omiten si no están en este ordenador (nombra `--cursor` o `--antigravity` para intentarlo igualmente). Grok Bot solo se añade si es el único agente de este Mac |
-| `-y`, `--yes` | sin selector; instala todo lo que encuentre. Grok Bot solo se añade si es el único agente de este Mac |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
+| `--all` | todos, los haya encontrado o no; salvo Cursor y Antigravity, que se omiten si no están en este ordenador (nombra `--cursor` o `--antigravity` para intentarlo igualmente) |
+| `-y`, `--yes` | sin selector; instala todo lo que encuentre |
 | `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
-| `--global` | añade también el comando corto `nomo`, sin preguntar. Sin esta opción, el instalador lo pregunta en una terminal (Retorno significa que sí), y `-y` no lo añade. Consulta [Desde Terminal](/es/sessions/commands#terminal) |
-| `uninstall` | con `--cursor`, `--antigravity` o `--grokbot`: quita Nomo de ese agente (`--uninstall` también funciona). Indica el agente: nunca lo adivina. Consulta [uninstall](/es/sessions/commands#uninstall) |
+| `--no-global` | no añade el comando corto `nomo`. Consulta [Desde Terminal](/es/sessions/commands#terminal) |
+| `uninstall` | con `--cursor` o `--antigravity`: quita Nomo de ese agente (`--uninstall` también funciona). Indica el agente: nunca lo adivina. Consulta [uninstall](/es/sessions/commands#uninstall) |
 
 Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
-agente, confía en los hooks si es Codex, y vincula — `bunx nomo-ai pair` en
+agente, confía en los hooks si es Codex, y vincula — `nomo pair` en
 Terminal, o `/nomo-pair`, `/nomo-cc:pair` en Claude Code y `$nomo-pair` en
 Codex. Tienes más comandos de Terminal en
 [Desde Terminal](/es/sessions/commands#terminal).
-
-`--grokbot` es para un Mac en el que la app Grok Bot es tu única app de IA.
-Solo funciona en macOS. En lugar de hooks, añade una pequeña tarea que cuenta tus
-días con Grok Bot al iniciar sesión y una vez cada hora, y luego se detiene.
-Consulta [Usar Grok Bot](/es/sessions/grok-bot).
-
-Con `--all` o `-y`, Grok Bot se queda fuera si hay otro agente en este Mac,
-porque ese agente ya envía tu actividad. El instalador lo dice:
-
-```
-Grok Bot left out — another agent here already sends its activity. Name it with --grokbot to install it anyway.
-```
 
 ## Actualizaciones {#updating}
 

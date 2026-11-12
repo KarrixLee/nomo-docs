@@ -340,7 +340,7 @@ icon: "puzzle-piece"
 
 ## 명령 한 줄 {#one-command}
 
-설치 도구가 이 컴퓨터에서 Claude Code, Codex, OpenCode, Cursor, Antigravity, Grok Bot을 찾아내고, 고른 것들에
+설치 도구가 이 컴퓨터에서 Claude Code, Codex, OpenCode, Cursor, Antigravity를 찾아내고, 고른 것들에
 Nomo를 넣어 줍니다.
 
 <CodeGroup>
@@ -355,37 +355,35 @@ npx nomo-ai
 
 처음에는 아무것도 선택되어 있지 않습니다. 방향 키(또는 `k` / `j`)로 옮기고,
 스페이스로 선택하고, 엔터로 선택한 것들을 한꺼번에 설치합니다. 그다음에는 각
-에이전트 고유의 설치 절차 — 위의 다섯 가지 — 를 그대로 실행합니다. 전역에 무언가를
-설치하지도, 패키지를 남기지도 않습니다.
+에이전트 고유의 설치 절차 — 위의 다섯 가지 — 를 그대로 실행합니다.
+
+짧은 `nomo` 명령도 추가하므로, 나중에 `nomo pair`, `nomo status` 등을 입력할 수
+있습니다. 설치 도구는 이렇게 알려 줍니다.
+
+```
+Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+```
+
+추가하지 않으려면 `--no-global`을 붙이십시오. 나중에 `nomo`를 찾을 수
+없다면 `bunx nomo-ai`로도 똑같이 됩니다. 예: `bunx nomo-ai pair`.
+[`nomo`를 찾을 수 없다면](/ko/sessions/commands#nomo-not-found)을 참고하십시오.
 
 스크립트나 CI에서는 다음 옵션을 쓸 수 있습니다.
 
 | 옵션 | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--grokbot` | 그것들만 설치합니다. 하나라도 지정하면 선택 화면을 건너뜁니다 |
-| `--all` | 찾아냈든 아니든 전부. 단, Cursor와 Antigravity는 이 컴퓨터에 없으면 건너뜁니다(그래도 시도하려면 `--cursor`나 `--antigravity`를 지정하십시오). Grok Bot은 이 Mac의 에이전트가 Grok Bot뿐일 때만 추가됩니다 |
-| `-y`, `--yes` | 선택 화면 없이, 찾아낸 것을 모두 설치합니다. Grok Bot은 이 Mac의 에이전트가 Grok Bot뿐일 때만 추가됩니다 |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | 그것들만 설치합니다. 하나라도 지정하면 선택 화면을 건너뜁니다 |
+| `--all` | 찾아냈든 아니든 전부. 단, Cursor와 Antigravity는 이 컴퓨터에 없으면 건너뜁니다(그래도 시도하려면 `--cursor`나 `--antigravity`를 지정하십시오) |
+| `-y`, `--yes` | 선택 화면 없이, 찾아낸 것을 모두 설치합니다 |
 | `-n`, `--dry-run` | 실행할 명령을 출력만 하고 아무것도 실행하지 않습니다 |
-| `--global` | 묻지 않고 짧은 `nomo` 명령도 추가합니다. 이 옵션이 없으면 터미널에서 설치 도구가 묻고(Return 키를 누르면 추가), `-y`로는 추가되지 않습니다. [터미널 명령](/ko/sessions/commands#terminal)을 참고하십시오 |
-| `uninstall` | `--cursor`, `--antigravity`, `--grokbot` 중 하나와 함께 쓰면 해당 에이전트에서 Nomo를 제거합니다(`--uninstall`도 됩니다). 에이전트를 지정해야 하며, 추측하지 않습니다. [uninstall](/ko/sessions/commands#uninstall)을 참고하십시오 |
+| `--no-global` | 짧은 `nomo` 명령을 추가하지 않습니다. [터미널 명령](/ko/sessions/commands#terminal)을 참고하십시오 |
+| `uninstall` | `--cursor`나 `--antigravity`와 함께 쓰면 해당 에이전트에서 Nomo를 제거합니다(`--uninstall`도 됩니다). 에이전트를 지정해야 하며, 추측하지 않습니다. [uninstall](/ko/sessions/commands#uninstall)을 참고하십시오 |
 
 휴대폰 페어링은 하지 않습니다. 그다음은 위 단계와 똑같이 마무리합니다. 에이전트를
 재시작하고, Codex라면 Hook을 신뢰하고, 페어링합니다 — 터미널에서는
-`bunx nomo-ai pair`, 또는 `/nomo-pair`, Claude Code에서는 `/nomo-cc:pair`,
+`nomo pair`, 또는 `/nomo-pair`, Claude Code에서는 `/nomo-cc:pair`,
 Codex에서는 `$nomo-pair`입니다. 다른 터미널 명령은
 [터미널 명령](/ko/sessions/commands#terminal)에 있습니다.
-
-`--grokbot`은 Grok Bot 앱만 AI 앱으로 쓰는 Mac을 위한 옵션입니다. macOS에서만
-동작합니다. Hook 대신 작은 작업을 추가하는데, 이 작업은 로그인할 때와 1시간마다
-Grok Bot을 쓴 날을 세고 바로 멈춥니다.
-[Grok Bot 사용하기](/ko/sessions/grok-bot)를 참고하십시오.
-
-`--all`이나 `-y`를 쓰면, 이 Mac에 다른 에이전트가 있을 때 Grok Bot은 빠집니다.
-그 에이전트가 이미 활동을 보내기 때문입니다. 설치 도구는 이렇게 알려 줍니다.
-
-```
-Grok Bot left out — another agent here already sends its activity. Name it with --grokbot to install it anyway.
-```
 
 ## 업데이트 {#updating}
 

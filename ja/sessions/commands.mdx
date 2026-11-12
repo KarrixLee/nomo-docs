@@ -34,25 +34,43 @@ Nomo の削除には `/` コマンドがありません。ターミナルに 1 �
 
 ## ターミナルから実行する {#terminal}
 
-主なコマンドは、ターミナルからも実行できます。どのフォルダからでもかまいません。AI アプリが [Grok Bot](/ja/sessions/grok-bot) だけの Mac では、この方法しかありません。
+主なコマンドは、ターミナルからも実行できます。どのフォルダからでもかまいません。コマンドは `nomo` で始まります。
 
 | | ターミナル |
 | --- | --- |
 | Nomo をインストール・更新する | `bunx nomo-ai` |
-| <a href="#pair">このコンピュータをペアリングする</a> | `bunx nomo-ai pair` |
-| コードを入力してペアリングする | `bunx nomo-ai pair code` |
-| <a href="#status">状態を確認する</a> | `bunx nomo-ai status` |
-| <a href="#reset">停止したセッションを消去し、アクティビティを今すぐ送る</a> | `bunx nomo-ai reset` |
-| <a href="#unpair">このコンピュータの接続を解除する</a> | `bunx nomo-ai unpair` |
-| <a href="#uninstall">エージェントから Nomo を削除する</a> | `bunx nomo-ai uninstall --cursor` |
+| <a href="#pair">このコンピュータをペアリングする</a> | `nomo pair` |
+| コードを入力してペアリングする | `nomo pair code` |
+| <a href="#status">状態を確認する</a> | `nomo status` |
+| <a href="#reset">停止したセッションを消去し、アクティビティを今すぐ送る</a> | `nomo reset` |
+| <a href="#unpair">このコンピュータの接続を解除する</a> | `nomo unpair` |
+| <a href="#uninstall">エージェントから Nomo を削除する</a> | `nomo uninstall --cursor` |
 
-どれも、エージェントの中で実行するコマンドと同じ働きをします。ペアリングもリセットも、1 回でそのコンピュータのすべてのエージェントに効きます。bun がない場合は、代わりに `npx nomo-ai` を使ってください。たとえば `npx nomo-ai status` です。Nomo がまだインストールされていない場合は、次のように表示されます。
+どれも、エージェントの中で実行するコマンドと同じ働きをします。ペアリングもリセットも、1 回でそのコンピュータのすべてのエージェントに効きます。Nomo がまだインストールされていない場合は、次のように表示されます。
 
 ```
 Nomo is not installed on this computer yet — run `bunx nomo-ai` first.
 ```
 
-インストールの最後に、`bunx nomo-ai` は短い `nomo` コマンドも追加するかどうかを尋ねます。追加するには Return キーを押し、追加しない場合は `n` と入力します。追加した場合は、代わりに `nomo pair`、`nomo status`、`nomo reset` と入力できます。どちらの場合も、`bunx nomo-ai …` はいつでも使えます。`bunx nomo` や `npx nomo` とは入力しないでください。`nomo` という名前の npm パッケージは Nomo のものではありません。
+インストーラーの `bunx nomo-ai` が、短い `nomo` コマンドを自動で追加します。追加しない場合は `--no-global` を付けてください。
+
+### `nomo` が見つからない場合 {#nomo-not-found}
+
+Nomo を 2.4.2 より前にインストールしましたか？ インストーラーをもう一度実行すると、`nomo` が使えるようになります。
+
+```bash
+bunx nomo-ai
+```
+
+または、`nomo` の代わりに `bunx nomo-ai` と入力します。同じように動きます。
+
+```bash
+bunx nomo-ai status
+```
+
+bun がない場合は、`npx nomo-ai` を使ってください。たとえば `npx nomo-ai status` です。`bunx` や `npx` のあとには、必ずフルネームの `nomo-ai` を入力してください。
+
+`nomo` という名前の別のプログラムがすでにありますか？ その場合、インストーラーはそのプログラムに手を付けず、そのことを表示します。引き続き `bunx nomo-ai` を使ってください。たとえば `bunx nomo-ai pair` です。
 
 ## pair {#pair}
 
@@ -83,8 +101,8 @@ $nomo-pair code        # one-time code, printed in the terminal
 ```
 
 ```bash ターミナル icon="terminal"
-bunx nomo-ai pair      # QR code, opens your browser
-bunx nomo-ai pair code # one-time code, printed in the terminal
+nomo pair             # QR code, opens your browser
+nomo pair code        # one-time code, printed in the terminal
 ```
 </CodeGroup>
 
@@ -121,7 +139,7 @@ $nomo-status
 ```
 
 ```bash ターミナル icon="terminal"
-bunx nomo-ai status
+nomo status
 ```
 </CodeGroup>
 
@@ -178,7 +196,7 @@ Claude Code — you are here
 Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
-              → run /nomo-cc:pair (or bunx nomo-ai pair)
+              → run /nomo-cc:pair, or nomo pair in a terminal
 
 Claude Code — you are here
   Hooks       firing · last 6s ago
@@ -259,7 +277,7 @@ $nomo-reset
 ```
 
 ```bash ターミナル icon="terminal"
-bunx nomo-ai reset
+nomo reset
 ```
 </CodeGroup>
 
@@ -270,7 +288,7 @@ Stopped the watchdog (it restarts automatically on your next session).
 Cleared 4 stale session record(s) (4 end signals delivered to your phone).
 Left 2 live sessions untouched.
 Sent your activity summary (heatmap and streak) to your phone.
-Pairing and keys were not touched — to disconnect this computer, run bunx nomo-ai unpair (or your agent's unpair command).
+Pairing and keys were not touched — to disconnect this computer, run nomo unpair, or your agent's unpair command.
 ```
 
 アクティビティの行は、`No activity to send yet.` と表示されることもあります。また、今は送れないので後で自動的にもう一度試す、と表示されることもあります。Claude Code の履歴が長いコンピュータでは、最初のリセットに時間がかかることがあります。
@@ -303,7 +321,7 @@ $nomo-unpair
 ```
 
 ```bash ターミナル icon="terminal"
-bunx nomo-ai unpair
+nomo unpair
 ```
 </CodeGroup>
 
@@ -387,16 +405,6 @@ bunx nomo-ai unpair
 
     そのあと Antigravity を再起動し、開いている `agy` のセッションがあればそれも再起動してください。
   </Tab>
-
-  <Tab title="Grok Bot" icon="robot">
-    インストールしたときと同じコマンドです。
-
-    ```bash
-    bunx nomo-ai --grokbot
-    ```
-
-    再起動するものはありません。次の 1 時間ごとの実行から、更新後のものが使われます。
-  </Tab>
 </Tabs>
 
 ## uninstall {#uninstall}
@@ -418,23 +426,17 @@ rm ~/.config/opencode/commands/nomo-*.md
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
-bunx nomo-ai uninstall --cursor
+nomo uninstall --cursor
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-bunx nomo-ai uninstall --antigravity
-```
-
-```bash Grok Bot icon="robot"
-bunx nomo-ai uninstall --grokbot
+nomo uninstall --antigravity
 ```
 </CodeGroup>
 
-`bunx` がない場合は、代わりに `npx` を使ってください — たとえば `npx nomo-ai uninstall --cursor` です。以前の書き方の `--uninstall` も使えます。または、エージェント専用のスクリプトを実行します。たとえば `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall` です（Antigravity なら `antigravity-install.mjs`、Grok Bot なら `grokbot-install.mjs`）。
+`nomo` が見つからない場合は、代わりに `bunx nomo-ai uninstall --cursor` を使ってください。[`nomo` が見つからない場合](#nomo-not-found)をご覧ください。以前の書き方の `--uninstall` も使えます。または、エージェント専用のスクリプトを実行します。たとえば `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall` です（Antigravity なら `antigravity-install.mjs`）。
 
-Grok Bot の場合に削除されるのは、1 時間ごとに動くバックグラウンドジョブだけです。ほかには何も削除しません。
-
-アンインストールしても、短い `nomo` コマンドは残ります。これも削除するには、`bun remove -g nomo-ai`（または `npm uninstall -g nomo-ai`）を実行します。
+アンインストールしても、短い `nomo` コマンドは残ります。そのことも表示されます。これも削除するには、`bun remove -g nomo-ai`（または `npm uninstall -g nomo-ai`）を実行します。
 
 Antigravity は、完了すると次のように表示します。
 
@@ -444,15 +446,15 @@ Antigravity は、完了すると次のように表示します。
 
 そのあとエージェントを再起動します。Cursor と Antigravity は、アプリを終了してもう一度開き、開いている `cursor-agent` や `agy` も再起動してください。
 
-削除されるのは、Nomo がそのエージェントに追加したものだけです。iPhone とのペアリングはそのまま残るので、ほかのエージェントは引き続き使えます。このコンピュータの接続も切りたい場合は、`bunx nomo-ai unpair` を実行してください。アンインストールの前でも後でもかまいません。[unpair](#unpair) をご覧ください。
+削除されるのは、Nomo がそのエージェントに追加したものだけです。iPhone とのペアリングはそのまま残るので、ほかのエージェントは引き続き使えます。このコンピュータの接続も切りたい場合は、`nomo unpair` を実行してください。アンインストールの前でも後でもかまいません。[unpair](#unpair) をご覧ください。
 
 Nomo の Claude Code プラグインを Antigravity に読み込んでいた場合は、`agy plugin uninstall nomo-cc` でそちらも削除し、Antigravity を再起動します。
 
-`bunx nomo-ai uninstall` には必ずエージェントを指定してください — 推測はしません。エージェントごとのインストールについては[インストール](/ja/setup/install)を参照してください。
+`nomo uninstall` には必ずエージェントを指定してください — 推測はしません。エージェントごとのインストールについては[インストール](/ja/setup/install)を参照してください。
 
 ## コマンドを使わずに実行する {#without-slash-commands}
 
-Antigravity が Nomo のコマンドを認識しない場合は、代わりにターミナルから実行します。ペアリング、状態確認、リセット、ペアリングの解除は、[`bunx nomo-ai` のコマンド](#terminal)を使うのがいちばん簡単です。Nomo インストーラーでインストールした場合に使える、すべてのコマンドの一覧です。
+Antigravity が Nomo のコマンドを認識しない場合は、代わりにターミナルから実行します。ペアリング、状態確認、リセット、ペアリングの解除は、[`nomo` のコマンド](#terminal)を使うのがいちばん簡単です。Nomo インストーラーでインストールした場合に使える、すべてのコマンドの一覧です。
 
 | | |
 | --- | --- |

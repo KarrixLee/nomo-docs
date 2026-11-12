@@ -290,7 +290,7 @@ icon: "puzzle-piece"
 
 ## コマンド 1 つ {#one-command}
 
-インストーラーがこのマシン上の Claude Code、Codex、OpenCode、Cursor、Antigravity、Grok Bot を検出し、選んだものに Nomo を組み込みます。
+インストーラーがこのマシン上の Claude Code、Codex、OpenCode、Cursor、Antigravity を検出し、選んだものに Nomo を組み込みます。
 
 <CodeGroup>
 ```bash bunx icon="terminal"
@@ -302,28 +302,28 @@ npx nomo-ai
 ```
 </CodeGroup>
 
-最初はどれも選択されていません。矢印キー（または `k` / `j`）で移動し、スペースキーで選択、Enter キーで選択したものをまとめてインストールします。そのあと、それぞれのエージェント本来のインストール手順 — 上の 5 つの流れ — が実行されます。グローバルには何もインストールせず、パッケージも残しません。
+最初はどれも選択されていません。矢印キー（または `k` / `j`）で移動し、スペースキーで選択、Enter キーで選択したものをまとめてインストールします。そのあと、それぞれのエージェント本来のインストール手順 — 上の 5 つの流れ — が実行されます。
+
+あわせて短い `nomo` コマンドも追加されるので、あとから `nomo pair` や `nomo status` などと入力できます。次のように表示されます。
+
+```
+Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+```
+
+追加しない場合は `--no-global` を付けてください。あとで `nomo` が見つからない場合は、`bunx nomo-ai` でも同じように動きます。たとえば `bunx nomo-ai pair` です。[`nomo` が見つからない場合](/ja/sessions/commands#nomo-not-found)をご覧ください。
 
 スクリプトや CI で使うときは、次のオプションが使えます。
 
 | オプション | |
 | --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--grokbot` | 指定したものだけをインストールします。いずれかを指定すると選択画面は出ません |
-| `--all` | 検出の有無にかかわらずすべて。ただし Cursor と Antigravity は、このマシンにない場合はスキップされます（それでも試すには `--cursor` または `--antigravity` を指定します）。Grok Bot は、この Mac のエージェントが Grok Bot だけの場合にのみ追加されます |
-| `-y`、`--yes` | 選択画面を出さず、検出したものをすべてインストールします。Grok Bot は、この Mac のエージェントが Grok Bot だけの場合にのみ追加されます |
+| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | 指定したものだけをインストールします。いずれかを指定すると選択画面は出ません |
+| `--all` | 検出の有無にかかわらずすべて。ただし Cursor と Antigravity は、このマシンにない場合はスキップされます（それでも試すには `--cursor` または `--antigravity` を指定します） |
+| `-y`、`--yes` | 選択画面を出さず、検出したものをすべてインストールします |
 | `-n`、`--dry-run` | 実行するコマンドを表示するだけで、何も実行しません |
-| `--global` | 確認なしで、短い `nomo` コマンドも追加します。指定しない場合、ターミナルではインストーラーが確認します（Return キーで追加）。`-y` では追加されません。[ターミナルから実行する](/ja/sessions/commands#terminal)をご覧ください |
-| `uninstall` | `--cursor`、`--antigravity`、`--grokbot` のいずれかと一緒に指定すると、そのエージェントから Nomo を削除します（`--uninstall` も使えます）。エージェントは必ず指定してください — 推測はしません。[uninstall](/ja/sessions/commands#uninstall) をご覧ください |
+| `--no-global` | 短い `nomo` コマンドを追加しません。[ターミナルから実行する](/ja/sessions/commands#terminal)をご覧ください |
+| `uninstall` | `--cursor` か `--antigravity` と一緒に指定すると、そのエージェントから Nomo を削除します（`--uninstall` も使えます）。エージェントは必ず指定してください — 推測はしません。[uninstall](/ja/sessions/commands#uninstall) をご覧ください |
 
-iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — ターミナルなら `bunx nomo-ai pair`、ほかに `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です。ターミナルで使えるほかのコマンドは、[ターミナルから実行する](/ja/sessions/commands#terminal)にあります。
-
-`--grokbot` は、AI アプリが Grok Bot アプリだけの Mac 向けです。macOS 専用です。フックの代わりに小さなジョブを追加します。このジョブはログイン時と 1 時間ごとに Grok Bot を使った日を数えて、すぐに終了します。[Grok Bot での利用](/ja/sessions/grok-bot)をご覧ください。
-
-`--all` や `-y` では、この Mac にほかのエージェントがあると Grok Bot は追加されません。そのエージェントがすでにアクティビティを送っているからです。インストーラーには次のように表示されます。
-
-```
-Grok Bot left out — another agent here already sends its activity. Name it with --grokbot to install it anyway.
-```
+iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — ターミナルなら `nomo pair`、ほかに `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です。ターミナルで使えるほかのコマンドは、[ターミナルから実行する](/ja/sessions/commands#terminal)にあります。
 
 ## 更新 {#updating}
 

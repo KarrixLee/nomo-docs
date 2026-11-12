@@ -257,10 +257,12 @@ en su lugar.
 Cuenta Claude Code, Codex y OpenCode. Los días pasados también aparecen, porque
 el plugin lee el historial que ya está en tu ordenador.
 
-Desde Nomo 2.4.2 con el plugin 2.4.2, también cuenta Grok Bot, desde la app
-de Grok Bot en un Mac. Grok Bot suma días y tiempo, pero no tokens. Un día
-cuenta solo si ese día le enviaste un mensaje a Grok Bot. Las rutinas
-programadas por sí solas no cuentan. Lo que necesita y sus límites están en
+Desde Nomo 2.4.2, también cuenta Grok Bot, con sus tokens. No necesita
+ordenador. Conecta **Cursor** en Nomo con la cuenta que usas para Grok Bot.
+Nomo lee entonces los recuentos de tokens directamente del servidor de Cursor.
+Un día cuenta si Grok Bot usó algún token ese día, así que las rutinas
+programadas también cuentan. Tu propio uso de Cursor también aparece, en su
+propia línea: **Cursor**. Los pasos están en
 [Usar Grok Bot](/es/sessions/grok-bot#streak).
 
 **Configúralo:**
@@ -336,7 +338,8 @@ Cada modelo mantiene un mismo color en todas partes: los modelos de Claude son
 coral; GPT, azul; Grok, dorado; Gemini, morado, y los demás modelos, gris.
 
 **Qué necesitas antes:** lo mismo que para Actividad de Nomo: el plugin de
-Nomo en un ordenador vinculado. Consulta [Actividad de Nomo](#nomo-activity).
+Nomo en un ordenador vinculado, o Cursor conectado en Nomo para Grok Bot.
+Consulta [Actividad de Nomo](#nomo-activity).
 
 **Configúralo:**
 
@@ -647,6 +650,13 @@ Para volver a tus datos reales, desactiva **“Mostrar datos de ejemplo”**.
   menos.
 - En tu ordenador, se guarda en `~/.config/cc-status/activity-days.json`. Solo tu
   cuenta de usuario puede leerlo. Guarda 400 días como máximo.
+
+**Grok Bot y Cursor**
+
+- Nomo solo lee recuentos de tokens por hora, con la cuenta de Cursor que
+  conectas en Nomo. Nunca lee tus mensajes ni tu código.
+- Los recuentos van directos del servidor de Cursor a tu teléfono. No se
+  suben a ningún sitio.
 
 **Tokens de Nomo y la pantalla Actividad**
 

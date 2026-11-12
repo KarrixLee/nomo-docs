@@ -158,7 +158,7 @@ Antigravity では、Nomo のコマンドを実行してよいか確認された
   ```
 
   ```bash ターミナル icon="terminal"
-  bunx nomo-ai reset
+  nomo reset
   ```
   </CodeGroup>
 
@@ -170,10 +170,12 @@ Antigravity では、Nomo のコマンドを実行してよいか確認された
 <Accordion title="ヒートマップや連続記録が古いまま" icon="calendar">
   時間がたてば自動的に追いつきます。コンピュータが新しい集計を送るのは多くても 6 時間に 1 回で、アプリがそれを確認するのは多くても 1 時間に 1 回です。今すぐ更新するには:
 
-  1. コンピュータでターミナルを開き、`bunx nomo-ai reset` を実行します。エージェントの中でリセットのコマンド（`/nomo-cc:reset` など）を実行してもかまいません。`Sent your activity summary (heatmap and streak) to your phone.` と表示されます。
+  1. コンピュータでターミナルを開き、`nomo reset` を実行します。エージェントの中でリセットのコマンド（`/nomo-cc:reset` など）を実行してもかまいません。`Sent your activity summary (heatmap and streak) to your phone.` と表示されます。
   2. Nomo で[アクティビティ画面](/ja/widgets#activity-screen)を開きます。開いたときに最新の集計を取得します。
 
   それでも数えられていないコンピュータがある場合は、[集計されないコンピュータ](/ja/widgets#not-counted)をご覧ください。
+
+  Grok Bot が表示されませんか？ Grok Bot を使った日は、コンピュータではなく、Nomo で接続した Cursor から届きます。[Grok Bot での利用](/ja/sessions/grok-bot#streak)をご覧ください。
 </Accordion>
 
 <Accordion title="何も動いていないのに「実行中」と表示される" icon="hourglass">
@@ -411,7 +413,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
       "name": "ヒートマップや連続記録が古いまま",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "時間がたてば自動的に追いつきます。コンピュータが新しい集計を送るのは多くても 6 時間に 1 回で、アプリが確認するのは多くても 1 時間に 1 回です。今すぐ更新するには、コンピュータのターミナルで bunx nomo-ai reset を実行し（またはエージェントの中でリセットのコマンドを実行し）、Nomo でアクティビティ画面を開きます。開いたときに最新の集計を取得します。"
+        "text": "時間がたてば自動的に追いつきます。コンピュータが新しい集計を送るのは多くても 6 時間に 1 回で、アプリが確認するのは多くても 1 時間に 1 回です。今すぐ更新するには、コンピュータのターミナルで nomo reset を実行し（またはエージェントの中でリセットのコマンドを実行し）、Nomo でアクティビティ画面を開きます。開いたときに最新の集計を取得します。"
       }
     },
     {

@@ -34,25 +34,43 @@ Claude Code、Codex、OpenCode 和 Antigravity 上都有的五条命令，外加
 
 ## 终端命令 {#terminal}
 
-你也可以在终端里运行主要的命令，在哪个文件夹里都行。如果一台 Mac 上只有 [Grok Bot](/zh-Hans/sessions/grok-bot) 这一个 AI 应用，就只能用这种方式。
+你也可以在终端里运行主要的命令，在哪个文件夹里都行。它们都以 `nomo` 开头。
 
 | | 终端 |
 | --- | --- |
 | 安装或更新 Nomo | `bunx nomo-ai` |
-| <a href="#pair">配对这台电脑</a> | `bunx nomo-ai pair` |
-| 改用手动输入的配对码配对 | `bunx nomo-ai pair code` |
-| <a href="#status">检查健康状况</a> | `bunx nomo-ai status` |
-| <a href="#reset">清理卡住的会话，并马上发送你的活动</a> | `bunx nomo-ai reset` |
-| <a href="#unpair">断开这台电脑</a> | `bunx nomo-ai unpair` |
-| <a href="#uninstall">从一个智能体里移除 Nomo</a> | `bunx nomo-ai uninstall --cursor` |
+| <a href="#pair">配对这台电脑</a> | `nomo pair` |
+| 改用手动输入的配对码配对 | `nomo pair code` |
+| <a href="#status">检查健康状况</a> | `nomo status` |
+| <a href="#reset">清理卡住的会话，并马上发送你的活动</a> | `nomo reset` |
+| <a href="#unpair">断开这台电脑</a> | `nomo unpair` |
+| <a href="#uninstall">从一个智能体里移除 Nomo</a> | `nomo uninstall --cursor` |
 
-它们和智能体里的命令作用相同。一次配对或一次重置，就覆盖这台电脑上的所有智能体。没有 bun？改用 `npx nomo-ai`，比如 `npx nomo-ai status`。如果还没装 Nomo，它们会直接告诉你：
+它们和智能体里的命令作用相同。一次配对或一次重置，就覆盖这台电脑上的所有智能体。如果还没装 Nomo，它们会直接告诉你：
 
 ```
 Nomo is not installed on this computer yet — run `bunx nomo-ai` first.
 ```
 
-安装快结束时，`bunx nomo-ai` 会问你要不要顺便加上简短的 `nomo` 命令。按 Return 键表示要，输入 `n` 就跳过。如果你选了“是”，之后就可以改成输入 `nomo pair`、`nomo status` 和 `nomo reset`。不管选没选，`bunx nomo-ai …` 都一直能用。别输入 `bunx nomo` 或 `npx nomo`：npm 上叫 `nomo` 的那个包不是 Nomo 的。
+安装工具 `bunx nomo-ai` 会替你加上简短的 `nomo` 命令。不想要的话，加上 `--no-global`。
+
+### 找不到 `nomo` 时 {#nomo-not-found}
+
+在 2.4.2 之前装的 Nomo？再运行一次安装工具，就能用上 `nomo`：
+
+```bash
+bunx nomo-ai
+```
+
+也可以把 `nomo` 换成 `bunx nomo-ai`，作用完全一样：
+
+```bash
+bunx nomo-ai status
+```
+
+没有 bun？改用 `npx nomo-ai`，比如 `npx nomo-ai status`。在 `bunx` 或 `npx` 后面，一定要输入完整的名字 `nomo-ai`。
+
+电脑上已经有另一个叫 `nomo` 的程序？安装工具不会动它，并会告诉你。继续用 `bunx nomo-ai` 就行，比如 `bunx nomo-ai pair`。
 
 ## pair {#pair}
 
@@ -83,8 +101,8 @@ $nomo-pair code        # one-time code, printed in the terminal
 ```
 
 ```bash 终端 icon="terminal"
-bunx nomo-ai pair      # QR code, opens your browser
-bunx nomo-ai pair code # one-time code, printed in the terminal
+nomo pair             # QR code, opens your browser
+nomo pair code        # one-time code, printed in the terminal
 ```
 </CodeGroup>
 
@@ -121,7 +139,7 @@ $nomo-status
 ```
 
 ```bash 终端 icon="terminal"
-bunx nomo-ai status
+nomo status
 ```
 </CodeGroup>
 
@@ -178,7 +196,7 @@ Claude Code — you are here
 Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
-              → run /nomo-cc:pair (or bunx nomo-ai pair)
+              → run /nomo-cc:pair, or nomo pair in a terminal
 
 Claude Code — you are here
   Hooks       firing · last 6s ago
@@ -259,7 +277,7 @@ $nomo-reset
 ```
 
 ```bash 终端 icon="terminal"
-bunx nomo-ai reset
+nomo reset
 ```
 </CodeGroup>
 
@@ -270,7 +288,7 @@ Stopped the watchdog (it restarts automatically on your next session).
 Cleared 4 stale session record(s) (4 end signals delivered to your phone).
 Left 2 live sessions untouched.
 Sent your activity summary (heatmap and streak) to your phone.
-Pairing and keys were not touched — to disconnect this computer, run bunx nomo-ai unpair (or your agent's unpair command).
+Pairing and keys were not touched — to disconnect this computer, run nomo unpair, or your agent's unpair command.
 ```
 
 活动那一行也可能显示 `No activity to send yet.`，或者说现在发不出去、稍后会自己重试。在 Claude Code 历史很长的电脑上，第一次重置可能要花一点时间。
@@ -303,7 +321,7 @@ $nomo-unpair
 ```
 
 ```bash 终端 icon="terminal"
-bunx nomo-ai unpair
+nomo unpair
 ```
 </CodeGroup>
 
@@ -387,16 +405,6 @@ bunx nomo-ai unpair
 
     之后重启 Antigravity，以及所有开着的 `agy` 会话。
   </Tab>
-
-  <Tab title="Grok Bot" icon="robot">
-    和安装时是同一条命令：
-
-    ```bash
-    bunx nomo-ai --grokbot
-    ```
-
-    不需要重启。下一次每小时的运行就会用上更新。
-  </Tab>
 </Tabs>
 
 ## uninstall {#uninstall}
@@ -418,23 +426,17 @@ rm ~/.config/opencode/commands/nomo-*.md
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
-bunx nomo-ai uninstall --cursor
+nomo uninstall --cursor
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-bunx nomo-ai uninstall --antigravity
-```
-
-```bash Grok Bot icon="robot"
-bunx nomo-ai uninstall --grokbot
+nomo uninstall --antigravity
 ```
 </CodeGroup>
 
-没有 `bunx`？改用 `npx`——比如 `npx nomo-ai uninstall --cursor`。旧的写法 `--uninstall` 也能用。也可以直接运行那个智能体自己的脚本，比如 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`（Antigravity 用 `antigravity-install.mjs`，Grok Bot 用 `grokbot-install.mjs`）。
+找不到 `nomo`？改用 `bunx nomo-ai uninstall --cursor`。见[找不到 `nomo` 时](#nomo-not-found)。旧的写法 `--uninstall` 也能用。也可以直接运行那个智能体自己的脚本，比如 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`（Antigravity 用 `antigravity-install.mjs`）。
 
-对 Grok Bot 来说，它只移除那个每小时运行的后台任务，别的都不动。
-
-卸载不会移除简短的 `nomo` 命令。想把它也去掉，运行 `bun remove -g nomo-ai`（或 `npm uninstall -g nomo-ai`）。
+卸载不会移除简短的 `nomo` 命令，并会告诉你这一点。想把它也去掉，运行 `bun remove -g nomo-ai`（或 `npm uninstall -g nomo-ai`）。
 
 Antigravity 完成后会告诉你：
 
@@ -444,15 +446,15 @@ Antigravity 完成后会告诉你：
 
 然后重启那个智能体。Cursor 和 Antigravity：退出应用再重新打开，并重启所有开着的 `cursor-agent` 或 `agy`。
 
-它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，运行 `bunx nomo-ai unpair`，在卸载之前或之后都可以。见 [unpair](#unpair)。
+它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，运行 `nomo unpair`，在卸载之前或之后都可以。见 [unpair](#unpair)。
 
 把 Nomo 的 Claude Code 插件导入过 Antigravity？也用 `agy plugin uninstall nomo-cc` 移除它，然后重启 Antigravity。
 
-`bunx nomo-ai uninstall` 必须指定智能体——它从不猜。每个智能体的安装细节见[安装](/zh-Hans/setup/install)。
+`nomo uninstall` 必须指定智能体——它从不猜。每个智能体的安装细节见[安装](/zh-Hans/setup/install)。
 
 ## 在终端里运行 {#without-slash-commands}
 
-Antigravity 不认识 Nomo 的命令？改在终端里运行。配对、状态、重置和解除配对用 [`bunx nomo-ai` 命令](#terminal)最简单。下面是完整列表，用 Nomo 安装工具时可以这样做：
+Antigravity 不认识 Nomo 的命令？改在终端里运行。配对、状态、重置和解除配对用 [`nomo` 命令](#terminal)最简单。下面是完整列表，用 Nomo 安装工具时可以这样做：
 
 | | |
 | --- | --- |

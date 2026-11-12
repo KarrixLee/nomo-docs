@@ -159,7 +159,7 @@ $nomo-status
   ```
 
   ```bash 终端 icon="terminal"
-  bunx nomo-ai reset
+  nomo reset
   ```
   </CodeGroup>
 
@@ -169,10 +169,12 @@ $nomo-status
 <Accordion title="热力图或连续记录没有更新" icon="calendar">
   它会自己跟上。你的电脑最多每 6 小时发送一次新的汇总，App 最多每小时检查一次。想现在就更新：
 
-  1. 在电脑上打开终端，运行 `bunx nomo-ai reset`。也可以在智能体里运行重置命令，比如 `/nomo-cc:reset`。它会显示 `Sent your activity summary (heatmap and streak) to your phone.`
+  1. 在电脑上打开终端，运行 `nomo reset`。也可以在智能体里运行重置命令，比如 `/nomo-cc:reset`。它会显示 `Sent your activity summary (heatmap and streak) to your phone.`
   2. 在 Nomo 中打开[活动页面](/zh-Hans/widgets#activity-screen)。它一打开就会获取最新的汇总。
 
   还是少了某台电脑？见[未计入的电脑](/zh-Hans/widgets#not-counted)。
+
+  少了 Grok Bot？它的日子来自你在 Nomo 里连接的 Cursor，而不是来自电脑。见[搭配 Grok Bot 使用](/zh-Hans/sessions/grok-bot#streak)。
 </Accordion>
 
 <Accordion title="会话明明没在干活，却显示“运行中”" icon="hourglass">
@@ -410,7 +412,7 @@ $nomo-status
       "name": "热力图或连续记录没有更新",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "它会自己跟上：你的电脑最多每 6 小时发送一次新的汇总，App 最多每小时检查一次。想现在就更新，在电脑上的终端里运行 bunx nomo-ai reset（或在智能体里运行重置命令），然后在 Nomo 中打开活动页面。它一打开就会获取最新的汇总。"
+        "text": "它会自己跟上：你的电脑最多每 6 小时发送一次新的汇总，App 最多每小时检查一次。想现在就更新，在电脑上的终端里运行 nomo reset（或在智能体里运行重置命令），然后在 Nomo 中打开活动页面。它一打开就会获取最新的汇总。"
       }
     },
     {

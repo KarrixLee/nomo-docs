@@ -50,32 +50,48 @@ see [uninstall](#uninstall).
 
 ## From Terminal {#terminal}
 
-You can also run the main commands in Terminal, from any folder. On a Mac where
-[Grok Bot](/sessions/grok-bot) is your only AI app, this is the only way.
+You can also run the main commands in Terminal, from any folder. They start
+with `nomo`.
 
 | | Terminal |
 | --- | --- |
 | Install or update Nomo | `bunx nomo-ai` |
-| <a href="#pair">Pair this computer</a> | `bunx nomo-ai pair` |
-| Pair with a typed code | `bunx nomo-ai pair code` |
-| <a href="#status">Check health</a> | `bunx nomo-ai status` |
-| <a href="#reset">Clear stuck sessions and send your activity now</a> | `bunx nomo-ai reset` |
-| <a href="#unpair">Disconnect this computer</a> | `bunx nomo-ai unpair` |
-| <a href="#uninstall">Remove Nomo from an agent</a> | `bunx nomo-ai uninstall --cursor` |
+| <a href="#pair">Pair this computer</a> | `nomo pair` |
+| Pair with a typed code | `nomo pair code` |
+| <a href="#status">Check health</a> | `nomo status` |
+| <a href="#reset">Clear stuck sessions and send your activity now</a> | `nomo reset` |
+| <a href="#unpair">Disconnect this computer</a> | `nomo unpair` |
+| <a href="#uninstall">Remove Nomo from an agent</a> | `nomo uninstall --cursor` |
 
 They do the same as the commands inside your agent. One pairing or one reset
-covers every agent on that computer. No bun? Use `npx nomo-ai` instead, such
-as `npx nomo-ai status`. If Nomo isn't installed yet, they say so:
+covers every agent on that computer. If Nomo isn't installed yet, they say so:
 
 ```
 Nomo is not installed on this computer yet — run `bunx nomo-ai` first.
 ```
 
-At the end of an install, `bunx nomo-ai` asks if you also want the short
-`nomo` command. Press Return for yes, or type `n` to skip. If you said yes,
-you can type `nomo pair`, `nomo status` and `nomo reset` instead.
-`bunx nomo-ai …` always works either way. Don't type `bunx nomo` or
-`npx nomo`: the npm package called `nomo` isn't Nomo's.
+The installer, `bunx nomo-ai`, adds the short `nomo` command for you. To skip
+it, add `--no-global`.
+
+### If `nomo` isn't found {#nomo-not-found}
+
+Installed Nomo before 2.4.2? Run the installer once more to get `nomo`:
+
+```bash
+bunx nomo-ai
+```
+
+Or put `bunx nomo-ai` in place of `nomo`. It works the same:
+
+```bash
+bunx nomo-ai status
+```
+
+No bun? Use `npx nomo-ai`, such as `npx nomo-ai status`. Always type the
+full name, `nomo-ai`, after `bunx` or `npx`.
+
+Already have a different program called `nomo`? The installer leaves it alone
+and tells you. Keep using `bunx nomo-ai`, such as `bunx nomo-ai pair`.
 
 ## pair
 
@@ -106,8 +122,8 @@ $nomo-pair code        # one-time code, printed in the terminal
 ```
 
 ```bash Terminal icon="terminal"
-bunx nomo-ai pair      # QR code, opens your browser
-bunx nomo-ai pair code # one-time code, printed in the terminal
+nomo pair             # QR code, opens your browser
+nomo pair code        # one-time code, printed in the terminal
 ```
 </CodeGroup>
 
@@ -152,7 +168,7 @@ $nomo-status
 ```
 
 ```bash Terminal icon="terminal"
-bunx nomo-ai status
+nomo status
 ```
 </CodeGroup>
 
@@ -241,7 +257,7 @@ waiting for you to go and look:
 Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
-              → run /nomo-cc:pair (or bunx nomo-ai pair)
+              → run /nomo-cc:pair, or nomo pair in a terminal
 
 Claude Code — you are here
   Hooks       firing · last 6s ago
@@ -331,7 +347,7 @@ $nomo-reset
 ```
 
 ```bash Terminal icon="terminal"
-bunx nomo-ai reset
+nomo reset
 ```
 </CodeGroup>
 
@@ -345,7 +361,7 @@ Stopped the watchdog (it restarts automatically on your next session).
 Cleared 4 stale session record(s) (4 end signals delivered to your phone).
 Left 2 live sessions untouched.
 Sent your activity summary (heatmap and streak) to your phone.
-Pairing and keys were not touched — to disconnect this computer, run bunx nomo-ai unpair (or your agent's unpair command).
+Pairing and keys were not touched — to disconnect this computer, run nomo unpair, or your agent's unpair command.
 ```
 
 The activity line can also say `No activity to send yet.`, or that it
@@ -383,7 +399,7 @@ $nomo-unpair
 ```
 
 ```bash Terminal icon="terminal"
-bunx nomo-ai unpair
+nomo unpair
 ```
 </CodeGroup>
 
@@ -490,16 +506,6 @@ Antigravity's run — the Claude Code and Codex ones are printed for you.
 
     Restart Antigravity afterwards, and any open `agy` session.
   </Tab>
-
-  <Tab title="Grok Bot" icon="robot">
-    The same command that installed it:
-
-    ```bash
-    bunx nomo-ai --grokbot
-    ```
-
-    Nothing to restart. The next hourly run uses the update.
-  </Tab>
 </Tabs>
 
 ## uninstall
@@ -522,28 +528,22 @@ rm ~/.config/opencode/commands/nomo-*.md
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
-bunx nomo-ai uninstall --cursor
+nomo uninstall --cursor
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-bunx nomo-ai uninstall --antigravity
-```
-
-```bash Grok Bot icon="robot"
-bunx nomo-ai uninstall --grokbot
+nomo uninstall --antigravity
 ```
 </CodeGroup>
 
-No `bunx`? Use `npx` instead — for example `npx nomo-ai uninstall --cursor`.
-The older spelling `--uninstall` works too. Or run the agent's own script, such
-as `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
-(`antigravity-install.mjs` for Antigravity, `grokbot-install.mjs` for Grok
-Bot).
+`nomo` not found? Use `bunx nomo-ai uninstall --cursor` instead. See
+[If `nomo` isn't found](#nomo-not-found). The older spelling `--uninstall`
+works too. Or run the agent's own script, such as
+`node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
+(`antigravity-install.mjs` for Antigravity).
 
-For Grok Bot, this removes the hourly background job, and nothing else.
-
-Uninstall leaves the short `nomo` command in place. To remove it too, run
-`bun remove -g nomo-ai` (or `npm uninstall -g nomo-ai`).
+Uninstall leaves the short `nomo` command in place, and says so. To remove it
+too, run `bun remove -g nomo-ai` (or `npm uninstall -g nomo-ai`).
 
 Antigravity says when it's done:
 
@@ -556,19 +556,19 @@ again, and restart any open `cursor-agent` or `agy`.
 
 It removes only what Nomo added to that agent. Your phone stays paired, so your
 other agents keep working. To disconnect this computer as well, run
-`bunx nomo-ai unpair`, before or after you uninstall. See [unpair](#unpair).
+`nomo unpair`, before or after you uninstall. See [unpair](#unpair).
 
 Imported Nomo's Claude Code plugin into Antigravity? Remove that too with
 `agy plugin uninstall nomo-cc`, then restart Antigravity.
 
-`bunx nomo-ai uninstall` always needs the agent named — it never guesses. More
+`nomo uninstall` always needs the agent named — it never guesses. More
 on each agent's install in [Installation](/setup/install).
 
 ## Without slash commands
 
 Antigravity doesn't know Nomo's commands? Run them from Terminal
 instead. Pair, status, reset and unpair are easiest as
-[`bunx nomo-ai` commands](#terminal). The full list, which works with the Nomo
+[`nomo` commands](#terminal). The full list, which works with the Nomo
 installer:
 
 | | |

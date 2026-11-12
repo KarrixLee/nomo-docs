@@ -50,33 +50,49 @@ Nomo 제거에는 `/` 명령이 없습니다. 터미널에 한 줄을 붙여 넣
 ## 터미널 명령 {#terminal}
 
 주요 명령은 터미널에서도 실행할 수 있습니다. 어느 폴더에서 실행해도 됩니다.
-[Grok Bot](/ko/sessions/grok-bot)만 AI 앱으로 쓰는 Mac에서는 이것이 유일한
-방법입니다.
+명령은 `nomo`로 시작합니다.
 
 | | 터미널 |
 | --- | --- |
 | Nomo 설치 또는 업데이트 | `bunx nomo-ai` |
-| <a href="#pair">이 컴퓨터 페어링</a> | `bunx nomo-ai pair` |
-| 입력할 코드로 페어링 | `bunx nomo-ai pair code` |
-| <a href="#status">상태 확인</a> | `bunx nomo-ai status` |
-| <a href="#reset">멈춘 세션 정리와 활동 바로 보내기</a> | `bunx nomo-ai reset` |
-| <a href="#unpair">이 컴퓨터 연결 해제</a> | `bunx nomo-ai unpair` |
-| <a href="#uninstall">에이전트에서 Nomo 제거</a> | `bunx nomo-ai uninstall --cursor` |
+| <a href="#pair">이 컴퓨터 페어링</a> | `nomo pair` |
+| 입력할 코드로 페어링 | `nomo pair code` |
+| <a href="#status">상태 확인</a> | `nomo status` |
+| <a href="#reset">멈춘 세션 정리와 활동 바로 보내기</a> | `nomo reset` |
+| <a href="#unpair">이 컴퓨터 연결 해제</a> | `nomo unpair` |
+| <a href="#uninstall">에이전트에서 Nomo 제거</a> | `nomo uninstall --cursor` |
 
 에이전트 안에서 쓰는 명령과 같은 일을 합니다. 페어링 한 번, 초기화 한 번이 그
-컴퓨터의 모든 에이전트에 적용됩니다. bun이 없다면 대신 `npx nomo-ai`를
-사용하십시오. 예: `npx nomo-ai status`. Nomo가 아직 설치되지 않았다면 그렇게
+컴퓨터의 모든 에이전트에 적용됩니다. Nomo가 아직 설치되지 않았다면 그렇게
 알려 줍니다.
 
 ```
 Nomo is not installed on this computer yet — run `bunx nomo-ai` first.
 ```
 
-`bunx nomo-ai`는 설치가 끝날 때 짧은 `nomo` 명령도 추가할지 묻습니다. 추가하려면
-Return 키를 누르고, 건너뛰려면 `n`을 입력하십시오. 추가했다면 대신 `nomo pair`, `nomo status`, `nomo reset`을 입력할 수 있습니다.
-`bunx nomo-ai …`는 어느 쪽이든 항상 됩니다.
-`bunx nomo`나 `npx nomo`는 입력하지 마십시오. `nomo`라는 이름의 npm 패키지는
-Nomo의 것이 아닙니다.
+설치 도구인 `bunx nomo-ai`가 짧은 `nomo` 명령을 추가해 줍니다. 추가하지
+않으려면 `--no-global`을 붙이십시오.
+
+### `nomo`를 찾을 수 없다면 {#nomo-not-found}
+
+2.4.2 이전에 Nomo를 설치했습니까? 설치 도구를 한 번 더 실행하면 `nomo`가
+생깁니다.
+
+```bash
+bunx nomo-ai
+```
+
+또는 `nomo` 자리에 `bunx nomo-ai`를 쓰십시오. 똑같이 동작합니다.
+
+```bash
+bunx nomo-ai status
+```
+
+bun이 없다면 `npx nomo-ai`를 사용하십시오. 예: `npx nomo-ai status`.
+`bunx`나 `npx` 뒤에는 항상 전체 이름인 `nomo-ai`를 입력하십시오.
+
+이미 `nomo`라는 다른 프로그램이 있습니까? 설치 도구는 그 프로그램을 건드리지 않고
+그렇다고 알려 줍니다. 계속 `bunx nomo-ai`를 사용하십시오. 예: `bunx nomo-ai pair`.
 
 ## pair {#pair}
 
@@ -107,8 +123,8 @@ $nomo-pair code        # one-time code, printed in the terminal
 ```
 
 ```bash 터미널 icon="terminal"
-bunx nomo-ai pair      # QR code, opens your browser
-bunx nomo-ai pair code # one-time code, printed in the terminal
+nomo pair             # QR code, opens your browser
+nomo pair code        # one-time code, printed in the terminal
 ```
 </CodeGroup>
 
@@ -151,7 +167,7 @@ $nomo-status
 ```
 
 ```bash 터미널 icon="terminal"
-bunx nomo-ai status
+nomo status
 ```
 </CodeGroup>
 
@@ -238,7 +254,7 @@ this computer** 아래에 한 줄씩 요약됩니다. 그중 하나에 문제가
 Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
-              → run /nomo-cc:pair (or bunx nomo-ai pair)
+              → run /nomo-cc:pair, or nomo pair in a terminal
 
 Claude Code — you are here
   Hooks       firing · last 6s ago
@@ -327,7 +343,7 @@ $nomo-reset
 ```
 
 ```bash 터미널 icon="terminal"
-bunx nomo-ai reset
+nomo reset
 ```
 </CodeGroup>
 
@@ -340,7 +356,7 @@ Stopped the watchdog (it restarts automatically on your next session).
 Cleared 4 stale session record(s) (4 end signals delivered to your phone).
 Left 2 live sessions untouched.
 Sent your activity summary (heatmap and streak) to your phone.
-Pairing and keys were not touched — to disconnect this computer, run bunx nomo-ai unpair (or your agent's unpair command).
+Pairing and keys were not touched — to disconnect this computer, run nomo unpair, or your agent's unpair command.
 ```
 
 활동 줄에는 `No activity to send yet.`이 나오거나, 지금은 보내지 못했으니 나중에
@@ -379,7 +395,7 @@ $nomo-unpair
 ```
 
 ```bash 터미널 icon="terminal"
-bunx nomo-ai unpair
+nomo unpair
 ```
 </CodeGroup>
 
@@ -484,16 +500,6 @@ Cursor, Antigravity 쪽뿐이고, Claude Code와 Codex 쪽은 출력만 됩니�
 
     끝나면 Antigravity를 재시작하고, 열려 있는 `agy` 세션도 재시작하십시오.
   </Tab>
-
-  <Tab title="Grok Bot" icon="robot">
-    설치할 때 쓴 것과 같은 명령입니다.
-
-    ```bash
-    bunx nomo-ai --grokbot
-    ```
-
-    재시작할 것은 없습니다. 다음 1시간 단위 실행부터 업데이트된 버전을 씁니다.
-  </Tab>
 </Tabs>
 
 ## uninstall {#uninstall}
@@ -517,27 +523,21 @@ rm ~/.config/opencode/commands/nomo-*.md
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
-bunx nomo-ai uninstall --cursor
+nomo uninstall --cursor
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-bunx nomo-ai uninstall --antigravity
-```
-
-```bash Grok Bot icon="robot"
-bunx nomo-ai uninstall --grokbot
+nomo uninstall --antigravity
 ```
 </CodeGroup>
 
-`bunx`가 없다면 대신 `npx`를 사용하십시오. 예: `npx nomo-ai uninstall --cursor`.
-예전 표기인 `--uninstall`도 됩니다. 또는 에이전트 자체 스크립트를 실행합니다. 예:
+`nomo`를 찾을 수 없다면 대신 `bunx nomo-ai uninstall --cursor`를 사용하십시오.
+[`nomo`를 찾을 수 없다면](#nomo-not-found)을 참고하십시오. 예전 표기인
+`--uninstall`도 됩니다. 또는 에이전트 자체 스크립트를 실행합니다. 예:
 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
-(Antigravity는 `antigravity-install.mjs`, Grok Bot은 `grokbot-install.mjs`).
+(Antigravity는 `antigravity-install.mjs`).
 
-Grok Bot에서는 1시간마다 도는 백그라운드 작업만 제거하며, 다른 것은 건드리지
-않습니다.
-
-제거해도 짧은 `nomo` 명령은 남습니다. 그것도 지우려면 `bun remove -g nomo-ai`(또는
+제거해도 짧은 `nomo` 명령은 남으며, 그렇다고 알려 줍니다. 그것도 지우려면 `bun remove -g nomo-ai`(또는
 `npm uninstall -g nomo-ai`)를 실행하십시오.
 
 Antigravity는 제거가 끝나면 다음과 같이 알려 줍니다.
@@ -551,19 +551,19 @@ Antigravity는 제거가 끝나면 다음과 같이 알려 줍니다.
 
 Nomo가 그 에이전트에 추가한 것만 제거합니다. 휴대폰 페어링은 그대로 남으므로
 다른 에이전트는 계속 작동합니다. 이 컴퓨터의 연결도 끊으려면
-`bunx nomo-ai unpair`를 실행하십시오. 제거하기 전이든 후든 상관없습니다.
+`nomo unpair`를 실행하십시오. 제거하기 전이든 후든 상관없습니다.
 [unpair](#unpair)를 참고하십시오.
 
 Nomo의 Claude Code 플러그인을 Antigravity로 가져왔다면
 `agy plugin uninstall nomo-cc`로 그것도 제거하고 Antigravity를 재시작하십시오.
 
-`bunx nomo-ai uninstall`에는 항상 에이전트를 지정해야 하며, 추측하지 않습니다.
+`nomo uninstall`에는 항상 에이전트를 지정해야 하며, 추측하지 않습니다.
 에이전트별 설치는 [설치](/ko/setup/install)에서 자세히 다룹니다.
 
 ## `/` 명령 없이 실행하기 {#without-slash-commands}
 
 Antigravity가 Nomo 명령을 알지 못한다면 대신 터미널에서 실행하십시오.
-페어링, 상태 확인, 초기화, 페어링 해제는 [`bunx nomo-ai` 명령](#terminal)이 가장
+페어링, 상태 확인, 초기화, 페어링 해제는 [`nomo` 명령](#terminal)이 가장
 쉽습니다. 아래는 전체 목록이며, Nomo 설치 도구로 설치한 경우에 쓸 수 있습니다.
 
 | | |

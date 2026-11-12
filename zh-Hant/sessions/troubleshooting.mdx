@@ -158,7 +158,7 @@ $nomo-status
   ```
 
   ```bash 終端機 icon="terminal"
-  bunx nomo-ai reset
+  nomo reset
   ```
   </CodeGroup>
 
@@ -168,10 +168,12 @@ $nomo-status
 <Accordion title="熱度圖或連續紀錄沒有更新" icon="calendar">
   它會自己跟上。你的電腦最多每 6 小時傳送一次新的摘要，App 最多每小時檢查一次。想現在就更新：
 
-  1. 在電腦上打開終端機，執行 `bunx nomo-ai reset`。或是在代理裡執行重設指令，例如 `/nomo-cc:reset`。它會顯示 `Sent your activity summary (heatmap and streak) to your phone.`
+  1. 在電腦上打開終端機，執行 `nomo reset`。或是在代理裡執行重設指令，例如 `/nomo-cc:reset`。它會顯示 `Sent your activity summary (heatmap and streak) to your phone.`
   2. 在 Nomo 裡打開[活動頁面](/zh-Hant/widgets#activity-screen)。它一打開就會取得最新的摘要。
 
   還是少了某台電腦？請看[未計入的電腦](/zh-Hant/widgets#not-counted)。
+
+  少了 Grok Bot？它的日子來自你在 Nomo 裡連結的 Cursor，不是來自電腦。請看[搭配 Grok Bot 使用](/zh-Hant/sessions/grok-bot#streak)。
 </Accordion>
 
 <Accordion title="某個 session 顯示「執行中」，其實什麼都沒在跑" icon="hourglass">
@@ -409,7 +411,7 @@ $nomo-status
       "name": "熱度圖或連續紀錄沒有更新",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "它會自己跟上：你的電腦最多每 6 小時傳送一次新的摘要，App 最多每小時檢查一次。想現在就更新，請在那台電腦的終端機裡執行 bunx nomo-ai reset（或在代理裡執行重設指令），然後在 Nomo 裡打開活動頁面。它一打開就會取得最新的摘要。"
+        "text": "它會自己跟上：你的電腦最多每 6 小時傳送一次新的摘要，App 最多每小時檢查一次。想現在就更新，請在那台電腦的終端機裡執行 nomo reset（或在代理裡執行重設指令），然後在 Nomo 裡打開活動頁面。它一打開就會取得最新的摘要。"
       }
     },
     {

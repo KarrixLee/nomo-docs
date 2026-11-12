@@ -247,10 +247,11 @@ from your computers, that tile shows **Active hours** instead.
 It counts Claude Code, Codex and OpenCode. Past days show up too, because the
 plugin reads the history that's already on your computer.
 
-From Nomo 2.4.2 with plugin 2.4.2, it also counts Grok Bot, from the Grok Bot
-app on a Mac. Grok Bot adds days and time, but no tokens. A day counts only
-when you sent Grok Bot a message that day. Scheduled routines alone don't
-count. What it needs, and its limits, are in
+From Nomo 2.4.2, it also counts Grok Bot, with its tokens. This needs no
+computer. Connect **Cursor** in Nomo with the account you use for Grok Bot.
+Nomo then reads the token counts straight from Cursor's server. A day counts
+when Grok Bot used any tokens that day, so scheduled routines count too. Your
+own Cursor use shows up too, on its own line: **Cursor**. Steps are in
 [Using Grok Bot](/sessions/grok-bot#streak).
 
 **Set it up:**
@@ -323,7 +324,8 @@ Each model keeps one color everywhere: Claude models are coral, GPT blue, Grok
 gold, Gemini purple, and other models grey.
 
 **What you need first:** the same as Nomo Activity: the Nomo plugin on a
-paired computer. See [Nomo Activity](#nomo-activity).
+paired computer, or Cursor connected in Nomo for Grok Bot. See
+[Nomo Activity](#nomo-activity).
 
 **Set it up:**
 
@@ -625,6 +627,13 @@ To go back to your real data, turn **Show sample data** off.
   about a minute.
 - On your computer, it's kept in `~/.config/cc-status/activity-days.json`. Only
   your user account can read it. It keeps 400 days at most.
+
+**Grok Bot and Cursor**
+
+- Nomo reads only token counts per hour, with the Cursor account you connect
+  in Nomo. It never reads your messages or code.
+- The counts go straight from Cursor's server to your phone. They aren't
+  uploaded anywhere.
 
 **Nomo Tokens and the Activity screen**
 
