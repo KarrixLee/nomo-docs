@@ -313,7 +313,7 @@ npx nomo-ai
 | `--all` | 全部都裝，不管有沒有找到 — 只有 Cursor 和 Antigravity 例外：這台電腦上沒有它們時會略過（想照裝就指定 `--cursor` 或 `--antigravity`）。只有當 Grok Bot 是這台 Mac 上唯一的代理時，才會裝 Grok Bot |
 | `-y`、`--yes` | 不出選擇畫面，找到多少裝多少。只有當 Grok Bot 是這台 Mac 上唯一的代理時，才會裝 Grok Bot |
 | `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
-| `--global` | 同時加上簡短的 `nomo` 指令，不會先問你。請見[從終端機執行](/zh-Hant/sessions/commands#terminal) |
+| `--global` | 同時加上簡短的 `nomo` 指令，不會先問你。不加這個選項時，安裝工具會在終端機裡詢問（按 Return 鍵就是要），用 `-y` 則不會加上。請見[從終端機執行](/zh-Hant/sessions/commands#terminal) |
 | `uninstall` | 搭配 `--cursor`、`--antigravity` 或 `--grokbot`：從那個代理移除 Nomo（`--uninstall` 也可以）。請指定代理 — 它絕不會自己猜。請見 [uninstall](/zh-Hant/sessions/commands#uninstall) |
 
 它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — 在終端機裡是 `bunx nomo-ai pair`，或是 `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`。更多終端機指令請見[從終端機執行](/zh-Hant/sessions/commands#terminal)。
