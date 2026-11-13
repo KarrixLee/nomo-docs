@@ -73,6 +73,8 @@ $nomo-status
   看 **Approvals**。`PAUSED` 表示有人在這台電腦上執行過暫停指令 — 可能是好幾個月前的事，而這正是它以前根本沒人找得到的原因。在那台機器上的 session 裡恢復它，請求就會回來：[approvals](/zh-Hant/sessions/commands#approvals)。
 
   如果它顯示 `on`，那關著的開關是在你的手機上。「在 iPhone 上回答」預設就是關的 — 請看[設定](/zh-Hant/sessions/settings#remote-approvals)。判斷方式是顏色：每一隻舉起的手都是黃色（`需要協助`，那種只有終端機能處理），沒有一隻是紫色（`需要權限`，可以回覆的那一種）。請看[在手機上回覆](/zh-Hant/sessions/approvals)。
+
+  **只有 Codex 這樣，而且是從更新 Nomo 外掛程式之後開始的？** Codex 在等你重新信任 Nomo 的 hooks。在 Codex 裡執行 `/hooks` 並信任 Nomo 的項目，或在 Codex 啟動時詢問的時候選擇 **Trust all and continue** — [原因](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="我開了一個 session，它卻從來沒出現" icon="play">
@@ -96,7 +98,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="Cursor 的對話顯示成 Claude Code 的 session" icon="clone">
-  更新 Claude Code 的 Nomo 外掛程式。舊版本會透過 Cursor 匯入 Claude Code 外掛程式的機制，在 Cursor 裡面執行；目前的版本會忽略 Cursor。指令在[更新](/zh-Hant/setup/install#updating)裡。
+  更新 Claude Code 的 Nomo 外掛程式。舊版本會透過 Cursor 匯入 Claude Code 外掛程式的機制，在 Cursor 裡面執行；目前的版本會忽略 Cursor。指令在[更新](/zh-Hant/sessions/commands#update)裡。
 </Accordion>
 
 <Accordion title="Cursor 結束後，它的 session 還停在「執行中」" icon="hourglass-half">
@@ -114,22 +116,17 @@ $nomo-status
   4. 送出一則訊息。session 要等你送出第一則訊息後才會出現。
 
   還是沒有？在 Nomo 裡點一下 **+** 按鈕（「選擇代理」），把 Antigravity 打開。更多內容請看[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#troubleshooting)。
+
+  <Frame caption="還沒有 session 送達時的 Antigravity 分頁。">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="一台電腦的 Antigravity 分頁，顯示「還沒有 Antigravity sessions」" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="一台電腦的 Antigravity 分頁，顯示「還沒有 Antigravity sessions」" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="每個 Antigravity session 都出現兩次" icon="clone">
-  Nomo 的 Claude Code 外掛程式被匯入了 Antigravity。請在終端機裡執行下面這行，然後重新啟動 Antigravity：
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Antigravity 的指令說 Nomo 找不到自己的檔案" icon="folder-open">
-  Nomo 的資料夾被搬走或刪除了。Antigravity 還是能用，但什麼都不會送到你的手機。請再執行一次安裝工具，然後重新啟動 Antigravity：
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity session 出現兩次，或指令找不到 Nomo 的檔案" icon="clone">
+  兩種情況的解法都在[搭配 Antigravity 使用](/zh-Hant/sessions/antigravity#troubleshooting)。
 </Accordion>
 
 <Accordion title="取消了的 Antigravity 一輪還顯示「執行中」" icon="hourglass-half">
@@ -159,15 +156,30 @@ $nomo-status
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash 終端機 icon="terminal"
+  nomo reset
+  ```
   </CodeGroup>
 
   進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。OpenCode 的列屬於 OpenCode 的伺服器，所以有一列清不掉時，請先結束 OpenCode。
 </Accordion>
 
+<Accordion title="熱度圖或連續紀錄沒有更新" icon="calendar">
+  它會自己跟上。你的電腦最多每 6 小時傳送一次新的摘要，App 最多每小時檢查一次。想現在就更新：
+
+  1. 在電腦上打開終端機，執行 `nomo reset`。或是在代理裡執行重設指令，例如 `/nomo-cc:reset`。它會顯示 `Sent your activity summary (heatmap and streak) to your phone.`
+  2. 在 Nomo 裡打開[活動頁面](/zh-Hant/widgets#activity-screen)。它一打開就會取得最新的摘要。
+
+  還是少了某台電腦？請看[未計入的電腦](/zh-Hant/widgets#not-counted)。
+
+  少了 Grok Bot？它的日子來自你在 Nomo 裡連結的 Cursor，不是來自電腦。請看 [Grok Bot](/zh-Hant/widgets#grok-bot)。
+</Accordion>
+
 <Accordion title="某個 session 顯示「執行中」，其實什麼都沒在跑" icon="hourglass">
   看第一行，那裡會印出外掛程式版本。在 **2.2.2** 之前，一個開啟或恢復後停在空白提示的 Claude Code session 會顯示 `執行中` 長達半小時，而一個沒有提示就建立的 OpenCode session — 例如分叉出來的 — 會一直顯示 `執行中`，直到 OpenCode 結束。
 
-  在 2.2.2 上，前者大約 20 秒就會定為 `完成`，後者則要等到有事可做才會出現。[更新外掛程式](/zh-Hant/setup/install#updating)。
+  在 2.2.2 上，前者大約 20 秒就會定為 `完成`，後者則要等到有事可做才會出現。[更新外掛程式](/zh-Hant/sessions/commands#update)。
 </Accordion>
 
 <Accordion title="「停止」顯示「已傳送」，session 卻還在執行" icon="circle-stop">
@@ -319,7 +331,7 @@ $nomo-status
       "name": "我的手機從來不問我要不要批准",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "看 Approvals 那一列。PAUSED 表示有人在這台電腦上執行過暫停指令，可能是好幾個月前的事。在那台機器上的 session 裡恢復它，請求就會回來。如果它顯示 on，那關著的開關是 App 設定裡的「在 iPhone 上回答」，它預設就是關的。"
+        "text": "看 Approvals 那一列。PAUSED 表示有人在這台電腦上執行過暫停指令，可能是好幾個月前的事。在那台機器上的 session 裡恢復它，請求就會回來。如果它顯示 on，那關著的開關是 App 設定裡的「在 iPhone 上回答」，它預設就是關的。如果是更新 Nomo 外掛程式之後只有 Codex 不再詢問，那是 Codex 在等你重新信任 Nomo 的 hooks：執行 /hooks 並信任它們，或在 Codex 詢問時選擇 Trust all and continue。"
       }
     },
     {
@@ -380,22 +392,6 @@ $nomo-status
     },
     {
       "@type": "Question",
-      "name": "每個 Antigravity session 都出現兩次",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 的 Claude Code 外掛程式被匯入了 Antigravity。請在終端機裡執行 agy plugin uninstall nomo-cc，然後重新啟動 Antigravity。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Antigravity 的指令說 Nomo 找不到自己的檔案",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 的資料夾被搬走或刪除了。Antigravity 還是能用，但什麼都不會送到你的手機。請再執行一次 bunx nomo-ai --antigravity，然後重新啟動 Antigravity。"
-      }
-    },
-    {
-      "@type": "Question",
       "name": "取消了的 Antigravity 一輪還顯示「執行中」",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -408,6 +404,14 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Sessions 那一列算的是這台電腦仍然認為還活著的數量。如果那比你實際有的還多，執行 reset 指令清掉失效的那些，而不解除配對。進行中的 sessions、你的配對和金鑰都不會被動到。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "熱度圖或連續紀錄沒有更新",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "它會自己跟上：你的電腦最多每 6 小時傳送一次新的摘要，App 最多每小時檢查一次。想現在就更新，請在那台電腦的終端機裡執行 nomo reset（或在代理裡執行重設指令），然後在 Nomo 裡打開活動頁面。它一打開就會取得最新的摘要。"
       }
     },
     {

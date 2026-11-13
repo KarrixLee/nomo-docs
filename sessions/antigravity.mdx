@@ -1,7 +1,7 @@
 ---
 title: "Watch, approve and reply to Antigravity sessions from your iPhone"
 sidebarTitle: "Using Antigravity"
-description: "Set up Nomo for Google Antigravity in a few steps, pair your phone, and follow your sessions from your iPhone — with Allow and Deny for commands and file changes, Interrupt, and replies."
+description: "Follow Google Antigravity sessions from your iPhone — Allow and Deny for commands and file changes, Interrupt, and replies. What's different for Antigravity, and why."
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "agy", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Using Antigravity"]
 ---
 
@@ -17,148 +17,47 @@ It works with the Antigravity desktop app and with the `agy` command-line tool.
   and plugin **2.3.5** or later on your Mac.
 </Note>
 
-## Set it up
+## What works the same
 
-<Steps>
-  <Step title="Open Terminal">
-    On your Mac, open the **Terminal** app. It's in **Applications → Utilities**.
-  </Step>
+Sessions, folders and the [Dynamic Island](/sessions/island) work as they do
+for the other agents. Everything that's shared has one home:
 
-  <Step title="Run the installer">
-    Copy this line, paste it into Terminal, and press Return:
+- **Install** → [Installation](/setup/install), **Antigravity** tab. One
+  install covers the desktop app and `agy`.
+- **Pair** → [Pairing](/setup/pairing). One pairing covers every agent on the
+  computer.
+- **Commands, update and uninstall** → [Commands](/sessions/commands), with
+  [update](/sessions/commands#update) and
+  [uninstall](/sessions/commands#uninstall).
+- **Answering prompts** → [Answering from your phone](/sessions/approvals).
+- **What each agent can do** → [What you can do](/sessions/features).
+- **Something's wrong** → [Troubleshooting](/sessions/troubleshooting).
 
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
+## Nomo's commands ask first {#commands}
 
-    No `bunx`? Use `npx nomo-ai --antigravity` instead.
+Antigravity asks before it runs any Nomo command. Choose **Allow**. These
+commands only ask in Antigravity. They never put a card on your phone.
 
-    You should see:
-
-    ```
-    ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
-    ```
-  </Step>
-
-  <Step title="Restart Antigravity">
-    Quit Antigravity completely, then open it again. If you use `agy`, close it
-    and start it again too.
-
-    <Warning>
-      Don't skip this. Nomo stays off until Antigravity restarts.
-    </Warning>
-  </Step>
-
-  <Step title="Type /nomo-pair">
-    In an Antigravity chat, type this and send it:
-
-    ```
-    /nomo-pair
-    ```
-  </Step>
-
-  <Step title="Choose Allow">
-    Antigravity asks before it runs a Nomo command. Choose **Allow**.
-
-    You should see a page with a QR code open in your browser.
-
-    In the Antigravity desktop app, the first Nomo command may show one line
-    that says `operation not permitted`. That's normal — Antigravity tries
-    again outside its sandbox by itself. Just wait.
-  </Step>
-
-  <Step title="Scan the QR code">
-    On your iPhone, open Nomo → **Sessions** → **Pair a Computer**, and scan the
-    QR code.
-
-    You should see, in Antigravity: "Done! This computer is connected to your
-    phone."
-  </Step>
-
-  <Step title="Send a message in Antigravity">
-    Start a chat and send anything.
-
-    You should see the session appear in Nomo, under the **Antigravity** tab of
-    your computer. No Antigravity tab? Tap the **+** button (**Choose agents**)
-    and turn Antigravity on.
-
-    <Frame caption="Choose agents, from the + button. Antigravity is ticked, so it gets its own tab.">
-      <div className="device-frame">
-        <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="The Choose agents menu with Claude Code, Codex and Antigravity ticked, and OpenCode and Cursor unticked" />
-        <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="The Choose agents menu with Claude Code, Codex and Antigravity ticked, and OpenCode and Cursor unticked" />
-      </div>
-    </Frame>
-  </Step>
-</Steps>
-
-<Tip>
-  **Already paired from Claude Code, Codex, OpenCode or Cursor?** One pairing
-  covers the whole computer. Skip steps 4–6 — the installer says "type
-  /nomo-status to check" instead.
-</Tip>
-
-<Tip>
-  **No browser on this computer?** Type `/nomo-pair code` instead. Antigravity
-  shows a short code. On your iPhone, open Nomo → **Sessions** → **Pair a
-  Computer** → **Enter Code**, and type it. The code expires in 10 minutes.
-</Tip>
-
-<Warning>
-  **Don't import Nomo's Claude Code plugin into Antigravity** (for example with
-  `agy plugin import claude`). Every session would show up twice. If you did,
-  the installer warns you:
-
-  ```
-  ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
-  ```
-
-  To fix it, run this in Terminal, then restart Antigravity:
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Warning>
-
-## Commands
-
-Type these in an Antigravity chat. Each time, Antigravity asks first — choose
-**Allow**.
-
-| Type this | What it does |
-| --- | --- |
-| `/nomo-pair` | Connect this computer to your phone |
-| `/nomo-pair code` | The same, with a short code to type instead of a QR code |
-| `/nomo-status` | Check that everything works |
-| `/nomo-status verbose` | The same, with all the details |
-| `/nomo-approvals off` | Stop asking your phone — Antigravity asks on the computer instead |
-| `/nomo-approvals on` | Ask your phone again |
-| `/nomo-approvals status` | See whether phone approvals are on or paused |
-| `/nomo-reset` | Clear stuck sessions from your phone, and stay connected |
-| `/nomo-unpair` | Disconnect this computer from your phone |
-
-When everything is fine, `/nomo-status` shows one line like this:
+`/nomo-status` gives a short summary in plain words. When everything is fine,
+it shows one line like this:
 
 ```
 ✅ Connected to your phone as “MacBook Pro” · Phone approvals: on · Last activity: 2 min ago
 ```
 
 If something is wrong, it adds a line that says what to do.
+`/nomo-status verbose` shows all the details.
 
-These commands only ask in Antigravity. They never put a card on your phone.
-
-The connection and the approvals switch are shared by every coding app on this
-computer. Turning approvals off here turns them off for Claude Code and Codex
-too.
+Antigravity doesn't know the commands? Run them
+[from Terminal](/sessions/commands#without-slash-commands).
 
 ## What you see
 
 - A session appears when you send your **first message**, not when you open a
   chat.
-- It shows **Running** while Antigravity works, and **Done** when it finishes.
 - Its name is Antigravity's own chat title. Until Antigravity has made one, it
   uses your first message, or else the folder name.
 - The badge shows the model Antigravity is using.
-- The [Dynamic Island](/sessions/island) works as it does for the other agents.
 
 ## Answering from your phone
 
@@ -188,9 +87,6 @@ Good to know:
 - **In the desktop app, everything asks your phone.** Nomo can't see the
   desktop app's permission settings, so every command and file change comes to
   your phone.
-- **No phone? No problem.** If your phone can't be reached, or approvals are
-  [paused](/sessions/approvals#pausing-it), Antigravity asks on the computer,
-  just as it would without Nomo.
 - **Stopped the chat on the computer?** The card disappears from your phone by
   itself.
 - **The terminal stays quiet while it waits.** While a request waits for your
@@ -390,25 +286,6 @@ Good to know:
 ## Something's not working {#troubleshooting}
 
 <AccordionGroup>
-  <Accordion title="My phone shows nothing">
-    1. Restart Antigravity.
-    2. Type `/nomo-status` and choose **Allow**.
-    3. Do what the line starting with ⚠️ or ❌ says.
-
-    Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
-    Antigravity on.
-
-    If the Antigravity tab says **No Antigravity sessions yet**, send a message
-    in Antigravity first — a session appears only after your first message.
-
-    <Frame caption="The Antigravity tab before any session has arrived.">
-      <div className="device-frame">
-        <img className="only-light" src="/images/agy-drawer-tab.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
-        <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
-      </div>
-    </Frame>
-  </Accordion>
-
   <Accordion title="My reply stays on “Queued for the next step”">
     Your Mac has the message. If Antigravity is working, it reads it at its
     next step — a long command can take a while.
@@ -446,70 +323,14 @@ Good to know:
     bunx nomo-ai --antigravity
     ```
   </Accordion>
-
-  <Accordion title="My phone stopped asking me to approve">
-    Type `/nomo-approvals on`. If approvals were already on, check **Answer on
-    iPhone** in [Settings](/sessions/settings#remote-approvals).
-  </Accordion>
-
-  <Accordion title="A session is stuck on Running">
-    Wait a few seconds — Nomo notices a stopped chat on its own. Still stuck?
-    Type `/nomo-reset`.
-  </Accordion>
 </AccordionGroup>
 
-More help in [Troubleshooting](/sessions/troubleshooting).
-
-## Updating
-
-Run the installer again, then restart Antigravity:
-
-```bash
-bunx nomo-ai --antigravity
-```
-
-## Uninstalling
-
-<Steps>
-  <Step title="Run this in Terminal">
-    ```bash
-    node ~/.nomo/plugin/scripts/antigravity-install.mjs --uninstall
-    ```
-
-    You should see:
-
-    ```
-    ✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
-    ```
-  </Step>
-
-  <Step title="Restart Antigravity">
-    Quit Antigravity and open it again.
-  </Step>
-</Steps>
-
-To disconnect this computer from your phone as well, type `/nomo-unpair` in
-Antigravity **before** you uninstall.
+Anything else — nothing on your phone, approvals that stopped, a stuck
+session — is in [Troubleshooting](/sessions/troubleshooting).
 
 ## Advanced
 
 <AccordionGroup>
-  <Accordion title="Without slash commands" icon="terminal">
-    The same commands, run from Terminal instead of an Antigravity chat:
-
-    | | |
-    | --- | --- |
-    | Pair | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
-    | Pair with a typed code | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
-    | Check status | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
-    | Pause approvals | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
-    | Resume approvals | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
-    | Clear stuck sessions | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
-    | Unpair | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
-
-    Add `--verbose` to the installer to see what it changes.
-  </Accordion>
-
   <Accordion title="How it works" icon="gear">
     - **What the installer changes.** It clones the plugin to `~/.nomo`, adds one
       block named `nomo` to `~/.gemini/config/hooks.json` (every other block is

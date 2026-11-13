@@ -8,9 +8,9 @@ El uso funciona como [Estado](/es/status) —un widget más notificaciones— co
 paso de más: lee cifras de tu cuenta, así que hay que iniciar sesión. Sigue sin
 pedir nada en el Mac; esto también es solo de teléfono.
 
-<Frame caption="La pestaña Uso de Claude: la ventana de 5 horas, la semanal, y cuándo se restablece cada una.">
+<Frame caption="La pestaña Uso de Claude: las ventanas de 5 horas, semanal y de Fable, cuándo se restablece cada una, y tus restablecimientos disponibles.">
   <div className="device-frame">
-    <img src="/images/claude-usage-overview.png" alt="La pestaña Uso de Nomo mostrando los límites de sesión y semanales de Claude" />
+    <img src="/images/claude-usage-overview.png" alt="La pestaña Uso de Claude en Nomo sin Nomo Pro: una tarjeta Claude Max con Session al 45 %, Weekly al 79 % y Fable al 48 %, cada una con cuándo se restablece, una fila See if you'll run out before reset con una etiqueta PRO y 4 resets available; debajo, Connected to Claude con 1/5 cuentas y Add another account con una etiqueta PRO" />
   </div>
 </Frame>
 
@@ -57,12 +57,28 @@ tu gestor de contraseñas y las sesiones que ya tengas abiertas en Safari.
 
 **Cursor**
 
-1. Toca **Conectar**.
-2. iOS te pide usar **cursor.com** para iniciar sesión. Toca **Continuar**.
-3. Inicia sesión en la página de Cursor.
+1. Abre Nomo.
+2. Toca la pestaña **Proveedores**.
+3. Toca **Cursor**.
+4. Toca **Uso**, arriba.
+5. Toca **Conectar cuenta de Cursor**.
+6. iOS te pide usar **cursor.com** para iniciar sesión. Toca **Continuar**.
+7. Inicia sesión en la página de Cursor.
 
 La página se cierra sola y aparece tu uso. Vuelve a iniciar sesión más o menos
 cada 60 días.
+
+<Warning>
+  ¿Usas Grok Bot? Conecta **Cursor**, no Grok. En la página de Cursor, inicia
+  sesión con la misma cuenta que usas para Grok Bot: tu cuenta de Grok o de X.
+  Si conectas **Grok** en Nomo, solo ves tu límite semanal. Tus días y tus
+  tokens con Grok Bot solo llegan a través de Cursor. Consulta
+  [Grok Bot](/es/widgets#grok-bot).
+</Warning>
+
+Con The X Subscription, Grok Bot y Cursor comparten un mismo límite semanal, y
+Nomo lo muestra. Con un plan antiguo de Cursor, Grok Bot tiene su propio
+límite, y Nomo no lo lee.
 
 **Grok**
 
@@ -120,6 +136,39 @@ inicio.
 **Sin Nomo Pro**, el primer límite muestra una sola fila en su lugar:
 **“Mira si se agota antes de restablecerse”**, con una etiqueta **PRO**.
 Tócala para abrir Nomo Pro.
+
+## Restablecimientos disponibles {#available-resets}
+
+Claude y Codex pueden darte restablecimientos de límite extra para usarlos más
+tarde. Cuando tienes al menos uno, Nomo muestra cuántos y hasta cuándo puedes
+usar el primero, en tu zona horaria. Por ejemplo,
+**4 restablecimientos disponibles · usar hasta el 11 dic, 6:00**.
+
+<Frame caption="La tarjeta de uso muestra cuántos restablecimientos tienes y hasta cuándo puedes usar el primero.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-resets-light.webp" alt="La tarjeta Your usage de Claude con Claude Max: Session al 45 %, Weekly al 79 % y Fable al 48 %, cada una con cuándo se restablece y la línea Lasts until reset; debajo, 4 resets available · use by Dec 11 at 6:00 AM" />
+    <img className="only-dark" src="/images/usage-resets-dark.webp" alt="La tarjeta Your usage de Claude con Claude Max: Session al 45 %, Weekly al 79 % y Fable al 48 %, cada una con cuándo se restablece y la línea Lasts until reset; debajo, 4 resets available · use by Dec 11 at 6:00 AM" />
+  </div>
+</Frame>
+
+Los mismos restablecimientos aparecen en la web de cada proveedor:
+
+- **Claude**: claude.ai, **Settings → Usage**, **Limit resets**.
+- **Codex**: chatgpt.com, **Settings → Usage**, **Usage limit resets**.
+
+La tarjeta de uso muestra las dos cosas. Los widgets
+[Uso de Nomo](/es/free-widgets#nomo-usage) y
+[Ritmo de Nomo](/es/widgets#nomo-pace) muestran el número.
+
+**Recordatorios:** Nomo te avisa 1 semana y 1 día antes de que venza un
+restablecimiento. Siguen las [alertas de uso](/es/notifications#usage-alerts)
+de cada proveedor. No tienen un interruptor propio: para quitarlos, desactiva
+las alertas de uso de ese proveedor. Si un aviso cae de noche, llega por la
+tarde o por la mañana, nunca después del vencimiento.
+
+Nomo solo muestra tus restablecimientos. Nunca los usa ni los gasta. Llegan con
+la misma consulta de uso de siempre, directo de Anthropic u OpenAI a tu
+teléfono.
 
 ## Al alcanzar un límite
 
@@ -224,7 +273,7 @@ Los widgets muestran tu cuenta predeterminada, salvo que elijas otra:
 2. Toca **“Editar widget”**.
 3. Toca **Cuenta** y elige una.
 
-**Cuenta** está en [Uso de Nomo](/es/widgets#nomo-usage) y en
+**Cuenta** está en [Uso de Nomo](/es/free-widgets#nomo-usage) y en
 [Ritmo de Nomo](/es/widgets#nomo-pace). [Cuentas de Nomo](/es/widgets#nomo-accounts)
 muestra todas las cuentas a la vez.
 

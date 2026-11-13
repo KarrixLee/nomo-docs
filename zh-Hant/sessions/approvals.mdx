@@ -63,6 +63,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", 
 | **拒絕並附註…** | 僅App | 拒絕，並把你打的內容一併帶過去 — *為什麼*，或*改做什麼*。在計畫上，它寫的是「繼續規劃…」。 |
 | **回答…** | 僅App | 為一個選擇題挑一個選項 — 或是在代理接受的情況下，送出你自己輸入的回答。 |
 | **查看完整計畫** | App，以及動態島上的「查看計畫」 | 打開計畫，先讀再決定。 |
+| **檢視變更** | 僅 App | 打開編輯請求的變更，先讀再決定。[用法](/zh-Hant/sessions/approvals#see-the-code-before-you-approve) |
 | **在 Mac 上開啟** | 僅App | 不回答任何事 — 它把那個 session 的終端機視窗切到你 Mac 的最前面。需要[區域網路](/zh-Hant/sessions/settings#local-network)連線。 |
 
 <Note>
@@ -70,6 +71,63 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", 
 </Note>
 
 「一律允許」和「拒絕並附註…」在選單的「更多…」底下，「回答…」則直接在選單上。三個都需要外掛程式 **2.0.0**。在 1.0.0 上你只會拿到單純的「允許」和「拒絕」 — Nomo 不會顯示一個 Mac 無法兌現的按鈕。「批准並…」這幾個選項同樣在「更多…」底下，需要外掛程式 **2.2.2**。有更新可用時，面板會告訴你。
+
+## 批准前檢視程式碼 {#see-the-code-before-you-approve}
+
+Claude Code 或 Codex 想編輯檔案時，你可以在回答之前先在手機上讀這次的變更。
+
+<Steps>
+  <Step title="按住 session 那一列">
+    卡片會列出每個要變更的檔案，以及新增（`+`）和刪除（`−`）的行數。下面還會顯示這次變更的前幾行。
+  </Step>
+  <Step title="點一下「檢視變更」">
+    「變更」表單隨即打開。刪除的行是紅色，新增的行是綠色，一行裡變動的部分會醒目標示。點一下某個檔案可以展開或收合。
+  </Step>
+  <Step title="點一下「允許」或「拒絕」">
+    捲動時，這兩個按鈕會一直留在表單底部。
+  </Step>
+</Steps>
+
+<Frame caption="按住一個編輯請求：檔案和它們的 + / − 行數、第一處變更，選單最上面是「檢視變更」。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-approval-card.png" alt="按住的 Codex 編輯請求，顯示三個變更的檔案及其行數、第一處變更，以及包含「檢視變更」、「允許」、「拒絕」和「更多」的選單" />
+    <img className="only-dark" src="/images/diff-approval-card-dark.png" alt="按住的 Codex 編輯請求，顯示三個變更的檔案及其行數、第一處變更，以及包含「檢視變更」、「允許」、「拒絕」和「更多」的選單" />
+  </div>
+</Frame>
+
+<Frame caption="「變更」表單。紅色的行被刪除，綠色的行被新增，「允許」和「拒絕」一直在底部。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-changes-sheet.png" alt="「變更」表單，顯示 Edit 3 files、總計 +13 −16，第一個檔案已展開，帶有紅色和綠色的行" />
+    <img className="only-dark" src="/images/diff-changes-sheet-dark.png" alt="「變更」表單，顯示 Edit 3 files、總計 +13 −16，第一個檔案已展開，帶有紅色和綠色的行" />
+  </div>
+</Frame>
+
+### 較大的變更 {#a-big-change}
+
+較大的變更會先以預覽打開。表單底部會顯示 `預覽 — 其餘變更尚未載入`。
+
+1. 點一下「顯示所有變更」。
+2. 稍等一下。Nomo 會從你的電腦取回其餘的變更。不在你的 Wi-Fi 附近時也可以。
+
+載入時會顯示 `正在載入所有變更…`。如果連不上你的電腦，會顯示 `重新連線中…` 並持續重試。在其餘部分送達之前，你也可以隨時點一下「允許」或「拒絕」。
+
+<Frame caption="較大的變更：預覽提示和「顯示所有變更」，「允許」和「拒絕」照樣可以用。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-show-full.png" alt="「變更」表單底部，帶有 預覽 — 其餘變更尚未載入 的提示、「顯示所有變更」按鈕，以及「拒絕」和「允許」" />
+    <img className="only-dark" src="/images/diff-show-full-dark.png" alt="「變更」表單底部，帶有 預覽 — 其餘變更尚未載入 的提示、「顯示所有變更」按鈕，以及「拒絕」和「允許」" />
+  </div>
+</Frame>
+
+和 Nomo 傳送的其他內容一樣，這次變更也是端對端加密的。外掛程式的 README 列出了[哪些內容會離開你的電腦](https://github.com/KarrixLee/nomo#what-leaves-your-computer)。遇到編輯請求時，[動態島](/zh-Hant/sessions/island#the-four-shapes)上也會顯示同樣的 `+13 −16`。
+
+### 更清楚的標題 {#clearer-titles}
+
+現在請求會直接說明它要做什麼：
+
+- Codex 的編輯會顯示為 `Edit notes.txt` 或 `Edit 2 files`，而不是 `apply_patch`。
+- 來自 MCP 工具的請求會顯示為 `github · create issue` 這樣：先是伺服器，再是工具。
+
+這些都需要電腦上裝有外掛程式 **2.4.2**。外掛程式版本較舊時，卡片和以前一樣，不會列出變更。
 
 ## 回答問題 {#answering-a-question}
 

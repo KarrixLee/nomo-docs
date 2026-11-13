@@ -6,9 +6,9 @@ icon: "gauge"
 
 使用量は[ステータス](/ja/status)と同じつくりです — ウィジェットと通知 — ただし手順が 1 つだけ増えます。アカウントから数値を読み取るため、サインインが必要です。Mac 側のプラグインはこちらも不要で、スマートフォンだけで完結します。
 
-<Frame caption="Claude の使用量タブ。5 時間の枠、週の枠、そしてそれぞれがいつリセットされるか。">
+<Frame caption="Claude の使用量タブ。5 時間の枠、週の枠、Fable の枠、それぞれがいつリセットされるか、そして使えるリセット。">
   <div className="device-frame">
-    <img src="/images/claude-usage-overview.png" alt="Claude のセッション上限と週間上限を表示した Nomo の使用量タブ" />
+    <img src="/images/claude-usage-overview.png" alt="Nomo Pro がない場合の Claude の使用量タブ。Session 45%、Weekly 79%、Fable 48% とそれぞれのリセットまでの時間、PRO のラベルが付いた See if you'll run out before reset の行、4 resets available を表示した Claude Max のカード。その下に Connected to Claude、1/5 のアカウント、PRO のラベルが付いた Add another account" />
   </div>
 </Frame>
 
@@ -40,11 +40,21 @@ Cursor と Grok は Safari でサインインします。パスキー、パス�
 
 **Cursor**
 
-1. 「接続」をタップします。
-2. **cursor.com** を使ったサインインの許可を iOS が求めます。「続ける」をタップします。
-3. Cursor のページでサインインします。
+1. Nomo を開きます。
+2. 「プロバイダー」タブをタップします。
+3. 「Cursor」をタップします。
+4. 上部の「使用量」をタップします。
+5. 「Cursorアカウントを接続」をタップします。
+6. **cursor.com** を使ったサインインの許可を iOS が求めます。「続ける」をタップします。
+7. Cursor のページでサインインします。
 
 ページは自動で閉じ、使用量が表示されます。60 日ほどごとに、もう一度サインインしてください。
+
+<Warning>
+  Grok Bot を使っていますか？ 接続するのは Grok ではなく **Cursor** です。Cursor のページでは、Grok Bot に使っているのと同じアカウントでサインインします。Grok か X のアカウントです。Nomo で **Grok** を接続しても、表示されるのは週間上限だけです。Grok Bot を使った日とトークンは、Cursor からしか届きません。[Grok Bot](/ja/widgets#grok-bot)をご覧ください。
+</Warning>
+
+The X Subscription では、Grok Bot と Cursor が 1 つの週間上限を共有し、Nomo はそれを表示します。以前の Cursor のプランでは Grok Bot に別の上限があり、Nomo はそれを読み取りません。
 
 **Grok**
 
@@ -92,6 +102,28 @@ Nomo Pro では、「使用量」ページの各上限の下に 1 行追加さ�
 ホーム画面では、[Nomo消費ペース](/ja/widgets#nomo-pace)ウィジェットで同じ内容を確認できます。
 
 **Nomo Pro がない場合**は、最初の上限の下に「リセット前に使い切るかがわかります」という行が **PRO** のラベル付きで 1 つだけ表示されます。タップすると Nomo Pro の画面が開きます。
+
+## 使えるリセット {#available-resets}
+
+Claude と Codex では、あとで使える上限のリセットがもらえることがあります。1 回以上あるときは、その回数と、いちばん早い使用期限が表示されます。日時はお使いのタイムゾーンです。例: 「使えるリセット4回 · 12月11日 6:00までに使用」。
+
+<Frame caption="使用量のカードには、使えるリセットの回数と、最初のリセットの使用期限が表示されます。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-resets-light.webp" alt="Claude Max の Claude の Your usage カード。Session 45%、Weekly 79%、Fable 48% とそれぞれのリセットまでの時間、Lasts until reset の行。その下に 4 resets available · use by Dec 11 at 6:00 AM" />
+    <img className="only-dark" src="/images/usage-resets-dark.webp" alt="Claude Max の Claude の Your usage カード。Session 45%、Weekly 79%、Fable 48% とそれぞれのリセットまでの時間、Lasts until reset の行。その下に 4 resets available · use by Dec 11 at 6:00 AM" />
+  </div>
+</Frame>
+
+同じリセットは、各プロバイダーのサイトでも確認できます。
+
+- **Claude**: claude.ai の **Settings → Usage** にある **Limit resets**。
+- **Codex**: chatgpt.com の **Settings → Usage** にある **Usage limit resets**。
+
+使用量カードには回数と期限の両方が表示されます。[Nomo使用量](/ja/free-widgets#nomo-usage)と[Nomo消費ペース](/ja/widgets#nomo-pace)のウィジェットには回数が表示されます。
+
+**リマインダー:** リセットの期限の 1 週間前と 1 日前にお知らせします。各プロバイダーの[使用量のアラート](/ja/notifications#usage-alerts)に従います。専用のスイッチはありません。止めるには、そのプロバイダーの使用量のアラートをオフにします。深夜にあたるお知らせは夕方か朝に届きます。期限を過ぎてから届くことはありません。
+
+Nomo はリセットを表示するだけです。使ったり消費したりはしません。これまでと同じ使用量の取得で、Anthropic または OpenAI から直接 iPhone に届きます。
 
 ## 上限に達したとき {#when-you-hit-a-limit}
 
@@ -174,7 +206,7 @@ Claude の場合は、サインイン後に Claude がコードを表示しま�
 2. 「ウィジェットを編集」をタップします。
 3. 「アカウント」をタップし、1 つ選びます。
 
-「アカウント」は [Nomo使用量](/ja/widgets#nomo-usage) と [Nomo消費ペース](/ja/widgets#nomo-pace) にあります。[Nomoアカウント](/ja/widgets#nomo-accounts) は、すべてのアカウントを一度に表示します。
+「アカウント」は [Nomo使用量](/ja/free-widgets#nomo-usage) と [Nomo消費ペース](/ja/widgets#nomo-pace) にあります。[Nomoアカウント](/ja/widgets#nomo-accounts) は、すべてのアカウントを一度に表示します。
 
 ### Nomo Pro がない場合 {#without-nomo-pro}
 

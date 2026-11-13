@@ -1,0 +1,98 @@
+---
+title: "iPhone 上的免费 Claude 和 Codex 小组件：状态与用量限额"
+sidebarTitle: "免费小组件"
+description: "两个放在 iPhone 主屏幕上的免费 Nomo 小组件：Claude 或 Codex 有没有出故障，5 小时和每周限额还剩多少。不需要 Nomo Pro。"
+icon: "clone"
+keywords: ["Nomo", "状态", "Nomo 用量", "小组件", "Claude", "Codex", "用量", "锁定屏幕", "iPhone", "Claude 用量小组件", "5 小时限额", "每周限额", "重置", "Codex 用量限额", "免费"]
+---
+
+Nomo 为 iPhone 提供七个小组件。其中两个免费：显示状态的 **Nomo**，以及 **Nomo 用量**。本页介绍这两个。另外五个随 Nomo Pro 提供：见 [Pro 小组件](/zh-Hans/widgets)。
+
+想把小组件放到主屏幕上，见[小组件](/zh-Hans/widget)。
+
+## 免费版与 Pro {#free-and-pro}
+
+| | 免费 | Nomo Pro <span className="pro-pill" /> |
+| --- | --- | --- |
+| **Nomo** 状态小组件 | ✓ | ✓ |
+| **Nomo 用量**小组件 | ✓ | ✓ |
+| [Nomo 用量速度](/zh-Hans/widgets#nomo-pace)、[Nomo 活动](/zh-Hans/widgets#nomo-activity)、[Nomo 账户](/zh-Hans/widgets#nomo-accounts)、[智能体实时状态](/zh-Hans/widgets#live-agents)、[Nomo Token](/zh-Hans/widgets#nomo-tokens) | | ✓ |
+| [每个服务商多个账户](/zh-Hans/widgets#more-than-one-account) | | ✓ |
+
+## Nomo 状态 {#nomo-status}
+
+<Frame caption="小号和中号的 Nomo 状态。">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-status.webp" alt="Nomo 状态：小号小组件显示 Claude Code 为 Operational，中号小组件显示 Codex 为 Operational，并带有 30 天历史条和 99.87%" />
+    <img className="only-dark" src="/images/widgets-status-dark.webp" alt="深色模式下的 Nomo 状态，小号和中号" />
+  </div>
+</Frame>
+
+在小组件中心里，这个小组件叫 **Nomo**。
+
+**它显示什么**：某一项服务此刻是否正常，例如 Claude Code 或 Codex。你会看到以下其中一种：
+
+- `运行正常`
+- `性能下降`
+- `部分中断`
+- `严重中断`
+- `维护中`
+
+如果 Nomo 拿不到状态，会显示 `无法获取`。
+
+| 尺寸 | 显示内容 |
+| --- | --- |
+| 小号 | 服务、它的状态，以及上次更新的时间。 |
+| 中号 | 同样的内容，外加过去 30 天的历史条和可用率。 |
+
+**事先需要**：什么都不用。不需要账户，也不需要登录。
+
+**设置方法**：
+
+1. 添加小组件。见[小组件](/zh-Hans/widget)。
+2. 按住小组件。
+3. 轻点“编辑小组件”。
+4. 轻点“服务商”，从 Claude、OpenAI、Cursor、xAI、Antigravity、Kimi、DeepSeek 中选一个。
+5. 轻点“服务”，选一个，例如 **Claude Code**。
+6. 轻点小组件外面，完成设置。
+
+想马上更新，轻点角落里的刷新按钮。轻点其他任何地方，会在 Nomo 中打开那个服务商的“状态”页面。
+
+详细内容见[状态](/zh-Hans/status)。
+
+## Nomo 用量 {#nomo-usage}
+
+<Frame caption="小号和中号的 Nomo 用量。">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-usage.webp" alt="Nomo 用量：小号小组件显示 Claude 已用 45%、进度条、resets 2h，以及重置符号和 4；中号小组件显示 Codex 的 Session 30% 和 Weekly 41%，各带进度条和重置时间，还有 2 resets available" />
+    <img className="only-dark" src="/images/widgets-usage-dark.webp" alt="深色模式下的 Nomo 用量，小号和中号" />
+  </div>
+</Frame>
+
+**它显示什么**：一个账户的套餐限额用了多少，以及什么时候重置。
+
+| 尺寸 | 显示内容 |
+| --- | --- |
+| 小号 | 一个时段：大号百分比、进度条，以及多久后重置。 |
+| 中号 | 两个时段，通常是“会话”（5 小时）和“每周”，各带进度条和多久后重置。 |
+
+用到 70% 时进度条变成琥珀色，90% 时变成红色。如果你的套餐没有 5 小时限额，会改为显示 `无会话限额`。
+
+有 Claude 或 Codex 的重置次数时，中号会在更新时间旁显示次数，小号只显示重置符号和数字。见[可用的重置次数](/zh-Hans/usage#available-resets)。
+
+**事先需要**：一个已连接的账户，例如 Claude 或 Codex。打开“服务商”标签页，轻点那个服务商并连接。见[用量](/zh-Hans/usage)。连接之前，小组件会显示 `未连接`。
+
+**设置方法**：
+
+1. 添加小组件。见[小组件](/zh-Hans/widget)。
+2. 按住小组件。
+3. 轻点“编辑小组件”。
+4. 轻点“服务商”，选一个，例如 **Codex**。
+5. 轻点“账户”，选一个。“默认”会跟随你在 App 里设定的默认账户。
+6. 轻点“小尺寸样式”，选一个。“大百分比”把数字放大显示。“大动画”把动画图标放大显示。
+7. 轻点“小尺寸小组件焦点”，选择小号要显示的时段。“自动”会替你选。可选项因服务商而异。
+8. 轻点小组件外面，完成设置。
+
+选 Cursor 时还多一个选项：“Cursor 图标”。选 **Grok Bot** 或“Cursor 标志”。
+
+想马上更新，轻点角落里的刷新按钮。轻点其他任何地方，会在 Nomo 中打开那个服务商的“用量”页面。

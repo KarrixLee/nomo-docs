@@ -36,6 +36,10 @@ El resumen dice `No hay sesiones activas`, `1 sesión` o `3 activas · 7 sesione
 “Activa” deja fuera las sesiones terminadas, las ilegibles y cualquiera que diga
 estar trabajando pero lleve más de 10 minutos en silencio.
 
+Cuando una sesión ha terminado desde la última vez que miraste, se suma un
+recuento en azul: `3 activas · 7 sesiones · 2 nuevas`. Consulta
+[Resultados nuevos](#new-results).
+
 Una etiqueta arriba a la derecha indica cuántos ordenadores has vinculado. Se
 pone naranja cuando llegas al tope.
 
@@ -132,6 +136,38 @@ como `Caducado — continúa en tu ordenador`. La lista completa está en
 
 Las filas se ordenan por actividad más reciente. Nomo nunca esconde una fila: la
 lista refleja exactamente lo que guarda el relé.
+
+## Resultados nuevos {#new-results}
+
+Cuando una sesión termina y aún no la has mirado, su fila muestra un pequeño
+punto azul a la izquierda. En la pestaña **Sesiones**, la tarjeta del ordenador
+muestra cuántas son nuevas, por ejemplo `2 nuevas`. Así sabes que algo ha
+terminado sin abrir cada ordenador.
+
+<Frame caption="La tarjeta del ordenador cuenta las sesiones terminadas que aún no has visto.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/sessions-new-count.png" alt="Una tarjeta de ordenador que dice MacBook Pro, 5 active · 7 sessions · 2 new, con 2 new en azul" />
+    <img className="only-dark" src="/images/sessions-new-count-dark.png" alt="Una tarjeta de ordenador que dice MacBook Pro, 5 active · 7 sessions · 2 new, con 2 new en azul" />
+  </div>
+</Frame>
+
+<Frame caption="Dentro del ordenador, el punto azul está junto a la marca verde de la sesión que ha terminado.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/session-unread-dot.png" alt="Dos filas de sesión, una en ejecución y otra lista con un pequeño punto azul a la izquierda de su marca verde" />
+    <img className="only-dark" src="/images/session-unread-dot-dark.png" alt="Dos filas de sesión, una en ejecución y otra lista con un pequeño punto azul a la izquierda de su marca verde" />
+  </div>
+</Frame>
+
+Para quitar los puntos:
+
+- **Abre el ordenador.** Los puntos de la pestaña de agente que miras se quitan
+  al cerrarlo, así que puedes encontrarlos mientras estás dentro.
+- **Toca una fila para desplegarla.** El punto de esa fila se quita en el acto.
+
+El recuento incluye todas las pestañas de agente del panel, así que una sesión
+de Codex terminada aparece aunque estés en la pestaña Claude Code. Los agentes
+que ocultaste con **Elegir agentes** no cuentan. Las sesiones que terminaron
+antes de actualizar a Nomo 2.4.2 no llevan punto.
 
 ## Detalle de una fila {#tap-a-row-for-detail}
 

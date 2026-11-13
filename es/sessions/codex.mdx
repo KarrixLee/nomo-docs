@@ -134,12 +134,16 @@ pero quedan **inertes hasta que confías en ellos**. Ejecuta `/hooks` y confía 
 las diez entradas de Nomo, como se explica en
 [Instalación](/es/setup/install).
 
-La parte que pilla a la gente: al actualizar a la versión que añadió las
-aprobaciones de Codex desde el teléfono se introdujo un hook **nuevo**, así que
-Codex reabre la revisión para él. Hasta que confíes en él, las aprobaciones de
-Codex vuelven a la terminal en silencio y nada informa de ningún error. Si tu
-teléfono dejó de recibir solicitudes de Codex después de una actualización,
-ejecuta `/hooks` lo primero.
+**Cada actualización del plugin vuelve a preguntar.** Después de actualizar el
+plugin de Nomo, Codex te pide de nuevo que confíes en los hooks de Nomo. Hasta
+que lo hagas, las aprobaciones no llegan a tu iPhone: vuelven a la terminal y
+nada informa de ningún error.
+
+Para volver a confiar en ellos, haz una de estas dos cosas:
+
+- Cuando Codex muestre la revisión de hooks al arrancar, elige **Trust all and
+  continue**.
+- O ejecuta `/hooks` en Codex y confía en las entradas de Nomo.
 
 `$nomo-status` informa de la confianza en los hooks, así que es como compruebas
 que el paso surtió efecto.
@@ -159,3 +163,5 @@ las de Claude Code.
 
 Codex **0.142 o posterior**. Las versiones anteriores no tienen un sistema de
 plugins en el que Nomo pueda instalarse.
+
+Con Codex **0.167** o posterior, usa el plugin **2.4.2** o posterior.

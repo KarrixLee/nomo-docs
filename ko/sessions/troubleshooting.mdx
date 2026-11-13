@@ -108,6 +108,12 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
   색입니다. 든 손이 전부 노란색(`도움 필요`, 터미널에서만 처리할 수 있는 것)이고
   보라색(`권한 필요`, 답할 수 있는 것)은 하나도 없습니다.
   [휴대폰에서 답변하기](/ko/sessions/approvals)를 참고하십시오.
+
+  **Codex에서만, 그리고 Nomo 플러그인을 업데이트한 뒤부터 그렇다면?** Codex가
+  Nomo의 Hook을 다시 신뢰해 주기를 기다리고 있습니다. Codex에서 `/hooks`를
+  실행해 Nomo 항목을 신뢰하거나, Codex가 시작할 때 물으면 **Trust all and
+  continue**를 선택하십시오 —
+  [이유](/ko/sessions/codex#hooks-have-to-be-trusted).
 </Accordion>
 
 <Accordion title="세션을 시작했는데 나타나지 않음" icon="play">
@@ -150,7 +156,7 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
 <Accordion title="Cursor 채팅이 Claude Code 세션으로 표시됨" icon="clone">
   Claude Code용 Nomo 플러그인을 업데이트하십시오. 이전 버전은 Cursor가 Claude Code
   플러그인을 가져오는 기능을 통해 Cursor 안에서도 실행되었지만, 현재 버전은
-  Cursor를 무시합니다. 명령은 [업데이트](/ko/setup/install#updating)에 있습니다.
+  Cursor를 무시합니다. 명령은 [업데이트](/ko/sessions/commands#update)에 있습니다.
 </Accordion>
 
 <Accordion title="Cursor를 종료한 뒤에도 Cursor 세션이 실행 중으로 남음" icon="hourglass-half">
@@ -172,25 +178,17 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
 
   그래도 표시되지 않나요? Nomo에서 **+** 버튼(**에이전트 선택**)을 탭해
   Antigravity를 켭니다. 자세한 내용은 [Antigravity 사용하기](/ko/sessions/antigravity#troubleshooting)에 있습니다.
+
+  <Frame caption="아직 세션이 도착하지 않은 Antigravity 탭.">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="컴퓨터의 Antigravity 탭에 아직 Antigravity 세션이 없습니다라고 표시됨" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="컴퓨터의 Antigravity 탭에 아직 Antigravity 세션이 없습니다라고 표시됨" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="모든 Antigravity 세션이 두 번씩 표시됨" icon="clone">
-  Nomo의 Claude Code 플러그인을 Antigravity로 가져온 상태입니다. 터미널에서
-  다음을 실행한 다음 Antigravity를 재시작하십시오.
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Antigravity 명령에 Nomo가 파일을 찾을 수 없다고 표시됨" icon="folder-open">
-  Nomo 폴더가 옮겨졌거나 삭제되었습니다. Antigravity는 계속 동작하지만 휴대폰에는
-  아무것도 오지 않습니다. 설치 도구를 다시 실행한 다음 Antigravity를
-  재시작하십시오.
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity 세션이 두 번씩 표시되거나, 명령이 Nomo 파일을 찾지 못함" icon="clone">
+  둘 다 [Antigravity 사용하기](/ko/sessions/antigravity#troubleshooting)에 해결 방법이 있습니다.
 </Accordion>
 
 <Accordion title="취소한 Antigravity 턴이 계속 실행 중으로 표시됨" icon="hourglass-half">
@@ -222,11 +220,34 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash 터미널 icon="terminal"
+  nomo reset
+  ```
   </CodeGroup>
 
   실행 중인 세션, 페어링, 키는 건드리지 않습니다 —
   [출력 내용](/ko/sessions/commands#reset). OpenCode 행은 OpenCode 서버에 속하므로,
   지워지지 않는 행이 있으면 OpenCode를 먼저 종료하십시오.
+</Accordion>
+
+<Accordion title="히트맵이나 연속 기록이 최신이 아님" icon="calendar">
+  기다리면 저절로 따라잡습니다. 컴퓨터는 새 요약을 최대 6시간에 한 번 보내고,
+  앱은 최대 1시간에 한 번 이를 확인합니다. 지금 바로 업데이트하려면:
+
+  1. 컴퓨터에서 터미널을 열고 `nomo reset`을 실행합니다. 또는
+     에이전트 안에서 `/nomo-cc:reset` 같은 초기화 명령을 실행합니다.
+     `Sent your activity summary (heatmap and streak) to your phone.`이라고
+     표시됩니다.
+  2. Nomo에서 [활동 화면](/ko/widgets#activity-screen)을 엽니다. 열 때
+     최신 요약을 가져옵니다.
+
+  그래도 빠진 컴퓨터가 있다면
+  [집계되지 않는 컴퓨터](/ko/widgets#not-counted)를 참고하십시오.
+
+  Grok Bot이 빠져 있습니까? Grok Bot을 쓴 날은 컴퓨터가 아니라 Nomo에 연결한
+  Cursor에서 옵니다. [Grok Bot](/ko/widgets#grok-bot)을
+  참고하십시오.
 </Accordion>
 
 <Accordion title="아무것도 실행되지 않는데 세션이 실행 중으로 표시됨" icon="hourglass">
@@ -237,7 +258,7 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
 
   2.2.2에서는 앞의 것이 약 20초 만에 `완료`로 바뀌고, 뒤의 것은 할 일이 생길
   때까지 표시되지 않습니다.
-  [플러그인을 업데이트](/ko/setup/install#updating)하십시오.
+  [플러그인을 업데이트](/ko/sessions/commands#update)하십시오.
 </Accordion>
 
 <Accordion title="중단이 전송됨으로 표시되는데 세션이 계속 실행됨" icon="circle-stop">
@@ -463,7 +484,7 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
       "name": "휴대폰이 승인을 전혀 물어보지 않음",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Approvals 줄을 읽으십시오. PAUSED는 이 컴퓨터에서 누군가 일시 중지 명령을 실행했다는 뜻이며, 몇 달 전일 수도 있습니다. 해당 컴퓨터의 세션에서 다시 켜면 요청이 돌아옵니다. on이라면 꺼져 있는 스위치는 앱 설정의 iPhone에서 답변이며, 기본값이 꺼짐입니다."
+        "text": "Approvals 줄을 읽으십시오. PAUSED는 이 컴퓨터에서 누군가 일시 중지 명령을 실행했다는 뜻이며, 몇 달 전일 수도 있습니다. 해당 컴퓨터의 세션에서 다시 켜면 요청이 돌아옵니다. on이라면 꺼져 있는 스위치는 앱 설정의 iPhone에서 답변이며, 기본값이 꺼짐입니다. Nomo 플러그인을 업데이트한 뒤 Codex만 묻지 않는다면, Codex가 Nomo의 Hook을 다시 신뢰해 주기를 기다리는 것입니다. /hooks를 실행해 신뢰하거나, Codex가 물을 때 Trust all and continue를 선택하십시오."
       }
     },
     {
@@ -524,22 +545,6 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
     },
     {
       "@type": "Question",
-      "name": "모든 Antigravity 세션이 두 번씩 표시됨",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo의 Claude Code 플러그인을 Antigravity로 가져온 상태입니다. 터미널에서 agy plugin uninstall nomo-cc를 실행한 다음 Antigravity를 재시작하십시오."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Antigravity 명령에 Nomo가 파일을 찾을 수 없다고 표시됨",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 폴더가 옮겨졌거나 삭제되었습니다. Antigravity는 계속 동작하지만 휴대폰에는 아무것도 오지 않습니다. bunx nomo-ai --antigravity를 다시 실행한 다음 Antigravity를 재시작하십시오."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "취소한 Antigravity 턴이 계속 실행 중으로 표시됨",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -552,6 +557,14 @@ Antigravity에서는 Nomo 명령을 실행할지 물으면 **Allow**를 선택�
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Sessions 줄은 이 컴퓨터가 아직 살아 있다고 믿는 세션의 수입니다. 실제보다 많다면 초기화 명령으로 페어링을 해제하지 않고 죽은 행만 정리하십시오. 실행 중인 세션, 페어링, 키는 건드리지 않습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "히트맵이나 연속 기록이 최신이 아님",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "기다리면 저절로 따라잡습니다. 컴퓨터는 새 요약을 최대 6시간에 한 번 보내고, 앱은 최대 1시간에 한 번 확인합니다. 지금 바로 업데이트하려면 그 컴퓨터의 터미널에서 nomo reset을 실행하고(또는 에이전트 안에서 초기화 명령을 실행하고), Nomo에서 활동 화면을 여십시오. 열 때 최신 요약을 가져옵니다."
       }
     },
     {

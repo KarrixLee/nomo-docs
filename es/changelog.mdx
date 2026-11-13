@@ -4,6 +4,55 @@ description: "Qué salió, y cuándo."
 icon: "clock-rotate-left"
 ---
 
+También puedes leer esta lista en la app. En **Inicio**, cierra la tarjeta
+**Novedades** (×). En su lugar aparece la fila **Registro de cambios**. Tócala
+para ver todas las versiones.
+
+<Frame caption="La hoja Registro de cambios, abierta desde su fila en Inicio. Toca una versión para volver a ver su tarjeta.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/changelog-sheet.png" alt="La pantalla Inicio de Nomo con la fila Changelog y la hoja Changelog con 2.4.2, marcada como Latest, y 2.4.0" />
+    <img className="only-dark" src="/images/changelog-sheet-dark.png" alt="La pantalla Inicio de Nomo con la fila Changelog y la hoja Changelog con 2.4.2, marcada como Latest, y 2.4.0" />
+  </div>
+</Frame>
+
+<Update label="noviembre de 2026" description="2.4.2">
+  ## Revisa el código antes de aprobar
+
+  Mira exactamente qué quieren cambiar Claude Code y Codex antes de permitirlo, y ve de un vistazo qué sesiones han terminado.
+
+  **Nuevo**
+
+  - **Revisa el código antes de aprobar**: las solicitudes de edición de Claude Code y Codex muestran los archivos que cambian, con el número de líneas `+` y `−`. Mantén pulsada la sesión y toca **Revisar cambios** para leer cada línea antes de tocar **Permitir** o **Denegar**. [Cómo funciona](/es/sessions/approvals#see-the-code-before-you-approve)
+  - **Resultados nuevos de un vistazo**: un punto azul marca cada sesión que ha terminado desde la última vez que miraste, y cada ordenador muestra cuántas son nuevas, por ejemplo **2 nuevas**. [Más](/es/sessions/list#new-results)
+  - **Registro de cambios** en **Inicio**: después de cerrar la tarjeta **Novedades**, toca **Registro de cambios** para ver las versiones anteriores
+  - **Grok Bot en tu racha**: Actividad de Nomo y Tokens de Nomo ahora cuentan tus días y tokens con Grok Bot, y también tus días con Cursor. Salen de tu inicio de sesión de Cursor en Nomo, así que no necesitas ordenador. [Cómo configurarlo](/es/widgets#grok-bot)
+  - **Tokens por agente, en líneas**: en la pantalla Actividad y en el widget Tokens de Nomo, divide tus tokens por modelo o por agente, en barras o en líneas. [Cómo hacerlo](/es/widgets#tokens-chart)
+  - **Filtra el gráfico**: toca un nombre bajo el gráfico de tokens para ocultarlo, o mantén pulsada la tarjeta para elegir de una lista. [Cómo hacerlo](/es/widgets#tokens-filter)
+  - **Elige tu personaje**: mantén pulsada la tarjeta de racha para elegir el personaje y los colores de la pantalla Actividad. [Cómo hacerlo](/es/widgets#activity-character)
+  - **Estilos de Wrapped**: comparte tu Wrapped en barras, líneas o mapa de calor. [Más](/es/widgets#wrapped)
+  - **Comandos de Terminal**: el instalador añade un comando corto, `nomo`. `nomo pair`, `nomo status`, `nomo reset` y `nomo unpair` funcionan desde cualquier carpeta. [Más](/es/sessions/commands#terminal)
+  - **Restablecimientos disponibles**: en Claude y Codex, la tarjeta de uso y los widgets Uso de Nomo y Ritmo de Nomo muestran cuántos restablecimientos puedes usar, como **4 restablecimientos disponibles**. La tarjeta también muestra hasta cuándo usarlos, y Nomo te avisa 1 semana y 1 día antes de que venza uno. [Más](/es/usage#available-resets)
+
+  **Mejorado**
+
+  - La Dynamic Island y la pantalla de bloqueo muestran el tamaño de una edición, por ejemplo `+13 −16`
+  - Títulos de aprobación más claros: las ediciones de Codex dicen `Edit notes.txt` o `Edit 2 files` en lugar de `apply_patch`, y las herramientas MCP se leen como `github · create issue`
+  - Compatible con Codex 0.167
+  - Al abrir la pantalla Actividad se descarga tu actividad más reciente, y `reset` en tu ordenador la envía al momento
+  - La tarjeta de racha muestra los nombres de los meses, cómo se reparte tu actividad entre agentes, tus sesiones y tu día más activo
+
+  **Corregido**
+
+  - Una fila de sesión de Codex ya no se queda en **En ejecución** hasta una hora
+  - En el iPad, las pantallas de configuración y los detalles de un ordenador ya no se estiran a todo el ancho de la ventana
+  - Después de volver a vincular, las sesiones que ya estaban en marcha aparecen en tu iPhone enseguida, sin esperar a su siguiente actualización (necesita el plugin 2.4.2)
+
+  **Plugin 2.4.2**
+
+  - Los cambios, los títulos más claros y la compatibilidad con Codex 0.167 necesitan el plugin 2.4.2 en tu ordenador
+  - Después de actualizar el plugin, Codex te pide de nuevo que confíes en los hooks de Nomo. Ejecuta `/hooks` y confía en ellos, o elige **Trust all and continue**: [por qué](/es/sessions/codex#hooks-have-to-be-trusted)
+</Update>
+
 <Update label="noviembre de 2026" description="2.4.1">
   ## Enviar comentarios desde la app
 

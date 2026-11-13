@@ -1,6 +1,6 @@
 ---
 title: "Comandos"
-description: "Todos los comandos de Nomo para Claude Code, Codex, OpenCode, Cursor y Antigravity —vinculación, estado, aprobaciones, reinicio, desvinculación y actualización— en un solo sitio."
+description: "Todos los comandos de Nomo para Claude Code, Codex, OpenCode, Cursor y Antigravity —vinculación, estado, aprobaciones, reinicio, desvinculación, actualización y desinstalación— en un solo sitio."
 icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Comandos"]
 ---
@@ -9,7 +9,8 @@ Cinco comandos en Claude Code, Codex, OpenCode y Antigravity, un sexto que solo
 OpenCode necesita, y cuatro en Cursor. Se ejecutan desde dentro de una sesión del
 agente, en el ordenador al que quieras afectar: un comando con `/` en Claude Code
 y en OpenCode, una skill con `/` en Cursor y en Antigravity, una skill con `$` en
-Codex.
+Codex. Vincular, el estado, el reinicio y desvincular también funcionan en Terminal: consulta
+[Desde Terminal](#terminal).
 
 <Note>
   En Antigravity, cada comando de Nomo pregunta antes. Elige **Allow**
@@ -39,13 +40,62 @@ nada que hacer: `Not paired` es un éxito, no un error.
 Las casillas vacías de la última fila no son un olvido: Claude Code y Codex se
 actualizan a través de sus propios anfitriones, así que Nomo no añade ningún
 comando ahí, y Cursor se actualiza volviendo a ejecutar su instalador, igual que
-Antigravity. Lo que
-necesita cada uno —que en el caso de Codex suele ser nada— está en
-[Instalación](/es/setup/install#updating).
+Antigravity. Lo que necesita cada uno —que en el caso de Codex suele
+ser nada— está en [update](#update).
 
 La casilla vacía de Cursor en la fila de aprobaciones tampoco lo es: las
 sesiones de Cursor son de solo lectura, así que no hay aprobaciones remotas que
 pausar — [Usar Cursor](/es/sessions/cursor).
+
+Quitar Nomo no tiene comando con `/`: es una línea que pegas en la terminal —
+mira [uninstall](#uninstall).
+
+## Desde Terminal {#terminal}
+
+También puedes ejecutar los comandos principales en Terminal, desde cualquier
+carpeta. Empiezan por `nomo`.
+
+| | Terminal |
+| --- | --- |
+| Instalar o actualizar Nomo | `bunx nomo-ai` |
+| <a href="#pair">Vincular este ordenador</a> | `nomo pair` |
+| Vincular con un código | `nomo pair code` |
+| <a href="#status">Comprobar la salud</a> | `nomo status` |
+| <a href="#reset">Limpiar sesiones atascadas y enviar tu actividad ya</a> | `nomo reset` |
+| <a href="#unpair">Desconectar este ordenador</a> | `nomo unpair` |
+| <a href="#uninstall">Quitar Nomo de un agente</a> | `nomo uninstall --cursor` |
+
+Hacen lo mismo que los comandos dentro de tu agente. Una sola vinculación o un
+solo reinicio cubre todos los agentes de ese ordenador. Si Nomo aún no está
+instalado, te lo dicen:
+
+```
+Nomo is not installed on this computer yet — run `bunx nomo-ai` first.
+```
+
+El instalador, `bunx nomo-ai`, añade el comando corto `nomo` por ti. Para
+omitirlo, añade `--no-global`.
+
+### Si no se encuentra `nomo` {#nomo-not-found}
+
+¿Instalaste Nomo antes de la 2.4.2? Ejecuta el instalador una vez más para
+tener `nomo`:
+
+```bash
+bunx nomo-ai
+```
+
+O escribe `bunx nomo-ai` en lugar de `nomo`. Funciona igual:
+
+```bash
+bunx nomo-ai status
+```
+
+¿No tienes bun? Usa `npx nomo-ai`, como `npx nomo-ai status`. Escribe siempre
+el nombre completo, `nomo-ai`, después de `bunx` o `npx`.
+
+¿Ya tienes otro programa llamado `nomo`? El instalador no lo toca y te lo
+dice. Sigue usando `bunx nomo-ai`, como `bunx nomo-ai pair`.
 
 ## pair {#pair}
 
@@ -74,6 +124,11 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash Terminal icon="terminal"
+nomo pair             # QR code, opens your browser
+nomo pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 Sin argumentos abre en tu navegador una página con la estética de la app y un
@@ -83,6 +138,9 @@ El argumento `code` se salta el navegador por completo e imprime un código de u
 solo uso que puedes escribir, pensado para una máquina sin interfaz gráfica o una
 sesión SSH. Es la vía de segunda opción a propósito: ese código acaba en tu
 terminal y, por tanto, en la transcripción del agente.
+
+Vincular un ordenador que ya está vinculado sustituye su vinculación. Si el
+ordenador ya está vinculado, no hace falta vincularlo otra vez.
 
 Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubre
 la máquina, no el agente: Claude Code, Codex, OpenCode, Cursor y Antigravity en el
@@ -110,6 +168,10 @@ $nomo-status
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-status           # a short summary in plain words
 /nomo-status verbose   # the full readout below
+```
+
+```bash Terminal icon="terminal"
+nomo status
 ```
 </CodeGroup>
 
@@ -201,7 +263,7 @@ dice aquí en lugar de esperar a que vayas a mirar:
 Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
-              → run /nomo-cc:pair
+              → run /nomo-cc:pair, or nomo pair in a terminal
 
 Claude Code — you are here
   Hooks       firing · last 6s ago
@@ -290,17 +352,31 @@ $nomo-reset
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-reset
 ```
+
+```bash Terminal icon="terminal"
+nomo reset
+```
 </CodeGroup>
 
 Detiene el proceso supervisor y limpia las filas de sesión muertas o fantasma, y
-después le dice a tu teléfono que las suelte.
+después le dice a tu teléfono que las suelte. Luego envía tu actividad (el mapa
+y la racha de [Actividad de Nomo](/es/widgets#nomo-activity)) en el momento, en
+lugar de esperar hasta 6 horas.
 
 ```
 Stopped the watchdog (it restarts automatically on your next session).
 Cleared 4 stale session record(s) (4 end signals delivered to your phone).
 Left 2 live sessions untouched.
-Pairing and keys were not touched — use the unpair command if you want that.
+Sent your activity summary (heatmap and streak) to your phone.
+Pairing and keys were not touched — to disconnect this computer, run nomo unpair, or your agent's unpair command.
 ```
+
+La línea de la actividad también puede decir `No activity to send yet.`, o que
+ahora no ha podido enviarla y lo volverá a intentar más tarde por su cuenta. El
+primer reinicio en un ordenador con un historial largo de Claude Code puede
+tardar un rato.
+
+Un solo reinicio cubre todos los agentes de ese ordenador.
 
 Es lo seguro a lo que recurrir cuando las filas se ven obsoletas o duplicadas,
 porque dice qué ha dejado intacto. Una fila de OpenCode pertenece al **servidor**
@@ -329,6 +405,10 @@ $nomo-unpair
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-unpair
 ```
+
+```bash Terminal icon="terminal"
+nomo unpair
+```
 </CodeGroup>
 
 Revoca la vinculación y borra la clave en ese ordenador.
@@ -339,50 +419,183 @@ allí.
 
 ## update {#update}
 
+Solo OpenCode tiene un comando de actualización. Los demás agentes se
+actualizan de otra forma: abre su pestaña.
+
+`bunx nomo-ai` (o `npx nomo-ai`) también actualiza: un agente que ya tiene
+Nomo aparece como actualización en lugar de como instalación. Solo se ejecutan
+las de OpenCode, Cursor y Antigravity; las de Claude Code y Codex se
+imprimen para que las ejecutes tú.
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    ```bash
+    claude plugin update nomo-cc@nomo
+    ```
+
+    La actualización automática viene desactivada para los marketplaces de
+    terceros, así que nada mueve una instalación por su cuenta. Para activarla:
+    `/plugin` → **Marketplaces** → el de Nomo → **Enable auto-update**.
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    Normalmente no hay nada que ejecutar. Codex lee el plugin en vivo desde su
+    ruta, así que traer los cambios en ese clon es toda la actualización, y no
+    existe ningún verbo `codex plugin update`.
+
+    Si añadiste el marketplace desde git, Codex guarda una instantánea, y
+    refrescarla es la actualización:
+
+    ```bash
+    codex plugin marketplace upgrade <marketplace-name>
+    ```
+
+    El nombre es aquel con el que lo añadiste, no necesariamente `nomo`.
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    ```bash
+    /nomo-update
+    ```
+
+    Comprueba antes de cambiar nada. Estar al día es una parada, no un no-op
+    con un pull detrás:
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Already on 2.1.22 — nothing to do.
+    ```
+
+    Cuando sí hay algo que traer, dice qué antes de traerlo:
+
+    ```
+    OpenCode plugin: /Users/you/.nomo
+    Update available: 2.1.22 → 2.1.23.
+    ```
+
+    Después trae los cambios, vuelve a ejecutar el instalador —que es lo que
+    recoge cualquier comando `/nomo-*` nuevo que traiga la versión— y te dice
+    que reinicies OpenCode. Los plugins se importan una sola vez, al arrancar su
+    servidor, así que hasta entonces la copia vieja sigue siendo la que corre.
+
+    Se niega en lugar de actuar cuando no puede estar seguro, y cada negativa
+    dice qué hacer en su lugar: un clon fijado por una instalación anterior con
+    `--ref`, un árbol de trabajo con cambios sin confirmar, un clon que se ha
+    movido o borrado, un clon que no es el repositorio propio de Nomo, o que
+    aquí no haya nada instalado.
+
+    `bunx nomo-ai` ejecuta la misma actualización con `--global`: solo
+    actualiza la instalación global, sea cual sea la carpeta desde la que lo
+    ejecutes. Una instalación con `--project` se actualiza con `/nomo-update`,
+    ejecutado dentro de OpenCode en ese proyecto.
+
+    <Note>
+      Actualiza el clon al que apunta el **stub** —la copia que OpenCode
+      importa de verdad—, que no es necesariamente aquel de cuyo archivo de
+      comando saliste. Si mantienes más de un clon, esa es la distinción que
+      importa.
+    </Note>
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    El mismo comando con el que lo instalaste:
+
+    ```bash
+    bunx nomo-ai --cursor
+    ```
+
+    Reinicia Cursor después, y cualquier sesión de `cursor-agent` abierta.
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    El mismo comando con el que lo instalaste:
+
+    ```bash
+    bunx nomo-ai --antigravity
+    ```
+
+    Reinicia Antigravity después, y cualquier sesión de `agy` abierta.
+  </Tab>
+</Tabs>
+
+## uninstall {#uninstall}
+
+Quita Nomo de un agente. Ejecútalo en la terminal, no dentro del agente: elige
+la pestaña de tu agente, pega la línea y pulsa Intro.
+
+<CodeGroup>
+```bash Claude Code icon="/images/claude-code.svg"
+claude plugin uninstall nomo-cc@nomo
+```
+
+```bash Codex icon="/images/codex.svg"
+codex plugin remove nomo@nomo
+```
+
 ```bash OpenCode icon="/images/opencode.svg"
-/nomo-update
+rm ~/.config/opencode/plugins/nomo.js
+rm ~/.config/opencode/commands/nomo-*.md
 ```
 
-**Solo OpenCode**, y comprueba antes de cambiar nada. Estar al día es una
-parada, no un no-op con un pull detrás:
-
-```
-OpenCode plugin: /Users/you/.nomo
-Already on 2.1.22 — nothing to do.
+```bash Cursor icon="/images/providers/cursor.svg"
+nomo uninstall --cursor
 ```
 
-Cuando sí hay algo que traer, dice qué antes de traerlo:
+```bash Antigravity icon="/images/providers/antigravity.png"
+nomo uninstall --antigravity
+```
+</CodeGroup>
+
+¿No se encuentra `nomo`? Usa `bunx nomo-ai uninstall --cursor` en su lugar.
+Consulta [Si no se encuentra `nomo`](#nomo-not-found). La forma antigua
+`--uninstall` también funciona. O ejecuta el script propio del agente, como
+`node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
+(`antigravity-install.mjs` para Antigravity).
+
+Desinstalar deja el comando corto `nomo` en su sitio, y te lo dice. Para
+quitarlo también, ejecuta `bun remove -g nomo-ai` (o `npm uninstall -g nomo-ai`).
+
+Antigravity avisa cuando termina:
 
 ```
-OpenCode plugin: /Users/you/.nomo
-Update available: 2.1.22 → 2.1.23.
+✅ Nomo is removed from Antigravity. Restart Antigravity to finish. Your phone stays connected for your other coding apps.
 ```
 
-Después trae los cambios, vuelve a ejecutar el instalador —que es lo que recoge
-cualquier comando `/nomo-*` nuevo que traiga la versión— y te dice que reinicies
-OpenCode. Los plugins se importan una sola vez, al arrancar su servidor, así que
-hasta entonces la copia vieja sigue siendo la que corre.
+Después reinicia el agente. En Cursor y Antigravity, cierra la app y vuelve a
+abrirla, y reinicia cualquier `cursor-agent` o `agy` abierto.
 
-Se niega en lugar de actuar cuando no puede estar seguro, y cada negativa dice
-qué hacer en su lugar: un clon fijado por una instalación anterior con `--ref`,
-un árbol de trabajo con cambios sin confirmar, un clon que se ha movido o
-borrado, un clon que no es el repositorio propio de Nomo, o que aquí no haya
-nada instalado.
+Solo quita lo que Nomo añadió a ese agente. Tu teléfono sigue vinculado, así que
+tus otros agentes siguen funcionando. Para desconectar también este ordenador,
+ejecuta `nomo unpair`, antes o después de desinstalar. Consulta
+[unpair](#unpair).
 
-`bunx nomo-ai` ejecuta la misma actualización con `--global`: solo actualiza la
-instalación global, sea cual sea la carpeta desde la que lo ejecutes. Una
-instalación con `--project` se actualiza con `/nomo-update`, ejecutado dentro de
-OpenCode en ese proyecto.
+¿Importaste en Antigravity el plugin de Nomo para Claude Code? Quítalo también
+con `agy plugin uninstall nomo-cc` y reinicia Antigravity.
 
-<Note>
-  Actualiza el clon al que apunta el **stub** —la copia que OpenCode importa de
-  verdad—, que no es necesariamente aquel de cuyo archivo de comando saliste. Si
-  mantienes más de un clon, esa es la distinción que importa.
-</Note>
+`nomo uninstall` siempre necesita que indiques el agente: nunca lo
+adivina. Más sobre la instalación de cada agente en
+[Instalación](/es/setup/install).
 
-Claude Code y Codex no tienen equivalente, porque sus anfitriones se encargan de
-las actualizaciones —y Codex normalmente no tiene nada que ejecutar—:
-[Instalación](/es/setup/install#updating) cubre los dos.
+## Sin los comandos con / {#without-slash-commands}
+
+¿Antigravity no reconoce los comandos de Nomo? Ejecútalos desde
+Terminal. Vincular, el estado, el reinicio y desvincular son más fáciles como
+[comandos `nomo`](#terminal). La lista completa, que funciona con el
+instalador de Nomo:
+
+| | |
+| --- | --- |
+| Vincular | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` |
+| Vincular con un código | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs --show-code` |
+| Comprobar el estado | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs antigravity` |
+| Pausar las aprobaciones | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs off` |
+| Reanudar las aprobaciones | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/cc-permission.mjs on` |
+| Limpiar sesiones atascadas | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/reset.mjs` |
+| Desvincular | `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/unpair.mjs` |
+
+Tras vincular desde Terminal, ejecuta
+`~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs wait` y escanea el
+código QR. Añade `--verbose` al instalador para ver qué cambia.
 
 ## Dónde se guarda el estado {#where-state-lives}
 
