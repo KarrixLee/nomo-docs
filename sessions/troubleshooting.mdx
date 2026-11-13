@@ -110,6 +110,11 @@ What each row means, with a healthy machine and a broken one side by side, is on
   is colour: every raised hand is yellow (`Need help`, which only the terminal
   can take) and none are violet (`Needs permission`, the answerable one). See
   [Answering from your phone](/sessions/approvals).
+
+  **Only Codex, and only since you updated the Nomo plugin?** Codex is waiting
+  for you to trust Nomo's hooks again. Run `/hooks` in Codex and trust the Nomo
+  entries, or choose **Trust all and continue** when Codex asks as it starts —
+  [why](/sessions/codex#hooks-have-to-be-trusted).
 </Accordion>
 
 <Accordion title="I started a session and it never appeared" icon="play">
@@ -150,7 +155,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
 <Accordion title="A Cursor chat shows up as a Claude Code session" icon="clone">
   Update the Nomo plugin for Claude Code. Older versions ran inside Cursor,
   through Cursor's import of Claude Code plugins; the current version ignores
-  Cursor. [Updating](/setup/install#updating) has the command.
+  Cursor. [Updating](/sessions/commands#update) has the command.
 </Accordion>
 
 <Accordion title="A Cursor session stays working after Cursor has quit" icon="hourglass-half">
@@ -172,24 +177,17 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
   Still nothing? In Nomo, tap the **+** button (**Choose agents**) and turn
   Antigravity on. More in [Using Antigravity](/sessions/antigravity#troubleshooting).
+
+  <Frame caption="The Antigravity tab before any session has arrived.">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="A computer's Antigravity tab showing No Antigravity sessions yet" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="Every Antigravity session shows up twice" icon="clone">
-  Nomo's Claude Code plugin is imported into Antigravity. Run this in Terminal,
-  then restart Antigravity:
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="An Antigravity command says Nomo could not find its files" icon="folder-open">
-  The Nomo folder was moved or deleted. Antigravity keeps working, but nothing
-  reaches your phone. Run the installer again, then restart Antigravity:
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity sessions show up twice, or a command can't find Nomo's files" icon="clone">
+  Both fixes are in [Using Antigravity](/sessions/antigravity#troubleshooting).
 </Accordion>
 
 <Accordion title="A cancelled Antigravity turn still says Running" icon="hourglass-half">
@@ -221,11 +219,32 @@ What each row means, with a healthy machine and a broken one side by side, is on
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash Terminal icon="terminal"
+  nomo reset
+  ```
   </CodeGroup>
 
   Live sessions, your pairing and your keys are left alone —
   [what it prints](/sessions/commands#reset). An OpenCode row belongs to
   OpenCode's server, so quit OpenCode first if one refuses to clear.
+</Accordion>
+
+<Accordion title="My heatmap or streak looks out of date" icon="calendar">
+  It catches up by itself. Your computer sends a new summary at most every 6
+  hours, and the app checks for it at most once an hour. To update it now:
+
+  1. On the computer, open Terminal and run `nomo reset`. Or run the
+     reset command inside your agent, such as `/nomo-cc:reset`. It says
+     `Sent your activity summary (heatmap and streak) to your phone.`
+  2. In Nomo, open the [Activity screen](/widgets#activity-screen). It fetches
+     the latest summary when it opens.
+
+  Still missing a computer? See
+  [When a computer isn't counted](/widgets#not-counted).
+
+  Grok Bot missing? Its days come from Cursor connected in Nomo, not from a
+  computer. See [Grok Bot](/widgets#grok-bot).
 </Accordion>
 
 <Accordion title="A session says Running when nothing is" icon="hourglass">
@@ -236,7 +255,7 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
   On 2.2.2 the first settles to `Done` in about 20 seconds, and the second
   doesn't appear until it has work to do.
-  [Update the plugin](/setup/install#updating).
+  [Update the plugin](/sessions/commands#update).
 </Accordion>
 
 <Accordion title="Interrupt says Sent but the session keeps running" icon="circle-stop">
@@ -456,7 +475,7 @@ that command there.
       "name": "My phone never asks me to approve anything",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Read the Approvals row. PAUSED means someone ran the pause command on this computer, possibly months ago. Resume it from a session on that machine and prompts come back. If it says on, the switch that's off is Answer on iPhone in the app's settings, which is off by default."
+        "text": "Read the Approvals row. PAUSED means someone ran the pause command on this computer, possibly months ago. Resume it from a session on that machine and prompts come back. If it says on, the switch that's off is Answer on iPhone in the app's settings, which is off by default. If only Codex stopped asking after you updated the Nomo plugin, Codex is waiting for you to trust Nomo's hooks again: run /hooks and trust them, or choose Trust all and continue when Codex asks."
       }
     },
     {
@@ -517,22 +536,6 @@ that command there.
     },
     {
       "@type": "Question",
-      "name": "Every Antigravity session shows up twice",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo's Claude Code plugin is imported into Antigravity. Run agy plugin uninstall nomo-cc in Terminal, then restart Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "An Antigravity command says Nomo could not find its files",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Nomo folder was moved or deleted. Antigravity keeps working, but nothing reaches your phone. Run bunx nomo-ai --antigravity again, then restart Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "A cancelled Antigravity turn still says Running",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -545,6 +548,14 @@ that command there.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "The Sessions row counts what this computer still believes is alive. If that's more than you have, run the reset command to clear the dead ones without unpairing. Live sessions, your pairing and your keys are left alone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My heatmap or streak looks out of date",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It catches up by itself: your computer sends a new summary at most every 6 hours, and the app checks at most once an hour. To update it now, run nomo reset in Terminal on the computer (or the reset command inside your agent), then open the Activity screen in Nomo. It fetches the latest summary when it opens."
       }
     },
     {

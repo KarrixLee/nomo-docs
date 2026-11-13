@@ -116,6 +116,12 @@ está en [Comandos](/es/sessions/commands#status).
   las manos levantadas salen amarillas (`Necesita ayuda`, que solo la terminal
   puede atender) y ninguna violeta (`Necesita permiso`, la que se puede
   responder). Ve [Responder desde el iPhone](/es/sessions/approvals).
+
+  **¿Solo Codex, y solo desde que actualizaste el plugin de Nomo?** Codex está
+  esperando a que vuelvas a confiar en los hooks de Nomo. Ejecuta `/hooks` en
+  Codex y confía en las entradas de Nomo, o elige **Trust all and continue**
+  cuando Codex lo pregunte al arrancar:
+  [por qué](/es/sessions/codex#hooks-have-to-be-trusted).
 </Accordion>
 
 <Accordion title="Empecé una sesión y nunca apareció" icon="play">
@@ -159,7 +165,7 @@ está en [Comandos](/es/sessions/commands#status).
   Actualiza el plugin de Nomo para Claude Code. Las versiones anteriores se
   ejecutaban dentro de Cursor, a través de la importación de plugins de Claude
   Code que hace Cursor; la versión actual ignora Cursor.
-  [Actualizaciones](/es/setup/install#updating) tiene el comando.
+  [Actualizaciones](/es/sessions/commands#update) tiene el comando.
 </Accordion>
 
 <Accordion title="Una sesión de Cursor sigue En ejecución después de cerrarse Cursor" icon="hourglass-half">
@@ -183,25 +189,17 @@ está en [Comandos](/es/sessions/commands#status).
 
   ¿Sigue sin salir nada? En Nomo, toca el botón **+** (**Elegir agentes**) y
   activa Antigravity. Más en [Usar Antigravity](/es/sessions/antigravity#troubleshooting).
+
+  <Frame caption="La pestaña Antigravity antes de que llegue ninguna sesión.">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="La pestaña Antigravity de un ordenador, que dice Aún no hay sesiones de Antigravity" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="La pestaña Antigravity de un ordenador, que dice Aún no hay sesiones de Antigravity" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="Cada sesión de Antigravity sale dos veces" icon="clone">
-  El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta esto
-  en Terminal y después reinicia Antigravity:
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Un comando de Antigravity dice que Nomo no encuentra sus archivos" icon="folder-open">
-  La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero
-  nada llega a tu teléfono. Vuelve a ejecutar el instalador y después reinicia
-  Antigravity:
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Las sesiones de Antigravity salen dos veces, o un comando no encuentra los archivos de Nomo" icon="clone">
+  Las dos soluciones están en [Usar Antigravity](/es/sessions/antigravity#troubleshooting).
 </Accordion>
 
 <Accordion title="Un turno cancelado de Antigravity sigue En ejecución" icon="hourglass-half">
@@ -233,11 +231,33 @@ está en [Comandos](/es/sessions/commands#status).
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash Terminal icon="terminal"
+  nomo reset
+  ```
   </CodeGroup>
 
   Las sesiones vivas, tu vinculación y tus claves se quedan intactas —
   [qué imprime](/es/sessions/commands#reset). Una fila de OpenCode pertenece al
   servidor de OpenCode, así que cierra OpenCode primero si alguna se resiste.
+</Accordion>
+
+<Accordion title="El mapa o la racha no están al día" icon="calendar">
+  Se pone al día solo. Tu ordenador envía un resumen nuevo como mucho cada 6
+  horas, y la app lo busca como mucho una vez por hora. Para actualizarlo ya:
+
+  1. En el ordenador, abre Terminal y ejecuta `nomo reset`. También
+     puedes ejecutar el comando de reinicio dentro de tu agente, como
+     `/nomo-cc:reset`. Dirá
+     `Sent your activity summary (heatmap and streak) to your phone.`
+  2. En Nomo, abre la [pantalla Actividad](/es/widgets#activity-screen).
+     Descarga el resumen más reciente al abrirse.
+
+  ¿Sigue faltando un ordenador? Consulta
+  [Cuando un ordenador no se cuenta](/es/widgets#not-counted).
+
+  ¿Falta Grok Bot? Sus días salen de Cursor conectado en Nomo, no de un
+  ordenador. Consulta [Grok Bot](/es/widgets#grok-bot).
 </Accordion>
 
 <Accordion title="Una sesión dice En ejecución cuando no hay nada en marcha" icon="hourglass">
@@ -249,7 +269,7 @@ está en [Comandos](/es/sessions/commands#status).
 
   Con la 2.2.2, la primera pasa a `Listo` en unos 20 segundos, y la segunda no
   aparece hasta que tiene trabajo que hacer.
-  [Actualiza el plugin](/es/setup/install#updating).
+  [Actualiza el plugin](/es/sessions/commands#update).
 </Accordion>
 
 <Accordion title="Detener dice Enviado pero la sesión sigue en marcha" icon="circle-stop">
@@ -484,7 +504,7 @@ que ejecutes ese comando allí.
       "name": "Mi teléfono nunca me pide aprobar nada",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lee la fila Approvals. PAUSED significa que alguien ejecutó el comando de pausa en este ordenador, puede que hace meses. Reanúdalas desde una sesión en esa máquina y las solicitudes vuelven. Si dice on, el interruptor que está desactivado es Responder en el iPhone en los ajustes de la app, que viene desactivado de fábrica."
+        "text": "Lee la fila Approvals. PAUSED significa que alguien ejecutó el comando de pausa en este ordenador, puede que hace meses. Reanúdalas desde una sesión en esa máquina y las solicitudes vuelven. Si dice on, el interruptor que está desactivado es Responder en el iPhone en los ajustes de la app, que viene desactivado de fábrica. Si solo Codex dejó de preguntar después de actualizar el plugin de Nomo, Codex está esperando a que vuelvas a confiar en los hooks de Nomo: ejecuta /hooks y confía en ellos, o elige Trust all and continue cuando Codex lo pregunte."
       }
     },
     {
@@ -545,22 +565,6 @@ que ejecutes ese comando allí.
     },
     {
       "@type": "Question",
-      "name": "Cada sesión de Antigravity sale dos veces",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "El plugin de Nomo para Claude Code está importado en Antigravity. Ejecuta agy plugin uninstall nomo-cc en Terminal y después reinicia Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Un comando de Antigravity dice que Nomo no encuentra sus archivos",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La carpeta de Nomo se movió o se borró. Antigravity sigue funcionando, pero nada llega a tu teléfono. Vuelve a ejecutar bunx nomo-ai --antigravity y después reinicia Antigravity."
-      }
-    },
-    {
-      "@type": "Question",
       "name": "Un turno cancelado de Antigravity sigue En ejecución",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -573,6 +577,14 @@ que ejecutes ese comando allí.
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "La fila Sessions cuenta lo que este ordenador todavía cree vivo. Si son más de las que tienes, ejecuta el comando de reinicio para limpiar las muertas sin desvincular nada. Las sesiones vivas, tu vinculación y tus claves se quedan intactas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "El mapa o la racha no están al día",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Se pone al día solo: tu ordenador envía un resumen nuevo como mucho cada 6 horas, y la app lo busca como mucho una vez por hora. Para actualizarlo ya, ejecuta nomo reset en Terminal en el ordenador (o el comando de reinicio dentro de tu agente), y después abre la pantalla Actividad en Nomo. Descarga el resumen más reciente al abrirse."
       }
     },
     {

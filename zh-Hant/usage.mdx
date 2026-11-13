@@ -6,9 +6,9 @@ icon: "gauge"
 
 「用量」的運作方式跟[狀態](/zh-Hant/status)一樣 — 一個小工具加上通知 — 只多一個步驟：它要從你的帳號讀數字，所以需要登入。一樣不必在 Mac 上裝外掛程式；這個功能只在手機上跑。
 
-<Frame caption="Claude 的用量分頁：5 小時的計算週期、每週的計算週期，以及各自何時重置。">
+<Frame caption="Claude 的用量分頁：5 小時、每週和 Fable 的計算週期，各自何時重設，以及可用的重設次數。">
   <div className="device-frame">
-    <img src="/images/claude-usage-overview.png" alt="Nomo 的用量分頁，顯示 Claude 的 session 與每週上限" />
+    <img src="/images/claude-usage-overview.png" alt="沒有 Nomo Pro 時 Nomo 的 Claude 用量分頁：Claude Max 卡片顯示 Session 45%、Weekly 79% 和 Fable 48% 及各自的重設時間，一行帶 PRO 標籤的 See if you'll run out before reset，以及 4 resets available；下方是 Connected to Claude、1/5 個帳戶和帶 PRO 標籤的 Add another account" />
   </div>
 </Frame>
 
@@ -40,11 +40,21 @@ Cursor 和 Grok 透過 Safari 登入，所以你的通行密鑰、密碼管理�
 
 **Cursor**
 
-1. 點一下「連結」。
-2. iOS 會詢問是否允許使用 **cursor.com** 登入。點一下「繼續」。
-3. 在 Cursor 的頁面上登入。
+1. 打開 Nomo。
+2. 點一下「供應商」分頁。
+3. 點一下 **Cursor**。
+4. 點一下上方的「用量」。
+5. 點一下「連結 Cursor 帳戶」。
+6. iOS 會詢問是否允許使用 **cursor.com** 登入。點一下「繼續」。
+7. 在 Cursor 的頁面上登入。
 
 頁面會自動關閉，接著就會顯示用量。大約每 60 天要重新登入一次。
+
+<Warning>
+  有在用 Grok Bot？請連結 **Cursor**，不是 Grok。在 Cursor 的頁面上，用你使用 Grok Bot 的同一個帳戶登入：也就是你的 Grok 或 X 帳戶。在 Nomo 裡連結 **Grok** 只會顯示你的每週限額。你用 Grok Bot 的日子和 Token 只能透過 Cursor 取得。請看 [Grok Bot](/zh-Hant/widgets#grok-bot)。
+</Warning>
+
+使用 The X Subscription 時，Grok Bot 和 Cursor 共用一個每週限額，Nomo 會顯示它。使用較舊的 Cursor 方案時，Grok Bot 有自己的限額，Nomo 不會讀取。
 
 **Grok**
 
@@ -92,6 +102,28 @@ Nomo 會自動更新 Grok 的登入。
 在主畫面上，[Nomo 用量速度](/zh-Hant/widgets#nomo-pace)小工具會顯示同樣的內容。
 
 **沒有 Nomo Pro 時**，第一個限額下面只會顯示一行「看看會不會在重設前用完」，旁邊有 **PRO** 標籤。點一下它會打開 Nomo Pro。
+
+## 可用的重設次數 {#available-resets}
+
+Claude 和 Codex 有時會給你額外的限額重設，留著以後用。只要至少有一次，Nomo 就會依你的時區顯示次數和最早的到期時間，例如「4 次重設可用 · 12月11日 清晨6:00到期」。
+
+<Frame caption="用量卡片會顯示你有幾次重設，以及第一次重設的到期時間。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-resets-light.webp" alt="Claude Max 的 Claude Your usage 卡片：Session 45%、Weekly 79% 和 Fable 48%，各附重設時間和一行 Lasts until reset；下方是 4 resets available · use by Dec 11 at 6:00 AM" />
+    <img className="only-dark" src="/images/usage-resets-dark.webp" alt="Claude Max 的 Claude Your usage 卡片：Session 45%、Weekly 79% 和 Fable 48%，各附重設時間和一行 Lasts until reset；下方是 4 resets available · use by Dec 11 at 6:00 AM" />
+  </div>
+</Frame>
+
+在各供應商的網站上也看得到這些重設：
+
+- **Claude**：claude.ai 的 **Settings → Usage** 裡的 **Limit resets**。
+- **Codex**：chatgpt.com 的 **Settings → Usage** 裡的 **Usage limit resets**。
+
+用量卡片會同時顯示次數和到期時間。[Nomo 用量](/zh-Hant/free-widgets#nomo-usage)和 [Nomo 用量速度](/zh-Hant/widgets#nomo-pace)小工具會顯示次數。
+
+**提醒**：Nomo 會在重設到期前 1 週和 1 天提醒你。這些提醒跟著各供應商的[用量提醒](/zh-Hant/notifications#usage-alerts)，沒有單獨的開關。想關掉，就關閉那家供應商的用量提醒。落在深夜的提醒會改到傍晚或早上，絕不會晚於到期時間。
+
+Nomo 只顯示你的重設，絕不會使用或消耗它們。它們和以前一樣隨用量請求一起取得，直接從 Anthropic 或 OpenAI 傳到你的手機。
 
 ## 達到限額時 {#when-you-hit-a-limit}
 
@@ -174,7 +206,7 @@ Nomo 會打開一個全新的私密登入頁面，所以不會沿用你已經登
 2. 點一下「編輯小工具」。
 3. 點一下「帳戶」並選一個。
 
-[Nomo 用量](/zh-Hant/widgets#nomo-usage)和 [Nomo 用量速度](/zh-Hant/widgets#nomo-pace)都有「帳戶」選項。[Nomo 帳戶](/zh-Hant/widgets#nomo-accounts)會一次顯示所有帳戶。
+[Nomo 用量](/zh-Hant/free-widgets#nomo-usage)和 [Nomo 用量速度](/zh-Hant/widgets#nomo-pace)都有「帳戶」選項。[Nomo 帳戶](/zh-Hant/widgets#nomo-accounts)會一次顯示所有帳戶。
 
 ### 沒有 Nomo Pro 時 {#without-nomo-pro}
 

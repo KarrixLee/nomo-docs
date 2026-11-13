@@ -1,107 +1,11 @@
 ---
-title: "Claude 與 Codex 用量小工具：iPhone 主畫面與鎖定畫面"
-sidebarTitle: "所有小工具"
-description: "在 iPhone 主畫面和鎖定畫面查看 Claude 與 Codex 用量：5 小時與每週額度會不會在重設前用完，還有寫程式連續紀錄和代理即時狀態。"
-icon: "clone"
+title: "Nomo Pro iPhone 小工具：Claude 與 Codex 用量速度、連續紀錄和 Token"
+sidebarTitle: "Pro 小工具"
+description: "五個 Nomo Pro iPhone 小工具：你的 Claude 或 Codex 限額能不能撐到重設、寫程式的連續紀錄、各模型的 Token、你所有的帳戶，以及代理即時狀態。"
+icon: "crown"
+tag: "PRO"
 keywords: ["Nomo", "Nomo Pro", "狀態", "Nomo 用量", "小工具", "用量速度", "活動", "帳戶", "代理即時狀態", "Claude", "Codex", "用量", "連續紀錄", "熱度圖", "鎖定畫面", "iPhone", "Claude 用量小工具", "5 小時與每週額度", "Codex 用量額度", "多個 Claude 帳戶", "鎖定畫面 小工具", "Claude Code Token 用量", "依模型 Token", "回顧"]
 ---
-
-Nomo 有七個 iPhone 小工具。其中兩個免費：顯示狀態的 **Nomo** 和 **Nomo 用量**。另外五個需要 Nomo Pro。
-
-這一頁說明每個小工具顯示什麼，以及怎麼設定。要把小工具放到主畫面上，請看[小工具](/zh-Hant/widget)。
-
-## 免費版與 Pro {#free-and-pro}
-
-| | 免費 | Nomo Pro <span className="pro-pill" /> |
-| --- | --- | --- |
-| **Nomo** 狀態小工具 | ✓ | ✓ |
-| **Nomo 用量**小工具 | ✓ | ✓ |
-| **Nomo 用量速度**、**Nomo 活動**、**Nomo 帳戶**、**代理即時狀態**、**Nomo Token** | | ✓ |
-| 每個供應商多個帳戶 | | ✓ |
-
-在小工具資料庫裡，Pro 小工具的說明會以 **👑 Nomo Pro** 開頭。
-
-沒有 Nomo Pro 也能加入 Pro 小工具。它會顯示淡化的預覽，上面寫著 **Nomo Pro** 和「解鎖」。點一下它，就會在 App 裡打開 Nomo Pro。
-
-## 免費小工具 {#free-widgets}
-
-### Nomo 狀態 {#nomo-status}
-
-<Frame caption="小型和中型的 Nomo 狀態。">
-  <div className="widget-shot">
-    <img className="only-light" src="/images/widgets-status.webp" alt="Nomo 狀態：小型小工具顯示 Claude Code 為 Operational，中型小工具顯示 Codex 為 Operational，並附上 30 天的紀錄條和 99.87%" />
-    <img className="only-dark" src="/images/widgets-status-dark.webp" alt="深色模式下的 Nomo 狀態，小型和中型" />
-  </div>
-</Frame>
-
-在小工具資料庫裡，這個小工具叫做 **Nomo**。
-
-**它顯示什麼**：某一項服務現在是否正常，例如 Claude Code 或 Codex。你會看到以下其中一種：
-
-- `正常運作`
-- `效能降低`
-- `部分中斷`
-- `嚴重中斷`
-- `維護中`
-
-如果 Nomo 取不到狀態，會顯示 `無法取得`。
-
-| 尺寸 | 顯示內容 |
-| --- | --- |
-| 小型 | 服務、它的狀態，以及上次更新的時間。 |
-| 中型 | 同樣的內容，再加上過去 30 天的紀錄條和可用率。 |
-
-**事前需要**：什麼都不用。不需要帳戶，也不用登入。
-
-**設定方式**：
-
-1. 加入小工具。請看[小工具](/zh-Hant/widget)。
-2. 按住小工具。
-3. 點一下「編輯小工具」。
-4. 點一下「供應商」，從 Claude、OpenAI、Cursor、xAI、Antigravity、Kimi、DeepSeek 中選一個。
-5. 點一下「服務」並選一個，例如 **Claude Code**。
-6. 點一下小工具外面就完成了。
-
-想立刻更新，點一下角落的重新整理按鈕。點一下其他任何地方，會在 Nomo 中打開那家供應商的「狀態」頁面。
-
-詳細內容請看[狀態](/zh-Hant/status)。
-
-### Nomo 用量 {#nomo-usage}
-
-<Frame caption="小型和中型的 Nomo 用量。">
-  <div className="widget-shot">
-    <img className="only-light" src="/images/widgets-usage.webp" alt="Nomo 用量：小型小工具顯示 Claude 已用 45%、進度條和 resets 2h，中型小工具顯示 Codex 的 Session 30% 和 Weekly 41%，各附進度條和重設時間" />
-    <img className="only-dark" src="/images/widgets-usage-dark.webp" alt="深色模式下的 Nomo 用量，小型和中型" />
-  </div>
-</Frame>
-
-**它顯示什麼**：一個帳戶的方案限額用了多少，以及什麼時候重設。
-
-| 尺寸 | 顯示內容 |
-| --- | --- |
-| 小型 | 一個時段：大大的百分比、進度條，以及多久後重設。 |
-| 中型 | 兩個時段，通常是「session」（5 小時）和「每週」，各附進度條和多久後重設。 |
-
-用到 70% 時進度條會變成琥珀色，90% 時變成紅色。如果你的方案沒有 5 小時限額，會改成顯示 `無 session 限額`。
-
-**事前需要**：一個已連結的帳戶，例如 Claude 或 Codex。打開「供應商」分頁，點一下那家供應商並連結。請看[用量](/zh-Hant/usage)。連結之前，小工具會顯示 `未連結`。
-
-**設定方式**：
-
-1. 加入小工具。請看[小工具](/zh-Hant/widget)。
-2. 按住小工具。
-3. 點一下「編輯小工具」。
-4. 點一下「供應商」並選一個，例如 **Codex**。
-5. 點一下「帳戶」並選一個。「預設」會跟隨你在 App 裡設定的預設帳戶。
-6. 點一下「小尺寸樣式」並選一個。「大百分比」會把數字放大顯示。「大動畫」會把動畫圖示放大顯示。
-7. 點一下「小型小工具焦點」，選擇小型尺寸要顯示的時段。「自動」會幫你選。可以選的項目依供應商而不同。
-8. 點一下小工具外面就完成了。
-
-選 Cursor 時還多一個選項：「Cursor 圖示」。選 **Grok Bot** 或「Cursor 標誌」。
-
-想立刻更新，點一下角落的重新整理按鈕。點一下其他任何地方，會在 Nomo 中打開那家供應商的「用量」頁面。
-
-## Pro 小工具 <span className="pro-pill" /> {#pro-widgets}
 
 Nomo Pro 在免費小工具之外再加上五個小工具。每一個都回答一個你原本得打開 App 才能知道的問題。
 
@@ -113,18 +17,24 @@ Nomo Pro 在免費小工具之外再加上五個小工具。每一個都回答�
 
 <Frame caption="主畫面上的全部五個 Pro 小工具：Nomo 用量速度、代理即時狀態、Nomo 活動、Nomo Token 和 Nomo 帳戶。">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="淺色主畫面上的五個 Nomo 小工具：用量速度顯示距離 Claude 重設還有兩小時的倒數，代理即時狀態顯示兩個執行中、一個需要回答，活動顯示 13 天連續紀錄和寫程式的熱度圖，Token 顯示 14 天共 2030 萬 Token 並依模型堆疊，帳戶看板依剩餘量排列六個帳戶" />
+    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="淺色主畫面上的五個 Nomo 小工具：用量速度顯示距離 Claude 重設的倒數和 45% used · 60% time，代理即時狀態顯示兩個執行中、一個需要回答，活動顯示 46 天連續紀錄和寫程式的地圖，Token 顯示 14 天共 1.93 億 Token、Grok Bot 排在清單最上面，帳戶看板依用量由高到低排列六個帳戶" />
     <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="深色主畫面上同樣的五個 Nomo 小工具：用量速度、代理即時狀態、活動、Token 和帳戶" />
   </div>
 </Frame>
 
 Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
-### Nomo 用量速度 <span className="pro-pill" /> {#nomo-pace}
+免費小工具 Nomo 狀態和 Nomo 用量，請看[免費小工具](/zh-Hant/free-widgets)。想把小工具放到主畫面上，請看[小工具](/zh-Hant/widget)。
+
+在小工具資料庫裡，Pro 小工具的說明會以 **👑 Nomo Pro** 開頭。
+
+沒有 Nomo Pro 也能加入 Pro 小工具。它會顯示淡化的預覽，上面寫著 **Nomo Pro** 和「解鎖」。點一下它，就會在 App 裡打開 Nomo Pro。
+
+## Nomo 用量速度 {#nomo-pace}
 
 <Frame caption="小型和中型的 Nomo 用量速度，以及在鎖定畫面上的樣子。">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Nomo 用量速度：小型小工具顯示 Resets in 2:00:00 和 45% used · 60% time，中型小工具顯示 5 小時時段沒問題、每週時段約 2 天 6 小時後用完，兩個鎖定畫面小工具分別顯示 45% 和 Lasts until reset" />
+    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Nomo 用量速度：小型小工具顯示距離 Claude 重設的倒數、45% used · 60% time，以及重設符號和 4；中型小工具顯示 5 小時時段沒問題，Weekly 顯示 Runs out in ~1d，還有 4 resets available；兩個鎖定畫面小工具分別顯示 45% 和 Lasts until reset" />
     <img className="only-dark" src="/images/pro-widgets-pace-dark.webp" alt="深色模式的 Nomo 用量速度：小型、中型和兩個鎖定畫面小工具" />
   </div>
 </Frame>
@@ -159,6 +69,8 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 **已用或剩餘**：Nomo 用量速度會跟隨「設定 → 用量 → 用量顯示方式」。選「剩餘」時，那一行會顯示 `剩餘 55%・剩餘時間 40%`。圓環會改成逐漸變少：填滿的部分表示還剩多少，小刻度表示還剩多少時間。填滿的部分超過刻度，就表示沒問題。各尺寸上的數字也會跟著變。
 
+有 Claude 或 Codex 的重設次數時，中型會在更新時間旁顯示次數，小型只顯示重設符號和數字。用得太快時，會變成琥珀色或紅色。請看[可用的重設次數](/zh-Hant/usage#available-resets)。
+
 **事前需要**：一個已連結的帳戶，例如 Claude 或 Codex。打開「供應商」分頁，點一下那家供應商並連結。請看[用量](/zh-Hant/usage)。
 
 **設定方式**：
@@ -173,16 +85,16 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 點一下小工具，會在 Nomo 中打開那家供應商的「用量」頁面。
 
-### Nomo 活動 <span className="pro-pill" /> {#nomo-activity}
+## Nomo 活動 {#nomo-activity}
 
 <Frame caption="小型、中型和大型的 Nomo 活動，以及在鎖定畫面上的樣子。">
   <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Nomo 活動：小型小工具顯示 13 天連續紀錄和最近七天，中型小工具顯示 16 週的寫程式日子，地圖下方是 153h、79 days 和 9.7h/wk，大型小工具顯示 26 週，再加上 Claude Code 和 Codex 的比例、455 個 sessions 和 1.87 億 Token，鎖定畫面小工具顯示 13 天連續紀錄" />
+    <img className="only-light" src="/images/pro-widgets-activity.webp" alt="Nomo 活動：小型小工具顯示 46 天連續紀錄和最近七天；中型小工具顯示 8 月到 11 月的地圖，下方是 171h、91 days 和 11h/wk；大型小工具顯示 26 週，再加上 Grok Bot 43%、Claude Code 36%、Codex 12% 的比例、474 個 sessions、20.5 億 Token、最忙的一天 8 月 24 日和最長連續紀錄 46 天；鎖定畫面小工具顯示 46 天連續紀錄" />
     <img className="only-dark" src="/images/pro-widgets-activity-dark.webp" alt="深色模式的 Nomo 活動：小型、中型、大型和一個鎖定畫面小工具" />
   </div>
 </Frame>
 
-**它顯示什麼**：一張你用 AI 代理寫程式的日子地圖，就像 GitHub 個人檔案上的那種，再加上你的連續紀錄。連續紀錄就是你連續寫了幾天程式。所有配對過的電腦合併計算。請看[多台電腦](#more-than-one-computer)。
+**它顯示什麼**：一張你用 AI 代理寫程式的日子地圖，就像 GitHub 個人檔案上的那種，再加上你的連續紀錄。連續紀錄就是你連續寫了幾天程式。它會加總所有配對過的電腦，再加上透過你的 Cursor 登入取得的 Grok Bot 和 Cursor。請看[多台電腦](#more-than-one-computer)。
 
 顏色越深，表示那天寫的程式越多。你的連續紀錄不會在早上歸零：在你當天的第一個 session 之前，它會算到昨天為止。
 
@@ -190,7 +102,7 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 | --- | --- |
 | 小型 | 你的連續紀錄和最近 7 天。 |
 | 中型 | 你的連續紀錄、最近 16 週，以及地圖下方的三項數據。 |
-| 大型 | 最近 26 週和同樣的三項數據、你的時間在各代理之間怎麼分配，以及總計：sessions 數、Token、你最忙的一天和你最長的連續紀錄。 |
+| 大型 | 標題下方的「最近 26 週」、地圖和同樣的三項數據、你的活動在各代理之間怎麼分配（含百分比），以及總計：sessions 數、Token、你最忙的一天和你最長的連續紀錄。 |
 | 鎖定畫面（矩形） | 你的連續紀錄和最近 7 天。 |
 
 地圖下方的三項數據，統計的是地圖上顯示的那幾週：
@@ -199,16 +111,18 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 - 日曆：你活躍了幾天。
 - 長條圖：你每週的平均時數。
 
-中型放不下時，只會顯示前兩項。
+中型放不下時，只會顯示前兩項。如果那幾週完全沒有時間資料，就只會顯示日曆那一項。請看[只有 Token 的資料](#no-time-only-tokens)。
 
 在大型上，「Token」是這 26 週的總數。如果你的電腦沒有傳來任何 Token 資料，這一格會改成顯示「活躍時數」。
 
 **事前需要**：
 
-- 你電腦上的 Nomo 外掛程式，版本 **2.4.0** 或更新。請看[安裝](/zh-Hant/setup/install)和[更新](/zh-Hant/setup/install#updating)。
+- 你電腦上的 Nomo 外掛程式，版本 **2.4.0** 或更新。請看[安裝](/zh-Hant/setup/install)和[更新](/zh-Hant/sessions/commands#update)。
 - 那台電腦已經和 Nomo 配對。請看[配對](/zh-Hant/setup/pairing)。
 
 它會計算 Claude Code、Codex 和 OpenCode。過去的日子也會出現，因為外掛程式會讀取你電腦上已經有的歷史紀錄。
+
+它也會計算 Grok Bot 和 Cursor，不需要電腦。請看 [Grok Bot](#grok-bot)。
 
 **設定方式**：
 
@@ -218,7 +132,9 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 4. 點一下「角色」，從「自動」、**Clawd**、**Codex**、**Grok Bot**、**Antigravity**、**Kimi**、**DeepSeek**、**Cursor**、**OpenCode** 中選一個。
 5. 點一下小工具外面就完成了。
 
-「自動」會顯示你最近 7 天最常用的代理。選其他角色時，小工具會顯示那個角色，地圖、今天的方格、連續紀錄的火焰和徽章都會換成它的顏色：Clawd 是珊瑚色，Codex 是藍色，Grok Bot 是金色。大型尺寸裡依代理分配時間的長條，仍保留各代理自己的顏色。已經在主畫面上的小工具會從「自動」開始。
+「自動」會顯示你最近 7 天最常用的代理，也就是活躍時間最長的那個。如果這幾天裡 Grok Bot 或 Cursor 有活動，就改看哪個代理活躍的天數最多。平手時，選最近 30 天活躍天數較多的代理。[活動頁面](#activity-screen)也用同樣的規則。
+
+選其他角色時，小工具會顯示那個角色，地圖、今天的方格、連續紀錄的火焰和徽章都會換成它的顏色：Clawd 是珊瑚色，Codex 是藍色，Grok Bot 是金色。大型尺寸裡依代理分配時間的長條，仍保留各代理自己的顏色。已經在主畫面上的小工具會從「自動」開始。
 
 <Frame caption="Clawd、Codex 和 Grok Bot 三種角色的 Nomo 活動。">
   <div className="widget-shot">
@@ -229,6 +145,8 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 只有 Clawd、Codex 和 Grok Bot 是會動的角色。Antigravity、Kimi、DeepSeek、Cursor 和 OpenCode 會在品牌色的方塊上顯示自己的標誌，地圖、火焰、今天的方格和光暈也會換成這個顏色。
 
+Clawd 的表情會跟著你的連續紀錄變化。沒有連續紀錄時，它在睡覺。今天已經寫過程式，它會在運動；今天還沒寫，它會在打字。連續紀錄達到 30 天以上，或至少 7 天而且是你目前最長的紀錄時，Clawd 會變成 Claude 的星芒標誌。這仍然是 **Clawd** 這個選項。Grok Bot 在沒有連續紀錄時會睡覺。Codex 永遠是同一個樣子。
+
 <Frame caption="Antigravity、DeepSeek 和 Kimi 的 Nomo 活動。">
   <div className="widget-shot">
     <img className="only-light" src="/images/widgets-character-providers.webp" alt="三個顯示 13 天連續紀錄的小型 Nomo 活動小工具，各自在著色的方塊上顯示供應商標誌：紫色的 Antigravity、藍色的 DeepSeek 和黑色的 Kimi" />
@@ -236,33 +154,65 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
   </div>
 </Frame>
 
-外掛程式最多每 6 小時傳送一次新的摘要。Nomo 會在你打開 App 時取得它。所以地圖可能會落後幾個小時。
+外掛程式最多每 6 小時傳送一次新的摘要，外掛程式更新後也會馬上傳送一次。Nomo 會在你打開 App 時取得它，最多每小時一次。所以地圖可能會落後幾個小時。打開[活動頁面](#activity-screen)時，會馬上取得最新的摘要（最多每 30 秒一次）。你也可以在那裡往下拉，再取得一次。
 
 點一下小工具，會在 Nomo 中打開[活動頁面](#activity-screen)。
 
 為了這張地圖而離開你電腦的內容，列在[隱私](#privacy)底下。只有計數，絕不包括你的提示或程式碼。
 
-### Nomo Token <span className="pro-pill" /> {#nomo-tokens}
+### Grok Bot {#grok-bot}
+
+從 Nomo 2.4.2 起，Nomo 活動和 Nomo Token 也會計算 Grok Bot。你不需要電腦。
+
+**事前需要**：
+
+- Nomo 2.4.2 和 Nomo Pro。
+- 在 Nomo 裡連結 Cursor，用你使用 Grok Bot 的同一個帳戶。請連結 Cursor，不是 Grok。請看 [Cursor 和 Grok](/zh-Hant/usage#cursor-and-grok)。
+
+接著打開[活動頁面](#activity-screen)。它一打開就會取得你用 Grok Bot 的日子和 Token。想在小工具上顯示 Grok Bot，請在「角色」裡選 **Grok Bot**。
+
+**哪些會算進去**：
+
+- 只要 Grok Bot 當天用了任何 Token，那一天就算。排程的例行工作和在 Grok Bot 手機應用程式裡的使用也算。
+- Nomo Token 和活動頁面會顯示 Grok Bot 實際的 Token 數。
+- 你自己使用 Cursor 的部分，不管是在 Cursor 編輯器還是它的命令列工具，會顯示在獨立的一行：**Cursor**。
+
+#### 只有 Token 的資料 {#no-time-only-tokens}
+
+Grok Bot 和 Cursor 的資料來自 Cursor，而 Cursor 只回報 Token，沒有時間，也沒有 sessions。所以：
+
+- 需要時間或 sessions 的數字，例如「活躍時數」或「Sessions」，在沒有其他來源提供時會顯示 **—**。
+- 在地圖上，Grok Bot 或 Cursor 的日子會依當天的 Token 決定深淺，和它自己其他的日子相比。
+- Grok Bot 或 Cursor 有活動時，各代理之間的分配改用活躍天數計算，而不是時間。
+- 它們的總數是 Cursor 回報的數字，可能包含快取 Token。在[活動頁面](#activity-screen)上，「依模型」下方的註記會說明這一點。
+
+Nomo 會讀取哪些內容，列在[隱私](#privacy)底下。
+
+<Card title="Grok Bot iPhone 小工具" icon="newspaper" href="https://nomo.gg/zh-Hant/blog/grok-bot-widget-iphone/" horizontal>
+  在 Nomo 部落格上看附圖的完整教學。
+</Card>
+
+## Nomo Token {#nomo-tokens}
 
 <Frame caption="中型和大型的 Nomo Token。">
   <div className="widget-shot">
-    <img className="only-light" src="/images/widgets-tokens.webp" alt="Nomo Token：中型小工具顯示 14 天共 2030 萬 Token、今天 129 萬、Fable 佔 78%，大型小工具再加上較上週成長 41%，以及 Fable、GPT-5.5 和 Haiku 4.5 的圖例，每天的長條依模型堆疊" />
+    <img className="only-light" src="/images/widgets-tokens.webp" alt="Nomo Token：中型小工具顯示 14 天共 1.93 億 Token、今天 1340 萬，以及用得最多的模型 Fable 7%；大型小工具再加上較上週 ↗20%，以及 Grok Bot、Fable、GPT-5.5、Cursor 和 Haiku 4.5 各一列，每天的長條堆疊顯示" />
     <img className="only-dark" src="/images/widgets-tokens-dark.webp" alt="深色模式的 Nomo Token，中型和大型" />
   </div>
 </Frame>
 
-**它顯示什麼**：所有配對過的電腦上，你的代理最近 14 天每天用了多少 Token。每天的長條依模型分段。
+**它顯示什麼**：你的代理最近 14 天每天用了多少 Token。每天依模型分段，也可以改成依代理分段。它會加總所有配對過的電腦，再加上透過你的 Cursor 登入取得的 Grok Bot 和 Cursor。
 
 這裡的 Token 指輸入 + 輸出 + 推理。快取不計入：它是重複讀取同樣的上下文，會把其他數字全部蓋過去。[活動頁面](#activity-screen)會另外列出快取。
 
 | 尺寸 | 顯示內容 |
 | --- | --- |
-| 中型 | 14 天總計、今天的 Token，以及用得最多的模型和它的占比。 |
-| 大型 | 同樣的內容，再加上較上週的變化和前 4 個模型。其餘的合併成一列，例如 `其他 6 個模型`。 |
+| 中型 | 14 天總計、今天的 Token，以及用得最多的模型和它的占比。Grok Bot 和 Cursor 不是模型，所以這裡不算它們。依代理時，改為用得最多的代理。 |
+| 大型 | 標題下方的「最近 14 天」。同樣的數字，再加上較上週的變化和最多 5 列。Grok Bot 和 Cursor 會和你的模型並列，各佔一列。超過 5 個時，最後一列會合併其餘的，例如 `其他 6 個模型`。依代理時，改為最多 5 個代理。 |
 
-每個模型在任何地方都維持同一種顏色：Claude 模型是珊瑚色，GPT 是藍色，Grok 是金色，Gemini 是紫色，其他模型是灰色。
+每個模型在任何地方都維持同一種顏色：Claude 模型是珊瑚色，GPT 是藍色，Grok 是金色，Gemini 是紫色，其他模型是灰色。依代理時，每個代理都有自己的顏色，例如 Claude Code 是珊瑚色，Codex 是藍色，Grok Bot 是金色。Cursor 的線是虛線。
 
-**事前需要**：和 Nomo 活動一樣，需要一台裝了 Nomo 外掛程式並已配對的電腦。請看 [Nomo 活動](#nomo-activity)。
+**事前需要**：和 Nomo 活動一樣，需要一台裝了 Nomo 外掛程式並已配對的電腦；如果是 Grok Bot，則需要在 Nomo 裡連結 Cursor。請看 [Nomo 活動](#nomo-activity)。
 
 **設定方式**：
 
@@ -270,19 +220,28 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 2. 按住小工具。
 3. 點一下「編輯小工具」。
 4. 點一下「角色」，選一個。選項和 [Nomo 活動](#nomo-activity)相同。
-5. 點一下小工具外面就完成了。
+5. 點一下「分組方式」，選「模型」或「代理」。
+6. 點一下「樣式」，選「長條」或「折線」。
+7. 如果你選了「代理」，再點一下下方的「代理」選項，選出你要的代理：Claude Code、Codex、OpenCode、Grok Bot 或 Cursor。一開始全部都是選取的。
+8. 點一下小工具外面就完成了。
+
+只有「分組方式」設為「代理」時，才會出現下方的「代理」選項。如果只選了部分代理，數字只會計算它們，總數下方的標籤也會從「14 天總計」變成「所選代理」。如果你選的代理在這 14 天裡都沒有用到 Token，小工具會顯示所有代理。
+
+原本就在主畫面上的小工具會從「模型」和「長條」開始，所以看起來和以前一樣。
 
 「自動」會跟著你用得最多的模型的供應商：Claude 對應 Clawd，GPT 對應 Codex，Grok 對應 Grok Bot，Gemini 對應 Antigravity，Kimi、DeepSeek 和 Cursor 的模型顯示各自的標誌。其他模型都是 Clawd。你選的角色只會改變角色本身、背景光暈和今天的長條。模型顏色永遠不變。
+
+小工具顯示 Clawd 時，它的表情會跟著你的 Token 變化。連續 3 天沒有 Token，它會睡覺；今天還沒有 Token，它會在打字。今天是這 14 天裡用得最多的一天時，Clawd 會變成 Claude 的星芒標誌。這仍然是 **Clawd** 這個選項。Grok Bot 在連續 3 天沒有 Token 後會睡覺。
 
 點一下小工具，會在 Nomo 中打開[活動頁面](#activity-screen)。沒有 Nomo Pro 時，點一下會打開 Nomo Pro。
 
 它和 Nomo 活動使用同一份摘要。離開你電腦的內容列在[隱私](#privacy)底下。
 
-### Nomo 帳戶 <span className="pro-pill" /> {#nomo-accounts}
+## Nomo 帳戶 {#nomo-accounts}
 
 <Frame caption="中型和大型的 Nomo 帳戶。">
   <div className="widget-shot narrow">
-    <img className="only-light" src="/images/pro-widgets-accounts.webp" alt="Nomo 帳戶：中型小工具顯示四個帳戶，大型顯示六個，每個帳戶都有一條長條、已用或剩餘百分比和重設時間，剩得最少的帳戶排在最上面" />
+    <img className="only-light" src="/images/pro-widgets-accounts.webp" alt="Nomo 帳戶，依用量由高到低：中型小工具顯示三個帳戶和 +3 more，大型顯示六個，每個帳戶都有方案名稱、長條、已用百分比和重設時間" />
     <img className="only-dark" src="/images/pro-widgets-accounts-dark.webp" alt="深色模式的 Nomo 帳戶，中型和大型" />
   </div>
 </Frame>
@@ -305,7 +264,7 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 點一下某個帳戶的那一列，會在 Nomo 中打開那家供應商的「用量」頁面，並顯示這個帳戶。顯示「在 Nomo 中重新連結」的那一列也一樣。點一下其他任何地方（包括 `還有 3 個` 那一列），會打開「供應商」分頁。沒有 Nomo Pro 時，點一下會打開 Nomo Pro。
 
-### 代理即時狀態 <span className="pro-pill" /> {#live-agents}
+## 代理即時狀態 {#live-agents}
 
 <Frame caption="小型和中型的代理即時狀態。紫色那一列需要你回答。">
   <div className="widget-shot">
@@ -347,14 +306,14 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 「自動」會跟著清單最上面的 session。如果是 Antigravity、Cursor 或 OpenCode 的 session，就顯示它的標誌。選其他角色時，小工具會顯示那個角色，背景也會帶上淡淡的同色調。狀態顏色不會變：紫色仍然表示有 session 需要你回答。已經在主畫面上的小工具會從「自動」開始。
 
-## 活動頁面和回顧 <span className="pro-pill" /> {#activity-screen}
+## 活動頁面和回顧 {#activity-screen}
 
 活動頁面會完整顯示你的連續紀錄和 Token，還能產生一張可以分享的回顧卡片。
 
-<Frame caption="活動頁面的上半部：連續紀錄、7 / 14 / 30 天切換，以及 Token 圖表。">
+<Frame caption="活動頁面的上半部：連續紀錄、回顧卡片、7 / 14 / 30 天切換，以及 Token 圖表的切換。">
   <div className="device-frame crop-top">
-    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="活動頁面：13 天連續紀錄和 26 週地圖，7、14、30 天切換選在 14 天，以及最近 14 天的 2030 萬 Token，Today、Daily average 和 Active hours 下方是依模型堆疊的圖表" />
-    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="活動頁面：13 天連續紀錄和 26 週地圖，7、14、30 天切換選在 14 天，以及最近 14 天的 2030 萬 Token，Today、Daily average 和 Active hours 下方是依模型堆疊的圖表" />
+    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="活動頁面：46 天連續紀錄和 5 月到 11 月的地圖，254h、141 days 和 9.8h/wk，Grok Bot 43%、Claude Code 36%、Codex 12% 的比例，以及 Sessions 和 Busiest day 兩格；下面是 Your Wrapped 卡片、選在 14 天的 7、14、30 天切換，以及帶有 Model 和 Agent 切換、長條和折線切換的 Tokens 標題" />
+    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="活動頁面：46 天連續紀錄和 5 月到 11 月的地圖，254h、141 days 和 9.8h/wk，Grok Bot 43%、Claude Code 36%、Codex 12% 的比例，以及 Sessions 和 Busiest day 兩格；下面是 Your Wrapped 卡片、選在 14 天的 7、14、30 天切換，以及帶有 Model 和 Agent 切換、長條和折線切換的 Tokens 標題" />
   </div>
 </Frame>
 
@@ -370,16 +329,77 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 頁面上有：
 
-- 「連續紀錄」：你的連續紀錄和最近 26 週的地圖，地圖下方有和[小工具](#nomo-activity)一樣的三項數據。
+- 「連續紀錄」：你的連續紀錄和最近 26 週的地圖，地圖上方有月份名稱，下方有和[小工具](#nomo-activity)一樣的三項數據。再往下是你的活動在各代理之間怎麼分配（含百分比），接著是「Sessions」和「最忙的一天」。
+- 「你的回顧」：一張可以產生分享圖片的卡片。請看[回顧](#wrapped)。
 - 「7 天」「14 天」「30 天」切換。切換時，圖表會以動畫過渡到新的期間。
-- 「Token」：依模型堆疊的每日 Token 圖表，以及「今天」「日均」「活躍時數」和較上一段期間的變化。
+- 「Token」：每日 Token 圖表，以及「今天」「日均」「活躍時數」和較上一段期間的變化。請看 [Token 圖表](#tokens-chart)。
 - 「依模型」：每個模型的「輸入」「輸出」「快取」「總計」表格。
+
+「最忙的一天」是活躍時間最長的那一天，例如 `最忙的一天 · 1h 59m`。如果完全沒有時間資料，就是 Token 最多的那一天。
 
 打開頁面時，它會用大約一秒的動畫出現。如果打開了「減少動態效果」，所有內容會直接顯示出來。
 
-頁面的角色和顏色會跟著你用得最多的模型的供應商，和設為「自動」的 [Nomo Token](#nomo-tokens) 一樣。連續紀錄列也是如此。
+頁面的角色和顏色會跟著你用得最多的代理，和設為「自動」的 [Nomo 活動](#nomo-activity)一樣。連續紀錄列也是如此。想換成其他角色，請看[選擇角色](#activity-character)。
 
-### 連續紀錄列 <span className="pro-pill" /> {#streak-bar}
+### 選擇角色 {#activity-character}
+
+連續紀錄卡片下方寫著「按住可選擇角色」。
+
+1. 按住連續紀錄卡片。
+2. 卡片會浮起並翻面，顯示「角色」。
+3. 點一下一個角色：「自動」、**Clawd**、**Codex**、**Grok Bot**、**Antigravity**、**Kimi**、**DeepSeek**、**Cursor** 或 **OpenCode**。
+
+卡片會自己翻回來。想不做更改就返回，點一下 **×**，或點一下卡片外面。
+
+每一列都有第二行文字：
+
+- 「自動」：目前顯示的角色，例如 `跟隨最常用代理 · 目前為 Clawd`。
+- 你用過的代理所對應的角色：它在你活動中的占比，例如 `佔活動的 38%`。
+- 其他角色：「還沒有活動」。
+
+你的選擇會改變活動頁面和[連續紀錄列](#streak-bar)的角色與顏色。Nomo 會記住它。小工具在「編輯小工具」裡有各自的「角色」選項，回顧則一律跟著你最常用的代理。
+
+使用 VoiceOver 時，請使用卡片的「更換角色」動作。
+
+### Token 圖表 {#tokens-chart}
+
+「Token」標題旁邊有兩個切換。在小螢幕上，它們會在標題下方。
+
+- 「模型」或「代理」：把每一天依模型或依代理分段。
+- 「長條」或「折線」：長條圖示會顯示長條圖。折線圖示會為每個模型或代理各畫一條線。
+
+<Frame caption="選了「代理」和「折線」的 Token 圖表：每個代理一條線。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/widgets-tokens-agent-lines-light.webp" alt="選了 Agent 和折線圖示的 Tokens 卡片：最近 14 天 1.93 億 Token，較前 14 天 ↗2%，今天 1340 萬、每日平均 1380 萬、活躍時數 25h，以及 Grok Bot、Claude Code、Codex 和 Cursor 各一條線，Cursor 是虛線，圖表下方是每個代理的總數" />
+    <img className="only-dark" src="/images/widgets-tokens-agent-lines-dark.webp" alt="選了 Agent 和折線圖示的 Tokens 卡片：最近 14 天 1.93 億 Token，較前 14 天 ↗2%，今天 1340 萬、每日平均 1380 萬、活躍時數 25h，以及 Grok Bot、Claude Code、Codex 和 Cursor 各一條線，Cursor 是虛線，圖表下方是每個代理的總數" />
+  </div>
+</Frame>
+
+「7 天」「14 天」「30 天」切換仍然用來設定期間。
+
+依模型時，圖表會顯示你前 5 個模型。其餘的合併成「其他」。
+
+圖表下方，每個模型或代理都有名稱和總數。點一下名稱，就能把它從圖表中隱藏。再點一下就會重新顯示。圖表上方的數字仍然計算全部：隱藏只會改變圖表。
+
+Nomo 會記住你的選擇，下次照樣使用。
+
+### 篩選圖表 {#tokens-filter}
+
+Token 卡片下方寫著「按住可篩選」。
+
+1. 按住 Token 卡片。
+2. 卡片會浮起並翻面，顯示「篩選」。每個模型或代理都有一個方塊，顯示它的總數和在這段期間的占比。
+3. 點一下方塊就能隱藏或顯示它。有勾號表示正在顯示。
+4. 想再次顯示全部，點一下「顯示全部」。
+5. 想返回，點一下 **×**，或點一下卡片外面。
+
+這和點一下圖表下方的名稱是同一個設定。最後一個無法隱藏：它會顯示一個鎖頭。
+
+有項目被隱藏時，卡片會顯示目前顯示了幾個，例如 `顯示 3 個，共 4 個`。
+
+使用 VoiceOver 時，請使用卡片的「篩選」動作。
+
+### 連續紀錄列 {#streak-bar}
 
 在 iOS 26.1 或更新版本上，「Sessions」分頁的標籤列正上方會浮著一條小列。它會顯示你的連續紀錄、本週的 Token，以及最近 7 天的迷你長條圖。
 
@@ -390,8 +410,8 @@ Nomo 用量速度和 Nomo 活動也有鎖定畫面尺寸。
 
 | 顯示內容 | 意思 | 點一下後 |
 | --- | --- | --- |
-| 「開始連續紀錄」 | 還沒有配對任何電腦。 | 打開和「配對電腦」一樣的配對步驟。 |
-| 「還沒有 sessions」 | 已經配對了電腦，但還沒有傳來任何 sessions。 | 打開活動頁面。 |
+| 「開始連續紀錄」 | 還沒有配對任何電腦，也還沒在 Nomo 裡連結 Cursor。 | 打開和「配對電腦」一樣的配對步驟。 |
+| 「還沒有 sessions」 | 已經配對了電腦或連結了 Cursor，但還沒有傳來任何活動。 | 打開活動頁面。 |
 | 「更新 Nomo 外掛程式」 | 每台配對過的電腦上的 Nomo 外掛程式都早於 2.4.0。 | 打開更新步驟。 |
 
 這條列縮小時，會改成顯示「配對電腦」「還沒有 sessions」和「更新外掛程式」。
@@ -406,10 +426,18 @@ Nomo 有新版本時，這個位置會改為顯示更新列。更新 Nomo，或�
 
 回顧會把你的一週、一個月或一年變成一張可以分享的圖片。
 
-1. 在活動頁面捲動到最下面。
-2. 點一下「你的回顧」。
-3. 點一下「週」（最近 7 天）、「月」（最近 30 天）或「年」（今年）。
+1. 在活動頁面，點一下連續紀錄卡片正下方的「你的回顧」。也可以點一下右上角的分享按鈕。
+2. 點一下「週」（最近 7 天）、「月」（最近 30 天）或「年」（今年）。
+3. 在旁邊的切換中，點一下一種樣式：長條、折線或熱度圖。
 4. 點一下「分享」，再選擇要傳到哪裡。
+
+樣式決定卡片上的圖表，也就是你分享出去的圖片上的圖表：
+
+- 「長條」：你每天的 Token。如果是一年，則是每個月的 Token。
+- 「折線」：每個代理一條線。Token 不到你總數 5% 的代理不會畫出來，除非它是你用得最多的代理。
+- 「熱度圖」：你活躍的日子。一週顯示 7 個方格。一個月以兩列顯示最近 30 天。一年顯示今年到目前為止的整張地圖。
+
+Nomo 會記住這個樣式，下次照樣使用。
 
 <Frame caption="一週的回顧卡片。不論 iPhone 是淺色還是深色外觀，它永遠是深色的。">
   <div className="widget-shot narrow">
@@ -417,7 +445,12 @@ Nomo 有新版本時，這個位置會改為顯示更新列。更新 Nomo，或�
   </div>
 </Frame>
 
-卡片上會顯示你的 Token、圖表、活躍時數、最忙的一天、最長連續紀錄、最常用的模型和代理，以及 sessions 數。角色會跟著你最常用的模型的供應商，或你最常用的代理。「分享」會把它當成一張 1080 × 1350 的圖片傳出去。它絕不包含你的提示、專案名稱或檔案路徑。
+卡片上會顯示你的 Token、圖表、活躍時數、最忙的一天、最長連續紀錄、最常用的模型和代理，以及 sessions 數。
+
+- 「最常用模型」一定是真正的模型，例如 Fable。Grok Bot 和 Cursor 不是模型。如果你只用了它們，這一格會改成顯示「活躍天數」。
+- 包含 Grok Bot 或 Cursor 的 Token 時，底部的註記會寫著 `Token = 輸入 + 輸出 + 推理 + Cursor 總計`。
+
+角色會跟著你最常用的代理。「分享」會把它當成一張 1080 × 1350 的圖片傳出去。它絕不包含你的提示、專案名稱或檔案路徑。
 
 ## 多台電腦 {#more-than-one-computer}
 
@@ -435,9 +468,9 @@ Nomo 外掛程式早於 2.4.0 的電腦不會被計入。你會看到：
 - 在活動頁面的連續紀錄下方：「MacBook Air 未計入 · 請更新它的外掛程式」，其中是那台電腦的名稱。如果不只一台，會顯示台數，例如「2 台電腦未計入 · 請更新它們的外掛程式」。點一下它可以查看更新方法。
 - 在大型 Nomo 活動小工具上：「1 台電腦未計入」。在最小的 iPhone 上沒有空間顯示。
 
-要解決這個問題，請更新那台電腦上的 Nomo 外掛程式。請看[更新](/zh-Hant/setup/install#updating)。
+要解決這個問題，請更新那台電腦上的 Nomo 外掛程式。請看[更新](/zh-Hant/sessions/commands#update)。
 
-## 多個帳戶 <span className="pro-pill" /> {#more-than-one-account}
+## 多個帳戶 {#more-than-one-account}
 
 有了 Nomo Pro，每家供應商最多可以新增 5 個帳戶。例如，一個工作用的 Claude 帳戶和一個個人帳戶。Nomo 用量速度、Nomo 用量和 Nomo 帳戶都能使用它們。
 
@@ -473,12 +506,19 @@ Nomo 帳戶只會列出你真正新增過的帳戶，所以在你新增帳戶之
 - 絕不會離開的內容：你的提示、代理的回覆、專案名稱和檔案路徑。
 - 上傳前會先端對端加密（AES-256-GCM，使用你的配對金鑰）。Nomo 的中繼伺服器無法讀取，並會在 **35 天**後刪除。
 - 其中還有一個隨機的電腦 ID。它由外掛程式在你的電腦上產生一次，儲存在 `~/.config/cc-status/machine-id`。它絕不來自你的硬體資訊，例如序號、MAC 位址、電腦名稱或使用者名稱。它和其他內容一樣經過端對端加密。Nomo 只用它來避免 iPhone 把同一台電腦算兩次。刪除這個檔案就會產生新的 ID。
-- 最多每 6 小時上傳一次，而且只在有變化時上傳。如果沒有變化，它每週會把同樣的摘要重新上傳一次，以免中繼伺服器把它刪除。剛和新的 iPhone 配對後，會在大約一分鐘內上傳一次。
+- 最多每 6 小時上傳一次，而且只在有變化時上傳。重設指令會立刻上傳。如果沒有變化，它每週會把同樣的摘要重新上傳一次，以免中繼伺服器把它刪除。剛和新的 iPhone 配對後，會在大約一分鐘內上傳一次。
 - 在你的電腦上，它存放在 `~/.config/cc-status/activity-days.json`。只有你的使用者帳號能讀取。最多保留 400 天。
+
+**Grok Bot 和 Cursor**
+
+- Nomo 只會用你在 Nomo 裡連結的 Cursor 帳戶，讀取每小時的 Token 數。它絕不會讀取你的訊息或程式碼。
+- 這些數字直接從 Cursor 的伺服器傳到你的手機，不會上傳到任何地方。
+- 想停止的話，在「供應商」分頁打開 Cursor，點一下「用量」，然後點一下「中斷連結」。這也會停止在 Nomo 裡顯示你的 Cursor 用量。
 
 **Nomo Token 和活動頁面**
 
-- 它們使用和 Nomo 活動同一份活動摘要，所以上面的內容同樣適用。
+- 它們使用和 Nomo 活動同一份活動摘要，也使用同樣的 Grok Bot 和 Cursor 計數，所以上面的內容同樣適用。
+- 你的圖表選擇、篩選和角色選擇只會儲存在你的 iPhone 上。
 
 **回顧**
 

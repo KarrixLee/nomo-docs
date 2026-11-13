@@ -4,6 +4,54 @@ description: "무엇이, 언제 나왔는지."
 icon: "clock-rotate-left"
 ---
 
+이 목록은 앱에서도 볼 수 있습니다. **홈**에서 **새로운 기능** 카드를 닫으면(×) 그
+자리에 **업데이트 내역** 행이 나타납니다. 탭하면 모든 릴리스를 볼 수 있습니다.
+
+<Frame caption="홈의 업데이트 내역 행에서 연 시트. 릴리스를 탭하면 그 카드를 다시 볼 수 있습니다.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/changelog-sheet.png" alt="Changelog 행이 있는 Nomo 홈 화면과, Latest가 붙은 2.4.2와 2.4.0이 나열된 Changelog 시트" />
+    <img className="only-dark" src="/images/changelog-sheet-dark.png" alt="Changelog 행이 있는 Nomo 홈 화면과, Latest가 붙은 2.4.2와 2.4.0이 나열된 Changelog 시트" />
+  </div>
+</Frame>
+
+<Update label="2026년 11월" description="2.4.2">
+  ## 승인 전 코드 확인
+
+  Claude Code와 Codex가 무엇을 바꾸려는지 허용하기 전에 정확히 확인하고, 끝난 세션을 한눈에 알아볼 수 있습니다.
+
+  **새로운 기능**
+
+  - **승인 전 코드 확인**: Claude Code와 Codex의 편집 요청에 바뀌는 파일과 `+` / `−` 줄 수가 표시됩니다. 세션을 길게 터치한 뒤 **변경 사항 검토**를 탭하면 **허용**이나 **거부**를 탭하기 전에 모든 줄을 읽을 수 있습니다. [사용 방법](/ko/sessions/approvals#see-the-code-before-you-approve)
+  - **한눈에 보는 새 결과**: 마지막으로 본 뒤에 끝난 세션에는 파란 점이 표시되고, 각 컴퓨터에는 **새 결과 2개**처럼 새 결과 수가 표시됩니다. [자세히](/ko/sessions/list#new-results)
+  - **홈**의 **업데이트 내역**: **새로운 기능** 카드를 닫은 뒤 **업데이트 내역**을 탭하면 지난 릴리스를 볼 수 있습니다
+  - **연속 기록에 Grok Bot 추가**: Nomo 활동과 Nomo 토큰이 이제 Grok Bot을 쓴 날과 토큰, 그리고 Cursor를 쓴 날도 셉니다. Nomo의 Cursor 로그인에서 가져오므로 컴퓨터는 필요 없습니다. [설정 방법](/ko/widgets#grok-bot)
+  - **에이전트별 토큰, 선 그래프로**: 활동 화면과 Nomo 토큰 위젯에서 토큰을 모델별이나 에이전트별로 나누고, 막대나 선으로 볼 수 있습니다. [사용 방법](/ko/widgets#tokens-chart)
+  - **차트 필터**: 토큰 차트 아래의 이름을 탭하면 숨겨집니다. 카드를 길게 터치하면 목록에서 고를 수도 있습니다. [사용 방법](/ko/widgets#tokens-filter)
+  - **캐릭터 선택**: 연속 기록 카드를 길게 터치하면 활동 화면의 캐릭터와 색을 고를 수 있습니다. [사용 방법](/ko/widgets#activity-character)
+  - **결산 스타일**: 결산을 막대, 선, 히트맵으로 공유할 수 있습니다. [자세히](/ko/widgets#wrapped)
+  - **터미널 명령**: 설치 도구가 짧은 `nomo` 명령을 추가합니다. `nomo pair`, `nomo status`, `nomo reset`, `nomo unpair`를 어느 폴더에서나 실행할 수 있습니다. [자세히](/ko/sessions/commands#terminal)
+  - **사용 가능한 재설정**: Claude와 Codex의 사용량 카드와 Nomo 사용량, Nomo 사용 속도 위젯에 쓸 수 있는 재설정 개수가 **사용 가능한 재설정 4회**처럼 표시됩니다. 카드에는 사용 기한도 표시되고, 만료 1주 전과 1일 전에 알림이 옵니다. [자세히](/ko/usage#available-resets)
+
+  **개선**
+
+  - Dynamic Island와 잠금 화면에 `+13 −16`처럼 편집의 크기가 표시됩니다
+  - 더 알기 쉬운 승인 제목: Codex 편집은 `apply_patch` 대신 `Edit notes.txt`나 `Edit 2 files`로, MCP 도구는 `github · create issue`처럼 표시됩니다
+  - Codex 0.167을 지원합니다
+  - 활동 화면을 열면 최신 활동을 가져오고, 컴퓨터에서 `reset`을 실행하면 바로 보냅니다
+  - 연속 기록 카드에 월 이름, 에이전트별 활동 비율, 세션 수, 가장 활발한 날이 표시됩니다
+
+  **수정**
+
+  - Codex 세션 행이 최대 한 시간 동안 **실행 중**으로 남지 않습니다
+  - iPad에서 설정 화면과 컴퓨터 상세 화면이 창 전체로 늘어나지 않습니다
+  - 다시 페어링하면 이미 실행 중인 세션이 다음 업데이트를 기다리지 않고 iPhone에 바로 표시됩니다(플러그인 2.4.2 필요)
+
+  **플러그인 2.4.2**
+
+  - 변경 사항 표시, 더 알기 쉬운 제목, Codex 0.167 지원에는 컴퓨터에 플러그인 2.4.2가 필요합니다
+  - 플러그인을 업데이트하면 Codex가 Nomo의 Hook을 신뢰할지 다시 묻습니다. `/hooks`를 실행해 신뢰하거나 **Trust all and continue**를 선택하십시오 — [이유](/ko/sessions/codex#hooks-have-to-be-trusted)
+</Update>
+
 <Update label="2026년 11월" description="2.4.1">
   ## 앱에서 피드백 보내기
 

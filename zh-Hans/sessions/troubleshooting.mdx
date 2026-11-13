@@ -74,6 +74,8 @@ $nomo-status
   看 **Approvals**。`PAUSED` 表示有人在这台电脑上运行过暂停命令——可能是好几个月以前，而这正是过去这件事根本无从发现的原因。在那台机器上的一个会话里恢复它，请求就回来了：[approvals](/zh-Hans/sessions/commands#approvals)。
 
   如果它显示 `on`，那关着的开关就在你手机上。**在 iPhone 上回答**默认是关的——见[设置](/zh-Hans/sessions/settings#remote-approvals)。判断的依据是颜色：每一只举起的手都是黄色（`需要帮助`，只有终端能处理），没有一只是紫色（`需要权限`，那才是能答复的）。见[在手机上回答](/zh-Hans/sessions/approvals)。
+
+  **只有 Codex 这样，而且是从更新 Nomo 插件之后开始的？** Codex 在等你重新信任 Nomo 的 hook。在 Codex 里运行 `/hooks` 并信任 Nomo 的条目，或者在 Codex 启动时询问的时候选择 **Trust all and continue**——[原因](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
 
 <Accordion title="我开了一个会话，它一直没出现" icon="play">
@@ -97,7 +99,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="Cursor 的聊天显示成了 Claude Code 会话" icon="clone">
-  更新 Claude Code 的 Nomo 插件。旧版本会通过 Cursor 对 Claude Code 插件的导入在 Cursor 里运行；当前版本会忽略 Cursor。命令在[更新](/zh-Hans/setup/install#updating)里。
+  更新 Claude Code 的 Nomo 插件。旧版本会通过 Cursor 对 Claude Code 插件的导入在 Cursor 里运行；当前版本会忽略 Cursor。命令在[更新](/zh-Hans/sessions/commands#update)里。
 </Accordion>
 
 <Accordion title="Cursor 退出之后，会话还停在“运行中”" icon="hourglass-half">
@@ -115,22 +117,17 @@ $nomo-status
   4. 发一条消息。会话要等你发出第一条消息后才会出现。
 
   还是没有？在 Nomo 里轻点 **+** 按钮（**选择智能体**），把 Antigravity 打开。详见[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#troubleshooting)。
+
+  <Frame caption="还没有会话送达时的 Antigravity 标签页。">
+    <div className="device-frame">
+      <img className="only-light" src="/images/agy-drawer-tab.png" alt="一台电脑的 Antigravity 标签页，显示“还没有 Antigravity 会话”" />
+      <img className="only-dark" src="/images/agy-drawer-tab-dark.png" alt="一台电脑的 Antigravity 标签页，显示“还没有 Antigravity 会话”" />
+    </div>
+  </Frame>
 </Accordion>
 
-<Accordion title="每个 Antigravity 会话都出现两次" icon="clone">
-  Nomo 的 Claude Code 插件被导入了 Antigravity。在终端里运行下面这条，然后重启 Antigravity：
-
-  ```bash
-  agy plugin uninstall nomo-cc
-  ```
-</Accordion>
-
-<Accordion title="Antigravity 命令提示 Nomo 找不到它的文件" icon="folder-open">
-  Nomo 文件夹被移动或删除了。Antigravity 照常工作，但什么都不会送到你的手机。重新运行安装工具，然后重启 Antigravity：
-
-  ```bash
-  bunx nomo-ai --antigravity
-  ```
+<Accordion title="Antigravity 会话出现两次，或命令找不到 Nomo 的文件" icon="clone">
+  两种情况的解决办法都在[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#troubleshooting)。
 </Accordion>
 
 <Accordion title="取消了的 Antigravity 这一轮还显示“运行中”" icon="hourglass-half">
@@ -160,15 +157,30 @@ $nomo-status
   ```bash Antigravity icon="/images/providers/antigravity.png"
   /nomo-reset
   ```
+
+  ```bash 终端 icon="terminal"
+  nomo reset
+  ```
   </CodeGroup>
 
   活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。OpenCode 的会话行属于 OpenCode 的服务器，所以要是有一行清不掉，先退出 OpenCode。
 </Accordion>
 
+<Accordion title="热力图或连续记录没有更新" icon="calendar">
+  它会自己跟上。你的电脑最多每 6 小时发送一次新的汇总，App 最多每小时检查一次。想现在就更新：
+
+  1. 在电脑上打开终端，运行 `nomo reset`。也可以在智能体里运行重置命令，比如 `/nomo-cc:reset`。它会显示 `Sent your activity summary (heatmap and streak) to your phone.`
+  2. 在 Nomo 中打开[活动页面](/zh-Hans/widgets#activity-screen)。它一打开就会获取最新的汇总。
+
+  还是少了某台电脑？见[未计入的电脑](/zh-Hans/widgets#not-counted)。
+
+  少了 Grok Bot？它的日子来自你在 Nomo 里连接的 Cursor，而不是来自电脑。见 [Grok Bot](/zh-Hans/widgets#grok-bot)。
+</Accordion>
+
 <Accordion title="会话明明没在干活，却显示“运行中”" icon="hourglass">
   先看第一行，那里写着插件版本。在 **2.2.2** 之前，打开或恢复后停在空提示符的 Claude Code 会话会显示 `运行中` 长达半小时；而没有提示就创建出来的 OpenCode 会话——比如 fork 出来的——会一直显示 `运行中`，直到 OpenCode 退出。
 
-  到了 2.2.2，前者大约 20 秒就会落定为 `完成`，后者要等到有活可干才会出现。[更新插件](/zh-Hans/setup/install#updating)。
+  到了 2.2.2，前者大约 20 秒就会落定为 `完成`，后者要等到有活可干才会出现。[更新插件](/zh-Hans/sessions/commands#update)。
 </Accordion>
 
 <Accordion title="“停止”显示“已发送”，会话却还在运行" icon="circle-stop">
@@ -320,7 +332,7 @@ $nomo-status
       "name": "手机从来不来问我要不要批准",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "看 Approvals 这一行。PAUSED 表示有人在这台电脑上运行过暂停命令，可能是好几个月以前。在那台机器上的一个会话里恢复它，请求就回来了。如果它显示 on，那关着的开关就是 App 设置里的“在 iPhone 上回答”，它默认是关的。"
+        "text": "看 Approvals 这一行。PAUSED 表示有人在这台电脑上运行过暂停命令，可能是好几个月以前。在那台机器上的一个会话里恢复它，请求就回来了。如果它显示 on，那关着的开关就是 App 设置里的“在 iPhone 上回答”，它默认是关的。如果是更新 Nomo 插件之后只有 Codex 不再询问，那是 Codex 在等你重新信任 Nomo 的 hook：运行 /hooks 并信任它们，或者在 Codex 询问时选择 Trust all and continue。"
       }
     },
     {
@@ -381,22 +393,6 @@ $nomo-status
     },
     {
       "@type": "Question",
-      "name": "每个 Antigravity 会话都出现两次",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 的 Claude Code 插件被导入了 Antigravity。在终端里运行 agy plugin uninstall nomo-cc，然后重启 Antigravity。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Antigravity 命令提示 Nomo 找不到它的文件",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nomo 文件夹被移动或删除了。Antigravity 照常工作，但什么都不会送到你的手机。再运行一次 bunx nomo-ai --antigravity，然后重启 Antigravity。"
-      }
-    },
-    {
-      "@type": "Question",
       "name": "取消了的 Antigravity 这一轮还显示“运行中”",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -409,6 +405,14 @@ $nomo-status
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Sessions 这一行统计的是这台电脑仍然认为还活着的会话。如果比你实际有的多，运行重置命令，不用解除配对就能清掉失效的。活跃的会话、你的配对和密钥都不会被动。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "热力图或连续记录没有更新",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "它会自己跟上：你的电脑最多每 6 小时发送一次新的汇总，App 最多每小时检查一次。想现在就更新，在电脑上的终端里运行 nomo reset（或在智能体里运行重置命令），然后在 Nomo 中打开活动页面。它一打开就会获取最新的汇总。"
       }
     },
     {

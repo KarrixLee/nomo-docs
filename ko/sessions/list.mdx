@@ -34,6 +34,9 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴�
 표시됩니다. 여기서 "활성"은 끝난 세션, 읽을 수 없는 세션, 그리고 작업 중이라고
 주장하지만 10분 넘게 조용한 세션을 제외한 값입니다.
 
+마지막으로 본 뒤에 끝난 세션이 있으면 요약 줄에 파란 개수가 붙습니다:
+`활성 3개 · 세션 7개 · 새 결과 2개`. [새 결과](#new-results)를 참고하십시오.
+
 오른쪽 위의 칩은 페어링한 컴퓨터가 몇 대인지 보여 줍니다. 한도에 도달하면 주황색으로
 바뀝니다.
 
@@ -126,6 +129,36 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "세션", "컴�
 
 행은 최근 활동 순으로 정렬됩니다. Nomo는 행을 숨기지 않습니다 — 이 목록은 중계
 서버가 가진 내용을 그대로 비춥니다.
+
+## 새 결과 {#new-results}
+
+세션이 끝났는데 아직 보지 않았다면 그 행의 왼쪽에 작은 파란 점이 표시됩니다.
+**세션** 탭에서는 컴퓨터 카드에 `새 결과 2개`처럼 새 결과 수가 표시됩니다.
+컴퓨터를 하나하나 열지 않아도 무언가 끝났다는 것을 알 수 있습니다.
+
+<Frame caption="컴퓨터 카드에 아직 보지 않은 끝난 세션의 수가 표시됩니다.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/sessions-new-count.png" alt="MacBook Pro, 5 active · 7 sessions · 2 new라고 표시된 컴퓨터 카드. 2 new는 파란색" />
+    <img className="only-dark" src="/images/sessions-new-count-dark.png" alt="MacBook Pro, 5 active · 7 sessions · 2 new라고 표시된 컴퓨터 카드. 2 new는 파란색" />
+  </div>
+</Frame>
+
+<Frame caption="컴퓨터 안에서는 끝난 세션의 초록 체크 옆에 파란 점이 있습니다.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/session-unread-dot.png" alt="세션 행 두 개. 하나는 실행 중이고, 다른 하나는 완료 상태로 초록 체크 왼쪽에 작은 파란 점이 있음" />
+    <img className="only-dark" src="/images/session-unread-dot-dark.png" alt="세션 행 두 개. 하나는 실행 중이고, 다른 하나는 완료 상태로 초록 체크 왼쪽에 작은 파란 점이 있음" />
+  </div>
+</Frame>
+
+파란 점을 지우려면:
+
+- **컴퓨터를 엽니다.** 보고 있는 에이전트 탭의 점은 닫을 때 지워집니다. 열려
+  있는 동안에는 점이 남아 있어 어느 것이 새로운지 찾을 수 있습니다.
+- **행을 탭해 펼칩니다.** 그 행의 점은 바로 지워집니다.
+
+개수는 드로어의 모든 에이전트 탭을 대상으로 하므로, Claude Code 탭을 보고 있어도
+끝난 Codex 세션이 함께 세어집니다. **에이전트 선택**으로 숨긴 에이전트는 세지
+않습니다. Nomo 2.4.2로 업데이트하기 전에 끝난 세션에는 점이 붙지 않습니다.
 
 ## 행을 탭해 자세히 보기 {#tap-a-row-for-detail}
 

@@ -6,7 +6,7 @@ icon: "qrcode-read"
 
 配對會交給你的手機和電腦一把共用的加密金鑰。沒有任何伺服器看得到它 — 這正是為什麼要用掃描或手動輸入代碼，而不是登入。
 
-每台電腦只需做一次。配對若閒置 **10 分鐘**未使用就會過期。
+每台電腦只需做一次。再配對一次會取代原本的配對。配對若閒置 **10 分鐘**未使用就會過期。
 
 <Note>
   一次配對涵蓋的是這台電腦，而不是個別代理。如果你在同一台電腦上同時執行
@@ -39,9 +39,13 @@ icon: "qrcode-read"
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair
         ```
+
+        ```bash 終端機 icon="terminal"
+        nomo pair
+        ```
         </CodeGroup>
 
-        在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。
+        在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。**終端機**在任何資料夾都能用，不必開著代理。請見[從終端機執行](/zh-Hant/sessions/commands#terminal)。
 
         瀏覽器會開啟一個套用主題樣式的配對頁面，上面有一個 QR code。
 
@@ -101,6 +105,10 @@ icon: "qrcode-read"
 
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair code
+        ```
+
+        ```bash 終端機 icon="terminal"
+        nomo pair code
         ```
         </CodeGroup>
 

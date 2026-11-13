@@ -4,6 +4,53 @@ description: "发布了什么，什么时候发布的。"
 icon: "clock-rotate-left"
 ---
 
+这份列表在 App 里也能看到。在**首页**关闭**新功能**卡片（×）后，原来的位置会出现**更新日志**这一行。轻点它就能看到所有版本。
+
+<Frame caption="从首页的“更新日志”这一行打开的表单。轻点某个版本，可以再次查看它的卡片。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/changelog-sheet.png" alt="Nomo 首页上的 Changelog 行，以及列出标有 Latest 的 2.4.2 和 2.4.0 的 Changelog 表单" />
+    <img className="only-dark" src="/images/changelog-sheet-dark.png" alt="Nomo 首页上的 Changelog 行，以及列出标有 Latest 的 2.4.2 和 2.4.0 的 Changelog 表单" />
+  </div>
+</Frame>
+
+<Update label="2026年11月" description="2.4.2">
+  ## 批准前先看代码
+
+  在允许之前，先看清 Claude Code 和 Codex 到底要改什么；哪些会话已经完成，也一目了然。
+
+  **新增**
+
+  - **批准前先看代码**：Claude Code 和 Codex 的编辑请求会列出要更改的文件，以及 `+` / `−` 行数。按住会话，再轻点**查看更改**，就能在轻点**允许**或**拒绝**之前读完每一行。[用法](/zh-Hans/sessions/approvals#see-the-code-before-you-approve)
+  - **新结果一目了然**：上次查看后完成的会话会标上蓝点，每台电脑都会显示新结果的数量，比如 **2 个新结果**。[详情](/zh-Hans/sessions/list#new-results)
+  - **首页**上的**更新日志**：关闭**新功能**卡片后，轻点**更新日志**即可查看以往的版本
+  - **连续记录也算 Grok Bot**：Nomo 活动和 Nomo Token 现在会统计你用 Grok Bot 的日子和 Token，也会统计你用 Cursor 的日子。数据来自你在 Nomo 里的 Cursor 登录，所以不需要电脑。[设置方法](/zh-Hans/widgets#grok-bot)
+  - **按智能体看 Token，还能看折线**：在活动页面和 Nomo Token 小组件上，可以按模型或按智能体拆分 Token，用柱状或折线显示。[用法](/zh-Hans/widgets#tokens-chart)
+  - **筛选图表**：轻点 Token 图表下方的名称可以隐藏它，或按住卡片从列表里选。[用法](/zh-Hans/widgets#tokens-filter)
+  - **选择你的角色**：按住连续记录卡片，选择活动页面的角色和颜色。[用法](/zh-Hans/widgets#activity-character)
+  - **回顾样式**：用柱状、折线或热力图分享你的回顾。[详情](/zh-Hans/widgets#wrapped)
+  - **终端命令**：安装程序会加一个简短的 `nomo` 命令。`nomo pair`、`nomo status`、`nomo reset` 和 `nomo unpair` 在任何文件夹里都能运行。[详情](/zh-Hans/sessions/commands#terminal)
+  - **可用的重置次数**：Claude 和 Codex 的用量卡片以及 Nomo 用量、Nomo 用量速度小组件会显示你能用的重置次数，比如**4 次重置可用**。卡片还会显示到期时间，Nomo 也会在到期前 1 周和 1 天提醒你。[详情](/zh-Hans/usage#available-resets)
+
+  **改进**
+
+  - 灵动岛和锁定屏幕会显示一次编辑的大小，比如 `+13 −16`
+  - 更清晰的审批标题：Codex 的编辑显示为 `Edit notes.txt` 或 `Edit 2 files`，而不是 `apply_patch`；MCP 工具显示为 `github · create issue` 这样
+  - 支持 Codex 0.167
+  - 打开活动页面会获取你最新的活动，在电脑上运行 `reset` 会马上发送
+  - 连续记录卡片会显示月份、你的活动在各智能体之间的分配、你的会话数和最忙的一天
+
+  **修复**
+
+  - Codex 的会话行不会再停留在**运行中**长达一小时
+  - 在 iPad 上，设置页面和电脑详情页不会再铺满整个窗口
+  - 重新配对后，正在运行的会话会立即显示在 iPhone 上，不用等到它的下一次更新（需要插件 2.4.2）
+
+  **插件 2.4.2**
+
+  - 查看更改、更清晰的标题和 Codex 0.167 支持，需要电脑上装有插件 2.4.2
+  - 更新插件后，Codex 会再次询问你是否信任 Nomo 的 hook。运行 `/hooks` 并信任它们，或者选择 **Trust all and continue**——[原因](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)
+</Update>
+
 <Update label="2026年11月" description="2.4.1">
   ## 在 App 内发送反馈
 

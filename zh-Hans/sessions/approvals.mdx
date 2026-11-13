@@ -63,6 +63,7 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", 
 | **拒绝并附注…** | 仅 App | 拒绝，并把你输入的内容一并带过去——*为什么*，或者*该怎么做*。在计划上它写作**继续规划…**。 |
 | **回答…** | 仅 App | 为一道选择题挑一个选项——或者在智能体接受的情况下，发送你自己输入的回答。 |
 | **查看完整计划** | App，以及灵动岛上的**查看计划** | 打开计划，先读再决定。 |
+| **查看更改** | 仅 App | 打开编辑请求的更改，先读再决定。[用法](/zh-Hans/sessions/approvals#see-the-code-before-you-approve) |
 | **在 Mac 上打开** | 仅 App | 什么也不答复——它把那个会话的终端窗口在 Mac 上调到最前。需要一条[本地网络](/zh-Hans/sessions/settings#local-network)链路。 |
 
 <Note>
@@ -70,6 +71,63 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Antigravity", "iPhone", 
 </Note>
 
 **始终允许**和**拒绝并附注…**收在菜单的**更多…**里，**回答…**则直接在菜单上。三者都需要插件 **2.0.0**。在 1.0.0 上你只有普通的“允许”和“拒绝”——Nomo 不会显示一个 Mac 兑现不了的按钮。**批准并…**这几个选项同样收在**更多…**里，需要插件 **2.2.2**。有更新可用时，详情页会告诉你。
+
+## 批准前查看代码 {#see-the-code-before-you-approve}
+
+Claude Code 或 Codex 想要编辑文件时，你可以在回答之前先在手机上读一读这次更改。
+
+<Steps>
+  <Step title="按住会话所在的行">
+    卡片会列出每个要更改的文件，以及新增（`+`）和删除（`−`）的行数。下面还会显示这次更改的前几行。
+  </Step>
+  <Step title="轻点查看更改">
+    **更改**表单随即打开。删除的行是红色，新增的行是绿色，一行里改动的部分会高亮显示。轻点某个文件可以展开或收起它。
+  </Step>
+  <Step title="轻点允许或拒绝">
+    滚动时，这两个按钮一直停在表单底部。
+  </Step>
+</Steps>
+
+<Frame caption="按住一个编辑请求：文件和它们的 + / − 行数、第一处更改，菜单最上面是“查看更改”。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-approval-card.png" alt="按住的 Codex 编辑请求，显示三个更改的文件及其行数、第一处更改，以及包含查看更改、允许、拒绝和更多的菜单" />
+    <img className="only-dark" src="/images/diff-approval-card-dark.png" alt="按住的 Codex 编辑请求，显示三个更改的文件及其行数、第一处更改，以及包含查看更改、允许、拒绝和更多的菜单" />
+  </div>
+</Frame>
+
+<Frame caption="“更改”表单。红色的行被删除，绿色的行被新增，“允许”和“拒绝”一直在底部。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-changes-sheet.png" alt="“更改”表单，显示 Edit 3 files、合计 +13 −16，第一个文件已展开，带有红色和绿色的行" />
+    <img className="only-dark" src="/images/diff-changes-sheet-dark.png" alt="“更改”表单，显示 Edit 3 files、合计 +13 −16，第一个文件已展开，带有红色和绿色的行" />
+  </div>
+</Frame>
+
+### 较大的更改 {#a-big-change}
+
+较大的更改会先以预览打开。表单底部会显示 `预览——其余更改尚未加载`。
+
+1. 轻点**显示全部更改**。
+2. 稍等片刻。Nomo 会从你的电脑取回其余更改。不在你的 Wi-Fi 附近时也可以。
+
+加载时会显示 `正在加载全部更改…`。如果连不上你的电脑，会显示 `重新连接中…` 并一直重试。在其余部分送达之前，你也可以随时轻点**允许**或**拒绝**。
+
+<Frame caption="较大的更改：预览提示和“显示全部更改”，“允许”和“拒绝”照样可用。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/diff-show-full.png" alt="“更改”表单底部，带有 预览——其余更改尚未加载 的提示、“显示全部更改”按钮，以及“拒绝”和“允许”" />
+    <img className="only-dark" src="/images/diff-show-full-dark.png" alt="“更改”表单底部，带有 预览——其余更改尚未加载 的提示、“显示全部更改”按钮，以及“拒绝”和“允许”" />
+  </div>
+</Frame>
+
+和 Nomo 发送的其他内容一样，这次更改也是端到端加密的。插件的 README 列出了[哪些内容会离开你的电脑](https://github.com/KarrixLee/nomo#what-leaves-your-computer)。遇到编辑请求时，[灵动岛](/zh-Hans/sessions/island#the-four-shapes)上也会显示同样的 `+13 −16`。
+
+### 更清晰的标题 {#clearer-titles}
+
+现在请求会直接说明它要做什么：
+
+- Codex 的编辑显示为 `Edit notes.txt` 或 `Edit 2 files`，而不是 `apply_patch`。
+- 来自 MCP 工具的请求显示为 `github · create issue` 这样：先是服务器，再是工具。
+
+这些都需要电脑上装有插件 **2.4.2**。插件版本较旧时，卡片和以前一样，不会列出更改。
 
 ## 回答问题 {#answering-a-question}
 

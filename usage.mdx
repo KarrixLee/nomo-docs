@@ -9,9 +9,9 @@ Usage works like [Status](/status) — a widget plus notifications — with one
 extra step: it reads numbers off your account, so it needs a sign-in. Still no
 Mac plugin; this one is phone-only.
 
-<Frame caption="The Usage tab for Claude: the 5-hour window, the weekly one, and when each resets.">
+<Frame caption="The Usage tab for Claude: the 5-hour, weekly and Fable windows, when each resets, and your available resets.">
   <div className="device-frame">
-    <img src="/images/claude-usage-overview.png" alt="Nomo's Usage tab showing Claude's session and weekly limits" />
+    <img src="/images/claude-usage-overview.png" alt="Nomo's Usage tab for Claude without Nomo Pro: a Claude Max card with Session at 45%, Weekly at 79% and Fable at 48%, each with when it resets, a See if you'll run out before reset row with a PRO tag, and 4 resets available, then Connected to Claude with 1/5 accounts and Add another account with a PRO tag" />
   </div>
 </Frame>
 
@@ -55,12 +55,27 @@ existing Safari sign-ins all work.
 
 **Cursor**
 
-1. Tap **Connect**.
-2. iOS asks to use **cursor.com** to sign in. Tap **Continue**.
-3. Sign in on Cursor's page.
+1. Open Nomo.
+2. Tap the **Providers** tab.
+3. Tap **Cursor**.
+4. Tap **Usage** at the top.
+5. Tap **Connect Cursor account**.
+6. iOS asks to use **cursor.com** to sign in. Tap **Continue**.
+7. Sign in on Cursor's page.
 
 The page closes by itself, and your usage appears. Sign in again about every
 60 days.
+
+<Warning>
+  Using Grok Bot? Connect **Cursor**, not Grok. On Cursor's page, sign in with
+  the same account you use for Grok Bot: your Grok or X account. Connecting
+  **Grok** in Nomo shows only your weekly limit. Your Grok Bot days and tokens
+  come only through Cursor. See [Grok Bot](/widgets#grok-bot).
+</Warning>
+
+On The X Subscription, Grok Bot and Cursor share one weekly limit, and Nomo
+shows it. On an older Cursor plan, Grok Bot has its own limit, and Nomo doesn't
+read it.
 
 **Grok**
 
@@ -118,6 +133,36 @@ Screen.
 
 **Without Nomo Pro**, the first limit shows one row instead: **See if you'll
 run out before reset**, with a **PRO** tag. Tap it to open Nomo Pro.
+
+## Available resets {#available-resets}
+
+Claude and Codex can give you extra limit resets to use later. When you have at
+least one, Nomo shows how many and when to use the first one by, in your time
+zone. For example, **4 resets available · use by Dec 11 at 6:00 AM**.
+
+<Frame caption="The usage card shows how many resets you have, and the date to use the first one by.">
+  <div className="device-frame">
+    <img className="only-light" src="/images/usage-resets-light.webp" alt="Claude's Your usage card on Claude Max: Session at 45%, Weekly at 79% and Fable at 48%, each with when it resets and the line Lasts until reset, then 4 resets available · use by Dec 11 at 6:00 AM" />
+    <img className="only-dark" src="/images/usage-resets-dark.webp" alt="Claude's Your usage card on Claude Max: Session at 45%, Weekly at 79% and Fable at 48%, each with when it resets and the line Lasts until reset, then 4 resets available · use by Dec 11 at 6:00 AM" />
+  </div>
+</Frame>
+
+You'll find the same resets on the provider's site:
+
+- **Claude**: claude.ai, **Settings → Usage**, **Limit resets**.
+- **Codex**: chatgpt.com, **Settings → Usage**, **Usage limit resets**.
+
+The usage card shows both. The [Nomo Usage](/free-widgets#nomo-usage) and
+[Nomo Pace](/widgets#nomo-pace) widgets show the count.
+
+**Reminders:** Nomo reminds you 1 week and 1 day before a reset expires. They
+follow each provider's [usage alerts](/notifications#usage-alerts). There's no
+separate switch: to stop them, turn off usage alerts for that provider. A
+reminder due late at night comes in the evening or morning instead, never after
+the reset expires.
+
+Nomo only shows your resets. It never uses or spends them. They come with the
+same usage request as before, straight from Anthropic or OpenAI to your phone.
 
 ## When you hit a limit
 
@@ -218,7 +263,7 @@ Widgets show your Default account unless you pick another one:
 2. Tap **Edit Widget**.
 3. Tap **Account** and pick one.
 
-**Account** is on [Nomo Usage](/widgets#nomo-usage) and
+**Account** is on [Nomo Usage](/free-widgets#nomo-usage) and
 [Nomo Pace](/widgets#nomo-pace). [Nomo Accounts](/widgets#nomo-accounts) shows
 every account at once.
 

@@ -8,8 +8,8 @@ La vinculación entrega a tu teléfono y a tu ordenador una clave de cifrado
 compartida. Ningún servidor la ve nunca, y por eso hace falta un escaneo o un
 código escrito en lugar de un inicio de sesión.
 
-Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
-**10 minutos**.
+Esto se hace una vez por ordenador. Vincular de nuevo sustituye la vinculación
+anterior. La vinculación caduca si no se usa durante **10 minutos**.
 
 <Note>
   Una vinculación cubre la máquina, no el agente. Si usas cualquier combinación
@@ -43,10 +43,16 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair
         ```
+
+        ```bash Terminal icon="terminal"
+        nomo pair
+        ```
         </CodeGroup>
 
         En Antigravity, elige **Allow** (permitir) cuando pregunte si ejecuta un
-        comando de Nomo.
+        comando de Nomo. **Terminal** funciona desde cualquier carpeta, sin
+        ningún agente abierto. Consulta
+        [Desde Terminal](/es/sessions/commands#terminal).
 
         Se abre en tu navegador una página de vinculación con la estética de
         la app y un código QR.
@@ -118,6 +124,10 @@ Esto se hace una vez por ordenador. La vinculación caduca si no se usa durante
 
         ```bash Antigravity icon="/images/providers/antigravity.png"
         /nomo-pair code
+        ```
+
+        ```bash Terminal icon="terminal"
+        nomo pair code
         ```
         </CodeGroup>
 
