@@ -448,10 +448,10 @@ Los colores de estado no cambian nunca: el violeta sigue indicando que una sesi�
 necesita tu respuesta. Un widget que ya estaba en la pantalla de inicio empieza
 en **Automático**.
 
-## Pantalla Actividad y Wrapped <span className="pro-pill" /> {#activity-screen}
+## Pantalla Actividad y Wrapped {#activity-screen}
 
-La pantalla Actividad muestra tu racha y tus tokens al completo. También crea
-una tarjeta Wrapped que puedes compartir.
+La pantalla Actividad muestra tu racha al completo, y tus tokens con Nomo Pro.
+También crea una tarjeta Wrapped que puedes compartir.
 
 <Frame caption="La parte de arriba de la pantalla Actividad: tu racha, el selector de 7 / 14 / 30 días y el gráfico de tokens.">
   <div className="device-frame crop-top">
@@ -463,18 +463,11 @@ una tarjeta Wrapped que puedes compartir.
 Para abrirla:
 
 1. Abre Nomo.
-2. Toca la pestaña **Sesiones**.
-3. Toca la [barra de racha](#streak-bar), justo encima de la barra de
-   pestañas. En iOS 26.0 o anterior, toca en su lugar la tarjeta **Actividad**,
-   arriba del todo de la lista.
+2. Toca la pestaña **Inicio**.
+3. Debajo de tu racha, toca **Ver todo**.
 
 También puedes tocar el widget Actividad de Nomo o Tokens de Nomo. Funciona
-incluso con Nomo cerrado. Nomo espera a saber si tienes Nomo Pro, así que un
-suscriptor nunca acaba en la pantalla de Nomo Pro por error.
-
-En iOS 26.0 o anterior y sin Nomo Pro, la tarjeta muestra una corona,
-**Actividad** y **“Racha, tokens diarios y Wrapped con Nomo Pro.”** Tócala para
-abrir Nomo Pro.
+incluso con Nomo cerrado.
 
 La pantalla muestra:
 
@@ -488,41 +481,14 @@ La pantalla muestra:
 - **“Por modelo”**: una tabla con **Entrada**, **Salida**, **Caché** y
   **Total** para cada modelo.
 
+Sin Nomo Pro, el mapa muestra tus últimos 30 días, y no aparecen **Tokens** ni
+**“Por modelo”**. Consulta [Gratis y Pro](/es/free-and-pro).
+
 Al abrir la pantalla, aparece con una animación de un segundo, más o menos. Si
 tienes activado **“Reducir movimiento”**, todo aparece directamente.
 
 El personaje y el color de la pantalla siguen al proveedor de tu modelo
-principal, como [Tokens de Nomo](#nomo-tokens) en **Automático**. La barra de
-racha hace lo mismo.
-
-### La barra de racha <span className="pro-pill" /> {#streak-bar}
-
-En iOS 26.1 o posterior, la pestaña **Sesiones** tiene una pequeña barra que
-flota justo encima de la barra de pestañas. Muestra tu racha, los tokens de esta
-semana y los últimos 7 días en minibarras.
-
-- Al desplazarte, se encoge y se coloca junto a la barra de pestañas.
-- Tócala para abrir la pantalla Actividad.
-
-A veces muestra otra cosa:
-
-| Qué dice | Qué significa | Qué hace al tocarla |
-| --- | --- | --- |
-| **“Empieza tu racha”** | Todavía no hay ningún ordenador vinculado. | Abre los mismos pasos de vinculación que **“Vincular un ordenador”**. |
-| **“Aún no hay sesiones”** | Hay un ordenador vinculado, pero aún no ha llegado ninguna sesión. | Abre la pantalla Actividad. |
-| **“Actualiza el plugin de Nomo”** | Todos los ordenadores vinculados tienen un plugin de Nomo anterior a la 2.4.0. | Abre los pasos para actualizarlo. |
-
-Cuando la barra está encogida, dicen **“Vincular un ordenador”**, **“Aún no hay
-sesiones”** y **“Actualizar plugin”**.
-
-La barra necesita Nomo Pro. Sin Nomo Pro, no verás la barra.
-
-Cuando sale una versión nueva de Nomo, la barra de actualización ocupa este
-lugar. Actualiza Nomo, o toca **×** en la barra de actualización, para que
-vuelva la barra de racha.
-
-En iOS 26.0 o anterior, no hay barra. La tarjeta de racha aparece arriba del
-todo de la lista de sesiones.
+principal, como [Tokens de Nomo](#nomo-tokens) en **Automático**.
 
 ### Wrapped {#wrapped}
 
@@ -533,6 +499,10 @@ Wrapped convierte tu semana, tu mes o tu año en una imagen que puedes compartir
 3. Toca **Semana** (los últimos 7 días), **Mes** (los últimos 30 días) o **Año**
    (este año natural).
 4. Toca **Compartir** y elige dónde enviarla.
+
+Sin Nomo Pro, puedes elegir **Semana** o **Mes**, y el número grande es tu racha
+o tu tiempo programando. **Año**, y los tokens como número grande, vienen con
+Nomo Pro.
 
 <Frame caption="Una tarjeta Wrapped de una semana. Siempre es oscura, sea cual sea el aspecto de tu iPhone.">
   <div className="widget-shot narrow">
@@ -548,8 +518,8 @@ incluye tus prompts, nombres de proyectos ni rutas de archivos.
 
 ## Más de un ordenador {#more-than-one-computer}
 
-Actividad de Nomo, Tokens de Nomo, la pantalla Actividad, Wrapped y la barra de
-racha suman todos los ordenadores vinculados.
+Actividad de Nomo, Tokens de Nomo, la pantalla Actividad y Wrapped suman todos
+los ordenadores vinculados.
 
 - El tiempo activo cuenta una sola vez. Si programas en dos Mac a la vez, ese
   tiempo no se cuenta dos veces.
