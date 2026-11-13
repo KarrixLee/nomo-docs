@@ -5,7 +5,7 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "命令"]
 ---
 
-Claude Code、Codex、OpenCode、Antigravity 和 Devin 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor、Antigravity 和 Devin 里是 `/` skill，在 Codex 里是 `$` skill。
+Claude Code、Codex、OpenCode、Antigravity 和 Devin 上都有的五条命令，外加只有 OpenCode 才需要的第六条，Cursor 上则是四条。你要在想影响的那台电脑上、从一个智能体会话里运行它们——在 Claude Code 和 OpenCode 里是 `/` 命令，在 Cursor、Antigravity 和 Devin 里是 `/` skill，在 Codex 里是 `$` skill。配对、状态、重置和解除配对也能在终端里运行：见[终端命令](#terminal)。
 
 <Note>
   在 Antigravity 里，每条 Nomo 命令都会先问你。选择 **Allow**（允许）——Antigravity 在你的电脑上运行任何命令前都会先问。详见[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity#commands)。
@@ -35,6 +35,46 @@ Claude Code、Codex、OpenCode、Antigravity 和 Devin 上都有的五条命令�
 审批那一行上 Cursor 的空格同样不是漏写：Cursor 会话是只读的，所以没有远程审批可以暂停——[搭配 Cursor 使用](/zh-Hans/sessions/cursor)。
 
 移除 Nomo 没有 `/` 命令：只要在终端里粘贴一行——见 [uninstall](#uninstall)。
+
+## 终端命令 {#terminal}
+
+你也可以在终端里运行主要的命令，在哪个文件夹里都行。它们都以 `nomo` 开头。
+
+| | 终端 |
+| --- | --- |
+| 安装或更新 Nomo | `bunx nomo-ai` |
+| <a href="#pair">配对这台电脑</a> | `nomo pair` |
+| 改用手动输入的配对码配对 | `nomo pair code` |
+| <a href="#status">检查健康状况</a> | `nomo status` |
+| <a href="#reset">清理卡住的会话，并马上发送你的活动</a> | `nomo reset` |
+| <a href="#unpair">断开这台电脑</a> | `nomo unpair` |
+| <a href="#uninstall">从一个智能体里移除 Nomo</a> | `nomo uninstall --cursor` |
+
+它们和智能体里的命令作用相同。一次配对或一次重置，就覆盖这台电脑上的所有智能体。如果还没装 Nomo，它们会直接告诉你：
+
+```
+Nomo is not installed on this computer yet — run `bunx nomo-ai` first.
+```
+
+安装工具 `bunx nomo-ai` 会替你加上简短的 `nomo` 命令。不想要的话，加上 `--no-global`。
+
+### 找不到 `nomo` 时 {#nomo-not-found}
+
+在 2.4.2 之前装的 Nomo？再运行一次安装工具，就能用上 `nomo`：
+
+```bash
+bunx nomo-ai
+```
+
+也可以把 `nomo` 换成 `bunx nomo-ai`，作用完全一样：
+
+```bash
+bunx nomo-ai status
+```
+
+没有 bun？改用 `npx nomo-ai`，比如 `npx nomo-ai status`。在 `bunx` 或 `npx` 后面，一定要输入完整的名字 `nomo-ai`。
+
+电脑上已经有另一个叫 `nomo` 的程序？安装工具不会动它，并会告诉你。继续用 `bunx nomo-ai` 就行，比如 `bunx nomo-ai pair`。
 
 ## pair {#pair}
 
@@ -68,6 +108,11 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash 终端 icon="terminal"
+nomo pair             # QR code, opens your browser
+nomo pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 用 Devin 插件时：`/nomo:pair` 和 `/nomo:pair code`。
@@ -75,6 +120,8 @@ $nomo-pair code        # one-time code, printed in the terminal
 不带参数时，它会在浏览器里打开一个配了主题的页面，上面有二维码。在 App 里扫一下，页面会自己翻成 **Paired ✓**。
 
 `code` 参数完全跳过浏览器，直接打印一段可以手输的一次性配对码，供无头机器或 SSH 会话使用。它是刻意排在第二位的：那段配对码会落进你的终端，也就落进了智能体的转录记录。
+
+给已经配对过的电脑再配对一次，会替换掉原来的配对。电脑已经配对好了，就不需要再配对。
 
 配对若 **10 分钟**内未使用就会过期。一次配对覆盖的是这台机器，而不是某个智能体——同一台 Mac 上的 Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 共用它。完整流程见[配对](/zh-Hans/setup/pairing)。
 
@@ -104,6 +151,10 @@ $nomo-status
 
 ```bash Devin icon="/images/providers/devin.svg"
 /nomo-status
+```
+
+```bash 终端 icon="terminal"
+nomo status
 ```
 </CodeGroup>
 
@@ -162,7 +213,7 @@ Claude Code — you are here
 Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
-              → run /nomo-cc:pair
+              → run /nomo-cc:pair, or nomo pair in a terminal
 
 Claude Code — you are here
   Hooks       firing · last 6s ago
@@ -253,18 +304,27 @@ $nomo-reset
 ```bash Devin icon="/images/providers/devin.svg"
 /nomo-reset
 ```
+
+```bash 终端 icon="terminal"
+nomo reset
+```
 </CodeGroup>
 
 用 Devin 插件时：`/nomo:reset`。
 
-停掉看门狗，清理掉失效或残留的会话行，然后通知你的手机把它们丢掉。
+停掉看门狗，清理掉失效或残留的会话行，然后通知你的手机把它们丢掉。接着它会马上发送你的活动（[Nomo 活动](/zh-Hans/widgets#nomo-activity)里的热力图和连续记录），不用再等最多 6 小时。
 
 ```
 Stopped the watchdog (it restarts automatically on your next session).
 Cleared 4 stale session record(s) (4 end signals delivered to your phone).
 Left 2 live sessions untouched.
-Pairing and keys were not touched — use the unpair command if you want that.
+Sent your activity summary (heatmap and streak) to your phone.
+Pairing and keys were not touched — to disconnect this computer, run nomo unpair, or your agent's unpair command.
 ```
+
+活动那一行也可能显示 `No activity to send yet.`，或者说现在发不出去、稍后会自己重试。在 Claude Code 历史很长的电脑上，第一次重置可能要花一点时间。
+
+一次重置覆盖这台电脑上的所有智能体。
 
 会话行看着陈旧或重复时，这是最稳妥的一招，因为它会告诉你自己没动过什么。OpenCode 的会话行属于 OpenCode 的**服务器**，所以要是有一行清不掉，先退出 OpenCode——见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode#reset-needs-opencode-closed)。
 
@@ -293,6 +353,10 @@ $nomo-unpair
 
 ```bash Devin icon="/images/providers/devin.svg"
 /nomo-unpair
+```
+
+```bash 终端 icon="terminal"
+nomo unpair
 ```
 </CodeGroup>
 
@@ -417,21 +481,24 @@ rm ~/.config/opencode/commands/nomo-*.md
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
-bunx nomo-ai --uninstall --cursor
+nomo uninstall --cursor
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-bunx nomo-ai --uninstall --antigravity
+nomo uninstall --antigravity
 ```
 
 ```bash Devin icon="/images/providers/devin.svg"
-bunx nomo-ai --uninstall --devin
+nomo uninstall --devin
 ```
 </CodeGroup>
 
+
 用 Devin 插件时：`devin plugins remove nomo`。
 
-没有 `bunx`？改用 `npx`——比如 `npx nomo-ai --uninstall --cursor`。也可以直接运行那个智能体自己的脚本，比如 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`（Antigravity 用 `antigravity-install.mjs`，Devin 用 `devin-install.mjs`）。
+找不到 `nomo`？改用 `bunx nomo-ai uninstall --cursor`。见[找不到 `nomo` 时](#nomo-not-found)。旧的写法 `--uninstall` 也能用。也可以直接运行那个智能体自己的脚本，比如 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`（Antigravity 用 `antigravity-install.mjs`，Devin 用 `devin-install.mjs`）。
+
+卸载不会移除简短的 `nomo` 命令，并会告诉你这一点。想把它也去掉，运行 `bun remove -g nomo-ai`（或 `npm uninstall -g nomo-ai`）。
 
 Antigravity 和 Devin 完成后会告诉你：
 
@@ -445,15 +512,15 @@ devin-install: removed Nomo's hooks from Devin — restart devin
 
 然后重启那个智能体。Cursor 和 Antigravity：退出应用再重新打开，并重启所有开着的 `cursor-agent` 或 `agy`。Devin：关掉每一个开着的 `devin`，再重新启动。
 
-它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，**先**运行 [unpair](#unpair)——Nomo 一移除，这条命令也就没了。
+它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，运行 `nomo unpair`，在卸载之前或之后都可以。见 [unpair](#unpair)。
 
 把 Nomo 的 Claude Code 插件导入过 Antigravity？也用 `agy plugin uninstall nomo-cc` 移除它，然后重启 Antigravity。
 
-`bunx nomo-ai --uninstall` 必须指定智能体——它从不猜。每个智能体的安装细节见[安装](/zh-Hans/setup/install)。
+`nomo uninstall` 必须指定智能体——它从不猜。每个智能体的安装细节见[安装](/zh-Hans/setup/install)。
 
 ## 在终端里运行 {#without-slash-commands}
 
-Antigravity 或 Devin 不认识 Nomo 的命令？改在终端里运行。用 Nomo 安装工具时可以这样做：
+Antigravity 或 Devin 不认识 Nomo 的命令？改在终端里运行。配对、状态、重置和解除配对用 [`nomo` 命令](#terminal)最简单。下面是完整列表，用 Nomo 安装工具时可以这样做：
 
 | | |
 | --- | --- |

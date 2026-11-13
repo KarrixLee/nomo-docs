@@ -30,6 +30,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電
 
 摘要會寫成 `沒有進行中的 sessions`、`1 個 session`，或 `3 個進行中 · 共 7 個 session`。「進行中」不含已結束的 session、讀不到的 session，以及任何自稱在工作、卻已超過 10 分鐘沒有消息的 session。
 
+有 session 在你上次查看後結束時，摘要會多出一個藍色的數字：`3 個進行中 · 共 7 個 session · 2 個新結果`。請看[新結果](#new-results)。
+
 右上角的標籤顯示你配對了幾台電腦。碰到上限時會轉為橘色。
 
 <Note>
@@ -96,6 +98,31 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "session", "電
 一個請求被處理完之後，那一列會帶上一行小字說明怎麼處理的：`已允許`、`已拒絕`、`已設為一律允許`、`已回答`，或是一句誠實的失敗訊息，像 `已過期 — 請在電腦上繼續`。完整清單在[在手機上回覆](/zh-Hant/sessions/approvals#what-the-caption-tells-you)。
 
 各列依最近活動排序。Nomo 從不隱藏任何一列 — 這份列表就是中繼伺服器所持有內容的原樣。
+
+## 新結果 {#new-results}
+
+session 結束了、你卻還沒看過時，那一列的左邊會出現一個小藍點。在「Sessions」分頁裡，電腦卡片會顯示有幾個新結果，例如 `2 個新結果`。這樣不用一台一台打開電腦，也能知道有事情完成了。
+
+<Frame caption="電腦卡片會統計你還沒看過的已結束 session。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/sessions-new-count.png" alt="顯示 MacBook Pro、5 active · 7 sessions · 2 new 的電腦卡片，2 new 為藍色" />
+    <img className="only-dark" src="/images/sessions-new-count-dark.png" alt="顯示 MacBook Pro、5 active · 7 sessions · 2 new 的電腦卡片，2 new 為藍色" />
+  </div>
+</Frame>
+
+<Frame caption="在電腦裡，藍點就在已結束 session 的綠色勾號旁邊。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/session-unread-dot.png" alt="兩列 session：一列執行中，另一列已完成，綠色勾號左邊有一個小藍點" />
+    <img className="only-dark" src="/images/session-unread-dot-dark.png" alt="兩列 session：一列執行中，另一列已完成，綠色勾號左邊有一個小藍點" />
+  </div>
+</Frame>
+
+清除藍點的方法：
+
+- **打開這台電腦。** 你正在看的代理分頁上的藍點，會在你關閉它時清除。打開期間藍點還在，方便你找到哪些是新的。
+- **點一下某一列把它展開。** 這一列的藍點會立刻清除。
+
+計數涵蓋面板裡所有的代理分頁，所以即使你停在 Claude Code 分頁，已結束的 Codex session 也會算進去。用「選擇代理」隱藏的代理不計入。在你更新到 Nomo 2.4.2 之前就已結束的 session 不會有藍點。
 
 ## 點一下查看細節 {#tap-a-row-for-detail}
 

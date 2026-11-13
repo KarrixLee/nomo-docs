@@ -91,6 +91,7 @@
                     "icon": "puzzle-piece",
                     "root": "widget",
                     "pages": [
+                      "free-widgets",
                       "widgets"
                     ]
                   },
@@ -172,6 +173,7 @@
                     "icon": "puzzle-piece",
                     "root": "es/widget",
                     "pages": [
+                      "es/free-widgets",
                       "es/widgets"
                     ]
                   },
@@ -253,6 +255,7 @@
                     "icon": "puzzle-piece",
                     "root": "ja/widget",
                     "pages": [
+                      "ja/free-widgets",
                       "ja/widgets"
                     ]
                   },
@@ -334,6 +337,7 @@
                     "icon": "puzzle-piece",
                     "root": "ko/widget",
                     "pages": [
+                      "ko/free-widgets",
                       "ko/widgets"
                     ]
                   },
@@ -415,6 +419,7 @@
                     "icon": "puzzle-piece",
                     "root": "zh-Hans/widget",
                     "pages": [
+                      "zh-Hans/free-widgets",
                       "zh-Hans/widgets"
                     ]
                   },
@@ -496,6 +501,7 @@
                     "icon": "puzzle-piece",
                     "root": "zh-Hant/widget",
                     "pages": [
+                      "zh-Hant/free-widgets",
                       "zh-Hant/widgets"
                     ]
                   },

@@ -7,7 +7,7 @@ icon: "qrcode-read"
 配对会让你的手机和电脑各自持有一份共享的加密密钥。服务器永远看不到这个密钥 ——
 这也是为什么它需要一次扫码或手动输码，而不是登录。
 
-每台电脑做一次。配对若 **10 分钟**内未使用就会过期。
+每台电脑做一次。再配对一次会替换掉原来的配对。配对若 **10 分钟**内未使用就会过期。
 
 <Note>
   一次配对覆盖的是这台机器，而不是某个 智能体。如果你在同一台电脑上同时使用
@@ -44,10 +44,15 @@ icon: "qrcode-read"
         ```bash Devin icon="/images/providers/devin.svg"
         /nomo-pair
         ```
+
+        ```bash 终端 icon="terminal"
+        nomo pair
+        ```
         </CodeGroup>
 
         在 Antigravity 里，它要运行 Nomo 命令时选择 **Allow**（允许）。
         用 Devin 插件的话，改为在 Devin 里输入 `/nomo:pair`。如果 Devin 不认识这条命令，就把 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` 粘贴到终端里。
+        **终端**在哪个文件夹里都能用，也不用打开任何智能体。见[终端命令](/zh-Hans/sessions/commands#terminal)。
 
         浏览器会打开一个带二维码的配对页面。
 
@@ -111,6 +116,10 @@ icon: "qrcode-read"
 
         ```bash Devin icon="/images/providers/devin.svg"
         /nomo-pair code
+        ```
+
+        ```bash 终端 icon="terminal"
+        nomo pair code
         ```
         </CodeGroup>
 

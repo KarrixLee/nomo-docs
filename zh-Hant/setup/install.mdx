@@ -441,19 +441,28 @@ npx nomo-ai
 ```
 </CodeGroup>
 
-一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的。接著它就去跑每個代理本來的安裝流程 — 也就是上面那六套。它不會在全域裝任何東西，也不會留下套件。
+一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的。接著它就去跑每個代理本來的安裝流程 — 也就是上面那六套。
+
+它也會加入一個簡短的 `nomo` 指令，之後你就能打 `nomo pair`、`nomo status` 等指令。它會顯示：
+
+```
+Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+```
+
+如果不想要，請加上 `--no-global`。之後如果找不到 `nomo`，用 `bunx nomo-ai` 效果一樣，例如 `bunx nomo-ai pair`。請見[找不到 `nomo` 時](/zh-Hant/sessions/commands#nomo-not-found)。
 
 寫指令碼或在 CI 裡使用時：
 
 | 選項 | |
 | --- | --- |
 | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | 只裝這幾個 — 只要指定其中任何一個，就會略過選擇畫面 |
-| `--all` | 六個全裝，不管有沒有找到 — 只有 Cursor、Antigravity 和 Devin 例外：這台電腦上沒有它們時會略過（想照裝就指定 `--cursor`、`--antigravity` 或 `--devin`） |
+| `--all` | 全部都裝，不管有沒有找到 — 只有 Cursor、Antigravity 和 Devin 例外：這台電腦上沒有它們時會略過（想照裝就指定 `--cursor`、`--antigravity` 或 `--devin`） |
 | `-y`、`--yes` | 不出選擇畫面，找到多少裝多少 |
 | `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
-| `--uninstall` | 搭配 `--cursor`、`--antigravity` 或 `--devin`：從那個代理移除 Nomo。請指定代理 — 它絕不會自己猜。請見 [uninstall](/zh-Hant/sessions/commands#uninstall) |
+| `--no-global` | 不加上簡短的 `nomo` 指令。請見[從終端機執行](/zh-Hant/sessions/commands#terminal) |
+| `uninstall` | 搭配 `--cursor`、`--antigravity` 或 `--devin`：從那個代理移除 Nomo（`--uninstall` 也可以）。請指定代理 — 它絕不會自己猜。請見 [uninstall](/zh-Hant/sessions/commands#uninstall) |
 
-它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`（使用 Devin 外掛程式時是 `/nomo:pair`）。
+它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — 在終端機裡是 `nomo pair`，或是 `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`（使用 Devin 外掛程式時是 `/nomo:pair`）。更多終端機指令請見[從終端機執行](/zh-Hant/sessions/commands#terminal)。
 
 ## 更新 {#updating}
 

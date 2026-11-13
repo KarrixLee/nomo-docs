@@ -441,19 +441,28 @@ npx nomo-ai
 ```
 </CodeGroup>
 
-一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的。接着它就去跑每个智能体本来的安装流程——也就是上面那六套。它不会全局安装任何东西，也不会留下包。
+一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的。接着它就去跑每个智能体本来的安装流程——也就是上面那六套。
+
+它还会加一个简短的 `nomo` 命令，之后你就可以输入 `nomo pair`、`nomo status` 等命令。它会显示：
+
+```
+Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+```
+
+不想要的话，加上 `--no-global`。之后如果找不到 `nomo`，`bunx nomo-ai` 的作用完全一样，比如 `bunx nomo-ai pair`。见[找不到 `nomo` 时](/zh-Hans/sessions/commands#nomo-not-found)。
 
 写脚本或在 CI 里用时：
 
 | 选项 | |
 | --- | --- |
 | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | 只装这些——只要指定其中任意一个，就会跳过选择界面 |
-| `--all` | 六个全装，无论有没有找到——只有 Cursor、Antigravity 和 Devin 例外：这台电脑上没有它们时会跳过（想照装就指定 `--cursor`、`--antigravity` 或 `--devin`） |
+| `--all` | 全部都装，无论有没有找到——只有 Cursor、Antigravity 和 Devin 例外：这台电脑上没有它们时会跳过（想照装就指定 `--cursor`、`--antigravity` 或 `--devin`） |
 | `-y`、`--yes` | 不出选择界面，找到多少装多少 |
 | `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
-| `--uninstall` | 配合 `--cursor`、`--antigravity` 或 `--devin` 使用：从那个智能体里移除 Nomo。必须指定智能体——它从不猜。见 [uninstall](/zh-Hans/sessions/commands#uninstall) |
+| `--no-global` | 不加简短的 `nomo` 命令。见[终端命令](/zh-Hans/sessions/commands#terminal) |
+| `uninstall` | 配合 `--cursor`、`--antigravity` 或 `--devin` 使用：从那个智能体里移除 Nomo（写成 `--uninstall` 也可以）。必须指定智能体——它从不猜。见 [uninstall](/zh-Hans/sessions/commands#uninstall) |
 
-它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——`/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`（用 Devin 插件时是 `/nomo:pair`）。
+它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——在终端里运行 `nomo pair`，或者用 `/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`（用 Devin 插件时是 `/nomo:pair`）。更多终端命令见[终端命令](/zh-Hans/sessions/commands#terminal)。
 
 ## 更新 {#updating}
 

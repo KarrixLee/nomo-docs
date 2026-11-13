@@ -30,6 +30,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッショ�
 
 概要の行には `アクティブなセッションはありません`、`セッション1件`、`アクティブ3件 · 合計7件` のように表示されます。「アクティブ」には、完了したセッション、読み取れないセッション、そして作業中と称しながら 10 分以上沈黙しているセッションは含まれません。
 
+前回見たあとに終わったセッションがあると、概要の行に青い件数が加わります（`アクティブ3件 · 合計7件 · 新着2件`）。[新しい結果](#new-results)をご覧ください。
+
 右上のチップには、ペアリング済みのコンピュータの台数が表示されます。上限に達するとオレンジ色に変わります。
 
 <Note>
@@ -96,6 +98,31 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "セッショ�
 許可リクエストが解決すると、その行には結果を示す小さなキャプションが付きます。`許可済み`、`拒否済み`、`常に許可`、`回答済み`、あるいは `期限切れ — コンピュータで続けてください` のような率直な失敗の知らせです。一覧は [iPhone からの回答](/ja/sessions/approvals#what-the-caption-tells-you)にあります。
 
 行はアクティビティの新しい順に並びます。Nomo が行を隠すことはありません — この一覧は中継サーバーが保持している内容をそのまま映しています。
+
+## 新しい結果 {#new-results}
+
+セッションが終わり、まだそれを見ていないときは、その行の左に小さな青い点が付きます。「セッション」タブでは、コンピュータのカードに `新着2件` のように新しい結果の件数が表示されます。コンピュータを 1 台ずつ開かなくても、何かが終わったことがわかります。
+
+<Frame caption="コンピュータのカードには、まだ見ていない完了済みセッションの件数が表示されます。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/sessions-new-count.png" alt="MacBook Pro、5 active · 7 sessions · 2 new と表示されたコンピュータのカード。2 new は青色" />
+    <img className="only-dark" src="/images/sessions-new-count-dark.png" alt="MacBook Pro、5 active · 7 sessions · 2 new と表示されたコンピュータのカード。2 new は青色" />
+  </div>
+</Frame>
+
+<Frame caption="コンピュータの中では、終わったセッションの緑のチェックの横に青い点が付きます。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/session-unread-dot.png" alt="2 つのセッション行。1 つは実行中、もう 1 つは完了で、緑のチェックの左に小さな青い点" />
+    <img className="only-dark" src="/images/session-unread-dot-dark.png" alt="2 つのセッション行。1 つは実行中、もう 1 つは完了で、緑のチェックの左に小さな青い点" />
+  </div>
+</Frame>
+
+青い点を消すには:
+
+- **コンピュータを開きます。** 見ているエージェントのタブの点は、閉じたときに消えます。開いている間は点が残るので、どれが新しいかわかります。
+- **行をタップして展開します。** その行の点はすぐに消えます。
+
+件数はドロワーのすべてのエージェントのタブが対象なので、Claude Code のタブを見ていても、終わった Codex のセッションが数えられます。「エージェントを選択」で非表示にしたエージェントは数えられません。Nomo 2.4.2 に更新する前に終わったセッションには点は付きません。
 
 ## セッションの詳細 {#tap-a-row-for-detail}
 

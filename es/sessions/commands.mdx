@@ -9,7 +9,8 @@ Cinco comandos en Claude Code, Codex, OpenCode, Antigravity y Devin, un sexto
 que solo OpenCode necesita, y cuatro en Cursor. Se ejecutan desde dentro de una
 sesión del agente, en el ordenador al que quieras afectar: un comando con `/` en
 Claude Code y en OpenCode, una skill con `/` en Cursor, Antigravity y Devin, una
-skill con `$` en Codex.
+skill con `$` en Codex. Vincular, el estado, el reinicio y desvincular también funcionan en Terminal: consulta
+[Desde Terminal](#terminal).
 
 <Note>
   En Antigravity, cada comando de Nomo pregunta antes. Elige **Allow**
@@ -58,6 +59,53 @@ pausar — [Usar Cursor](/es/sessions/cursor).
 Quitar Nomo no tiene comando con `/`: es una línea que pegas en la terminal —
 mira [uninstall](#uninstall).
 
+## Desde Terminal {#terminal}
+
+También puedes ejecutar los comandos principales en Terminal, desde cualquier
+carpeta. Empiezan por `nomo`.
+
+| | Terminal |
+| --- | --- |
+| Instalar o actualizar Nomo | `bunx nomo-ai` |
+| <a href="#pair">Vincular este ordenador</a> | `nomo pair` |
+| Vincular con un código | `nomo pair code` |
+| <a href="#status">Comprobar la salud</a> | `nomo status` |
+| <a href="#reset">Limpiar sesiones atascadas y enviar tu actividad ya</a> | `nomo reset` |
+| <a href="#unpair">Desconectar este ordenador</a> | `nomo unpair` |
+| <a href="#uninstall">Quitar Nomo de un agente</a> | `nomo uninstall --cursor` |
+
+Hacen lo mismo que los comandos dentro de tu agente. Una sola vinculación o un
+solo reinicio cubre todos los agentes de ese ordenador. Si Nomo aún no está
+instalado, te lo dicen:
+
+```
+Nomo is not installed on this computer yet — run `bunx nomo-ai` first.
+```
+
+El instalador, `bunx nomo-ai`, añade el comando corto `nomo` por ti. Para
+omitirlo, añade `--no-global`.
+
+### Si no se encuentra `nomo` {#nomo-not-found}
+
+¿Instalaste Nomo antes de la 2.4.2? Ejecuta el instalador una vez más para
+tener `nomo`:
+
+```bash
+bunx nomo-ai
+```
+
+O escribe `bunx nomo-ai` en lugar de `nomo`. Funciona igual:
+
+```bash
+bunx nomo-ai status
+```
+
+¿No tienes bun? Usa `npx nomo-ai`, como `npx nomo-ai status`. Escribe siempre
+el nombre completo, `nomo-ai`, después de `bunx` o `npx`.
+
+¿Ya tienes otro programa llamado `nomo`? El instalador no lo toca y te lo
+dice. Sigue usando `bunx nomo-ai`, como `bunx nomo-ai pair`.
+
 ## pair {#pair}
 
 <CodeGroup>
@@ -90,6 +138,11 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash Terminal icon="terminal"
+nomo pair             # QR code, opens your browser
+nomo pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 Con el plugin de Devin: `/nomo:pair` y `/nomo:pair code`.
@@ -101,6 +154,9 @@ El argumento `code` se salta el navegador por completo e imprime un código de u
 solo uso que puedes escribir, pensado para una máquina sin interfaz gráfica o una
 sesión SSH. Es la vía de segunda opción a propósito: ese código acaba en tu
 terminal y, por tanto, en la transcripción del agente.
+
+Vincular un ordenador que ya está vinculado sustituye su vinculación. Si el
+ordenador ya está vinculado, no hace falta vincularlo otra vez.
 
 Las vinculaciones caducan a los **10 minutos** sin usarse. Una vinculación cubre
 la máquina, no el agente: Claude Code, Codex, OpenCode, Cursor, Antigravity y
@@ -132,6 +188,10 @@ $nomo-status
 
 ```bash Devin icon="/images/providers/devin.svg"
 /nomo-status
+```
+
+```bash Terminal icon="terminal"
+nomo status
 ```
 </CodeGroup>
 
@@ -225,7 +285,7 @@ dice aquí en lugar de esperar a que vayas a mirar:
 Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
-              → run /nomo-cc:pair
+              → run /nomo-cc:pair, or nomo pair in a terminal
 
 Claude Code — you are here
   Hooks       firing · last 6s ago
@@ -327,19 +387,33 @@ $nomo-reset
 ```bash Devin icon="/images/providers/devin.svg"
 /nomo-reset
 ```
+
+```bash Terminal icon="terminal"
+nomo reset
+```
 </CodeGroup>
 
 Con el plugin de Devin: `/nomo:reset`.
 
 Detiene el proceso supervisor y limpia las filas de sesión muertas o fantasma, y
-después le dice a tu teléfono que las suelte.
+después le dice a tu teléfono que las suelte. Luego envía tu actividad (el mapa
+y la racha de [Actividad de Nomo](/es/widgets#nomo-activity)) en el momento, en
+lugar de esperar hasta 6 horas.
 
 ```
 Stopped the watchdog (it restarts automatically on your next session).
 Cleared 4 stale session record(s) (4 end signals delivered to your phone).
 Left 2 live sessions untouched.
-Pairing and keys were not touched — use the unpair command if you want that.
+Sent your activity summary (heatmap and streak) to your phone.
+Pairing and keys were not touched — to disconnect this computer, run nomo unpair, or your agent's unpair command.
 ```
+
+La línea de la actividad también puede decir `No activity to send yet.`, o que
+ahora no ha podido enviarla y lo volverá a intentar más tarde por su cuenta. El
+primer reinicio en un ordenador con un historial largo de Claude Code puede
+tardar un rato.
+
+Un solo reinicio cubre todos los agentes de ese ordenador.
 
 Es lo seguro a lo que recurrir cuando las filas se ven obsoletas o duplicadas,
 porque dice qué ha dejado intacto. Una fila de OpenCode pertenece al **servidor**
@@ -371,6 +445,10 @@ $nomo-unpair
 
 ```bash Devin icon="/images/providers/devin.svg"
 /nomo-unpair
+```
+
+```bash Terminal icon="terminal"
+nomo unpair
 ```
 </CodeGroup>
 
@@ -523,24 +601,29 @@ rm ~/.config/opencode/commands/nomo-*.md
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
-bunx nomo-ai --uninstall --cursor
+nomo uninstall --cursor
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-bunx nomo-ai --uninstall --antigravity
+nomo uninstall --antigravity
 ```
 
 ```bash Devin icon="/images/providers/devin.svg"
-bunx nomo-ai --uninstall --devin
+nomo uninstall --devin
 ```
 </CodeGroup>
 
+
 Con el plugin de Devin: `devin plugins remove nomo`.
 
-¿No tienes `bunx`? Usa `npx` en su lugar; por ejemplo,
-`npx nomo-ai --uninstall --cursor`. O ejecuta el script propio del agente, como
+¿No se encuentra `nomo`? Usa `bunx nomo-ai uninstall --cursor` en su lugar.
+Consulta [Si no se encuentra `nomo`](#nomo-not-found). La forma antigua
+`--uninstall` también funciona. O ejecuta el script propio del agente, como
 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
 (`antigravity-install.mjs` para Antigravity, `devin-install.mjs` para Devin).
+
+Desinstalar deja el comando corto `nomo` en su sitio, y te lo dice. Para
+quitarlo también, ejecuta `bun remove -g nomo-ai` (o `npm uninstall -g nomo-ai`).
 
 Antigravity y Devin avisan cuando terminan:
 
@@ -558,19 +641,22 @@ todos los `devin` abiertos y vuelve a iniciarlo.
 
 Solo quita lo que Nomo añadió a ese agente. Tu teléfono sigue vinculado, así que
 tus otros agentes siguen funcionando. Para desconectar también este ordenador,
-ejecuta [unpair](#unpair) **antes**: cuando Nomo ya no está, ese comando tampoco.
+ejecuta `nomo unpair`, antes o después de desinstalar. Consulta
+[unpair](#unpair).
 
 ¿Importaste en Antigravity el plugin de Nomo para Claude Code? Quítalo también
 con `agy plugin uninstall nomo-cc` y reinicia Antigravity.
 
-`bunx nomo-ai --uninstall` siempre necesita que indiques el agente: nunca lo
+`nomo uninstall` siempre necesita que indiques el agente: nunca lo
 adivina. Más sobre la instalación de cada agente en
 [Instalación](/es/setup/install).
 
 ## Sin los comandos con / {#without-slash-commands}
 
 ¿Antigravity o Devin no reconocen los comandos de Nomo? Ejecútalos desde
-Terminal. Esto funciona con el instalador de Nomo:
+Terminal. Vincular, el estado, el reinicio y desvincular son más fáciles como
+[comandos `nomo`](#terminal). La lista completa, que funciona con el
+instalador de Nomo:
 
 | | |
 | --- | --- |

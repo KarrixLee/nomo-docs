@@ -30,6 +30,8 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
 
 摘要文字会写成 `没有进行中的会话`、`1 个会话`，或者 `3 个进行中 · 共 7 个会话`。“进行中”不算已完成的会话、读不出来的会话，以及那些声称在干活、却已经超过 10 分钟没动静的会话。
 
+有会话在你上次查看后完成时，摘要会多出一个蓝色的数字：`3 个进行中 · 共 7 个会话 · 2 个新结果`。见[新结果](#new-results)。
+
 右上角有一个角标，显示你配对了多少台电脑。到达上限时它会变成橙色。
 
 <Note>
@@ -96,6 +98,31 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "iPhone", "会话", "电�
 一条请求有了结果之后，这一行会带上一句小字说明它是怎么结束的：`已允许`、`已拒绝`、`已设为始终允许`、`已回答`，或者一个诚实的失败，比如 `已过期——请在电脑上继续`。完整清单在[在手机上回答](/zh-Hans/sessions/approvals#what-the-caption-tells-you)。
 
 会话行按最近活动排序。Nomo 从不隐藏任何一行——这个列表原样映射中继服务器上的内容。
+
+## 新结果 {#new-results}
+
+会话完成了、你却还没看过时，它所在行的左边会出现一个小蓝点。在**会话**标签页里，电脑卡片会显示有多少个新结果，比如 `2 个新结果`。这样不用逐台打开电脑，也能知道有事情完成了。
+
+<Frame caption="电脑卡片会统计你还没看过的已完成会话。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/sessions-new-count.png" alt="显示 MacBook Pro、5 active · 7 sessions · 2 new 的电脑卡片，2 new 为蓝色" />
+    <img className="only-dark" src="/images/sessions-new-count-dark.png" alt="显示 MacBook Pro、5 active · 7 sessions · 2 new 的电脑卡片，2 new 为蓝色" />
+  </div>
+</Frame>
+
+<Frame caption="在电脑里，蓝点就在已完成会话的绿色对勾旁边。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/session-unread-dot.png" alt="两行会话：一行运行中，另一行已完成，绿色对勾左边有一个小蓝点" />
+    <img className="only-dark" src="/images/session-unread-dot-dark.png" alt="两行会话：一行运行中，另一行已完成，绿色对勾左边有一个小蓝点" />
+  </div>
+</Frame>
+
+清除蓝点的方法：
+
+- **打开这台电脑。** 你正在看的智能体标签页上的蓝点，会在你关闭它时清除。打开期间蓝点还在，方便你找到哪些是新的。
+- **轻点某一行把它展开。** 这一行的蓝点会立刻清除。
+
+计数涵盖详情页里所有的智能体标签页，所以即使你停在 Claude Code 标签页，已完成的 Codex 会话也会算进去。用**选择智能体**隐藏的智能体不计入。在你更新到 Nomo 2.4.2 之前就已完成的会话不会带蓝点。
 
 ## 展开详情 {#tap-a-row-for-detail}
 

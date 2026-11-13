@@ -8,7 +8,8 @@ icon: "qrcode-read"
 Pairing hands your phone and your computer a shared encryption key. No server
 ever sees it — which is why it takes a scan or a typed code rather than a login.
 
-You do this once per computer. The pairing expires if unused for **10 minutes**.
+You do this once per computer. Pairing again replaces the old pairing. The
+pairing expires if unused for **10 minutes**.
 
 <Note>
   One pairing covers the machine, not the agent. If you run any mix of Claude
@@ -46,6 +47,10 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
         ```bash Devin icon="/images/providers/devin.svg"
         /nomo-pair
         ```
+
+        ```bash Terminal icon="terminal"
+        nomo pair
+        ```
         </CodeGroup>
 
         In Antigravity, choose **Allow** when it asks to run a Nomo command.
@@ -53,6 +58,8 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
         doesn't know the command, paste
         `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` into
         Terminal.
+        **Terminal** works from any folder, with no agent open. See
+        [From Terminal](/sessions/commands#terminal).
 
         A themed pairing page opens in your browser with a QR code.
 
@@ -125,6 +132,10 @@ You do this once per computer. The pairing expires if unused for **10 minutes**.
 
         ```bash Devin icon="/images/providers/devin.svg"
         /nomo-pair code
+        ```
+
+        ```bash Terminal icon="terminal"
+        nomo pair code
         ```
         </CodeGroup>
 

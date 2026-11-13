@@ -129,11 +129,15 @@ Codex ships its own safety gate: plugin hooks are installed but **inert until
 you trust them**. Run `/hooks` and trust the ten Nomo entries, as described in
 [Installation](/setup/install).
 
-The part that catches people: upgrading to the version that added phone-held
-Codex approvals introduced a **new** hook, so Codex re-opens the review for it.
-Until you trust it, Codex approvals quietly fall back to the terminal and
-nothing reports an error. If your phone stopped getting Codex prompts after an
-update, run `/hooks` first.
+**Every plugin update asks again.** After you update the Nomo plugin, Codex
+asks you to trust Nomo's hooks again. Until you do, approvals don't reach your
+phone. They fall back to the terminal, and nothing reports an error.
+
+To trust them again, do one of these:
+
+- When Codex shows the hook review as it starts, choose **Trust all and
+  continue**.
+- Or run `/hooks` in Codex and trust the Nomo entries.
 
 `$nomo-status` reports hook trust, so it's how you check the step actually took.
 
@@ -152,3 +156,5 @@ ones.
 
 Codex **0.142 or later**. Earlier versions have no plugin system for Nomo to
 install into.
+
+With Codex **0.167** or later, use plugin **2.4.2** or later.

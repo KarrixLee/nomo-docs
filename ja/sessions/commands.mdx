@@ -5,7 +5,7 @@ icon: "terminal"
 keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "セッション", "コンピュータ", "Dynamic Island", "権限", "ペアリング", "コマンド"]
 ---
 
-Claude Code、Codex、OpenCode、Antigravity、Devin に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor、Antigravity、Devin では `/` のスキル、Codex では `$` のスキルです。
+Claude Code、Codex、OpenCode、Antigravity、Devin に共通のコマンドが 5 つ、OpenCode だけに必要な 6 つ目、そして Cursor には 4 つあります。対象にしたいコンピュータで、エージェントのセッションの中から実行します — Claude Code と OpenCode では `/` のコマンド、Cursor、Antigravity、Devin では `/` のスキル、Codex では `$` のスキルです。ペアリング、状態確認、リセット、ペアリングの解除はターミナルからも実行できます。[ターミナルから実行する](#terminal)をご覧ください。
 
 <Note>
   Antigravity では、Nomo のコマンドを実行するたびに確認が表示されます。「Allow」を選んでください — Antigravity は、コンピュータでコマンドを実行する前に必ず確認します。詳しくは [Antigravity での利用](/ja/sessions/antigravity#commands)をご覧ください。
@@ -35,6 +35,46 @@ Claude Code、Codex、OpenCode、Antigravity、Devin に共通のコマンドが
 承認の行で Cursor が空欄なのも、抜けているからではありません。Cursor のセッションは読み取り専用で、一時停止するリモート承認がありません — [Cursor での利用](/ja/sessions/cursor)。
 
 Nomo の削除には `/` コマンドがありません。ターミナルに 1 行貼り付けるだけです — [uninstall](#uninstall) を参照してください。
+
+## ターミナルから実行する {#terminal}
+
+主なコマンドは、ターミナルからも実行できます。どのフォルダからでもかまいません。コマンドは `nomo` で始まります。
+
+| | ターミナル |
+| --- | --- |
+| Nomo をインストール・更新する | `bunx nomo-ai` |
+| <a href="#pair">このコンピュータをペアリングする</a> | `nomo pair` |
+| コードを入力してペアリングする | `nomo pair code` |
+| <a href="#status">状態を確認する</a> | `nomo status` |
+| <a href="#reset">停止したセッションを消去し、アクティビティを今すぐ送る</a> | `nomo reset` |
+| <a href="#unpair">このコンピュータの接続を解除する</a> | `nomo unpair` |
+| <a href="#uninstall">エージェントから Nomo を削除する</a> | `nomo uninstall --cursor` |
+
+どれも、エージェントの中で実行するコマンドと同じ働きをします。ペアリングもリセットも、1 回でそのコンピュータのすべてのエージェントに効きます。Nomo がまだインストールされていない場合は、次のように表示されます。
+
+```
+Nomo is not installed on this computer yet — run `bunx nomo-ai` first.
+```
+
+インストーラーの `bunx nomo-ai` が、短い `nomo` コマンドを自動で追加します。追加しない場合は `--no-global` を付けてください。
+
+### `nomo` が見つからない場合 {#nomo-not-found}
+
+Nomo を 2.4.2 より前にインストールしましたか？ インストーラーをもう一度実行すると、`nomo` が使えるようになります。
+
+```bash
+bunx nomo-ai
+```
+
+または、`nomo` の代わりに `bunx nomo-ai` と入力します。同じように動きます。
+
+```bash
+bunx nomo-ai status
+```
+
+bun がない場合は、`npx nomo-ai` を使ってください。たとえば `npx nomo-ai status` です。`bunx` や `npx` のあとには、必ずフルネームの `nomo-ai` を入力してください。
+
+`nomo` という名前の別のプログラムがすでにありますか？ その場合、インストーラーはそのプログラムに手を付けず、そのことを表示します。引き続き `bunx nomo-ai` を使ってください。たとえば `bunx nomo-ai pair` です。
 
 ## pair {#pair}
 
@@ -68,6 +108,11 @@ $nomo-pair code        # one-time code, printed in the terminal
 /nomo-pair             # QR code, opens your browser
 /nomo-pair code        # one-time code, shown in the chat
 ```
+
+```bash ターミナル icon="terminal"
+nomo pair             # QR code, opens your browser
+nomo pair code        # one-time code, printed in the terminal
+```
 </CodeGroup>
 
 Devin プラグインの場合は `/nomo:pair` と `/nomo:pair code` です。
@@ -75,6 +120,8 @@ Devin プラグインの場合は `/nomo:pair` と `/nomo:pair code` です。
 引数なしで実行すると、テーマの適用されたページがブラウザで開き、QR コードが表示されます。アプリでスキャンすると、ページは自動的に **Paired ✓** に切り替わります。
 
 `code` 引数を付けるとブラウザを完全に省き、入力できるワンタイムコードを出力します。ヘッドレスなマシンや SSH セッション向けです。これが第 2 の選択肢なのは意図的で、そのコードはターミナルに、つまりエージェントのトランスクリプトに残るからです。
+
+すでにペアリングされているコンピュータをもう一度ペアリングすると、前のペアリングが置き換わります。すでにペアリング済みなら、もう一度ペアリングする必要はありません。
 
 ペアリングは **10 分間**使われないと期限切れになります。1 つのペアリングが対象とするのはマシンであり、エージェントではありません — 同じ Mac の Claude Code、Codex、OpenCode、Cursor、Antigravity、Devin は同じペアリングを共有します。詳しい手順は[ペアリング](/ja/setup/pairing)にあります。
 
@@ -104,6 +151,10 @@ $nomo-status
 
 ```bash Devin icon="/images/providers/devin.svg"
 /nomo-status
+```
+
+```bash ターミナル icon="terminal"
+nomo status
 ```
 </CodeGroup>
 
@@ -162,7 +213,7 @@ Claude Code — you are here
 Nomo 2.2.0 · Claude Code
 
 Phone         NOT PAIRED — nothing from this computer reaches the app
-              → run /nomo-cc:pair
+              → run /nomo-cc:pair, or nomo pair in a terminal
 
 Claude Code — you are here
   Hooks       firing · last 6s ago
@@ -253,18 +304,27 @@ $nomo-reset
 ```bash Devin icon="/images/providers/devin.svg"
 /nomo-reset
 ```
+
+```bash ターミナル icon="terminal"
+nomo reset
+```
 </CodeGroup>
 
 Devin プラグインの場合は `/nomo:reset` です。
 
-ウォッチドッグを停止し、無効になったセッションや実体のないセッションの行を消去して、それらを削除するよう iPhone に伝えます。
+ウォッチドッグを停止し、無効になったセッションや実体のないセッションの行を消去して、それらを削除するよう iPhone に伝えます。続けて、アクティビティ（[Nomoアクティビティ](/ja/widgets#nomo-activity)のヒートマップと連続記録）をすぐに送ります。最大 6 時間待つ必要はありません。
 
 ```
 Stopped the watchdog (it restarts automatically on your next session).
 Cleared 4 stale session record(s) (4 end signals delivered to your phone).
 Left 2 live sessions untouched.
-Pairing and keys were not touched — use the unpair command if you want that.
+Sent your activity summary (heatmap and streak) to your phone.
+Pairing and keys were not touched — to disconnect this computer, run nomo unpair, or your agent's unpair command.
 ```
+
+アクティビティの行は、`No activity to send yet.` と表示されることもあります。また、今は送れないので後で自動的にもう一度試す、と表示されることもあります。Claude Code の履歴が長いコンピュータでは、最初のリセットに時間がかかることがあります。
+
+リセットは 1 回で、そのコンピュータのすべてのエージェントに効きます。
 
 行が古いままだったり重複したりしているときに、まず試すべき安全なコマンドです。何に手を付けなかったかまで報告してくれます。OpenCode の行は OpenCode の**サーバー**に属するため、消えない行があるときは先に OpenCode を終了してください — [OpenCode での利用](/ja/sessions/opencode#reset-needs-opencode-closed)をご覧ください。
 
@@ -293,6 +353,10 @@ $nomo-unpair
 
 ```bash Devin icon="/images/providers/devin.svg"
 /nomo-unpair
+```
+
+```bash ターミナル icon="terminal"
+nomo unpair
 ```
 </CodeGroup>
 
@@ -417,21 +481,24 @@ rm ~/.config/opencode/commands/nomo-*.md
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
-bunx nomo-ai --uninstall --cursor
+nomo uninstall --cursor
 ```
 
 ```bash Antigravity icon="/images/providers/antigravity.png"
-bunx nomo-ai --uninstall --antigravity
+nomo uninstall --antigravity
 ```
 
 ```bash Devin icon="/images/providers/devin.svg"
-bunx nomo-ai --uninstall --devin
+nomo uninstall --devin
 ```
 </CodeGroup>
 
+
 Devin プラグインの場合は `devin plugins remove nomo` です。
 
-`bunx` がない場合は、代わりに `npx` を使ってください — たとえば `npx nomo-ai --uninstall --cursor` です。または、エージェント専用のスクリプトを実行します。たとえば `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall` です（Antigravity なら `antigravity-install.mjs`、Devin なら `devin-install.mjs`）。
+`nomo` が見つからない場合は、代わりに `bunx nomo-ai uninstall --cursor` を使ってください。[`nomo` が見つからない場合](#nomo-not-found)をご覧ください。以前の書き方の `--uninstall` も使えます。または、エージェント専用のスクリプトを実行します。たとえば `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall` です（Antigravity なら `antigravity-install.mjs`、Devin なら `devin-install.mjs`）。
+
+アンインストールしても、短い `nomo` コマンドは残ります。そのことも表示されます。これも削除するには、`bun remove -g nomo-ai`（または `npm uninstall -g nomo-ai`）を実行します。
 
 Antigravity と Devin は、完了すると次のように表示します。
 
@@ -445,15 +512,15 @@ devin-install: removed Nomo's hooks from Devin — restart devin
 
 そのあとエージェントを再起動します。Cursor と Antigravity は、アプリを終了してもう一度開き、開いている `cursor-agent` や `agy` も再起動してください。Devin は、開いている `devin` をすべて閉じて、もう一度起動してください。
 
-削除されるのは、Nomo がそのエージェントに追加したものだけです。iPhone とのペアリングはそのまま残るので、ほかのエージェントは引き続き使えます。このコンピュータの接続も切りたい場合は、**先に** [unpair](#unpair) を実行してください — Nomo を削除すると、そのコマンドも使えなくなります。
+削除されるのは、Nomo がそのエージェントに追加したものだけです。iPhone とのペアリングはそのまま残るので、ほかのエージェントは引き続き使えます。このコンピュータの接続も切りたい場合は、`nomo unpair` を実行してください。アンインストールの前でも後でもかまいません。[unpair](#unpair) をご覧ください。
 
 Nomo の Claude Code プラグインを Antigravity に読み込んでいた場合は、`agy plugin uninstall nomo-cc` でそちらも削除し、Antigravity を再起動します。
 
-`bunx nomo-ai --uninstall` には必ずエージェントを指定してください — 推測はしません。エージェントごとのインストールについては[インストール](/ja/setup/install)を参照してください。
+`nomo uninstall` には必ずエージェントを指定してください — 推測はしません。エージェントごとのインストールについては[インストール](/ja/setup/install)を参照してください。
 
 ## コマンドを使わずに実行する {#without-slash-commands}
 
-Antigravity や Devin が Nomo のコマンドを認識しない場合は、代わりにターミナルから実行します。これは Nomo インストーラーでインストールした場合に使えます。
+Antigravity や Devin が Nomo のコマンドを認識しない場合は、代わりにターミナルから実行します。ペアリング、状態確認、リセット、ペアリングの解除は、[`nomo` のコマンド](#terminal)を使うのがいちばん簡単です。Nomo インストーラーでインストールした場合に使える、すべてのコマンドの一覧です。
 
 | | |
 | --- | --- |
