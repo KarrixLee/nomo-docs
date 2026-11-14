@@ -8,6 +8,8 @@ icon: "qrcode-read"
 
 每台電腦只需做一次。配對若閒置 **10 分鐘**未使用就會過期。
 
+配對是免費的。Nomo Free 可配對一台電腦，Nomo Pro 可配對更多。Nomo Pro 還多了什麼，請看[免費版與 Pro](/zh-Hant/free-and-pro)。
+
 <Note>
   一次配對涵蓋的是這台電腦，而不是個別代理。如果你在同一台電腦上同時執行
   Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 的任何組合，它們會共用同一組配對 — 不需要配對兩次。
@@ -56,7 +58,7 @@ icon: "qrcode-read"
       </Step>
 
       <Step title="掃描它">
-        在 Nomo 裡，前往 **Sessions** 分頁 → **配對電腦**，然後把相機對準 QR code。
+        在 Nomo 裡，點一下**首頁**上的**連結 Mac**，或 **Sessions** 裡的 **+**。然後把相機對準 QR code。
 
         {/* TODO: screenshot of the in-app scanner */}
       </Step>
@@ -135,7 +137,7 @@ icon: "qrcode-read"
       </Step>
 
       <Step title="在App裡輸入">
-        在 Nomo 裡：**Sessions** → **配對電腦** → **輸入代碼**。
+        在 Nomo 裡，點一下**首頁**上的**連結 Mac**，或 **Sessions** 裡的 **+**。然後點一下**輸入代碼**。
 
         {/* TODO: screenshot of the Enter code screen */}
       </Step>
@@ -164,3 +166,5 @@ $nomo-status
 - **無法驗證此 iPhone** — Nomo 的伺服器無法驗證你的手機。請再試一次，如果一直發生，請聯絡支援。
 - **列表看起來是舊的或重複** — 執行 `/nomo-cc:reset`（或 `$nomo-reset`）清掉失效的 session 列，不會解除配對。
 - **想中斷某台電腦的連線** — `/nomo-cc:unpair`（或 `$nomo-unpair`）會移除配對並清除本機金鑰。
+- **Nomo Free 可配對一台電腦** — Nomo Free 可配對一台電腦。要換一台，在 **Sessions** 分頁按住已配對的電腦，點一下**移除此電腦**，然後重新配對。或者使用 Nomo Pro 配對更多電腦。
+- **已達電腦數量上限** — 你配對的電腦已達方案上限。在 **Sessions** 分頁按住一台電腦，移除它，然後重新配對。

@@ -30,7 +30,7 @@ for the connection.
 | Amber | `Reconnecting…` | Nomo couldn't reach the relay for this computer on the last poll. It retries on its own. |
 | Spinner | `Connecting…` | Freshly paired, still waiting for its first session to land. |
 | Grey | `No longer paired` | This pairing was replaced or removed. See [troubleshooting](/sessions/troubleshooting). |
-| Grey | `Paused — renew to reconnect` | Nomo Pro lapsed. |
+| — | A line about what its agents are doing, with no live sessions | No Nomo Pro: you never had it, or it lapsed. The computer stays paired. Live sessions come back when you subscribe. See [Free and Pro](/free-and-pro). |
 
 The summary reads `No active sessions`, `1 session`, or `3 active · 7 sessions`.
 "Active" excludes finished sessions, unreadable ones, and any session that
@@ -197,17 +197,17 @@ nothing.
 | | Limit |
 | --- | --- |
 | Sessions per computer | **20**, across all agents |
-| Paired computers | **5** |
+| Paired computers | **One** on Nomo Free. More with Nomo Pro |
 | Sessions on the Dynamic Island | **One at a time**, device-wide |
 
 The first two are set on Nomo's side rather than compiled into the app, so they
 can move without an app update. The session count shows as an `N/20` chip on
-the first Sessions card, and the computer count as an `N/5` chip on the tab.
-Both turn orange at the cap.
+the first Sessions card. It turns orange at the cap.
 
-Pairing a sixth computer fails with **Computer Limit Reached**. Forget one you
-no longer use and try again — computers you've already paired are never revoked
-to make room.
+On Nomo Free, pairing a second computer shows **One Computer on Free**. Forget
+the first one, then pair again. With Nomo Pro, pairing past your plan's limit
+shows **Computer Limit Reached**. Forget one you no longer use and try again —
+computers you've already paired are never revoked to make room.
 
 When a computer is at its session cap, Nomo sheds finished and long-silent rows
 first. A genuinely new session is refused rather than pushing a live one off —

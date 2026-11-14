@@ -7,7 +7,8 @@ keywords: ["Nomo", "Nomo Pro", "status", "Nomo Usage", "widget", "Pace", "Activi
 ---
 
 Nomo has seven widgets for your iPhone. Two are free: **Nomo**, for status,
-and **Nomo Usage**. Five more come with Nomo Pro.
+and **Nomo Usage**. Five more come with Nomo Pro. With a paired computer, the
+Small size of **Nomo Activity** is free too.
 
 This page covers what each widget shows and how to set it up. To put a widget
 on your Home Screen, see [Widget](/widget).
@@ -18,7 +19,8 @@ on your Home Screen, see [Widget](/widget).
 | --- | --- | --- |
 | **Nomo** status widget | ✓ | ✓ |
 | **Nomo Usage** widget | ✓ | ✓ |
-| **Nomo Pace**, **Nomo Activity**, **Nomo Accounts**, **Live Agents**, **Nomo Tokens** | | ✓ |
+| **Nomo Activity**, Small size | ✓ | ✓ |
+| **Nomo Pace**, **Nomo Activity** (other sizes), **Nomo Accounts**, **Live Agents**, **Nomo Tokens** | | ✓ |
 | More than one account per provider | | ✓ |
 
 In the widget gallery, a Pro widget's description starts with **👑 Nomo Pro**.
@@ -227,6 +229,9 @@ morning: until your first session of the day, it counts up to yesterday.
 | Large | The last 26 weeks with the same three stats, how your time splits between agents, and totals: sessions, tokens, your busiest day and your longest streak. |
 | Lock Screen, rectangle | Your streak and the last 7 days. |
 
+Small is free with a paired computer. Medium, Large and the Lock Screen size
+come with Nomo Pro. See [Free and Pro](/free-and-pro).
+
 The three stats under the map cover the weeks the map shows:
 
 - A clock: your active hours, such as `153h`.
@@ -284,7 +289,7 @@ and that color takes over the map, the flame, today's square and the glow.
 The plugin sends a new summary at most every 6 hours. Nomo fetches it when you
 open the app. So the map can be a few hours behind.
 
-Tap the widget to open the [Activity screen](#activity-screen) in Nomo.
+Tap the widget to open Nomo on Home, scrolled to [Activity](#activity-on-home).
 
 What leaves your computer for this map is listed under
 [Privacy](#privacy). It's counts only, never your prompts or code.
@@ -303,7 +308,7 @@ days, across every paired computer. Each day's bar is split by model.
 
 Tokens here means input + output + reasoning. Cache isn't counted: it re-reads
 the same context, so it would swamp every other number. The
-[Activity screen](#activity-screen) lists cache on its own.
+[Activity on Home](#activity-on-home) lists cache on its own.
 
 | Size | What's on it |
 | --- | --- |
@@ -331,7 +336,7 @@ Cursor or Devin logo for their models. Any other model gets Clawd. Your pick cha
 only the character, the background glow and today's bar. Model colors never
 change.
 
-Tap the widget to open the [Activity screen](#activity-screen) in Nomo. Without
+Tap the widget to open Nomo on Home, scrolled to [Activity](#activity-on-home). Without
 Nomo Pro, a tap opens Nomo Pro.
 
 It uses the same summary as Nomo Activity. What leaves your computer is listed
@@ -428,37 +433,40 @@ that character and gives the background a light tint of its color. The status
 colors never change: violet still means a session needs your answer. A widget
 that was already on your Home Screen starts on **Automatic**.
 
-## Activity screen and Wrapped <span className="pro-pill" /> {#activity-screen}
+## Activity on Home and Wrapped {#activity-on-home}
 
-The Activity screen shows your streak and your tokens in full. It also makes a
-Wrapped card you can share.
+Activity lives on the **Home** tab. It shows your streak, and your tokens with
+Nomo Pro. It also makes a Wrapped card you can share.
 
-<Frame caption="The top of the Activity screen: your streak, the 7 / 14 / 30 days switch and the tokens chart.">
+<Frame caption="Activity on Home: your streak, the 7 / 14 / 30 days switch and the tokens chart.">
   <div className="device-frame crop-top">
-    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="The Activity screen: a 13-day streak with a 26-week map, the 7, 14 and 30 days switch set to 14 days, and 20.3M tokens in the last 14 days with Today, Daily average and Active hours above a chart stacked by model" />
-    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="The Activity screen: a 13-day streak with a 26-week map, the 7, 14 and 30 days switch set to 14 days, and 20.3M tokens in the last 14 days with Today, Daily average and Active hours above a chart stacked by model" />
+    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="Activity on Home: a 13-day streak with a 26-week map, the 7, 14 and 30 days switch set to 14 days, and 20.3M tokens in the last 14 days with Today, Daily average and Active hours above a chart stacked by model" />
+    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="Activity on Home: a 13-day streak with a 26-week map, the 7, 14 and 30 days switch set to 14 days, and 20.3M tokens in the last 14 days with Today, Daily average and Active hours above a chart stacked by model" />
   </div>
 </Frame>
 
-To open it:
+To see it:
 
 1. Open Nomo.
-2. Tap the **Sessions** tab.
-3. Tap the [streak bar](#streak-bar) just above the tab bar. On iOS 26.0 or
-   earlier, tap the **Activity** card at the top of the list instead.
+2. Tap the **Home** tab.
+3. Scroll down to **Activity**.
 
-You can also tap the Nomo Activity or Nomo Tokens widget. This works even when
-Nomo is closed. Nomo waits until it knows you have Nomo Pro, so a subscriber
-never lands on the Nomo Pro screen by mistake.
+You can also tap the Nomo Activity or Nomo Tokens widget. Nomo opens on Home and
+scrolls to Activity. This works even when Nomo is closed.
 
-On iOS 26.0 or earlier without Nomo Pro, the card shows a crown, **Activity**
-and **Streak, daily tokens and Wrapped with Nomo Pro.** Tap it to open Nomo
-Pro.
+To refresh it, pull down on Home.
 
-The screen shows:
+Activity shows:
 
-- **Streak**: your streak and a map of the last 26 weeks, with the same three
-  stats as the [widget](#nomo-activity).
+- **Coding now**: a row that appears while an agent is running.
+- **Streak**: your streak, with **Today**, **This week** and **Active days**.
+- **The map**: a calendar of your last 30 days, or the last 26 weeks with Nomo
+  Pro.
+- **Totals**: your totals, and how your time splits between agents.
+- **Your Wrapped**: a card you can share. See [Wrapped](#wrapped).
+
+With Nomo Pro, you also get:
+
 - A switch for **7 days**, **14 days** or **30 days**. The chart moves from one
   range to the next when you switch.
 - **Tokens**: a chart of your daily tokens, stacked by model, with **Today**,
@@ -466,49 +474,27 @@ The screen shows:
 - **By model**: a table with **Input**, **Output**, **Cache** and **Total**
   for each model.
 
-When you open the screen, it animates in for about a second. If Reduce Motion
+See [Free and Pro](/free-and-pro).
+
+When Activity opens, it animates in for about a second. If Reduce Motion
 is on, everything just appears.
 
-The screen's character and color follow your top model's provider, like
-[Nomo Tokens](#nomo-tokens) on **Automatic**. The streak bar does the same.
-
-### The streak bar <span className="pro-pill" /> {#streak-bar}
-
-On iOS 26.1 or later, the **Sessions** tab has a small bar that floats just
-above the tab bar. It shows your streak, this week's tokens and the last 7
-days as mini bars.
-
-- When you scroll, it shrinks and sits next to the tab bar.
-- Tap it to open the Activity screen.
-
-Sometimes it shows something else:
-
-| What it says | What it means | What a tap does |
-| --- | --- | --- |
-| **Start your streak** | No computer is paired yet. | Opens the same pairing steps as **Pair a Computer**. |
-| **No sessions yet** | A computer is paired, but no sessions have come in yet. | Opens the Activity screen. |
-| **Update the Nomo plugin** | Every paired computer has a Nomo plugin older than 2.4.0. | Opens the steps to update it. |
-
-When the bar is shrunk, these say **Pair a computer**, **No sessions yet** and
-**Update plugin**.
-
-The bar needs Nomo Pro. Without it, you won't see the bar.
-
-When a new version of Nomo is out, the update bar takes this spot instead.
-Update Nomo, or tap **×** on the update bar, to get the streak bar back.
-
-On iOS 26.0 or earlier, there's no bar. The streak card sits at the top of the
-Sessions list instead.
+Its character and color follow your top model's provider, like
+[Nomo Tokens](#nomo-tokens) on **Automatic**.
 
 ### Wrapped {#wrapped}
 
 Wrapped turns your week, month or year into one image you can share.
 
-1. On the Activity screen, scroll to the bottom.
+1. On the Home tab, scroll to Activity.
 2. Tap **Your Wrapped**.
 3. Tap **Week** (the last 7 days), **Month** (the last 30 days) or **Year**
    (this calendar year).
 4. Tap **Share**, then pick where to send it.
+
+Without Nomo Pro, you can pick **Week** or **Month**, and the big number is
+your streak or your coding time. **Year**, and tokens as the big number, come
+with Nomo Pro.
 
 <Frame caption="A week's Wrapped card. It's always dark, whatever your iPhone's appearance.">
   <div className="widget-shot narrow">
@@ -524,8 +510,8 @@ project names or file paths.
 
 ## More than one computer {#more-than-one-computer}
 
-Nomo Activity, Nomo Tokens, the Activity screen, Wrapped and the streak bar
-add up every paired computer.
+Nomo Activity, Nomo Tokens, Activity on Home and Wrapped add up every
+paired computer.
 
 - Active time counts once. If you code on two Macs at the same time, that time
   isn't counted twice.
@@ -537,7 +523,7 @@ add up every paired computer.
 
 A computer with a Nomo plugin older than 2.4.0 isn't counted. You'll see:
 
-- On the Activity screen, under your streak: `MacBook Air isn't counted ·
+- On Home, in Activity under your streak: `MacBook Air isn't counted ·
   update its plugin`, with that computer's name. If there's more than one, it
   says how many, such as `2 computers aren't counted · update their plugin`.
   Tap it to see how to update.
@@ -616,7 +602,7 @@ To go back to your real data, turn **Show sample data** off.
 - On your computer, it's kept in `~/.config/cc-status/activity-days.json`. Only
   your user account can read it. It keeps 400 days at most.
 
-**Nomo Tokens and the Activity screen**
+**Nomo Tokens and Activity on Home**
 
 - They use the same activity summary as Nomo Activity, so everything above
   applies to them too.
