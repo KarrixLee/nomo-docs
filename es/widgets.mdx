@@ -301,7 +301,7 @@ marca, y ese color pasa al mapa, la llama, el cuadro de hoy y el brillo.
 El plugin envía un resumen nuevo como mucho cada 6 horas. Nomo lo descarga
 cuando abres la app. Por eso el mapa puede ir unas horas por detrás.
 
-Toca el widget para abrir la [pantalla Actividad](#activity-screen) en Nomo.
+Toca el widget para abrir Nomo en Inicio, desplazado a [Actividad](#activity-on-home).
 
 Lo que sale de tu ordenador para este mapa se detalla en
 [Privacidad](#privacy). Son solo recuentos, nunca tus prompts ni tu código.
@@ -321,7 +321,7 @@ modelo.
 
 Aquí, tokens significa entrada + salida + razonamiento. La caché no se cuenta:
 vuelve a leer el mismo contexto, así que taparía todas las demás cifras. La
-[pantalla Actividad](#activity-screen) muestra la caché aparte.
+[Actividad en Inicio](#activity-on-home) muestra la caché aparte.
 
 | Tamaño | Qué muestra |
 | --- | --- |
@@ -348,7 +348,7 @@ Codex para GPT, Grok Bot para Grok, Antigravity para Gemini y el logotipo de
 Kimi, DeepSeek, Cursor o Devin para sus modelos. Cualquier otro modelo usa Clawd. Tu
 elección solo cambia el personaje, el brillo del fondo y la barra de hoy. Los colores de los modelos no cambian nunca.
 
-Toca el widget para abrir la [pantalla Actividad](#activity-screen) en Nomo.
+Toca el widget para abrir Nomo en Inicio, desplazado a [Actividad](#activity-on-home).
 Sin Nomo Pro, al tocarlo se abre Nomo Pro.
 
 Usa el mismo resumen que Actividad de Nomo. Lo que sale de tu ordenador aparece
@@ -448,31 +448,40 @@ Los colores de estado no cambian nunca: el violeta sigue indicando que una sesi�
 necesita tu respuesta. Un widget que ya estaba en la pantalla de inicio empieza
 en **Automático**.
 
-## Pantalla Actividad y Wrapped {#activity-screen}
+## Actividad en Inicio y Wrapped {#activity-on-home}
 
-La pantalla Actividad muestra tu racha al completo, y tus tokens con Nomo Pro.
+La Actividad está en la pestaña **Inicio**. Muestra tu racha, y tus tokens con Nomo Pro.
 También crea una tarjeta Wrapped que puedes compartir.
 
-<Frame caption="La parte de arriba de la pantalla Actividad: tu racha, el selector de 7 / 14 / 30 días y el gráfico de tokens.">
+<Frame caption="Actividad en Inicio: tu racha, el selector de 7 / 14 / 30 días y el gráfico de tokens.">
   <div className="device-frame crop-top">
-    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="La pantalla Actividad: una racha de 13 días con un mapa de 26 semanas, el selector de 7, 14 y 30 días en 14 días, y 20,3 M de tokens en los últimos 14 días con Today, Daily average y Active hours sobre un gráfico apilado por modelo" />
-    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="La pantalla Actividad: una racha de 13 días con un mapa de 26 semanas, el selector de 7, 14 y 30 días en 14 días, y 20,3 M de tokens en los últimos 14 días con Today, Daily average y Active hours sobre un gráfico apilado por modelo" />
+    <img className="only-light" src="/images/widgets-activity-screen-light.webp" alt="Actividad en Inicio: una racha de 13 días con un mapa de 26 semanas, el selector de 7, 14 y 30 días en 14 días, y 20,3 M de tokens en los últimos 14 días con Today, Daily average y Active hours sobre un gráfico apilado por modelo" />
+    <img className="only-dark" src="/images/widgets-activity-screen-dark.webp" alt="Actividad en Inicio: una racha de 13 días con un mapa de 26 semanas, el selector de 7, 14 y 30 días en 14 días, y 20,3 M de tokens en los últimos 14 días con Today, Daily average y Active hours sobre un gráfico apilado por modelo" />
   </div>
 </Frame>
 
-Para abrirla:
+Para verla:
 
 1. Abre Nomo.
 2. Toca la pestaña **Inicio**.
-3. Debajo de tu racha, toca **Ver todo**.
+3. Desplázate hacia abajo hasta **Actividad**.
 
-También puedes tocar el widget Actividad de Nomo o Tokens de Nomo. Funciona
-incluso con Nomo cerrado.
+También puedes tocar el widget Actividad de Nomo o Tokens de Nomo. Nomo se abre
+en Inicio y se desplaza a Actividad. Funciona incluso con Nomo cerrado.
 
-La pantalla muestra:
+Para actualizarla, tira hacia abajo en Inicio.
 
-- **Racha**: tu racha y un mapa de las últimas 26 semanas, con los mismos tres
-  datos que el [widget](#nomo-activity).
+La Actividad muestra:
+
+- **Programando ahora**: una fila que aparece mientras un agente está en marcha.
+- **Racha**: tu racha, con **Hoy**, **Esta semana** y **Días activos**.
+- **El mapa**: un calendario de tus últimos 30 días, o las últimas 26 semanas
+  con Nomo Pro.
+- **Totales**: tus totales y cómo se reparte tu tiempo entre agentes.
+- **Tu Wrapped**: una tarjeta que puedes compartir. Consulta [Wrapped](#wrapped).
+
+Con Nomo Pro, también tienes:
+
 - Un selector de **7 días**, **14 días** o **30 días**. Al cambiarlo, el
   gráfico pasa de un periodo al otro con una animación.
 - **Tokens**: un gráfico de tus tokens diarios, apilado por modelo, con
@@ -481,20 +490,19 @@ La pantalla muestra:
 - **“Por modelo”**: una tabla con **Entrada**, **Salida**, **Caché** y
   **Total** para cada modelo.
 
-Sin Nomo Pro, el mapa muestra tus últimos 30 días, y no aparecen **Tokens** ni
-**“Por modelo”**. Consulta [Gratis y Pro](/es/free-and-pro).
+Consulta [Gratis y Pro](/es/free-and-pro).
 
-Al abrir la pantalla, aparece con una animación de un segundo, más o menos. Si
-tienes activado **“Reducir movimiento”**, todo aparece directamente.
+Al abrirse la Actividad, aparece con una animación de un segundo, más o menos.
+Si tienes activado **“Reducir movimiento”**, todo aparece directamente.
 
-El personaje y el color de la pantalla siguen al proveedor de tu modelo
-principal, como [Tokens de Nomo](#nomo-tokens) en **Automático**.
+El personaje y el color siguen al proveedor de tu modelo más usado, como
+[Tokens de Nomo](#nomo-tokens) en **Automático**.
 
 ### Wrapped {#wrapped}
 
 Wrapped convierte tu semana, tu mes o tu año en una imagen que puedes compartir.
 
-1. En la pantalla Actividad, desplázate hasta abajo.
+1. En la pestaña Inicio, desplázate hasta Actividad.
 2. Toca **“Tu Wrapped”**.
 3. Toca **Semana** (los últimos 7 días), **Mes** (los últimos 30 días) o **Año**
    (este año natural).
@@ -518,7 +526,7 @@ incluye tus prompts, nombres de proyectos ni rutas de archivos.
 
 ## Más de un ordenador {#more-than-one-computer}
 
-Actividad de Nomo, Tokens de Nomo, la pantalla Actividad y Wrapped suman todos
+Actividad de Nomo, Tokens de Nomo, Actividad en Inicio y Wrapped suman todos
 los ordenadores vinculados.
 
 - El tiempo activo cuenta una sola vez. Si programas en dos Mac a la vez, ese
@@ -531,7 +539,7 @@ los ordenadores vinculados.
 
 Un ordenador con un plugin de Nomo anterior a la 2.4.0 no se cuenta. Verás:
 
-- En la pantalla Actividad, bajo tu racha: **“MacBook Air no se cuenta ·
+- En Inicio, en Actividad bajo tu racha: **“MacBook Air no se cuenta ·
   actualiza su plugin”**, con el nombre de ese ordenador. Si hay más de uno,
   dice cuántos, como **“2 ordenadores no se cuentan · actualiza sus plugins”**.
   Tócalo para ver cómo actualizar.
@@ -613,7 +621,7 @@ Para volver a tus datos reales, desactiva **“Mostrar datos de ejemplo”**.
 - En tu ordenador, se guarda en `~/.config/cc-status/activity-days.json`. Solo tu
   cuenta de usuario puede leerlo. Guarda 400 días como máximo.
 
-**Tokens de Nomo y la pantalla Actividad**
+**Tokens de Nomo y Actividad en Inicio**
 
 - Usan el mismo resumen de actividad que Actividad de Nomo, así que todo lo
   anterior también se aplica a ellos.
