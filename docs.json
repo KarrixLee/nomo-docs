@@ -99,6 +99,12 @@
                 ]
               },
               {
+                "group": "Activity",
+                "pages": [
+                  "activity"
+                ]
+              },
+              {
                 "group": "Sessions",
                 "tag": "PRO",
                 "pages": [
@@ -178,6 +184,12 @@
                     ]
                   },
                   "es/notifications"
+                ]
+              },
+              {
+                "group": "Actividad",
+                "pages": [
+                  "es/activity"
                 ]
               },
               {
@@ -263,6 +275,12 @@
                 ]
               },
               {
+                "group": "アクティビティ",
+                "pages": [
+                  "ja/activity"
+                ]
+              },
+              {
                 "group": "セッション",
                 "tag": "PRO",
                 "pages": [
@@ -342,6 +360,12 @@
                     ]
                   },
                   "ko/notifications"
+                ]
+              },
+              {
+                "group": "활동",
+                "pages": [
+                  "ko/activity"
                 ]
               },
               {
@@ -427,6 +451,12 @@
                 ]
               },
               {
+                "group": "活动",
+                "pages": [
+                  "zh-Hans/activity"
+                ]
+              },
+              {
                 "group": "会话",
                 "tag": "PRO",
                 "pages": [
@@ -506,6 +536,12 @@
                     ]
                   },
                   "zh-Hant/notifications"
+                ]
+              },
+              {
+                "group": "活動",
+                "pages": [
+                  "zh-Hant/activity"
                 ]
               },
               {
