@@ -8,7 +8,25 @@ keywords: ["Nomo", "アクティビティ", "連続記録", "コーディング"
 
 アクティビティには、AI エージェントでどれだけコーディングしたかが表示されます。Nomo の「ホーム」タブにあります。
 
-まだ設定していない場合は、[プラグインをインストール](/ja/setup/install)してから、[コンピュータをペアリング](/ja/setup/pairing)してください。コーディングするにつれて、アクティビティが埋まっていきます。
+## 設定 {#set-up}
+
+<CardGroup cols={2}>
+  <Card title="1. プラグインをインストール" href="/ja/setup/install" icon="download">
+    コンピュータの Claude Code、Codex などのエージェントに Nomo を追加します。
+  </Card>
+  <Card title="2. コンピュータをペアリング" href="/ja/setup/pairing" icon="qrcode-read">
+    Nomo で QR コードをスキャンします。コーディングするにつれて、アクティビティが埋まっていきます。
+  </Card>
+</CardGroup>
+
+コンピュータをペアリングする前は、アクティビティに空のカードが表示されます。カードの「Macをペアリング」をタップすると始められます。
+
+<Frame caption="ペアリング前のアクティビティ: 空のカレンダーと「Macをペアリング」。">
+  <div className="device-frame">
+    <img className="only-light" src="/images/activity-not-set-up-light.webp" alt="空のアクティビティのカード: 「連続記録はここから始まります」「Macをペアリングすると、コーディングした日ごとにマスが埋まります。」、「今日」「今週」「アクティブ日数」はダッシュ、空のカレンダー、「Macをペアリング」ボタン" />
+    <img className="only-dark" src="/images/activity-not-set-up-dark.webp" alt="空のアクティビティのカード: 「連続記録はここから始まります」「Macをペアリングすると、コーディングした日ごとにマスが埋まります。」、「今日」「今週」「アクティブ日数」はダッシュ、空のカレンダー、「Macをペアリング」ボタン" />
+  </div>
+</Frame>
 
 <Frame caption="「ホーム」のアクティビティ: いまコーディング中のエージェント、連続記録、直近 30 日のカレンダー、「あなたのまとめ」。">
   <div className="device-frame">
@@ -121,25 +139,3 @@ Nomo Pro では、アクティビティにトークンも表示されます。�
 ## プライバシー {#privacy}
 
 アクティビティが使うのは、日数、アクティブな時間、セッション数、トークン数といった数だけです。プロンプト、コード、プロジェクト名、ファイルパスは使いません。詳しくは、ウィジェットのページの[プライバシー](/ja/widgets#privacy)をご覧ください。
-
-## 設定 {#set-up}
-
-コンピュータをペアリングする前は、アクティビティに空のカードが表示されます。カードの「Macをペアリング」をタップすると始められます。
-
-<Frame caption="ペアリング前のアクティビティ: 空のカレンダーと「Macをペアリング」。">
-  <div className="device-frame">
-    <img className="only-light" src="/images/activity-not-set-up-light.webp" alt="空のアクティビティのカード: 「連続記録はここから始まります」「Macをペアリングすると、コーディングした日ごとにマスが埋まります。」、「今日」「今週」「アクティブ日数」はダッシュ、空のカレンダー、「Macをペアリング」ボタン" />
-    <img className="only-dark" src="/images/activity-not-set-up-dark.webp" alt="空のアクティビティのカード: 「連続記録はここから始まります」「Macをペアリングすると、コーディングした日ごとにマスが埋まります。」、「今日」「今週」「アクティブ日数」はダッシュ、空のカレンダー、「Macをペアリング」ボタン" />
-  </div>
-</Frame>
-
-手順は 2 つで、どちらも無料です。
-
-<CardGroup cols={2}>
-  <Card title="1. プラグインをインストール" href="/ja/setup/install" icon="download">
-    コンピュータの Claude Code、Codex などのエージェントに Nomo を追加します。
-  </Card>
-  <Card title="2. コンピュータをペアリング" href="/ja/setup/pairing" icon="qrcode-read">
-    Nomo で QR コードをスキャンします。コーディングするにつれて、アクティビティが埋まっていきます。
-  </Card>
-</CardGroup>
