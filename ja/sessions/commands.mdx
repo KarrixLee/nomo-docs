@@ -374,99 +374,135 @@ Devin プラグインの場合は `/nomo:unpair` です。
 
 ## update {#update}
 
-更新コマンドがあるのは OpenCode だけです。ほかのエージェントは別の方法で更新します — 使っているエージェントのタブを開いてください。
+Nomo に **プラグインの更新があります** と表示されたら、そのコンピュータでプラグインを更新します。1 分ほどで終わります。
 
-`bunx nomo-ai`（または `npx nomo-ai`）でも更新できます。すでに Nomo が入っているエージェントは、インストールではなく更新として表示されます。実行されるのは OpenCode、Cursor、Antigravity、Devin の分だけで、Claude Code と Codex の分は表示されるだけです。
+<Steps>
+  <Step title="ターミナルを開く">
+    そのコンピュータで**ターミナル**アプリを開きます（「アプリケーション」＞「ユーティリティ」の中にあります）。
+  </Step>
 
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
+  <Step title="更新コマンドを実行する">
+    使っているエージェントのタブを選びます。行をコピーしてターミナルに貼り付け、Return キーを押します。
 
-    自動更新はサードパーティのマーケットプレイスでは無効が既定なので、放っておいてインストールが動くことはありません。有効にするには `/plugin` → **Marketplaces** → Nomo のもの → **Enable auto-update** と進みます。
-  </Tab>
+    <Tabs>
+      <Tab title="Claude Code" icon="/images/claude-code.svg">
+        ```bash
+        claude plugin update nomo-cc@nomo
+        ```
 
-  <Tab title="Codex" icon="/images/codex.svg">
-    通常、実行するものはありません。Codex はプラグインをそのパスから直接読み込むため、そのクローンで取得することが更新のすべてです。`codex plugin update` という動詞もそもそも存在しません。
+        そのあと Claude Code を再起動します。
 
-    マーケットプレイスを git から追加した場合は、Codex がスナップショットを保持しており、それを更新することが更新にあたります。
+        <Accordion title="詳細">
+          Claude Code は Nomo を自動では更新しません。Anthropic 以外のマーケットプレイスでは、自動更新が既定で無効だからです。有効にするには、Claude Code で `/plugin` と入力 → **Marketplaces** → Nomo のもの → **Enable auto-update** と進みます。
+        </Accordion>
+      </Tab>
 
-    ```bash
-    codex plugin marketplace upgrade <marketplace-name>
-    ```
+      <Tab title="Codex" icon="/images/codex.svg">
+        ```bash
+        codex plugin marketplace upgrade
+        ```
 
-    名前は追加したときのもので、必ずしも `nomo` とは限りません。
-  </Tab>
+        そのあと Codex を再起動します。
 
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    ```bash
-    /nomo-update
-    ```
+        <Accordion title="詳細">
+          Codex には `codex plugin update` というコマンドがありません。`codex plugin marketplace add KarrixLee/nomo` で Nomo を追加した場合、Codex はそのコピーを保持しています。このコマンドがそのコピーを新しくし、それが更新になります。
 
-    何かを変更する前に必ず確認します。最新であればそこで終わりで、ついでに取得することもありません。
+          GitHub から追加したマーケットプレイスはすべて新しくなります。Nomo のものだけにするには、名前を付けます: `codex plugin marketplace upgrade nomo`。名前は追加したときのものです。
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Already on 2.1.22 — nothing to do.
-    ```
+          コンピュータ上のフォルダから Nomo を追加した場合は、Codex がそのフォルダを直接読み込みます。そのフォルダで `git pull` を実行すれば、それで更新は完了です。
+        </Accordion>
+      </Tab>
 
-    取得するものがある場合は、取得する前に内容を伝えます。
+      <Tab title="OpenCode" icon="/images/opencode.svg">
+        ```bash
+        bunx nomo-ai --opencode
+        ```
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Update available: 2.1.22 → 2.1.23.
-    ```
+        そのあと OpenCode を再起動します。
 
-    そのあと取得し、インストーラーを実行し直して — 新しい `/nomo-*` コマンドが追加されていれば、これが取り込みます — OpenCode の再起動を促します。プラグインはサーバーの起動時に 1 回だけ読み込まれるため、再起動するまでは古いコピーが動いたままです。
+        <Accordion title="詳細">
+          OpenCode の中から更新することもできます。次を入力して送信します。
 
-    判断がつかないときは、実行せずに断ります。断る理由ごとに、代わりにすべきことも示します。以前の `--ref` 付きインストールで固定されたクローン、コミットしていない変更が残る作業ツリー、移動または削除されたクローン、Nomo 自身のリポジトリではないクローン、そして何もインストールされていない場合です。
+          ```
+          /nomo-update
+          ```
 
-    `bunx nomo-ai` は同じ更新を `--global` 付きで実行します。どのフォルダから実行しても、更新するのはグローバルインストールだけです。`--project` でのインストールは、そのプロジェクトの OpenCode の中で `/nomo-update` を実行して更新します。
+          1 つのプロジェクトだけに Nomo を入れた（`--project`）場合は、そのプロジェクトの OpenCode の中で `/nomo-update` を使います。`bunx nomo-ai` は、どのフォルダから実行してもグローバルのインストールだけを更新します。
 
-    <Note>
-      更新の対象は、**スタブ**が指しているクローン — OpenCode が実際に読み込むコピー — であって、入力したコマンドファイルの出どころとは限りません。クローンを複数持っている場合は、ここが重要な違いになります。
-    </Note>
-  </Tab>
+          何かを変更する前に必ず確認します。すでに最新なら、そこで止まります。
 
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    インストールしたときと同じコマンドです。
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Already on 2.1.22 — nothing to do.
+          ```
 
-    ```bash
-    bunx nomo-ai --cursor
-    ```
+          更新がある場合は、先にそう伝えます。
 
-    そのあと Cursor を再起動し、開いている `cursor-agent` のセッションがあればそれも再起動してください。
-  </Tab>
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Update available: 2.1.22 → 2.1.23.
+          ```
 
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    インストールしたときと同じコマンドです。
+          そのあと更新を取得し、インストーラを再実行します。新しい `/nomo-*` コマンドはここで追加されます。OpenCode はプラグインを起動時にしか読み込まないため、再起動するまでは古いバージョンが動き続けます。
 
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
+          確信が持てないときは推測せずに拒否し、代わりに何をすればよいかを伝えます。以前の `--ref` インストールで固定されたクローン、コミットしていない変更、移動または削除されたクローン、Nomo 自身のリポジトリではないクローン、何もインストールされていない場合がこれにあたります。
 
-    そのあと Antigravity を再起動し、開いている `agy` のセッションがあればそれも再起動してください。
-  </Tab>
+          <Note>
+            更新されるのは**スタブ**が指しているクローン — OpenCode が実際に読み込むコピー — で、入力したコマンドファイルのあるクローンとは限りません。クローンを複数持っている場合は、この違いが重要です。
+          </Note>
+        </Accordion>
+      </Tab>
 
-  <Tab title="Devin" icon="/images/providers/devin.svg">
-    Nomo インストーラーを使った場合は、インストールしたときと同じコマンドです。
+      <Tab title="Cursor" icon="/images/providers/cursor.svg">
+        ```bash
+        bunx nomo-ai --cursor
+        ```
 
-    ```bash
-    bunx nomo-ai --devin
-    ```
+        そのあと Cursor を再起動し、開いている `cursor-agent` セッションも再起動します。
+      </Tab>
 
-    Devin プラグインの場合は次のとおりです。
+      <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+        ```bash
+        bunx nomo-ai --antigravity
+        ```
 
-    ```bash
-    devin plugins update nomo
-    ```
+        そのあと Antigravity を再起動し、開いている `agy` セッションも再起動します。
+      </Tab>
 
-    Devin プラグインは Nomo のリポジトリのデフォルトブランチに従うので、最新のリリース版が入ります。
+      <Tab title="Devin" icon="/images/providers/devin.svg">
+        ```bash
+        devin plugins update nomo
+        ```
 
-    そのあと、開いている `devin` があれば再起動し、Devin Desktop も再起動してください。
-  </Tab>
-</Tabs>
+        そのあと開いている `devin` をすべて再起動し、Devin Desktop も再起動します。
+
+        <Accordion title="詳細">
+          Devin プラグインではなく Nomo のインストーラで入れた場合は、次を実行します。
+
+          ```bash
+          bunx nomo-ai --devin
+          ```
+
+          Devin プラグインは Nomo のリポジトリの既定のブランチに追従するため、`devin plugins update` で最新のリリース版が手に入ります。
+        </Accordion>
+      </Tab>
+    </Tabs>
+
+    bun がない場合は、`bunx` の代わりに `npx` を使います。例: `npx nomo-ai --cursor`
+  </Step>
+
+  <Step title="エージェントを再起動する">
+    エージェントを終了して、もう一度開きます。開いたままのセッションも閉じてください。そうするまでは、古いバージョンが動き続けます。
+  </Step>
+
+  <Step title="確認する">
+    iPhone で Nomo を開きます。**プラグインの更新があります** の通知が消えています。
+
+    次に、エージェントでメッセージを送ります。**ホーム**に、コーディング中であることが表示されます。例: **Claude Codeがコーディング中**
+  </Step>
+</Steps>
+
+どのバージョンを使っているかは、エージェントの [status](#status) コマンド（例: `/nomo-cc:status`）で確認できます。1 行目に表示されます: `Nomo 2.5.0 · Claude Code`
 
 ## uninstall {#uninstall}
 

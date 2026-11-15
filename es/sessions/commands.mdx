@@ -468,124 +468,170 @@ allí.
 
 ## update {#update}
 
-Solo OpenCode tiene un comando de actualización. Los demás agentes se
-actualizan de otra forma: abre su pestaña.
+¿Ves **Actualización del plugin disponible** en Nomo? Actualiza el plugin en
+ese ordenador. Tarda un minuto.
 
-`bunx nomo-ai` (o `npx nomo-ai`) también actualiza: un agente que ya tiene
-Nomo aparece como actualización en lugar de como instalación. Solo se ejecutan
-las de OpenCode, Cursor, Antigravity y Devin; las de Claude Code y Codex se
-imprimen para que las ejecutes tú.
+<Steps>
+  <Step title="Abre Terminal">
+    En el ordenador, abre la app **Terminal** (está en
+    **Aplicaciones → Utilidades**).
+  </Step>
 
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
+  <Step title="Ejecuta el comando de actualización">
+    Elige la pestaña de tu agente. Copia la línea, pégala en Terminal y
+    pulsa Retorno.
 
-    La actualización automática viene desactivada para los marketplaces de
-    terceros, así que nada mueve una instalación por su cuenta. Para activarla:
-    `/plugin` → **Marketplaces** → el de Nomo → **Enable auto-update**.
-  </Tab>
+    <Tabs>
+      <Tab title="Claude Code" icon="/images/claude-code.svg">
+        ```bash
+        claude plugin update nomo-cc@nomo
+        ```
 
-  <Tab title="Codex" icon="/images/codex.svg">
-    Normalmente no hay nada que ejecutar. Codex lee el plugin en vivo desde su
-    ruta, así que traer los cambios en ese clon es toda la actualización, y no
-    existe ningún verbo `codex plugin update`.
+        Después reinicia Claude Code.
 
-    Si añadiste el marketplace desde git, Codex guarda una instantánea, y
-    refrescarla es la actualización:
+        <Accordion title="Detalles">
+          Claude Code no actualiza Nomo por su cuenta. La actualización
+          automática viene desactivada en los marketplaces que no son de
+          Anthropic. Para activarla: escribe `/plugin` en Claude Code →
+          **Marketplaces** → el de Nomo → **Enable auto-update**.
+        </Accordion>
+      </Tab>
 
-    ```bash
-    codex plugin marketplace upgrade <marketplace-name>
-    ```
+      <Tab title="Codex" icon="/images/codex.svg">
+        ```bash
+        codex plugin marketplace upgrade
+        ```
 
-    El nombre es aquel con el que lo añadiste, no necesariamente `nomo`.
-  </Tab>
+        Después reinicia Codex.
 
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    ```bash
-    /nomo-update
-    ```
+        <Accordion title="Detalles">
+          Codex no tiene un comando `codex plugin update`. Si añadiste Nomo con
+          `codex plugin marketplace add KarrixLee/nomo`, Codex guarda una copia.
+          Este comando la renueva, y eso es la actualización.
 
-    Comprueba antes de cambiar nada. Estar al día es una parada, no un no-op
-    con un pull detrás:
+          Renueva todos los marketplaces que añadiste desde GitHub. Para
+          renovar solo el de Nomo, añade su nombre:
+          `codex plugin marketplace upgrade nomo`. El nombre es el que le
+          diste al añadirlo.
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Already on 2.1.22 — nothing to do.
-    ```
+          ¿Añadiste Nomo desde una carpeta de tu ordenador? Codex lee esa
+          carpeta directamente. Ejecuta `git pull` en ella: esa es toda la
+          actualización.
+        </Accordion>
+      </Tab>
 
-    Cuando sí hay algo que traer, dice qué antes de traerlo:
+      <Tab title="OpenCode" icon="/images/opencode.svg">
+        ```bash
+        bunx nomo-ai --opencode
+        ```
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Update available: 2.1.22 → 2.1.23.
-    ```
+        Después reinicia OpenCode.
 
-    Después trae los cambios, vuelve a ejecutar el instalador —que es lo que
-    recoge cualquier comando `/nomo-*` nuevo que traiga la versión— y te dice
-    que reinicies OpenCode. Los plugins se importan una sola vez, al arrancar su
-    servidor, así que hasta entonces la copia vieja sigue siendo la que corre.
+        <Accordion title="Detalles">
+          También puedes actualizar desde dentro de OpenCode. Escribe esto y
+          envíalo:
 
-    Se niega en lugar de actuar cuando no puede estar seguro, y cada negativa
-    dice qué hacer en su lugar: un clon fijado por una instalación anterior con
-    `--ref`, un árbol de trabajo con cambios sin confirmar, un clon que se ha
-    movido o borrado, un clon que no es el repositorio propio de Nomo, o que
-    aquí no haya nada instalado.
+          ```
+          /nomo-update
+          ```
 
-    `bunx nomo-ai` ejecuta la misma actualización con `--global`: solo
-    actualiza la instalación global, sea cual sea la carpeta desde la que lo
-    ejecutes. Una instalación con `--project` se actualiza con `/nomo-update`,
-    ejecutado dentro de OpenCode en ese proyecto.
+          ¿Instalaste Nomo para un solo proyecto (`--project`)? Usa
+          `/nomo-update` dentro de OpenCode, en ese proyecto. `bunx nomo-ai`
+          solo actualiza la instalación global, sea cual sea la carpeta desde
+          la que lo ejecutes.
 
-    <Note>
-      Actualiza el clon al que apunta el **stub** —la copia que OpenCode
-      importa de verdad—, que no es necesariamente aquel de cuyo archivo de
-      comando saliste. Si mantienes más de un clon, esa es la distinción que
-      importa.
-    </Note>
-  </Tab>
+          Comprueba antes de cambiar nada. Si ya estás al día, se detiene:
 
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    El mismo comando con el que lo instalaste:
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Already on 2.1.22 — nothing to do.
+          ```
 
-    ```bash
-    bunx nomo-ai --cursor
-    ```
+          Si hay una actualización, primero lo dice:
 
-    Reinicia Cursor después, y cualquier sesión de `cursor-agent` abierta.
-  </Tab>
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Update available: 2.1.22 → 2.1.23.
+          ```
 
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    El mismo comando con el que lo instalaste:
+          Después descarga la actualización y vuelve a ejecutar el instalador,
+          que añade cualquier comando `/nomo-*` nuevo. OpenCode solo carga los
+          plugins al arrancar, así que la versión vieja sigue corriendo hasta
+          que lo reinicies.
 
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
+          Se niega en lugar de adivinar, y te dice qué hacer en su lugar. Pasa
+          con un clon fijado por una instalación anterior con `--ref`, cambios
+          sin confirmar, un clon que se ha movido o borrado, un clon que no es
+          el repositorio propio de Nomo, o que no haya nada instalado.
 
-    Reinicia Antigravity después, y cualquier sesión de `agy` abierta.
-  </Tab>
+          <Note>
+            Actualiza el clon al que apunta el **stub** —la copia que OpenCode
+            importa de verdad—, que no es necesariamente aquel de cuyo archivo
+            de comando saliste. Si mantienes más de un clon, esa es la
+            distinción que importa.
+          </Note>
+        </Accordion>
+      </Tab>
 
-  <Tab title="Devin" icon="/images/providers/devin.svg">
-    Si usaste el instalador de Nomo, el mismo comando con el que lo
-    instalaste:
+      <Tab title="Cursor" icon="/images/providers/cursor.svg">
+        ```bash
+        bunx nomo-ai --cursor
+        ```
 
-    ```bash
-    bunx nomo-ai --devin
-    ```
+        Después reinicia Cursor, y cualquier sesión de `cursor-agent` abierta.
+      </Tab>
 
-    Con el plugin de Devin:
+      <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+        ```bash
+        bunx nomo-ai --antigravity
+        ```
 
-    ```bash
-    devin plugins update nomo
-    ```
+        Después reinicia Antigravity, y cualquier sesión de `agy` abierta.
+      </Tab>
 
-    Los plugins de Devin siguen la rama predeterminada del repositorio de Nomo,
-    así que recibes la última versión publicada.
+      <Tab title="Devin" icon="/images/providers/devin.svg">
+        ```bash
+        devin plugins update nomo
+        ```
 
-    Reinicia después cualquier `devin` abierto, y Devin Desktop.
-  </Tab>
-</Tabs>
+        Después reinicia cualquier `devin` abierto, y Devin Desktop.
+
+        <Accordion title="Detalles">
+          ¿Lo instalaste con el instalador de Nomo en lugar del plugin de
+          Devin? Ejecuta esto:
+
+          ```bash
+          bunx nomo-ai --devin
+          ```
+
+          Los plugins de Devin siguen la rama predeterminada del repositorio de
+          Nomo, así que `devin plugins update` trae la última versión
+          publicada.
+        </Accordion>
+      </Tab>
+    </Tabs>
+
+    ¿No tienes bun? Usa `npx` en lugar de `bunx`, por ejemplo
+    `npx nomo-ai --cursor`.
+  </Step>
+
+  <Step title="Reinicia tu agente">
+    Cierra tu agente y vuelve a abrirlo. Cierra también cualquier sesión que
+    siga abierta. Hasta entonces, sigue corriendo la versión vieja.
+  </Step>
+
+  <Step title="Compruébalo">
+    En tu iPhone, abre Nomo. El aviso **Actualización del plugin disponible**
+    ya no está.
+
+    Después envía un mensaje en tu agente. **Inicio** muestra que está
+    programando, por ejemplo **Claude Code está programando**.
+  </Step>
+</Steps>
+
+Para ver qué versión tienes, ejecuta el comando [status](#status) de tu
+agente, por ejemplo `/nomo-cc:status`. La primera línea la muestra:
+`Nomo 2.5.0 · Claude Code`.
 
 ## uninstall {#uninstall}
 

@@ -374,99 +374,135 @@ nomo unpair
 
 ## update {#update}
 
-只有 OpenCode 有更新命令。其他智能体各有各的更新方式——打开它的标签页看看。
+在 Nomo 里看到**插件有可用更新**？就在那台电脑上更新插件。一分钟就好。
 
-`bunx nomo-ai`（或 `npx nomo-ai`）也负责更新：已经装了 Nomo 的智能体，会显示成更新而不是安装。真正会跑的只有 OpenCode、Cursor、Antigravity 和 Devin 那四份，Claude Code 和 Codex 那两份只是打印出来给你。
+<Steps>
+  <Step title="打开终端">
+    在那台电脑上打开**终端** App（它在**应用程序 → 实用工具**里）。
+  </Step>
 
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
+  <Step title="运行更新命令">
+    选你的智能体所在的标签页。复制那一行，粘贴到终端里，然后按回车。
 
-    自动更新对第三方插件市场默认是关闭的，所以安装不会自己动。要打开：`/plugin` → **Marketplaces** → Nomo 那个 → **Enable auto-update**。
-  </Tab>
+    <Tabs>
+      <Tab title="Claude Code" icon="/images/claude-code.svg">
+        ```bash
+        claude plugin update nomo-cc@nomo
+        ```
 
-  <Tab title="Codex" icon="/images/codex.svg">
-    通常没有什么要执行。Codex 直接从插件所在路径实时读取，所以在那份克隆目录里拉取更新就是全部的更新——而且根本不存在 `codex plugin update` 这个动词。
+        然后重启 Claude Code。
 
-    如果你这个插件市场是从 git 添加的，那 Codex 存着一份快照，刷新它就是更新：
+        <Accordion title="详细信息">
+          Claude Code 不会自己更新 Nomo。不是 Anthropic 的插件市场，自动更新默认是关闭的。要打开它：在 Claude Code 里输入 `/plugin` → **Marketplaces** → Nomo 的那个 → **Enable auto-update**。
+        </Accordion>
+      </Tab>
 
-    ```bash
-    codex plugin marketplace upgrade <插件市场名称>
-    ```
+      <Tab title="Codex" icon="/images/codex.svg">
+        ```bash
+        codex plugin marketplace upgrade
+        ```
 
-    名称是你当初添加时用的那个，未必是 `nomo`。
-  </Tab>
+        然后重启 Codex。
 
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    ```bash
-    /nomo-update
-    ```
+        <Accordion title="详细信息">
+          Codex 没有 `codex plugin update` 这个命令。如果你是用 `codex plugin marketplace add KarrixLee/nomo` 添加的 Nomo，Codex 会保存一份副本。这条命令会刷新那份副本，这就是更新。
 
-    它在动手之前先检查。已经是最新的，就到此为止，不会顺手再拉一次：
+          它会刷新你从 GitHub 添加的所有插件市场。只想刷新 Nomo 的，就加上它的名称：`codex plugin marketplace upgrade nomo`。名称是你添加时用的那个。
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Already on 2.1.22 — nothing to do.
-    ```
+          你是从电脑上的某个文件夹添加的 Nomo？Codex 会直接读取那个文件夹。在里面运行 `git pull`，更新就完成了。
+        </Accordion>
+      </Tab>
 
-    真有东西可拿时，它会先说是什么，再去拿：
+      <Tab title="OpenCode" icon="/images/opencode.svg">
+        ```bash
+        bunx nomo-ai --opencode
+        ```
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Update available: 2.1.22 → 2.1.23.
-    ```
+        然后重启 OpenCode。
 
-    接着它拉取更新、重新运行安装脚本——新版本要是加了新的 `/nomo-*` 命令，就是靠这一步收进来的——然后让你重启 OpenCode。插件只在服务器启动时导入一次，所以在你重启之前，跑着的仍然是旧的那一份。
+        <Accordion title="详细信息">
+          你也可以在 OpenCode 里更新。输入下面这条并发送：
 
-    拿不准的时候，它宁可拒绝也不动手，而且每一次拒绝都会说清楚该怎么办：被之前的 `--ref` 安装钉住的克隆目录、还有未提交改动的工作区、被搬走或删掉的克隆目录、不是 Nomo 自己存储库的克隆目录，以及这里根本什么都没装。
+          ```
+          /nomo-update
+          ```
 
-    `bunx nomo-ai` 会带上 `--global` 执行同样的更新：不管你在哪个文件夹里运行，它都只更新全局安装。`--project` 安装要用 `/nomo-update` 更新——在那个项目的 OpenCode 里运行。
+          只为一个项目装了 Nomo（`--project`）？就在那个项目的 OpenCode 里用 `/nomo-update`。`bunx nomo-ai` 不管你在哪个文件夹里运行，都只更新全局安装。
 
-    <Note>
-      它更新的是**桩文件**指向的那份克隆目录——也就是 OpenCode 真正导入的那一份——未必是你输入的命令文件所属的那一份。如果你留着不止一份克隆，这个区别就要紧了。
-    </Note>
-  </Tab>
+          它在改动任何东西之前会先检查。已经是最新的，它就停下：
 
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    和安装时是同一条命令：
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Already on 2.1.22 — nothing to do.
+          ```
 
-    ```bash
-    bunx nomo-ai --cursor
-    ```
+          有更新时，它会先告诉你：
 
-    之后重启 Cursor，以及所有开着的 `cursor-agent` 会话。
-  </Tab>
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Update available: 2.1.22 → 2.1.23.
+          ```
 
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    和安装时是同一条命令：
+          接着它下载更新，并重新运行安装脚本，新的 `/nomo-*` 命令就是这一步加进来的。OpenCode 只在启动时加载插件，所以在你重启之前，跑着的仍然是旧版本。
 
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
+          拿不准的时候，它宁可拒绝也不去猜，并告诉你该怎么办：被之前的 `--ref` 安装钉住的克隆目录、还有未提交的改动、被搬走或删掉的克隆目录、不是 Nomo 自己仓库的克隆目录，或者根本什么都没装。
 
-    之后重启 Antigravity，以及所有开着的 `agy` 会话。
-  </Tab>
+          <Note>
+            它更新的是**桩文件**指向的那份克隆目录——也就是 OpenCode 真正导入的那一份——未必是你输入的命令文件所属的那一份。如果你留着不止一份克隆，这个区别就要紧了。
+          </Note>
+        </Accordion>
+      </Tab>
 
-  <Tab title="Devin" icon="/images/providers/devin.svg">
-    如果你用的是 Nomo 安装工具，就用安装时的同一条命令：
+      <Tab title="Cursor" icon="/images/providers/cursor.svg">
+        ```bash
+        bunx nomo-ai --cursor
+        ```
 
-    ```bash
-    bunx nomo-ai --devin
-    ```
+        然后重启 Cursor，以及所有开着的 `cursor-agent` 会话。
+      </Tab>
 
-    用 Devin 插件时：
+      <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+        ```bash
+        bunx nomo-ai --antigravity
+        ```
 
-    ```bash
-    devin plugins update nomo
-    ```
+        然后重启 Antigravity，以及所有开着的 `agy` 会话。
+      </Tab>
 
-    Devin 插件跟随 Nomo 仓库的默认分支，所以拿到的是最新发布的版本。
+      <Tab title="Devin" icon="/images/providers/devin.svg">
+        ```bash
+        devin plugins update nomo
+        ```
 
-    之后重启所有开着的 `devin`，以及 Devin Desktop。
-  </Tab>
-</Tabs>
+        然后重启所有开着的 `devin`，以及 Devin Desktop。
+
+        <Accordion title="详细信息">
+          用的是 Nomo 安装工具，而不是 Devin 插件？运行这条：
+
+          ```bash
+          bunx nomo-ai --devin
+          ```
+
+          Devin 插件跟随 Nomo 仓库的默认分支，所以 `devin plugins update` 拿到的是最新发布的版本。
+        </Accordion>
+      </Tab>
+    </Tabs>
+
+    没有 bun？用 `npx` 代替 `bunx`，比如 `npx nomo-ai --cursor`。
+  </Step>
+
+  <Step title="重启你的智能体">
+    退出你的智能体，再重新打开。还开着的会话也要关掉。在那之前，跑着的仍然是旧版本。
+  </Step>
+
+  <Step title="检查一下">
+    在 iPhone 上打开 Nomo。**插件有可用更新**的提示已经不见了。
+
+    然后在你的智能体里发一条消息。**首页**会显示它正在编程，比如 **Claude Code 正在编程**。
+  </Step>
+</Steps>
+
+想知道自己用的是哪个版本，就运行你的智能体的 [status](#status) 命令，比如 `/nomo-cc:status`。第一行就会显示：`Nomo 2.5.0 · Claude Code`。
 
 ## uninstall {#uninstall}
 

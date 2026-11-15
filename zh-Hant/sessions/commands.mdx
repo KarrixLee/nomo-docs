@@ -374,99 +374,135 @@ nomo unpair
 
 ## update {#update}
 
-只有 OpenCode 有更新指令。其他每個代理都用別的方式更新 — 請打開它的分頁。
+在 Nomo 裡看到**外掛程式有可用更新**？就在那台電腦上更新外掛程式。一分鐘就好。
 
-`bunx nomo-ai`（或 `npx nomo-ai`）也負責更新：已經裝了 Nomo 的代理，會顯示成更新而不是安裝。真正會執行的只有 OpenCode、Cursor、Antigravity 和 Devin 那四份，Claude Code 和 Codex 那兩個只是印出來給你。
+<Steps>
+  <Step title="打開終端機">
+    在那台電腦上打開「終端機」App（它在「應用程式」>「工具程式」裡）。
+  </Step>
 
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
+  <Step title="執行更新指令">
+    選你的代理所在的分頁。複製那一行，貼到終端機裡，然後按下 Return。
 
-    自動更新對第三方市集預設是關閉的，所以安裝不會自己動。要打開：`/plugin` → **Marketplaces** → Nomo 那個 → **Enable auto-update**。
-  </Tab>
+    <Tabs>
+      <Tab title="Claude Code" icon="/images/claude-code.svg">
+        ```bash
+        claude plugin update nomo-cc@nomo
+        ```
 
-  <Tab title="Codex" icon="/images/codex.svg">
-    通常沒有什麼要執行。Codex 直接從外掛程式所在路徑即時讀取，所以在那份 clone 裡拉取更新就是全部的更新 — 而且根本沒有 `codex plugin update` 這個動詞。
+        然後重新啟動 Claude Code。
 
-    如果你這個市集是從 git 加入的，那 Codex 存著一份快照，更新它就是更新：
+        <Accordion title="詳細資訊">
+          Claude Code 不會自己更新 Nomo。不是 Anthropic 的市集，自動更新預設是關閉的。要打開它：在 Claude Code 裡輸入 `/plugin` → **Marketplaces** → Nomo 那個 → **Enable auto-update**。
+        </Accordion>
+      </Tab>
 
-    ```bash
-    codex plugin marketplace upgrade <marketplace-name>
-    ```
+      <Tab title="Codex" icon="/images/codex.svg">
+        ```bash
+        codex plugin marketplace upgrade
+        ```
 
-    名稱是你當初加入時用的那個，未必是 `nomo`。
-  </Tab>
+        然後重新啟動 Codex。
 
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    ```bash
-    /nomo-update
-    ```
+        <Accordion title="詳細資訊">
+          Codex 沒有 `codex plugin update` 這個指令。如果你是用 `codex plugin marketplace add KarrixLee/nomo` 加入 Nomo 的，Codex 會存著一份副本。這個指令會重新整理那份副本，這就是更新。
 
-    它在動手之前會先檢查。已經是最新的就到此為止，不會順手再拉一次：
+          它會重新整理你從 GitHub 加入的所有市集。只想更新 Nomo 的，就加上它的名稱：`codex plugin marketplace upgrade nomo`。名稱是你當初加入時用的那個。
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Already on 2.1.22 — nothing to do.
-    ```
+          你是從電腦上的某個資料夾加入 Nomo 的？Codex 會直接讀取那個資料夾。在裡面執行 `git pull`，更新就完成了。
+        </Accordion>
+      </Tab>
 
-    真的有東西可以拿時，它會先說是什麼，再去拿：
+      <Tab title="OpenCode" icon="/images/opencode.svg">
+        ```bash
+        bunx nomo-ai --opencode
+        ```
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Update available: 2.1.22 → 2.1.23.
-    ```
+        然後重新啟動 OpenCode。
 
-    接著它會拉取更新、重新執行安裝 script — 新版本要是加了新的 `/nomo-*` 指令，就是靠這一步收進來的 — 然後要你重新啟動 OpenCode。外掛程式只在伺服器啟動時匯入一次，所以在你重新啟動之前，跑著的還是舊的那一份。
+        <Accordion title="詳細資訊">
+          你也可以在 OpenCode 裡更新。輸入下面這行並送出：
 
-    沒有把握的時候，它寧可拒絕也不動手，而且每一次拒絕都會說該怎麼辦：被先前 `--ref` 安裝釘住的 clone、還留著未提交變更的工作目錄、被搬走或刪掉的 clone、不是 Nomo 自己儲存庫的 clone，以及這裡根本什麼都沒裝。
+          ```
+          /nomo-update
+          ```
 
-    `bunx nomo-ai` 會帶著 `--global` 執行同樣的更新：不管你在哪個資料夾執行，它都只更新全域安裝。`--project` 安裝則要在那個專案裡，於 OpenCode 中執行 `/nomo-update` 來更新。
+          只為一個專案裝了 Nomo（`--project`）？就在那個專案的 OpenCode 裡用 `/nomo-update`。`bunx nomo-ai` 不管你在哪個資料夾執行，都只更新全域安裝。
 
-    <Note>
-      它更新的是 **stub** 指向的那份 clone — 也就是 OpenCode 真正匯入的那一份 — 未必是你輸入的那個指令檔所屬的那一份。如果你留著不只一份 clone，這個區別就很重要。
-    </Note>
-  </Tab>
+          它在動手改任何東西之前會先檢查。已經是最新的，它就停下來：
 
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    和當初安裝它的是同一個指令：
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Already on 2.1.22 — nothing to do.
+          ```
 
-    ```bash
-    bunx nomo-ai --cursor
-    ```
+          有更新時，它會先告訴你：
 
-    之後重新啟動 Cursor，以及任何開著的 `cursor-agent` session。
-  </Tab>
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Update available: 2.1.22 → 2.1.23.
+          ```
 
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    和當初安裝它的是同一個指令：
+          接著它下載更新，並重新執行安裝程式，新的 `/nomo-*` 指令就是在這一步加進來的。OpenCode 只在啟動時載入外掛程式，所以在你重新啟動之前，跑著的仍然是舊版本。
 
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
+          拿不準的時候，它寧可拒絕也不去猜，並告訴你該怎麼做：被之前的 `--ref` 安裝固定住的 clone、還有未提交的變更、被搬走或刪掉的 clone、不是 Nomo 自己儲存庫的 clone，或是根本什麼都沒裝。
 
-    之後重新啟動 Antigravity，以及任何開著的 `agy` session。
-  </Tab>
+          <Note>
+            它更新的是 **stub** 指向的那份 clone — 也就是 OpenCode 真正匯入的那一份 — 未必是你輸入的指令檔所屬的那一份。如果你留著不只一份 clone，這個差別就很重要。
+          </Note>
+        </Accordion>
+      </Tab>
 
-  <Tab title="Devin" icon="/images/providers/devin.svg">
-    如果你用的是安裝工具，和當初安裝它的是同一個指令：
+      <Tab title="Cursor" icon="/images/providers/cursor.svg">
+        ```bash
+        bunx nomo-ai --cursor
+        ```
 
-    ```bash
-    bunx nomo-ai --devin
-    ```
+        然後重新啟動 Cursor，以及所有開著的 `cursor-agent` session。
+      </Tab>
 
-    使用 Devin 外掛程式時：
+      <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+        ```bash
+        bunx nomo-ai --antigravity
+        ```
 
-    ```bash
-    devin plugins update nomo
-    ```
+        然後重新啟動 Antigravity，以及所有開著的 `agy` session。
+      </Tab>
 
-    Devin 外掛程式會跟著 Nomo 儲存庫的預設分支，所以拿到的是最新發布的版本。
+      <Tab title="Devin" icon="/images/providers/devin.svg">
+        ```bash
+        devin plugins update nomo
+        ```
 
-    之後重新啟動任何開著的 `devin`，以及 Devin Desktop。
-  </Tab>
-</Tabs>
+        然後重新啟動所有開著的 `devin`，以及 Devin Desktop。
+
+        <Accordion title="詳細資訊">
+          用的是 Nomo 安裝程式，而不是 Devin 外掛程式？執行這行：
+
+          ```bash
+          bunx nomo-ai --devin
+          ```
+
+          Devin 外掛程式跟著 Nomo 儲存庫的預設分支，所以 `devin plugins update` 拿到的是最新發布的版本。
+        </Accordion>
+      </Tab>
+    </Tabs>
+
+    沒有 bun？用 `npx` 代替 `bunx`，例如 `npx nomo-ai --cursor`。
+  </Step>
+
+  <Step title="重新啟動你的代理">
+    結束你的代理，再重新打開。還開著的 session 也要關掉。在那之前，跑著的仍然是舊版本。
+  </Step>
+
+  <Step title="確認一下">
+    在 iPhone 上打開 Nomo。**外掛程式有可用更新**的通知已經不見了。
+
+    然後在你的代理裡送出一則訊息。**首頁**會顯示它正在寫程式，例如 **Claude Code 正在寫程式**。
+  </Step>
+</Steps>
+
+想知道自己用的是哪個版本，就執行你的代理的 [status](#status) 指令，例如 `/nomo-cc:status`。第一行就會顯示：`Nomo 2.5.0 · Claude Code`。
 
 ## uninstall {#uninstall}
 

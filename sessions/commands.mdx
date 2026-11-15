@@ -459,122 +459,162 @@ there.
 
 ## update
 
-Only OpenCode has an update command. Every other agent updates another way —
-open its tab.
+Saw **Plugin update available** in Nomo? Update the plugin on that computer.
+It takes a minute.
 
-`bunx nomo-ai` (or `npx nomo-ai`) updates too: an agent that already has Nomo
-shows up as an update rather than an install. Only OpenCode's, Cursor's,
-Antigravity's and Devin's run — the Claude Code and Codex ones are printed for
-you.
+<Steps>
+  <Step title="Open Terminal">
+    On the computer, open the **Terminal** app (it's in
+    **Applications → Utilities**).
+  </Step>
 
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    ```bash
-    claude plugin update nomo-cc@nomo
-    ```
+  <Step title="Run the update command">
+    Pick your agent's tab. Copy the line, paste it into Terminal, and press
+    Return.
 
-    Auto-update defaults off for third-party marketplaces, so nothing moves an
-    install on its own. To turn it on: `/plugin` → **Marketplaces** → Nomo's →
-    **Enable auto-update**.
-  </Tab>
+    <Tabs>
+      <Tab title="Claude Code" icon="/images/claude-code.svg">
+        ```bash
+        claude plugin update nomo-cc@nomo
+        ```
 
-  <Tab title="Codex" icon="/images/codex.svg">
-    Usually nothing to run. Codex reads the plugin live from its path, so
-    pulling that checkout is the whole update — and there is no
-    `codex plugin update` verb.
+        Then restart Claude Code.
 
-    If you added the marketplace from git, Codex holds a snapshot instead, and
-    refreshing it is the update:
+        <Accordion title="Details">
+          Claude Code doesn't update Nomo on its own. Auto-update is off by
+          default for marketplaces that aren't Anthropic's. To turn it on: type
+          `/plugin` in Claude Code → **Marketplaces** → Nomo's →
+          **Enable auto-update**.
+        </Accordion>
+      </Tab>
 
-    ```bash
-    codex plugin marketplace upgrade <marketplace-name>
-    ```
+      <Tab title="Codex" icon="/images/codex.svg">
+        ```bash
+        codex plugin marketplace upgrade
+        ```
 
-    The name is whatever you added it as, not necessarily `nomo`.
-  </Tab>
+        Then restart Codex.
 
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    ```bash
-    /nomo-update
-    ```
+        <Accordion title="Details">
+          Codex has no `codex plugin update` command. If you added Nomo with
+          `codex plugin marketplace add KarrixLee/nomo`, Codex keeps a copy of
+          it. This command refreshes that copy, and that is the update.
 
-    It checks before it changes anything. Already current is a stop, not a
-    no-op with a pull attached:
+          It refreshes every marketplace you added from GitHub. To refresh only
+          Nomo's, add its name: `codex plugin marketplace upgrade nomo`. The
+          name is whatever you added it as.
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Already on 2.1.22 — nothing to do.
-    ```
+          Added Nomo from a folder on your computer instead? Codex reads that
+          folder directly. Run `git pull` in it — that is the whole update.
+        </Accordion>
+      </Tab>
 
-    When there's something to get, it says what before it takes it:
+      <Tab title="OpenCode" icon="/images/opencode.svg">
+        ```bash
+        bunx nomo-ai --opencode
+        ```
 
-    ```
-    OpenCode plugin: /Users/you/.nomo
-    Update available: 2.1.22 → 2.1.23.
-    ```
+        Then restart OpenCode.
 
-    Then it pulls, re-runs the installer — which is what picks up any new
-    `/nomo-*` command the release added — and tells you to restart OpenCode.
-    Plugins are imported once when its server starts, so until you do, the old
-    copy is still the one running.
+        <Accordion title="Details">
+          You can also update from inside OpenCode. Type this and send it:
 
-    It refuses rather than acting when it can't be sure, and each refusal says
-    what to do instead: a checkout pinned by an earlier `--ref` install, a
-    working tree with uncommitted changes, a checkout that's been moved or
-    deleted, a checkout that isn't Nomo's own repository, or nothing installed
-    here at all.
+          ```
+          /nomo-update
+          ```
 
-    `bunx nomo-ai` runs the same update with `--global`: it updates only the
-    global install, whichever folder you run it from. A `--project` install is
-    updated by `/nomo-update`, run inside OpenCode in that project.
+          Installed Nomo for one project (`--project`)? Use `/nomo-update`,
+          inside OpenCode, in that project. `bunx nomo-ai` updates only the
+          global install, whichever folder you run it from.
 
-    <Note>
-      It updates the checkout the **stub** points at — the copy OpenCode
-      actually imports — which isn't necessarily the one whose command file you
-      typed. If you keep more than one clone, that's the distinction that
-      matters.
-    </Note>
-  </Tab>
+          It checks before it changes anything. If you're already up to date,
+          it stops:
 
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    The same command that installed it:
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Already on 2.1.22 — nothing to do.
+          ```
 
-    ```bash
-    bunx nomo-ai --cursor
-    ```
+          If there's an update, it says so first:
 
-    Restart Cursor afterwards, and any open `cursor-agent` session.
-  </Tab>
+          ```
+          OpenCode plugin: /Users/you/.nomo
+          Update available: 2.1.22 → 2.1.23.
+          ```
 
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    The same command that installed it:
+          Then it downloads the update and re-runs the installer, which adds
+          any new `/nomo-*` command. OpenCode loads plugins only when it
+          starts, so the old version keeps running until you restart it.
 
-    ```bash
-    bunx nomo-ai --antigravity
-    ```
+          It refuses rather than guess, and says what to do instead. That
+          happens with a checkout pinned by an earlier `--ref` install,
+          uncommitted changes, a checkout that was moved or deleted, a checkout
+          that isn't Nomo's own repository, or nothing installed at all.
 
-    Restart Antigravity afterwards, and any open `agy` session.
-  </Tab>
+          <Note>
+            It updates the checkout the **stub** points at — the copy OpenCode
+            actually imports — which isn't necessarily the one whose command
+            file you typed. If you keep more than one clone, that's the
+            distinction that matters.
+          </Note>
+        </Accordion>
+      </Tab>
 
-  <Tab title="Devin" icon="/images/providers/devin.svg">
-    If you used the Nomo installer, the same command that installed it:
+      <Tab title="Cursor" icon="/images/providers/cursor.svg">
+        ```bash
+        bunx nomo-ai --cursor
+        ```
 
-    ```bash
-    bunx nomo-ai --devin
-    ```
+        Then restart Cursor, and any open `cursor-agent` session.
+      </Tab>
 
-    With the Devin plugin:
+      <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+        ```bash
+        bunx nomo-ai --antigravity
+        ```
 
-    ```bash
-    devin plugins update nomo
-    ```
+        Then restart Antigravity, and any open `agy` session.
+      </Tab>
 
-    Devin plugins follow the default branch of Nomo's repository, so this gets the
-    latest released version.
+      <Tab title="Devin" icon="/images/providers/devin.svg">
+        ```bash
+        devin plugins update nomo
+        ```
 
-    Restart any open `devin` afterwards, and Devin Desktop.
-  </Tab>
-</Tabs>
+        Then restart any open `devin`, and Devin Desktop.
+
+        <Accordion title="Details">
+          Installed with the Nomo installer instead of the Devin plugin? Run
+          this:
+
+          ```bash
+          bunx nomo-ai --devin
+          ```
+
+          Devin plugins follow the default branch of Nomo's repository, so
+          `devin plugins update` gets the latest released version.
+        </Accordion>
+      </Tab>
+    </Tabs>
+
+    No bun? Use `npx` in place of `bunx`, such as `npx nomo-ai --cursor`.
+  </Step>
+
+  <Step title="Restart your agent">
+    Quit your agent and open it again. Close any session that's still open,
+    too. Until you do, the old version keeps running.
+  </Step>
+
+  <Step title="Check it">
+    On your iPhone, open Nomo. The **Plugin update available** notice is gone.
+
+    Then send a message in your agent. **Home** shows that it's coding now,
+    such as **Claude Code is coding now**.
+  </Step>
+</Steps>
+
+To see which version you have, run your agent's [status](#status) command,
+such as `/nomo-cc:status`. The first line shows it: `Nomo 2.5.0 · Claude Code`.
 
 ## uninstall
 
