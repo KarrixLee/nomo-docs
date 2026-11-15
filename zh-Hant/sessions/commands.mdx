@@ -166,6 +166,8 @@ nomo status
 Nomo 2.2.0 · Claude Code
 
 Phone         paired · https://api.nomo.gg · pairing 3e65a0cb…
+Plan          Nomo Free — your streak, coding time and live status sync.
+              Live sessions, the Dynamic Island and approvals come with Nomo Pro.
 Delivery      last event sent 4m ago · watchdog running (pid 25780)
 LAN           listening on port 51843 (id 9f3c1a20) since 3h ago
               phone last reached this Mac 12s ago (ping)
@@ -181,6 +183,10 @@ Claude Code — you are here
 
 <ResponseField name="Phone">
   這台電腦到底有沒有配對，以及它對話的中繼伺服器和它持有的配對。`NOT PAIRED` 表示從這裡送出的東西沒有任何一樣會到達 App，底下那個箭頭會印出你當下所在代理的 [pair](#pair) 指令。
+</ResponseField>
+
+<ResponseField name="Plan">
+  這個配對用的是哪個方案。配對幾秒後會出現。
 </ResponseField>
 
 <ResponseField name="Delivery">
