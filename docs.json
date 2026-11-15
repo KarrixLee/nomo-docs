@@ -77,7 +77,6 @@
                 "pages": [
                   "index",
                   "installation",
-                  "free-and-pro",
                   "changelog"
                 ]
               },
@@ -166,7 +165,6 @@
                 "pages": [
                   "es/index",
                   "es/installation",
-                  "es/free-and-pro",
                   "es/changelog"
                 ]
               },
@@ -255,7 +253,6 @@
                 "pages": [
                   "ja/index",
                   "ja/installation",
-                  "ja/free-and-pro",
                   "ja/changelog"
                 ]
               },
@@ -344,7 +341,6 @@
                 "pages": [
                   "ko/index",
                   "ko/installation",
-                  "ko/free-and-pro",
                   "ko/changelog"
                 ]
               },
@@ -433,7 +429,6 @@
                 "pages": [
                   "zh-Hans/index",
                   "zh-Hans/installation",
-                  "zh-Hans/free-and-pro",
                   "zh-Hans/changelog"
                 ]
               },
@@ -522,7 +517,6 @@
                 "pages": [
                   "zh-Hant/index",
                   "zh-Hant/installation",
-                  "zh-Hant/free-and-pro",
                   "zh-Hant/changelog"
                 ]
               },
@@ -601,5 +595,13 @@
         ]
       }
     ]
-  }
+  },
+  "redirects": [
+    { "source": "/free-and-pro", "destination": "/setup/pairing" },
+    { "source": "/es/free-and-pro", "destination": "/es/setup/pairing" },
+    { "source": "/ja/free-and-pro", "destination": "/ja/setup/pairing" },
+    { "source": "/ko/free-and-pro", "destination": "/ko/setup/pairing" },
+    { "source": "/zh-Hans/free-and-pro", "destination": "/zh-Hans/setup/pairing" },
+    { "source": "/zh-Hant/free-and-pro", "destination": "/zh-Hant/setup/pairing" }
+  ]
 }

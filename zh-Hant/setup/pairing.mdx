@@ -8,7 +8,7 @@ icon: "qrcode-read"
 
 每台電腦只需做一次。再配對一次會取代原本的配對。配對若閒置 **10 分鐘**未使用就會過期。
 
-配對是免費的。Nomo Free 可以連結一台電腦，Nomo Pro 可以連結更多台。Nomo Pro 還會增加什麼，請看[免費版與 Pro](/zh-Hant/free-and-pro)。
+配對是免費的。Nomo Free 可以連結一台電腦，Nomo Pro 可以連結更多台。
 
 你需要先裝好外掛程式。如果還沒裝，[先安裝](/zh-Hant/setup/install)。
 
@@ -158,7 +158,7 @@ icon: "qrcode-read"
 
 ## 接下來
 
-打開**首頁**分頁。你寫程式時，連續紀錄和寫程式的時間會出現在[活動](/zh-Hant/activity)裡。這是免費的。請看[免費版與 Pro](/zh-Hant/free-and-pro)。
+打開**首頁**分頁。你寫程式時，連續紀錄和寫程式的時間會出現在[活動](/zh-Hant/activity)裡。這是免費的。
 
 ## 之後怎麼查看
 
@@ -174,6 +174,26 @@ $nomo-status
 
 這會回報電腦是否仍在連線，以及事件是否有送達。
 
+## 換一台電腦 {#use-a-different-computer}
+
+Nomo Free 只連結一台電腦。想換到另一台，請先移除舊的那台。
+
+<Steps>
+  <Step title="移除舊電腦">
+    在 Nomo 裡打開 **Sessions**。按住那台電腦，然後點一下**移除此電腦**。
+  </Step>
+
+  <Step title="確認">
+    再點一下**移除此電腦**。
+  </Step>
+
+  <Step title="配對新電腦">
+    用和第一台一樣的方式配對。請看[配對](/zh-Hant/setup/pairing)。
+  </Step>
+</Steps>
+
+想同時使用多台電腦？請訂閱 Nomo Pro。
+
 ## 配對沒有成功時
 
 - **沒有開啟 QR 頁面** — 多半是外掛程式的 hooks 沒有載入。重新啟動代理再試一次，或改用手動輸入代碼那條路徑。
@@ -181,5 +201,5 @@ $nomo-status
 - **無法驗證此 iPhone** — Nomo 的伺服器無法驗證你的手機。請再試一次，如果一直發生，請聯絡支援。
 - **列表看起來是舊的或重複** — 執行 `/nomo-cc:reset`（或 `$nomo-reset`）清掉失效的 session 列，不會解除配對。
 - **想中斷某台電腦的連線** — `/nomo-cc:unpair`（或 `$nomo-unpair`）會移除配對並清除本機金鑰。
-- **Nomo Free 可配對一台電腦** — Nomo Free 只連結一台電腦。想換一台，請在 **Sessions** 分頁按住已配對的那台，點一下**移除此電腦**，然後再配對。請看[換一台電腦](/zh-Hant/free-and-pro#use-a-different-computer)。也可以訂閱 Nomo Pro 連結更多台。
+- **Nomo Free 可配對一台電腦** — Nomo Free 只連結一台電腦。想換一台，請在 **Sessions** 分頁按住已配對的那台，點一下**移除此電腦**，然後再配對。請看[換一台電腦](/zh-Hant/setup/pairing#use-a-different-computer)。也可以訂閱 Nomo Pro 連結更多台。
 - **已達電腦數量上限** — 你配對的電腦已達到方案允許的數量。請在 **Sessions** 分頁按住一台，移除它，然後再配對。
