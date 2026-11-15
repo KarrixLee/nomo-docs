@@ -14,33 +14,26 @@ icon: "clock-rotate-left"
 </Frame>
 
 <Update label="2026年11月" description="2.5.0">
-  ## Devin：狀態、用量與 sessions
+  ## 全新首頁和 Devin
 
   <Frame>
-    <img src="/images/changelog-2-5-0-devin.jpg" alt="Nomo 2.5.0：Devin 提問，你來核准。iPhone 上的 Devin 權限請求，附「允許」與「拒絕」按鈕" />
+    <img src="/images/changelog-2-5-0-devin.jpg" alt="Nomo 2.5.0：Devin 提問，你來批准。iPhone 上的 Devin 權限請求，附「允許」與「拒絕」按鈕" />
   </Frame>
 
-  Nomo 現已支援 Devin：在手機上查看它的狀態、你的用量和它的 sessions，還能直接回應 Devin 的權限請求。
+  全新首頁顯示你的連續紀錄，Devin 也來到你的手機上。
 
   **新增**
 
-  - 「供應商」中新增 Devin：查看它五項服務的[狀態](/zh-Hant/status)，支援提醒與狀態小工具。如果你之前就在用 Nomo，Devin 的狀態提醒一開始是關著的，可以在[通知](/zh-Hant/notifications)中開啟
-  - Devin 用量：用你的 Devin 帳戶登入，即可查看每日和每週限額，以及各自的重置時間。[連結帳戶](/zh-Hant/usage#devin)
-  - 在手機、動態島和鎖定畫面上查看 [Devin 的 sessions](/zh-Hant/sessions/devin)，顯示 Devin 自己的 session 標題和模型。支援 Devin CLI 和 Devin Desktop
-  - 在手機、動態島或鎖定畫面上回應 Devin：「允許」、「一律允許…（本次 session）」、「拒絕」和「拒絕並附註…」，還能[回答 Devin 的問題](/zh-Hant/sessions/devin#questions)
-  - [停止](/zh-Hant/sessions/devin#interrupt)正在執行的 Devin session：它會做完目前這一步再停下。目前需要 iPhone 和 Mac 在同一個網路中
+  - **Devin 的 sessions** 會顯示在手機、動態島和鎖定畫面上。可以直接在那裡回覆它的權限請求和問題（Nomo Pro）。[了解更多](/zh-Hant/sessions/devin)
+  - **Devin 用量與狀態**：你的每日和每週限額，以及有提醒的 Devin 狀態。[用量](/zh-Hant/usage#devin) · [狀態](/zh-Hant/status)
+  - **配對免費**：Nomo Free 可以連結一台電腦。[免費版與 Pro](/zh-Hant/free-and-pro)
+  - **首頁上的活動**：連續紀錄、寫程式的時間和寫程式日子的日曆，就在**首頁**上。[了解更多](/zh-Hant/activity)
 
   **改進**
 
-  - 「拒絕並附註…」和「新增附註」會開啟一個寬敞的附註畫面，同時顯示你正在回應的內容
-  - 「一律允許」會寫明允許的範圍，例如「一律允許以 `bun test` 開頭的指令（本次 session）」。OpenCode 的則寫明「直到 OpenCode 重新啟動」。需要外掛程式 2.5.0
-  - 彈出的畫面改用 ✕ 關閉
-  - 「供應商」列表依 A–Z 排序
-  - Nomo Pro 畫面會顯示 Nomo 支援的全部六個代理
-
-  **修正**
-
-  - 按住等待中的 session 或電腦卡片時跳出的選單不再閃爍
+  - 在電腦上回覆請求後，幾秒內手機上的請求也會消失
+  - Token 圖表預設顯示折線
+  - 「一律允許」會寫明允許的範圍，例如「一律允許以 `bun test` 開頭的指令（本次 session）」
 
   **外掛程式 2.5.0**
 
@@ -58,10 +51,10 @@ icon: "clock-rotate-left"
   - **新結果一目了然**：上次查看後結束的 session 會標上藍點，每台電腦都會顯示新結果的數量，例如「2 個新結果」。[詳情](/zh-Hant/sessions/list#new-results)
   - 「首頁」上的「更新日誌」：關閉「新功能」卡片後，點一下「更新日誌」即可查看以往的版本
   - **連續紀錄也算 Grok Bot**：Nomo 活動和 Nomo Token 現在會計算你用 Grok Bot 的日子和 Token，也會計算你用 Cursor 的日子。這些來自你在 Nomo 裡的 Cursor 登入，所以不需要電腦。[設定方式](/zh-Hant/widgets#grok-bot)
-  - **依代理顯示 Token，也能畫成折線**：在活動頁面和 Nomo Token 小工具上，可以把 Token 依模型或依代理分開，用長條或折線顯示。[用法](/zh-Hant/widgets#tokens-chart)
-  - **篩選圖表**：點一下 Token 圖表下方的名稱就能隱藏它，或按住卡片，從列表中挑選。[用法](/zh-Hant/widgets#tokens-filter)
-  - **選擇你的角色**：按住連續紀錄卡片，選擇活動頁面的角色和顏色。[用法](/zh-Hant/widgets#activity-character)
-  - **回顧樣式**：用長條、折線或熱度圖分享你的回顧。[詳情](/zh-Hant/widgets#wrapped)
+  - **依代理顯示 Token，也能畫成折線**：在活動頁面和 Nomo Token 小工具上，可以把 Token 依模型或依代理分開，用長條或折線顯示。[用法](/zh-Hant/activity#tokens-chart)
+  - **篩選圖表**：點一下 Token 圖表下方的名稱就能隱藏它，或按住卡片，從列表中挑選。[用法](/zh-Hant/activity#tokens-filter)
+  - **選擇你的角色**：按住連續紀錄卡片，選擇活動頁面的角色和顏色。[用法](/zh-Hant/activity#character)
+  - **回顧樣式**：用長條、折線或熱度圖分享你的回顧。[詳情](/zh-Hant/activity#wrapped)
   - **終端機指令**：安裝工具會加入一個簡短的 `nomo` 指令。`nomo pair`、`nomo status`、`nomo reset` 和 `nomo unpair` 在任何資料夾裡都能執行。[詳情](/zh-Hant/sessions/commands#terminal)
   - **可用的重設次數**：Claude 和 Codex 的用量卡片以及 Nomo 用量、Nomo 用量速度小工具會顯示你能用的重設次數，例如「4 次重設可用」。卡片也會顯示到期時間，Nomo 還會在到期前 1 週和 1 天提醒你。[詳情](/zh-Hant/usage#available-resets)
 
