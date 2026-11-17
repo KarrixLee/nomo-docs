@@ -20,7 +20,7 @@ on your Home Screen, see [Widget](/widget).
 | **Nomo** status widget | ✓ | ✓ |
 | **Nomo Usage** widget | ✓ | ✓ |
 | **Nomo Activity**, Small and Medium sizes | ✓ | ✓ |
-| **Nomo Pace**, **Nomo Activity** (Large and Lock Screen), **Nomo Accounts**, **Live Agents**, **Nomo Tokens** | | ✓ |
+| **Nomo Activity** (Large and Lock Screen), **Nomo Pace**, **Nomo Accounts**, **Live Agents**, **Nomo Tokens** | | ✓ |
 | More than one account per provider | | ✓ |
 
 In the widget gallery, a Pro widget's description starts with **👑 Nomo Pro**.
@@ -118,94 +118,7 @@ For Cursor, there's one more option: **Cursor icon**. Pick **Grok Bot** or
 To update it now, tap the refresh button in its corner. Tap anywhere else to
 open that provider's **Usage** page in Nomo.
 
-## Pro widgets <span className="pro-pill" /> {#pro-widgets}
-
-Nomo Pro adds five widgets to the free ones. Each one answers a question you'd
-otherwise open the app for.
-
-- **Nomo Pace**: will my usage last until it resets?
-- **Nomo Activity**: how many days in a row have I coded with an agent?
-- **Nomo Accounts**: which of my accounts has the least left?
-- **Live Agents**: what are my agents doing right now?
-- **Nomo Tokens**: how many tokens did I use, and on which models?
-
-<Frame caption="All five Pro widgets on a Home Screen: Nomo Pace, Live Agents, Nomo Activity, Nomo Tokens and Nomo Accounts.">
-  <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Five Nomo widgets on a light Home Screen: Pace counting down two hours to a Claude reset, Live Agents with two running and one needing an answer, a 13-day Activity streak with a coding heatmap, Tokens with 20.3M tokens in 14 days stacked by model, and an Accounts board of six accounts sorted by what's left" />
-    <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="The same five Nomo widgets on a dark Home Screen: Pace, Live Agents, Activity, Tokens and Accounts" />
-  </div>
-</Frame>
-
-Nomo Pace and Nomo Activity also come in Lock Screen sizes.
-
-### Nomo Pace <span className="pro-pill" /> {#nomo-pace}
-
-<Frame caption="Nomo Pace in Small and Medium, and on the Lock Screen.">
-  <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Nomo Pace: a small widget reading Resets in 2:00:00 with 45% used · 60% time, a medium widget showing the 5-hour window fine and the weekly window running out in about 2 days 6 hours, and two Lock Screen widgets reading 45% and Lasts until reset" />
-    <img className="only-dark" src="/images/pro-widgets-pace-dark.webp" alt="Nomo Pace in dark mode: small, medium and two Lock Screen widgets" />
-  </div>
-</Frame>
-
-**What it shows:** whether you'll run out before your limit resets, if you
-keep going at your current speed.
-
-The line under the big number compares two things:
-
-- **used**: how much of the limit you've used.
-- **time**: how much of the time window has gone by.
-
-For example, `45% used · 60% time`. If used is lower than time, you're fine.
-The widget shows **Resets in** and a countdown to the reset.
-
-If used is higher than time, you're going too fast. The widget shows **Runs out
-in** and a countdown to when you'd run out. A `~` in front means it's an
-estimate. The number turns amber.
-
-You'll also see:
-
-- **Too early to tell**, right after a window starts. There isn't enough to go
-  on yet.
-- **Maxed out**, when a window is at 100%. The countdown is to the reset.
-- **Pace isn't available for this plan**, when the provider doesn't say when
-  the limit resets.
-
-The sizes:
-
-| Size | What's on it |
-| --- | --- |
-| Small | One window and its ring. |
-| Medium | Two windows, usually the 5-hour one and the weekly one. |
-| Lock Screen, round | How much you've used. A checkmark means you're fine. When you're going too fast, it shows the time you'd run out. |
-| Lock Screen, rectangle | `Lasts until reset`, or the time you'd run out, such as `Out ~9:20 PM`. |
-
-Every ring fills with how much you've used. The small tick shows where you'd
-be if you used it evenly. If the fill is behind the tick, you're fine.
-
-**Used or Left:** Nomo Pace follows **Settings → Usage → Show usage as**. With
-**Left**, the line reads `55% left · 40% time left`. The ring drains instead:
-the fill shows what's left, and the tick shows the time left. If the fill goes
-past the tick, you're fine. The numbers on every size flip too.
-
-**What you need first:** a connected account, such as Claude or Codex. Open the
-**Providers** tab, tap the provider, and connect it. See [Usage](/usage).
-
-**Set it up:**
-
-1. Add the widget. See [Widget](/widget).
-2. Touch and hold the widget.
-3. Tap **Edit Widget**.
-4. Tap **Provider** and pick one, such as **Claude**.
-5. Tap **Account** and pick one. **Default** follows your Default account in the
-   app.
-6. Tap **Window** and pick one. **Automatic** uses the 5-hour window if your
-   plan has one, and the weekly window if not. This changes the Small and Lock
-   Screen sizes.
-7. Tap outside the widget to finish.
-
-Tap the widget to open that provider's **Usage** page in Nomo.
-
-### Nomo Activity <span className="pro-pill" /> {#nomo-activity}
+### Nomo Activity {#nomo-activity}
 
 <Frame caption="Nomo Activity in Small, Medium and Large, and on the Lock Screen.">
   <div className="widget-shot">
@@ -294,6 +207,93 @@ Tap the widget to open Nomo on Home, scrolled to [Activity](#activity-on-home).
 
 What leaves your computer for this map is listed under
 [Privacy](#privacy). It's counts only, never your prompts or code.
+
+## Pro widgets <span className="pro-pill" /> {#pro-widgets}
+
+Nomo Pro adds five widgets to the free ones. Each one answers a question you'd
+otherwise open the app for.
+
+- **Nomo Activity** (Large and Lock Screen): how many days in a row have I coded with an agent?
+- **Nomo Pace**: will my usage last until it resets?
+- **Nomo Accounts**: which of my accounts has the least left?
+- **Live Agents**: what are my agents doing right now?
+- **Nomo Tokens**: how many tokens did I use, and on which models?
+
+<Frame caption="All five Pro widgets on a Home Screen: Nomo Pace, Live Agents, Nomo Activity, Nomo Tokens and Nomo Accounts.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Five Nomo widgets on a light Home Screen: Pace counting down two hours to a Claude reset, Live Agents with two running and one needing an answer, a 13-day Activity streak with a coding heatmap, Tokens with 20.3M tokens in 14 days stacked by model, and an Accounts board of six accounts sorted by what's left" />
+    <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="The same five Nomo widgets on a dark Home Screen: Pace, Live Agents, Activity, Tokens and Accounts" />
+  </div>
+</Frame>
+
+Nomo Pace and Nomo Activity also come in Lock Screen sizes.
+
+### Nomo Pace <span className="pro-pill" /> {#nomo-pace}
+
+<Frame caption="Nomo Pace in Small and Medium, and on the Lock Screen.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Nomo Pace: a small widget reading Resets in 2:00:00 with 45% used · 60% time, a medium widget showing the 5-hour window fine and the weekly window running out in about 2 days 6 hours, and two Lock Screen widgets reading 45% and Lasts until reset" />
+    <img className="only-dark" src="/images/pro-widgets-pace-dark.webp" alt="Nomo Pace in dark mode: small, medium and two Lock Screen widgets" />
+  </div>
+</Frame>
+
+**What it shows:** whether you'll run out before your limit resets, if you
+keep going at your current speed.
+
+The line under the big number compares two things:
+
+- **used**: how much of the limit you've used.
+- **time**: how much of the time window has gone by.
+
+For example, `45% used · 60% time`. If used is lower than time, you're fine.
+The widget shows **Resets in** and a countdown to the reset.
+
+If used is higher than time, you're going too fast. The widget shows **Runs out
+in** and a countdown to when you'd run out. A `~` in front means it's an
+estimate. The number turns amber.
+
+You'll also see:
+
+- **Too early to tell**, right after a window starts. There isn't enough to go
+  on yet.
+- **Maxed out**, when a window is at 100%. The countdown is to the reset.
+- **Pace isn't available for this plan**, when the provider doesn't say when
+  the limit resets.
+
+The sizes:
+
+| Size | What's on it |
+| --- | --- |
+| Small | One window and its ring. |
+| Medium | Two windows, usually the 5-hour one and the weekly one. |
+| Lock Screen, round | How much you've used. A checkmark means you're fine. When you're going too fast, it shows the time you'd run out. |
+| Lock Screen, rectangle | `Lasts until reset`, or the time you'd run out, such as `Out ~9:20 PM`. |
+
+Every ring fills with how much you've used. The small tick shows where you'd
+be if you used it evenly. If the fill is behind the tick, you're fine.
+
+**Used or Left:** Nomo Pace follows **Settings → Usage → Show usage as**. With
+**Left**, the line reads `55% left · 40% time left`. The ring drains instead:
+the fill shows what's left, and the tick shows the time left. If the fill goes
+past the tick, you're fine. The numbers on every size flip too.
+
+**What you need first:** a connected account, such as Claude or Codex. Open the
+**Providers** tab, tap the provider, and connect it. See [Usage](/usage).
+
+**Set it up:**
+
+1. Add the widget. See [Widget](/widget).
+2. Touch and hold the widget.
+3. Tap **Edit Widget**.
+4. Tap **Provider** and pick one, such as **Claude**.
+5. Tap **Account** and pick one. **Default** follows your Default account in the
+   app.
+6. Tap **Window** and pick one. **Automatic** uses the 5-hour window if your
+   plan has one, and the weekly window if not. This changes the Small and Lock
+   Screen sizes.
+7. Tap outside the widget to finish.
+
+Tap the widget to open that provider's **Usage** page in Nomo.
 
 ### Nomo Tokens <span className="pro-pill" /> {#nomo-tokens}
 

@@ -20,7 +20,7 @@ widget en la pantalla de inicio, consulta [Widget](/es/widget).
 | Widget de estado **Nomo** | ✓ | ✓ |
 | Widget **Uso de Nomo** | ✓ | ✓ |
 | **Actividad de Nomo**, tamaños pequeño y mediano | ✓ | ✓ |
-| **Ritmo de Nomo**, **Actividad de Nomo** (grande y pantalla de bloqueo), **Cuentas de Nomo**, **Agentes en directo**, **Tokens de Nomo** | | ✓ |
+| **Actividad de Nomo** (grande y pantalla de bloqueo), **Ritmo de Nomo**, **Cuentas de Nomo**, **Agentes en directo**, **Tokens de Nomo** | | ✓ |
 | Más de una cuenta por proveedor | | ✓ |
 
 En la galería de widgets, la descripción de un widget Pro empieza por
@@ -122,99 +122,7 @@ Con Cursor hay una opción más: **“Icono de Cursor”**. Elige **Grok Bot** o
 Para actualizarlo al momento, toca el botón de actualizar de su esquina. Toca en
 cualquier otro sitio para abrir la página **Uso** de ese proveedor en Nomo.
 
-## Widgets Pro <span className="pro-pill" /> {#pro-widgets}
-
-Nomo Pro añade cinco widgets a los gratuitos. Cada uno responde a una pregunta
-para la que, si no, abrirías la app.
-
-- **Ritmo de Nomo**: ¿me llegará el uso hasta que se restablezca?
-- **Actividad de Nomo**: ¿cuántos días seguidos he programado con un agente?
-- **Cuentas de Nomo**: ¿a cuál de mis cuentas le queda menos?
-- **Agentes en directo**: ¿qué están haciendo mis agentes ahora mismo?
-- **Tokens de Nomo**: ¿cuántos tokens he usado y con qué modelos?
-
-<Frame caption="Los cinco widgets Pro en una pantalla de inicio: Ritmo de Nomo, Agentes en directo, Actividad de Nomo, Tokens de Nomo y Cuentas de Nomo.">
-  <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Cinco widgets de Nomo en una pantalla de inicio clara: Ritmo con una cuenta atrás de dos horas hasta el restablecimiento de Claude, Agentes en directo con dos en marcha y uno esperando una respuesta, una racha de 13 días en Actividad con un mapa de programación, Tokens con 20,3 M de tokens en 14 días apilados por modelo, y un panel de Cuentas con seis cuentas ordenadas por lo que les queda" />
-    <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="Los mismos cinco widgets de Nomo en una pantalla de inicio oscura: Ritmo, Agentes en directo, Actividad, Tokens y Cuentas" />
-  </div>
-</Frame>
-
-Ritmo de Nomo y Actividad de Nomo también tienen tamaños para la pantalla de
-bloqueo.
-
-### Ritmo de Nomo <span className="pro-pill" /> {#nomo-pace}
-
-<Frame caption="Ritmo de Nomo en tamaño pequeño y mediano, y en la pantalla de bloqueo.">
-  <div className="widget-shot">
-    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Ritmo de Nomo: un widget pequeño que indica Resets in 2:00:00 con 45% used · 60% time, un widget mediano que muestra la ventana de 5 horas sin problemas y la semanal agotándose en unos 2 días y 6 horas, y dos widgets de pantalla de bloqueo que indican 45% y Lasts until reset" />
-    <img className="only-dark" src="/images/pro-widgets-pace-dark.webp" alt="Ritmo de Nomo en modo oscuro: widgets pequeño, mediano y dos de pantalla de bloqueo" />
-  </div>
-</Frame>
-
-**Qué muestra:** si te quedarás sin uso antes de que tu límite se restablezca,
-si sigues al ritmo actual.
-
-La línea bajo el número grande compara dos cosas:
-
-- **Uso**: cuánto del límite has usado.
-- **plazo**: cuánto de la ventana de tiempo ha pasado.
-
-Por ejemplo, `Uso 45 % · plazo 60 %`. Si el uso es menor que el plazo, vas bien.
-El widget muestra **“Restablece en”** y una cuenta atrás hasta el
-restablecimiento.
-
-Si el uso es mayor que el plazo, vas demasiado rápido. El widget muestra
-**“Se agota en”** y una cuenta atrás hasta el momento en que te quedarías sin
-uso. Un `~` delante indica que es una estimación. El número se vuelve ámbar.
-
-También verás:
-
-- **“Aún es pronto para saberlo”**, justo después de que empiece una ventana.
-  Todavía no hay datos suficientes.
-- **“Al límite”**, cuando una ventana está al 100 %. La cuenta atrás es hasta el
-  restablecimiento.
-- **“El ritmo no está disponible para este plan”**, cuando el proveedor no dice
-  cuándo se restablece el límite.
-
-Los tamaños:
-
-| Tamaño | Qué muestra |
-| --- | --- |
-| Pequeño | Una ventana y su anillo. |
-| Mediano | Dos ventanas, normalmente la de 5 horas y la semanal. |
-| Pantalla de bloqueo, redondo | Cuánto has usado. Una marca de verificación significa que vas bien. Cuando vas demasiado rápido, muestra la hora a la que te quedarías sin uso. |
-| Pantalla de bloqueo, rectangular | `No se agota`, o la hora a la que te quedarías sin uso, como `Se agota ~21:20`. |
-
-Cada anillo se llena según lo que has usado. La pequeña marca indica dónde
-estarías si lo usaras a un ritmo constante. Si el relleno no llega a la marca,
-vas bien.
-
-**Usado o Restante:** Ritmo de Nomo sigue **Ajustes → Uso → Mostrar uso como**.
-Con **Restante**, la línea dice `Queda 55 % · 40 % del plazo`. El anillo se vacía:
-el relleno muestra lo que te queda y la marca, el tiempo que queda. Si el relleno
-pasa la marca, vas bien. Los números de todos los tamaños también cambian.
-
-**Qué necesitas antes:** una cuenta conectada, como Claude o Codex. Abre la
-pestaña **Proveedores**, toca el proveedor y conéctalo. Consulta
-[Uso](/es/usage).
-
-**Configúralo:**
-
-1. Añade el widget. Consulta [Widget](/es/widget).
-2. Mantén pulsado el widget.
-3. Toca **“Editar widget”**.
-4. Toca **Proveedor** y elige uno, como **Claude**.
-5. Toca **Cuenta** y elige una. **Predeterminada** sigue a tu cuenta
-   predeterminada de la app.
-6. Toca **Ventana** y elige una. **Automático** usa la ventana de 5 horas si tu
-   plan la tiene y, si no, la semanal. Esto cambia los tamaños pequeño y de
-   pantalla de bloqueo.
-7. Toca fuera del widget para terminar.
-
-Toca el widget para abrir la página **Uso** de ese proveedor en Nomo.
-
-### Actividad de Nomo <span className="pro-pill" /> {#nomo-activity}
+### Actividad de Nomo {#nomo-activity}
 
 <Frame caption="Actividad de Nomo en tamaño pequeño, mediano y grande, y en la pantalla de bloqueo.">
   <div className="widget-shot">
@@ -306,6 +214,98 @@ Toca el widget para abrir Nomo en Inicio, desplazado a [Actividad](#activity-on-
 
 Lo que sale de tu ordenador para este mapa se detalla en
 [Privacidad](#privacy). Son solo recuentos, nunca tus prompts ni tu código.
+
+## Widgets Pro <span className="pro-pill" /> {#pro-widgets}
+
+Nomo Pro añade cinco widgets a los gratuitos. Cada uno responde a una pregunta
+para la que, si no, abrirías la app.
+
+- **Actividad de Nomo** (grande y pantalla de bloqueo): ¿cuántos días seguidos he programado con un agente?
+- **Ritmo de Nomo**: ¿me llegará el uso hasta que se restablezca?
+- **Cuentas de Nomo**: ¿a cuál de mis cuentas le queda menos?
+- **Agentes en directo**: ¿qué están haciendo mis agentes ahora mismo?
+- **Tokens de Nomo**: ¿cuántos tokens he usado y con qué modelos?
+
+<Frame caption="Los cinco widgets Pro en una pantalla de inicio: Ritmo de Nomo, Agentes en directo, Actividad de Nomo, Tokens de Nomo y Cuentas de Nomo.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/pro-widgets-hero.webp" alt="Cinco widgets de Nomo en una pantalla de inicio clara: Ritmo con una cuenta atrás de dos horas hasta el restablecimiento de Claude, Agentes en directo con dos en marcha y uno esperando una respuesta, una racha de 13 días en Actividad con un mapa de programación, Tokens con 20,3 M de tokens en 14 días apilados por modelo, y un panel de Cuentas con seis cuentas ordenadas por lo que les queda" />
+    <img className="only-dark" src="/images/pro-widgets-hero-dark.webp" alt="Los mismos cinco widgets de Nomo en una pantalla de inicio oscura: Ritmo, Agentes en directo, Actividad, Tokens y Cuentas" />
+  </div>
+</Frame>
+
+Ritmo de Nomo y Actividad de Nomo también tienen tamaños para la pantalla de
+bloqueo.
+
+### Ritmo de Nomo <span className="pro-pill" /> {#nomo-pace}
+
+<Frame caption="Ritmo de Nomo en tamaño pequeño y mediano, y en la pantalla de bloqueo.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/pro-widgets-pace.webp" alt="Ritmo de Nomo: un widget pequeño que indica Resets in 2:00:00 con 45% used · 60% time, un widget mediano que muestra la ventana de 5 horas sin problemas y la semanal agotándose en unos 2 días y 6 horas, y dos widgets de pantalla de bloqueo que indican 45% y Lasts until reset" />
+    <img className="only-dark" src="/images/pro-widgets-pace-dark.webp" alt="Ritmo de Nomo en modo oscuro: widgets pequeño, mediano y dos de pantalla de bloqueo" />
+  </div>
+</Frame>
+
+**Qué muestra:** si te quedarás sin uso antes de que tu límite se restablezca,
+si sigues al ritmo actual.
+
+La línea bajo el número grande compara dos cosas:
+
+- **Uso**: cuánto del límite has usado.
+- **plazo**: cuánto de la ventana de tiempo ha pasado.
+
+Por ejemplo, `Uso 45 % · plazo 60 %`. Si el uso es menor que el plazo, vas bien.
+El widget muestra **“Restablece en”** y una cuenta atrás hasta el
+restablecimiento.
+
+Si el uso es mayor que el plazo, vas demasiado rápido. El widget muestra
+**“Se agota en”** y una cuenta atrás hasta el momento en que te quedarías sin
+uso. Un `~` delante indica que es una estimación. El número se vuelve ámbar.
+
+También verás:
+
+- **“Aún es pronto para saberlo”**, justo después de que empiece una ventana.
+  Todavía no hay datos suficientes.
+- **“Al límite”**, cuando una ventana está al 100 %. La cuenta atrás es hasta el
+  restablecimiento.
+- **“El ritmo no está disponible para este plan”**, cuando el proveedor no dice
+  cuándo se restablece el límite.
+
+Los tamaños:
+
+| Tamaño | Qué muestra |
+| --- | --- |
+| Pequeño | Una ventana y su anillo. |
+| Mediano | Dos ventanas, normalmente la de 5 horas y la semanal. |
+| Pantalla de bloqueo, redondo | Cuánto has usado. Una marca de verificación significa que vas bien. Cuando vas demasiado rápido, muestra la hora a la que te quedarías sin uso. |
+| Pantalla de bloqueo, rectangular | `No se agota`, o la hora a la que te quedarías sin uso, como `Se agota ~21:20`. |
+
+Cada anillo se llena según lo que has usado. La pequeña marca indica dónde
+estarías si lo usaras a un ritmo constante. Si el relleno no llega a la marca,
+vas bien.
+
+**Usado o Restante:** Ritmo de Nomo sigue **Ajustes → Uso → Mostrar uso como**.
+Con **Restante**, la línea dice `Queda 55 % · 40 % del plazo`. El anillo se vacía:
+el relleno muestra lo que te queda y la marca, el tiempo que queda. Si el relleno
+pasa la marca, vas bien. Los números de todos los tamaños también cambian.
+
+**Qué necesitas antes:** una cuenta conectada, como Claude o Codex. Abre la
+pestaña **Proveedores**, toca el proveedor y conéctalo. Consulta
+[Uso](/es/usage).
+
+**Configúralo:**
+
+1. Añade el widget. Consulta [Widget](/es/widget).
+2. Mantén pulsado el widget.
+3. Toca **“Editar widget”**.
+4. Toca **Proveedor** y elige uno, como **Claude**.
+5. Toca **Cuenta** y elige una. **Predeterminada** sigue a tu cuenta
+   predeterminada de la app.
+6. Toca **Ventana** y elige una. **Automático** usa la ventana de 5 horas si tu
+   plan la tiene y, si no, la semanal. Esto cambia los tamaños pequeño y de
+   pantalla de bloqueo.
+7. Toca fuera del widget para terminar.
+
+Toca el widget para abrir la página **Uso** de ese proveedor en Nomo.
 
 ### Tokens de Nomo <span className="pro-pill" /> {#nomo-tokens}
 
