@@ -10,7 +10,74 @@ npm dependencies and runs on Node built-ins. Keep bun at **1.4.4** or newer, and
 Node.js 22 at **22.23.4** or newer: the status command warns you about older
 ones.
 
-## Install by hand
+<Note>
+  Pick one way: the one command below (recommended), or [install by hand](#install-by-hand). You don't need both.
+</Note>
+
+## Install with one command {#one-command}
+
+<Steps>
+  <Step title="Run the installer">
+    Paste this into Terminal and press Return:
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai
+    ```
+    </CodeGroup>
+
+    It finds the agents on this Mac (Claude Code, Codex, OpenCode, Cursor, Antigravity and Devin) and ticks them. Press Return to install. To change the list, move with the arrow keys (or `k` / `j`) and press space to tick or untick an agent.
+
+    It also adds a short `nomo` command, and says:
+
+    ```
+    Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+    ```
+  </Step>
+
+  <Step title="Pair your phone">
+    When it asks `Pair your phone now? [Y/n]`, press Return for yes.
+
+    A page with a QR code opens in your browser. On your iPhone, open Nomo and scan it. [Pairing](/setup/pairing) walks you through it, including `nomo pair code`: a short code to type if you can't open a browser.
+
+    Said no, or want to pair later? In Terminal, run `nomo pair`.
+
+    You can also pair from inside your agent: `/nomo-cc:pair` in Claude Code, `$nomo-pair` in Codex, and `/nomo-pair` in OpenCode, Cursor, Antigravity and Devin (`/nomo:pair` with the Devin plugin).
+
+    Already paired from another agent? One pairing covers the whole computer — you can answer no.
+  </Step>
+
+  <Step title="Restart your agent — required">
+    Quit each agent you installed Nomo in, and open it again. Nomo stays off until you do.
+
+    Using Codex? You also need to trust Nomo's hooks: type `/hooks` in Codex and trust the Nomo entries. The **Codex** tab in [Install by hand](#install-by-hand) has the details.
+  </Step>
+</Steps>
+
+<Note>
+  Don't want the short `nomo` command? Add `--no-global`. If `nomo` isn't found later, `bunx nomo-ai` works the same, such as `bunx nomo-ai pair`. See [If `nomo` isn't found](/sessions/commands#nomo-not-found).
+</Note>
+
+<Accordion title="Installer options (scripting and CI)">
+  | Flag | |
+  | --- | --- |
+  | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | install exactly these — naming any one of them skips the picker |
+  | `--all` | all of them, detected or not — except Cursor, Antigravity and Devin, which are skipped when they aren't on this machine (name `--cursor`, `--antigravity` or `--devin` to try anyway) |
+  | `-y`, `--yes` | no picker; install everything detected |
+  | `-n`, `--dry-run` | print the commands, run nothing |
+  | `--no-global` | don't add the short `nomo` command. See [From Terminal](/sessions/commands#terminal) |
+  | `uninstall` | with `--cursor`, `--antigravity` or `--devin`: remove Nomo from that agent (`--uninstall` works too). Name the agent — it never guesses. See [uninstall](/sessions/commands#uninstall) |
+
+  Runs with `-y`, or without an interactive terminal (such as CI), never ask to pair.
+</Accordion>
+
+## Or install by hand {#install-by-hand}
+
+This does the same thing as the one command, one agent at a time. Use it if you'd rather go through your agent's own plugin store, or if the installer can't run. Pick your agent:
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -512,53 +579,6 @@ ones.
     [Pairing](/setup/pairing).
   </Tab>
 </Tabs>
-
-## One command
-
-The installer detects which of Claude Code, Codex, OpenCode, Cursor,
-Antigravity and Devin are on
-this machine and sets Nomo up in the ones you pick:
-
-<CodeGroup>
-```bash bunx icon="terminal"
-bunx nomo-ai
-```
-
-```bash npx icon="terminal"
-npx nomo-ai
-```
-</CodeGroup>
-
-Nothing is ticked at the start: arrow keys (or `k` / `j`) move, space ticks an
-agent, enter installs everything ticked. Then it runs each agent's own install —
-the same six flows above.
-
-It also adds a short `nomo` command, so later you can type `nomo pair`,
-`nomo status` and so on. It says:
-
-```
-Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
-```
-
-To skip it, add `--no-global`. If `nomo` isn't found later, `bunx nomo-ai` works the same, such as `bunx nomo-ai pair`. See
-[If `nomo` isn't found](/sessions/commands#nomo-not-found).
-
-For scripting and CI:
-
-| Flag | |
-| --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | install exactly these — naming any one of them skips the picker |
-| `--all` | all of them, detected or not — except Cursor, Antigravity and Devin, which are skipped when they aren't on this machine (name `--cursor`, `--antigravity` or `--devin` to try anyway) |
-| `-y`, `--yes` | no picker; install everything detected |
-| `-n`, `--dry-run` | print the commands, run nothing |
-| `--no-global` | don't add the short `nomo` command. See [From Terminal](/sessions/commands#terminal) |
-| `uninstall` | with `--cursor`, `--antigravity` or `--devin`: remove Nomo from that agent (`--uninstall` works too). Name the agent — it never guesses. See [uninstall](/sessions/commands#uninstall) |
-
-It never pairs your phone. Finish exactly as the steps above describe: restart
-the agent, trust the hooks if it's Codex, and pair — `nomo pair` in
-Terminal, or `/nomo-pair`, `/nomo-cc:pair` in Claude Code and `$nomo-pair` in
-Codex (`/nomo:pair` with the Devin plugin). More Terminal commands are in
-[From Terminal](/sessions/commands#terminal).
 
 ## Updating
 

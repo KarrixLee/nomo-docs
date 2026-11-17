@@ -9,7 +9,74 @@ tiene dependencias npm y funciona con los módulos integrados de Node. Mantén
 bun en la **1.4.4** o posterior, y Node.js 22 en la **22.23.4** o posterior: el
 comando status te avisa si son más antiguos.
 
-## Instalación manual {#install-by-hand}
+<Note>
+  Elige una forma: el comando de abajo (recomendado) o [instalarlo a mano](#install-by-hand). No necesitas las dos.
+</Note>
+
+## Instala con un solo comando {#one-command}
+
+<Steps>
+  <Step title="Ejecuta el instalador">
+    Pega esto en Terminal y pulsa Retorno:
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai
+    ```
+    </CodeGroup>
+
+    Encuentra los agentes de este ordenador (Claude Code, Codex, OpenCode, Cursor, Antigravity y Devin) y los marca. Pulsa Retorno para instalar. Para cambiar la lista, muévete con las teclas de flecha (o `k` y `j`) y pulsa espacio para marcar o desmarcar un agente.
+
+    También añade un comando corto, `nomo`, y lo dice así:
+
+    ```
+    Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+    ```
+  </Step>
+
+  <Step title="Vincula tu teléfono">
+    Cuando pregunte `Pair your phone now? [Y/n]`, pulsa Retorno para decir que sí.
+
+    Se abre en tu navegador una página con un código QR. En tu iPhone, abre Nomo y escanéalo. [Vinculación](/es/setup/pairing) te guía paso a paso, también con `nomo pair code`: un código corto para escribir si no puedes abrir un navegador.
+
+    ¿Dijiste que no o quieres vincular más tarde? En Terminal, ejecuta `nomo pair`.
+
+    También puedes vincular desde tu agente: `/nomo-cc:pair` en Claude Code, `$nomo-pair` en Codex y `/nomo-pair` en OpenCode, Cursor, Antigravity y Devin (`/nomo:pair` con el plugin de Devin).
+
+    ¿Ya vinculaste el ordenador desde otro agente? Una sola vinculación cubre todo el ordenador: puedes responder que no.
+  </Step>
+
+  <Step title="Reinicia tu agente — obligatorio">
+    Cierra cada agente en el que instalaste Nomo y vuelve a abrirlo. Nomo no se activa hasta que lo hagas.
+
+    ¿Usas Codex? Además tienes que confiar en los hooks de Nomo: escribe `/hooks` en Codex y confía en las entradas de Nomo. La pestaña **Codex** de [Instalación a mano](#install-by-hand) tiene los detalles.
+  </Step>
+</Steps>
+
+<Note>
+  ¿No quieres el comando corto `nomo`? Añade `--no-global`. Si más adelante no se encuentra `nomo`, `bunx nomo-ai` funciona igual; por ejemplo, `bunx nomo-ai pair`. Consulta [Si no se encuentra `nomo`](/es/sessions/commands#nomo-not-found).
+</Note>
+
+<Accordion title="Opciones del instalador (scripts y CI)">
+  | Opción | |
+  | --- | --- |
+  | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
+  | `--all` | todos, los haya encontrado o no; salvo Cursor, Antigravity y Devin, que se omiten si no están en este ordenador (nombra `--cursor`, `--antigravity` o `--devin` para intentarlo igualmente) |
+  | `-y`, `--yes` | sin selector; instala todo lo que encuentre |
+  | `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
+  | `--no-global` | no añade el comando corto `nomo`. Consulta [Desde Terminal](/es/sessions/commands#terminal) |
+  | `uninstall` | con `--cursor`, `--antigravity` o `--devin`: quita Nomo de ese agente (`--uninstall` también funciona). Indica el agente: nunca lo adivina. Consulta [uninstall](/es/sessions/commands#uninstall) |
+
+  Las ejecuciones con `-y`, o sin una terminal interactiva (como en CI), nunca preguntan si quieres vincular.
+</Accordion>
+
+## O instala a mano {#install-by-hand}
+
+Hace lo mismo que el comando único, agente por agente. Úsalo si prefieres la tienda de plugins de tu agente o si el instalador no puede ejecutarse. Elige tu agente:
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -515,53 +582,6 @@ comando status te avisa si son más antiguos.
     consulta [Vinculación](/es/setup/pairing).
   </Tab>
 </Tabs>
-
-## Un solo comando {#one-command}
-
-El instalador detecta cuáles de Claude Code, Codex, OpenCode, Cursor,
-Antigravity y Devin hay en esta máquina y deja Nomo puesto en los que elijas:
-
-<CodeGroup>
-```bash bunx icon="terminal"
-bunx nomo-ai
-```
-
-```bash npx icon="terminal"
-npx nomo-ai
-```
-</CodeGroup>
-
-Al principio no hay nada marcado: las teclas de flecha (o `k` y `j`) mueven, el
-espacio marca un agente y enter instala todos los marcados. Luego ejecuta la
-instalación propia de cada uno: los mismos seis caminos de arriba.
-
-También añade un comando corto, `nomo`, para que después puedas escribir
-`nomo pair`, `nomo status`, etc. Lo dice así:
-
-```
-Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
-```
-
-Para omitirlo, añade `--no-global`. Si más adelante no se encuentra `nomo`, `bunx nomo-ai` funciona igual; por ejemplo,
-`bunx nomo-ai pair`. Consulta
-[Si no se encuentra `nomo`](/es/sessions/commands#nomo-not-found).
-
-Para scripts y CI:
-
-| Opción | |
-| --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | instala solo esos: nombrar cualquiera de ellos se salta el selector |
-| `--all` | todos, los haya encontrado o no; salvo Cursor, Antigravity y Devin, que se omiten si no están en este ordenador (nombra `--cursor`, `--antigravity` o `--devin` para intentarlo igualmente) |
-| `-y`, `--yes` | sin selector; instala todo lo que encuentre |
-| `-n`, `--dry-run` | imprime los comandos y no ejecuta nada |
-| `--no-global` | no añade el comando corto `nomo`. Consulta [Desde Terminal](/es/sessions/commands#terminal) |
-| `uninstall` | con `--cursor`, `--antigravity` o `--devin`: quita Nomo de ese agente (`--uninstall` también funciona). Indica el agente: nunca lo adivina. Consulta [uninstall](/es/sessions/commands#uninstall) |
-
-Nunca vincula tu teléfono. Termina igual que en los pasos de arriba: reinicia el
-agente, confía en los hooks si es Codex, y vincula — `nomo pair` en
-Terminal, o `/nomo-pair`, `/nomo-cc:pair` en Claude Code y `$nomo-pair` en
-Codex (`/nomo:pair` con el plugin de Devin). Tienes más comandos de Terminal en
-[Desde Terminal](/es/sessions/commands#terminal).
 
 ## Actualizaciones {#updating}
 

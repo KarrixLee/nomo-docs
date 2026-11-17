@@ -6,7 +6,74 @@ icon: "puzzle-piece"
 
 每台电脑安装一次即可。需要 **bun** 或 **node 18 及以上版本** —— 该插件没有任何 npm 依赖，只用 Node 内置模块运行。请让 bun 保持在 **1.4.4** 或更高、Node.js 22 保持在 **22.23.4** 或更高：版本更旧时，状态命令会提醒你。
 
-## 手动安装 {#install-by-hand}
+<Note>
+  两种方式选一种就行：下面的一键安装（推荐），或者[手动安装](#install-by-hand)。不用两个都做。
+</Note>
+
+## 一键安装 {#one-command}
+
+<Steps>
+  <Step title="运行安装工具">
+    把下面这条粘贴到终端里，然后按回车：
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai
+    ```
+    </CodeGroup>
+
+    它会找出这台电脑上的智能体（Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin），并把它们勾上。按回车安装。想改的话，用箭头键（或 `k`、`j`）移动，按空格勾选或取消。
+
+    它还会加一个简短的 `nomo` 命令，并显示：
+
+    ```
+    Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+    ```
+  </Step>
+
+  <Step title="配对手机">
+    它问 `Pair your phone now? [Y/n]` 时，按回车表示同意。
+
+    浏览器会打开一个带二维码的页面。在 iPhone 上打开 Nomo，扫描它。[配对](/zh-Hans/setup/pairing)里有一步步的说明，也讲了打不开浏览器时可以输入的短代码（`nomo pair code`）。
+
+    选了不配对，或者想以后再配？在终端里运行 `nomo pair`。
+
+    也可以在智能体里配对：Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`，OpenCode、Cursor、Antigravity 和 Devin 里是 `/nomo-pair`（用 Devin 插件时是 `/nomo:pair`）。
+
+    已经在别的智能体里配对过？一次配对覆盖整台电脑——这里可以选不配对。
+  </Step>
+
+  <Step title="重启智能体——必做">
+    把装了 Nomo 的每个智能体都完全退出，再重新打开。在你这样做之前，Nomo 不会生效。
+
+    用 Codex？还要信任 Nomo 的 hook：在 Codex 里输入 `/hooks`，信任那些 Nomo 条目。详细步骤见[手动安装](#install-by-hand)里的 **Codex** 标签页。
+  </Step>
+</Steps>
+
+<Note>
+  不想要简短的 `nomo` 命令的话，加上 `--no-global`。之后如果找不到 `nomo`，`bunx nomo-ai` 的作用完全一样，比如 `bunx nomo-ai pair`。见[找不到 `nomo` 时](/zh-Hans/sessions/commands#nomo-not-found)。
+</Note>
+
+<Accordion title="安装工具选项（脚本和 CI）">
+  | 选项 | |
+  | --- | --- |
+  | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | 只装这些——只要指定其中任意一个，就会跳过选择界面 |
+  | `--all` | 全部都装，无论有没有找到——只有 Cursor、Antigravity 和 Devin 例外：这台电脑上没有它们时会跳过（想照装就指定 `--cursor`、`--antigravity` 或 `--devin`） |
+  | `-y`、`--yes` | 不出选择界面，找到多少装多少 |
+  | `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
+  | `--no-global` | 不加简短的 `nomo` 命令。见[终端命令](/zh-Hans/sessions/commands#terminal) |
+  | `uninstall` | 配合 `--cursor`、`--antigravity` 或 `--devin` 使用：从那个智能体里移除 Nomo（写成 `--uninstall` 也可以）。必须指定智能体——它从不猜。见 [uninstall](/zh-Hans/sessions/commands#uninstall) |
+
+  带 `-y` 运行，或者不在交互式终端里运行（比如 CI）时，它从不询问配对。
+</Accordion>
+
+## 或者手动安装 {#install-by-hand}
+
+效果和一键安装一样，只是一个智能体一个智能体地装。想用智能体自带的插件市场，或者安装工具跑不起来时，就用这种方式。选你的智能体：
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -426,43 +493,6 @@ icon: "puzzle-piece"
     已经在别的智能体里配对过？一次配对覆盖整台电脑——跳过配对的步骤。这台电脑上没有浏览器？改用 `/nomo-pair code`（用插件的话，用 `/nomo:pair code`）——见[配对](/zh-Hans/setup/pairing)。
   </Tab>
 </Tabs>
-
-## 一键安装 {#one-command}
-
-安装工具会找出这台电脑上有哪些 Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin，然后把 Nomo 装进你挑中的那几个：
-
-<CodeGroup>
-```bash bunx icon="terminal"
-bunx nomo-ai
-```
-
-```bash npx icon="terminal"
-npx nomo-ai
-```
-</CodeGroup>
-
-一开始一个都没勾上：箭头键（或 `k`、`j`）移动，空格勾选，回车安装所有勾上的。接着它就去跑每个智能体本来的安装流程——也就是上面那六套。
-
-它还会加一个简短的 `nomo` 命令，之后你就可以输入 `nomo pair`、`nomo status` 等命令。它会显示：
-
-```
-Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
-```
-
-不想要的话，加上 `--no-global`。之后如果找不到 `nomo`，`bunx nomo-ai` 的作用完全一样，比如 `bunx nomo-ai pair`。见[找不到 `nomo` 时](/zh-Hans/sessions/commands#nomo-not-found)。
-
-写脚本或在 CI 里用时：
-
-| 选项 | |
-| --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | 只装这些——只要指定其中任意一个，就会跳过选择界面 |
-| `--all` | 全部都装，无论有没有找到——只有 Cursor、Antigravity 和 Devin 例外：这台电脑上没有它们时会跳过（想照装就指定 `--cursor`、`--antigravity` 或 `--devin`） |
-| `-y`、`--yes` | 不出选择界面，找到多少装多少 |
-| `-n`、`--dry-run` | 把要执行的命令打印出来，什么都不执行 |
-| `--no-global` | 不加简短的 `nomo` 命令。见[终端命令](/zh-Hans/sessions/commands#terminal) |
-| `uninstall` | 配合 `--cursor`、`--antigravity` 或 `--devin` 使用：从那个智能体里移除 Nomo（写成 `--uninstall` 也可以）。必须指定智能体——它从不猜。见 [uninstall](/zh-Hans/sessions/commands#uninstall) |
-
-它不会替你配对手机。之后照上面的步骤收尾：重启智能体，是 Codex 的话信任那些 hook，然后配对——在终端里运行 `nomo pair`，或者用 `/nomo-pair`，Claude Code 里是 `/nomo-cc:pair`，Codex 里是 `$nomo-pair`（用 Devin 插件时是 `/nomo:pair`）。更多终端命令见[终端命令](/zh-Hans/sessions/commands#terminal)。
 
 ## 更新 {#updating}
 

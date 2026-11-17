@@ -7,7 +7,74 @@ icon: "puzzle-piece"
 
 每台電腦只需安裝一次。需要 **bun** 或 **node 18 以上版本** — 這個外掛程式沒有任何 npm 相依套件，只用 Node 內建模組執行。請讓 bun 保持在 **1.4.4** 以上、Node.js 22 保持在 **22.23.4** 以上：版本較舊時，status 指令會提醒你。
 
-## 手動安裝 {#install-by-hand}
+<Note>
+  兩種方式選一種就好：下面的一鍵安裝（推薦），或是[手動安裝](#install-by-hand)。不需要兩個都做。
+</Note>
+
+## 一鍵安裝 {#one-command}
+
+<Steps>
+  <Step title="執行安裝工具">
+    把這行貼到終端機裡，然後按下 Return：
+
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai
+    ```
+
+    ```bash npx icon="terminal"
+    npx nomo-ai
+    ```
+    </CodeGroup>
+
+    它會找出這台電腦上的代理（Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin），並把它們勾選起來。按下 Return 就會安裝。想調整的話，用方向鍵（或 `k`、`j`）移動，按空白鍵勾選或取消。
+
+    它也會加入一個簡短的 `nomo` 指令，並顯示：
+
+    ```
+    Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+    ```
+  </Step>
+
+  <Step title="配對手機">
+    它問 `Pair your phone now? [Y/n]` 時，按下 Return 表示同意。
+
+    瀏覽器會打開一個有 QR code 的頁面。在 iPhone 上打開 Nomo，掃描它。[配對](/zh-Hant/setup/pairing)有一步步的說明，也介紹了打不開瀏覽器時可以輸入的短代碼（`nomo pair code`）。
+
+    選了不配對，或想晚點再配對？在終端機裡執行 `nomo pair`。
+
+    也可以在代理裡配對：在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`，在 OpenCode、Cursor、Antigravity 和 Devin 裡是 `/nomo-pair`（使用 Devin 外掛程式時是 `/nomo:pair`）。
+
+    已經從其他代理配對過了？一次配對涵蓋整台電腦 — 這裡可以選不配對。
+  </Step>
+
+  <Step title="重新啟動代理 — 必要步驟">
+    把裝了 Nomo 的每個代理都完全結束，再重新打開。在你這麼做之前，Nomo 都不會運作。
+
+    用 Codex 嗎？還要信任 Nomo 的 hooks：在 Codex 裡輸入 `/hooks`，信任那些 Nomo 項目。詳細步驟請看[手動安裝](#install-by-hand)裡的 **Codex** 分頁。
+  </Step>
+</Steps>
+
+<Note>
+  不想要簡短的 `nomo` 指令的話，請加上 `--no-global`。之後如果找不到 `nomo`，用 `bunx nomo-ai` 效果一樣，例如 `bunx nomo-ai pair`。請見[找不到 `nomo` 時](/zh-Hant/sessions/commands#nomo-not-found)。
+</Note>
+
+<Accordion title="安裝工具選項（指令碼與 CI）">
+  | 選項 | |
+  | --- | --- |
+  | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | 只裝這幾個 — 只要指定其中任何一個，就會略過選擇畫面 |
+  | `--all` | 全部都裝，不管有沒有找到 — 只有 Cursor、Antigravity 和 Devin 例外：這台電腦上沒有它們時會略過（想照裝就指定 `--cursor`、`--antigravity` 或 `--devin`） |
+  | `-y`、`--yes` | 不出選擇畫面，找到多少裝多少 |
+  | `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
+  | `--no-global` | 不加上簡短的 `nomo` 指令。請見[從終端機執行](/zh-Hant/sessions/commands#terminal) |
+  | `uninstall` | 搭配 `--cursor`、`--antigravity` 或 `--devin`：從那個代理移除 Nomo（`--uninstall` 也可以）。請指定代理 — 它絕不會自己猜。請見 [uninstall](/zh-Hant/sessions/commands#uninstall) |
+
+  加上 `-y` 執行，或不是在互動式終端機裡執行（例如 CI）時，它絕不會詢問配對。
+</Accordion>
+
+## 或是手動安裝 {#install-by-hand}
+
+效果和一鍵安裝一樣，只是一個代理一個代理地裝。想用代理自己的外掛程式市集，或是安裝工具無法執行時，就用這個方式。選擇你的代理：
 
 <Tabs>
   <Tab title="Claude Code" icon="/images/claude-code.svg">
@@ -426,43 +493,6 @@ icon: "puzzle-piece"
     已經從其他代理配對過了？一次配對涵蓋整台電腦 — 跳過配對的步驟。這台電腦沒有瀏覽器？改用 `/nomo-pair code`（用外掛程式的話，用 `/nomo:pair code`）— 請看[配對](/zh-Hant/setup/pairing)。
   </Tab>
 </Tabs>
-
-## 一鍵安裝 {#one-command}
-
-安裝工具會找出這台電腦上有哪些 Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin，再把 Nomo 裝進你挑的那幾個：
-
-<CodeGroup>
-```bash bunx icon="terminal"
-bunx nomo-ai
-```
-
-```bash npx icon="terminal"
-npx nomo-ai
-```
-</CodeGroup>
-
-一開始一個都沒勾選：方向鍵（或 `k`、`j`）移動，空白鍵勾選，Enter 安裝所有勾選的。接著它就去跑每個代理本來的安裝流程 — 也就是上面那六套。
-
-它也會加入一個簡短的 `nomo` 指令，之後你就能打 `nomo pair`、`nomo status` 等指令。它會顯示：
-
-```
-Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
-```
-
-如果不想要，請加上 `--no-global`。之後如果找不到 `nomo`，用 `bunx nomo-ai` 效果一樣，例如 `bunx nomo-ai pair`。請見[找不到 `nomo` 時](/zh-Hant/sessions/commands#nomo-not-found)。
-
-寫指令碼或在 CI 裡使用時：
-
-| 選項 | |
-| --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | 只裝這幾個 — 只要指定其中任何一個，就會略過選擇畫面 |
-| `--all` | 全部都裝，不管有沒有找到 — 只有 Cursor、Antigravity 和 Devin 例外：這台電腦上沒有它們時會略過（想照裝就指定 `--cursor`、`--antigravity` 或 `--devin`） |
-| `-y`、`--yes` | 不出選擇畫面，找到多少裝多少 |
-| `-n`、`--dry-run` | 把要執行的指令印出來，什麼都不執行 |
-| `--no-global` | 不加上簡短的 `nomo` 指令。請見[從終端機執行](/zh-Hant/sessions/commands#terminal) |
-| `uninstall` | 搭配 `--cursor`、`--antigravity` 或 `--devin`：從那個代理移除 Nomo（`--uninstall` 也可以）。請指定代理 — 它絕不會自己猜。請見 [uninstall](/zh-Hant/sessions/commands#uninstall) |
-
-它不會替你配對手機。之後就照上面的步驟收尾：重新啟動代理，如果是 Codex 就信任那些 hook，然後配對 — 在終端機裡是 `nomo pair`，或是 `/nomo-pair`，在 Claude Code 裡是 `/nomo-cc:pair`，在 Codex 裡是 `$nomo-pair`（使用 Devin 外掛程式時是 `/nomo:pair`）。更多終端機指令請見[從終端機執行](/zh-Hant/sessions/commands#terminal)。
 
 ## 更新 {#updating}
 
