@@ -45,11 +45,13 @@ icon: "puzzle-piece"
 
     エージェントの中からペアリングすることもできます。Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair`、OpenCode・Cursor・Antigravity・Devin なら `/nomo-pair` です（Devin プラグインの場合は `/nomo:pair`）。
 
-    ほかのエージェントですでにペアリング済みの場合は、ペアリングは 1 回でコンピュータ全体に有効なので、「いいえ」を選んでかまいません。
+    すでにペアリング済みの場合は、そう表示されてこの手順は飛ばされます。
   </Step>
 
   <Step title="エージェントを再起動する — 必須">
     Nomo をインストールしたエージェントをそれぞれ終了して、もう一度開いてください。再起動するまで Nomo は動きません。
+
+    OpenCode の場合は、先にペアリングしてから再起動すると Nomo が動き始めます。
 
     Codex の場合は、Nomo のフックの信頼も必要です。Codex で `/hooks` と入力し、Nomo のエントリを信頼してください。詳しくは[手動インストール](/ja/setup/manual)の **Codex** タブをご覧ください。
   </Step>

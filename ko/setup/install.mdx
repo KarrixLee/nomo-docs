@@ -45,11 +45,13 @@ icon: "puzzle-piece"
 
     에이전트 안에서 페어링할 수도 있습니다. Claude Code에서는 `/nomo-cc:pair`, Codex에서는 `$nomo-pair`, OpenCode, Cursor, Antigravity, Devin에서는 `/nomo-pair`입니다(Devin 플러그인을 쓴다면 `/nomo:pair`).
 
-    다른 에이전트에서 이미 페어링했나요? 페어링 한 번이 컴퓨터 전체에 적용되므로 '아니요'라고 답해도 됩니다.
+    이미 페어링되어 있나요? 그렇다고 알려 주고 이 단계를 건너뜁니다.
   </Step>
 
   <Step title="에이전트 재시작 — 필수">
     Nomo를 설치한 에이전트를 각각 종료한 다음 다시 여십시오. 그러기 전까지 Nomo는 동작하지 않습니다.
+
+    OpenCode는 먼저 페어링한 다음 재시작해야 Nomo가 켜집니다.
 
     Codex를 쓴다면 Nomo의 Hook도 신뢰해야 합니다. Codex에서 `/hooks`를 입력하고 Nomo 항목을 신뢰하십시오. 자세한 내용은 [수동 설치](/ko/setup/manual)의 **Codex** 탭에 있습니다.
   </Step>
