@@ -120,7 +120,13 @@
                 "group": "Setup",
                 "pages": [
                   "setup/install",
-                  "setup/pairing"
+                  {
+                    "group": "Install by hand & pairing",
+                    "pages": [
+                      "setup/manual",
+                      "setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -208,7 +214,13 @@
                 "group": "Configuración",
                 "pages": [
                   "es/setup/install",
-                  "es/setup/pairing"
+                  {
+                    "group": "Instalación manual y vinculación",
+                    "pages": [
+                      "es/setup/manual",
+                      "es/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -296,7 +308,13 @@
                 "group": "セットアップ",
                 "pages": [
                   "ja/setup/install",
-                  "ja/setup/pairing"
+                  {
+                    "group": "手動インストールとペアリング",
+                    "pages": [
+                      "ja/setup/manual",
+                      "ja/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -384,7 +402,13 @@
                 "group": "설정",
                 "pages": [
                   "ko/setup/install",
-                  "ko/setup/pairing"
+                  {
+                    "group": "수동 설치와 페어링",
+                    "pages": [
+                      "ko/setup/manual",
+                      "ko/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -472,7 +496,13 @@
                 "group": "设置",
                 "pages": [
                   "zh-Hans/setup/install",
-                  "zh-Hans/setup/pairing"
+                  {
+                    "group": "手动安装与配对",
+                    "pages": [
+                      "zh-Hans/setup/manual",
+                      "zh-Hans/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -560,7 +590,13 @@
                 "group": "設定",
                 "pages": [
                   "zh-Hant/setup/install",
-                  "zh-Hant/setup/pairing"
+                  {
+                    "group": "手動安裝與配對",
+                    "pages": [
+                      "zh-Hant/setup/manual",
+                      "zh-Hant/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
