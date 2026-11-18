@@ -1,14 +1,15 @@
 ---
 title: "iPhone용 무료 Claude & Codex 위젯: 상태와 사용량 한도"
 sidebarTitle: "무료 위젯"
-description: "iPhone 홈 화면에 놓는 무료 Nomo 위젯 2개: Claude나 Codex가 다운되었는지, 5시간 한도나 주간 한도가 얼마나 남았는지. Nomo Pro는 필요 없습니다."
+description: "iPhone 홈 화면에 놓는 무료 Nomo 위젯 3개: Claude나 Codex가 다운되었는지, 5시간 한도나 주간 한도가 얼마나 남았는지, 그리고 연속 기록. Nomo Pro는 필요 없습니다."
 icon: "clone"
 keywords: ["Nomo", "상태", "Nomo 사용량", "위젯", "Claude", "Codex", "사용량", "잠금 화면", "iPhone", "Claude 사용량 위젯", "5시간 한도", "주간 한도", "재설정", "Codex 사용량 한도", "무료"]
 ---
 
 Nomo에는 iPhone용 위젯이 7개 있습니다. 그중 2개는 무료입니다. 상태를 보여 주는
-**Nomo**와 **Nomo 사용량**입니다. 이 페이지에서는 이 두 위젯을 다룹니다. 나머지
-5개는 Nomo Pro에 포함됩니다. [Pro 위젯](/ko/widgets)을 참고하십시오.
+**Nomo**와 **Nomo 사용량**입니다. 컴퓨터를 페어링하면 **Nomo 활동**도 소형과
+중형이 무료입니다. 이 페이지에서는 이 세 위젯을 다룹니다. 나머지는 Nomo Pro에
+포함됩니다. [Pro 위젯](/ko/widgets)을 참고하십시오.
 
 홈 화면에 위젯을 놓으려면 [위젯](/ko/widget)을 참고하십시오.
 
@@ -18,7 +19,8 @@ Nomo에는 iPhone용 위젯이 7개 있습니다. 그중 2개는 무료입니다
 | --- | --- | --- |
 | **Nomo** 상태 위젯 | ✓ | ✓ |
 | **Nomo 사용량** 위젯 | ✓ | ✓ |
-| [Nomo 사용 속도](/ko/widgets#nomo-pace), [Nomo 활동](/ko/widgets#nomo-activity), [Nomo 계정](/ko/widgets#nomo-accounts), [실시간 에이전트](/ko/widgets#live-agents), [Nomo 토큰](/ko/widgets#nomo-tokens) | | ✓ |
+| [Nomo 활동](#nomo-activity) 소형, 중형 크기, 컴퓨터를 페어링한 경우 | ✓ | ✓ |
+| [Nomo 사용 속도](/ko/widgets#nomo-pace), [Nomo 활동](/ko/widgets#nomo-activity)(대형, 잠금 화면), [Nomo 계정](/ko/widgets#nomo-accounts), [실시간 에이전트](/ko/widgets#live-agents), [Nomo 토큰](/ko/widgets#nomo-tokens) | | ✓ |
 | [제공업체당 둘 이상의 계정](/ko/widgets#more-than-one-account) | | ✓ |
 
 ## Nomo 상태 {#nomo-status}
@@ -56,7 +58,7 @@ Nomo에는 iPhone용 위젯이 7개 있습니다. 그중 2개는 무료입니다
 2. 위젯을 길게 터치합니다.
 3. **위젯 편집**을 탭합니다.
 4. **제공업체**를 탭하고 Claude, OpenAI, Cursor, xAI, Antigravity, Kimi,
-   DeepSeek 중 하나를 고릅니다.
+   DeepSeek, Devin 중 하나를 고릅니다.
 5. **서비스**를 탭하고 **Claude Code** 같은 서비스를 하나 고릅니다.
 6. 위젯 바깥을 탭해 마칩니다.
 
@@ -111,3 +113,46 @@ Cursor에는 옵션이 하나 더 있습니다. **Cursor 아이콘**에서 **Gro
 
 바로 업데이트하려면 모서리의 새로 고침 버튼을 탭합니다. 다른 곳을 탭하면
 Nomo에서 해당 제공업체의 **사용량** 페이지가 열립니다.
+
+## Nomo 활동 {#nomo-activity}
+
+<Frame caption="소형 Nomo 활동.">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character.webp" alt="13일 연속 기록을 보여주는 소형 Nomo 활동 위젯 3개: 코럴색 Clawd, 파란색 Codex, 금색 Grok Bot" />
+    <img className="only-dark" src="/images/widgets-character-dark.webp" alt="다크 모드의 같은 Nomo 활동 위젯 3개: Clawd, Codex, Grok Bot" />
+  </div>
+</Frame>
+
+**보여주는 내용:** 연속 기록과, AI 에이전트로 코딩한 날입니다. 연속 기록은 며칠
+연속으로 코딩했는지를 뜻합니다. 색이 진할수록 그날 코딩을 많이 했다는 뜻입니다.
+
+| 크기 | 표시 내용 |
+| --- | --- |
+| 소형 | 연속 기록과 최근 7일. |
+| 중형 | 연속 기록, 최근 30일 달력, 그 30일의 합계: 시간, 일수, 주당 시간. |
+
+폭이 좁은 iPhone에서는 중형에 합계를 표시할 공간이 없습니다.
+
+대형과 잠금 화면 크기는 Nomo Pro에 포함됩니다. Nomo Pro가 있으면 중형에 최근
+16주가 표시됩니다. Pro 위젯의 [Nomo 활동](/ko/widgets#nomo-activity)을
+참고하십시오.
+
+**먼저 필요한 것:**
+
+- 컴퓨터에 설치한 Nomo 플러그인, 버전 **2.4.0** 이상.
+  [설치](/ko/setup/install)를 참고하십시오.
+- Nomo와 페어링한 그 컴퓨터. 페어링은 무료입니다.
+  [페어링](/ko/setup/pairing)을 참고하십시오.
+
+**설정하기:**
+
+1. 위젯을 추가합니다. [위젯](/ko/widget)을 참고하십시오.
+2. 위젯을 길게 터치합니다.
+3. **위젯 편집**을 탭합니다.
+4. **캐릭터**를 탭하고 **자동**이나 **Clawd** 같은 캐릭터를 하나 고릅니다.
+5. 위젯 바깥을 탭해 마칩니다.
+
+위젯을 탭하면 Nomo의 **홈**이 [활동](/ko/activity) 위치에서 열립니다.
+
+모든 캐릭터, 연속 기록을 세는 방법, 컴퓨터에서 나가는 정보는 Pro 위젯의 [Nomo
+활동](/ko/widgets#nomo-activity)을 참고하십시오.

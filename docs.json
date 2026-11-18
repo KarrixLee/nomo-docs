@@ -99,6 +99,12 @@
                 ]
               },
               {
+                "group": "Activity",
+                "pages": [
+                  "activity"
+                ]
+              },
+              {
                 "group": "Sessions",
                 "tag": "PRO",
                 "pages": [
@@ -114,7 +120,13 @@
                 "group": "Setup",
                 "pages": [
                   "setup/install",
-                  "setup/pairing"
+                  {
+                    "group": "Install by hand & pairing",
+                    "pages": [
+                      "setup/manual",
+                      "setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -134,7 +146,8 @@
                   "sessions/codex",
                   "sessions/opencode",
                   "sessions/cursor",
-                  "sessions/antigravity"
+                  "sessions/antigravity",
+                  "sessions/devin"
                 ]
               },
               {
@@ -180,6 +193,12 @@
                 ]
               },
               {
+                "group": "Actividad",
+                "pages": [
+                  "es/activity"
+                ]
+              },
+              {
                 "group": "Sesiones",
                 "tag": "PRO",
                 "pages": [
@@ -195,7 +214,13 @@
                 "group": "Configuración",
                 "pages": [
                   "es/setup/install",
-                  "es/setup/pairing"
+                  {
+                    "group": "Instalación manual y vinculación",
+                    "pages": [
+                      "es/setup/manual",
+                      "es/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -215,7 +240,8 @@
                   "es/sessions/codex",
                   "es/sessions/opencode",
                   "es/sessions/cursor",
-                  "es/sessions/antigravity"
+                  "es/sessions/antigravity",
+                  "es/sessions/devin"
                 ]
               },
               {
@@ -261,6 +287,12 @@
                 ]
               },
               {
+                "group": "アクティビティ",
+                "pages": [
+                  "ja/activity"
+                ]
+              },
+              {
                 "group": "セッション",
                 "tag": "PRO",
                 "pages": [
@@ -276,7 +308,13 @@
                 "group": "セットアップ",
                 "pages": [
                   "ja/setup/install",
-                  "ja/setup/pairing"
+                  {
+                    "group": "手動インストールとペアリング",
+                    "pages": [
+                      "ja/setup/manual",
+                      "ja/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -296,7 +334,8 @@
                   "ja/sessions/codex",
                   "ja/sessions/opencode",
                   "ja/sessions/cursor",
-                  "ja/sessions/antigravity"
+                  "ja/sessions/antigravity",
+                  "ja/sessions/devin"
                 ]
               },
               {
@@ -342,6 +381,12 @@
                 ]
               },
               {
+                "group": "활동",
+                "pages": [
+                  "ko/activity"
+                ]
+              },
+              {
                 "group": "세션",
                 "tag": "PRO",
                 "pages": [
@@ -357,7 +402,13 @@
                 "group": "설정",
                 "pages": [
                   "ko/setup/install",
-                  "ko/setup/pairing"
+                  {
+                    "group": "수동 설치와 페어링",
+                    "pages": [
+                      "ko/setup/manual",
+                      "ko/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -377,7 +428,8 @@
                   "ko/sessions/codex",
                   "ko/sessions/opencode",
                   "ko/sessions/cursor",
-                  "ko/sessions/antigravity"
+                  "ko/sessions/antigravity",
+                  "ko/sessions/devin"
                 ]
               },
               {
@@ -423,6 +475,12 @@
                 ]
               },
               {
+                "group": "活动",
+                "pages": [
+                  "zh-Hans/activity"
+                ]
+              },
+              {
                 "group": "会话",
                 "tag": "PRO",
                 "pages": [
@@ -438,7 +496,13 @@
                 "group": "设置",
                 "pages": [
                   "zh-Hans/setup/install",
-                  "zh-Hans/setup/pairing"
+                  {
+                    "group": "手动安装与配对",
+                    "pages": [
+                      "zh-Hans/setup/manual",
+                      "zh-Hans/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -458,7 +522,8 @@
                   "zh-Hans/sessions/codex",
                   "zh-Hans/sessions/opencode",
                   "zh-Hans/sessions/cursor",
-                  "zh-Hans/sessions/antigravity"
+                  "zh-Hans/sessions/antigravity",
+                  "zh-Hans/sessions/devin"
                 ]
               },
               {
@@ -504,6 +569,12 @@
                 ]
               },
               {
+                "group": "活動",
+                "pages": [
+                  "zh-Hant/activity"
+                ]
+              },
+              {
                 "group": "Sessions",
                 "tag": "PRO",
                 "pages": [
@@ -519,7 +590,13 @@
                 "group": "設定",
                 "pages": [
                   "zh-Hant/setup/install",
-                  "zh-Hant/setup/pairing"
+                  {
+                    "group": "手動安裝與配對",
+                    "pages": [
+                      "zh-Hant/setup/manual",
+                      "zh-Hant/setup/pairing"
+                    ]
+                  }
                 ]
               },
               {
@@ -539,7 +616,8 @@
                   "zh-Hant/sessions/codex",
                   "zh-Hant/sessions/opencode",
                   "zh-Hant/sessions/cursor",
-                  "zh-Hant/sessions/antigravity"
+                  "zh-Hant/sessions/antigravity",
+                  "zh-Hant/sessions/devin"
                 ]
               },
               {
@@ -553,5 +631,13 @@
         ]
       }
     ]
-  }
+  },
+  "redirects": [
+    { "source": "/free-and-pro", "destination": "/setup/pairing" },
+    { "source": "/es/free-and-pro", "destination": "/es/setup/pairing" },
+    { "source": "/ja/free-and-pro", "destination": "/ja/setup/pairing" },
+    { "source": "/ko/free-and-pro", "destination": "/ko/setup/pairing" },
+    { "source": "/zh-Hans/free-and-pro", "destination": "/zh-Hans/setup/pairing" },
+    { "source": "/zh-Hant/free-and-pro", "destination": "/zh-Hant/setup/pairing" }
+  ]
 }

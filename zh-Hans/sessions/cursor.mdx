@@ -8,14 +8,14 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "会�
 Cursor 的会话出现在同一个列表里、同一个灵动岛上，走同一份配对——无论来自 Cursor 桌面应用里的智能体，还是来自 `cursor-agent` CLI。在这个版本里它们是**只读**的：你在手机上看着 Cursor 的会话，在电脑上答复它。
 
 <Note>
-  会话功能属于 Nomo Pro，Cursor 和其他每个智能体都一样。Cursor 会话还需要你手机上的 Nomo 是最新版本。
+  实时会话属于 Nomo Pro，Cursor 和其他每个智能体都一样。Cursor 会话还需要你手机上的 Nomo 是最新版本。
 </Note>
 
 ## 相同的部分 {#what-works-the-same}
 
 会话、文件夹和[灵动岛](/zh-Hans/sessions/island)的用法和其他智能体一样。共用的内容都集中在一处：
 
-- **安装** → [安装](/zh-Hans/setup/install)，**Cursor** 标签页。一次安装同时覆盖桌面应用和 `cursor-agent`。
+- **安装** → [手动安装](/zh-Hans/setup/manual)，**Cursor** 标签页。一次安装同时覆盖桌面应用和 `cursor-agent`。
 - **配对** → [配对](/zh-Hans/setup/pairing)。一次配对覆盖这台电脑上的所有智能体。
 - **命令、更新和卸载** → [命令](/zh-Hans/sessions/commands)，包括 [update](/zh-Hans/sessions/commands#update) 和 [uninstall](/zh-Hans/sessions/commands#uninstall)。
 - **每个智能体能做什么** → [功能一览](/zh-Hans/sessions/features)。
@@ -45,3 +45,9 @@ Cursor 没有 approvals 命令——没有远程审批可以暂停。
 - **崩溃可能留下一个会话**。如果 Cursor 被强制退出或崩溃，会话不会立刻结束。会停多久、怎么清掉，见[故障排查](/zh-Hans/sessions/troubleshooting)。
 
 如果有东西没有显示出来，先看[故障排查](/zh-Hans/sessions/troubleshooting)里关于 Cursor 的那几条。
+
+## 技术细节与安全 {#technical-details-and-security}
+
+Nomo 只把会话在做什么发到你的手机，并且端到端加密。
+
+内部如何运作，见插件的 README：[Nomo 如何与 Cursor 配合](https://github.com/KarrixLee/nomo#cursor-integration)、[hook 与安全](https://github.com/KarrixLee/nomo#cursor-hooks)。

@@ -13,6 +13,34 @@ icon: "clock-rotate-left"
   </div>
 </Frame>
 
+<Update label="2026年11月" description="2.5.0">
+  ## 全新首頁和 Devin
+
+  <Frame>
+    <img src="/images/changelog-2-5-0-devin.jpg" alt="Nomo 2.5.0：Devin 提問，你來批准。iPhone 上的 Devin 權限請求，附「允許」與「拒絕」按鈕" />
+  </Frame>
+
+  全新首頁顯示你的連續紀錄，Devin 也來到你的手機上。
+
+  **新增**
+
+  - **Devin 的 sessions** 會顯示在手機、動態島和鎖定畫面上。可以直接在那裡回覆它的權限請求和問題（Nomo Pro）。[了解更多](/zh-Hant/sessions/devin)
+  - **Devin 用量與狀態**：你的每日和每週限額，以及有提醒的 Devin 狀態。[用量](/zh-Hant/usage#devin) · [狀態](/zh-Hant/status)
+  - **配對免費**：Nomo Free 可以連結一台電腦。[配對](/zh-Hant/setup/pairing)
+  - **首頁上的活動**：連續紀錄、寫程式的時間和寫程式日子的日曆，就在**首頁**上。[了解更多](/zh-Hant/activity)
+  - **Nomo 活動小工具免費**：配對了電腦後，小型和中型免費，中型會顯示最近 30 天。大型仍需要 Nomo Pro。[了解更多](/zh-Hant/free-widgets#nomo-activity)
+
+  **改進**
+
+  - 在電腦上回覆請求後，幾秒內手機上的請求也會消失
+  - Token 圖表預設顯示折線
+  - 「一律允許」會寫明允許的範圍，例如「一律允許以 `bun test` 開頭的指令（本次 session）」
+
+  **外掛程式 2.5.0**
+
+  - 要使用 Devin 的 sessions，電腦上需要安裝外掛程式 2.5.0。可以作為 Devin 外掛程式[手動安裝](/zh-Hant/setup/manual)，也可以用 `bunx nomo-ai --devin`
+</Update>
+
 <Update label="2026年11月" description="2.4.2">
   ## 批准前先看程式碼
 
@@ -24,10 +52,10 @@ icon: "clock-rotate-left"
   - **新結果一目了然**：上次查看後結束的 session 會標上藍點，每台電腦都會顯示新結果的數量，例如「2 個新結果」。[詳情](/zh-Hant/sessions/list#new-results)
   - 「首頁」上的「更新日誌」：關閉「新功能」卡片後，點一下「更新日誌」即可查看以往的版本
   - **連續紀錄也算 Grok Bot**：Nomo 活動和 Nomo Token 現在會計算你用 Grok Bot 的日子和 Token，也會計算你用 Cursor 的日子。這些來自你在 Nomo 裡的 Cursor 登入，所以不需要電腦。[設定方式](/zh-Hant/widgets#grok-bot)
-  - **依代理顯示 Token，也能畫成折線**：在活動頁面和 Nomo Token 小工具上，可以把 Token 依模型或依代理分開，用長條或折線顯示。[用法](/zh-Hant/widgets#tokens-chart)
-  - **篩選圖表**：點一下 Token 圖表下方的名稱就能隱藏它，或按住卡片，從列表中挑選。[用法](/zh-Hant/widgets#tokens-filter)
-  - **選擇你的角色**：按住連續紀錄卡片，選擇活動頁面的角色和顏色。[用法](/zh-Hant/widgets#activity-character)
-  - **回顧樣式**：用長條、折線或熱度圖分享你的回顧。[詳情](/zh-Hant/widgets#wrapped)
+  - **依代理顯示 Token，也能畫成折線**：在活動頁面和 Nomo Token 小工具上，可以把 Token 依模型或依代理分開，用長條或折線顯示。[用法](/zh-Hant/activity#tokens-chart)
+  - **篩選圖表**：點一下 Token 圖表下方的名稱就能隱藏它，或按住卡片，從列表中挑選。[用法](/zh-Hant/activity#tokens-filter)
+  - **選擇你的角色**：按住連續紀錄卡片，選擇活動頁面的角色和顏色。[用法](/zh-Hant/activity#character)
+  - **回顧樣式**：用長條、折線或熱度圖分享你的回顧。[詳情](/zh-Hant/activity#wrapped)
   - **終端機指令**：安裝工具會加入一個簡短的 `nomo` 指令。`nomo pair`、`nomo status`、`nomo reset` 和 `nomo unpair` 在任何資料夾裡都能執行。[詳情](/zh-Hant/sessions/commands#terminal)
   - **可用的重設次數**：Claude 和 Codex 的用量卡片以及 Nomo 用量、Nomo 用量速度小工具會顯示你能用的重設次數，例如「4 次重設可用」。卡片也會顯示到期時間，Nomo 還會在到期前 1 週和 1 天提醒你。[詳情](/zh-Hant/usage#available-resets)
 

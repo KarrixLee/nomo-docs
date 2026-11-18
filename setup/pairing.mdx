@@ -5,16 +5,24 @@ description: "Link a computer to the Nomo app by scanning a QR code, or by typin
 icon: "qrcode-read"
 ---
 
+<Note>
+  Used the [one command](/setup/install) and said yes to pairing? You're already paired. This page is for pairing by hand, pairing later, or typing a code instead of scanning.
+</Note>
+
 Pairing hands your phone and your computer a shared encryption key. No server
 ever sees it — which is why it takes a scan or a typed code rather than a login.
 
 You do this once per computer. Pairing again replaces the old pairing. The
 pairing expires if unused for **10 minutes**.
 
+Pairing is free. Nomo Free connects one computer, and Nomo Pro connects more.
+
+You need the plugin first. [Install it](/setup/install) if you haven't yet.
+
 <Note>
   One pairing covers the machine, not the agent. If you run any mix of Claude
-  Code, Codex, OpenCode, Cursor and Antigravity on the same computer, they
-  share it — you don't pair twice.
+  Code, Codex, OpenCode, Cursor, Antigravity and Devin on the same computer,
+  they share it — you don't pair twice.
 </Note>
 
 <Tabs>
@@ -44,12 +52,20 @@ pairing expires if unused for **10 minutes**.
         /nomo-pair
         ```
 
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair
+        ```
+
         ```bash Terminal icon="terminal"
         nomo pair
         ```
         </CodeGroup>
 
         In Antigravity, choose **Allow** when it asks to run a Nomo command.
+        With the Devin plugin, type `/nomo:pair` in Devin instead. If Devin
+        doesn't know the command, paste
+        `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` into
+        Terminal.
         **Terminal** works from any folder, with no agent open. See
         [From Terminal](/sessions/commands#terminal).
 
@@ -61,8 +77,8 @@ pairing expires if unused for **10 minutes**.
       </Step>
 
       <Step title="Scan it">
-        In Nomo, go to the **Sessions** tab → **Pair a Computer**, and point the
-        camera at the QR code.
+        In Nomo, tap **Pair your Mac** on **Home** (or **Connect your Mac** in **Get started**). You can also tap **+** in **Sessions**.
+        Point the camera at the QR code.
 
         {/* TODO: screenshot of the in-app scanner */}
       </Step>
@@ -122,10 +138,16 @@ pairing expires if unused for **10 minutes**.
         /nomo-pair code
         ```
 
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair code
+        ```
+
         ```bash Terminal icon="terminal"
         nomo pair code
         ```
         </CodeGroup>
+
+        With the Devin plugin, type `/nomo:pair code` in Devin instead.
 
         No browser opens. A one-time code prints straight to the terminal:
 
@@ -149,7 +171,8 @@ pairing expires if unused for **10 minutes**.
       </Step>
 
       <Step title="Type it into the app">
-        In Nomo: **Sessions** → **Pair a Computer** → **Enter Code**.
+        In Nomo, tap **Pair your Mac** on **Home** (or **Connect your Mac** in **Get started**). You can also tap **+** in **Sessions**.
+        Then tap **Enter Code**.
 
         {/* TODO: screenshot of the Enter code screen */}
       </Step>
@@ -157,10 +180,37 @@ pairing expires if unused for **10 minutes**.
   </Tab>
 </Tabs>
 
+## What happens next
+
+Open the **Home** tab. Your streak and coding time show up in
+[Activity](/activity) as you code. It's free.
+
 ## Checking on it later
 
 [`/nomo-cc:status`](/sessions/commands#status) on that machine reports whether
 it's still connected and whether events are actually being delivered.
+
+## Use a different computer {#use-a-different-computer}
+
+Nomo Free connects one computer. To switch to another one, forget the old one
+first.
+
+<Steps>
+  <Step title="Forget the old computer">
+    In Nomo, open **Sessions**. Touch and hold the computer, then tap
+    **Forget This Computer**.
+  </Step>
+
+  <Step title="Confirm">
+    Tap **Forget This Computer** again.
+  </Step>
+
+  <Step title="Pair the new computer">
+    Pair it the same way as the first one. See [Pairing](/setup/pairing).
+  </Step>
+</Steps>
+
+Want more than one computer at a time? Get Nomo Pro.
 
 ## If pairing doesn't take
 
@@ -168,8 +218,17 @@ it's still connected and whether events are actually being delivered.
   agent and try again, or use the typed-code path.
 - **The scan succeeds but no computer appears** — run the status command above
   to see whether events are being delivered at all.
-- **Computer Limit Reached** — you're at **5** paired computers. Touch and hold
-  one in the Sessions tab, forget it, and pair again.
+- **Old or duplicate rows show up** — run `/nomo-cc:reset` (or `$nomo-reset`).
+  It clears rows for sessions that are gone, and you stay paired.
+- **You want to disconnect a computer** — run `/nomo-cc:unpair` (or
+  `$nomo-unpair`). It removes the pairing and deletes the local key.
+- **One Computer on Free** — Nomo Free connects one computer. To use a
+  different one, touch and hold the paired one in the Sessions tab, tap
+  **Forget This Computer**, and pair again. See
+  [Use a different computer](/setup/pairing#use-a-different-computer). Or get
+  Nomo Pro to connect more.
+- **Computer Limit Reached** — you've paired as many computers as your plan
+  allows. Touch and hold one in the Sessions tab, forget it, and pair again.
 - **Couldn't Verify This iPhone** — Nomo's server couldn't verify your phone.
   Try again, and contact support if it keeps happening.
 

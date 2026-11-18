@@ -13,6 +13,34 @@ icon: "clock-rotate-left"
   </div>
 </Frame>
 
+<Update label="2026年11月" description="2.5.0">
+  ## 全新首页和 Devin
+
+  <Frame>
+    <img src="/images/changelog-2-5-0-devin.jpg" alt="Nomo 2.5.0：Devin 提问，你来批准。iPhone 上的 Devin 权限请求，附“允许”和“拒绝”按钮" />
+  </Frame>
+
+  全新首页显示你的连续记录，Devin 也来到你的手机上。
+
+  **新增**
+
+  - **Devin 会话**显示在手机、灵动岛和锁定屏幕上。可以直接在那里回复它的权限请求和问题（Nomo Pro）。[了解更多](/zh-Hans/sessions/devin)
+  - **Devin 用量和状态**：你的每日和每周限额，以及带提醒的 Devin 状态。[用量](/zh-Hans/usage#devin) · [状态](/zh-Hans/status)
+  - **配对免费**：Nomo Free 可以连接一台电脑。[配对](/zh-Hans/setup/pairing)
+  - **首页上的活动**：连续记录、编程时长和写代码日子的日历，就在**首页**上。[了解更多](/zh-Hans/activity)
+  - **Nomo 活动小组件免费**：配对了电脑后，小号和中号免费，中号显示最近 30 天。大号仍需 Nomo Pro。[了解更多](/zh-Hans/free-widgets#nomo-activity)
+
+  **改进**
+
+  - 在电脑上回复请求后，几秒内手机上的请求也会消失
+  - Token 图表默认显示折线
+  - **始终允许**会写明允许的范围，例如**始终允许以 `bun test` 开头的命令（本次会话）**
+
+  **插件 2.5.0**
+
+  - Devin 会话需要电脑上安装插件 2.5.0。可以作为 Devin 插件[手动安装](/zh-Hans/setup/manual)，也可以用 `bunx nomo-ai --devin`
+</Update>
+
 <Update label="2026年11月" description="2.4.2">
   ## 批准前先看代码
 
@@ -24,10 +52,10 @@ icon: "clock-rotate-left"
   - **新结果一目了然**：上次查看后完成的会话会标上蓝点，每台电脑都会显示新结果的数量，比如 **2 个新结果**。[详情](/zh-Hans/sessions/list#new-results)
   - **首页**上的**更新日志**：关闭**新功能**卡片后，轻点**更新日志**即可查看以往的版本
   - **连续记录也算 Grok Bot**：Nomo 活动和 Nomo Token 现在会统计你用 Grok Bot 的日子和 Token，也会统计你用 Cursor 的日子。数据来自你在 Nomo 里的 Cursor 登录，所以不需要电脑。[设置方法](/zh-Hans/widgets#grok-bot)
-  - **按智能体看 Token，还能看折线**：在活动页面和 Nomo Token 小组件上，可以按模型或按智能体拆分 Token，用柱状或折线显示。[用法](/zh-Hans/widgets#tokens-chart)
-  - **筛选图表**：轻点 Token 图表下方的名称可以隐藏它，或按住卡片从列表里选。[用法](/zh-Hans/widgets#tokens-filter)
-  - **选择你的角色**：按住连续记录卡片，选择活动页面的角色和颜色。[用法](/zh-Hans/widgets#activity-character)
-  - **回顾样式**：用柱状、折线或热力图分享你的回顾。[详情](/zh-Hans/widgets#wrapped)
+  - **按智能体看 Token，还能看折线**：在活动页面和 Nomo Token 小组件上，可以按模型或按智能体拆分 Token，用柱状或折线显示。[用法](/zh-Hans/activity#tokens-chart)
+  - **筛选图表**：轻点 Token 图表下方的名称可以隐藏它，或按住卡片从列表里选。[用法](/zh-Hans/activity#tokens-filter)
+  - **选择你的角色**：按住连续记录卡片，选择活动页面的角色和颜色。[用法](/zh-Hans/activity#character)
+  - **回顾样式**：用柱状、折线或热力图分享你的回顾。[详情](/zh-Hans/activity#wrapped)
   - **终端命令**：安装程序会加一个简短的 `nomo` 命令。`nomo pair`、`nomo status`、`nomo reset` 和 `nomo unpair` 在任何文件夹里都能运行。[详情](/zh-Hans/sessions/commands#terminal)
   - **可用的重置次数**：Claude 和 Codex 的用量卡片以及 Nomo 用量、Nomo 用量速度小组件会显示你能用的重置次数，比如**4 次重置可用**。卡片还会显示到期时间，Nomo 也会在到期前 1 周和 1 天提醒你。[详情](/zh-Hans/usage#available-resets)
 

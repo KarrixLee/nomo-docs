@@ -30,7 +30,7 @@ for the connection.
 | Amber | `Reconnecting…` | Nomo couldn't reach the relay for this computer on the last poll. It retries on its own. |
 | Spinner | `Connecting…` | Freshly paired, still waiting for its first session to land. |
 | Grey | `No longer paired` | This pairing was replaced or removed. See [troubleshooting](/sessions/troubleshooting). |
-| Grey | `Paused — renew to reconnect` | Nomo Pro lapsed. |
+| — | A line about what its agents are doing, with no live sessions | No Nomo Pro: you never had it, or it lapsed. The computer stays paired. Live sessions come back when you subscribe. |
 
 The summary reads `No active sessions`, `1 session`, or `3 active · 7 sessions`.
 "Active" excludes finished sessions, unreadable ones, and any session that
@@ -54,7 +54,7 @@ if you hit the cap.
 
 Tapping a card opens a drawer with a segmented control at the top, one segment
 per agent — up to three of **Claude Code**, **Codex**, **OpenCode**,
-**Cursor** and **Antigravity**, chosen with the **+** button (**Choose agents**). Nomo opens
+**Cursor**, **Antigravity** and **Devin**, chosen with the **+** button (**Choose agents**). Nomo opens
 whichever agent was active most recently.
 
 <Frame caption="Choose agents, opened from the + button at the bottom of the drawer. Tick up to three — each becomes a tab.">
@@ -175,8 +175,8 @@ labelled with a symbol rather than a word:
 - **Folder** and **session ID** — the first eight characters, monospaced.
 - **The pending question**, in full, when there is one.
 - **View plan** — opens the plan. Answerable for Claude Code, read-only for [Codex](/sessions/codex), and for [OpenCode](/sessions/opencode#plan-mode) usually the session's todo list rather than a document.
-- **Open on Mac** — focuses that session's terminal window on your Mac. Only appears when Nomo has a direct [local network](/sessions/settings#local-network) link, and never on [OpenCode](/sessions/opencode#no-open-on-mac) sessions, which have no window of their own, or on [Cursor](/sessions/cursor#what-this-version-doesnt-do) and [Antigravity](/sessions/antigravity#what-this-version-doesnt-do) sessions.
-- **Interrupt** — stops the turn that's running, like pressing Esc at the Mac. Only on a `Running` Claude Code, Codex or [Antigravity](/sessions/antigravity#interrupt) session, and only over that same direct link — see [below](#interrupt-a-running-session).
+- **Open on Mac** — focuses that session's terminal window on your Mac. Only appears when Nomo has a direct [local network](/sessions/settings#local-network) link, and never on [OpenCode](/sessions/opencode#no-open-on-mac) sessions, which have no window of their own, or on [Cursor](/sessions/cursor#what-this-version-doesnt-do), [Antigravity](/sessions/antigravity#what-this-version-doesnt-do) and [Devin](/sessions/devin#whats-different-for-devin) sessions.
+- **Interrupt** — stops the turn that's running, like pressing Esc at the Mac. Only on a `Running` Claude Code, Codex, [Antigravity](/sessions/antigravity#interrupt) or [Devin](/sessions/devin#interrupt) session, and only over that same direct link — see [below](#interrupt-a-running-session).
 
 <Tip>
   To **answer** a prompt, touch and hold the row rather than tapping it. Tapping
@@ -198,11 +198,12 @@ is true:
 
 - The session is `Running`. A row that's waiting on you — a permission prompt,
   a question, a plan — or one that's already `Done` has nothing to interrupt.
-- It's a Claude Code, Codex or Antigravity session. Never OpenCode or Cursor.
+- It's a Claude Code, Codex, Antigravity or Devin session. Never OpenCode or
+  Cursor.
 - Nomo has a direct [local network](/sessions/settings#local-network) link to
   that Mac — the green **⚡ Local** chip. An interrupt is never sent through the
   relay.
-- That computer runs plugin **2.3.0** or later.
+- That computer runs plugin **2.3.0** or later (**2.5.0** for Devin).
 
 After you tap, the label reads **Sent**, or **Try again** if the Mac couldn't be
 reached. **Sent** means the Mac received it — not that the turn has stopped yet.
@@ -215,6 +216,7 @@ pause, and it doesn't close the session.
 | --- | --- |
 | **Claude Code** | Stops at the next tool call. The tool it was about to run is refused, the turn ends, and Claude Code shows `Interrupted from Nomo`. While Claude is writing text, or a long command is already running, nothing happens until that step finishes. |
 | **Codex** | Stops straight away, for sessions on Codex's shared app-server — see [the limit](/sessions/codex#interrupt). A shell command Codex had already launched may keep running in the background. |
+| **Devin** | Stops after the step it's on. A command or a reply that's already running finishes first — see [Using Devin](/sessions/devin#interrupt). |
 
 Two more things on Claude Code. If the turn ends on its own first, the interrupt
 does nothing — it never carries over to your next prompt. And if the work is
@@ -230,17 +232,19 @@ nothing.
 | | Limit |
 | --- | --- |
 | Sessions per computer | **20**, across all agents |
-| Paired computers | **5** |
+| Paired computers | **One** on Nomo Free. More with Nomo Pro |
 | Sessions on the Dynamic Island | **One at a time**, device-wide |
 
 The first two are set on Nomo's side rather than compiled into the app, so they
 can move without an app update. The session count shows as an `N/20` chip on
-the first Sessions card, and the computer count as an `N/5` chip on the tab.
-Both turn orange at the cap.
+the first Sessions card. It turns orange at the cap.
 
-Pairing a sixth computer fails with **Computer Limit Reached**. Forget one you
-no longer use and try again — computers you've already paired are never revoked
-to make room.
+On Nomo Free, pairing a second computer shows **One Computer on Free**. Forget
+the first one, then pair again. See
+[Use a different computer](/setup/pairing#use-a-different-computer). With Nomo
+Pro, pairing past your plan's limit shows **Computer Limit Reached**. Forget one
+you no longer use and try again — computers you've already paired are never
+revoked to make room.
 
 When a computer is at its session cap, Nomo sheds finished and long-silent rows
 first. A genuinely new session is refused rather than pushing a live one off —

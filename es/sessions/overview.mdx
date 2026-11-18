@@ -1,14 +1,14 @@
 ---
 title: "Resumen"
 sidebarTitle: "Resumen"
-description: "Sigue a Claude Code, Codex, OpenCode y Antigravity desde tu iPhone, y responde a sus solicitudes de permiso sin volver al Mac."
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Resumen"]
+description: "Sigue a Claude Code, Codex, OpenCode, Antigravity y Devin desde tu iPhone, y responde a sus solicitudes de permiso sin volver al Mac."
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "sesión", "ordenador", "Dynamic Island", "permiso", "vinculación", "Resumen"]
 ---
 
 Tu agente de programación corre en tu Mac. Tú no tienes que estar delante.
 
-Nomo lleva a tu iPhone las sesiones de Claude Code, Codex, OpenCode, Cursor y
-Antigravity que tengas en marcha: a la pantalla de bloqueo y a la Dynamic Island. Cuando el agente se
+Nomo lleva a tu iPhone las sesiones de Claude Code, Codex, OpenCode, Cursor,
+Antigravity y Devin que tengas en marcha: a la pantalla de bloqueo y a la Dynamic Island. Cuando el agente se
 detiene a pedir permiso para algo, tu teléfono te avisa, y puedes responderle
 desde ahí.
 
@@ -28,8 +28,13 @@ ordenador corre. Debajo, la pestaña **Sesiones** enumera todo lo que
 hay en marcha, separado por agente.
 
 <Note>
-  Sesiones forma parte de Nomo Pro. La monitorización del estado y los widgets
-  de uso son gratis y funcionan sin nada de la configuración de abajo.
+  Vincular un ordenador es gratis. Tienes tu racha, tu tiempo programando y una
+  línea en la pestaña **Sesiones** que dice qué están haciendo los agentes de
+  cada ordenador. Las sesiones en directo, la Dynamic Island y responder desde
+  el teléfono vienen con Nomo Pro.
+
+  La monitorización del estado y los widgets de uso son gratis y funcionan sin
+  nada de la configuración de abajo.
 </Note>
 
 ## Con qué funciona
@@ -43,6 +48,7 @@ detrás, así que la lista es más corta que la de [Estado y uso](/es/status-usa
   <span><img src="/images/opencode.svg" alt="" />OpenCode</span>
   <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
   <span><img src="/images/providers/antigravity.png" alt="" />Antigravity</span>
+  <span><img src="/images/providers/devin.svg" alt="" className="invert-dark" />Devin</span>
 </div>
 
 Codex y OpenCode le entregan a un plugin menos que Claude Code, así que algunas
@@ -52,7 +58,8 @@ es de solo lectura en esta versión: sus sesiones aparecen, pero sus solicitudes
 no se pueden responder desde tu teléfono — ve
 [Usar Cursor](/es/sessions/cursor). Antigravity envía a tu teléfono los
 comandos de shell y las escrituras de archivos para **Permitir** o **Denegar** —
-ve [Usar Antigravity](/es/sessions/antigravity).
+ve [Usar Antigravity](/es/sessions/antigravity). Devin envía a tu teléfono sus
+solicitudes de permiso y sus preguntas — ve [Usar Devin](/es/sessions/devin).
 
 <Card title="Qué puedes hacer" href="/es/sessions/features" icon="star" horizontal>
   La lista completa, y qué agente admite cada función.
@@ -60,7 +67,7 @@ ve [Usar Antigravity](/es/sessions/antigravity).
 
 ## Qué necesitas
 
-- Claude Code, Codex 0.142 o posterior, OpenCode, Cursor o Antigravity, en un Mac
+- Claude Code, Codex 0.142 o posterior, OpenCode, Cursor, Antigravity o la CLI de Devin, en un Mac
 - **bun** o **node 18+**, el que ya tengas
 - Tu teléfono y tu ordenador vinculados: un solo escaneo de QR
 
@@ -80,18 +87,18 @@ El esquema exacto —el intercambio de claves, qué ve y qué no ve el relé, qu
 lee el plugin— está documentado en el README del propio plugin, junto al código
 que lo implementa:
 
-<Card title="Arquitectura y cifrado" href="https://github.com/KarrixLee/nomo#architecture--end-to-end-encrypted" icon="lock" horizontal>
+<Card title="Arquitectura y cifrado" href="https://github.com/KarrixLee/nomo#architecture" icon="lock" horizontal>
   Cómo la vinculación deriva la clave, y por qué el relé solo llega a tener texto cifrado.
 </Card>
 
 ## Ponlo en marcha
 
 <CardGroup cols={2}>
-  <Card title="Instala el plugin" href="/es/setup/install" icon="puzzle-piece">
-    Dos comandos, para Claude Code, Codex, OpenCode, Cursor o Antigravity.
+  <Card title="Configura con un solo comando" href="/es/setup/install" icon="puzzle-piece">
+    Un solo comando para Claude Code, Codex, OpenCode, Cursor, Antigravity o Devin. También vincula tu teléfono.
   </Card>
-  <Card title="Vincula tu ordenador" href="/es/setup/pairing" icon="qrcode-read">
-    Escanea un código QR, o escribe un código de un solo uso.
+  <Card title="O instálalo a mano" href="/es/setup/manual" icon="screwdriver-wrench">
+    La tienda de plugins de tu agente, y luego un código QR o un código de un solo uso.
   </Card>
 </CardGroup>
 

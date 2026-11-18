@@ -40,7 +40,7 @@ título, su modelo, si está trabajando o parada, y con permisos que respondes
 desde la Dynamic Island o desde la app.
 
 No hay una instalación aparte para la app de escritorio: lo que describe la
-[Instalación](/es/setup/install) vale para las dos. Y el reinicio también: los
+[Instalación manual](/es/setup/manual) vale para las dos. Y el reinicio también: los
 plugins se importan una sola vez, al arrancar el servidor, y no hay recarga en
 caliente, así que una app que ya estuviera abierta cuando instalaste hay que
 cerrarla y volver a abrirla.
@@ -81,7 +81,7 @@ El plugin lee la vinculación una sola vez, cuando arranca el servidor de
 OpenCode. Si vinculas un ordenador que antes no lo estaba, el OpenCode que ya
 está en marcha decidió callarse: ciérralo y vuelve a abrirlo, y las sesiones
 empiezan a reflejarse. Es el mismo reinicio que pide la
-[instalación](/es/setup/install), y es lo primero que hay que comprobar cuando
+[instalación](/es/setup/manual), y es lo primero que hay que comprobar cuando
 una máquina recién vinculada no muestra nada.
 
 ## Denegar decide sobre todo el turno {#deny-is-a-decision-about-the-turn}
@@ -95,6 +95,10 @@ Rechazar una pregunta termina el turno en lugar de volver a preguntar.
 
 **Permitir** y **Permitir siempre** resuelven únicamente la tarjeta que has
 tocado.
+
+**Permitir siempre** dura hasta que reinicias OpenCode, no solo esta sesión, y
+cubre también las demás sesiones de OpenCode de ese proyecto. La opción lo dice:
+**Permitir siempre … (hasta reiniciar OpenCode)**.
 
 ## Sin notas ni respuestas escritas {#no-notes-no-typed-answers}
 

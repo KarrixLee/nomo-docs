@@ -1,14 +1,14 @@
 ---
 title: "Nomo Sessions: watch coding agents from your iPhone"
 sidebarTitle: "Overview"
-description: "Watch Claude Code, Codex, OpenCode and Antigravity from your iPhone, and answer their permission prompts without going back to your Mac."
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Overview"]
+description: "Watch Claude Code, Codex, OpenCode, Antigravity and Devin from your iPhone, and answer their permission prompts without going back to your Mac."
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "session", "computer", "Dynamic Island", "permission", "pairing", "Overview"]
 ---
 
 Your coding agent runs on your Mac. You don't have to sit in front of it.
 
-Nomo Sessions puts your running Claude Code, Codex, OpenCode, Cursor and
-Antigravity sessions on your iPhone — on the Lock Screen and in the Dynamic Island. When the agent stops
+Nomo Sessions puts your running Claude Code, Codex, OpenCode, Cursor,
+Antigravity and Devin sessions on your iPhone — on the Lock Screen and in the Dynamic Island. When the agent stops
 to ask permission for something, your phone tells you, and you can answer it
 from there.
 
@@ -28,8 +28,13 @@ Below it, the Sessions tab lists your paired computers; open one to see its
 sessions, split by agent and grouped by project folder.
 
 <Note>
-  Sessions is part of Nomo Pro. Status monitoring and usage widgets are free and
-  work without any of the setup below.
+  Pairing a computer is free. You get your streak, your coding time, and a line
+  in the Sessions tab that says what each computer's agents are doing. Live
+  sessions, the Dynamic Island and answering from your phone come with Nomo
+  Pro.
+
+  Status monitoring and usage widgets are free and work without any of the
+  setup below.
 </Note>
 
 ## What's supported
@@ -43,6 +48,7 @@ so the list is shorter than [Status and Usage](/status-usage).
   <span><img src="/images/opencode.svg" alt="" />OpenCode</span>
   <span><img src="/images/providers/cursor.svg" alt="" className="invert-dark" />Cursor</span>
   <span><img src="/images/providers/antigravity.png" alt="" />Antigravity</span>
+  <span><img src="/images/providers/devin.svg" alt="" className="invert-dark" />Devin</span>
 </div>
 
 Codex and OpenCode hand a plugin less than Claude Code does, so a few things
@@ -51,7 +57,9 @@ OpenCode](/sessions/opencode) are the short lists of what changes. Cursor is
 read-only in this version: its sessions show up, but its prompts can't be
 answered from your phone — see [Using Cursor](/sessions/cursor). Antigravity
 sends shell commands and file writes to your phone for **Allow** or **Deny** —
-see [Using Antigravity](/sessions/antigravity).
+see [Using Antigravity](/sessions/antigravity). Devin sends its permission
+prompts and its questions to your phone — see [Using
+Devin](/sessions/devin).
 
 <Card title="What you can do" href="/sessions/features" icon="star" horizontal>
   The full list, and which agent supports each feature.
@@ -59,7 +67,7 @@ see [Using Antigravity](/sessions/antigravity).
 
 ## What you need
 
-- Claude Code, Codex 0.142+, OpenCode, Cursor, or Antigravity, on a Mac
+- Claude Code, Codex 0.142+, OpenCode, Cursor, Antigravity or the Devin CLI, on a Mac
 - Either **bun** or **node 18+** — whichever you already have
 - Your phone and your computer paired — one QR scan
 
@@ -77,18 +85,18 @@ The exact scheme — key exchange, what the relay can and can't see, what the
 plugin reads — is written up in the plugin's own README, next to the code that
 implements it:
 
-<Card title="Architecture and encryption" href="https://github.com/KarrixLee/nomo#architecture--end-to-end-encrypted" icon="lock" horizontal>
+<Card title="Architecture and encryption" href="https://github.com/KarrixLee/nomo#architecture" icon="lock" horizontal>
   How pairing derives the key, and why the relay only ever holds ciphertext.
 </Card>
 
 ## Get setup
 
 <CardGroup cols={2}>
-  <Card title="Install the plugin" href="/setup/install" icon="puzzle-piece">
-    Two commands, for Claude Code, Codex, OpenCode, Cursor or Antigravity.
+  <Card title="Set up with one command" href="/setup/install" icon="puzzle-piece">
+    One command for Claude Code, Codex, OpenCode, Cursor, Antigravity or Devin. It pairs your phone too.
   </Card>
-  <Card title="Pair your computer" href="/setup/pairing" icon="qrcode-read">
-    Scan a QR code, or type a one-time code.
+  <Card title="Or install by hand" href="/setup/manual" icon="screwdriver-wrench">
+    Your agent's own plugin store, then a QR code or a one-time code.
   </Card>
 </CardGroup>
 
