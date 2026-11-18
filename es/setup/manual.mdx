@@ -1,0 +1,525 @@
+---
+title: "Añadir Nomo desde el marketplace de Claude Code o Codex"
+sidebarTitle: "Instalación manual"
+description: "Instala el plugin de Nomo agente por agente: desde el marketplace de Claude Code o Codex, o en OpenCode, Cursor, Antigravity o Devin."
+icon: "screwdriver-wrench"
+---
+
+Instálalo una vez por ordenador. Necesitas **bun** o **node 18+**: el plugin no
+tiene dependencias npm y funciona con los módulos integrados de Node. Mantén
+bun en la **1.4.4** o posterior, y Node.js 22 en la **22.23.4** o posterior: el
+comando status te avisa si son más antiguos.
+
+Hace lo mismo que el [comando único](/es/setup/install), agente por agente. Úsalo si prefieres la tienda de plugins de tu agente o si el instalador no puede ejecutarse. Elige tu agente:
+
+<Tabs>
+  <Tab title="Claude Code" icon="/images/claude-code.svg">
+    <Tabs>
+      <Tab title="Terminal" icon="terminal">
+        Desde una sesión de Claude Code:
+
+        ```
+        /plugin marketplace add KarrixLee/nomo
+        /plugin install nomo-cc@nomo
+        ```
+      </Tab>
+
+      <Tab title="App de escritorio" icon="window">
+        **Settings** → **Plugins** → **Add** → **Add marketplace**. Pon el repositorio en **URL**:
+
+        ```
+        KarrixLee/nomo
+        ```
+
+        Luego pulsa **Sync** e instala **Nomo — Claude Code** desde la lista.
+
+        <Frame caption="Basta con un owner/repo de GitHub — el repositorio de Nomo es el marketplace.">
+          <img src="/images/claude-desktop-add-marketplace.png" alt="El diálogo Add marketplace de la app de escritorio de Claude, con KarrixLee/nomo escrito en URL" />
+        </Frame>
+      </Tab>
+    </Tabs>
+
+    Reinicia Claude Code después para que se carguen los hooks del plugin.
+
+    Comprueba que está ahí:
+
+    ```
+    /nomo-cc:status
+    ```
+
+    <Tip>
+      Todos los comandos de Nomo en Claude Code llevan el espacio de nombres
+      `nomo-cc:`; al escribir `/nomo-cc:` se listan.
+    </Tip>
+  </Tab>
+
+  <Tab title="Codex" icon="/images/codex.svg">
+    Codex **0.142 o posterior** incluye su propio sistema de plugins, así que
+    Nomo se instala como un plugin independiente de Codex. Claude Code no es
+    necesario.
+
+    <Steps>
+      <Step title="Instala el plugin">
+        <Tabs>
+          <Tab title="Terminal" icon="terminal">
+            ```
+            codex plugin marketplace add KarrixLee/nomo
+            codex plugin add nomo@nomo
+            ```
+
+            La terminal integrada de la app de escritorio también sirve, si prefieres escribir.
+          </Tab>
+
+          <Tab title="App de escritorio" icon="window">
+            **Plugins** → **Añadir** → **Añadir un marketplace**. Pon el repositorio en **Source**:
+
+            ```
+            KarrixLee/nomo
+            ```
+
+            Deja **Git ref** y **Sparse paths** como están: el texto gris es un marcador de posición, no un valor que tengas que escribir. Luego pulsa **Añadir un marketplace** e instala **nomo** desde la lista.
+
+            <Frame caption="El repositorio de Nomo es el marketplace — no hay ningún catálogo que explorar ni al que enviar nada.">
+              <img src="/images/codex-app-add-marketplace.png" alt="El diálogo Añadir un marketplace de la app de escritorio de Codex, con KarrixLee/nomo escrito en Source" />
+            </Frame>
+          </Tab>
+        </Tabs>
+
+        <Note>
+          "Marketplace" aquí no es una tienda que se navega. Es un registro que apunta a un repositorio de GitHub — el de Nomo. Por eso primero añades el repositorio y luego instalas el plugin desde él.
+        </Note>
+      </Step>
+
+      <Step title="Confía en los hooks — obligatorio">
+        <Tabs>
+          <Tab title="Terminal" icon="terminal">
+            ```
+            /hooks
+            ```
+
+            Confía en las **entradas de Nomo**. En la terminal aparecen en inglés, como «trust».
+          </Tab>
+
+          <Tab title="App de escritorio" icon="window">
+            Ve al engranaje → **Hooks** → **Nomo** y actívalos.
+          </Tab>
+        </Tabs>
+
+        <Warning>
+          No te saltes este paso. Los hooks de Nomo vienen con el plugin, pero
+          permanecen **inertes hasta que confíes en ellos**. Hasta que lo hagas, el
+          plugin está instalado sin hacer nada: ninguna sesión llega a tu
+          teléfono y nada informa de un error.
+        </Warning>
+
+        Es la propia barrera de seguridad de Codex, y Nomo no puede aprobarla por
+        adelantado. Las líneas de comando de los hooks son estables byte a byte
+        entre versiones, así que confiar una vez se mantiene tras las
+        actualizaciones; solo una línea de hook modificada vuelve a abrir la
+        revisión.
+      </Step>
+
+      <Step title="Comprueba">
+        ```
+        $nomo-status
+        ```
+
+        Informa del estado de la vinculación, el proceso supervisor, la **autorización de
+        los hooks** y la última entrega, así que también sirve para comprobar que
+        el paso de confianza surtió efecto.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Las skills de Codex usan el prefijo `$` en lugar de una barra:
+      `$nomo-pair`, `$nomo-status`, `$nomo-reset`, `$nomo-unpair`.
+    </Tip>
+  </Tab>
+
+  <Tab title="OpenCode" icon="/images/opencode.svg">
+    OpenCode no tiene marketplace ni comando de plugins: coge lo que encuentra en
+    sus propias carpetas de configuración. Así que Nomo se instala desde un clon,
+    y un solo script deja los archivos donde OpenCode ya mira.
+
+    <Steps>
+      <Step title="Clónalo y ejecuta el instalador">
+        ```bash
+        git clone https://github.com/KarrixLee/nomo.git ~/.nomo
+        ~/.nomo/plugin/scripts/opencode-install.sh
+        ```
+
+        Clónalo donde quieras: el script averigua su propia ubicación, así que no
+        hay ninguna ruta que buscar ni nada que editar a mano. Imprime
+        exactamente lo que ha escrito:
+
+        - `~/.config/opencode/plugins/nomo.js`: un stub de una línea que apunta
+          de vuelta al clon.
+        - `~/.config/opencode/commands/nomo-*.md`: los seis comandos.
+
+        ¿Ya tienes Nomo instalado para Claude Code o Codex? Apunta el script a
+        esa copia en lugar de clonar una segunda: `claude plugin list` o `codex plugin list` te dicen dónde está.
+
+        <Tip>
+          `--project` instala en `./.opencode` para un solo repositorio en lugar
+          de globalmente. Volver a ejecutarlo no rompe nada, y es también la
+          forma de mover el clon: lo ejecutas otra vez desde la ubicación nueva.
+        </Tip>
+      </Step>
+
+      <Step title="Reinicia OpenCode — obligatorio">
+        <Warning>
+          OpenCode importa los plugins una sola vez, al arrancar su servidor, y
+          no hay recarga en caliente. Hasta que lo cierres y lo vuelvas a abrir,
+          el plugin está instalado sin hacer nada. La app de escritorio
+          ejecuta ese mismo servidor, así que necesita el mismo reinicio.
+        </Warning>
+      </Step>
+
+      <Step title="Comprueba">
+        ```
+        /nomo-status
+        ```
+      </Step>
+    </Steps>
+
+    Esa misma instalación vale también para la app de escritorio de OpenCode:
+    ejecuta el propio servidor de OpenCode, que lee la misma carpeta de plugins.
+
+    <Note>
+      Actualizar más adelante es un solo comando desde dentro de OpenCode:
+      `/nomo-update` comprueba primero, y luego trae los cambios y vuelve a
+      ejecutar este instalador — [qué hace y cuándo se
+      niega](/es/sessions/commands#update).
+    </Note>
+
+    <Tip>
+      Los nombres de comando de OpenCode son planos y globales, así que los de
+      Nomo no llevan ningún prefijo: `/nomo-pair`, no `/nomo-cc:pair` ni
+      `$nomo-pair`. Los seis están en [Comandos](/es/sessions/commands).
+    </Tip>
+
+    Lo que llega distinto a tu teléfono está en
+    [Usar OpenCode](/es/sessions/opencode).
+  </Tab>
+
+  <Tab title="Cursor" icon="/images/providers/cursor.svg">
+    Una sola instalación cubre tanto el agente de la app de escritorio de Cursor
+    como la CLI `cursor-agent`. Las sesiones de Cursor son de solo lectura en
+    esta versión: [Usar Cursor](/es/sessions/cursor) explica qué significa eso.
+
+    <Steps>
+      <Step title="Ejecuta el instalador">
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --cursor
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --cursor
+        ```
+        </CodeGroup>
+
+        Hace tres cosas:
+
+        - Clona el plugin en `~/.nomo`.
+        - Añade las entradas de hooks de Nomo a `~/.cursor/hooks.json`. Las
+          fusiona con lo que ya haya y deja intactas las entradas de otras
+          herramientas.
+        - Instala cuatro skills en `~/.cursor/skills/`.
+      </Step>
+
+      <Step title="Reinicia Cursor — obligatorio">
+        <Warning>
+          Cursor solo recoge los hooks al arrancar. Cierra Cursor y vuelve a
+          abrirlo, y reinicia cualquier sesión de `cursor-agent` que tengas
+          abierta. Hasta que lo hagas, el plugin está instalado sin hacer nada.
+        </Warning>
+      </Step>
+
+      <Step title="Vincula">
+        En Cursor, escribe `/` para elegir una skill, y ejecuta:
+
+        ```
+        /nomo-pair
+        ```
+
+        Muestra un código QR: escanéalo con la app de Nomo. Donde no puedas
+        abrir un navegador, `/nomo-pair code` te da un código corto para
+        escribirlo. Las dos vías están explicadas paso a paso en
+        [Vinculación](/es/setup/pairing).
+
+        La vinculación se comparte entre los agentes de un mismo Mac. Un
+        ordenador ya vinculado para Claude Code, Codex u OpenCode no necesita
+        vincularse otra vez para Cursor: basta con instalar, y puedes saltarte
+        este paso.
+      </Step>
+
+      <Step title="Muestra la pestaña Cursor">
+        En la app, abre el ordenador. Las sesiones de Cursor están bajo la
+        pestaña **Cursor** de su panel de sesiones.
+
+        El panel muestra hasta tres pestañas de agente. Si Cursor no es una de
+        ellas, toca el botón **+** (**Elegir agentes**) y actívalo.
+      </Step>
+    </Steps>
+
+    <Tip>
+      Los comandos de Nomo en Cursor son skills sin prefijo: `/nomo-pair`,
+      `/nomo-status`, `/nomo-reset` y `/nomo-unpair`. Las cuatro están en
+      [Comandos](/es/sessions/commands).
+    </Tip>
+  </Tab>
+
+  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
+    Una sola instalación cubre tanto la app de escritorio de Antigravity como la
+    CLI `agy`. Los comandos de shell y las escrituras de archivos se pueden
+    responder desde tu teléfono: [Usar Antigravity](/es/sessions/antigravity)
+    tiene los detalles.
+
+    <Steps>
+      <Step title="Ejecuta el instalador">
+        Pega esto en Terminal y pulsa Retorno:
+
+        <CodeGroup>
+        ```bash bunx icon="terminal"
+        bunx nomo-ai --antigravity
+        ```
+
+        ```bash npx icon="terminal"
+        npx nomo-ai --antigravity
+        ```
+        </CodeGroup>
+
+        Deberías ver:
+
+        ```
+        ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
+        ```
+      </Step>
+
+      <Step title="Reinicia Antigravity — obligatorio">
+        <Warning>
+          Cierra Antigravity del todo y vuelve a abrirlo. Si usas `agy`,
+          reinícialo también. Nomo no se activa hasta que lo hagas.
+        </Warning>
+      </Step>
+
+      <Step title="Escribe /nomo-pair">
+        En un chat de Antigravity, escribe `/nomo-pair` y envíalo. Cuando
+        Antigravity pregunte si ejecuta un comando de Nomo, elige **Allow**
+        (permitir). Después escanea el código QR con Nomo en tu iPhone.
+
+        Deberías ver en Antigravity: “Done! This computer is connected to your
+        phone.” (listo, este ordenador está conectado a tu teléfono).
+
+        En la app de escritorio de Antigravity, el primer comando de Nomo puede
+        mostrar una línea que dice `operation not permitted`. Es normal:
+        Antigravity lo vuelve a intentar fuera de su sandbox por sí solo. Solo
+        espera.
+
+        ¿Ya vinculaste el ordenador desde otro agente? Escribe `/nomo-status`
+        para comprobarlo.
+      </Step>
+
+      <Step title="Envía un mensaje en Antigravity">
+        Empieza un chat y envía cualquier cosa.
+
+        Deberías ver la sesión en Nomo, en la pestaña **Antigravity** de tu
+        ordenador. ¿No hay pestaña Antigravity? Toca el botón **+** (**Elegir
+        agentes**) y activa Antigravity.
+
+        <Frame caption="Elegir agentes, desde el botón +. Antigravity está marcado, así que tiene su propia pestaña.">
+          <div className="device-frame">
+            <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="El menú Elegir agentes con Claude Code, Codex y Antigravity marcados, y OpenCode y Cursor sin marcar" />
+            <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="El menú Elegir agentes con Claude Code, Codex y Antigravity marcados, y OpenCode y Cursor sin marcar" />
+          </div>
+        </Frame>
+      </Step>
+    </Steps>
+
+    <Warning>
+      No importes en Antigravity el plugin de Nomo para Claude Code (por
+      ejemplo, con `agy plugin import claude`): cada sesión saldría dos veces.
+      Si lo hiciste, el instalador te avisa:
+
+      ```
+      ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
+      ```
+
+      Para arreglarlo, ejecuta `agy plugin uninstall nomo-cc` y reinicia
+      Antigravity.
+    </Warning>
+  </Tab>
+
+  <Tab title="Devin" icon="/images/providers/devin.svg">
+    Para la CLI de Devin y Devin Desktop. Las solicitudes de permiso y las
+    preguntas de Devin se pueden responder desde tu teléfono: [Usar
+    Devin](/es/sessions/devin) tiene los detalles.
+
+    Hay dos formas de añadir Nomo a Devin: el **plugin de Devin** o el
+    **instalador de Nomo**. Instala solo una. Si instalas las dos, Nomo usa la
+    del instalador y el plugin no hace nada.
+
+    **¿Todavía no tienes la CLI de Devin?** En tu Mac, abre la app **Terminal**
+    (está en **Aplicaciones → Utilidades**). Copia esta línea, pégala en
+    Terminal y pulsa Retorno:
+
+    ```bash
+    brew install --cask devin-cli
+    ```
+
+    ¿No tienes Homebrew? Usa esto en su lugar:
+
+    ```bash
+    curl -fsSL https://cli.devin.ai/install.sh | bash
+    ```
+
+    Después escribe `devin` y pulsa Retorno. Si Devin te pide iniciar sesión,
+    sigue sus pasos.
+
+    <Tabs>
+      <Tab title="Plugin de Devin" icon="puzzle-piece">
+        <Steps>
+          <Step title="Instala el plugin de Nomo">
+            Escribe esto en Terminal, no dentro de Devin. Si Devin está abierto,
+            abre antes una ventana nueva de Terminal (pulsa **⌘N**).
+
+            Copia esta línea, pégala en Terminal y pulsa Retorno:
+
+            ```bash
+            devin plugins install KarrixLee/nomo
+            ```
+
+            ¿Usas Devin Desktop? Ve a **Customize → Plugins → From
+            repository** y escribe `KarrixLee/nomo`.
+          </Step>
+
+          <Step title="Inicia Devin">
+            En Terminal, escribe `devin` y pulsa Retorno.
+          </Step>
+
+          <Step title="Escribe /nomo:pair">
+            En `devin`, escribe esto y envíalo:
+
+            ```
+            /nomo:pair
+            ```
+
+            Devin abre en tu navegador una página con un código QR.
+          </Step>
+
+          <Step title="Escanea el código QR">
+            En tu iPhone, abre Nomo. Toca **Vincular tu Mac** en **Inicio** (o
+            **Conecta tu Mac** en **Empezar**). También puedes tocar **+** en
+            **Sesiones**. Escanea el código QR.
+          </Step>
+
+          <Step title="Compruébalo">
+            En `devin`, escribe esto y envíalo:
+
+            ```
+            /nomo:status
+            ```
+
+            Si una línea empieza por `!`, haz lo que dice la línea `→` de
+            debajo.
+          </Step>
+
+          <Step title="Envía un mensaje en Devin">
+            En `devin`, envía cualquier cosa.
+
+            Deberías ver la sesión en Nomo, en la pestaña **Devin** de tu
+            ordenador. ¿No hay pestaña Devin? Toca el botón **+** (**Elegir
+            agentes**) y activa Devin.
+          </Step>
+        </Steps>
+      </Tab>
+
+      <Tab title="Instalador de Nomo" icon="terminal">
+        <Steps>
+          <Step title="Ejecuta el instalador">
+            Copia esta línea, pégala en Terminal y pulsa Retorno:
+
+            <CodeGroup>
+            ```bash bunx icon="terminal"
+            bunx nomo-ai --devin
+            ```
+
+            ```bash npx icon="terminal"
+            npx nomo-ai --devin
+            ```
+            </CodeGroup>
+
+            Entre las líneas que imprime, deberías ver:
+
+            ```
+            devin-install: Devin sessions will now show in Nomo — restart devin (and Devin Desktop)
+            ```
+          </Step>
+
+          <Step title="Reinicia Devin — obligatorio">
+            Cierra todos los `devin` que tengas abiertos y vuelve a iniciar
+            `devin`. ¿Usas Devin Desktop? Ciérralo y vuelve a abrirlo también.
+
+            <Warning>
+              No te saltes este paso. Nomo no se activa hasta que Devin se
+              reinicia.
+            </Warning>
+          </Step>
+
+          <Step title="Escribe /nomo-pair">
+            En `devin`, escribe esto y envíalo:
+
+            ```
+            /nomo-pair
+            ```
+
+            Si Devin pide permiso para ejecutar un comando de Nomo, permítelo.
+            Devin abre en tu navegador una página con un código QR.
+          </Step>
+
+          <Step title="Escanea el código QR">
+            En tu iPhone, abre Nomo. Toca **Vincular tu Mac** en **Inicio** (o
+            **Conecta tu Mac** en **Empezar**). También puedes tocar **+** en
+            **Sesiones**. Escanea el código QR.
+          </Step>
+
+          <Step title="Compruébalo">
+            En `devin`, escribe esto y envíalo:
+
+            ```
+            /nomo-status
+            ```
+
+            Si una línea empieza por `!`, haz lo que dice la línea `→` de
+            debajo.
+          </Step>
+
+          <Step title="Envía un mensaje en Devin">
+            En `devin`, envía cualquier cosa.
+
+            Deberías ver la sesión en Nomo, en la pestaña **Devin** de tu
+            ordenador. ¿No hay pestaña Devin? Toca el botón **+** (**Elegir
+            agentes**) y activa Devin.
+          </Step>
+        </Steps>
+
+        Añade las entradas de Nomo a `~/.config/devin/config.json`, deja el
+        resto de tus ajustes de Devin como están, y añade los comandos
+        `/nomo-*` como skills de Devin.
+      </Tab>
+    </Tabs>
+
+    ¿Ya vinculaste el ordenador desde otro agente? Una sola vinculación cubre
+    todo el ordenador: sáltate los pasos de vinculación. ¿No hay navegador en
+    este ordenador? Usa `/nomo-pair code` (con el plugin, `/nomo:pair code`);
+    consulta [Vinculación](/es/setup/pairing).
+  </Tab>
+</Tabs>
+
+## Siguiente
+
+<Card title="Vincula tu ordenador" href="/es/setup/pairing" icon="qrcode-read">
+  Escanea un código QR, o escribe un código de un solo uso si no puedes abrir un
+  navegador.
+</Card>

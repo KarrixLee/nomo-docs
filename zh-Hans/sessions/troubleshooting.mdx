@@ -2,7 +2,7 @@
 title: "故障排查"
 description: "先运行状态命令——它会直接说出问题所在，并打印出对应的修复命令。然后：哪一行回答哪个症状，以及状态命令看不到的少数几件事。"
 icon: "wrench"
-keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
+keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "Antigravity", "Devin", "iPhone", "会话", "电脑", "灵动岛", "权限", "配对", "故障排查"]
 ---
 
 这一页的活，现在大半由状态命令替你干了。它会把整台电脑读一遍，用大白话说出哪里不对，并打印出能修好它的那条命令。先运行它。
@@ -31,9 +31,15 @@ $nomo-status
 ```bash Antigravity icon="/images/providers/antigravity.png"
 /nomo-status
 ```
+
+```bash Devin icon="/images/providers/devin.svg"
+/nomo-status
+```
 </CodeGroup>
 
 在 Antigravity 里，它要运行 Nomo 命令时选择 **Allow**（允许）。它会用大白话显示一段简短总结，每个问题一行，告诉你该怎么做——输入 `/nomo-status verbose` 可以看到下面讲的完整输出。
+
+用 Devin 插件的话，改为在 Devin 里输入 `/nomo:status`。如果 Devin 不认识这条命令，就把 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/status-cmd.mjs devin` 粘贴到终端里。
 
 它报告的是**这台电脑**，而不只是你当前的会话：配对、投递、本地网络直连、审批，然后是你所在的这个智能体，以及它找到的其他每一个。`!` 是真正的问题，它下面的 `→` 就是该怎么办，并且按你发起询问的那个智能体的命令写法写出来。多数人看到这里就够了。
 
@@ -79,7 +85,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="我开了一个会话，它一直没出现" icon="play">
-  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode；重启 Cursor；重启 Antigravity。
+  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode；重启 Cursor；重启 Antigravity；重启 `devin`。
 
   Codex 需要你明确信任 hook，而一次插件更新会重新开启那次审核，所以在那边，更新之后运行 `/hooks` 通常就是答案——[原因](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
@@ -134,6 +140,16 @@ $nomo-status
   等几秒钟——Nomo 会自己发现，这一行会变为 `完成`。如果手机上有卡片，它也会一起消失。
 </Accordion>
 
+<Accordion title="手机上没有显示任何 Devin 的内容" icon="terminal">
+  1. 关掉每一个开着的 `devin`，再重新启动。
+  2. 在 Devin 里输入 `/nomo-status`，然后照着以 `→` 开头的那一行去做。用 Devin 插件的话，改为输入 `/nomo:status`。
+
+  3. 用的是 Devin Desktop？确认 **Restricted Mode** 已关闭。
+  4. 在 Devin 里发一条消息。会话要等你发出第一条消息后才会出现。
+
+  还是没有？在 Nomo 里轻点 **+** 按钮（**选择智能体**），把 Devin 打开。详见[搭配 Devin 使用](/zh-Hans/sessions/devin#troubleshooting)。
+</Accordion>
+
 <Accordion title="会话行看着陈旧或重复" icon="broom">
   **Sessions** 统计的是这台电脑仍然认为还活着的会话。如果比你实际有的多，不用解除配对就能清掉失效的：
 
@@ -158,10 +174,16 @@ $nomo-status
   /nomo-reset
   ```
 
+  ```bash Devin icon="/images/providers/devin.svg"
+  /nomo-reset
+  ```
+
   ```bash 终端 icon="terminal"
   nomo reset
   ```
   </CodeGroup>
+
+  用 Devin 插件的话，改为在 Devin 里输入 `/nomo:reset`。
 
   活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。OpenCode 的会话行属于 OpenCode 的服务器，所以要是有一行清不掉，先退出 OpenCode。
 </Accordion>
@@ -170,7 +192,7 @@ $nomo-status
   它会自己跟上。你的电脑最多每 6 小时发送一次新的汇总，App 最多每小时检查一次。想现在就更新：
 
   1. 在电脑上打开终端，运行 `nomo reset`。也可以在智能体里运行重置命令，比如 `/nomo-cc:reset`。它会显示 `Sent your activity summary (heatmap and streak) to your phone.`
-  2. 在 Nomo 中打开[活动页面](/zh-Hans/widgets#activity-screen)。它一打开就会获取最新的汇总。
+  2. 在 Nomo 的**首页**标签页打开[活动](/zh-Hans/activity)。它一打开就会获取最新的汇总。
 
   还是少了某台电脑？见[未计入的电脑](/zh-Hans/widgets#not-counted)。
 
@@ -184,14 +206,15 @@ $nomo-status
 </Accordion>
 
 <Accordion title="“停止”显示“已发送”，会话却还在运行" icon="circle-stop">
-  **已发送**的意思是 Mac 收到了，不代表这一轮已经停下。有四种情况会让它继续跑：
+  **已发送**的意思是 Mac 收到了，不代表这一轮已经停下。有五种情况会让它继续跑：
 
   - **Claude Code 要等到下一次工具调用**。它还在输出文字，或者一条耗时的命令已经在跑的时候，要等那一步结束才会有反应。
   - **够不到那个 Codex 会话**。停止信号要走 Codex 的共用 app-server——见[它覆盖哪些会话](/zh-Hans/sessions/codex#interrupt)。
   - **Antigravity 会先做完当前这一步**。已经在运行的模型调用或工具结束后，这一轮才会停下。
+  - **Devin 会先做完当前这一步**。已经在运行的命令或回复会一直进行到结束。
   - **两个插件里有一个低于 2.3.0**。版本是按电脑上报的，所以同一台 Mac 上既有 Claude Code 又有 Codex 时，两个都要更新。状态命令的第一行就写着版本。
 
-  根本没有**停止**按钮？它需要绿色的 **⚡ 本地**角标、一个 `运行中` 的会话、插件 **2.3.0**（Antigravity 要 **2.3.5**），而且必须是 Claude Code、Codex 或 Antigravity——OpenCode 和 Cursor 上永远没有。详见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
+  根本没有**停止**按钮？它需要绿色的 **⚡ 本地**角标、一个 `运行中` 的会话、插件 **2.3.0**（Antigravity 要 **2.3.5**，Devin 要 **2.5.0**），而且必须是 Claude Code、Codex、Antigravity 或 Devin——OpenCode 和 Cursor 上永远没有。详见[电脑与会话](/zh-Hans/sessions/list#interrupt-a-running-session)。
 </Accordion>
 
 </AccordionGroup>
@@ -287,7 +310,7 @@ $nomo-status
 
 ## 功能建议 {#nothings-broken--you-just-want-something}
 
-“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)、[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)、[搭配 Cursor 使用](/zh-Hans/sessions/cursor)和[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity)讲这四个智能体，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
+“为什么这件事我不能在手机上做？”常常是个合理的问题，而不是 bug。其中一部分是智能体能交给插件的东西本身就有限，这一点是写下来的：[搭配 Codex 使用](/zh-Hans/sessions/codex)、[搭配 OpenCode 使用](/zh-Hans/sessions/opencode)、[搭配 Cursor 使用](/zh-Hans/sessions/cursor)、[搭配 Antigravity 使用](/zh-Hans/sessions/antigravity)和[搭配 Devin 使用](/zh-Hans/sessions/devin)讲这五个智能体，[在手机上回答](/zh-Hans/sessions/approvals)讲一张实时活动卡片放得下什么、放不下什么。
 
 其余的就是还没做。
 
@@ -401,6 +424,14 @@ $nomo-status
     },
     {
       "@type": "Question",
+      "name": "手机上没有显示任何 Devin 的内容",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "关掉每一个开着的 devin，再重新启动。在 Devin 里输入 /nomo-status（用 Devin 插件的话，输入 /nomo:status），然后照着以 → 开头的那一行去做。在 Devin Desktop 里，确认 Restricted Mode 已关闭。接着在 Devin 里发一条消息：会话要等你发出第一条消息后才会出现。还是没有？在 Nomo 里轻点 + 按钮（选择智能体），把 Devin 打开。"
+      }
+    },
+    {
+      "@type": "Question",
       "name": "会话行看着陈旧或重复",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -412,7 +443,7 @@ $nomo-status
       "name": "热力图或连续记录没有更新",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "它会自己跟上：你的电脑最多每 6 小时发送一次新的汇总，App 最多每小时检查一次。想现在就更新，在电脑上的终端里运行 nomo reset（或在智能体里运行重置命令），然后在 Nomo 中打开活动页面。它一打开就会获取最新的汇总。"
+        "text": "它会自己跟上：你的电脑最多每 6 小时发送一次新的汇总，App 最多每小时检查一次。想现在就更新，在电脑上的终端里运行 nomo reset（或在智能体里运行重置命令），然后在 Nomo 的首页标签页打开活动。它一打开就会获取最新的汇总。"
       }
     },
     {

@@ -1,329 +1,80 @@
 ---
-title: "インストール"
-description: "Claude Code、Codex、OpenCode、Cursor、Antigravity のいずれかに Nomo プラグインを追加します。コマンド 1 つでも、手動でも。依存関係はありません。"
+title: "Claude Code と Codex に Nomo プラグインをインストール"
+sidebarTitle: "コマンド 1 つ"
+description: "Mac で npx nomo-ai というコマンドを 1 つ実行すると、Claude Code、Codex、OpenCode、Cursor、Antigravity、Devin に Nomo プラグインが追加され、iPhone とペアリングされます。"
 icon: "puzzle-piece"
 ---
 
 コンピュータごとに 1 回インストールします。**bun** または **node 18 以降**が必要です — プラグインに npm 依存関係はなく、Node の組み込み機能だけで動作します。bun は **1.4.4** 以降、Node.js 22 は **22.23.4** 以降にしておいてください。それより古い場合は、ステータスコマンドが警告します。
 
-## 手動インストール {#install-by-hand}
+## コマンド 1 つでインストール {#one-command}
 
-<Tabs>
-  <Tab title="Claude Code" icon="/images/claude-code.svg">
-    <Tabs>
-      <Tab title="ターミナル" icon="terminal">
-        Claude Code のセッション内で実行します。
+<Steps>
+  <Step title="インストーラーを実行する">
+    ターミナルに次を貼り付けて、Return キーを押します。
 
-        ```
-        /plugin marketplace add KarrixLee/nomo
-        /plugin install nomo-cc@nomo
-        ```
-      </Tab>
-
-      <Tab title="デスクトップアプリ" icon="window">
-        **Settings** → **Plugins** → **Add** → **Add marketplace** と進み、**URL** にリポジトリを入力します。
-
-        ```
-        KarrixLee/nomo
-        ```
-
-        **Sync** を押し、一覧から **Nomo — Claude Code** をインストールします。
-
-        <Frame caption="GitHub の owner/repo だけで十分です。Nomo のリポジトリ自体がマーケットプレイスです。">
-          <img src="/images/claude-desktop-add-marketplace.png" alt="Claude デスクトップアプリの Add marketplace ダイアログ。URL に KarrixLee/nomo が入力されています" />
-        </Frame>
-      </Tab>
-    </Tabs>
-
-    その後 Claude Code を再起動して、プラグインのフックを読み込ませます。
-
-    インストールされたことを確認します。
-
-    ```
-    /nomo-cc:status
+    <CodeGroup>
+    ```bash bunx icon="terminal"
+    bunx nomo-ai
     ```
 
-    <Tip>
-      Claude Code の Nomo コマンドはすべて `nomo-cc:` の名前空間に属します —
-      `/nomo-cc:` と入力すると一覧が表示されます。
-    </Tip>
-  </Tab>
-
-  <Tab title="Codex" icon="/images/codex.svg">
-    Codex **0.142 以降**は独自のプラグインシステムを備えているため、Nomo は単体の
-    Codex プラグインとしてインストールされます。Claude Code は不要です。
-
-    <Steps>
-      <Step title="プラグインをインストールする">
-        <Tabs>
-          <Tab title="ターミナル" icon="terminal">
-            ```
-            codex plugin marketplace add KarrixLee/nomo
-            codex plugin add nomo@nomo
-            ```
-
-            入力するほうが早ければ、デスクトップアプリの内蔵ターミナルでも同じことができます。
-          </Tab>
-
-          <Tab title="デスクトップアプリ" icon="window">
-            **プラグイン** → **追加** → **マーケットプレイスを追加** と進み、**Source** にリポジトリを入力します。
-
-            ```
-            KarrixLee/nomo
-            ```
-
-            **Git ref** と **Sparse paths** はそのままで構いません — グレーの文字はプレースホルダーで、入力する値ではありません。**マーケットプレイスを追加**を押し、一覧から **nomo** をインストールします。
-
-            <Frame caption="Nomo のリポジトリ自体がマーケットプレイスです。一覧を探したり申請したりする必要はありません。">
-              <img src="/images/codex-app-add-marketplace.png" alt="Codex デスクトップアプリの「マーケットプレイスを追加」ダイアログ。Source に KarrixLee/nomo が入力されています" />
-            </Frame>
-          </Tab>
-        </Tabs>
-
-        <Note>
-          ここでいう「マーケットプレイス」は、見て回るストアではありません。GitHub リポジトリ — Nomo 自身のもの — を指すレジストリです。だから先にリポジトリを追加し、そこからプラグインをインストールします。
-        </Note>
-      </Step>
-
-      <Step title="フックを信頼する — 必須">
-        <Tabs>
-          <Tab title="ターミナル" icon="terminal">
-            ```
-            /hooks
-            ```
-
-            **10 個の Nomo エントリ**を信頼します。ターミナルでは英語で「trust」と表示されます。
-          </Tab>
-
-          <Tab title="デスクトップアプリ" icon="window">
-            歯車アイコンから **フック** → **nomo** を開き、オンにします。
-          </Tab>
-        </Tabs>
-
-        <Warning>
-          この手順は省略しないでください。Nomo のフックはプラグインに同梱されていますが、**信頼するまで動作しません**。実行するまで、プラグインはインストール済みでも何もしません — セッションはスマートフォンに届かず、エラーも報告されません。
-        </Warning>
-
-        これは Codex 自身の安全ゲートであり、Nomo が事前に承認することはできません。フックのコマンド行はリリース間でバイト単位で安定しているため、一度信頼すれば更新後もそのまま維持されます — フック行が変更された場合にのみ再確認が求められます。
-      </Step>
-
-      <Step title="確認する">
-        ```
-        $nomo-status
-        ```
-
-        これはペアリング、ウォッチドッグ、**フックの信頼状態**、最終配信の状態を報告します — つまり、信頼の手順が実際に反映されたかを確認する方法でもあります。
-      </Step>
-    </Steps>
-
-    <Tip>
-      Codex のスキルはスラッシュではなく `$` を接頭辞に使います — `$nomo-pair`、
-      `$nomo-status`、`$nomo-reset`、`$nomo-unpair`。
-    </Tip>
-  </Tab>
-
-  <Tab title="OpenCode" icon="/images/opencode.svg">
-    OpenCode にはマーケットプレイスもプラグイン用のコマンドもありません — 自身の設定フォルダにあるものをそのまま読み込みます。そのため Nomo はクローンからインストールし、スクリプト 1 つで、OpenCode がもともと見ている場所へファイルを配置します。
-
-    <Steps>
-      <Step title="クローンしてインストーラーを実行する">
-        ```bash
-        git clone https://github.com/KarrixLee/nomo.git ~/.nomo
-        ~/.nomo/plugin/scripts/opencode-install.sh
-        ```
-
-        クローン先はどこでも構いません — スクリプトが自身の場所を判断するため、調べるパスも手で書き換える箇所もありません。何を書き込んだかは、そのつど表示されます。
-
-        - `~/.config/opencode/plugins/nomo.js` — クローンを指す 1 行のスタブ。
-        - `~/.config/opencode/commands/nomo-*.md` — 6 つのコマンド。
-
-        Claude Code や Codex 向けに Nomo をインストール済みの場合は、2 つ目をクローンせずに、そのコピーをスクリプトに指定してください — 場所は `claude plugin list` または `codex plugin list` で確認できます。
-
-        <Tip>
-          `--project` を付けると、グローバルではなく 1 つのリポジトリの `./.opencode` にインストールします。再実行しても安全で、クローンを移動するときもこの方法を使います。新しい場所からもう一度実行してください。
-        </Tip>
-      </Step>
-
-      <Step title="OpenCode を再起動する — 必須">
-        <Warning>
-          OpenCode がプラグインを読み込むのはサーバーの起動時の 1 回だけで、ホットリロードはありません。終了して開き直すまで、プラグインはインストール済みでも何もしません。デスクトップアプリも同じサーバーを動かしているので、同じ再起動が必要です。
-        </Warning>
-      </Step>
-
-      <Step title="確認する">
-        ```
-        /nomo-status
-        ```
-      </Step>
-    </Steps>
-
-    このインストール 1 回で OpenCode のデスクトップアプリもカバーされます。アプリは OpenCode 自身のサーバーを動かしており、同じプラグインフォルダを読むからです。
+    ```bash npx icon="terminal"
+    npx nomo-ai
+    ```
+    </CodeGroup>
 
-    <Note>
-      あとから更新するときは、OpenCode の中でコマンド 1 つです。`/nomo-update` はまず確認し、そのうえで取得してこのインストーラーを実行し直します — [動作と、実行を断る条件](/ja/sessions/commands#update)。
-    </Note>
+    このマシンのエージェント（Claude Code、Codex、OpenCode、Cursor、Antigravity、Devin）が見つかり、選択された状態で表示されます。Return キーを押すとインストールします。選択を変えるには、矢印キー（または `k` / `j`）で移動し、スペースキーで選択・解除します。
 
-    <Tip>
-      OpenCode のコマンド名はフラットでグローバルなので、Nomo のコマンドにも接頭辞は一切付きません。`/nomo-cc:pair` でも `$nomo-pair` でもなく `/nomo-pair` です。6 つとも[コマンド](/ja/sessions/commands)にまとめてあります。
-    </Tip>
+    あわせて短い `nomo` コマンドも追加され、次のように表示されます。
 
-    iPhone 側で違って見える点は[OpenCode での利用](/ja/sessions/opencode)にあります。
-  </Tab>
+    ```
+    Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
+    ```
+  </Step>
 
-  <Tab title="Cursor" icon="/images/providers/cursor.svg">
-    このインストール 1 回で、Cursor デスクトップアプリのエージェントと `cursor-agent` CLI の両方がカバーされます。Cursor のセッションはこのバージョンでは読み取り専用です — それが何を意味するかは [Cursor での利用](/ja/sessions/cursor)にあります。
+  <Step title="iPhone をペアリングする">
+    `Pair your phone now? [Y/n]` と聞かれたら、Return キーを押して「はい」を選びます。
 
-    <Steps>
-      <Step title="インストーラーを実行する">
-        <CodeGroup>
-        ```bash bunx icon="terminal"
-        bunx nomo-ai --cursor
-        ```
+    ブラウザで QR コードのページが開きます。iPhone で Nomo を開いてスキャンしてください。手順は[ペアリング](/ja/setup/pairing)で詳しく説明しています。ブラウザを開けない場合に入力する短いコード（`nomo pair code`）も同じページにあります。
 
-        ```bash npx icon="terminal"
-        npx nomo-ai --cursor
-        ```
-        </CodeGroup>
+    <Frame caption="コンピュータ上のペアリングページ。スキャンが届くと自動的に Paired ✓（ペアリング済み）に切り替わります。">
+      <img src="/images/pairing-pc-qrcode.png" alt="QR コードとクリックで表示されるワンタイムコードを示す Nomo のペアリングページ" />
+    </Frame>
 
-        行うことは 3 つです。
+    「いいえ」を選んだ場合や、あとでペアリングしたい場合は、ターミナルで `nomo pair` を実行してください。
 
-        - プラグインを `~/.nomo` にクローンします。
-        - Nomo のフックのエントリを `~/.cursor/hooks.json` に追加します。すでにある内容とマージし、ほかのツールのエントリには手を付けません。
-        - `~/.cursor/skills/` の下に 4 つのスキルをインストールします。
-      </Step>
+    エージェントの中からペアリングすることもできます。Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair`、OpenCode・Cursor・Antigravity・Devin なら `/nomo-pair` です（Devin プラグインの場合は `/nomo:pair`）。
 
-      <Step title="Cursor を再起動する — 必須">
-        <Warning>
-          Cursor がフックを読み込むのは起動時だけです。Cursor を終了して開き直し、開いている `cursor-agent` のセッションがあればそれも再起動してください。そうするまで、プラグインはインストール済みでも何もしません。
-        </Warning>
-      </Step>
+    すでにペアリング済みの場合は、そう表示されてこの手順は飛ばされます。
+  </Step>
 
-      <Step title="ペアリングする">
-        Cursor で `/` と入力してスキルを選び、次を実行します。
+  <Step title="エージェントを再起動する — 必須">
+    Nomo をインストールしたエージェントをそれぞれ終了して、もう一度開いてください。再起動するまで Nomo は動きません。
 
-        ```
-        /nomo-pair
-        ```
+    OpenCode の場合は、先にペアリングしてから再起動すると Nomo が動き始めます。
 
-        QR コードが表示されるので、Nomo アプリでスキャンしてください。ブラウザを開けない環境では、`/nomo-pair code` で代わりに入力できる短いコードが得られます。どちらの手順も[ペアリング](/ja/setup/pairing)で順を追って説明しています。
+    Codex の場合は、Nomo のフックの信頼も必要です。Codex で `/hooks` と入力し、Nomo のエントリを信頼してください。詳しくは[手動インストール](/ja/setup/manual)の **Codex** タブをご覧ください。
+  </Step>
+</Steps>
 
-        ペアリングは、1 台の Mac 上のエージェントで共有されます。Claude Code、Codex、OpenCode のいずれかですでにペアリング済みのコンピュータは、Cursor のためにもう一度ペアリングする必要はありません — インストールするだけで十分で、この手順は飛ばせます。
-      </Step>
+エージェント自身のプラグインストアを使いたい場合は、[手動インストール](/ja/setup/manual)をご覧ください。
 
-      <Step title="Cursor タブを表示する">
-        アプリでそのコンピュータを開きます。Cursor のセッションは、セッションのドロワーの **Cursor** タブの下に並びます。
+<Note>
+  短い `nomo` コマンドを追加しない場合は `--no-global` を付けてください。あとで `nomo` が見つからない場合は、`bunx nomo-ai` でも同じように動きます。たとえば `bunx nomo-ai pair` です。[`nomo` が見つからない場合](/ja/sessions/commands#nomo-not-found)をご覧ください。
+</Note>
 
-        ドロワーに表示されるエージェントのタブは最大 3 つです。Cursor がその中にない場合は、**+** ボタン（「エージェントを選択」）をタップしてオンにしてください。
-      </Step>
-    </Steps>
+<Accordion title="インストーラーのオプション（スクリプトや CI 向け）">
+  | オプション | |
+  | --- | --- |
+  | `--claude` `--codex` `--opencode` `--cursor` `--antigravity` `--devin` | 指定したものだけをインストールします。いずれかを指定すると選択画面は出ません |
+  | `--all` | 検出の有無にかかわらずすべて。ただし Cursor、Antigravity、Devin は、このマシンにない場合はスキップされます（それでも試すには `--cursor`、`--antigravity`、`--devin` のいずれかを指定します） |
+  | `-y`、`--yes` | 選択画面を出さず、検出したものをすべてインストールします |
+  | `-n`、`--dry-run` | 実行するコマンドを表示するだけで、何も実行しません |
+  | `--no-global` | 短い `nomo` コマンドを追加しません。[ターミナルから実行する](/ja/sessions/commands#terminal)をご覧ください |
+  | `uninstall` | `--cursor`、`--antigravity`、`--devin` のいずれかと一緒に指定すると、そのエージェントから Nomo を削除します（`--uninstall` も使えます）。エージェントは必ず指定してください — 推測はしません。[uninstall](/ja/sessions/commands#uninstall) をご覧ください |
 
-    <Tip>
-      Cursor の Nomo コマンドは、接頭辞のないスキルです — `/nomo-pair`、`/nomo-status`、`/nomo-reset`、`/nomo-unpair`。4 つとも[コマンド](/ja/sessions/commands)にまとめてあります。
-    </Tip>
-  </Tab>
-
-  <Tab title="Antigravity" icon="/images/providers/antigravity.png">
-    このインストール 1 回で、Antigravity デスクトップアプリと `agy` CLI の両方がカバーされます。シェルコマンドとファイルの書き込みには iPhone から回答できます — 詳しくは [Antigravity での利用](/ja/sessions/antigravity)にあります。
-
-    <Steps>
-      <Step title="インストーラーを実行する">
-        ターミナルに次を貼り付けて、Return キーを押します。
-
-        <CodeGroup>
-        ```bash bunx icon="terminal"
-        bunx nomo-ai --antigravity
-        ```
-
-        ```bash npx icon="terminal"
-        npx nomo-ai --antigravity
-        ```
-        </CodeGroup>
-
-        次のように表示されます。
-
-        ```
-        ✅ Antigravity is connected to Nomo. Restart Antigravity, then type /nomo-pair.
-        ```
-      </Step>
-
-      <Step title="Antigravity を再起動する — 必須">
-        <Warning>
-          Antigravity を完全に終了してから、もう一度開いてください。`agy` を使っている場合は、それも再起動してください。再起動するまで Nomo は動きません。
-        </Warning>
-      </Step>
-
-      <Step title="/nomo-pair と入力する">
-        Antigravity のチャットで `/nomo-pair` と入力して送信します。Antigravity が Nomo のコマンドを実行してよいか確認してきたら、「Allow」を選びます。そのあと、iPhone の Nomo で QR コードをスキャンします。
-
-        Antigravity に「Done! This computer is connected to your phone.」と表示されます。
-
-        Antigravity デスクトップアプリでは、最初の Nomo コマンドで `operation not permitted` という行が 1 行表示されることがあります。これは正常です。Antigravity がサンドボックスの外で自動的にやり直すので、そのまま待ってください。
-
-        ほかのエージェントですでにペアリング済みの場合は、代わりに `/nomo-status` と入力して確認してください。
-      </Step>
-
-      <Step title="Antigravity でメッセージを送る">
-        チャットを始めて、何か送信します。
-
-        Nomo で、そのコンピュータの **Antigravity** タブにセッションが表示されます。Antigravity タブがない場合は、**+** ボタン（「エージェントを選択」）をタップして Antigravity をオンにしてください。
-
-        <Frame caption="+ ボタンから開く「エージェントを選択」。Antigravity にチェックが付いているので、専用のタブが表示されます。">
-          <div className="device-frame">
-            <img className="only-light" src="/images/agent-chooser-antigravity.png" alt="「エージェントを選択」メニュー。Claude Code、Codex、Antigravity にチェックが付き、OpenCode と Cursor は外れている" />
-            <img className="only-dark" src="/images/agent-chooser-antigravity-dark.png" alt="「エージェントを選択」メニュー。Claude Code、Codex、Antigravity にチェックが付き、OpenCode と Cursor は外れている" />
-          </div>
-        </Frame>
-      </Step>
-    </Steps>
-
-    <Warning>
-      Nomo の Claude Code プラグインを Antigravity に読み込まないでください（たとえば `agy plugin import claude` で）— どのセッションも 2 つずつ表示されてしまいます。読み込んでしまった場合は、インストーラーが次のように警告します。
-
-      ```
-      ⚠️ Antigravity also has the Claude Code version of Nomo ("nomo-cc") imported. It would show every session twice — please remove it by running: agy plugin uninstall nomo-cc
-      ```
-
-      直すには、`agy plugin uninstall nomo-cc` を実行して Antigravity を再起動してください。
-    </Warning>
-  </Tab>
-</Tabs>
-
-## コマンド 1 つ {#one-command}
-
-インストーラーがこのマシン上の Claude Code、Codex、OpenCode、Cursor、Antigravity を検出し、選んだものに Nomo を組み込みます。
-
-<CodeGroup>
-```bash bunx icon="terminal"
-bunx nomo-ai
-```
-
-```bash npx icon="terminal"
-npx nomo-ai
-```
-</CodeGroup>
-
-最初はどれも選択されていません。矢印キー（または `k` / `j`）で移動し、スペースキーで選択、Enter キーで選択したものをまとめてインストールします。そのあと、それぞれのエージェント本来のインストール手順 — 上の 5 つの流れ — が実行されます。
-
-あわせて短い `nomo` コマンドも追加されるので、あとから `nomo pair` や `nomo status` などと入力できます。次のように表示されます。
-
-```
-Installed the short command: type nomo pair, nomo status or nomo reset from any folder.
-```
-
-追加しない場合は `--no-global` を付けてください。あとで `nomo` が見つからない場合は、`bunx nomo-ai` でも同じように動きます。たとえば `bunx nomo-ai pair` です。[`nomo` が見つからない場合](/ja/sessions/commands#nomo-not-found)をご覧ください。
-
-スクリプトや CI で使うときは、次のオプションが使えます。
-
-| オプション | |
-| --- | --- |
-| `--claude` `--codex` `--opencode` `--cursor` `--antigravity` | 指定したものだけをインストールします。いずれかを指定すると選択画面は出ません |
-| `--all` | 検出の有無にかかわらずすべて。ただし Cursor と Antigravity は、このマシンにない場合はスキップされます（それでも試すには `--cursor` または `--antigravity` を指定します） |
-| `-y`、`--yes` | 選択画面を出さず、検出したものをすべてインストールします |
-| `-n`、`--dry-run` | 実行するコマンドを表示するだけで、何も実行しません |
-| `--no-global` | 短い `nomo` コマンドを追加しません。[ターミナルから実行する](/ja/sessions/commands#terminal)をご覧ください |
-| `uninstall` | `--cursor` か `--antigravity` と一緒に指定すると、そのエージェントから Nomo を削除します（`--uninstall` も使えます）。エージェントは必ず指定してください — 推測はしません。[uninstall](/ja/sessions/commands#uninstall) をご覧ください |
-
-iPhone のペアリングは行いません。そのあとは、上の手順とまったく同じように仕上げます。エージェントを再起動し、Codex ならフックを信頼し、ペアリングします — ターミナルなら `nomo pair`、ほかに `/nomo-pair`、Claude Code なら `/nomo-cc:pair`、Codex なら `$nomo-pair` です。ターミナルで使えるほかのコマンドは、[ターミナルから実行する](/ja/sessions/commands#terminal)にあります。
+  `-y` を付けた場合や、対話できないターミナル（CI など）で実行した場合は、ペアリングの確認は出ません。
+</Accordion>
 
 ## 更新 {#updating}
 
@@ -331,9 +82,13 @@ iPhone のペアリングは行いません。そのあとは、上の手順と�
   更新とアンインストールについては、[コマンド → update](/ja/sessions/commands#update) と [コマンド → uninstall](/ja/sessions/commands#uninstall) をご覧ください。すべてのエージェントが、それぞれのタブにまとめてあります。
 </Note>
 
+このコンピューターのプラグインが古いと、iPhone が知らせてくれます。セッションのそのコンピューターに、アップデートのお知らせが表示されます。アップデートすると、いま動いているものが見えるようになります。
+
 ## プラグインの動作
 
 プラグインはセッションを監視し、状態の変化をスマートフォンに報告します。エージェントが何に取り組んでいるか、いつ停止したか、いつ何かの許可を必要としているかです。
+
+無料のペアリングでは、無料の機能に必要なものだけを送信します。[What leaves your computer](https://github.com/KarrixLee/nomo#what-leaves-your-computer) をご覧ください。
 
 [スマートフォンをペアリング](/ja/setup/pairing)するまで、プラグインは何も送信しません。送信されるものはすべて、このマシン上で先に暗号化されます。
 
@@ -345,8 +100,12 @@ iPhone のペアリングは行いません。そのあとは、上の手順と�
   プラグインの全ソースコード、MIT ライセンスです。マーケットプレイスからのインストールは、このリポジトリの単純なクローンです。
 </Card>
 
+## このあとの流れ
+
+[コンピュータをペアリング](/ja/setup/pairing)したら、**ホーム**タブを開きます。コーディングすると、連続記録とコーディング時間が[アクティビティ](/ja/activity)に表示されます。無料です。
+
 ## 次のステップ
 
-<Card title="コンピュータをペアリングする" href="/ja/setup/pairing" icon="qrcode-read">
-  QR コードをスキャンするか、ブラウザを開けない場合はワンタイムコードを入力します。
+<Card title="連続記録を見る" href="/ja/activity" icon="fire">
+  コーディングすると、連続記録とコーディング時間がホームに表示されます。
 </Card>

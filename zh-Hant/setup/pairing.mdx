@@ -4,13 +4,21 @@ description: "掃描 QR code，或在無法開啟瀏覽器時手動輸入一次�
 icon: "qrcode-read"
 ---
 
+<Note>
+  用了[一鍵安裝](/zh-Hant/setup/install)，而且同意了配對？那你已經配對好了。這一頁講的是手動配對、之後再配對，或是輸入代碼代替掃描。
+</Note>
+
 配對會交給你的手機和電腦一把共用的加密金鑰。沒有任何伺服器看得到它 — 這正是為什麼要用掃描或手動輸入代碼，而不是登入。
 
 每台電腦只需做一次。再配對一次會取代原本的配對。配對若閒置 **10 分鐘**未使用就會過期。
 
+配對是免費的。Nomo Free 可以連結一台電腦，Nomo Pro 可以連結更多台。
+
+你需要先裝好外掛程式。如果還沒裝，[先安裝](/zh-Hant/setup/install)。
+
 <Note>
   一次配對涵蓋的是這台電腦，而不是個別代理。如果你在同一台電腦上同時執行
-  Claude Code、Codex、OpenCode、Cursor 和 Antigravity 的任何組合，它們會共用同一組配對 — 不需要配對兩次。
+  Claude Code、Codex、OpenCode、Cursor、Antigravity 和 Devin 的任何組合，它們會共用同一組配對 — 不需要配對兩次。
 </Note>
 
 <Tabs>
@@ -40,12 +48,18 @@ icon: "qrcode-read"
         /nomo-pair
         ```
 
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair
+        ```
+
         ```bash 終端機 icon="terminal"
         nomo pair
         ```
         </CodeGroup>
 
-        在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。**終端機**在任何資料夾都能用，不必開著代理。請見[從終端機執行](/zh-Hant/sessions/commands#terminal)。
+        在 Antigravity 裡，當它問要不要執行 Nomo 的指令時，請選擇 **Allow**（允許）。
+        使用 Devin 外掛程式時，請改在 Devin 裡輸入 `/nomo:pair`。如果 Devin 不認得這個指令，請把 `~/.nomo/plugin/scripts/run.sh ~/.nomo/plugin/dist/pair.mjs` 貼到終端機裡。
+        **終端機**在任何資料夾都能用，不必開著代理。請見[從終端機執行](/zh-Hant/sessions/commands#terminal)。
 
         瀏覽器會開啟一個套用主題樣式的配對頁面，上面有一個 QR code。
 
@@ -55,7 +69,7 @@ icon: "qrcode-read"
       </Step>
 
       <Step title="掃描它">
-        在 Nomo 裡，前往 **Sessions** 分頁 → **配對電腦**，然後把相機對準 QR code。
+        在 Nomo 裡，點一下**首頁**上的**配對你的 Mac**（或**開始使用**裡的**連結 Mac**）。也可以點一下 **Sessions** 裡的 **+**。然後把相機對準 QR code。
 
         {/* TODO: screenshot of the in-app scanner */}
       </Step>
@@ -107,10 +121,16 @@ icon: "qrcode-read"
         /nomo-pair code
         ```
 
+        ```bash Devin icon="/images/providers/devin.svg"
+        /nomo-pair code
+        ```
+
         ```bash 終端機 icon="terminal"
         nomo pair code
         ```
         </CodeGroup>
+
+        使用 Devin 外掛程式時，請改在 Devin 裡輸入 `/nomo:pair code`。
 
         不會開啟瀏覽器。一次性代碼會直接印在終端機上：
 
@@ -132,13 +152,17 @@ icon: "qrcode-read"
       </Step>
 
       <Step title="在App裡輸入">
-        在 Nomo 裡：**Sessions** → **配對電腦** → **輸入代碼**。
+        在 Nomo 裡，點一下**首頁**上的**配對你的 Mac**（或**開始使用**裡的**連結 Mac**）。也可以點一下 **Sessions** 裡的 **+**。然後點一下**輸入代碼**。
 
         {/* TODO: screenshot of the Enter code screen */}
       </Step>
     </Steps>
   </Tab>
 </Tabs>
+
+## 接下來
+
+打開**首頁**分頁。你寫程式時，連續紀錄和寫程式的時間會出現在[活動](/zh-Hant/activity)裡。這是免費的。
 
 ## 之後怎麼查看
 
@@ -154,6 +178,26 @@ $nomo-status
 
 這會回報電腦是否仍在連線，以及事件是否有送達。
 
+## 換一台電腦 {#use-a-different-computer}
+
+Nomo Free 只連結一台電腦。想換到另一台，請先移除舊的那台。
+
+<Steps>
+  <Step title="移除舊電腦">
+    在 Nomo 裡打開 **Sessions**。按住那台電腦，然後點一下**移除此電腦**。
+  </Step>
+
+  <Step title="確認">
+    再點一下**移除此電腦**。
+  </Step>
+
+  <Step title="配對新電腦">
+    用和第一台一樣的方式配對。請看[配對](/zh-Hant/setup/pairing)。
+  </Step>
+</Steps>
+
+想同時使用多台電腦？請訂閱 Nomo Pro。
+
 ## 配對沒有成功時
 
 - **沒有開啟 QR 頁面** — 多半是外掛程式的 hooks 沒有載入。重新啟動代理再試一次，或改用手動輸入代碼那條路徑。
@@ -161,3 +205,5 @@ $nomo-status
 - **無法驗證此 iPhone** — Nomo 的伺服器無法驗證你的手機。請再試一次，如果一直發生，請聯絡支援。
 - **列表看起來是舊的或重複** — 執行 `/nomo-cc:reset`（或 `$nomo-reset`）清掉失效的 session 列，不會解除配對。
 - **想中斷某台電腦的連線** — `/nomo-cc:unpair`（或 `$nomo-unpair`）會移除配對並清除本機金鑰。
+- **Nomo Free 可配對一台電腦** — Nomo Free 只連結一台電腦。想換一台，請在 **Sessions** 分頁按住已配對的那台，點一下**移除此電腦**，然後再配對。請看[換一台電腦](/zh-Hant/setup/pairing#use-a-different-computer)。也可以訂閱 Nomo Pro 連結更多台。
+- **已達電腦數量上限** — 你配對的電腦已達到方案允許的數量。請在 **Sessions** 分頁按住一台，移除它，然後再配對。

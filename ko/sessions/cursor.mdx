@@ -10,7 +10,7 @@ Cursor 데스크톱 앱의 에이전트에서 시작한 것이든 `cursor-agent`
 지켜보고, 답은 컴퓨터에서 합니다.
 
 <Note>
-  세션은 Nomo Pro에 포함되며, Cursor도 다른 모든 에이전트와 마찬가지입니다. Cursor
+  실시간 세션은 Nomo Pro에 포함되며, Cursor도 다른 모든 에이전트와 마찬가지입니다. Cursor
   세션에는 휴대폰의 Nomo도 최신 버전이어야 합니다.
 </Note>
 
@@ -19,7 +19,7 @@ Cursor 데스크톱 앱의 에이전트에서 시작한 것이든 `cursor-agent`
 세션, 폴더, [Dynamic Island](/ko/sessions/island)는 다른 에이전트와 똑같이
 동작합니다. 공통된 내용은 모두 한곳에 정리되어 있습니다.
 
-- **설치** → [설치](/ko/setup/install)의 **Cursor** 탭. 설치 한 번으로 데스크톱
+- **설치** → [수동 설치](/ko/setup/manual)의 **Cursor** 탭. 설치 한 번으로 데스크톱
   앱과 `cursor-agent`가 모두 처리됩니다.
 - **페어링** → [페어링](/ko/setup/pairing). 페어링 한 번이 컴퓨터의 모든
   에이전트에 적용됩니다.
@@ -69,3 +69,9 @@ Cursor에는 approvals 명령이 없습니다 — 일시 중지할 원격 승인
 
 무언가 표시되지 않는다면 [문제 해결](/ko/sessions/troubleshooting)의 Cursor 항목부터
 확인하십시오.
+
+## 기술 세부 정보와 보안 {#technical-details-and-security}
+
+Nomo는 세션이 하는 일만 휴대폰으로 보내며, 종단 간 암호화됩니다.
+
+내부 동작 방식은 플러그인 README에 있습니다: [Nomo와 Cursor의 연동](https://github.com/KarrixLee/nomo#cursor-integration), [Hook과 보안](https://github.com/KarrixLee/nomo#cursor-hooks).

@@ -1,12 +1,12 @@
 ---
 title: "iPhone の無料 Claude・Codex ウィジェット: ステータスと使用量の上限"
 sidebarTitle: "無料ウィジェット"
-description: "iPhone のホーム画面に置ける、2 つの無料の Nomo ウィジェット: Claude や Codex が落ちていないか、5 時間や週間の上限があとどれだけ残っているか。Nomo Pro は不要です。"
+description: "iPhone のホーム画面に置ける、3 つの無料の Nomo ウィジェット: Claude や Codex が落ちていないか、5 時間や週間の上限があとどれだけ残っているか、そして連続記録。Nomo Pro は不要です。"
 icon: "clone"
 keywords: ["Nomo", "ステータス", "Nomo使用量", "ウィジェット", "Claude", "Codex", "使用量", "ロック画面", "iPhone", "Claude 使用量 ウィジェット", "5 時間 上限", "週間 上限", "リセット", "Codex 使用量 上限", "無料"]
 ---
 
-Nomo には、iPhone 用のウィジェットが 7 つあります。そのうち 2 つは無料です。ステータスを表示する **Nomo** と、**Nomo使用量** です。このページでは、この 2 つを説明します。残りの 5 つは Nomo Pro で使えます。[Pro ウィジェット](/ja/widgets)をご覧ください。
+Nomo には、iPhone 用のウィジェットが 7 つあります。そのうち 2 つは無料です。ステータスを表示する **Nomo** と、**Nomo使用量** です。コンピュータをペアリングしていれば、**Nomoアクティビティ**も小サイズと中サイズが無料です。このページでは、この 3 つを説明します。それ以外は Nomo Pro で使えます。[Pro ウィジェット](/ja/widgets)をご覧ください。
 
 ウィジェットをホーム画面に置くには、[ウィジェット](/ja/widget)をご覧ください。
 
@@ -16,7 +16,8 @@ Nomo には、iPhone 用のウィジェットが 7 つあります。そのう�
 | --- | --- | --- |
 | **Nomo** ステータスウィジェット | ✓ | ✓ |
 | **Nomo使用量** ウィジェット | ✓ | ✓ |
-| [Nomo消費ペース](/ja/widgets#nomo-pace)、[Nomoアクティビティ](/ja/widgets#nomo-activity)、[Nomoアカウント](/ja/widgets#nomo-accounts)、[ライブエージェント](/ja/widgets#live-agents)、[Nomoトークン](/ja/widgets#nomo-tokens) | | ✓ |
+| [Nomoアクティビティ](#nomo-activity)の小サイズと中サイズ（コンピュータをペアリングしている場合） | ✓ | ✓ |
+| [Nomo消費ペース](/ja/widgets#nomo-pace)、[Nomoアクティビティ](/ja/widgets#nomo-activity)（大サイズとロック画面）、[Nomoアカウント](/ja/widgets#nomo-accounts)、[ライブエージェント](/ja/widgets#live-agents)、[Nomoトークン](/ja/widgets#nomo-tokens) | | ✓ |
 | [1 つのプロバイダーに複数のアカウント](/ja/widgets#more-than-one-account) | | ✓ |
 
 ## Nomo ステータス {#nomo-status}
@@ -52,7 +53,7 @@ Nomo には、iPhone 用のウィジェットが 7 つあります。そのう�
 1. ウィジェットを追加します。[ウィジェット](/ja/widget)をご覧ください。
 2. ウィジェットをタッチして押さえたままにします。
 3. 「ウィジェットを編集」をタップします。
-4. 「プロバイダー」をタップし、Claude、OpenAI、Cursor、xAI、Antigravity、Kimi、DeepSeek から 1 つ選びます。
+4. 「プロバイダー」をタップし、Claude、OpenAI、Cursor、xAI、Antigravity、Kimi、DeepSeek、Devin から 1 つ選びます。
 5. 「サービス」をタップし、**Claude Code** などを 1 つ選びます。
 6. ウィジェットの外側をタップして終了します。
 
@@ -96,3 +97,40 @@ Claude や Codex のリセットがあるときは、中サイズでは更新時
 Cursor では、「Cursorのアイコン」も選べます。**Grok Bot** か「Cursorのロゴ」を選んでください。
 
 すぐに更新するには、隅にある更新ボタンをタップします。それ以外の場所をタップすると、Nomo でそのプロバイダーの「使用量」ページが開きます。
+
+## Nomoアクティビティ {#nomo-activity}
+
+<Frame caption="Nomoアクティビティの小サイズ。">
+  <div className="widget-shot">
+    <img className="only-light" src="/images/widgets-character.webp" alt="13 日の連続記録を表示した小サイズの Nomoアクティビティ 3 つ: コーラルの Clawd、青の Codex、ゴールドの Grok Bot" />
+    <img className="only-dark" src="/images/widgets-character-dark.webp" alt="ダークモードの同じ 3 つの Nomoアクティビティ: Clawd、Codex、Grok Bot" />
+  </div>
+</Frame>
+
+**表示される内容:** 連続記録と、AI エージェントでコーディングした日。連続記録とは、コーディングが何日続いているかです。色が濃いほど、その日のコーディング量が多いことを示します。
+
+| サイズ | 表示される内容 |
+| --- | --- |
+| 小 | 連続記録と直近 7 日。 |
+| 中 | 連続記録、直近 30 日のカレンダー、その 30 日の合計（時間、日数、1 週間あたりの時間）。 |
+
+画面の幅が狭い iPhone では、中サイズに合計は表示されません。
+
+大サイズとロック画面のサイズは Nomo Pro で使えます。Nomo Pro では、中サイズに直近 16 週間が表示されます。Pro ウィジェットの[Nomoアクティビティ](/ja/widgets#nomo-activity)をご覧ください。
+
+**事前に必要なもの:**
+
+- コンピュータに入れた Nomo プラグイン（バージョン **2.4.0** 以降）。[インストール](/ja/setup/install)をご覧ください。
+- そのコンピュータを Nomo とペアリングしておくこと。ペアリングは無料です。[ペアリング](/ja/setup/pairing)をご覧ください。
+
+**設定方法:**
+
+1. ウィジェットを追加します。[ウィジェット](/ja/widget)をご覧ください。
+2. ウィジェットをタッチして押さえたままにします。
+3. 「ウィジェットを編集」をタップします。
+4. 「キャラクター」をタップし、「自動」や **Clawd** などから 1 つ選びます。
+5. ウィジェットの外側をタップして終了します。
+
+ウィジェットをタップすると、Nomo の「ホーム」が[アクティビティ](/ja/activity)の位置で開きます。
+
+すべてのキャラクター、連続記録の数え方、コンピュータから送られるものについては、Pro ウィジェットの[Nomoアクティビティ](/ja/widgets#nomo-activity)をご覧ください。

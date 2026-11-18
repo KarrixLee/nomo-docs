@@ -7,14 +7,14 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "sess
 Cursor 的 sessions 出現在同一份列表、同一個動態島上，走的也是同一組配對 — 不管是來自 Cursor 桌面應用程式的代理，還是來自 `cursor-agent` CLI。在這個版本裡它們是**唯讀**的：你在手機上看著一個 Cursor session，回覆則要回到電腦上做。
 
 <Note>
-  Sessions 屬於 Nomo Pro，Cursor 和其他每個代理都一樣。Cursor 的 sessions 還需要你手機上的 Nomo 是最新版本。
+  即時 sessions 屬於 Nomo Pro，Cursor 和其他每個代理都一樣。Cursor 的 sessions 還需要你手機上的 Nomo 是最新版本。
 </Note>
 
 ## 相同的部分 {#what-works-the-same}
 
 sessions、資料夾和[動態島](/zh-Hant/sessions/island)的運作和其他代理一樣。所有共用的部分都只寫在一個地方：
 
-- **安裝** → [安裝](/zh-Hant/setup/install)的 **Cursor** 分頁。一次安裝同時涵蓋桌面應用程式和 `cursor-agent`。
+- **安裝** → [手動安裝](/zh-Hant/setup/manual)的 **Cursor** 分頁。一次安裝同時涵蓋桌面應用程式和 `cursor-agent`。
 - **配對** → [配對](/zh-Hant/setup/pairing)。一次配對涵蓋這台電腦上的每個代理。
 - **指令、更新與解除安裝** → [指令](/zh-Hant/sessions/commands)，其中有 [update](/zh-Hant/sessions/commands#update) 和 [uninstall](/zh-Hant/sessions/commands#uninstall)。
 - **每個代理能做什麼** → [功能一覽](/zh-Hant/sessions/features)。
@@ -44,3 +44,9 @@ Cursor 沒有 approvals 指令 — 沒有遠端批准可以暫停。
 - **當機可能留下一個 session**。如果 Cursor 被強制結束或當機，session 不會立刻結束。會停多久、怎麼清掉，請看[疑難排解](/zh-Hant/sessions/troubleshooting)。
 
 如果有東西沒出現，[疑難排解](/zh-Hant/sessions/troubleshooting)裡關於 Cursor 的那幾項是該先看的地方。
+
+## 技術細節與安全性 {#technical-details-and-security}
+
+Nomo 只會把 session 正在做什麼傳到你的手機，而且是端對端加密。
+
+內部怎麼運作，請看外掛程式的 README：[Nomo 如何搭配 Cursor](https://github.com/KarrixLee/nomo#cursor-integration)、[hook 與安全性](https://github.com/KarrixLee/nomo#cursor-hooks)。

@@ -7,14 +7,14 @@ keywords: ["Nomo", "Claude Code", "Codex", "OpenCode", "Cursor", "iPhone", "セ�
 Cursor のセッションも、同じ一覧、同じ Dynamic Island、同じペアリングの上に表示されます — Cursor デスクトップアプリのエージェントでも、`cursor-agent` CLI でも同じです。このバージョンでは**読み取り専用**です。Cursor のセッションは iPhone から見守り、回答はコンピュータで行います。
 
 <Note>
-  セッションは Nomo Pro の機能で、これは Cursor でもほかのエージェントでも変わりません。Cursor のセッションには、iPhone 側に最新バージョンの Nomo も必要です。
+  ライブセッションは Nomo Pro の機能で、これは Cursor でもほかのエージェントでも変わりません。Cursor のセッションには、iPhone 側に最新バージョンの Nomo も必要です。
 </Note>
 
 ## ほかのエージェントとの共通点 {#what-works-the-same}
 
 セッション、フォルダ、[Dynamic Island](/ja/sessions/island) は、ほかのエージェントと同じように動作します。共通の内容は、それぞれ 1 か所にまとめてあります。
 
-- **インストール** → [インストール](/ja/setup/install)の **Cursor** タブ。1 回のインストールで、デスクトップアプリと `cursor-agent` の両方がカバーされます。
+- **インストール** → [手動インストール](/ja/setup/manual)の **Cursor** タブ。1 回のインストールで、デスクトップアプリと `cursor-agent` の両方がカバーされます。
 - **ペアリング** → [ペアリング](/ja/setup/pairing)。1 回のペアリングで、そのコンピュータのすべてのエージェントがカバーされます。
 - **コマンド、更新、アンインストール** → [コマンド](/ja/sessions/commands)の [update](/ja/sessions/commands#update) と [uninstall](/ja/sessions/commands#uninstall)。
 - **エージェントごとにできること** → [できること](/ja/sessions/features)。
@@ -44,3 +44,9 @@ Cursor に approvals コマンドはありません — 一時停止するリモ
 - **クラッシュするとセッションが残ることがあります**。Cursor が強制終了されたりクラッシュしたりすると、セッションはすぐには終了しません。どのくらい残るか、どう消すかは[トラブルシューティング](/ja/sessions/troubleshooting)をご覧ください。
 
 うまく表示されないときは、まず[トラブルシューティング](/ja/sessions/troubleshooting)の Cursor の項目をご覧ください。
+
+## 技術的な詳細とセキュリティ {#technical-details-and-security}
+
+Nomo が iPhone に送るのはセッションの状況だけで、送る内容はエンドツーエンド暗号化されます。
+
+内部のしくみはプラグインの README で説明しています: [Nomo と Cursor の連携](https://github.com/KarrixLee/nomo#cursor-integration)、[フックとセキュリティ](https://github.com/KarrixLee/nomo#cursor-hooks)。
