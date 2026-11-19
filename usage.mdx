@@ -38,14 +38,15 @@ shows a short code; approve it on Kimi's sign-in page and you're done.
 you've used, and when each resets — see [Devin](#devin).
 
 **OpenCode** reads your **OpenCode Go** plan's 5-hour, weekly and monthly
-limits, with an API key you paste — see [OpenCode Go](#opencode-go).
+limits. You sign in with your OpenCode account and approve a short code — see
+[OpenCode Go](#opencode-go).
 
 ## Signing in
 
 Open the provider from the **Providers** tab and connect the account you
 already pay for. Nomo reads the same numbers that account can see about itself
-— it isn't an API key and there's nothing to paste. The one exception is
-[OpenCode Go](#opencode-go), which takes an API key.
+— it isn't an API key and there's nothing to paste. OpenCode works the same
+way, and you can also use an API key instead — see [OpenCode Go](#opencode-go).
 
 <Note>
   **Your login stays on your phone.** Tokens are held in the device keychain
@@ -126,31 +127,37 @@ company that makes Devin.
 
 ### OpenCode Go {#opencode-go}
 
-OpenCode Go connects with an API key, not a sign-in. You make the key on
-OpenCode's website, then paste it into Nomo.
+OpenCode Go signs in with your OpenCode account. You approve a short code on
+OpenCode's page, then pick the workspace that has your Go plan.
 
-**Make a key**
-
-1. Open the [OpenCode Console](https://opencode.ai/console).
-2. Sign in to your OpenCode account.
-3. Create a new API key.
-4. Copy the key.
-
-**Paste it into Nomo**
+**In Nomo**
 
 1. Open Nomo.
 2. Tap the **Providers** tab.
 3. Tap **OpenCode**.
 4. Tap **Usage** at the top.
-5. Tap **Add OpenCode API key**.
-6. Paste the key into the **API key** field.
-7. Tap **Connect**.
+5. Tap **Connect OpenCode account**.
+6. Tap **Sign in with OpenCode**.
 
-Nomo checks the key with OpenCode once, and saves it only if OpenCode accepts
-it. If you see **OpenCode didn't accept this key**, copy the whole key again, or
-create a new one.
+Nomo shows a short code, under **Approve this code in OpenCode:**. OpenCode's
+page opens in Safari, with the code already filled in.
 
-No key yet? On the same screen, tap **Create a key in the OpenCode Console**.
+**On OpenCode's page**
+
+1. Sign in, if OpenCode asks.
+2. Approve the code.
+3. Pick the workspace that has OpenCode Go.
+
+Nomo shows **Waiting for you to approve in OpenCode…**, then your usage appears.
+
+- **The page didn't open?** Tap **Open OpenCode**. If you need to type the code
+  yourself, tap **Copy code**.
+- **Asked "Which workspace has OpenCode Go?"** Your account has more than one
+  workspace, and none was picked. Tap the one with your Go plan.
+- **The code expired?** A code lasts about 10 minutes. Tap **Try again** for a
+  new one.
+- **Your workspace uses single sign-on (SSO)?** Sign in with SSO on
+  opencode.ai first, then try again.
 
 Nomo shows three limits, each with the percentage used and when it resets:
 
@@ -160,16 +167,33 @@ Nomo shows three limits, each with the percentage used and when it resets:
 
 The **Usage** page and [usage alerts](/notifications#usage-alerts) show all
 three. The [Nomo Usage](/free-widgets#nomo-usage) widget shows **Session** and
-**Weekly**. OpenCode sets the limits. To see how
-they work, read [OpenCode's Go docs](https://opencode.ai/docs/console/go/).
+**Weekly**. OpenCode sets the limits. To see how they work, read
+[OpenCode's Go docs](https://opencode.ai/docs/console/go/).
 
-If OpenCode stops accepting your key, for example after you delete it in the
-Console, Nomo shows **OpenCode didn't accept your saved API key**. Add a new key
-to keep your usage updating. To remove the key from Nomo, tap **Disconnect**.
+If you see **No OpenCode Go plan on this workspace**, you're signed in, but that
+workspace has no Go plan. Your usage appears once it subscribes to OpenCode Go.
+
+If OpenCode stops accepting your sign-in, Nomo shows **OpenCode no longer
+accepts your saved sign-in**. Connect again below it to keep your usage
+updating. To remove OpenCode from Nomo, tap **Disconnect**.
 
 OpenCode doesn't document the usage numbers Nomo reads, so this is unofficial.
 
-Your key stays in your iPhone's keychain and is sent only to OpenCode.
+Your sign-in, or your API key, stays in your iPhone's keychain. Nomo uses it
+only to read your OpenCode Go usage, and sends it only to OpenCode.
+
+#### Use an API key instead {#opencode-api-key}
+
+1. Open the [OpenCode Console](https://opencode.ai/console).
+2. Create a new API key.
+3. Copy the key.
+4. In Nomo, on OpenCode's **Usage** page, tap **Connect OpenCode account**.
+5. Tap **Use an API key instead**.
+6. Paste the key into the **API key** field.
+7. Tap **Connect**.
+
+If you see **OpenCode didn't accept this key**, copy the whole key again, or
+create a new one.
 
 ## The Pace line <span className="pro-pill" /> {#pace}
 

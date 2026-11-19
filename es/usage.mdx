@@ -39,14 +39,15 @@ de Kimi y listo.
 usado de cada uno y cuándo se restablece — mira [Devin](#devin).
 
 **OpenCode** lee los límites de 5 horas, semanal y mensual de tu plan de
-**OpenCode Go**, con una clave de API que pegas — mira [OpenCode Go](#opencode-go).
+**OpenCode Go**. Inicias sesión con tu cuenta de OpenCode y apruebas un código
+corto — mira [OpenCode Go](#opencode-go).
 
 ## Conectar tu cuenta
 
 Abre el proveedor desde la pestaña **Proveedores** y conecta la
 cuenta que ya pagas. Nomo lee las mismas cifras que esa cuenta puede ver de sí
-misma: no es una clave de API y no hay nada que pegar. La única excepción es
-[OpenCode Go](#opencode-go), que usa una clave de API.
+misma: no es una clave de API y no hay nada que pegar. OpenCode funciona igual, y
+también puedes usar una clave de API — mira [OpenCode Go](#opencode-go).
 
 <Note>
   **Tu sesión no sale del teléfono.** Los tokens se guardan en el llavero del
@@ -130,32 +131,39 @@ Cognition, la empresa que hace Devin.
 
 ### OpenCode Go {#opencode-go}
 
-OpenCode Go se conecta con una clave de API, no con un inicio de sesión. Creas
-la clave en la web de OpenCode y luego la pegas en Nomo.
+OpenCode Go inicia sesión con tu cuenta de OpenCode. Apruebas un código corto
+en la página de OpenCode y luego eliges el espacio de trabajo que tiene tu plan
+de Go.
 
-**Crea una clave**
-
-1. Abre [OpenCode Console](https://opencode.ai/console).
-2. Inicia sesión con tu cuenta de OpenCode.
-3. Crea una clave de API nueva.
-4. Copia la clave.
-
-**Pégala en Nomo**
+**En Nomo**
 
 1. Abre Nomo.
 2. Toca la pestaña **Proveedores**.
 3. Toca **OpenCode**.
 4. Toca **Uso** arriba.
-5. Toca **“Añadir clave de API de OpenCode”**.
-6. Pega la clave en el campo **“Clave de API”**.
-7. Toca **Conectar**.
+5. Toca **“Conectar cuenta de OpenCode”**.
+6. Toca **“Iniciar sesión con OpenCode”**.
 
-Nomo comprueba la clave con OpenCode una vez, y solo la guarda si OpenCode la
-acepta. Si ves **“OpenCode no aceptó esta clave”**, vuelve a copiar la clave
-completa o crea una nueva.
+Nomo muestra un código corto, debajo de **“Aprueba este código en OpenCode:”**.
+La página de OpenCode se abre en Safari, con el código ya puesto.
 
-¿Aún no tienes clave? En la misma pantalla, toca **“Crea una clave en OpenCode
-Console”**.
+**En la página de OpenCode**
+
+1. Inicia sesión, si OpenCode te lo pide.
+2. Aprueba el código.
+3. Elige el espacio de trabajo que tiene OpenCode Go.
+
+Nomo muestra **“Esperando tu aprobación en OpenCode…”** y luego aparece tu uso.
+
+- **¿No se abrió la página?** Toca **“Abrir OpenCode”**. Si tienes que escribir
+  el código tú, toca **“Copiar código”**.
+- **¿Te pregunta “¿Qué espacio de trabajo tiene OpenCode Go?”?** Tu cuenta tiene
+  más de un espacio de trabajo y no se eligió ninguno. Toca el que tiene tu plan
+  de Go.
+- **¿Caducó el código?** Un código dura unos 10 minutos. Toca **Reintentar**
+  para obtener uno nuevo.
+- **¿Tu espacio de trabajo usa inicio de sesión único (SSO)?** Primero inicia
+  sesión con SSO en opencode.ai y luego vuelve a intentarlo.
 
 Nomo muestra tres límites, cada uno con el porcentaje usado y cuándo se
 restablece:
@@ -169,15 +177,33 @@ muestran los tres. El widget [Nomo Usage](/es/free-widgets#nomo-usage) muestra
 **Sesión** y **Semanal**. Los límites los fija OpenCode. Para ver cómo
 funcionan, lee la [documentación de OpenCode Go](https://opencode.ai/docs/console/go/).
 
-Si OpenCode deja de aceptar tu clave, por ejemplo porque la borraste en la
-consola, Nomo muestra **“OpenCode no aceptó tu clave de API guardada”**. Añade
-una clave nueva para que tu uso siga actualizándose. Para quitar la clave de
-Nomo, toca **Desconectar**.
+Si ves **“Este espacio de trabajo no tiene plan de OpenCode Go”**, tienes la
+sesión iniciada, pero ese espacio de trabajo no tiene plan de Go. Tu uso
+aparecerá cuando se suscriba a OpenCode Go.
+
+Si OpenCode deja de aceptar tu inicio de sesión, Nomo muestra **“OpenCode ya no
+acepta tu inicio de sesión guardado”**. Vuelve a conectar debajo para que tu uso
+siga actualizándose. Para quitar OpenCode de Nomo, toca **Desconectar**.
 
 OpenCode no documenta las cifras de uso que lee Nomo, así que esto no es
 oficial.
 
-Tu clave se queda en el llavero del iPhone y solo se envía a OpenCode.
+Tu inicio de sesión, o tu clave de API, se queda en el llavero del iPhone. Nomo
+solo lo usa para leer tu uso de OpenCode Go, y solo lo envía a OpenCode.
+
+#### Usar una clave de API {#opencode-api-key}
+
+1. Abre [OpenCode Console](https://opencode.ai/console).
+2. Crea una clave de API nueva.
+3. Copia la clave.
+4. En Nomo, en la página **Uso** de OpenCode, toca **“Conectar cuenta de
+   OpenCode”**.
+5. Toca **“Usar una clave de API en su lugar”**.
+6. Pega la clave en el campo **“Clave de API”**.
+7. Toca **Conectar**.
+
+Si ves **“OpenCode no aceptó esta clave”**, vuelve a copiar la clave completa o
+crea una nueva.
 
 ## Ritmo <span className="pro-pill" /> {#pace}
 

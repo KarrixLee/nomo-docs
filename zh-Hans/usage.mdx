@@ -26,11 +26,11 @@ icon: "gauge"
 
 **Devin** 读的是你 Devin 套餐的每日限额和每周限额：各用了多少，以及各自什么时候重置——见 [Devin](#devin)。
 
-**OpenCode** 读的是你 **OpenCode Go** 套餐的 5 小时、每周和每月限额，用的是你粘贴的 API 密钥——见 [OpenCode Go](#opencode-go)。
+**OpenCode** 读的是你 **OpenCode Go** 套餐的 5 小时、每周和每月限额。你用 OpenCode 账户登录，再批准一个短码——见 [OpenCode Go](#opencode-go)。
 
 ## 登录 {#signing-in}
 
-在**服务商**标签页里打开对应的服务商，接上你本来就在付费的那个账号。Nomo 读到的，就是这个账号自己能看到的那些数字 —— 它不是 API 密钥，你也不用往里粘贴任何东西。唯一的例外是使用 API 密钥的 [OpenCode Go](#opencode-go)。
+在**服务商**标签页里打开对应的服务商，接上你本来就在付费的那个账号。Nomo 读到的，就是这个账号自己能看到的那些数字 —— 它不是 API 密钥，你也不用往里粘贴任何东西。OpenCode 也一样，另外还可以改用 API 密钥——见 [OpenCode Go](#opencode-go)。
 
 <Note>
   **你的登录信息只留在手机上。**令牌保存在设备的钥匙串里，并且只会发给它所属的那家服务商 —— Claude 的令牌只发给 Anthropic，OpenAI 的令牌只发给 OpenAI。用量在设备本地获取，绝不经过 Nomo 的服务器。
@@ -95,28 +95,31 @@ Devin 通过 Safari，在 Devin 自己的登录页面上登录。
 
 ### OpenCode Go {#opencode-go}
 
-OpenCode Go 用 API 密钥连接，而不是登录。你先在 OpenCode 的网站上创建密钥，再把它粘贴到 Nomo 里。
+OpenCode Go 用你的 OpenCode 账户登录。你在 OpenCode 的页面上批准一个短码，然后选择开通了 Go 套餐的工作区。
 
-**创建密钥**
-
-1. 打开 [OpenCode Console](https://opencode.ai/console)。
-2. 登录你的 OpenCode 账户。
-3. 创建一个新的 API 密钥。
-4. 复制这个密钥。
-
-**粘贴到 Nomo**
+**在 Nomo 里**
 
 1. 打开 Nomo。
 2. 轻点**服务商**标签页。
 3. 轻点 **OpenCode**。
 4. 轻点顶部的**用量**。
-5. 轻点**添加 OpenCode API 密钥**。
-6. 把密钥粘贴到 **API 密钥** 栏里。
-7. 轻点**连接**。
+5. 轻点**连接 OpenCode 账户**。
+6. 轻点**使用 OpenCode 登录**。
 
-Nomo 会向 OpenCode 验证一次密钥，只有 OpenCode 接受后才会保存。如果看到“OpenCode 未接受此密钥”，请重新完整复制密钥，或创建一个新密钥。
+Nomo 会在“在 OpenCode 中批准此代码：”下方显示一个短码。OpenCode 的页面会在 Safari 中打开，代码已经填好。
 
-还没有密钥？在同一个界面上轻点**在 OpenCode Console 中创建密钥**。
+**在 OpenCode 的页面上**
+
+1. 如果 OpenCode 要求，先登录。
+2. 批准这个代码。
+3. 选择开通了 OpenCode Go 的工作区。
+
+Nomo 会显示“正在等待你在 OpenCode 中批准…”，随后你的用量就会出现。
+
+- **页面没有打开**？轻点**打开 OpenCode**。如果需要自己输入代码，轻点**复制代码**。
+- **被问到“哪个工作区开通了 OpenCode Go？”时**，你的账户有多个工作区，而且都没有选中。轻点开通了 Go 套餐的那个。
+- **代码过期了**？代码有效期约 10 分钟。轻点**重试**获取新代码。
+- **你的工作区使用单点登录（SSO）**？先在 opencode.ai 上通过 SSO 登录，然后重试。
 
 Nomo 会显示三个限额，以及已用的百分比和各自的重置时间：
 
@@ -126,11 +129,25 @@ Nomo 会显示三个限额，以及已用的百分比和各自的重置时间：
 
 **用量**页面和[用量提醒](/zh-Hans/notifications#usage-alerts)会显示全部三个。[Nomo Usage](/zh-Hans/free-widgets#nomo-usage) 小组件显示**会话**和**每周**。限额由 OpenCode 设定，具体规则见 [OpenCode Go 文档](https://opencode.ai/docs/console/go/)。
 
-如果 OpenCode 不再接受你的密钥，比如你在控制台里删除了它，Nomo 会显示“OpenCode 未接受你保存的 API 密钥”。添加一个新密钥，用量就会继续更新。要从 Nomo 中移除密钥，轻点**断开连接**。
+如果看到“此工作区没有 OpenCode Go 套餐”，说明你已经登录，但这个工作区没有 Go 套餐。这个工作区订阅 OpenCode Go 后，用量就会出现。
+
+如果 OpenCode 不再接受你的登录信息，Nomo 会显示“OpenCode 不再接受你保存的登录信息”。在它下方重新连接，用量就会继续更新。要从 Nomo 中移除 OpenCode，轻点**断开连接**。
 
 OpenCode 没有公开 Nomo 读取的用量数据，所以这项功能是非官方的。
 
-你的密钥保存在 iPhone 的钥匙串里，并且只会发给 OpenCode。
+你的登录信息或 API 密钥保存在 iPhone 的钥匙串里。Nomo 只用它读取你的 OpenCode Go 用量，并且只发给 OpenCode。
+
+#### 改用 API 密钥 {#opencode-api-key}
+
+1. 打开 [OpenCode Console](https://opencode.ai/console)。
+2. 创建一个新的 API 密钥。
+3. 复制这个密钥。
+4. 在 Nomo 里 OpenCode 的**用量**页面上，轻点**连接 OpenCode 账户**。
+5. 轻点**改用 API 密钥**。
+6. 把密钥粘贴到 **API 密钥** 栏里。
+7. 轻点**连接**。
+
+如果看到“OpenCode 未接受此密钥”，请重新完整复制密钥，或创建一个新密钥。
 
 ## 用量速度 <span className="pro-pill" /> {#pace}
 
