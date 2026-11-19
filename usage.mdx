@@ -17,11 +17,11 @@ Mac plugin; this one is phone-only.
 
 ## Which providers
 
-Seven: **Claude**, **Codex**, **Cursor**, **xAI**, **Antigravity**, **Kimi** and
-**Devin** — everything [Status](/status) covers except DeepSeek, which is
-status-only.
+Eight: **Claude**, **Codex**, **Cursor**, **xAI**, **Antigravity**, **Kimi**,
+**Devin** and **OpenCode** — everything [Status](/status) covers except
+DeepSeek, which is status-only.
 
-All seven can **alert** you too, at 70%, 90% and 100% of whichever window they
+All eight can **alert** you too, at 70%, 90% and 100% of whichever window they
 report — see [Usage alerts](/notifications#usage-alerts).
 
 One label differs between the two widgets. Usage lists **Codex**, where Status
@@ -37,11 +37,15 @@ shows a short code; approve it on Kimi's sign-in page and you're done.
 **Devin** reads your Devin plan's daily and weekly limits: how much of each
 you've used, and when each resets — see [Devin](#devin).
 
+**OpenCode** reads your **OpenCode Go** plan's 5-hour, weekly and monthly
+limits, with an API key you paste — see [OpenCode Go](#opencode-go).
+
 ## Signing in
 
 Open the provider from the **Providers** tab and connect the account you
 already pay for. Nomo reads the same numbers that account can see about itself
-— it isn't an API key and there's nothing to paste.
+— it isn't an API key and there's nothing to paste. The one exception is
+[OpenCode Go](#opencode-go), which takes an API key.
 
 <Note>
   **Your login stays on your phone.** Tokens are held in the device keychain
@@ -119,6 +123,53 @@ again.
 
 Your sign-in stays in your iPhone's keychain and is sent only to Cognition, the
 company that makes Devin.
+
+### OpenCode Go {#opencode-go}
+
+OpenCode Go connects with an API key, not a sign-in. You make the key on
+OpenCode's website, then paste it into Nomo.
+
+**Make a key**
+
+1. Open the [OpenCode Console](https://opencode.ai/console).
+2. Sign in to your OpenCode account.
+3. Create a new API key.
+4. Copy the key.
+
+**Paste it into Nomo**
+
+1. Open Nomo.
+2. Tap the **Providers** tab.
+3. Tap **OpenCode**.
+4. Tap **Usage** at the top.
+5. Tap **Add OpenCode API key**.
+6. Paste the key into the **API key** field.
+7. Tap **Connect**.
+
+Nomo checks the key with OpenCode once, and saves it only if OpenCode accepts
+it. If you see **OpenCode didn't accept this key**, copy the whole key again, or
+create a new one.
+
+No key yet? On the same screen, tap **Create a key in the OpenCode Console**.
+
+Nomo shows three limits, each with the percentage used and when it resets:
+
+- **Session**: the 5-hour limit.
+- **Weekly**: the weekly limit.
+- **Monthly**: the monthly limit.
+
+The **Usage** page and [usage alerts](/notifications#usage-alerts) show all
+three. The [Nomo Usage](/free-widgets#nomo-usage) widget shows **Session** and
+**Weekly**. OpenCode sets the limits. To see how
+they work, read [OpenCode's Go docs](https://opencode.ai/docs/console/go/).
+
+If OpenCode stops accepting your key, for example after you delete it in the
+Console, Nomo shows **OpenCode didn't accept your saved API key**. Add a new key
+to keep your usage updating. To remove the key from Nomo, tap **Disconnect**.
+
+OpenCode doesn't document the usage numbers Nomo reads, so this is unofficial.
+
+Your key stays in your iPhone's keychain and is sent only to OpenCode.
 
 ## The Pace line <span className="pro-pill" /> {#pace}
 

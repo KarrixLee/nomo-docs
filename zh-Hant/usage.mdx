@@ -14,9 +14,9 @@ icon: "gauge"
 
 ## 支援哪些服務商
 
-七家：**Claude**、**Codex**、**Cursor**、**xAI**、**Antigravity**、**Kimi** 和 **Devin** — [狀態](/zh-Hant/status)涵蓋的供應商裡，只有只看狀態的 DeepSeek 不在其中。
+八家：**Claude**、**Codex**、**Cursor**、**xAI**、**Antigravity**、**Kimi**、**Devin** 和 **OpenCode** — [狀態](/zh-Hant/status)涵蓋的供應商裡，只有只看狀態的 DeepSeek 不在其中。
 
-七家也都能在各自視窗的 70%、90%、100% 給你**提醒** — 見[用量提醒](/zh-Hant/notifications#usage-alerts)。
+八家也都能在各自視窗的 70%、90%、100% 給你**提醒** — 見[用量提醒](/zh-Hant/notifications#usage-alerts)。
 
 兩個小工具之間有一處名稱不同。用量這邊顯示 **Codex**，狀態那邊盯的則是整個 **OpenAI** — 你消耗的是 Codex 的方案，會掛掉的卻是 OpenAI。
 
@@ -26,9 +26,11 @@ icon: "gauge"
 
 **Devin** 讀的是你 Devin 方案的每日限額和每週限額：各用了多少，以及各自什麼時候重設 — 見 [Devin](#devin)。
 
+**OpenCode** 讀的是你 **OpenCode Go** 方案的 5 小時、每週和每月限額，用的是你貼上的 API 金鑰 — 見 [OpenCode Go](#opencode-go)。
+
 ## 登入 {#signing-in}
 
-從**供應商**分頁開啟那家供應商，連結你原本就在付費的帳號。Nomo 讀到的，就是那個帳號自己看得到的數字 — 這不是 API 金鑰，也沒有東西要貼上。
+從**供應商**分頁開啟那家供應商，連結你原本就在付費的帳號。Nomo 讀到的，就是那個帳號自己看得到的數字 — 這不是 API 金鑰，也沒有東西要貼上。唯一的例外是使用 API 金鑰的 [OpenCode Go](#opencode-go)。
 
 <Note>
   **你的登入資訊留在手機上。**權杖存在裝置的鑰匙圈裡，而且只會送往它所屬的那一家供應商 — Claude 的權杖送到 Anthropic，OpenAI 的權杖送到 OpenAI。用量在裝置上取得，從不經過 Nomo 的伺服器。
@@ -90,6 +92,45 @@ Devin 透過 Safari，在 Devin 自己的登入頁面上登入。
 在 Devin 讓你的登入失效之前，你都會保持登入。之後 Nomo 會請你重新登入。
 
 你的登入資訊存在 iPhone 的鑰匙圈裡，而且只會送往 Devin 的開發公司 Cognition。
+
+### OpenCode Go {#opencode-go}
+
+OpenCode Go 用 API 金鑰連結，而不是登入。你先在 OpenCode 的網站上建立金鑰，再把它貼到 Nomo 裡。
+
+**建立金鑰**
+
+1. 打開 [OpenCode Console](https://opencode.ai/console)。
+2. 登入你的 OpenCode 帳戶。
+3. 建立一組新的 API 金鑰。
+4. 複製這組金鑰。
+
+**貼到 Nomo**
+
+1. 打開 Nomo。
+2. 點一下「供應商」分頁。
+3. 點一下 **OpenCode**。
+4. 點一下上方的「用量」。
+5. 點一下「加入 OpenCode API 金鑰」。
+6. 把金鑰貼到「API 金鑰」欄位。
+7. 點一下「連結」。
+
+Nomo 會向 OpenCode 驗證一次金鑰，只有 OpenCode 接受後才會儲存。如果看到「OpenCode 未接受此金鑰」，請重新完整複製金鑰，或建立新的金鑰。
+
+還沒有金鑰？在同一個畫面上點一下「在 OpenCode Console 中建立金鑰」。
+
+Nomo 會顯示三個限額，包括已用的百分比和各自的重設時間：
+
+- 「Session」：5 小時限額。
+- 「每週」：每週限額。
+- 「每月」：每月限額。
+
+「用量」頁面和[用量提醒](/zh-Hant/notifications#usage-alerts)會顯示全部三個。[Nomo Usage](/zh-Hant/free-widgets#nomo-usage) 小工具顯示「Session」和「每週」。限額由 OpenCode 設定，規則請見 [OpenCode Go 說明文件](https://opencode.ai/docs/console/go/)。
+
+如果 OpenCode 不再接受你的金鑰，例如你在主控台裡刪除了它，Nomo 會顯示「OpenCode 未接受你儲存的 API 金鑰」。加入新的金鑰，用量就會繼續更新。要從 Nomo 移除金鑰，點一下「中斷連結」。
+
+OpenCode 沒有公開 Nomo 讀取的用量數據，所以這項功能是非官方的。
+
+你的金鑰存在 iPhone 的鑰匙圈裡，而且只會送往 OpenCode。
 
 ## 用量速度 <span className="pro-pill" /> {#pace}
 
