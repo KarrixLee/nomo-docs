@@ -30,7 +30,7 @@ icon: "gauge"
 
 ## 登入 {#signing-in}
 
-從**供應商**分頁開啟那家供應商，連結你原本就在付費的帳號。Nomo 讀到的，就是那個帳號自己看得到的數字 — 這不是 API 金鑰，也沒有東西要貼上。OpenCode 也一樣，另外也可以改用 API 金鑰 — 見 [OpenCode Go](#opencode-go)。
+從**供應商**分頁開啟那家供應商，連結你原本就在付費的帳號。Nomo 讀到的，就是那個帳號自己看得到的數字 — 這不是 API 金鑰，也沒有東西要貼上。OpenCode 也一樣 — 見 [OpenCode Go](#opencode-go)。
 
 <Note>
   **你的登入資訊留在手機上。**權杖存在裝置的鑰匙圈裡，而且只會送往它所屬的那一家供應商 — Claude 的權杖送到 Anthropic，OpenAI 的權杖送到 OpenAI。用量在裝置上取得，從不經過 Nomo 的伺服器。
@@ -135,19 +135,7 @@ Nomo 會顯示三個限額，包括已用的百分比和各自的重設時間：
 
 OpenCode 沒有公開 Nomo 讀取的用量數據，所以這項功能是非官方的。
 
-你的登入資訊或 API 金鑰存在 iPhone 的鑰匙圈裡。Nomo 只用它讀取你的 OpenCode Go 用量，而且只會送往 OpenCode。
-
-#### 改用 API 金鑰 {#opencode-api-key}
-
-1. 打開 [OpenCode Console](https://opencode.ai/console)。
-2. 建立一組新的 API 金鑰。
-3. 複製這組金鑰。
-4. 在 Nomo 裡 OpenCode 的「用量」頁面上，點一下「連結 OpenCode 帳戶」。
-5. 點一下「改用 API 金鑰」。
-6. 把金鑰貼到「API 金鑰」欄位。
-7. 點一下「連結」。
-
-如果看到「OpenCode 未接受此金鑰」，請重新完整複製金鑰，或建立新的金鑰。
+你的登入資訊存在 iPhone 的鑰匙圈裡。Nomo 只用它讀取你的 OpenCode Go 用量，而且只會送往 OpenCode。
 
 ## 用量速度 <span className="pro-pill" /> {#pace}
 
