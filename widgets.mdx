@@ -157,11 +157,7 @@ from your computers, that tile shows **Active hours** instead.
   [Install](/setup/install) and [Updating](/sessions/commands#update).
 - That computer paired with Nomo. See [Pairing](/setup/pairing).
 
-It counts Claude Code, Codex and OpenCode. Past days show up too, because the
-plugin reads the history that's already on your computer.
-
-It also counts Grok Bot and Cursor, with no computer needed. See
-[Grok Bot](#grok-bot).
+For the agents it counts, see [Which agents count](#which-agents-count).
 
 **Set it up:**
 
@@ -218,6 +214,44 @@ Tap the widget to open Nomo on Home, at [Activity](/activity).
 
 What leaves your computer for this map is listed under
 [Privacy](#privacy). It's counts only, never your prompts or code.
+
+### Which agents count {#which-agents-count}
+
+Nomo Activity, Nomo Tokens and [Activity](/activity) on Home count the same
+agents:
+
+- **On your paired computers:** Claude Code, Codex, OpenCode, Devin and
+  Antigravity. Past days show up too, because the plugin reads the history
+  that's already on your computer.
+- **With no computer:** Grok Bot and Cursor, from your Cursor sign-in in Nomo.
+  See [Grok Bot](#grok-bot).
+
+Only what runs on a paired computer counts. Devin Cloud sessions on
+app.devin.ai don't count, and neither does Antigravity on a computer that isn't
+paired.
+
+#### Devin and Antigravity {#devin-and-antigravity}
+
+From Nomo 2.5.1, the plugin also counts:
+
+- **Devin**: the Devin CLI.
+- **Antigravity**: the Antigravity desktop app and the `agy` command line.
+
+To start counting them:
+
+1. Update the Nomo plugin on your computer to 2.5.1 or later. See
+   [Updating](/sessions/commands#update).
+2. Update Nomo on your iPhone to 2.5.1 or later.
+
+**What you get:**
+
+- For free, both count toward your streak, the calendar and your coding time.
+  They also show up in the split between agents.
+- With Nomo Pro, you also see their tokens for each model, such as
+  **SWE-2 Flash Medium** for Devin and **Gemini 3.8 Flash High** for
+  Antigravity.
+- With Nomo Pro, you can also pick them in the **Agents** list of Nomo Tokens,
+  and see them in the **Agent** view of the [Tokens chart](/activity#tokens-chart).
 
 ### Grok Bot {#grok-bot}
 
@@ -285,9 +319,9 @@ in [Activity](/activity#tokens-chart) lists cache on its own.
 | Large | **Last 14 days** under the title. The same numbers, plus the change from last week and up to 5 rows. Grok Bot and Cursor get a row each, next to your models. With more than 5, the last row adds up the rest, such as `6 more models`. By agent, up to 5 agents instead. |
 
 Each model keeps one color everywhere: Claude models are coral, GPT blue, Grok
-gold, Gemini purple, and other models grey. By agent, each agent has its own
-color, such as coral for Claude Code, blue for Codex and gold for Grok Bot.
-Cursor's line is dashed.
+gold, Gemini purple, Devin's SWE models Devin's own blue, and other models
+grey. By agent, each agent has its own color, such as coral for Claude Code,
+blue for Codex and gold for Grok Bot. Cursor's line is dashed.
 
 **What you need first:** the same as Nomo Activity: the Nomo plugin on a
 paired computer, or Cursor connected in Nomo for Grok Bot. See
@@ -303,7 +337,8 @@ paired computer, or Cursor connected in Nomo for Grok Bot. See
 5. Tap **Group by** and pick **Model** or **Agent**.
 6. Tap **Style** and pick **Bars** or **Lines**.
 7. If you picked **Agent**, tap **Agents**. Pick the agents you want: Claude
-   Code, Codex, OpenCode, Grok Bot or Cursor. At first, all of them are picked.
+   Code, Codex, OpenCode, Grok Bot, Cursor, Antigravity or Devin. At first, all
+   of them are picked.
 8. Tap outside the widget to finish.
 
 **Agents** shows only when **Group by** is **Agent**. If you pick only some
@@ -501,6 +536,9 @@ To go back to your real data, turn **Show sample data** off.
   and token totals per model.
 - What never leaves: your prompts, the agent's replies, project names and file
   paths.
+- For Devin and Antigravity, the plugin reads their history on your computer:
+  Devin's sessions database and Antigravity's conversation files. It only reads
+  them, and takes only the counts above.
 - It's end-to-end encrypted (AES-256-GCM, with your pairing key) before it's
   uploaded. Nomo's relay can't read it, and deletes it after **35 days**.
 - It also holds a random computer id. The plugin makes it once on your
