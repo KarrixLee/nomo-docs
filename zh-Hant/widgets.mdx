@@ -124,9 +124,7 @@ App 裡的連續紀錄和 Token 在「首頁」標籤頁。請看[活動](/zh-Ha
 - 你電腦上的 Nomo 外掛程式，版本 **2.4.0** 或更新。請看[安裝](/zh-Hant/setup/install)和[更新](/zh-Hant/sessions/commands#update)。
 - 那台電腦已經和 Nomo 配對。請看[配對](/zh-Hant/setup/pairing)。
 
-它會計算 Claude Code、Codex 和 OpenCode。過去的日子也會出現，因為外掛程式會讀取你電腦上已經有的歷史紀錄。
-
-它也會計算 Grok Bot 和 Cursor，不需要電腦。請看 [Grok Bot](#grok-bot)。
+它會計算哪些代理，請看[哪些代理會計入](#which-agents-count)。
 
 **設定方式**：
 
@@ -163,6 +161,33 @@ Clawd 的表情會跟著你的連續紀錄變化。沒有連續紀錄時，它�
 點一下小工具，會打開 Nomo 的「首頁」，並停在[活動](/zh-Hant/activity)。
 
 為了這張地圖而離開你電腦的內容，列在[隱私](#privacy)底下。只有計數，絕不包括你的提示或程式碼。
+
+### 哪些代理會計入 {#which-agents-count}
+
+Nomo 活動、Nomo Token 和「首頁」上的[活動](/zh-Hant/activity)計算的是同樣的代理：
+
+- **在你配對過的電腦上**：Claude Code、Codex、OpenCode、Devin 和 Antigravity。過去的日子也會出現，因為外掛程式會讀取你電腦上已經有的歷史紀錄。
+- **不需要電腦**：透過你在 Nomo 裡的 Cursor 登入取得的 Grok Bot 和 Cursor。請看 [Grok Bot](#grok-bot)。
+
+只有在配對過的電腦上執行的才會計入。app.devin.ai 上的 Devin Cloud sessions 不會計入，沒有配對的電腦上的 Antigravity 也不會。
+
+#### Devin 和 Antigravity {#devin-and-antigravity}
+
+從 Nomo 2.5.1 起，外掛程式也會計算：
+
+- **Devin**：Devin CLI。
+- **Antigravity**：Antigravity 桌面應用程式和 `agy` 命令列。
+
+要開始計算它們：
+
+1. 把電腦上的 Nomo 外掛程式更新到 2.5.1 或更新版本。請看[更新](/zh-Hant/sessions/commands#update)。
+2. 把 iPhone 上的 Nomo 更新到 2.5.1 或更新版本。
+
+**你能看到什麼**：
+
+- 免費：兩者都會計入你的連續紀錄、日曆和寫程式的時間，也會出現在各代理的時間分配裡。
+- 有 Nomo Pro 時，還能看到它們每個模型的 Token，例如 Devin 的 **SWE-2 Flash Medium** 和 Antigravity 的 **Gemini 3.8 Flash High**。
+- 有 Nomo Pro 時，還可以在 Nomo Token 的「代理」選項裡選它們，並在 [Token 圖表](/zh-Hant/activity#tokens-chart)的**代理**檢視裡看到它們。
 
 ### Grok Bot {#grok-bot}
 
@@ -214,7 +239,7 @@ Nomo 會讀取哪些內容，列在[隱私](#privacy)底下。
 | 中型 | 14 天總計、今天的 Token，以及用得最多的模型和它的占比。Grok Bot 和 Cursor 不是模型，所以這裡不算它們。依代理時，改為用得最多的代理。 |
 | 大型 | 標題下方的「最近 14 天」。同樣的數字，再加上較上週的變化和最多 5 列。Grok Bot 和 Cursor 會和你的模型並列，各佔一列。超過 5 個時，最後一列會合併其餘的，例如 `其他 6 個模型`。依代理時，改為最多 5 個代理。 |
 
-每個模型在任何地方都維持同一種顏色：Claude 模型是珊瑚色，GPT 是藍色，Grok 是金色，Gemini 是紫色，其他模型是灰色。依代理時，每個代理都有自己的顏色，例如 Claude Code 是珊瑚色，Codex 是藍色，Grok Bot 是金色。Cursor 的線是虛線。
+每個模型在任何地方都維持同一種顏色：Claude 模型是珊瑚色，GPT 是藍色，Grok 是金色，Gemini 是紫色，Devin 的 SWE 模型是 Devin 的藍色，其他模型是灰色。依代理時，每個代理都有自己的顏色，例如 Claude Code 是珊瑚色，Codex 是藍色，Grok Bot 是金色。Cursor 的線是虛線。
 
 **事前需要**：和 Nomo 活動一樣，需要一台裝了 Nomo 外掛程式並已配對的電腦；如果是 Grok Bot，則需要在 Nomo 裡連結 Cursor。請看 [Nomo 活動](#nomo-activity)。
 
@@ -226,7 +251,7 @@ Nomo 會讀取哪些內容，列在[隱私](#privacy)底下。
 4. 點一下「角色」，選一個。選項和 [Nomo 活動](#nomo-activity)相同。
 5. 點一下「分組方式」，選「模型」或「代理」。
 6. 點一下「樣式」，選「長條」或「折線」。
-7. 如果你選了「代理」，再點一下下方的「代理」選項，選出你要的代理：Claude Code、Codex、OpenCode、Grok Bot 或 Cursor。一開始全部都是選取的。
+7. 如果你選了「代理」，再點一下下方的「代理」選項，選出你要的代理：Claude Code、Codex、OpenCode、Grok Bot、Cursor、Antigravity 或 Devin。一開始全部都是選取的。
 8. 點一下小工具外面就完成了。
 
 只有「分組方式」設為「代理」時，才會出現下方的「代理」選項。如果只選了部分代理，數字只會計算它們，總數下方的標籤也會從「14 天總計」變成「所選代理」。如果你選的代理在這 14 天裡都沒有用到 Token，小工具會顯示所有代理。
@@ -362,6 +387,7 @@ Nomo 帳戶只會列出你真正新增過的帳戶，所以在你新增帳戶之
 
 - 會離開你電腦的內容：每一天、每個代理的 sessions 數、提示數、一天中哪些 5 分鐘時段有活動，以及每個模型的 token 總數。
 - 絕不會離開的內容：你的提示、代理的回覆、專案名稱和檔案路徑。
+- 對於 Devin 和 Antigravity，外掛程式會讀取它們在你電腦上的歷史紀錄：Devin 的 sessions 資料庫和 Antigravity 的對話檔案。它只會讀取，而且只取上面這些計數。
 - 上傳前會先端對端加密（AES-256-GCM，使用你的配對金鑰）。Nomo 的中繼伺服器無法讀取，並會在 **35 天**後刪除。
 - 其中還有一個隨機的電腦 ID。它由外掛程式在你的電腦上產生一次，儲存在 `~/.config/cc-status/machine-id`。它絕不來自你的硬體資訊，例如序號、MAC 位址、電腦名稱或使用者名稱。它和其他內容一樣經過端對端加密。Nomo 只用它來避免 iPhone 把同一台電腦算兩次。刪除這個檔案就會產生新的 ID。
 - 最多每 6 小時上傳一次，而且只在有變化時上傳。重設指令會立刻上傳。如果沒有變化，它每週會把同樣的摘要重新上傳一次，以免中繼伺服器把它刪除。剛和新的 iPhone 配對後，會在大約一分鐘內上傳一次。

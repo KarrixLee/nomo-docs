@@ -16,11 +16,11 @@ pedir nada en el Mac; esto también es solo de teléfono.
 
 ## Qué proveedores
 
-Siete: **Claude**, **Codex**, **Cursor**, **xAI**, **Antigravity**, **Kimi** y
-**Devin**, todo lo que cubre [Estado](/es/status) salvo DeepSeek, que es solo de
+Ocho: **Claude**, **Codex**, **Cursor**, **xAI**, **Antigravity**, **Kimi**,
+**Devin** y **OpenCode**, todo lo que cubre [Estado](/es/status) salvo DeepSeek, que es solo de
 estado.
 
-Los siete también pueden **avisarte** al 70 %, 90 % y 100 % de la ventana que
+Los ocho también pueden **avisarte** al 70 %, 90 % y 100 % de la ventana que
 reporten — mira [Alertas de uso](/es/notifications#usage-alerts).
 
 Una etiqueta cambia entre los dos widgets. Uso muestra **Codex**, donde Estado
@@ -38,11 +38,16 @@ de Kimi y listo.
 **Devin** lee los límites diario y semanal de tu plan de Devin: cuánto has
 usado de cada uno y cuándo se restablece — mira [Devin](#devin).
 
+**OpenCode** lee los límites de 5 horas, semanal y mensual de tu plan de
+**OpenCode Go**. Inicias sesión con tu cuenta de OpenCode y apruebas un código
+corto — mira [OpenCode Go](#opencode-go).
+
 ## Conectar tu cuenta
 
 Abre el proveedor desde la pestaña **Proveedores** y conecta la
 cuenta que ya pagas. Nomo lee las mismas cifras que esa cuenta puede ver de sí
-misma: no es una clave de API y no hay nada que pegar.
+misma: no es una clave de API y no hay nada que pegar. OpenCode funciona igual —
+mira [OpenCode Go](#opencode-go).
 
 <Note>
   **Tu sesión no sale del teléfono.** Los tokens se guardan en el llavero del
@@ -123,6 +128,67 @@ que vuelvas a iniciar sesión.
 
 Tu inicio de sesión se queda en el llavero del iPhone y solo se envía a
 Cognition, la empresa que hace Devin.
+
+### OpenCode Go {#opencode-go}
+
+OpenCode Go inicia sesión con tu cuenta de OpenCode. Apruebas un código corto
+en la página de OpenCode y luego eliges el espacio de trabajo que tiene tu plan
+de Go.
+
+**En Nomo**
+
+1. Abre Nomo.
+2. Toca la pestaña **Proveedores**.
+3. Toca **OpenCode**.
+4. Toca **Uso** arriba.
+5. Toca **“Conectar cuenta de OpenCode”**.
+
+Nomo muestra un código corto, debajo de **“Aprueba este código en OpenCode:”**.
+La página de OpenCode se abre en Safari, con el código ya puesto.
+
+**En la página de OpenCode**
+
+1. Inicia sesión, si OpenCode te lo pide.
+2. Aprueba el código.
+3. Elige el espacio de trabajo que tiene OpenCode Go.
+
+Nomo muestra **“Esperando tu aprobación en OpenCode…”** y luego aparece tu uso.
+
+- **¿No se abrió la página?** Toca **“Abrir OpenCode”**. Si tienes que escribir
+  el código tú, toca **“Copiar código”**.
+- **¿Te pregunta “¿Qué espacio de trabajo tiene OpenCode Go?”?** Tu cuenta tiene
+  más de un espacio de trabajo y no se eligió ninguno. Toca el que tiene tu plan
+  de Go.
+- **¿Caducó el código?** Un código dura unos 10 minutos. Toca **Reintentar**
+  para obtener uno nuevo.
+- **¿Tu espacio de trabajo usa inicio de sesión único (SSO)?** Primero inicia
+  sesión con SSO en opencode.ai y luego vuelve a intentarlo.
+
+Nomo muestra tres límites, cada uno con el porcentaje usado y cuándo se
+restablece:
+
+- **Sesión**: el límite de 5 horas.
+- **Semanal**: el límite semanal.
+- **Mensual**: el límite mensual.
+
+La página **Uso** y las [alertas de uso](/es/notifications#usage-alerts)
+muestran los tres. El widget [Nomo Usage](/es/free-widgets#nomo-usage) muestra
+**Sesión** y **Semanal**. Los límites los fija OpenCode. Para ver cómo
+funcionan, lee la [documentación de OpenCode Go](https://opencode.ai/docs/console/go/).
+
+Si ves **“Este espacio de trabajo no tiene plan de OpenCode Go”**, tienes la
+sesión iniciada, pero ese espacio de trabajo no tiene plan de Go. Tu uso
+aparecerá cuando se suscriba a OpenCode Go.
+
+Si OpenCode deja de aceptar tu inicio de sesión, Nomo muestra **“OpenCode ya no
+acepta tu inicio de sesión guardado”**. Vuelve a conectar debajo para que tu uso
+siga actualizándose. Para quitar OpenCode de Nomo, toca **Desconectar**.
+
+OpenCode no documenta las cifras de uso que lee Nomo, así que esto no es
+oficial.
+
+Tu inicio de sesión se queda en el llavero del iPhone. Nomo
+solo lo usa para leer tu uso de OpenCode Go, y solo lo envía a OpenCode.
 
 ## Ritmo <span className="pro-pill" /> {#pace}
 

@@ -17,11 +17,11 @@ Mac plugin; this one is phone-only.
 
 ## Which providers
 
-Seven: **Claude**, **Codex**, **Cursor**, **xAI**, **Antigravity**, **Kimi** and
-**Devin** — everything [Status](/status) covers except DeepSeek, which is
-status-only.
+Eight: **Claude**, **Codex**, **Cursor**, **xAI**, **Antigravity**, **Kimi**,
+**Devin** and **OpenCode** — everything [Status](/status) covers except
+DeepSeek, which is status-only.
 
-All seven can **alert** you too, at 70%, 90% and 100% of whichever window they
+All eight can **alert** you too, at 70%, 90% and 100% of whichever window they
 report — see [Usage alerts](/notifications#usage-alerts).
 
 One label differs between the two widgets. Usage lists **Codex**, where Status
@@ -37,11 +37,16 @@ shows a short code; approve it on Kimi's sign-in page and you're done.
 **Devin** reads your Devin plan's daily and weekly limits: how much of each
 you've used, and when each resets — see [Devin](#devin).
 
+**OpenCode** reads your **OpenCode Go** plan's 5-hour, weekly and monthly
+limits. You sign in with your OpenCode account and approve a short code — see
+[OpenCode Go](#opencode-go).
+
 ## Signing in
 
 Open the provider from the **Providers** tab and connect the account you
 already pay for. Nomo reads the same numbers that account can see about itself
-— it isn't an API key and there's nothing to paste.
+— it isn't an API key and there's nothing to paste. OpenCode works the same
+way — see [OpenCode Go](#opencode-go).
 
 <Note>
   **Your login stays on your phone.** Tokens are held in the device keychain
@@ -119,6 +124,62 @@ again.
 
 Your sign-in stays in your iPhone's keychain and is sent only to Cognition, the
 company that makes Devin.
+
+### OpenCode Go {#opencode-go}
+
+OpenCode Go signs in with your OpenCode account. You approve a short code on
+OpenCode's page, then pick the workspace that has your Go plan.
+
+**In Nomo**
+
+1. Open Nomo.
+2. Tap the **Providers** tab.
+3. Tap **OpenCode**.
+4. Tap **Usage** at the top.
+5. Tap **Connect OpenCode account**.
+
+Nomo shows a short code, under **Approve this code in OpenCode:**. OpenCode's
+page opens in Safari, with the code already filled in.
+
+**On OpenCode's page**
+
+1. Sign in, if OpenCode asks.
+2. Approve the code.
+3. Pick the workspace that has OpenCode Go.
+
+Nomo shows **Waiting for you to approve in OpenCode…**, then your usage appears.
+
+- **The page didn't open?** Tap **Open OpenCode**. If you need to type the code
+  yourself, tap **Copy code**.
+- **Asked "Which workspace has OpenCode Go?"** Your account has more than one
+  workspace, and none was picked. Tap the one with your Go plan.
+- **The code expired?** A code lasts about 10 minutes. Tap **Try again** for a
+  new one.
+- **Your workspace uses single sign-on (SSO)?** Sign in with SSO on
+  opencode.ai first, then try again.
+
+Nomo shows three limits, each with the percentage used and when it resets:
+
+- **Session**: the 5-hour limit.
+- **Weekly**: the weekly limit.
+- **Monthly**: the monthly limit.
+
+The **Usage** page and [usage alerts](/notifications#usage-alerts) show all
+three. The [Nomo Usage](/free-widgets#nomo-usage) widget shows **Session** and
+**Weekly**. OpenCode sets the limits. To see how they work, read
+[OpenCode's Go docs](https://opencode.ai/docs/console/go/).
+
+If you see **No OpenCode Go plan on this workspace**, you're signed in, but that
+workspace has no Go plan. Your usage appears once it subscribes to OpenCode Go.
+
+If OpenCode stops accepting your sign-in, Nomo shows **OpenCode no longer
+accepts your saved sign-in**. Connect again below it to keep your usage
+updating. To remove OpenCode from Nomo, tap **Disconnect**.
+
+OpenCode doesn't document the usage numbers Nomo reads, so this is unofficial.
+
+Your sign-in stays in your iPhone's keychain. Nomo uses it only to read your
+OpenCode Go usage, and sends it only to OpenCode.
 
 ## The Pace line <span className="pro-pill" /> {#pace}
 

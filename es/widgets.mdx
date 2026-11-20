@@ -167,11 +167,7 @@ en su lugar.
   [Instalación](/es/setup/install) y [Actualizaciones](/es/sessions/commands#update).
 - Ese ordenador vinculado con Nomo. Consulta [Vinculación](/es/setup/pairing).
 
-Cuenta Claude Code, Codex y OpenCode. Los días pasados también aparecen, porque
-el plugin lee el historial que ya está en tu ordenador.
-
-También cuenta Grok Bot y Cursor, sin necesidad de ordenador. Consulta
-[Grok Bot](#grok-bot).
+Para ver qué agentes cuenta, consulta [Qué agentes cuentan](#which-agents-count).
 
 **Configúralo:**
 
@@ -231,6 +227,45 @@ Toca el widget para abrir Nomo en **Inicio**, en [Actividad](/es/activity).
 
 Lo que sale de tu ordenador para este mapa se detalla en
 [Privacidad](#privacy). Son solo recuentos, nunca tus prompts ni tu código.
+
+### Qué agentes cuentan {#which-agents-count}
+
+Actividad de Nomo, Tokens de Nomo y [Actividad](/es/activity) en **Inicio**
+cuentan los mismos agentes:
+
+- **En tus ordenadores vinculados:** Claude Code, Codex, OpenCode, Devin y
+  Antigravity. Los días pasados también aparecen, porque el plugin lee el
+  historial que ya está en tu ordenador.
+- **Sin ordenador:** Grok Bot y Cursor, desde tu inicio de sesión de Cursor en
+  Nomo. Consulta [Grok Bot](#grok-bot).
+
+Solo cuenta lo que se ejecuta en un ordenador vinculado. Las sesiones de Devin
+Cloud en app.devin.ai no cuentan, ni tampoco Antigravity en un ordenador que no
+está vinculado.
+
+#### Devin y Antigravity {#devin-and-antigravity}
+
+Desde Nomo 2.5.1, el plugin también cuenta:
+
+- **Devin**: la CLI de Devin.
+- **Antigravity**: la app de escritorio de Antigravity y la línea de comandos
+  `agy`.
+
+Para empezar a contarlos:
+
+1. Actualiza el plugin de Nomo en tu ordenador a la 2.5.1 o posterior. Consulta
+   [Actualizaciones](/es/sessions/commands#update).
+2. Actualiza Nomo en tu iPhone a la 2.5.1 o posterior.
+
+**Qué obtienes:**
+
+- Gratis, los dos cuentan para tu racha, el calendario y tu tiempo programando.
+  También aparecen en el reparto entre agentes.
+- Con Nomo Pro, también ves sus tokens por modelo, como **SWE-2 Flash Medium**
+  para Devin y **Gemini 3.8 Flash High** para Antigravity.
+- Con Nomo Pro, también puedes elegirlos en la lista **Agentes** de Tokens de
+  Nomo, y verlos en la vista **Agente** del
+  [gráfico de tokens](/es/activity#tokens-chart).
 
 ### Grok Bot {#grok-bot}
 
@@ -301,7 +336,8 @@ caché aparte.
 | Grande | **“Últimos 14 días”** bajo el título. Las mismas cifras, más el cambio frente a la semana pasada y hasta 5 filas. Grok Bot y Cursor tienen una fila cada uno, junto a tus modelos. Si hay más de 5, la última fila suma el resto, como `6 modelos más`. Por agente, hasta 5 agentes en su lugar. |
 
 Cada modelo mantiene un mismo color en todas partes: los modelos de Claude son
-coral; GPT, azul; Grok, dorado; Gemini, morado, y los demás modelos, gris. Por
+coral; GPT, azul; Grok, dorado; Gemini, morado; los modelos SWE de Devin, el azul de Devin, y los demás
+modelos, gris. Por
 agente, cada agente tiene su propio color, como coral para Claude Code, azul
 para Codex y dorado para Grok Bot. La línea de Cursor es discontinua.
 
@@ -319,8 +355,8 @@ Consulta [Actividad de Nomo](#nomo-activity).
 5. Toca **“Agrupar por”** y elige **Modelo** o **Agente**.
 6. Toca **Estilo** y elige **Barras** o **Líneas**.
 7. Si elegiste **Agente**, toca **Agentes**. Elige los agentes que quieras:
-   Claude Code, Codex, OpenCode, Grok Bot o Cursor. Al principio están todos
-   elegidos.
+   Claude Code, Codex, OpenCode, Grok Bot, Cursor, Antigravity o Devin. Al
+   principio están todos elegidos.
 8. Toca fuera del widget para terminar.
 
 **Agentes** solo aparece cuando **“Agrupar por”** está en **Agente**. Si eliges
@@ -524,6 +560,9 @@ Para volver a tus datos reales, desactiva **“Mostrar datos de ejemplo”**.
   tokens totales por modelo.
 - Qué no sale nunca: tus prompts, las respuestas del agente, los nombres de los
   proyectos y las rutas de los archivos.
+- Para Devin y Antigravity, el plugin lee su historial en tu ordenador: la base
+  de datos de sesiones de Devin y los archivos de conversaciones de Antigravity.
+  Solo los lee, y solo toma los recuentos de arriba.
 - Se cifra de extremo a extremo (AES-256-GCM, con tu clave de vinculación) antes
   de subirse. El relé de Nomo no puede leerlo y lo borra pasados **35 días**.
 - También incluye un identificador aleatorio del ordenador. El plugin lo crea
