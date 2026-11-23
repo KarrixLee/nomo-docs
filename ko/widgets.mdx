@@ -158,10 +158,7 @@ Claude나 Codex 재설정이 있으면 중형에서는 업데이트 시간 옆�
   참고하십시오.
 - Nomo와 페어링한 그 컴퓨터. [페어링](/ko/setup/pairing)을 참고하십시오.
 
-Claude Code, Codex, OpenCode를 셉니다. 플러그인이 컴퓨터에 이미 있는 기록을
-읽기 때문에 지난 날짜도 표시됩니다.
-
-Grok Bot과 Cursor도 셉니다. 컴퓨터는 필요 없습니다. [Grok Bot](#grok-bot)을
+어떤 에이전트를 세는지는 [집계되는 에이전트](#which-agents-count)를
 참고하십시오.
 
 **설정하기:**
@@ -219,6 +216,43 @@ Claude 스파크로 바뀝니다. 이때도 선택은 그대로 **Clawd**입니�
 
 이 지도를 위해 컴퓨터에서 나가는 정보는 [개인정보 보호](#privacy)에
 나와 있습니다. 횟수만 나가며, 프롬프트나 코드는 절대 나가지 않습니다.
+
+### 집계되는 에이전트 {#which-agents-count}
+
+Nomo 활동, Nomo 토큰, **홈**의 [활동](/ko/activity)은 같은 에이전트를
+셉니다.
+
+- **페어링한 컴퓨터에서:** Claude Code, Codex, OpenCode, Devin,
+  Antigravity. 플러그인이 컴퓨터에 이미 있는 기록을 읽기 때문에 지난 날짜도
+  표시됩니다.
+- **컴퓨터 없이:** Nomo의 Cursor 로그인에서 가져온 Grok Bot과 Cursor.
+  [Grok Bot](#grok-bot)을 참고하십시오.
+
+페어링한 컴퓨터에서 실행된 것만 집계됩니다. app.devin.ai의 Devin Cloud
+세션과, 페어링하지 않은 컴퓨터의 Antigravity는 집계되지 않습니다.
+
+#### Devin과 Antigravity {#devin-and-antigravity}
+
+Nomo 2.5.1부터 플러그인은 다음도 셉니다.
+
+- **Devin**: Devin CLI.
+- **Antigravity**: Antigravity 데스크톱 앱과 `agy` 명령줄.
+
+집계를 시작하려면:
+
+1. 컴퓨터의 Nomo 플러그인을 2.5.1 이상으로 업데이트합니다.
+   [업데이트](/ko/sessions/commands#update)를 참고하십시오.
+2. iPhone의 Nomo를 2.5.1 이상으로 업데이트합니다.
+
+**볼 수 있는 것:**
+
+- 무료로, 둘 다 연속 기록, 달력, 코딩 시간에 집계됩니다. 에이전트별 비율에도
+  나타납니다.
+- Nomo Pro에서는 모델별 토큰도 볼 수 있습니다. 예를 들어 Devin은
+  **SWE-2 Flash Medium**, Antigravity는 **Gemini 3.8 Flash High**입니다.
+- Nomo Pro에서는 Nomo 토큰의 **에이전트** 항목에서 고르고,
+  [토큰 차트](/ko/activity#tokens-chart)의 **에이전트** 보기에서 볼 수도
+  있습니다.
 
 ### Grok Bot {#grok-bot}
 
@@ -288,7 +322,8 @@ Nomo가 읽는 정보는 [개인정보 보호](#privacy)에 나와 있습니다.
 | 대형 | 제목 아래의 **최근 14일**. 같은 수치에 더해 지난주 대비 변화와 최대 5행. Grok Bot과 Cursor도 모델과 함께 각각 한 행을 차지합니다. 5개가 넘으면 마지막 행에 나머지가 `기타 모델 6개`처럼 합쳐집니다. 에이전트별이면 대신 에이전트를 최대 5개까지. |
 
 모든 모델은 어디서나 같은 색을 유지합니다. Claude 모델은 코럴, GPT는 파란색,
-Grok은 금색, Gemini는 보라색, 그 밖의 모델은 회색입니다. 에이전트별로 보면
+Grok은 금색, Gemini는 보라색, Devin의 SWE 모델은 Devin의 파란색, 그 밖의
+모델은 회색입니다. 에이전트별로 보면
 에이전트마다 고유한 색이 있습니다. 예를 들어 Claude Code는 코럴, Codex는
 파란색, Grok Bot은 금색입니다. Cursor의 선은 점선입니다.
 
@@ -306,7 +341,8 @@ Grok은 금색, Gemini는 보라색, 그 밖의 모델은 회색입니다. 에�
 5. **그룹 기준**을 탭하고 **모델**이나 **에이전트**를 고릅니다.
 6. **스타일**을 탭하고 **막대**나 **선**을 고릅니다.
 7. **에이전트**를 골랐다면 새로 나타나는 **에이전트** 항목을 탭합니다. 원하는
-   에이전트를 고릅니다: Claude Code, Codex, OpenCode, Grok Bot, Cursor. 처음에는
+   에이전트를 고릅니다: Claude Code, Codex, OpenCode, Grok Bot, Cursor, Antigravity,
+   Devin. 처음에는
    모두 선택되어 있습니다.
 8. 위젯 바깥을 탭해 마칩니다.
 
@@ -501,6 +537,9 @@ Nomo Pro가 없으면 데모 모드에서 Pro 위젯도 잠금 해제됩니다. 
 - 컴퓨터에서 나가는 것: 날짜별, 에이전트별 세션 수, 프롬프트 수, 하루 중 활동이
   있었던 5분 단위 구간, 모델별 토큰 합계.
 - 절대 나가지 않는 것: 프롬프트, 에이전트의 답변, 프로젝트 이름, 파일 경로.
+- Devin과 Antigravity의 경우, 플러그인은 컴퓨터에 있는 기록을 읽습니다. Devin의
+  세션 데이터베이스와 Antigravity의 대화 파일입니다. 읽기만 하며, 위의 횟수만
+  가져옵니다.
 - 업로드 전에 종단 간 암호화됩니다(AES-256-GCM, 페어링 키 사용). Nomo의 중계
   서버는 내용을 읽을 수 없으며, **35일** 후 삭제합니다.
 - 무작위 컴퓨터 ID도 포함됩니다. 플러그인이 컴퓨터에서 한 번 만들어

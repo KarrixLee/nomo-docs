@@ -124,9 +124,7 @@ App 里的连续记录和 Token 在“首页”标签页。见[活动](/zh-Hans/
 - 你电脑上的 Nomo 插件，版本 **2.4.0** 或更高。见[安装](/zh-Hans/setup/install)和[更新](/zh-Hans/sessions/commands#update)。
 - 那台电脑已经和 Nomo 配对。见[配对](/zh-Hans/setup/pairing)。
 
-它统计 Claude Code、Codex 和 OpenCode。过去的日子也会显示，因为插件会读取你电脑上已有的历史记录。
-
-它也统计 Grok Bot 和 Cursor，而且不需要电脑。见 [Grok Bot](#grok-bot)。
+它统计哪些智能体，见[哪些智能体会计入](#which-agents-count)。
 
 **设置方法**：
 
@@ -163,6 +161,33 @@ Clawd 的心情会跟着你的连续记录变化。没有连续记录时，它�
 轻点小组件，会打开 Nomo 的“首页”，并停在[活动](/zh-Hans/activity)。
 
 为这张地图离开你电脑的内容，列在[隐私](#privacy)下面。只有计数，绝不包括你的提示或代码。
+
+### 哪些智能体会计入 {#which-agents-count}
+
+Nomo 活动、Nomo Token 和“首页”上的[活动](/zh-Hans/activity)统计的是同样的智能体：
+
+- **在你配对过的电脑上**：Claude Code、Codex、OpenCode、Devin 和 Antigravity。过去的日子也会显示，因为插件会读取你电脑上已有的历史记录。
+- **不需要电脑**：通过你在 Nomo 里的 Cursor 登录统计的 Grok Bot 和 Cursor。见 [Grok Bot](#grok-bot)。
+
+只有在配对过的电脑上运行的才会计入。app.devin.ai 上的 Devin Cloud 会话不计入，没有配对的电脑上的 Antigravity 也不计入。
+
+#### Devin 和 Antigravity {#devin-and-antigravity}
+
+从 Nomo 2.5.1 起，插件还会统计：
+
+- **Devin**：Devin CLI。
+- **Antigravity**：Antigravity 桌面应用和 `agy` 命令行。
+
+要开始统计它们：
+
+1. 把电脑上的 Nomo 插件更新到 2.5.1 或更高。见[更新](/zh-Hans/sessions/commands#update)。
+2. 把 iPhone 上的 Nomo 更新到 2.5.1 或更高。
+
+**你能看到什么**：
+
+- 免费：两者都会计入你的连续记录、日历和编程时长，也会出现在各智能体的时间分配里。
+- 有 Nomo Pro 时，还能看到它们每个模型的 Token，例如 Devin 的 **SWE-2 Flash Medium** 和 Antigravity 的 **Gemini 3.8 Flash High**。
+- 有 Nomo Pro 时，还可以在 Nomo Token 的“智能体”一项里选它们，并在 [Token 图表](/zh-Hans/activity#tokens-chart)的**智能体**视图里看到它们。
 
 ### Grok Bot {#grok-bot}
 
@@ -214,7 +239,7 @@ Nomo 读取哪些内容，见[隐私](#privacy)。
 | 中号 | 14 天总计、今天的 Token，以及用得最多的模型和它的占比。Grok Bot 和 Cursor 不是模型，所以这里不算它们。按智能体分组时，改为显示用得最多的智能体。 |
 | 大号 | 标题下方显示“最近 14 天”。同样的数字，外加较上周的变化和最多 5 行。Grok Bot 和 Cursor 跟你的模型并列，各占一行。超过 5 个时，最后一行合并其余的，例如 `其他 6 个模型`。按智能体分组时，改为最多显示 5 个智能体。 |
 
-每个模型在任何地方都保持同一种颜色：Claude 模型是珊瑚色，GPT 是蓝色，Grok 是金色，Gemini 是紫色，其他模型是灰色。按智能体分组时，每个智能体有自己的颜色，比如 Claude Code 是珊瑚色，Codex 是蓝色，Grok Bot 是金色。Cursor 的线是虚线。
+每个模型在任何地方都保持同一种颜色：Claude 模型是珊瑚色，GPT 是蓝色，Grok 是金色，Gemini 是紫色，Devin 的 SWE 模型是 Devin 的蓝色，其他模型是灰色。按智能体分组时，每个智能体有自己的颜色，比如 Claude Code 是珊瑚色，Codex 是蓝色，Grok Bot 是金色。Cursor 的线是虚线。
 
 **事先需要**：和 Nomo 活动一样，需要一台装了 Nomo 插件并已配对的电脑；如果是 Grok Bot，则需要在 Nomo 里连接 Cursor。见 [Nomo 活动](#nomo-activity)。
 
@@ -226,7 +251,7 @@ Nomo 读取哪些内容，见[隐私](#privacy)。
 4. 轻点“角色”，选一个。选项和 [Nomo 活动](#nomo-activity)相同。
 5. 轻点“分组方式”，选“模型”或“智能体”。
 6. 轻点“样式”，选“柱状”或“折线”。
-7. 如果选了“智能体”，再轻点下面出现的“智能体”一项，选你想要的智能体：Claude Code、Codex、OpenCode、Grok Bot 或 Cursor。一开始全部都是选中的。
+7. 如果选了“智能体”，再轻点下面出现的“智能体”一项，选你想要的智能体：Claude Code、Codex、OpenCode、Grok Bot、Cursor、Antigravity 或 Devin。一开始全部都是选中的。
 8. 轻点小组件外面，完成设置。
 
 只有“分组方式”设为“智能体”时，才会出现这个“智能体”选项。如果只选了部分智能体，数字只统计它们，总数下方的标签也会从“14 天总计”变为“所选智能体”。如果你选的智能体在这 14 天里都没有用过 Token，小组件会显示所有智能体。
@@ -362,6 +387,7 @@ Nomo 账户只列出你真正添加过的账户，所以在你添加账户之前
 
 - 离开你电脑的内容：每天、每个智能体的会话数、提示数、一天中哪些 5 分钟时段有活动，以及每个模型的 token 总数。
 - 绝不离开的内容：你的提示、智能体的回复、项目名称和文件路径。
+- 对于 Devin 和 Antigravity，插件会读取它们在你电脑上的历史记录：Devin 的会话数据库和 Antigravity 的对话文件。它只读取，并且只取上面这些计数。
 - 上传前会进行端到端加密（AES-256-GCM，使用你的配对密钥）。Nomo 的中继服务器无法读取，并会在 **35 天**后删除。
 - 其中还有一个随机的电脑 ID。它由插件在你的电脑上生成一次，保存在 `~/.config/cc-status/machine-id`。它绝不来自你的硬件信息，例如序列号、MAC 地址、电脑名称或用户名。它和其他内容一样经过端到端加密。Nomo 只用它来避免 iPhone 把同一台电脑算两次。删除这个文件就会生成新的 ID。
 - 最多每 6 小时上传一次，而且只在有变化时上传。重置命令会立即上传。如果没有变化，它每周会把同样的摘要重新上传一次，以免中继服务器把它删除。刚和新的 iPhone 配对后，会在大约一分钟内上传一次。
