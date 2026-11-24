@@ -32,14 +32,29 @@ On OpenCode 2.x:
 - **Allow** and **Deny** work from your phone, shell commands included.
 - **Deny** only cancels the other requests from the same message from the
   agent, not every request the session was waiting on.
-- **Always allow** isn't offered yet. OpenCode 2.x saves Always rules per
-  project, and Nomo will bring the button back later, with wording that says
-  so.
+- **Always allow** is saved for this project: the option reads **Always allow
+  … (this project)**. OpenCode keeps the rule even after it restarts, so Nomo
+  asks you to confirm every time.
+- **Deny with note…** works. The agent reads your note and keeps working.
+- **Reply** sends the session a message from your phone. On a session that's
+  idle, your message starts a new turn.
+- [**Interrupt**](/sessions/list#interrupt-a-running-session) stops a running
+  turn, within about a second.
+- The row shows what OpenCode is doing: **Retrying** with a countdown while
+  it waits out a rate limit, **Compacting…**, **Failed** in red with
+  OpenCode's reason, **Interrupted**, and **Idle · 2 subagents running** while
+  background subagents are still at work.
+
+  **Always allow**, **Deny with note…**, **Reply**, **Interrupt** and the new
+  states need app **2.5.3** and plugin **2.5.3** together.
+  [Update the plugin](/sessions/commands#update) if your phone doesn't offer
+  them.
 - Questions are answered at your computer. OpenCode 2.x turned questions into
   forms that plugins can't answer yet. Your phone shows that the session needs
   you; go to your computer to answer.
-- A session can show as done while a subagent is still running. OpenCode 2.3
-  and later run subagents in the background by default.
+- With a plugin older than 2.5.3, a session can show as done while a
+  subagent is still running. OpenCode 2.3 and later run subagents in the
+  background by default.
 - Restarting OpenCode takes one more step. OpenCode 2.x loads plugins in a
   shared background server that keeps running when you close its windows.
   After you install, update or pair Nomo, run this in Terminal, then open
@@ -59,7 +74,7 @@ On OpenCode 2.x:
 - Sessions, states, folders, and the Dynamic Island.
 - Permission prompts — shell commands, file edits, reads, fetches, web searches
   — with **Allow**, **Always allow** and **Deny** from the island or the app.
-  **Always allow** is OpenCode 1.x only, [for now](#opencode-2x).
+  On 2.x, **Always allow** is saved for the project — [see above](#opencode-2x).
 - Questions, with their options, answered by tapping one. OpenCode 1.x only:
   on 2.x you [answer at your computer](#opencode-2x).
 - The session's todo list, in the plan reader.
@@ -132,11 +147,12 @@ On OpenCode 1.x, **Always allow** lasts until OpenCode restarts, not just this
 session — it also covers that project's other OpenCode sessions. The option says so: **Always
 allow … (until OpenCode restarts)**.
 
-## No notes, no typed answers
+## Notes and typed answers {#no-notes-no-typed-answers}
 
-**Deny with note…** doesn't appear on OpenCode prompts. Attaching a message to a
+On OpenCode 1.x, **Deny with note…** doesn't appear. Attaching a message to a
 refusal changes what OpenCode does with it, so Nomo sends the plain refusal you
-asked for rather than collect words nobody will read.
+asked for rather than collect words nobody will read. On 2.x the note reaches
+the agent, so the option is there — [see above](#opencode-2x).
 
 Questions offer their options and nothing else — no **Other…** and no **Add
 note** — and Claude Code's **Approve + auto mode** choices don't apply here.
@@ -148,11 +164,10 @@ the editor's own server process rather than to a terminal window, so there's no
 window for your phone to bring to the front — under `opencode serve` there may
 be no window at all.
 
-[**Interrupt**](/sessions/list#interrupt-a-running-session) isn't offered on OpenCode
-sessions either.
+On OpenCode 1.x, [**Interrupt**](/sessions/list#interrupt-a-running-session)
+isn't offered either. On 2.x it is — [see above](#opencode-2x).
 
-Everything else on the card works normally; those two buttons are the only
-things missing.
+Everything else on the card works normally.
 
 ## OpenCode asks for less
 

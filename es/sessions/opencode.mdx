@@ -36,14 +36,28 @@ En OpenCode 2.x:
   de shell.
 - **Denegar** solo cancela las demás solicitudes del mismo mensaje del agente,
   no todas las que la sesión tenía en espera.
-- **Permitir siempre** todavía no aparece. OpenCode 2.x guarda las reglas de
-  Permitir siempre por proyecto, y Nomo recuperará el botón más adelante, con un
-  texto que lo diga.
+- **Permitir siempre** se guarda para este proyecto: la opción dice **Permitir
+  siempre … (este proyecto)**. OpenCode conserva la regla incluso después de
+  reiniciarse, así que Nomo te pide confirmación cada vez.
+- **Denegar con nota…** funciona. El agente lee tu nota y sigue trabajando.
+- **Responder** envía un mensaje a la sesión desde tu teléfono. En una sesión
+  inactiva, tu mensaje empieza un turno nuevo.
+- [**Detener**](/es/sessions/list#interrupt-a-running-session) para un turno en
+  curso en cosa de un segundo.
+- La fila muestra lo que está haciendo OpenCode: **Reintentando** con una cuenta
+  atrás mientras espera a que pase un límite de solicitudes, **Compactando…**,
+  **Fallido** en rojo con el motivo que da OpenCode, **Detenido** e **Inactivo ·
+  2 subagentes en ejecución** mientras los subagentes en segundo plano siguen
+  trabajando.
+
+  **Permitir siempre**, **Denegar con nota…**, **Responder**, **Detener** y los
+  estados nuevos necesitan la app **2.5.3** y el plugin **2.5.3** a la vez. Si tu
+  teléfono no los ofrece, [actualiza el plugin](/es/sessions/commands#update).
 - Las preguntas se responden en el ordenador. OpenCode 2.x convirtió las
   preguntas en formularios que los plugins todavía no pueden responder. Tu
   teléfono muestra que la sesión te necesita; ve al ordenador para responder.
-- Una sesión puede aparecer como terminada mientras un subagente sigue en
-  marcha. OpenCode 2.3 y posteriores ejecutan los subagentes en segundo plano
+- Con un plugin anterior a la 2.5.3, una sesión puede aparecer como terminada
+  mientras un subagente sigue en marcha. OpenCode 2.3 y posteriores ejecutan los subagentes en segundo plano
   por defecto.
 - Reiniciar OpenCode lleva un paso más. OpenCode 2.x carga los plugins en un
   servidor compartido en segundo plano que sigue en marcha cuando cierras sus
@@ -64,8 +78,8 @@ En OpenCode 2.x:
 - Las sesiones, los estados, las carpetas y la Dynamic Island.
 - Las solicitudes de permiso —comandos de shell, ediciones de archivos, lecturas,
   descargas y búsquedas web— con **Permitir**, **Permitir siempre** y **Denegar**
-  desde la Dynamic Island o desde la app. **Permitir siempre** es solo de
-  OpenCode 1.x, [por ahora](#opencode-2x).
+  desde la Dynamic Island o desde la app. En 2.x, **Permitir siempre** se
+  guarda para el proyecto: [más arriba](#opencode-2x).
 - Las preguntas, con sus opciones, que respondes tocando una. Solo en OpenCode
   1.x: en 2.x [respondes en el ordenador](#opencode-2x).
 - La lista de tareas de la sesión, en el lector de planes.
@@ -145,12 +159,12 @@ En OpenCode 1.x, **Permitir siempre** dura hasta que reinicias OpenCode, no solo
 cubre también las demás sesiones de OpenCode de ese proyecto. La opción lo dice:
 **Permitir siempre … (hasta reiniciar OpenCode)**.
 
-## Sin notas ni respuestas escritas {#no-notes-no-typed-answers}
+## Notas y respuestas escritas {#no-notes-no-typed-answers}
 
-**Denegar con nota…** no aparece en las solicitudes de OpenCode. Adjuntar un
-mensaje a una negativa cambia lo que OpenCode hace con ella, así que Nomo envía
-la negativa a secas que pediste en lugar de recoger palabras que nadie va a
-leer.
+En OpenCode 1.x, **Denegar con nota…** no aparece. Adjuntar un mensaje a una
+negativa cambia lo que OpenCode hace con ella, así que Nomo envía la negativa a
+secas que pediste en lugar de recoger palabras que nadie va a leer. En 2.x la
+nota llega al agente, así que la opción sí aparece: [más arriba](#opencode-2x).
 
 Las preguntas ofrecen sus opciones y nada más —sin **Otra respuesta…** y sin
 **Añadir nota**—, y las opciones **Aprobar y usar el modo automático** de Claude
@@ -163,11 +177,10 @@ al propio proceso servidor del editor, no a una ventana de terminal, así que no
 hay ninguna ventana que tu teléfono pueda poner en primer plano; con `opencode
 serve` puede que no haya ventana ninguna.
 
-[**Detener**](/es/sessions/list#interrupt-a-running-session) tampoco se ofrece en las
-sesiones de OpenCode.
+En OpenCode 1.x, [**Detener**](/es/sessions/list#interrupt-a-running-session)
+tampoco se ofrece. En 2.x sí: [más arriba](#opencode-2x).
 
-Todo lo demás de la tarjeta funciona con normalidad; solo faltan esos dos
-botones.
+Todo lo demás de la tarjeta funciona con normalidad.
 
 ## OpenCode pregunta menos {#opencode-asks-for-less}
 

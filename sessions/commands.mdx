@@ -460,7 +460,10 @@ there.
 ## update
 
 Saw **Plugin update available** in Nomo? Update the plugin on that computer.
-It takes a minute.
+It takes a minute. With plugin 2.5.3 or later, the notice names the agent
+that's behind, such as **MacBook Pro: Claude Code plugin update available**;
+update that agent's plugin. An older plugin shows the notice without an agent's
+name.
 
 <Steps>
   <Step title="Open Terminal">
@@ -618,8 +621,8 @@ It takes a minute.
   <Step title="Check it">
     On your iPhone, open Nomo. The **Plugin update available** notice is gone.
 
-    Then send a message in your agent. **Home** shows that it's coding now,
-    such as **Claude Code is coding now**.
+    Then send a message in your agent. **Home** shows **Coding now**, with
+    your agent's icon.
   </Step>
 </Steps>
 
@@ -641,8 +644,7 @@ codex plugin remove nomo@nomo
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
-rm ~/.config/opencode/plugins/nomo.js
-rm ~/.config/opencode/commands/nomo-*.md
+nomo uninstall --opencode
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
@@ -666,6 +668,10 @@ works too. Or run the agent's own script, such as
 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
 (`antigravity-install.mjs` for Antigravity, `devin-install.mjs` for Devin).
 
+To see what it would remove without removing anything, add `--dry-run`, such
+as `nomo uninstall --opencode --dry-run`. For OpenCode that's Nomo's plugin
+file and its `/nomo-*` commands, nothing else.
+
 Uninstall leaves the short `nomo` command in place, and says so. To remove it
 too, run `bun remove -g nomo-ai` (or `npm uninstall -g nomo-ai`).
 
@@ -681,7 +687,8 @@ devin-install: removed Nomo's hooks from Devin — restart devin
 
 Then restart the agent. For Cursor and Antigravity, quit the app and open it
 again, and restart any open `cursor-agent` or `agy`. For Devin, close every
-open `devin` and start it again.
+open `devin` and start it again. For OpenCode, quit it and open it again; on
+OpenCode 2.x, run `opencode service restart`.
 
 It removes only what Nomo added to that agent. Your phone stays paired, so your
 other agents keep working. To disconnect this computer as well, run
