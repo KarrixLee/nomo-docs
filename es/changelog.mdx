@@ -15,6 +15,37 @@ para ver todas las versiones.
   </div>
 </Frame>
 
+<Update label="noviembre de 2026" description="2.5.3">
+  ## Responder y detener en OpenCode 2.x
+
+  <Frame>
+    <img src="/images/changelog-2-5-3-opencode.jpg" alt="Nomo 2.5.3: ahora compatible con OpenCode 2. Una solicitud de shell de OpenCode con Permitir, Denegar y Permitir siempre en el iPhone" />
+  </Frame>
+
+  Responde a OpenCode desde tu teléfono, detén un turno en curso y mira qué está haciendo.
+
+  **Nuevo**
+
+  - **Responder a OpenCode**: envía un mensaje a una sesión de OpenCode 2.x desde tu teléfono. En una sesión inactiva, empieza un turno nuevo. [Más](/es/sessions/opencode#opencode-2x)
+  - **Detener OpenCode**: para un turno de OpenCode 2.x en curso desde tu teléfono, por red local. [Más](/es/sessions/list#interrupt-a-running-session)
+  - **Denegar con nota… y Permitir siempre en OpenCode 2.x**: el agente lee tu nota y sigue trabajando. **Permitir siempre … (este proyecto)** se guarda para el proyecto, así que Nomo te pide confirmación cada vez. [Más](/es/sessions/opencode#opencode-2x)
+  - **Estados de OpenCode**: **Reintentando** con cuenta atrás cuando hay un límite de solicitudes, **Compactando…**, **Fallido** en rojo con el motivo, **Detenido** e **Inactivo · 2 subagentes en ejecución**
+
+  **Mejorado**
+
+  - **Programando ahora** en **Inicio** muestra el icono de cada agente en marcha
+  - Los avisos de actualización del plugin dicen qué ordenador y qué agente tiene el plugin desactualizado, y ahora también aparecen en Nomo Free
+  - La hoja del plan muestra marcas de verificación de verdad en lugar de `[x]`
+  - Una respuesta que tu ordenador nunca confirma muestra **No entregado** y **Reintentar**
+
+  **Plugin 2.5.3**
+
+  - Las funciones nuevas de OpenCode necesitan la app 2.5.3 y el plugin 2.5.3 a la vez. [Actualiza el plugin](/es/sessions/commands#update)
+  - El plugin más reciente de tu ordenador siempre ejecuta el proceso auxiliar compartido en segundo plano, así que las respuestas ya no se pierden cuando el plugin de otro agente es más antiguo
+  - Cada agente informa de la versión de su propio plugin
+  - `nomo uninstall --opencode` quita Nomo de OpenCode en una sola línea. [Más](/es/sessions/commands#uninstall)
+</Update>
+
 <Update label="noviembre de 2026" description="Plugin 2.5.2">
   ## OpenCode 2.x
 

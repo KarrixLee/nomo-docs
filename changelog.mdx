@@ -15,6 +15,37 @@ You can also read this list in the app. On **Home**, close the What's New card
   </div>
 </Frame>
 
+<Update label="November 2026" description="2.5.3">
+  ## OpenCode 2.x, like the other agents
+
+  <Frame>
+    <img src="/images/changelog-2-5-3-opencode.jpg" alt="Nomo 2.5.3: Now supporting OpenCode 2. An OpenCode shell request with Allow, Deny and Always allow on iPhone" />
+  </Frame>
+
+  Reply to OpenCode from your phone, stop a running turn, and see what it's doing.
+
+  **New**
+
+  - **Reply to OpenCode**: send an OpenCode 2.x session a message from your phone. On an idle session, it starts a new turn. [More](/sessions/opencode#opencode-2x)
+  - **Interrupt OpenCode**: stop a running OpenCode 2.x turn from your phone, over a local network link. [More](/sessions/list#interrupt-a-running-session)
+  - **Deny with note… and Always allow on OpenCode 2.x**: the agent reads your note and keeps working. **Always allow … (this project)** is saved for the project, so Nomo asks you to confirm each time. [More](/sessions/opencode#opencode-2x)
+  - **OpenCode states**: **Retrying** with a countdown when it's rate limited, **Compacting…**, **Failed** in red with the reason, **Interrupted**, and **Idle · 2 subagents running**
+
+  **Improved**
+
+  - **Coding now** on **Home** shows the icon of each agent that's running
+  - Plugin update notices name the computer and the agent whose plugin is behind, and now show on Nomo Free too
+  - The plan sheet shows real checkmarks instead of `[x]`
+  - A reply your computer never confirms shows **Not delivered** and **Try again**
+
+  **Plugin 2.5.3**
+
+  - The new OpenCode features need app 2.5.3 and plugin 2.5.3 together. [Update the plugin](/sessions/commands#update)
+  - The newest plugin on your computer always runs the shared background helper, so replies no longer get lost when another agent's plugin is older
+  - Each agent reports its own plugin version
+  - `nomo uninstall --opencode` removes Nomo from OpenCode in one line. [More](/sessions/commands#uninstall)
+</Update>
+
 <Update label="November 2026" description="Plugin 2.5.2">
   ## OpenCode 2.x
 
