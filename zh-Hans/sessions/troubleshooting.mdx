@@ -85,7 +85,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="我开了一个会话，它一直没出现" icon="play">
-  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode；重启 Cursor；重启 Antigravity；重启 `devin`。
+  看 **Hooks**——在 OpenCode 里叫 **Plugin**，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 `/hooks`；重启 OpenCode（2.x 上用 `opencode service restart`）；重启 Cursor；重启 Antigravity；重启 `devin`。
 
   Codex 需要你明确信任 hook，而一次插件更新会重新开启那次审核，所以在那边，更新之后运行 `/hooks` 通常就是答案——[原因](/zh-Hans/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
@@ -93,7 +93,7 @@ $nomo-status
 <Accordion title="偏偏 OpenCode 什么都不显示" icon="rotate">
   **Plugin** 那一行显示已安装却毫无活动，通常意味着插件装上时 OpenCode 已经在运行了。OpenCode 只在服务器启动时加载一次插件，所以退出再重开就是全部的修复——只重新加载 TUI 是不够的。这也是[重置前需要关闭 OpenCode](/zh-Hans/sessions/opencode#reset-needs-opencode-closed) 的同一个原因。
 
-  在 OpenCode 2.x 上，Nomo 需要插件 **2.5.2** 或更高版本——[更新插件](/zh-Hans/sessions/commands#update)，然后重启 OpenCode。
+  在 OpenCode 2.x 上，Nomo 需要插件 **2.5.2** 或更高版本——[更新插件](/zh-Hans/sessions/commands#update)。另外，在 2.x 上关掉 OpenCode 的窗口并不会重启它：在终端里运行 `opencode service restart`，再打开 OpenCode。
 </Accordion>
 
 <Accordion title="偏偏 Cursor 什么都不显示" icon="arrow-pointer">
@@ -187,7 +187,7 @@ $nomo-status
 
   用 Devin 插件的话，改为在 Devin 里输入 `/nomo:reset`。
 
-  活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。OpenCode 的会话行属于 OpenCode 的服务器，所以要是有一行清不掉，先退出 OpenCode。
+  活跃的会话、你的配对和密钥都不会被动——[它会打印什么](/zh-Hans/sessions/commands#reset)。OpenCode 的会话行属于 OpenCode 的服务器，所以要是有一行清不掉，先退出 OpenCode（2.x 上运行 `opencode service stop`）。
 </Accordion>
 
 <Accordion title="热力图或连续记录没有更新" icon="calendar">
@@ -365,7 +365,7 @@ $nomo-status
       "name": "我开了一个会话，它一直没出现",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "看 Hooks 这一行——在 OpenCode 里叫 Plugin，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 /hooks；重启 OpenCode；重启 Cursor 或 Antigravity。"
+        "text": "看 Hooks 这一行——在 OpenCode 里叫 Plugin，因为它没有 hook。如果它没在触发，就说明你的智能体根本没把任何东西交给 Nomo，而每个智能体都只在启动时加载这套接线：重启 Claude Code；在 Codex 里运行 /hooks；重启 OpenCode（2.x 上用 opencode service restart）；重启 Cursor 或 Antigravity。"
       }
     },
     {
@@ -373,7 +373,7 @@ $nomo-status
       "name": "偏偏 OpenCode 什么都不显示",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Plugin 那一行显示已安装却毫无活动，通常意味着插件装上时 OpenCode 已经在运行了。OpenCode 只在服务器启动时加载一次插件，所以退出再重开就是全部的修复——只重新加载 TUI 是不够的。在 OpenCode 2.x 上，Nomo 需要插件 2.5.2 或更高版本：更新插件，然后重启 OpenCode。"
+        "text": "Plugin 那一行显示已安装却毫无活动，通常意味着插件装上时 OpenCode 已经在运行了。OpenCode 只在服务器启动时加载一次插件，所以退出再重开就是全部的修复——只重新加载 TUI 是不够的。在 OpenCode 2.x 上，Nomo 需要插件 2.5.2 或更高版本：更新插件。另外，在 2.x 上关掉 OpenCode 的窗口并不会重启它：在终端里运行 opencode service restart，再打开 OpenCode。"
       }
     },
     {

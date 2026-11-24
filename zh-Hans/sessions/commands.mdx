@@ -202,7 +202,7 @@ Claude Code — you are here
 </ResponseField>
 
 <ResponseField name="Hooks">
-  你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载；Cursor 或 Antigravity 也要重启，它们只在启动时加载 hook。
+  你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载（2.x 上用 `opencode service restart`）；Cursor 或 Antigravity 也要重启，它们只在启动时加载 hook。
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -332,7 +332,7 @@ Pairing and keys were not touched — to disconnect this computer, run nomo unpa
 
 一次重置覆盖这台电脑上的所有智能体。
 
-会话行看着陈旧或重复时，这是最稳妥的一招，因为它会告诉你自己没动过什么。OpenCode 的会话行属于 OpenCode 的**服务器**，所以要是有一行清不掉，先退出 OpenCode——见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode#reset-needs-opencode-closed)。
+会话行看着陈旧或重复时，这是最稳妥的一招，因为它会告诉你自己没动过什么。OpenCode 的会话行属于 OpenCode 的**服务器**，所以要是有一行清不掉，先退出 OpenCode（2.x 上运行 `opencode service stop`）——见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode#reset-needs-opencode-closed)。
 
 ## unpair {#unpair}
 
@@ -414,33 +414,45 @@ nomo unpair
       </Tab>
 
       <Tab title="OpenCode" icon="/images/opencode.svg">
+        有两种方法，用哪个都行。在终端里：
+
         ```bash
         bunx nomo-ai --opencode
         ```
 
-        然后重启 OpenCode。
+        或者在 OpenCode 里输入下面这条并发送：
+
+        ```
+        /nomo-update
+        ```
+
+        只为一个项目装了 Nomo（`--project`）？那就只能在那个项目的 OpenCode 里用 `/nomo-update`：`bunx nomo-ai` 只更新全局安装。
+
+        然后重启 OpenCode，让新版本加载：
+
+        - **OpenCode 2.x**：在终端里运行下面这条，再打开 OpenCode。光关掉窗口不够——[原因](/zh-Hans/sessions/opencode#opencode-2x)。
+
+          ```bash
+          opencode service restart
+          ```
+
+        - **OpenCode 1.x**：退出 OpenCode，再重新打开。
+
+        不确定自己是哪个版本？运行 `opencode --version`。
 
         <Accordion title="详细信息">
-          你也可以在 OpenCode 里更新。输入下面这条并发送：
-
-          ```
-          /nomo-update
-          ```
-
-          只为一个项目装了 Nomo（`--project`）？就在那个项目的 OpenCode 里用 `/nomo-update`。`bunx nomo-ai` 不管你在哪个文件夹里运行，都只更新全局安装。
-
-          它在改动任何东西之前会先检查。已经是最新的，它就停下：
+          `/nomo-update` 在改动任何东西之前会先检查。已经是最新的，它就停下：
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Already on 2.1.22 — nothing to do.
+          Already on 2.5.2 — nothing to do.
           ```
 
           有更新时，它会先告诉你：
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Update available: 2.1.22 → 2.1.23.
+          Update available: 2.5.1 → 2.5.2.
           ```
 
           接着它下载更新，并重新运行安装脚本，新的 `/nomo-*` 命令就是这一步加进来的。OpenCode 只在启动时加载插件，所以在你重启之前，跑着的仍然是旧版本。

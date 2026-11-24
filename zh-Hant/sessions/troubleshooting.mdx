@@ -84,7 +84,7 @@ $nomo-status
 </Accordion>
 
 <Accordion title="我開了一個 session，它卻從來沒出現" icon="play">
-  看 **Hooks** — 在 OpenCode 裡則是 **Plugin**，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 `/hooks`、重新啟動 OpenCode、重新啟動 Cursor、重新啟動 Antigravity、重新啟動 `devin`。
+  看 **Hooks** — 在 OpenCode 裡則是 **Plugin**，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 `/hooks`、重新啟動 OpenCode（2.x 上用 `opencode service restart`）、重新啟動 Cursor、重新啟動 Antigravity、重新啟動 `devin`。
 
   Codex 的 hooks 必須被明確信任，而一次外掛程式更新會重新開啟那道審核，所以在 Codex 那邊，更新後執行 `/hooks` 通常就是答案 — [為什麼](/zh-Hant/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
@@ -92,7 +92,7 @@ $nomo-status
 <Accordion title="偏偏只有 OpenCode 什麼都不顯示" icon="rotate">
   一列 **Plugin** 寫著已安裝卻沒有任何活動，通常表示外掛程式送達時 OpenCode 已經在跑了。OpenCode 只在伺服器啟動時載入一次外掛程式，所以把它結束再重新開起來就是全部的解法 — 只重新載入 TUI 是不夠的。這和[重設前要先關閉 OpenCode](/zh-Hant/sessions/opencode#reset-needs-opencode-closed) 是同一個原因。
 
-  在 OpenCode 2.x 上，Nomo 需要外掛程式 **2.5.2** 或更新版本 — [更新外掛程式](/zh-Hant/sessions/commands#update)，然後重新啟動 OpenCode。
+  在 OpenCode 2.x 上，Nomo 需要外掛程式 **2.5.2** 或更新版本 — [更新外掛程式](/zh-Hant/sessions/commands#update)。另外，在 2.x 上關掉 OpenCode 的視窗並不會重新啟動它：請在終端機執行 `opencode service restart`，再開啟 OpenCode。
 </Accordion>
 
 <Accordion title="偏偏只有 Cursor 什麼都不顯示" icon="arrow-pointer">
@@ -186,7 +186,7 @@ $nomo-status
 
   使用 Devin 外掛程式時，改在 Devin 裡輸入 `/nomo:reset`。
 
-  進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。OpenCode 的列屬於 OpenCode 的伺服器，所以有一列清不掉時，請先結束 OpenCode。
+  進行中的 sessions、你的配對和金鑰都不會被動到 — [它會印出什麼](/zh-Hant/sessions/commands#reset)。OpenCode 的列屬於 OpenCode 的伺服器，所以有一列清不掉時，請先結束 OpenCode（2.x 上請執行 `opencode service stop`）。
 </Accordion>
 
 <Accordion title="熱度圖或連續紀錄沒有更新" icon="calendar">
@@ -364,7 +364,7 @@ $nomo-status
       "name": "我開了一個 session，它卻從來沒出現",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "看 Hooks 那一列 — 在 OpenCode 裡則是 Plugin，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 /hooks、重新啟動 OpenCode、重新啟動 Cursor 或 Antigravity。"
+        "text": "看 Hooks 那一列 — 在 OpenCode 裡則是 Plugin，因為它沒有 hooks。如果它沒在觸發，你的代理就沒有把任何東西交給 Nomo，而每個代理都只在啟動時載入那套接線：重新啟動 Claude Code、在 Codex 裡執行 /hooks、重新啟動 OpenCode（2.x 上用 opencode service restart）、重新啟動 Cursor 或 Antigravity。"
       }
     },
     {
@@ -372,7 +372,7 @@ $nomo-status
       "name": "偏偏只有 OpenCode 什麼都不顯示",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "一列 Plugin 寫著已安裝卻沒有任何活動，通常表示外掛程式送達時 OpenCode 已經在跑了。OpenCode 只在伺服器啟動時載入一次外掛程式，所以把它結束再重新開起來就是全部的解法 — 只重新載入 TUI 是不夠的。在 OpenCode 2.x 上，Nomo 需要外掛程式 2.5.2 或更新版本：更新外掛程式，然後重新啟動 OpenCode。"
+        "text": "一列 Plugin 寫著已安裝卻沒有任何活動，通常表示外掛程式送達時 OpenCode 已經在跑了。OpenCode 只在伺服器啟動時載入一次外掛程式，所以把它結束再重新開起來就是全部的解法 — 只重新載入 TUI 是不夠的。在 OpenCode 2.x 上，Nomo 需要外掛程式 2.5.2 或更新版本：更新外掛程式。另外，在 2.x 上關掉 OpenCode 的視窗並不會重新啟動它：請在終端機執行 opencode service restart，再開啟 OpenCode。"
       }
     },
     {

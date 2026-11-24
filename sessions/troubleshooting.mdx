@@ -129,7 +129,8 @@ What each row means, with a healthy machine and a broken one side by side, is on
 <Accordion title="I started a session and it never appeared" icon="play">
   **Hooks** — or **Plugin** in OpenCode, which has none. If it isn't firing,
   your agent isn't handing Nomo anything, and every agent loads that wiring only
-  at startup: restart Claude Code, run `/hooks` in Codex, restart OpenCode,
+  at startup: restart Claude Code, run `/hooks` in Codex, restart OpenCode
+  (`opencode service restart` on 2.x),
   restart Cursor, restart Antigravity, restart `devin`.
 
   Codex trusts hooks explicitly and a plugin update re-opens that review, so
@@ -145,7 +146,9 @@ What each row means, with a healthy machine and a broken one side by side, is on
   closed](/sessions/opencode#reset-needs-opencode-closed).
 
   On OpenCode 2.x, Nomo needs plugin **2.5.2** or later —
-  [update it](/sessions/commands#update), then restart OpenCode.
+  [update it](/sessions/commands#update). And on 2.x, closing OpenCode's windows
+  doesn't restart it: run `opencode service restart` in Terminal, then open
+  OpenCode.
 </Accordion>
 
 <Accordion title="Cursor in particular shows nothing" icon="arrow-pointer">
@@ -257,7 +260,8 @@ What each row means, with a healthy machine and a broken one side by side, is on
 
   Live sessions, your pairing and your keys are left alone —
   [what it prints](/sessions/commands#reset). An OpenCode row belongs to
-  OpenCode's server, so quit OpenCode first if one refuses to clear.
+  OpenCode's server, so quit OpenCode first if one refuses to clear (on 2.x, run
+  `opencode service stop`).
 </Accordion>
 
 <Accordion title="My heatmap or streak looks out of date" icon="calendar">
@@ -517,7 +521,7 @@ that command there.
       "name": "I started a session and it never appeared",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Read the Hooks row — Plugin in OpenCode, which has none. If it isn't firing, your agent isn't handing Nomo anything, and every agent loads that wiring only at startup: restart Claude Code, run /hooks in Codex, restart OpenCode, restart Cursor or Antigravity."
+        "text": "Read the Hooks row — Plugin in OpenCode, which has none. If it isn't firing, your agent isn't handing Nomo anything, and every agent loads that wiring only at startup: restart Claude Code, run /hooks in Codex, restart OpenCode (opencode service restart on 2.x), restart Cursor or Antigravity."
       }
     },
     {
@@ -525,7 +529,7 @@ that command there.
       "name": "OpenCode in particular shows nothing",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A Plugin row that says installed with no activity usually means OpenCode was already running when the plugin arrived. OpenCode loads plugins once, when its server starts, so quitting it and starting it again is the whole fix — reloading the TUI isn't enough. On OpenCode 2.x, Nomo needs plugin 2.5.2 or later: update it, then restart OpenCode."
+        "text": "A Plugin row that says installed with no activity usually means OpenCode was already running when the plugin arrived. OpenCode loads plugins once, when its server starts, so quitting it and starting it again is the whole fix — reloading the TUI isn't enough. On OpenCode 2.x, Nomo needs plugin 2.5.2 or later: update it. And on 2.x, closing OpenCode's windows doesn't restart it: run opencode service restart in Terminal, then open OpenCode."
       }
     },
     {
