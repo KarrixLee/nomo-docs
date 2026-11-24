@@ -633,8 +633,8 @@ ese ordenador. Tarda un minuto.
     En tu iPhone, abre Nomo. El aviso **Actualización del plugin disponible**
     ya no está.
 
-    Después envía un mensaje en tu agente. **Inicio** muestra que está
-    programando, por ejemplo **Claude Code está programando**.
+    Después envía un mensaje en tu agente. **Inicio** muestra **Programando
+    ahora**, con el icono de tu agente.
   </Step>
 </Steps>
 
@@ -657,8 +657,7 @@ codex plugin remove nomo@nomo
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
-rm ~/.config/opencode/plugins/nomo.js
-rm ~/.config/opencode/commands/nomo-*.md
+nomo uninstall --opencode
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
@@ -683,6 +682,10 @@ Consulta [Si no se encuentra `nomo`](#nomo-not-found). La forma antigua
 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
 (`antigravity-install.mjs` para Antigravity, `devin-install.mjs` para Devin).
 
+Para ver qué quitaría sin quitar nada, añade `--dry-run`, como
+`nomo uninstall --opencode --dry-run`. En OpenCode solo quita el archivo del
+plugin de Nomo y sus comandos `/nomo-*`.
+
 Desinstalar deja el comando corto `nomo` en su sitio, y te lo dice. Para
 quitarlo también, ejecuta `bun remove -g nomo-ai` (o `npm uninstall -g nomo-ai`).
 
@@ -698,7 +701,8 @@ devin-install: removed Nomo's hooks from Devin — restart devin
 
 Después reinicia el agente. En Cursor y Antigravity, cierra la app y vuelve a
 abrirla, y reinicia cualquier `cursor-agent` o `agy` abierto. En Devin, cierra
-todos los `devin` abiertos y vuelve a iniciarlo.
+todos los `devin` abiertos y vuelve a iniciarlo. En OpenCode, ciérralo y
+vuelve a abrirlo; en OpenCode 2.x, ejecuta `opencode service restart`.
 
 Solo quita lo que Nomo añadió a ese agente. Tu teléfono sigue vinculado, así que
 tus otros agentes siguen funcionando. Para desconectar también este ordenador,

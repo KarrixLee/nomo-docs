@@ -618,8 +618,8 @@ Nomo에 **플러그인 업데이트 사용 가능**이 보이나요? 그 컴퓨�
     iPhone에서 Nomo를 엽니다. **플러그인 업데이트 사용 가능** 알림이
     사라집니다.
 
-    그런 다음 에이전트에서 메시지를 보냅니다. **홈**에 코딩 중이라고
-    표시됩니다. 예: **Claude Code 코딩 중**
+    그런 다음 에이전트에서 메시지를 보냅니다. **홈**에 에이전트 아이콘과 함께
+    **코딩 중**이 표시됩니다.
   </Step>
 </Steps>
 
@@ -642,8 +642,7 @@ codex plugin remove nomo@nomo
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
-rm ~/.config/opencode/plugins/nomo.js
-rm ~/.config/opencode/commands/nomo-*.md
+nomo uninstall --opencode
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
@@ -668,6 +667,10 @@ Devin 플러그인으로 설치했다면 `devin plugins remove nomo`입니다.
 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`
 (Antigravity는 `antigravity-install.mjs`, Devin은 `devin-install.mjs`).
 
+아무것도 지우지 않고 무엇이 제거될지만 보려면 `--dry-run`을 붙이십시오. 예:
+`nomo uninstall --opencode --dry-run`. OpenCode에서는 Nomo의 플러그인 파일과
+`/nomo-*` 명령만 제거합니다.
+
 제거해도 짧은 `nomo` 명령은 남으며, 그렇다고 알려 줍니다. 그것도 지우려면 `bun remove -g nomo-ai`(또는
 `npm uninstall -g nomo-ai`)를 실행하십시오.
 
@@ -683,7 +686,8 @@ devin-install: removed Nomo's hooks from Devin — restart devin
 
 그런 다음 에이전트를 재시작하십시오. Cursor와 Antigravity는 앱을 종료했다가 다시
 열고, 열려 있는 `cursor-agent`나 `agy`도 재시작합니다. Devin은 열려 있는
-`devin`을 모두 닫고 다시 시작합니다.
+`devin`을 모두 닫고 다시 시작합니다. OpenCode는 종료했다가 다시 열고,
+OpenCode 2.x에서는 `opencode service restart`를 실행합니다.
 
 Nomo가 그 에이전트에 추가한 것만 제거합니다. 휴대폰 페어링은 그대로 남으므로
 다른 에이전트는 계속 작동합니다. 이 컴퓨터의 연결도 끊으려면

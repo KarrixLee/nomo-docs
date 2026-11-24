@@ -13,6 +13,33 @@ icon: "clock-rotate-left"
   </div>
 </Frame>
 
+<Update label="2026年11月" description="2.5.3">
+  ## OpenCode 2.x 的回复与停止
+
+  在手机上回复 OpenCode、停掉正在运行的这一轮，还能看到它正在做什么。
+
+  **新增**
+
+  - **回复 OpenCode**：在手机上给 OpenCode 2.x 的会话发消息。会话空闲时，会开始新的一轮。[更多](/zh-Hans/sessions/opencode#opencode-2x)
+  - **停止 OpenCode**：通过本地网络，在手机上停掉 OpenCode 2.x 正在运行的这一轮。[更多](/zh-Hans/sessions/list#interrupt-a-running-session)
+  - **OpenCode 2.x 的“拒绝并附注…”与“始终允许”**：智能体会读你的附注，然后继续工作。**始终允许…（此项目）**会保存在项目里，所以 Nomo 每次都会请你确认。[更多](/zh-Hans/sessions/opencode#opencode-2x)
+  - **OpenCode 的状态**：遇到速率限制时带倒计时的**重试中**、**压缩中…**、红色并附上原因的**失败**、**已停止**，以及**空闲 · 2 个子代理运行中**
+
+  **改进**
+
+  - **首页**的**正在编程**会显示每个正在运行的智能体的图标
+  - 插件更新提示会写出电脑名称，以及是哪个智能体的插件版本较旧，Nomo Free 现在也能看到
+  - 计划面板会显示真正的勾选标记，而不是 `[x]`
+  - 电脑一直没有确认收到的回复，会显示**未送达**和**重试**
+
+  **插件 2.5.3**
+
+  - OpenCode 的新功能需要 App 2.5.3 和插件 2.5.3 一起使用。[更新插件](/zh-Hans/sessions/commands#update)
+  - 电脑上最新的插件总会负责运行共用的后台辅助进程，所以即使另一个智能体的插件较旧，回复也不会再丢失
+  - 每个智能体都会上报自己的插件版本
+  - 用 `nomo uninstall --opencode` 一行就能从 OpenCode 移除 Nomo。[更多](/zh-Hans/sessions/commands#uninstall)
+</Update>
+
 <Update label="2026年11月" description="插件 2.5.2">
   ## OpenCode 2.x
 

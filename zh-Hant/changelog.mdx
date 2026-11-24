@@ -13,6 +13,33 @@ icon: "clock-rotate-left"
   </div>
 </Frame>
 
+<Update label="2026年11月" description="2.5.3">
+  ## OpenCode 2.x 的回覆與停止
+
+  從手機回覆 OpenCode、停下正在執行的這一輪，也看得到它正在做什麼。
+
+  **新增**
+
+  - **回覆 OpenCode**：從手機傳訊息給 OpenCode 2.x 的 session。session 正閒置時，會開始新的一輪。[更多](/zh-Hant/sessions/opencode#opencode-2x)
+  - **停止 OpenCode**：透過區域網路，從手機停下 OpenCode 2.x 正在執行的這一輪。[更多](/zh-Hant/sessions/list#interrupt-a-running-session)
+  - **OpenCode 2.x 的「拒絕並附註…」與「一律允許」**：代理會讀你的附註，然後繼續工作。「一律允許…（此專案）」會儲存在專案裡，所以 Nomo 每次都會請你確認。[更多](/zh-Hant/sessions/opencode#opencode-2x)
+  - **OpenCode 的狀態**：遇到速率限制時附倒數的「重試中」、「壓縮中…」、紅色並附上原因的「失敗」、「已停止」，以及「閒置 · 2 個子代理執行中」
+
+  **改進**
+
+  - **首頁**的「正在寫程式」會顯示每個正在執行的代理的圖示
+  - 外掛程式更新通知會寫出電腦名稱，以及是哪個代理的外掛程式比較舊，Nomo Free 現在也看得到
+  - 計畫表單會顯示真正的勾選符號，而不是 `[x]`
+  - 電腦一直沒有確認收到的回覆，會顯示「未送達」和「重試」
+
+  **外掛程式 2.5.3**
+
+  - OpenCode 的新功能需要 App 2.5.3 和外掛程式 2.5.3 一起使用。[更新外掛程式](/zh-Hant/sessions/commands#update)
+  - 電腦上最新的外掛程式一定會負責執行共用的背景小幫手，所以就算另一個代理的外掛程式比較舊，回覆也不會再遺失
+  - 每個代理都會回報自己的外掛程式版本
+  - 用 `nomo uninstall --opencode` 一行就能從 OpenCode 移除 Nomo。[更多](/zh-Hant/sessions/commands#uninstall)
+</Update>
+
 <Update label="2026年11月" description="外掛程式 2.5.2">
   ## OpenCode 2.x
 

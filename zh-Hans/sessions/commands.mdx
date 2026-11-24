@@ -510,7 +510,7 @@ nomo unpair
   <Step title="检查一下">
     在 iPhone 上打开 Nomo。**插件有可用更新**的提示已经不见了。
 
-    然后在你的智能体里发一条消息。**首页**会显示它正在编程，比如 **Claude Code 正在编程**。
+    然后在你的智能体里发一条消息。**首页**会显示**正在编程**，以及你的智能体的图标。
   </Step>
 </Steps>
 
@@ -530,8 +530,7 @@ codex plugin remove nomo@nomo
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
-rm ~/.config/opencode/plugins/nomo.js
-rm ~/.config/opencode/commands/nomo-*.md
+nomo uninstall --opencode
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
@@ -552,6 +551,8 @@ nomo uninstall --devin
 
 找不到 `nomo`？改用 `bunx nomo-ai uninstall --cursor`。见[找不到 `nomo` 时](#nomo-not-found)。旧的写法 `--uninstall` 也能用。也可以直接运行那个智能体自己的脚本，比如 `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall`（Antigravity 用 `antigravity-install.mjs`，Devin 用 `devin-install.mjs`）。
 
+想先看看会移除什么、但不真的移除，就加上 `--dry-run`，比如 `nomo uninstall --opencode --dry-run`。对 OpenCode 来说，移除的只有 Nomo 的插件文件和 `/nomo-*` 命令。
+
 卸载不会移除简短的 `nomo` 命令，并会告诉你这一点。想把它也去掉，运行 `bun remove -g nomo-ai`（或 `npm uninstall -g nomo-ai`）。
 
 Antigravity 和 Devin 完成后会告诉你：
@@ -564,7 +565,7 @@ Antigravity 和 Devin 完成后会告诉你：
 devin-install: removed Nomo's hooks from Devin — restart devin
 ```
 
-然后重启那个智能体。Cursor 和 Antigravity：退出应用再重新打开，并重启所有开着的 `cursor-agent` 或 `agy`。Devin：关掉每一个开着的 `devin`，再重新启动。
+然后重启那个智能体。Cursor 和 Antigravity：退出应用再重新打开，并重启所有开着的 `cursor-agent` 或 `agy`。Devin：关掉每一个开着的 `devin`，再重新启动。OpenCode：退出再重新打开；在 OpenCode 2.x 上，运行 `opencode service restart`。
 
 它只移除 Nomo 加到那个智能体里的东西。手机仍保持配对，你的其他智能体照常工作。如果也想断开这台电脑，运行 `nomo unpair`，在卸载之前或之后都可以。见 [unpair](#unpair)。
 

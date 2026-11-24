@@ -510,7 +510,7 @@ Nomo に **プラグインの更新があります** と表示されたら、そ
   <Step title="確認する">
     iPhone で Nomo を開きます。**プラグインの更新があります** の通知が消えています。
 
-    次に、エージェントでメッセージを送ります。**ホーム**に、コーディング中であることが表示されます。例: **Claude Codeがコーディング中**
+    次に、エージェントでメッセージを送ります。**ホーム**に、エージェントのアイコンと **コーディング中** が表示されます。
   </Step>
 </Steps>
 
@@ -530,8 +530,7 @@ codex plugin remove nomo@nomo
 ```
 
 ```bash OpenCode icon="/images/opencode.svg"
-rm ~/.config/opencode/plugins/nomo.js
-rm ~/.config/opencode/commands/nomo-*.md
+nomo uninstall --opencode
 ```
 
 ```bash Cursor icon="/images/providers/cursor.svg"
@@ -552,6 +551,8 @@ Devin プラグインの場合は `devin plugins remove nomo` です。
 
 `nomo` が見つからない場合は、代わりに `bunx nomo-ai uninstall --cursor` を使ってください。[`nomo` が見つからない場合](#nomo-not-found)をご覧ください。以前の書き方の `--uninstall` も使えます。または、エージェント専用のスクリプトを実行します。たとえば `node ~/.nomo/plugin/scripts/cursor-install.mjs --uninstall` です（Antigravity なら `antigravity-install.mjs`、Devin なら `devin-install.mjs`）。
 
+何も削除せずに、削除される内容だけを確認するには、`--dry-run` を付けます。たとえば `nomo uninstall --opencode --dry-run` です。OpenCode の場合、対象は Nomo のプラグインファイルと `/nomo-*` コマンドだけです。
+
 アンインストールしても、短い `nomo` コマンドは残ります。そのことも表示されます。これも削除するには、`bun remove -g nomo-ai`（または `npm uninstall -g nomo-ai`）を実行します。
 
 Antigravity と Devin は、完了すると次のように表示します。
@@ -564,7 +565,7 @@ Antigravity と Devin は、完了すると次のように表示します。
 devin-install: removed Nomo's hooks from Devin — restart devin
 ```
 
-そのあとエージェントを再起動します。Cursor と Antigravity は、アプリを終了してもう一度開き、開いている `cursor-agent` や `agy` も再起動してください。Devin は、開いている `devin` をすべて閉じて、もう一度起動してください。
+そのあとエージェントを再起動します。Cursor と Antigravity は、アプリを終了してもう一度開き、開いている `cursor-agent` や `agy` も再起動してください。Devin は、開いている `devin` をすべて閉じて、もう一度起動してください。OpenCode は、終了してもう一度開いてください。OpenCode 2.x では `opencode service restart` を実行します。
 
 削除されるのは、Nomo がそのエージェントに追加したものだけです。iPhone とのペアリングはそのまま残るので、ほかのエージェントは引き続き使えます。このコンピュータの接続も切りたい場合は、`nomo unpair` を実行してください。アンインストールの前でも後でもかまいません。[unpair](#unpair) をご覧ください。
 
