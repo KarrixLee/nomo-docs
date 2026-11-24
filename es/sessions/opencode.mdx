@@ -21,13 +21,40 @@ silencio.
   etiqueta que dice de qué agente se trataba.
 </Note>
 
+## OpenCode 1.x y 2.x {#opencode-2x}
+
+Nomo funciona con las dos, a partir del plugin **2.5.2**. Antes de la 2.5.2,
+OpenCode 2.x se negaba a cargar Nomo, así que sus sesiones nunca llegaban a tu
+teléfono. Si es tu caso, [actualiza el plugin](/es/sessions/commands#update) y
+reinicia OpenCode.
+
+En OpenCode 2.x:
+
+- Las sesiones, el estado en directo, el título y el modelo aparecen en tu
+  teléfono como antes.
+- **Permitir** y **Denegar** funcionan desde tu teléfono, también con comandos
+  de shell.
+- **Denegar** solo cancela las demás solicitudes del mismo mensaje del agente,
+  no todas las que la sesión tenía en espera.
+- **Permitir siempre** todavía no aparece. OpenCode 2.x guarda las reglas de
+  Permitir siempre por proyecto, y Nomo recuperará el botón más adelante, con un
+  texto que lo diga.
+- Las preguntas se responden en el ordenador. OpenCode 2.x convirtió las
+  preguntas en formularios que los plugins todavía no pueden responder. Tu
+  teléfono muestra que la sesión te necesita; ve al ordenador para responder.
+- Una sesión puede aparecer como terminada mientras un subagente sigue en
+  marcha. OpenCode 2.3 y posteriores ejecutan los subagentes en segundo plano
+  por defecto.
+
 ## Lo que funciona igual {#what-works-the-same}
 
 - Las sesiones, los estados, las carpetas y la Dynamic Island.
 - Las solicitudes de permiso —comandos de shell, ediciones de archivos, lecturas,
   descargas y búsquedas web— con **Permitir**, **Permitir siempre** y **Denegar**
-  desde la Dynamic Island o desde la app.
-- Las preguntas, con sus opciones, que respondes tocando una.
+  desde la Dynamic Island o desde la app. **Permitir siempre** es solo de
+  OpenCode 1.x, [por ahora](#opencode-2x).
+- Las preguntas, con sus opciones, que respondes tocando una. Solo en OpenCode
+  1.x: en 2.x [respondes en el ordenador](#opencode-2x).
 - La lista de tareas de la sesión, en el lector de planes.
 
 ## La CLI y la app de escritorio {#the-cli-and-the-desktop-app}
@@ -86,6 +113,9 @@ una máquina recién vinculada no muestra nada.
 
 ## Denegar decide sobre todo el turno {#deny-is-a-decision-about-the-turn}
 
+Esta sección describe OpenCode 1.x. En 2.x, **Denegar** funciona de otra
+forma: [ver arriba](#opencode-2x).
+
 OpenCode entiende un permiso rechazado como una respuesta sobre lo que está
 haciendo el agente, no sobre una herramienta concreta. Así que denegar desde tu
 teléfono rechaza también **todos los demás permisos que esa sesión tenía en
@@ -96,7 +126,7 @@ Rechazar una pregunta termina el turno en lugar de volver a preguntar.
 **Permitir** y **Permitir siempre** resuelven únicamente la tarjeta que has
 tocado.
 
-**Permitir siempre** dura hasta que reinicias OpenCode, no solo esta sesión, y
+En OpenCode 1.x, **Permitir siempre** dura hasta que reinicias OpenCode, no solo esta sesión, y
 cubre también las demás sesiones de OpenCode de ese proyecto. La opción lo dice:
 **Permitir siempre … (hasta reiniciar OpenCode)**.
 
