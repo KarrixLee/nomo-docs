@@ -30,6 +30,8 @@ On OpenCode 2.x:
 
 - Sessions, live status, the title and the model show on your phone as before.
 - **Allow** and **Deny** work from your phone, shell commands included.
+- **Deny** only cancels the other requests from the same message from the
+  agent, not every request the session was waiting on.
 - **Always allow** isn't offered yet. OpenCode 2.x saves Always rules per
   project, and Nomo will bring the button back later, with wording that says
   so.
@@ -98,6 +100,9 @@ same restart the [install](/setup/manual) asks for, and it's the first thing to
 check when a freshly paired machine shows nothing.
 
 ## Deny is a decision about the turn
+
+This section describes OpenCode 1.x. On 2.x, **Deny** works differently —
+[see above](#opencode-2x).
 
 OpenCode treats a rejected permission as an answer about what the agent is
 doing, not about one tool. So denying from your phone also rejects **every other
