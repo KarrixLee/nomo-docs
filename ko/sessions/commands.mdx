@@ -256,7 +256,7 @@ Claude Code — you are here
   에이전트가 Nomo에 내용을 넘기고 있는지, 마지막으로 넘긴 것이 언제인지입니다.
   OpenCode에는 Hook이 없으므로 그쪽에서는 이 줄의 이름이 `Plugin`입니다. 아무것도
   동작하지 않는다면, Claude Code는 재시작해 Hook을 로드하고, Codex에서는 `/hooks`를
-  실행하고, OpenCode는 플러그인이 로드되도록 재시작하고, Cursor나 Antigravity는
+  실행하고, OpenCode는 플러그인이 로드되도록 재시작하고(2.x에서는 `opencode service restart`), Cursor나 Antigravity는
   시작할 때에만 Hook을 읽어 들이므로 재시작하십시오.
 </ResponseField>
 
@@ -410,7 +410,8 @@ Pairing and keys were not touched — to disconnect this computer, run nomo unpa
 
 행이 오래됐거나 중복되어 보일 때 안심하고 꺼내 쓸 수 있는 명령입니다. 무엇을
 건드리지 않았는지 스스로 밝히기 때문입니다. OpenCode 행은 OpenCode **서버**에
-속하므로, 정리되지 않는 행이 있다면 OpenCode를 먼저 종료하십시오 —
+속하므로, 정리되지 않는 행이 있다면 OpenCode를 먼저 종료하십시오(2.x에서는
+`opencode service stop` 실행) —
 [OpenCode 사용하기](/ko/sessions/opencode#reset-needs-opencode-closed)를
 참고하십시오.
 
@@ -508,35 +509,45 @@ Nomo에 **플러그인 업데이트 사용 가능**이 보이나요? 그 컴퓨�
       </Tab>
 
       <Tab title="OpenCode" icon="/images/opencode.svg">
+        방법은 두 가지이며, 어느 쪽을 써도 됩니다. 터미널에서:
+
         ```bash
         bunx nomo-ai --opencode
         ```
 
-        그런 다음 OpenCode를 재시작합니다.
+        또는 OpenCode 안에서 다음을 입력해 보내세요.
+
+        ```
+        /nomo-update
+        ```
+
+        한 프로젝트에만 Nomo를 설치했나요(`--project`)? 그렇다면 그 프로젝트의 OpenCode 안에서 `/nomo-update`를 쓰는 방법뿐입니다. `bunx nomo-ai`는 전역 설치만 업데이트합니다.
+
+        그런 다음 새 버전이 로드되도록 OpenCode를 재시작하세요.
+
+        - **OpenCode 2.x**: 터미널에서 다음을 실행한 뒤 OpenCode를 여세요. 창을 닫는 것만으로는 부족합니다 — [이유](/ko/sessions/opencode#opencode-2x).
+
+          ```bash
+          opencode service restart
+          ```
+
+        - **OpenCode 1.x**: OpenCode를 종료했다가 다시 여세요.
+
+        어떤 버전인지 모르겠다면 `opencode --version`을 실행하세요.
 
         <Accordion title="자세히">
-          OpenCode 안에서도 업데이트할 수 있습니다. 다음을 입력해 보내십시오.
-
-          ```
-          /nomo-update
-          ```
-
-          한 프로젝트에만 Nomo를 설치했나요(`--project`)? 그 프로젝트의
-          OpenCode 안에서 `/nomo-update`를 쓰십시오. `bunx nomo-ai`는 어느
-          폴더에서 실행하든 전역 설치만 업데이트합니다.
-
-          무언가를 바꾸기 전에 먼저 확인합니다. 이미 최신이면 거기서 멈춥니다.
+          `/nomo-update`는 무언가를 바꾸기 전에 먼저 확인합니다. 이미 최신이면 거기서 멈춥니다.
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Already on 2.1.22 — nothing to do.
+          Already on 2.5.2 — nothing to do.
           ```
 
           업데이트가 있으면 먼저 알려 줍니다.
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Update available: 2.1.22 → 2.1.23.
+          Update available: 2.5.1 → 2.5.2.
           ```
 
           그런 다음 업데이트를 받아 오고 설치 스크립트를 다시 실행합니다. 새

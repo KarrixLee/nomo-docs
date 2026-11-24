@@ -137,7 +137,7 @@ está en [Comandos](/es/sessions/commands#status).
   **Hooks** — o **Plugin** en OpenCode, que no tiene. Si no se dispara, tu agente
   no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo
   al arrancar: reinicia Claude Code, ejecuta `/hooks` en Codex, reinicia
-  OpenCode, reinicia Cursor, reinicia Antigravity, reinicia `devin`.
+  OpenCode (en 2.x, `opencode service restart`), reinicia Cursor, reinicia Antigravity, reinicia `devin`.
 
   Codex confía en los hooks de forma explícita y una actualización del plugin
   reabre esa revisión, así que `/hooks` después de actualizar es ahí la respuesta
@@ -153,7 +153,9 @@ está en [Comandos](/es/sessions/commands#status).
   OpenCode](/es/sessions/opencode#reset-needs-opencode-closed).
 
   En OpenCode 2.x, Nomo necesita el plugin **2.5.2** o posterior:
-  [actualízalo](/es/sessions/commands#update) y reinicia OpenCode.
+  [actualízalo](/es/sessions/commands#update). Y en 2.x, cerrar las ventanas de
+  OpenCode no lo reinicia: ejecuta `opencode service restart` en la terminal y
+  luego abre OpenCode.
 </Accordion>
 
 <Accordion title="Cursor en concreto no muestra nada" icon="arrow-pointer">
@@ -270,7 +272,8 @@ está en [Comandos](/es/sessions/commands#status).
 
   Las sesiones vivas, tu vinculación y tus claves se quedan intactas —
   [qué imprime](/es/sessions/commands#reset). Una fila de OpenCode pertenece al
-  servidor de OpenCode, así que cierra OpenCode primero si alguna se resiste.
+  servidor de OpenCode, así que cierra OpenCode primero si alguna se resiste (en 2.x,
+  ejecuta `opencode service stop`).
 </Accordion>
 
 <Accordion title="El mapa o la racha no están al día" icon="calendar">
@@ -547,7 +550,7 @@ que ejecutes ese comando allí.
       "name": "Empecé una sesión y nunca apareció",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lee la fila Hooks — Plugin en OpenCode, que no tiene. Si no se dispara, tu agente no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo al arrancar: reinicia Claude Code, ejecuta /hooks en Codex, reinicia OpenCode, reinicia Cursor o Antigravity."
+        "text": "Lee la fila Hooks — Plugin en OpenCode, que no tiene. Si no se dispara, tu agente no le está entregando nada a Nomo, y todos los agentes cargan ese cableado solo al arrancar: reinicia Claude Code, ejecuta /hooks en Codex, reinicia OpenCode (en 2.x, opencode service restart), reinicia Cursor o Antigravity."
       }
     },
     {
@@ -555,7 +558,7 @@ que ejecutes ese comando allí.
       "name": "OpenCode en concreto no muestra nada",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Una fila Plugin que dice instalado pero sin actividad suele significar que OpenCode ya estaba en marcha cuando llegó el plugin. OpenCode carga los plugins una sola vez, cuando arranca su servidor, así que cerrarlo y volver a abrirlo es el arreglo entero: recargar la TUI no basta. En OpenCode 2.x, Nomo necesita el plugin 2.5.2 o posterior: actualízalo y reinicia OpenCode."
+        "text": "Una fila Plugin que dice instalado pero sin actividad suele significar que OpenCode ya estaba en marcha cuando llegó el plugin. OpenCode carga los plugins una sola vez, cuando arranca su servidor, así que cerrarlo y volver a abrirlo es el arreglo entero: recargar la TUI no basta. En OpenCode 2.x, Nomo necesita el plugin 2.5.2 o posterior: actualízalo. Y en 2.x, cerrar las ventanas de OpenCode no lo reinicia: ejecuta opencode service restart en la terminal y luego abre OpenCode."
       }
     },
     {
