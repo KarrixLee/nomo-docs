@@ -45,6 +45,17 @@ En OpenCode 2.x:
 - Una sesión puede aparecer como terminada mientras un subagente sigue en
   marcha. OpenCode 2.3 y posteriores ejecutan los subagentes en segundo plano
   por defecto.
+- Reiniciar OpenCode lleva un paso más. OpenCode 2.x carga los plugins en un
+  servidor compartido en segundo plano que sigue en marcha cuando cierras sus
+  ventanas. Después de instalar, actualizar o vincular Nomo, ejecuta esto en la
+  terminal y luego abre OpenCode:
+
+  ```bash
+  opencode service restart
+  ```
+
+  En 1.x basta con cerrar OpenCode y volver a abrirlo. ¿No sabes qué versión
+  tienes? Ejecuta `opencode --version`.
 
 ## Lo que funciona igual {#what-works-the-same}
 
@@ -70,7 +81,8 @@ No hay una instalación aparte para la app de escritorio: lo que describe la
 [Instalación manual](/es/setup/manual) vale para las dos. Y el reinicio también: los
 plugins se importan una sola vez, al arrancar el servidor, y no hay recarga en
 caliente, así que una app que ya estuviera abierta cuando instalaste hay que
-cerrarla y volver a abrirla.
+cerrarla y volver a abrirla. En OpenCode 2.x,
+[reinicia su servidor en segundo plano](#opencode-2x).
 
 Lo único que no cambia es **Abrir en el Mac**: sigue sin aparecer en las
 sesiones de OpenCode, también en la app de escritorio, por lo que cuentas
@@ -109,7 +121,8 @@ OpenCode. Si vinculas un ordenador que antes no lo estaba, el OpenCode que ya
 está en marcha decidió callarse: ciérralo y vuelve a abrirlo, y las sesiones
 empiezan a reflejarse. Es el mismo reinicio que pide la
 [instalación](/es/setup/manual), y es lo primero que hay que comprobar cuando
-una máquina recién vinculada no muestra nada.
+una máquina recién vinculada no muestra nada. En OpenCode 2.x, ese
+reinicio es `opencode service restart`: [ver arriba](#opencode-2x).
 
 ## Denegar decide sobre todo el turno {#deny-is-a-decision-about-the-turn}
 
@@ -227,7 +240,7 @@ primero si una fila que parece obsoleta se resiste a irse.
 través de sus propios anfitriones; OpenCode no tiene ninguno al que preguntar,
 así que el comando viene con el plugin.
 
-Informa antes de actuar —`Already on 2.1.22 — nothing to do.`, o la versión que
+Informa antes de actuar —`Already on 2.5.2 — nothing to do.`, o la versión que
 está a punto de traer— y luego trae los cambios y pide el mismo reinicio que
 todo lo demás de esta página. Solo toca el clon propio de Nomo, y
 `bunx nomo-ai` solo actualiza la instalación global: una instalación con

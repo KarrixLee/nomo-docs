@@ -24,6 +24,13 @@ Nomo 一以贯之的原则是：绝不提供一个 Mac 兑现不了的按钮。�
 - 暂时没有**始终允许**。OpenCode 2.x 按项目保存“始终允许”规则，Nomo 之后会换上说清这一点的文字，再把这个按钮加回来。
 - 提问要在电脑上回答。OpenCode 2.x 把提问改成了插件暂时还没法回答的表单。手机会显示这个会话在等你，去电脑上回答就行。
 - 子智能体还在运行时，会话可能已经显示为完成。OpenCode 2.3 及以上版本默认在后台运行子智能体。
+- 重启 OpenCode 要多一步。OpenCode 2.x 在一个共用的后台服务器里加载插件，关掉它的窗口后，这个服务器还会继续运行。安装、更新或配对 Nomo 之后，在终端里运行下面这条，再打开 OpenCode：
+
+  ```bash
+  opencode service restart
+  ```
+
+  在 1.x 上，退出 OpenCode 再重新打开就够了。不确定自己是哪个版本？运行 `opencode --version`。
 
 ## 与其他智能体相同的部分 {#what-works-the-same}
 
@@ -36,7 +43,7 @@ Nomo 一以贯之的原则是：绝不提供一个 Mac 兑现不了的按钮。�
 
 两边都能用，Nomo 在两边的表现也一样。桌面应用把 OpenCode 自己的服务器跑在自己内部，而那个服务器读取 `~/.config/opencode/plugins/` 里的插件，和 CLI 完全一样——所以你在应用里开的会话同样会到达手机，带着标题、模型、正在忙还是空闲的状态，权限请求也照样能在灵动岛或 App 里答复。
 
-桌面应用没有单独的安装，[手动安装](/zh-Hans/setup/manual)里写的那一套两边通用。重启也一样：插件只在服务器启动时导入一次，没有热重载，所以安装时已经开着的那个应用，也得退出再重新打开。
+桌面应用没有单独的安装，[手动安装](/zh-Hans/setup/manual)里写的那一套两边通用。重启也一样：插件只在服务器启动时导入一次，没有热重载，所以安装时已经开着的那个应用，也得退出再重新打开。在 OpenCode 2.x 上，要改为[重启它的后台服务器](#opencode-2x)。
 
 唯一不变的是“在 Mac 上打开”——它在 OpenCode 的会话上依然不出现，桌面应用也一样，原因就在[下面](#no-open-on-mac)。
 
@@ -58,7 +65,7 @@ Claude Code 把 Nomo 的命令放进 `nomo-cc:` 命名空间，Codex 则把它�
 
 ## 配对之后要重启 {#restart-after-pairing}
 
-插件只在 OpenCode 的服务器启动时读一次配对。给一台此前未配对的电脑做完配对，正在运行的那个 OpenCode 早已认定自己该保持沉默——退出再重开，会话就会开始镜像过来。这就是[手动安装](/zh-Hans/setup/manual)里要求的那次重启，也是一台刚配对好的机器什么都不显示时第一个该检查的地方。
+插件只在 OpenCode 的服务器启动时读一次配对。给一台此前未配对的电脑做完配对，正在运行的那个 OpenCode 早已认定自己该保持沉默——退出再重开，会话就会开始镜像过来。这就是[手动安装](/zh-Hans/setup/manual)里要求的那次重启，也是一台刚配对好的机器什么都不显示时第一个该检查的地方。在 OpenCode 2.x 上，这次重启就是 `opencode service restart`——见[上文](#opencode-2x)。
 
 ## 拒绝针对的是整轮对话 {#deny-is-a-decision-about-the-turn}
 
@@ -131,7 +138,7 @@ OpenCode 在自己的界面里处理 `--yolo`，从不把这件事告诉插件�
 
 `/nomo-update` 只属于 OpenCode。Claude Code 和 Codex 由各自的宿主负责更新；OpenCode 没有宿主可问，所以这条命令随插件一起发。
 
-它先报告再动手——`Already on 2.1.22 — nothing to do.`，或者它即将取回的版本号——然后拉取更新，并要求做这一页上其他地方同样要求的那次重启。它只会动 Nomo 自己的克隆目录，而 `bunx nomo-ai` 只更新全局安装——`--project` 安装要在那个项目里用 `/nomo-update` 更新。它做什么、什么时候会拒绝，都在[命令](/zh-Hans/sessions/commands#update)里。
+它先报告再动手——`Already on 2.5.2 — nothing to do.`，或者它即将取回的版本号——然后拉取更新，并要求做这一页上其他地方同样要求的那次重启。它只会动 Nomo 自己的克隆目录，而 `bunx nomo-ai` 只更新全局安装——`--project` 安装要在那个项目里用 `/nomo-update` 更新。它做什么、什么时候会拒绝，都在[命令](/zh-Hans/sessions/commands#update)里。
 
 ## 更新 App {#update-the-app}
 

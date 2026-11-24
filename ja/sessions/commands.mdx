@@ -414,33 +414,45 @@ Nomo に **プラグインの更新があります** と表示されたら、そ
       </Tab>
 
       <Tab title="OpenCode" icon="/images/opencode.svg">
+        方法は 2 つあり、どちらを使ってもかまいません。ターミナルでは次を実行します。
+
         ```bash
         bunx nomo-ai --opencode
         ```
 
-        そのあと OpenCode を再起動します。
+        または、OpenCode の中で次を入力して送信します。
+
+        ```
+        /nomo-update
+        ```
+
+        1 つのプロジェクトだけに Nomo を入れた（`--project`）場合は、そのプロジェクトの OpenCode の中で `/nomo-update` を使う方法しかありません。`bunx nomo-ai` はグローバルのインストールだけを更新します。
+
+        そのあと、新しいバージョンを読み込むために OpenCode を再起動します。
+
+        - **OpenCode 2.x**: ターミナルで次を実行してから、OpenCode を開きます。ウィンドウを閉じるだけでは足りません — [理由](/ja/sessions/opencode#opencode-2x)。
+
+          ```bash
+          opencode service restart
+          ```
+
+        - **OpenCode 1.x**: OpenCode を終了して、もう一度開きます。
+
+        どちらのバージョンかわからない場合は、`opencode --version` を実行してください。
 
         <Accordion title="詳細">
-          OpenCode の中から更新することもできます。次を入力して送信します。
-
-          ```
-          /nomo-update
-          ```
-
-          1 つのプロジェクトだけに Nomo を入れた（`--project`）場合は、そのプロジェクトの OpenCode の中で `/nomo-update` を使います。`bunx nomo-ai` は、どのフォルダから実行してもグローバルのインストールだけを更新します。
-
-          何かを変更する前に必ず確認します。すでに最新なら、そこで止まります。
+          `/nomo-update` は、何かを変更する前に必ず確認します。すでに最新なら、そこで止まります。
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Already on 2.1.22 — nothing to do.
+          Already on 2.5.2 — nothing to do.
           ```
 
           更新がある場合は、先にそう伝えます。
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Update available: 2.1.22 → 2.1.23.
+          Update available: 2.5.1 → 2.5.2.
           ```
 
           そのあと更新を取得し、インストーラを再実行します。新しい `/nomo-*` コマンドはここで追加されます。OpenCode はプラグインを起動時にしか読み込まないため、再起動するまでは古いバージョンが動き続けます。

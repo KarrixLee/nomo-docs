@@ -414,33 +414,45 @@ nomo unpair
       </Tab>
 
       <Tab title="OpenCode" icon="/images/opencode.svg">
+        有两种方法，用哪个都行。在终端里：
+
         ```bash
         bunx nomo-ai --opencode
         ```
 
-        然后重启 OpenCode。
+        或者在 OpenCode 里输入下面这条并发送：
+
+        ```
+        /nomo-update
+        ```
+
+        只为一个项目装了 Nomo（`--project`）？那就只能在那个项目的 OpenCode 里用 `/nomo-update`：`bunx nomo-ai` 只更新全局安装。
+
+        然后重启 OpenCode，让新版本加载：
+
+        - **OpenCode 2.x**：在终端里运行下面这条，再打开 OpenCode。光关掉窗口不够——[原因](/zh-Hans/sessions/opencode#opencode-2x)。
+
+          ```bash
+          opencode service restart
+          ```
+
+        - **OpenCode 1.x**：退出 OpenCode，再重新打开。
+
+        不确定自己是哪个版本？运行 `opencode --version`。
 
         <Accordion title="详细信息">
-          你也可以在 OpenCode 里更新。输入下面这条并发送：
-
-          ```
-          /nomo-update
-          ```
-
-          只为一个项目装了 Nomo（`--project`）？就在那个项目的 OpenCode 里用 `/nomo-update`。`bunx nomo-ai` 不管你在哪个文件夹里运行，都只更新全局安装。
-
-          它在改动任何东西之前会先检查。已经是最新的，它就停下：
+          `/nomo-update` 在改动任何东西之前会先检查。已经是最新的，它就停下：
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Already on 2.1.22 — nothing to do.
+          Already on 2.5.2 — nothing to do.
           ```
 
           有更新时，它会先告诉你：
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Update available: 2.1.22 → 2.1.23.
+          Update available: 2.5.1 → 2.5.2.
           ```
 
           接着它下载更新，并重新运行安装脚本，新的 `/nomo-*` 命令就是这一步加进来的。OpenCode 只在启动时加载插件，所以在你重启之前，跑着的仍然是旧版本。

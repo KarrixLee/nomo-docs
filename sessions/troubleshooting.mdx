@@ -145,7 +145,9 @@ What each row means, with a healthy machine and a broken one side by side, is on
   closed](/sessions/opencode#reset-needs-opencode-closed).
 
   On OpenCode 2.x, Nomo needs plugin **2.5.2** or later —
-  [update it](/sessions/commands#update), then restart OpenCode.
+  [update it](/sessions/commands#update). And on 2.x, closing OpenCode's windows
+  doesn't restart it: run `opencode service restart` in Terminal, then open
+  OpenCode.
 </Accordion>
 
 <Accordion title="Cursor in particular shows nothing" icon="arrow-pointer">
@@ -525,7 +527,7 @@ that command there.
       "name": "OpenCode in particular shows nothing",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A Plugin row that says installed with no activity usually means OpenCode was already running when the plugin arrived. OpenCode loads plugins once, when its server starts, so quitting it and starting it again is the whole fix — reloading the TUI isn't enough. On OpenCode 2.x, Nomo needs plugin 2.5.2 or later: update it, then restart OpenCode."
+        "text": "A Plugin row that says installed with no activity usually means OpenCode was already running when the plugin arrived. OpenCode loads plugins once, when its server starts, so quitting it and starting it again is the whole fix — reloading the TUI isn't enough. On OpenCode 2.x, Nomo needs plugin 2.5.2 or later: update it. And on 2.x, closing OpenCode's windows doesn't restart it: run opencode service restart in Terminal, then open OpenCode."
       }
     },
     {

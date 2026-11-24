@@ -40,6 +40,17 @@ On OpenCode 2.x:
   you; go to your computer to answer.
 - A session can show as done while a subagent is still running. OpenCode 2.3
   and later run subagents in the background by default.
+- Restarting OpenCode takes one more step. OpenCode 2.x loads plugins in a
+  shared background server that keeps running when you close its windows.
+  After you install, update or pair Nomo, run this in Terminal, then open
+  OpenCode:
+
+  ```bash
+  opencode service restart
+  ```
+
+  On 1.x, quitting OpenCode and opening it again is enough. Not sure which
+  version you have? Run `opencode --version`.
 
 ## What works the same
 
@@ -62,7 +73,8 @@ working-or-idle state, and approvals you can answer from the island or the app.
 There's no separate install for the desktop app: what
 [Install by hand](/setup/manual) describes covers both. So does the restart —
 plugins are imported once when the server starts and there's no hot reload, so
-an app that was already open when you installed has to be quit and reopened.
+an app that was already open when you installed has to be quit and reopened. On OpenCode 2.x,
+[restart its background server](#opencode-2x) instead.
 
 **Open on Mac** is the one thing that doesn't change: it stays absent on
 OpenCode sessions, the desktop app included — see [below](#no-open-on-mac).
@@ -97,7 +109,8 @@ The plugin reads the pairing once, when OpenCode's server starts. Pair a
 computer that was previously unpaired and the running OpenCode already decided
 to stay quiet — quit and reopen it, and sessions start mirroring. This is the
 same restart the [install](/setup/manual) asks for, and it's the first thing to
-check when a freshly paired machine shows nothing.
+check when a freshly paired machine shows nothing. On OpenCode 2.x, that
+restart is `opencode service restart` — [see above](#opencode-2x).
 
 ## Deny is a decision about the turn
 
@@ -205,7 +218,7 @@ refuses to go.
 `/nomo-update` is OpenCode's alone. Claude Code and Codex update through their
 own hosts; OpenCode has no host to ask, so the command ships with the plugin.
 
-It reports before it acts — `Already on 2.1.22 — nothing to do.`, or the version
+It reports before it acts — `Already on 2.5.2 — nothing to do.`, or the version
 it's about to fetch — then pulls and asks for the same restart everything else
 on this page asks for. It only ever touches Nomo's own checkout, and
 `bunx nomo-ai` updates only the global install — a `--project` install updates

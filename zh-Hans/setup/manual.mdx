@@ -150,6 +150,12 @@ icon: "screwdriver-wrench"
         <Warning>
           OpenCode 只在自己的服务器启动时导入一次插件，没有热重载。在你退出并重新打开它之前，插件虽已安装却什么都不做。桌面应用跑的是同一个服务器，所以同样需要这次重启。
         </Warning>
+
+        在 OpenCode 2.x 上，光退出还不够。在终端里运行下面这条，再打开 OpenCode（[原因](/zh-Hans/sessions/opencode#opencode-2x)）：
+
+        ```bash
+        opencode service restart
+        ```
       </Step>
 
       <Step title="确认">

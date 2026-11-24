@@ -149,6 +149,12 @@ icon: "screwdriver-wrench"
         <Warning>
           OpenCode がプラグインを読み込むのはサーバーの起動時の 1 回だけで、ホットリロードはありません。終了して開き直すまで、プラグインはインストール済みでも何もしません。デスクトップアプリも同じサーバーを動かしているので、同じ再起動が必要です。
         </Warning>
+
+        OpenCode 2.x では、終了するだけでは足りません。ターミナルで次を実行してから、OpenCode を開いてください（[理由](/ja/sessions/opencode#opencode-2x)）。
+
+        ```bash
+        opencode service restart
+        ```
       </Step>
 
       <Step title="確認する">

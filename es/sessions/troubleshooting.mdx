@@ -153,7 +153,9 @@ está en [Comandos](/es/sessions/commands#status).
   OpenCode](/es/sessions/opencode#reset-needs-opencode-closed).
 
   En OpenCode 2.x, Nomo necesita el plugin **2.5.2** o posterior:
-  [actualízalo](/es/sessions/commands#update) y reinicia OpenCode.
+  [actualízalo](/es/sessions/commands#update). Y en 2.x, cerrar las ventanas de
+  OpenCode no lo reinicia: ejecuta `opencode service restart` en la terminal y
+  luego abre OpenCode.
 </Accordion>
 
 <Accordion title="Cursor en concreto no muestra nada" icon="arrow-pointer">
@@ -555,7 +557,7 @@ que ejecutes ese comando allí.
       "name": "OpenCode en concreto no muestra nada",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Una fila Plugin que dice instalado pero sin actividad suele significar que OpenCode ya estaba en marcha cuando llegó el plugin. OpenCode carga los plugins una sola vez, cuando arranca su servidor, así que cerrarlo y volver a abrirlo es el arreglo entero: recargar la TUI no basta. En OpenCode 2.x, Nomo necesita el plugin 2.5.2 o posterior: actualízalo y reinicia OpenCode."
+        "text": "Una fila Plugin que dice instalado pero sin actividad suele significar que OpenCode ya estaba en marcha cuando llegó el plugin. OpenCode carga los plugins una sola vez, cuando arranca su servidor, así que cerrarlo y volver a abrirlo es el arreglo entero: recargar la TUI no basta. En OpenCode 2.x, Nomo necesita el plugin 2.5.2 o posterior: actualízalo. Y en 2.x, cerrar las ventanas de OpenCode no lo reinicia: ejecuta opencode service restart en la terminal y luego abre OpenCode."
       }
     },
     {

@@ -521,37 +521,45 @@ ese ordenador. Tarda un minuto.
       </Tab>
 
       <Tab title="OpenCode" icon="/images/opencode.svg">
+        Hay dos formas; usa la que prefieras. En la terminal:
+
         ```bash
         bunx nomo-ai --opencode
         ```
 
-        Después reinicia OpenCode.
+        O, dentro de OpenCode, escribe esto y envíalo:
+
+        ```
+        /nomo-update
+        ```
+
+        ¿Instalaste Nomo para un solo proyecto (`--project`)? Entonces la única forma es `/nomo-update`, dentro de OpenCode y en ese proyecto: `bunx nomo-ai` solo actualiza la instalación global.
+
+        Después reinicia OpenCode para que cargue la versión nueva:
+
+        - **OpenCode 2.x**: ejecuta esto en la terminal y luego abre OpenCode. Cerrar sus ventanas no basta: [por qué](/es/sessions/opencode#opencode-2x).
+
+          ```bash
+          opencode service restart
+          ```
+
+        - **OpenCode 1.x**: cierra OpenCode y vuelve a abrirlo.
+
+        ¿No sabes qué versión tienes? Ejecuta `opencode --version`.
 
         <Accordion title="Detalles">
-          También puedes actualizar desde dentro de OpenCode. Escribe esto y
-          envíalo:
-
-          ```
-          /nomo-update
-          ```
-
-          ¿Instalaste Nomo para un solo proyecto (`--project`)? Usa
-          `/nomo-update` dentro de OpenCode, en ese proyecto. `bunx nomo-ai`
-          solo actualiza la instalación global, sea cual sea la carpeta desde
-          la que lo ejecutes.
-
-          Comprueba antes de cambiar nada. Si ya estás al día, se detiene:
+          `/nomo-update` comprueba antes de cambiar nada. Si ya estás al día, se detiene:
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Already on 2.1.22 — nothing to do.
+          Already on 2.5.2 — nothing to do.
           ```
 
           Si hay una actualización, primero lo dice:
 
           ```
           OpenCode plugin: /Users/you/.nomo
-          Update available: 2.1.22 → 2.1.23.
+          Update available: 2.5.1 → 2.5.2.
           ```
 
           Después descarga la actualización y vuelve a ejecutar el instalador,

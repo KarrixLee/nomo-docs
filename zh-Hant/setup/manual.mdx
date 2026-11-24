@@ -149,6 +149,12 @@ icon: "screwdriver-wrench"
         <Warning>
           OpenCode 只在伺服器啟動時匯入外掛程式一次，而且沒有熱重載。在你結束並重新開啟它之前，這個外掛程式雖然裝好了卻什麼也沒做。桌面應用程式跑的是同一個伺服器，所以同樣需要這次重新啟動。
         </Warning>
+
+        在 OpenCode 2.x 上，只結束它還不夠。請在終端機執行下面這行，再開啟 OpenCode（[為什麼](/zh-Hant/sessions/opencode#opencode-2x)）：
+
+        ```bash
+        opencode service restart
+        ```
       </Step>
 
       <Step title="確認">
