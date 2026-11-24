@@ -223,10 +223,11 @@ Two more things on Claude Code. If the turn ends on its own first, the interrupt
 does nothing — it never carries over to your next prompt. And if the work is
 happening inside a subagent, it stops that subagent first.
 
-The plugin version is reported per computer, not per agent. If you use both
-Claude Code and Codex on one Mac, update both plugins to **2.3.0** — otherwise
-the button can appear on a session whose plugin is too old, say **Sent**, and do
-nothing.
+From plugin **2.5.3**, each agent reports its own plugin version, so Nomo
+knows which one is behind. Older plugins report one version for the whole
+computer: if you use both Claude Code and Codex on one Mac, update both plugins
+to **2.3.0** or later — otherwise the button can appear on a session whose
+plugin is too old, say **Sent**, and do nothing.
 
 ## How many
 
