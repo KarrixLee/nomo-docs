@@ -20,12 +20,35 @@ computer" rather than a control that quietly fails.
   them. On the wire, the only difference is a label saying which agent it was.
 </Note>
 
+## OpenCode 1.x and 2.x {#opencode-2x}
+
+Nomo works with both, from plugin **2.5.2**. Before 2.5.2, OpenCode 2.x
+refused to load Nomo, so its sessions never reached your phone. If that's you,
+[update the plugin](/sessions/commands#update) and restart OpenCode.
+
+On OpenCode 2.x:
+
+- Sessions, live status, the title and the model show on your phone as before.
+- **Allow** and **Deny** work from your phone, shell commands included.
+- **Deny** only cancels the other requests from the same message from the
+  agent, not every request the session was waiting on.
+- **Always allow** isn't offered yet. OpenCode 2.x saves Always rules per
+  project, and Nomo will bring the button back later, with wording that says
+  so.
+- Questions are answered at your computer. OpenCode 2.x turned questions into
+  forms that plugins can't answer yet. Your phone shows that the session needs
+  you; go to your computer to answer.
+- A session can show as done while a subagent is still running. OpenCode 2.3
+  and later run subagents in the background by default.
+
 ## What works the same
 
 - Sessions, states, folders, and the Dynamic Island.
 - Permission prompts — shell commands, file edits, reads, fetches, web searches
   — with **Allow**, **Always allow** and **Deny** from the island or the app.
-- Questions, with their options, answered by tapping one.
+  **Always allow** is OpenCode 1.x only, [for now](#opencode-2x).
+- Questions, with their options, answered by tapping one. OpenCode 1.x only:
+  on 2.x you [answer at your computer](#opencode-2x).
 - The session's todo list, in the plan reader.
 
 ## The CLI and the desktop app
@@ -78,6 +101,9 @@ check when a freshly paired machine shows nothing.
 
 ## Deny is a decision about the turn
 
+This section describes OpenCode 1.x. On 2.x, **Deny** works differently —
+[see above](#opencode-2x).
+
 OpenCode treats a rejected permission as an answer about what the agent is
 doing, not about one tool. So denying from your phone also rejects **every other
 permission that session was waiting on** — their cards resolve and drop from
@@ -87,8 +113,8 @@ Declining a question ends the turn rather than asking again.
 
 **Allow** and **Always allow** only ever resolve the card you tapped.
 
-**Always allow** lasts until OpenCode restarts, not just this session — it also
-covers that project's other OpenCode sessions. The option says so: **Always
+On OpenCode 1.x, **Always allow** lasts until OpenCode restarts, not just this
+session — it also covers that project's other OpenCode sessions. The option says so: **Always
 allow … (until OpenCode restarts)**.
 
 ## No notes, no typed answers
