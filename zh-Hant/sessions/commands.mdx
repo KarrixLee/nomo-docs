@@ -202,7 +202,7 @@ Claude Code — you are here
 </ResponseField>
 
 <ResponseField name="Hooks">
-  你的代理有沒有在餵東西給 Nomo，以及上一次是多久以前。OpenCode 沒有 hooks，所以在那裡這一列叫做 `Plugin`。什麼都沒觸發？重新啟動 Claude Code 讓它的 hooks 載入；Codex 的話，請執行 `/hooks`；OpenCode 的話，請重新啟動它讓外掛程式載入；Cursor 或 Antigravity 的話，請重新啟動它，它們只在啟動時載入 hooks。
+  你的代理有沒有在餵東西給 Nomo，以及上一次是多久以前。OpenCode 沒有 hooks，所以在那裡這一列叫做 `Plugin`。什麼都沒觸發？重新啟動 Claude Code 讓它的 hooks 載入；Codex 的話，請執行 `/hooks`；OpenCode 的話，請重新啟動它讓外掛程式載入（2.x 上用 `opencode service restart`）；Cursor 或 Antigravity 的話，請重新啟動它，它們只在啟動時載入 hooks。
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -332,7 +332,7 @@ Pairing and keys were not touched — to disconnect this computer, run nomo unpa
 
 一次重設就涵蓋這台電腦上的每個代理。
 
-當各列看起來過時或重複時，這是可以放心伸手去拿的那一個，因為它會說清楚自己沒有動到什麼。OpenCode 的列屬於 OpenCode 的**伺服器**，所以有一列清不掉時，請先結束 OpenCode — 請看[搭配 OpenCode 使用](/zh-Hant/sessions/opencode#reset-needs-opencode-closed)。
+當各列看起來過時或重複時，這是可以放心伸手去拿的那一個，因為它會說清楚自己沒有動到什麼。OpenCode 的列屬於 OpenCode 的**伺服器**，所以有一列清不掉時，請先結束 OpenCode（2.x 上請執行 `opencode service stop`） — 請看[搭配 OpenCode 使用](/zh-Hant/sessions/opencode#reset-needs-opencode-closed)。
 
 ## unpair {#unpair}
 

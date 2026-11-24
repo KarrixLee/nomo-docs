@@ -31,6 +31,7 @@ Nomo 一以贯之的原则是：绝不提供一个 Mac 兑现不了的按钮。�
   ```
 
   在 1.x 上，退出 OpenCode 再重新打开就够了。不确定自己是哪个版本？运行 `opencode --version`。
+- 用插件 2.5.2 时，一个在等提问回答的会话，会在你关掉它的 OpenCode 窗口大约 20 秒后从手机上消失。
 
 ## 与其他智能体相同的部分 {#what-works-the-same}
 
@@ -132,7 +133,10 @@ OpenCode 在自己的界面里处理 `--yolo`，从不把这件事告诉插件�
 
 ## 重置前需要关闭 OpenCode {#reset-needs-opencode-closed}
 
-`/nomo-reset` 清理的是进程已经不在的会话行。对 OpenCode 来说，那个进程是**服务器**，不是你敲命令的那个终端——所以属于一个正在运行的 OpenCode 的会话行不会被清掉，这是有意为之。如果某一行看着陈旧却怎么都不肯走，先退出 OpenCode。
+`/nomo-reset` 清理的是进程已经不在的会话行。对 OpenCode 来说，那个进程是**服务器**，不是你敲命令的那个终端——所以属于一个正在运行的 OpenCode 的会话行不会被清掉，这是有意为之。如果某一行看着陈旧却怎么都不肯走：
+
+- **OpenCode 1.x**：先退出 OpenCode。
+- **OpenCode 2.x**：关掉窗口并不会停掉拥有这些会话行的服务器。在终端里运行 `opencode service stop`，再运行 `nomo reset`。也可以运行 `opencode service restart`，再在 OpenCode 里发送 `/nomo-reset`。
 
 ## 更新插件 {#updating-the-plugin}
 

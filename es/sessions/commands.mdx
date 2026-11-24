@@ -264,7 +264,7 @@ cualquier agente. Debajo viene el agente en el que estás de verdad, marcado con
   Si tu agente le está pasando algo a Nomo, y cuánto hace de la última vez.
   OpenCode no tiene hooks, así que allí la fila se llama `Plugin`. ¿No se dispara
   nada? Reinicia Claude Code para que se carguen sus hooks; en Codex, ejecuta
-  `/hooks`; en OpenCode, reinícialo para que se cargue el plugin; reinicia
+  `/hooks`; en OpenCode, reinícialo para que se cargue el plugin (en 2.x, `opencode service restart`); reinicia
   Cursor o Antigravity, que solo recogen los hooks al arrancar.
 </ResponseField>
 
@@ -423,7 +423,8 @@ Un solo reinicio cubre todos los agentes de ese ordenador.
 
 Es lo seguro a lo que recurrir cuando las filas se ven obsoletas o duplicadas,
 porque dice qué ha dejado intacto. Una fila de OpenCode pertenece al **servidor**
-de OpenCode, así que cierra OpenCode primero si alguna no se va — ve
+de OpenCode, así que cierra OpenCode primero si alguna no se va (en 2.x, ejecuta
+`opencode service stop`) — ve
 [Usar OpenCode](/es/sessions/opencode#reset-needs-opencode-closed).
 
 ## unpair {#unpair}

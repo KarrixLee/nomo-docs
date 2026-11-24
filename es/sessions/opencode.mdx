@@ -56,6 +56,8 @@ En OpenCode 2.x:
 
   En 1.x basta con cerrar OpenCode y volver a abrirlo. ¿No sabes qué versión
   tienes? Ejecuta `opencode --version`.
+- Con el plugin 2.5.2, una sesión que espera una pregunta desaparece de tu
+  teléfono unos 20 segundos después de cerrar su ventana de OpenCode.
 
 ## Lo que funciona igual {#what-works-the-same}
 
@@ -231,8 +233,14 @@ responder con un toque. También empieza a escribir archivos de plan en
 
 `/nomo-reset` limpia las filas cuyo proceso ya no existe. En OpenCode ese proceso
 es el **servidor**, no la terminal en la que escribiste, así que una fila que
-pertenece a un OpenCode en marcha no se limpia, y es a propósito. Cierra OpenCode
-primero si una fila que parece obsoleta se resiste a irse.
+pertenece a un OpenCode en marcha no se limpia, y es a propósito. Si una fila
+que parece obsoleta se resiste a irse:
+
+- **OpenCode 1.x**: cierra OpenCode primero.
+- **OpenCode 2.x**: cerrar sus ventanas no detiene el servidor al que pertenecen
+  las filas. En la terminal, ejecuta `opencode service stop` y luego
+  `nomo reset`. O ejecuta `opencode service restart` y luego envía
+  `/nomo-reset` dentro de OpenCode.
 
 ## Actualizar el plugin {#updating-the-plugin}
 

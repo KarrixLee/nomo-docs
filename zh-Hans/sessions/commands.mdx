@@ -202,7 +202,7 @@ Claude Code — you are here
 </ResponseField>
 
 <ResponseField name="Hooks">
-  你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载；Cursor 或 Antigravity 也要重启，它们只在启动时加载 hook。
+  你的智能体有没有在给 Nomo 喂数据，以及上一次是多久以前。OpenCode 没有 hook，所以那里这一行叫 `Plugin`。什么都没触发？重启 Claude Code 让它的 hook 加载；Codex 那边运行 `/hooks`；OpenCode 那边重启它，好让插件加载（2.x 上用 `opencode service restart`）；Cursor 或 Antigravity 也要重启，它们只在启动时加载 hook。
 </ResponseField>
 
 <ResponseField name="Runtime">
@@ -332,7 +332,7 @@ Pairing and keys were not touched — to disconnect this computer, run nomo unpa
 
 一次重置覆盖这台电脑上的所有智能体。
 
-会话行看着陈旧或重复时，这是最稳妥的一招，因为它会告诉你自己没动过什么。OpenCode 的会话行属于 OpenCode 的**服务器**，所以要是有一行清不掉，先退出 OpenCode——见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode#reset-needs-opencode-closed)。
+会话行看着陈旧或重复时，这是最稳妥的一招，因为它会告诉你自己没动过什么。OpenCode 的会话行属于 OpenCode 的**服务器**，所以要是有一行清不掉，先退出 OpenCode（2.x 上运行 `opencode service stop`）——见[搭配 OpenCode 使用](/zh-Hans/sessions/opencode#reset-needs-opencode-closed)。
 
 ## unpair {#unpair}
 

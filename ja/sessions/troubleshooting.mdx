@@ -84,7 +84,7 @@ Devin プラグインの場合は、代わりに Devin で `/nomo:status` と入
 </Accordion>
 
 <Accordion title="セッションを開始したのに表示されない" icon="play">
-  **Hooks** — フックのない OpenCode では **Plugin** です。これが発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動してください。Codex では `/hooks` を実行します。OpenCode も再起動してください。Cursor も、Antigravity も、`devin` も再起動してください。
+  **Hooks** — フックのない OpenCode では **Plugin** です。これが発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動してください。Codex では `/hooks` を実行します。OpenCode も再起動してください（2.x では `opencode service restart`）。Cursor も、Antigravity も、`devin` も再起動してください。
 
   Codex はフックを明示的に信頼する必要があり、プラグインの更新があるとその確認が再び開きます。更新後に `/hooks` を実行するのが、そちらでのいつもの答えです — [理由](/ja/sessions/codex#hooks-have-to-be-trusted)。
 </Accordion>
@@ -188,7 +188,7 @@ Devin プラグインの場合は、代わりに Devin で `/nomo:status` と入
 
   実行中のセッション、ペアリング、鍵はそのまま残ります —
   [出力の内容](/ja/sessions/commands#reset)。OpenCode の行は OpenCode のサーバーに属するため、
-  消えない行があるときは先に OpenCode を終了してください。
+  消えない行があるときは先に OpenCode を終了してください（2.x では `opencode service stop` を実行）。
 </Accordion>
 
 <Accordion title="ヒートマップや連続記録が古いまま" icon="calendar">
@@ -366,7 +366,7 @@ iPhone が、読み取れない更新や、鍵を持っていないコンピュ�
       "name": "セッションを開始したのに表示されない",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Hooks の行 — フックのない OpenCode では Plugin — を見てください。発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動、Codex では /hooks を実行、OpenCode、Cursor、Antigravity、devin も再起動してください。"
+        "text": "Hooks の行 — フックのない OpenCode では Plugin — を見てください。発火していないなら、エージェントは Nomo に何も渡していません。この配線を読み込むのは、どのエージェントでも起動時だけです。Claude Code は再起動、Codex では /hooks を実行、OpenCode（2.x では opencode service restart）、Cursor、Antigravity、devin も再起動してください。"
       }
     },
     {

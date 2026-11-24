@@ -258,7 +258,7 @@ agent you asked from. Below them comes the agent you're actually in, marked
   Whether your agent is feeding Nomo, and how long ago it last did. OpenCode has
   no hooks, so there the row is called `Plugin` instead. Nothing firing? Restart
   Claude Code so its hooks load; in Codex run `/hooks`; in OpenCode restart it so
-  the plugin loads; restart Cursor or Antigravity, which only pick hooks up at
+  the plugin loads (on 2.x, `opencode service restart`); restart Cursor or Antigravity, which only pick hooks up at
   start.
 </ResponseField>
 
@@ -414,7 +414,7 @@ One reset covers every agent on that computer.
 
 The safe thing to reach for when rows look stale or duplicated, because it says
 what it left alone. An OpenCode row belongs to the OpenCode **server**, so quit
-OpenCode first if one won't clear — see
+OpenCode first if one won't clear (on 2.x, run `opencode service stop`) — see
 [Using OpenCode](/sessions/opencode#reset-needs-opencode-closed).
 
 ## unpair

@@ -51,6 +51,8 @@ On OpenCode 2.x:
 
   On 1.x, quitting OpenCode and opening it again is enough. Not sure which
   version you have? Run `opencode --version`.
+- With plugin 2.5.2, a session waiting on a question clears from your phone
+  about 20 seconds after you close its OpenCode window.
 
 ## What works the same
 
@@ -210,8 +212,12 @@ probably want to add to `.gitignore`.
 
 `/nomo-reset` clears rows whose process is gone. For OpenCode that process is
 the **server**, not the terminal you typed in — so a row belonging to a running
-OpenCode won't be cleared, by design. Quit OpenCode first if a stale-looking row
-refuses to go.
+OpenCode won't be cleared, by design. If a stale-looking row refuses to go:
+
+- **OpenCode 1.x**: quit OpenCode first.
+- **OpenCode 2.x**: closing its windows doesn't stop the server that owns the
+  rows. In Terminal, run `opencode service stop`, then `nomo reset`. Or run
+  `opencode service restart`, then send `/nomo-reset` inside OpenCode.
 
 ## Updating the plugin
 

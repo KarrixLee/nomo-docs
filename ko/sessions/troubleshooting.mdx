@@ -129,7 +129,7 @@ Devin 플러그인을 쓴다면 대신 Devin에 `/nomo:status`를 입력합니�
   **Hooks** — OpenCode에는 Hook이 없으므로 그쪽에서는 **Plugin**입니다. 동작하지
   않는다면 에이전트가 Nomo에 아무것도 넘기지 않고 있는 것이고, 어느 에이전트든 그
   연결을 시작할 때 한 번만 로드합니다. Claude Code는 재시작하고, Codex에서는
-  `/hooks`를 실행하고, OpenCode는 재시작하고, Cursor도 재시작하고, Antigravity도
+  `/hooks`를 실행하고, OpenCode는 재시작하고(2.x에서는 `opencode service restart`), Cursor도 재시작하고, Antigravity도
   재시작하고, `devin`도 재시작하십시오.
 
   Codex는 Hook을 명시적으로 신뢰해야 하며 플러그인 업데이트는 그 검토를 다시 엽니다.
@@ -260,7 +260,8 @@ Devin 플러그인을 쓴다면 대신 Devin에 `/nomo:status`를 입력합니�
 
   실행 중인 세션, 페어링, 키는 건드리지 않습니다 —
   [출력 내용](/ko/sessions/commands#reset). OpenCode 행은 OpenCode 서버에 속하므로,
-  지워지지 않는 행이 있으면 OpenCode를 먼저 종료하십시오.
+  지워지지 않는 행이 있으면 OpenCode를 먼저 종료하십시오(2.x에서는
+  `opencode service stop` 실행).
 </Accordion>
 
 <Accordion title="히트맵이나 연속 기록이 최신이 아님" icon="calendar">
@@ -528,7 +529,7 @@ Devin 플러그인을 쓴다면 대신 Devin에 `/nomo:status`를 입력합니�
       "name": "세션을 시작했는데 나타나지 않음",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Hooks 줄을 읽으십시오. OpenCode에는 Hook이 없으므로 그쪽에서는 Plugin입니다. 동작하지 않는다면 에이전트가 Nomo에 아무것도 넘기지 않고 있는 것이고, 어느 에이전트든 그 연결을 시작할 때 한 번만 로드합니다. Claude Code는 재시작하고, Codex에서는 /hooks를 실행하고, OpenCode는 재시작하고, Cursor나 Antigravity도 재시작하십시오."
+        "text": "Hooks 줄을 읽으십시오. OpenCode에는 Hook이 없으므로 그쪽에서는 Plugin입니다. 동작하지 않는다면 에이전트가 Nomo에 아무것도 넘기지 않고 있는 것이고, 어느 에이전트든 그 연결을 시작할 때 한 번만 로드합니다. Claude Code는 재시작하고, Codex에서는 /hooks를 실행하고, OpenCode는 재시작하고(2.x에서는 opencode service restart), Cursor나 Antigravity도 재시작하십시오."
       }
     },
     {

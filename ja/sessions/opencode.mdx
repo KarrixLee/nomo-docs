@@ -31,6 +31,7 @@ OpenCode 2.x では次のようになります。
   ```
 
   1.x では、OpenCode を終了して開き直すだけで十分です。どちらのバージョンかわからない場合は、`opencode --version` を実行してください。
+- プラグイン 2.5.2 では、質問を待っているセッションは、その OpenCode のウィンドウを閉じてから約 20 秒で iPhone から消えます。
 
 ## Claude Code や Codex と同じところ {#what-works-the-same}
 
@@ -132,7 +133,10 @@ plan エージェントに切り替えると — OpenCode では <kbd>Tab</kbd> 
 
 ## リセットには OpenCode の終了が必要 {#reset-needs-opencode-closed}
 
-`/nomo-reset` は、プロセスが失われた行を消去します。OpenCode の場合そのプロセスは、あなたが入力したターミナルではなく**サーバー**です — そのため、動作中の OpenCode に属する行は仕様として消去されません。古そうに見える行が消えないときは、先に OpenCode を終了してください。
+`/nomo-reset` は、プロセスが失われた行を消去します。OpenCode の場合そのプロセスは、あなたが入力したターミナルではなく**サーバー**です — そのため、動作中の OpenCode に属する行は仕様として消去されません。古そうに見える行が消えないときは、次のようにします。
+
+- **OpenCode 1.x**: 先に OpenCode を終了してください。
+- **OpenCode 2.x**: ウィンドウを閉じても、行を持っているサーバーは止まりません。ターミナルで `opencode service stop` を実行してから、`nomo reset` を実行してください。または、`opencode service restart` を実行してから、OpenCode の中で `/nomo-reset` を送信します。
 
 ## プラグインの更新 {#updating-the-plugin}
 
