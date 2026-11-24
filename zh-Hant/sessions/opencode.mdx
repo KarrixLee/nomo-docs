@@ -12,11 +12,23 @@ Nomo 從頭到尾的原則是：絕不提供一個 Mac 無法兌現的按鈕。�
   OpenCode 沒有獨立的配對。三個代理讀的是那台電腦上的同一份設定 — 你[把機器配對](/zh-Hant/setup/pairing)一次就好，從哪一個代理做都行。在傳輸上，唯一的差別是一個標示它來自哪個代理的標籤。
 </Note>
 
+## OpenCode 1.x 與 2.x {#opencode-2x}
+
+從外掛程式 **2.5.2** 起，Nomo 兩個版本都支援。2.5.2 之前，OpenCode 2.x 會拒絕載入 Nomo，所以它的 sessions 一直到不了你的手機。如果你遇到的正是這種情況，請[更新外掛程式](/zh-Hant/sessions/commands#update)，然後重新啟動 OpenCode。
+
+在 OpenCode 2.x 上：
+
+- sessions、即時狀態、標題和模型照常顯示在手機上。
+- 可以從手機「允許」和「拒絕」，shell 指令也一樣。
+- 暫時沒有「一律允許」。OpenCode 2.x 會依專案儲存「一律允許」規則，Nomo 之後會換上說清楚這一點的文字，再把這個按鈕加回來。
+- 問題要在電腦上回答。OpenCode 2.x 把問題改成了外掛程式暫時還無法回答的表單。手機會顯示這個 session 在等你，請到電腦上回答。
+- 子代理還在執行時，session 可能已經顯示為完成。OpenCode 2.3 以上版本預設在背景執行子代理。
+
 ## 相同的部分 {#what-works-the-same}
 
 - sessions、狀態、資料夾，以及動態島。
-- 權限請求 — shell 指令、檔案編輯、讀取、抓取與網路搜尋 — 可從動態島或 App「允許」、「一律允許」和「拒絕」。
-- 問題連同選項，點一下就能回答。
+- 權限請求 — shell 指令、檔案編輯、讀取、抓取與網路搜尋 — 可從動態島或 App「允許」、「一律允許」和「拒絕」。「一律允許」[目前](#opencode-2x)僅限 OpenCode 1.x。
+- 問題連同選項，點一下就能回答。僅限 OpenCode 1.x：在 2.x 上要[到電腦上回答](#opencode-2x)。
 - session 的待辦清單，在計畫閱讀器裡。
 
 ## CLI 與桌面應用程式 {#the-cli-and-the-desktop-app}
@@ -55,7 +67,7 @@ OpenCode 把一次被拒絕的權限，當成對代理正在做的事的回答�
 
 「允許」和「一律允許」則永遠只解決你點的那一張卡片。
 
-「一律允許」不只在本次 session 有效，而是一直有效到 OpenCode 重新啟動，也適用於該專案的其他 OpenCode sessions。選項上也會寫明：「一律允許 …（直到 OpenCode 重新啟動）」。
+在 OpenCode 1.x 上，「一律允許」不只在本次 session 有效，而是一直有效到 OpenCode 重新啟動，也適用於該專案的其他 OpenCode sessions。選項上也會寫明：「一律允許 …（直到 OpenCode 重新啟動）」。
 
 ## 沒有附註，也沒有自行輸入的回答 {#no-notes-no-typed-answers}
 
